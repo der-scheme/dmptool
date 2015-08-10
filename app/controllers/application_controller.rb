@@ -15,7 +15,17 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :safe_has_role?, :require_login, :user_role_in?
 
+  before_action :set_locale
+
   protected
+
+    def set_locale
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
+  
+    def default_url_options(options = {})
+      { locale: I18n.locale }.merge options
+    end
 
   	def current_user
     	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
