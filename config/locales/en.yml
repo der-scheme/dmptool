@@ -80,3 +80,13 @@ en:
       about: "About"
       about_title: "About the California Digital Library Data Management Tool"
 
+  static_pages:
+    home:
+      dmp_headline: "Data Management Planning Tool"
+      dmp_subtitle1: "Create, review, and share data management plans"
+      dmp_subtitle2: " that meet institutional and funder requirements."
+      dmp_get_started_link: "Get Started"
+      public_dmps: "Public DMPs"
+      dmp_news: "DMPTool News"
+      dmp_help: "DMPTool Help"
+
