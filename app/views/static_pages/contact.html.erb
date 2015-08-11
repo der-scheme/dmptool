@@ -1,43 +1,41 @@
-<% @title_text = "Contact Us" %>
+<% @title_text = t('.browser_title') %>
 <% @display_menu = "contact" %>
-<h1 class="row-fluid"><span class="icon funder-guidance"></span>Contact Us</h1>
+<h1 class="row-fluid"><span class="icon funder-guidance"></span><%= t('.title') %></h1>
 <div class="contact row-fluid">
 	<div class="span8">
 		<%= form_tag do %>
-			<h2>Your message is about:</h2>
+			<h2><%= t('.form_tag') %></h2>
 		  <div class="control-group">
 		    <%= radio_button_tag :question_about, "using the dmptool", params[:question_about] == 'Using the dmptool' %>
-		    <%= label_tag :question_about_Using_the_dmptool, "Using the DMP Tool", :class => "checkbox-label" %>
+		    <%= label_tag :question_about_Using_the_dmptool, t('.question_about_using_dmptool'), :class => "checkbox-label" %>
 		  </div>
 		  <div class="control-group">
 		    <%= radio_button_tag :question_about, "Becoming a participating institution", params[:question_about] == 'Becoming a participating institution' %>
-		    <%= label_tag :question_about_Becoming_a_participating_institution, "Becoming a participating institution", :class => "checkbox-label" %>
+		    <%= label_tag :question_about_Becoming_a_participating_institution, t('.question_about_becoming_participating_institution'), :class => "checkbox-label" %>
 			</div>
 		  <div class="control-group">
 		    <%= radio_button_tag :question_about, "Other", params[:question_about] == 'Other' %>
-		    <%= label_tag :question_about_Other, "Other", :class => "checkbox-label" %>
+		    <%= label_tag :question_about_Other, t('.question_about_other'), :class => "checkbox-label" %>
 			</div>
 			<div class="control-group">
-		    <%= label_tag :name, "Your Name", :class => "required" %>
+		    <%= label_tag :name, t('.form_name'), :class => "required" %>
 		    <%= text_field_tag :name, (current_user ? current_user.full_name : params[:name]), readonly: !current_user.blank?, :class => "required" %>
 				
-		    <%= label_tag :email, "Email", :class => "required" %>
+		    <%= label_tag :email, t('.form_mail'), :class => "required" %>
 		    <%= email_field_tag :email, (current_user ? current_user.email : params[:email]), readonly: !current_user.blank?, :class => "required" %>
 		  </div>
 		  <div class="control-group">
-		    <%= label_tag :message, "Message" %>
+		    <%= label_tag :message, t('.form_message') %>
 		    <%= text_area_tag "message", params[:message], :rows => 5, :cols => 35, placeholder: "", :class => "input-xxlarge required" %>
 		  </div>
 		  <br/>
 	    <%= recaptcha_tags %>
 	    <br/>
-		  <%= submit_tag "Submit" %>
+		  <%= submit_tag t('.recaptcha_submit') %>
 		<% end %>
 	</div>
 	<div class="span4">
-	  <h2>Tips:</h2>
-	  <p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p>
-	  <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool
-	    representative at your organization. Your organization may offer additional data management consultation services.</p>
+	  <h2><%= t('.tips') %></h2>
+	  <%= t('.tips_text_html') %>
 	</div>
 </div>
