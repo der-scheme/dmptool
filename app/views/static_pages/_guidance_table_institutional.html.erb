@@ -1,12 +1,12 @@
 <table class="table table-striped">
 	<thead>
 		<tr>			
-      <th><%= link_to "Template", {order_scope2: "Template", scope2: @scope2}%></th>
-      <th class="span5"><%= link_to (public ? 'Funder' : 'Institution'), {order_scope2: "Institution", scope2: @scope2}%></th>
-      <th><%= link_to (public ? 'Funder Links' : 'Institution Links'), {order_scope2: "InstitutionLink", scope2: @scope2}%></th>
+      <th><%= link_to t('.template'), {order_scope2: "Template", scope2: @scope2}%></th>
+      <th class="span5"><%= link_to (public ? t('.funder') : t('.institution')), {order_scope2: "Institution", scope2: @scope2}%></th>
+      <th><%= link_to (public ? t('.funder_links') : t('.institution_links')), {order_scope2: "InstitutionLink", scope2: @scope2}%></th>
       <th>
-      	<%= link_to "Sample Plans", {order_scope2: "SamplePlans", scope2: @scope2}%>
-      	<%= content_tag(:span, '', :title => 'Sample plans are provided by a funder, an institution or a trusted party.', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %><br>(if available)
+      	<%= link_to t('.sample_plans'), {order_scope2: "SamplePlans", scope2: @scope2}%>
+      	<%= content_tag(:span, '', :title => t('.sample_plans_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %><br><%= t('.if_available') %>
       </th>
 		</tr>
 	</thead>
@@ -40,12 +40,12 @@
 
 <% if @scope2 == "all" %>
 	<div class="buttons pagination">
-		<%= link_to "View Less", {:method => :get, order_scope2: @order_scope2, scope2: ""}, {:class => "btn"}%>
+		<%= link_to t('.button_view_less'), {:method => :get, order_scope2: @order_scope2, scope2: ""}, {:class => "btn"}%>
 		<%= paginate @institution_templates, {:param_name => 'institutional_guidance_page', order_scope2: @order_scope2} %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to "View All", {:method => :get, order_scope2: @order_scope2, scope2: "all"}, {:class => "btn"}%>
+		<%= link_to t('.button_view_all'), {:method => :get, order_scope2: @order_scope2, scope2: "all"}, {:class => "btn"}%>
 		<%= paginate @institution_templates, {:param_name => 'institutional_guidance_page', order_scope2: @order_scope2} %>
 	</div>
 <%end%>

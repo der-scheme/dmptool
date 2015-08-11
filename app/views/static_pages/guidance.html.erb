@@ -1,19 +1,17 @@
-<% @title_text = "DMP Requirements" %>
+<% @title_text = t('.browser_title') %>
 <% @display_menu = "dmp_requirements" %>
-<h1 class="row-fluid"><span class="icon funder-guidance"></span>DMP Requirements</h1>
+<h1 class="row-fluid"><span class="icon funder-guidance"></span><%= t('.title') %></h1>
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<p>Use the A-Z links below to narrow down the list by institution or
-			use the search box to search for specific DMP Templates.  Sample
-			plans are not necessarily from the funder.</p>
+		<%= t('.description_html') %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
 					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
 					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag('Search') %>
+					<%= submit_tag(t('.search_button')) %>
 				</div>
 			<% end %>
 	</div>
@@ -24,7 +22,7 @@
 	<%= link_to('G - L', { :s => 'g', :e => 'l' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewG-L') %> 
 	<%= link_to('M - S', { :s => 'm', :e => 's' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewM-S') %> 
 	<%= link_to('T - Z', { :s => 't', :e => 'z' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewT-Z') %> 
-	<%= link_to('All', { :s => 'a', :e => 'z' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewA-Z') %>
+	<%= link_to(t('.show_all_button'), { :s => 'a', :e => 'z' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewA-Z') %>
 </div>
 <br/>
 
@@ -32,11 +30,11 @@
 
 <% if defined?(@institution_templates) && @institution_templates.length > 0 %>
 <h1 class="row-fluid">
-	<span class="icon institution-guidance"></span>DMP Requirements for <%= current_user.institution.full_name %>
+	<span class="icon institution-guidance"></span><%= t('.requirements_for_institution') %> <%= current_user.institution.full_name %>
 </h1>
 
 	<div class="table-scope">
-		<p>Below is a list of DMP templates available in your institution</p>
+		<%= t('.list_for_institution_html') %>
 	</div>
 	<%= render partial: 'guidance_table_institutional', :locals => {templates: @institution_templates, public: false} %>
 <% end %>
