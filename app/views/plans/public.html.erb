@@ -1,17 +1,17 @@
-<% @title_text = "Public DMPs" %>
+<% @title_text = t('.browser_title') %>
 <% @display_menu = "public_dmps" %>
-<h1 class="row-fluid"><span class="icon public-dmps"></span>Public DMPs</h1>
+<h1 class="row-fluid"><span class="icon public-dmps"></span><%= t('.title') %></h1>
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>
+		<%= t('.description_html') %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
 					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
 					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag('Search') %>
+					<%= submit_tag(t('.search_button')) %>
 				</div>
 			<% end %>
 	</div>
@@ -26,7 +26,7 @@
 				:class => 'btn viewM-S') %> 
 	<%= link_to('T - Z', params.merge({ 's' => 't', 'e' => 'z' , "public:page" => '1'}),
 			:class => 'btn viewT-Z') %> 
-	<%= link_to('All', params.merge({ 's' => 'a', 'e' => 'z' , "public:page" => '1'}),
+	<%= link_to(t('.show_all_button'), params.merge({ 's' => 'a', 'e' => 'z' , "public:page" => '1'}),
 			:class => 'btn viewA-Z') %>
 </div>
 <br/>
@@ -39,7 +39,7 @@
 
 <% unless @inst_plans.nil? || @inst_plans.length < 1 %>
   <br/>
-  <h1 class="row-fluid"><span class="icon public-dmps"></span>Institutional DMPs</h1>
+  <h1 class="row-fluid"><span class="icon public-dmps"></span><%= t('.institutional_dmps') %></h1>
   <%= render partial: 'generic_table', locals: {plans: @inst_plans, namespace: 'institutional',
               show_institution: @show_institution} %>
 <% end %>

@@ -11,19 +11,19 @@
 <thead>
 <%# wanted_params = params.slice('all_scope','s', 'e') %>
 <tr>
-  <th class="span5"><%= link_to "Plan Title", params.merge({"#{namespace}:order_scope" => "plans.name"}) %></th>
-  <th class="span5"><%= link_to "Funder Template", params.merge({"#{namespace}:order_scope" => "requirements_templates.name"}) %></th>
+  <th class="span5"><%= link_to t('.plan_title_link'), params.merge({"#{namespace}:order_scope" => "plans.name"}) %></th>
+  <th class="span5"><%= link_to t('.funder_template_link'), params.merge({"#{namespace}:order_scope" => "requirements_templates.name"}) %></th>
   <% if show_institution %>
-    <th class="span5"><%= link_to "Institution", params.merge({"#{namespace}:order_scope" => "institutions.full_name"}) %></th>
+    <th class="span5"><%= link_to t('.institution_link'), params.merge({"#{namespace}:order_scope" => "institutions.full_name"}) %></th>
   <% end %>
-  <th class="span5"><%= link_to "Owner", params.merge({"#{namespace}:order_scope" => "CONCAT(users.first_name, ' ', users.last_name)"}) %></th>
-  <th>Download</th>
+  <th class="span5"><%= link_to t('.owner_link'), params.merge({"#{namespace}:order_scope" => "CONCAT(users.first_name, ' ', users.last_name)"}) %></th>
+  <th><%= t('.download') %></th>
 </tr>
 </thead>
 <tbody>
 
   <div class="toggle-links">
-    <tr><td colspan="5" style="text-align: center;">No results found</td></tr>
+    <tr><td colspan="5" style="text-align: center;"><%= t('.no_results') %></td></tr>
   </div>
   
 </tbody>
