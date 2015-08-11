@@ -170,3 +170,7 @@ en:
       button_view_less: "View Less"
       button_view_all: "View All"
 
+    public_dmps:
+      description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
+      view_all_button: "View All"
+
