@@ -20,25 +20,31 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  views:
-    pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "&lsaquo; Previous"
-      next: "Next &rsaquo;"
-      truncate: "..."
+  layouts:
+    footer:
+      copyright_text_intro_html: "DMPTOOL is a service of the %{link1} of the %{link2}"
+      copyright_link1: "http://www.cdlib.org/services/uc3"
+      copyright_link1_text: "University of California Curation Center"
+      copyright_link1_title: "University of California Curation Center"
+      copyright_link2: "http://www.cdlib.org/services/uc3"
+      copyright_link2_text: "California Digital Library"
+      copyright_link2_title: "California Digital Libary"
+      copyright_text_html: "Copyright &copy; 2010-%{year} The Regents of the University of California"
+      footer_facebook_link: "https://www.facebook.com/DMPTool"
+      footer_facebook_title: "Follow the California Digital Library on Facebook"
+      footer_twitter_link: "https://twitter.com/TheDMPTool"
+      footer_twitter_title: "Follow the California Digital Library on Twitter"
+      footer_rss_link: "https://blog.dmptool.org/feed"
+      footer_rss_title: "California Digital Library RSS Feed"
+      privacy_policy: "Privacy Policy"
+      privacy_policy_title: "Privacy Policy"
+      accessibility_policy: "Accessibility Policy"
+      accessibility_policy_link: "http://www.ucop.edu/electronic-accessibility/initiative/policy.html"
+      accessibility_policy_title: "Accessibility Policy"
+      termsOfUse: "Terms of Use"
+      termsOfUse_title: "Terms of Use"
+      contact: "Contact Us"
+      contact_title: "Contact Us"
+      about: "About"
+      about_title: "About the California Digital Library Data Management Tool"
 
-  recaptcha:
-    errors:
-      incorrect-captcha-sol: "ReCaptcha word verification didn't match."
-
-  activerecord:
-    models:
-      resource_context:     "Customization"
-
-    attributes:
-      resource_context:
-         name:              "Customization Name"
-         contact_info:      "Contact Information"
-         contact_email:     "Contact Email"
