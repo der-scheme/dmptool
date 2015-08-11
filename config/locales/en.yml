@@ -174,3 +174,13 @@ en:
       description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
       view_all_button: "View All"
 
+  user_sessions:
+    institution:
+      browser_title: "Log In"
+      title: "Institution Log In"
+      howto_title_html: "<h2>Log in through your institution</h2>"
+      howto_text: "Select your institution below and you will be directed to your institutional log in page."
+      promt_default_text: "Select your institution"
+      button_submit: "Next >>"
+      note_html: "<p>If you do not see your institution in the list, <br/>
+                please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
