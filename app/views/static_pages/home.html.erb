@@ -5,25 +5,24 @@
 	<p><strong><%= t('.dmp_subtitle1') %></strong> <%= t('.dmp_subtitle2') %></p>
 	<%= link_to t('.dmp_get_started_link'), (current_user ? dashboard_path: choose_institution_path), :class => "btn btn-large" %>
 </div>
+
+<div class="banner_caption">
+  <p><%= t('.after_banner_title') %></p>
+</div>
+
 <div class="buckets-header row-fluid">
   <div class="span4">
-  	<h2><span class="icon public"></span><%= t('.public_dmps') %></h2>
+  	<h2><span class="icon public"></span><%= t('.left_bucket_title') %></h2>
   </div>
   <div class="span4">
-  	<h2><span class="icon news"></span><%= t('.dmp_news') %></h2>
-  </div>
-  <div class="span4">
-  	<h2><span class="icon help"></span><<%= t('.dmp_help') %>/h2>
+  	<h2><span class="icon news"></span><%= t('.right_bucket_title') %></h2>
   </div>
 </div>
 <div class="buckets row-fluid">
-  <div class="data_management_plans span4">
-    <%= render "plans/public_dmps" %>
-  </div>
   <div class="dmp_tool_news span4">
-    <%= render "dmptool_news" %>
+    <%= render "dmptool_for" %>
   </div>
   <div class="how_to_use span4">
-    <%= render "dmptool_help" %>
+    <%= render "dmptool_info" %>
   </div>
 </div>

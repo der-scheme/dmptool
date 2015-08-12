@@ -49,3 +49,52 @@ de:
       about_link: "About"
       about_title: "About the California Digital Library Data Management Tool"
 
+  static_pages:
+    home:
+      dmp_headline: "Data Management Planning Tool"
+      dmp_subtitle1: "Datenmanagementpläne gemeinsam erstellen, begutachten und teilen"
+      dmp_subtitle2: ""
+      dmp_get_started_link: "START"
+      after_banner_title: "Anforderungen der Drittmittelgeber und Universitäten erfüllen"
+      left_bucket_title: "Für wen ist das DMP-Tool gedacht?"
+      right_bucket_title: "Das DMP-Tool in Kürze?"
+
+    dmptool_for:
+      title: "Das DMP-Tool soll Wissenschaftler, Universitäten und Hochschulen unterstützen."
+      listing_html: "<li>Für Wissenschaftler</li>
+                     <ul>
+                        <li>Sie schreiben Anträge für Drittmittelprojekte bei der EU, NSF, DFG, …? \
+                            Dann werden Sie immer öfter darlegen müssen, wie Sie mit den im Projekt \
+                            erhobenen Forschungsdaten umgehen werden.</li>
+                        <li>Unabhängig davon ist es für zielgerichtetes Arbeiten sinnvoll, wenn \
+                            Sie sich im Projektteam früh über Aspekte rund um das Datenmanagement \
+                            verständigen (Zugriffsrechte, verwendeten Dateiformate, ethische und rechtliche \
+                            Fragen, Nachnutzung der Daten usw.).</li>
+                        <li>Das DMP-Tool hilft Ihnen bei der Erstellung und Verwaltung eines passenden Datenmanagementplans.</li>
+                    </ul>
+                    <li>Für Universitäten und Hochschulen</li>
+                    <ul>
+                      <li>Der Forschungsoutput Ihrer Einrichtung profitiert von gutem Datenmanagement. Möglichweise \
+                          haben Sie an Ihrer Einrichtung bereits eine Policy zu Forschungsdaten verabschiedet und suchen noch \
+                          nach Tools, die Ihre Wissenschaftler dabei unterstützen?</li>
+                    </ul>"
+    dmptool_info:
+      title: "Das DMP-Tool macht Ihnen die Arbeit leichter."
+      listing_html: "<li>Für Wissenschaftler</li>
+                     <ul>
+                       <li>DMP-Vorlagen nutzen</li>
+                       <li>DMPs im Projektteam gemeinsam erstellen und verwalten</li>
+                       <li>DMPs mit einzelnen Personen oder der ganzen Community teilen</li>
+                       <li>DMP als pdf-Datei exportieren</li>
+                       <li>Optional: DMPs durch einen Experten der eigenen Einrichtung begutachten \
+                           lassen (wenn von der Einrichtung unterstützt)</li>
+                     </ul>
+                     <li>Für Universitäten und Hochschulen</li>
+                     <ul>
+                       <li>Erstellen eigener, angepasster DMP-Vorlagen</li>
+                       <li>Veröffentlichung von Beispiel-DMPs auf Einrichtungsebene möglich</li>
+                       <li>Durch die Begutachtungsfunktion des Tools können Sie - sofern erwünscht - DMPs \
+                           der eigenen Wissenschaftler begutachten und so die Chancen auf einen erfolgreichen \
+                           Projektantrag und -verlauf erhöhen.</li>
+                       <li>Optional: Komfortabler Shibboleth-Login für Mitglieder Ihrer Einrichtung</li>
+                     </ul>"
