@@ -98,3 +98,14 @@ de:
                            Projektantrag und -verlauf erhöhen.</li>
                        <li>Optional: Komfortabler Shibboleth-Login für Mitglieder Ihrer Einrichtung</li>
                      </ul>"
+
+  user_sessions:
+    institution:
+      browser_title: "LOG-IN"
+      title: "LOG-IN"
+      howto_title_html: "<h2>Mit den Uni-Daten einloggen</h2>"
+      howto_text: "Wählen Sie Ihre Einrichtung aus, um auf die institutionelle Anmeldeseite zu gelangen."
+      promt_default_text: "Wählen Sie Ihre Einrichtung aus"
+      button_submit: "Weiter >>"
+      note_html: ""
+
