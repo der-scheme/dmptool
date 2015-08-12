@@ -2,17 +2,12 @@
 	<div class="row-fluid">
 		<div class="copyright span7">
 			<p><%= t('.copyright_text_intro_html', :link1=> link_to(t('.copyright_link1'), t('.copyright_link1_url'), :title => t('.copyright_link1_title'), :target => '_blank'), 
-			:link2 => link_to(t('.copyright_link2'), t('.copyright_link2_url'), :title => t('.copyright_link2_title'), :target => '_blank')) %><br/>
+			:link2 => link_to(t('.copyright_link2'), t('.copyright_link2_url'), :title => t('.copyright_link2_title'), :target => '_blank'),
+			:link3 => link_to(t('.copyright_link3'), t('.copyright_link3_url'), :title => t('.copyright_link3_title'), :target => '_blank')) %><br/>
 			<%= t('.copyright_text_html', :year => Time.new.year) %><br/>
 		</div>
 		<div class="footer-links span5">
-			<div class="footer-feeds">
-				<%= link_to '', t('.footer_facebook_link'), :class => 'icon facebook', :title => t('.footer_facebook_title'), :target => '_blank' %>
-				<%= link_to '', t('.footer_twitter_link'), :class => 'icon twitter', :title => t('.footer_twitter_title'), :target => '_blank' %>
-				<%= link_to '', t('.footer_rss_link'), :class => 'icon rss', :title => t('.footer_rss_title'), :target => '_blank' %>
-			</div>
 			<p><%= link_to t('.privacy_policy_link'), privacy_path, :title => t('.privacy_policy_title') %> |
-			<%= link_to t('.accessibility_policy_link'), t('.accessibility_policy_url'), :title => t('.accessibility_policy_title') %> |
 			<%= link_to t('.termsOfUse_link'), terms_of_use_path, :title => t('.termsOfUse_title') %> |
 			<%= link_to t('.contact_link'), contact_path, :title => t('.contact_title') %> |
 			<%= link_to t('.about_link'), about_path, :title => t('.about_title') %></p>
