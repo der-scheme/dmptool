@@ -118,6 +118,42 @@ de:
                        richtet sich Ihre Anfrage über dieses Formular direkt an den Betreuer des DMP-Tools \
                        an Ihrer Einrichtung.</p>"
 
+    guidance:
+      browser_title: "DMP-Vorlagen"
+      title: "DMP-Vorlagen"
+      description_html: "<p>Über das A-Z können Sie die DMP-Vorlagen auf die Vorlagen einer bestimmten Einrichtung einschränken. Sie können außerdem über den Suchschlitz direkt nach einer bestimmten DMP-Vorlage suchen. Die Musterpläne stammen nicht unbedingt vom Forschungsförderer selbst.</p>"
+      search_button: "Suchen"
+      show_all_button: "Alle"
+      requirements_for_institution: "DMP-Vorlagen für "
+      list_for_institution_html: "<p>Unten sehen Sie eine Liste von DMP Vorlagen, welche in Ihrer Institution verfügbar sind.</p>"
+
+    guidance_table:
+      template: "Vorlage"
+      funder: "Forschungsförderer"
+      funder_links: "Link zum Forschungsförderer"
+      institution: "Institution"
+      institution_links: "Link zur Institution"
+      sample_plans: "Musterpläne"
+      sample_plans_tooltip: "Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt."
+      if_available: "(falls verfügbar)"
+      no_results: "Keine Ergebnisse gefunden"
+      button_view_less: "Weniger anzeigen"
+      button_view_all: "Alle anzeigen"
+
+    guidance_table_institutional:
+      template: "Vorlage"
+      funder: "Forschungsförderer"
+      funder_links: "Link zum Forschungsförderer"
+      institution: "Institution"
+      institution_links: "Link zur Institution"
+      sample_plans: "Musterpläne"
+      sample_plans_tooltip: "Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt."
+      if_available: "(falls verfügbar)"
+      no_results: "Keine Ergebnisse gefunden"
+      button_view_less: "Weniger anzeigen"
+      button_view_all: "Alle anzeigen"
+
+
   user_sessions:
     institution:
       browser_title: "LOG-IN"
