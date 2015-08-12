@@ -153,6 +153,36 @@ de:
       button_view_less: "Weniger anzeigen"
       button_view_all: "Alle anzeigen"
 
+  plans:
+    public:
+      browser_title: "Beispiel-DMPs"
+      title: "Beispiel-DMPs"
+      description_html: "<p>Die hier aufgeführten Pläne sind von Nutzern, die ihre Pläne mit der Öffentlichkeit geteilt haben. Sie wurden hierfür nicht separat auf ihre Qualität und Vollständigkeit geprüft und unterscheiden sich dadurch von den Musterplänen.</p>"
+      search_button: "Suche"
+      show_all_button: "Alle"
+      institutional_dmps: "Institutional DMPs"
+
+    public_dmps_no_result:
+      plan_title_link: "Titel des Plans"
+      funder_template_link: "Vorlage"
+      institution_link: "Einrichtung"
+      owner_link: "Besitzer"
+      download: "Download"
+      no_results: "Kein Ergebnisse gefunden"
+
+    generic_table:
+      plan_title_link: "Titel des Plans"
+      funder_template_link: "Vorlage"
+      institution_link: "Einrichtung"
+      owner_link: "Besitzer"
+      download: "Download"
+      visibility_link: "Sichtbarkeit"
+      button_view_less: "Weniger anzeigen"
+      button_view_all: "Alle anzeigen"
+
+    public_dmps:
+      description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
+      view_all_button: "Alle anzeigen"
 
   user_sessions:
     institution:
