@@ -99,6 +99,25 @@ de:
                        <li>Optional: Komfortabler Shibboleth-Login für Mitglieder Ihrer Einrichtung</li>
                      </ul>"
 
+    contact:
+      browser_title: "Kontakt"
+      title: "Kontakt"
+      form_tag: "Worum geht es?"
+      question_about_using_dmptool: "Nutzung des DMP-Tools"
+      question_about_becoming_participating_institution: "Partnereinrichtung werden"
+      question_about_other: "Anderes Anliegen"
+      form_name: "Ihr Name"
+      form_mail: "Email"
+      form_message: "Nachricht"
+      recaptcha_submit: "Abschicken"
+      tips: "Hinweis:"
+      tips_text_html: "<p>Wir beantworten Ihnen gerne Fragen zum DMP-Tool. Für eine allgemeine \
+                       Beratung zum Datenmanagement kontaktieren Sie jedoch bitte Ihre lokalen \
+                       FDM-Ansprechpartner.</p>\
+                       <p>Wenn Sie einer unserer Partnerinstitutionen angehören und eingeloggt sind, \
+                       richtet sich Ihre Anfrage über dieses Formular direkt an den Betreuer des DMP-Tools \
+                       an Ihrer Einrichtung.</p>"
+
   user_sessions:
     institution:
       browser_title: "LOG-IN"
