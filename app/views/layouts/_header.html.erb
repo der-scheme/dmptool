@@ -19,19 +19,17 @@
       <li class="nav-public<%= (menu_level(0) == 'public_dmps' ? ' current' : '') %>">
         <%= link_to t('.publicDMPs_link'), public_dmps_path, :title => t('.publicDMPs_title') %>
       </li>
-      <li class="nav-new"><%= link_to t('.news_link'), APP_CONFIG['blog'], :title => t('.news_title'), :target => "_blank" %></li>
       <li class="nav-help<%= (menu_level(0) == 'help' ? ' current' : '') %>"><%= link_to t('.help_link'), help_path, :title => t('.help_title') %></li>
-      <li class="nav-contact<%= (menu_level(0) == 'contact' ? ' current' : '') %>"><%= link_to t('.contact_link'), contact_path, :title => t('.contact_title') %></li>
-      <li class="nav-about parent<%= (menu_level(0) == 'about' ? ' current' : '') %>"><%= link_to t('.about_link'), about_path, :title => t('.about_title') %>
-      	<ul class="children right">
-      		<li><%= link_to t('.faq_link'), t('.faq_url'), :title => t('.faq_title'), :target => "_blank" %></li>
-      		<li><%= link_to t('.video_link'), video_path, :title => t('.video_title') %></li>
-      		<li><%= link_to t('.partnerInstitutions_link'), partners_path, :title => t('.partnerInstitutions_title') %></li>
-      	</ul>
-      </li>
       <li class="login<%= (menu_level(0) == 'log_in' ? ' current' : '') %>">
         <%= link_to(content_tag(:span, "", :class => "icon user-login") + t('.logIn'), choose_institution_path) if !current_user %>
         <%= link_to(content_tag(:span, "", :class => "icon user-login") + t('.logOut'), logout_path) if current_user %></li>
+      <li class="nav-about parent<%= (menu_level(0) == 'about' ? ' current' : '') %>"><%= link_to t('.about_link'), about_path, :title => t('.about_title') %>
+      	<ul class="children right">
+      		<li><%= link_to t('.faq_link'), t('.faq_url'), :title => t('.faq_link'), :target => "_blank" %></li>
+      		<li><%= link_to t('.partnerInstitutions_link'), partners_path, :title => t('.partnerInstitutions_title') %></li>
+      	</ul>
+      </li>
+      <li class="nav-contact<%= (menu_level(0) == 'contact' ? ' current' : '') %>"><%= link_to t('.contact_link'), contact_path, :title => t('.contact_title') %></li>
     </ul>
   </nav>
 </header>
