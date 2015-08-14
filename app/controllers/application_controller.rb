@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   ROLES =
-      {	  :dmp_admin              => Role::DMP_ADMIN,
+      {   :dmp_admin              => Role::DMP_ADMIN,
           :resource_editor        => Role::RESOURCE_EDITOR,
           :template_editor        => Role::TEMPLATE_EDITOR,
           :institutional_reviewer => Role::INSTITUTIONAL_REVIEWER,
@@ -20,15 +20,17 @@ class ApplicationController < ActionController::Base
   protected
 
     def set_locale
-      I18n.locale = params[:locale] || I18n.default_locale
-    end
-  
-    def default_url_options(options = {})
-      { locale: I18n.locale }.merge options
+      I18n.locale = params[:locale] ||
+          extract_locale_from_accept_language_header || I18n.default_locale
     end
 
-  	def current_user
-    	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    def default_url_options(options = {})
+      { locale: extract_locale_from_accept_language_header || I18n.locale }
+          .merge options
+    end
+
+    def current_user
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
 
     def require_login
@@ -61,7 +63,7 @@ class ApplicationController < ActionController::Base
     def check_editor_for_this_customization
       if params[:id].blank?
         flash[:error] = 'A customization id is missing'
-        redirect_to resource_contexts_path and return 
+        redirect_to resource_contexts_path and return
       end
       cust = ResourceContext.find_by_id(params[:id])
       level = cust.resource_level unless cust.nil?
@@ -134,7 +136,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    
+
 
     def check_DMPTemplate_editor_access
       unless user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor)
@@ -231,5 +233,9 @@ class ApplicationController < ActionController::Base
       inst_ids = insts.map { |i|  (i.ancestor_ids + [ i.id])[least_depth] }
 
       Institution.find(inst_ids)
+    end
+
+    def extract_locale_from_accept_language_header
+      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
     end
   end
