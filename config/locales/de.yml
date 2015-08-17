@@ -52,8 +52,7 @@ de:
   static_pages:
     home:
       dmp_headline: "Data Management Planning Tool"
-      dmp_subtitle1: "Datenmanagementpläne gemeinsam erstellen, begutachten und teilen"
-      dmp_subtitle2: ""
+      dmp_subtitle_html: "Datenmanagementpläne gemeinsam erstellen, begutachten und teilen"
       dmp_get_started_link: "START"
       after_banner_title: "Anforderungen der Drittmittelgeber und Universitäten erfüllen"
       left_bucket_title: "Für wen ist das DMP-Tool gedacht?"
