@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
     end
 
     def default_url_options(options = {})
-      { locale: extract_locale_from_accept_language_header || I18n.locale }
+      #~ { locale: extract_locale_from_accept_language_header || I18n.locale }
+      { locale: I18n.locale }
           .merge options
     end
 
