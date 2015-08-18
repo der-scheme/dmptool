@@ -1,9 +1,17 @@
 <header class="header container">
-  <% if I18n.locale.to_s == 'de' %>
-    <%= link_to t('.english'), {:locale=>'en'}, :class => "choose_language" %>
-  <% else %>
-    <%= link_to t('.german'), {:locale=>'de'}, :class => "choose_language" %>
-  <%end%>
+  <ul class="language_switcher">
+    <% I18n.available_locales.each do |locale| %>
+      <% locale_name = t('.locale_name', locale: locale, default: locale.to_s) %>
+      <li>
+        <% if I18n.locale == locale %>
+          <%= content_tag :span, locale_name, class: 'choose_language', title: t('.currently_chosen', default: 'Currently chosen') %>
+        <% else %>
+          <%= link_to(locale_name, {locale: locale}, class: 'choose_language', title: locale_name) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
   <%= link_to(image_tag("dmp_logo.png", :alt => t('.dmptool_logo_alt'), :width => "146", :height => "25"), root_path, :class => "logo", :title => t('.dmptool_logo_title')) %>
   <div class="welcome">
     <p><%= t('.welcome') unless current_user.nil? %>

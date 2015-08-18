@@ -22,8 +22,8 @@
 en:
   layouts:
     header:
-      english: "English"
-      german: "German"
+      locale_name: 'English'
+      currently_chosen: 'Currently chosen'
       dmptool_logo_alt: "DMPTOOL"
       dmptool_logo_title: "DMPTool Home"
       welcome: "Welcome!"
