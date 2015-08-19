@@ -183,3 +183,10 @@ en:
       button_submit: "Next >>"
       note_html: "<p>If you do not see your institution in the list, <br/>
                 please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
+
+  requirements_templates:
+    toggle_active:
+      activate: 'Activate'
+      deactivate: 'Deactivate'
+      active: 'Active'
+      inactive: 'Inactive'
