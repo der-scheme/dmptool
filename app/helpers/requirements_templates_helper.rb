@@ -1,6 +1,6 @@
 module RequirementsTemplatesHelper
   def activate_link_text(requirements_template)
-    requirements_template.active? ? t('.deactivate') : t('.activate')
+    requirements_template.active? ? t('.deactivate_button') : t('.activate_button')
   end
 	def display_status_text(requirements_template)
     requirements_template.active? ? t('.active') : t('.inactive')
