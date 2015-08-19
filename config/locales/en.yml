@@ -20,6 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      default: '%m/%d/%Y'
+  time:
+    formats:
+      default: '%m/%d/%Y %I:%M %p'
+  datetime:
+    formats:
+      default: '%m/%d/%Y %I:%M %p'
   layouts:
     header:
       locale_name: 'English'
@@ -186,7 +195,47 @@ en:
 
   requirements_templates:
     toggle_active:
-      activate: 'Activate'
-      deactivate: 'Deactivate'
+      activate_button: 'Activate'
+      deactivate_button: 'Deactivate'
       active: 'Active'
       inactive: 'Inactive'
+    form:
+      template_overview: 'DMP Template Overview'
+      basic_info_link: 'Basic Information'
+      template_name: 'Template name'
+      visibility_tooltip_html: 'Once active, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
+      visibility: 'Visibility'
+      visibility_public_radio: 'public'
+      visibility_institutional_radio: 'institutional'
+      optional_info: 'Optional Information'
+      start_date: 'Start Date'
+      start_date_tooltip: 'Start date for the template, often provided by the funder as a proposal submission start date.'
+      end_date: 'End Date'
+      end_date_tooltip: 'End date for the template, often provided by the funder as a proposal submission end date.'
+      review_requirement_tooltip: 'You can require institutional administrator review of plans submitted using this template.'
+      review_requirement: 'Review requirement'
+      review_required_radio: 'Review Required'
+      informal_review_allowed_radio: 'Informal Review Allowed'
+      no_review_radio: 'No Review Needed'
+      add_funder_link_link: 'Add Funder Link'
+      add_sample_plan_link: 'Add Sample Plan'
+      save_button: 'Save'
+      cancel_button: 'Cancel'
+      save_and_next_button: 'Save and Next >>'
+      back_button: '<< Back'
+    date_fields:
+      creation_date: 'Creation date'
+      modification_date: 'Modification date'
+    additional_information_fields:
+      funder_links: 'Funder links'
+      link_url: 'Link Url'
+      link_label_placeholder: 'Link Label'
+      link_url_placeholder: 'Link Url'
+      remove_link: 'Remove'
+      funder_links_tooltip: 'Add links to funder websites that may provide additional information about this template’s requirements.'
+    sample_plan_fields:
+      sample_plans: 'Sample plans'
+      plan_url: 'Plan Url'
+      plan_name_placeholder: 'Plan Name'
+      plan_url_placeholder: 'Plan Url'
+      sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
