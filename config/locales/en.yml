@@ -54,6 +54,14 @@ en:
           action_export_rtf: 'Export as RTF'
           status_active: 'Active'
           status_inactive: 'Inactive'
+    enums:
+      visibility:
+        institutional: 'Institutional'
+        public: 'Public'
+        private: 'Private'
+        unit: 'Unit'
+        owner: 'Owner'
+        reviewer: 'Reviewer'
   layouts:
     header:
       locale_name: 'English'
