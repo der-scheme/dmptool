@@ -29,6 +29,31 @@ en:
   datetime:
     formats:
       default: '%m/%d/%Y %I:%M %p'
+  globals:
+    helpers:
+      sortable:
+        creation_date: 'Creation Date'
+        institution: 'Institution'
+        modification_date: 'Last Modification Date'
+        name: 'Name'
+        owner: 'Owner'
+        status: 'Status'
+        visibility: 'Visibility'
+      template:
+        details:
+          overview: 'Overview'
+          details: 'Details'
+          action_customize: 'Customize'
+          action_delete: 'Delete'
+          action_activate: 'Activate'
+          action_deactivate: 'Deactivate'
+          action_share: 'Share'
+          action_preview: 'Preview'
+          action_copy: 'Copy'
+          action_export_pdf: 'Export as PDF'
+          action_export_rtf: 'Export as RTF'
+          status_active: 'Active'
+          status_inactive: 'Inactive'
   layouts:
     header:
       locale_name: 'English'
@@ -194,11 +219,6 @@ en:
                 please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
 
   requirements_templates:
-    toggle_active:
-      activate_button: 'Activate'
-      deactivate_button: 'Deactivate'
-      active: 'Active'
-      inactive: 'Inactive'
     form:
       template_overview: 'DMP Template Overview'
       basic_info_link: 'Basic Information'
@@ -239,3 +259,13 @@ en:
       plan_name_placeholder: 'Plan Name'
       plan_url_placeholder: 'Plan Url'
       sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
+    index:
+      dmp_templates: 'DMP Templates'
+      all_filter_link: 'All (%{count})'
+      active_filter_link: 'Active  (%{count})'
+      inactive_filter_link: 'Inactive (%{count})'
+      institutional_filter_link: 'Institution only (%{count})'
+      public_filter_link: 'Public (%{count})'
+      inst_public_filter_link: 'Public defined by my Institution (%{count})'
+      filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template when a researcher creates a DMP. It can be visible either publicly (to anyone logged into the tool) or for institutional researchers only.</li><li>Inactive: will not appear as an optional funder template when a researcher creates a DMP. This may be because the template that is no longer in use, or that has not been completed (finalized) by an administrator.</li><li>Institution only: Active or inactive DMP templates for your institution only.</li><li>Public:  All DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
+      sort_by_visibility_tooltip_html: 'Once live, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
