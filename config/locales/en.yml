@@ -269,6 +269,7 @@ en:
       plan_url: 'Plan Url'
       plan_name_placeholder: 'Plan Name'
       plan_url_placeholder: 'Plan Url'
+      remove_link: 'Remove'
       sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
     index:
       dmp_templates: 'DMP Templates'
