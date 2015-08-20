@@ -284,3 +284,11 @@ en:
       view_less_button: 'View Less'
       view_all_button: 'View All'
       new_button: 'Create New Template >>'
+    template_information:
+      new_template: 'Create New DMP Template'
+      copy_template: 'Copy an Existing DMP Template'
+      copy_template_explanation: 'Select an existing requirements template below and edit the template information and details.'
+      copy_template_button: 'Copy Template'
+      copy_template_no_templates: 'There are no existing templates to edit.'
+      new_template_explanation: 'Input basic and optional information of the new requirements template and edit the template details.'
+      new_template_button: 'Create New Template'
