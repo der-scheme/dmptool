@@ -302,4 +302,36 @@ en:
       success_notice: 'Requirements template was successfully created.'
     toggle_active:
       failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
+  authorizations:
+    add_authorization:
+      not_found_message:
+        one: 'Could not find user with the following email: %{emails}'
+        other: 'Could not find users with the following emails: %{emails}'
+      existing_message:
+        one: 'The following user has already been assigned this role: %{emails}'
+        other: 'The following users have already been assigned this role: %{emails}'
+      foreign_message: 'You cannot grant this role to users outside your institution: %{emails}. Please contact the DMP Administrator.'
+      success_notice:
+        one: 'Role granted to the following user: %{emails}'
+        other: 'Role granted to the following users: %{emails}'
+    remove_authorization:
+      success_notice: 'The role has been revoked.'
+      not_allowed_message: "You don't have permission to revoke this role."
+    add_role_autocomplete:
+      blank_name_message: 'Please select a person to add as a %{role}.'
+      incomplete_message: 'Please type and select the full name or email of a user.'
+      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
+      not_found_message: 'The user you entered was not found.'
+      already_has_role_message: 'The user you chose is already a %{role}.'
+      not_allowed_message: 'You do not have permission to assign this role.'
+      success_notice: '%{user} has been added as a %{role}.'
+    add_authorization_manage_users:
+      blank_name_message: 'Please select a user.'
+      incomplete_message: 'Please type and select the full name or email of a user.'
+      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
+      not_found_message: 'The user you entered was not found.'
+      foreign_message: 'The user you chose belongs to a different institution.'
+      already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
+      select_role_message: 'Please select at least a role to grant.'
+      success_notice: '%{user} has been updated.'
 
