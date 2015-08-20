@@ -292,3 +292,14 @@ en:
       copy_template_no_templates: 'There are no existing templates to edit.'
       new_template_explanation: 'Input basic and optional information of the new requirements template and edit the template details.'
       new_template_button: 'Create New Template'
+    create:
+      success_notice: 'DMP Template was successfully created.'
+    update:
+      success_notice: 'DMP Template was successfully updated.'
+    destroy:
+      success_notice: 'DMP template was deleted.'
+    copy_existing_template:
+      success_notice: 'Requirements template was successfully created.'
+    toggle_active:
+      failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
+
