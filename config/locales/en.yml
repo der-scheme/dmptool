@@ -39,21 +39,21 @@ en:
         owner: 'Owner'
         status: 'Status'
         visibility: 'Visibility'
-      template:
-        details:
-          overview: 'Overview'
-          details: 'Details'
-          action_customize: 'Customize'
-          action_delete: 'Delete'
-          action_activate: 'Activate'
-          action_deactivate: 'Deactivate'
-          action_share: 'Share'
-          action_preview: 'Preview'
-          action_copy: 'Copy'
-          action_export_pdf: 'Export as PDF'
-          action_export_rtf: 'Export as RTF'
-          status_active: 'Active'
-          status_inactive: 'Inactive'
+    template:
+      details:
+        overview: 'Overview'
+        details: 'Details'
+        action_customize: 'Customize'
+        action_delete: 'Delete'
+        action_activate: 'Activate'
+        action_deactivate: 'Deactivate'
+        action_share: 'Share'
+        action_preview: 'Preview'
+        action_copy: 'Copy'
+        action_export_pdf: 'Export as PDF'
+        action_export_rtf: 'Export as RTF'
+        status_active: 'Active'
+        status_inactive: 'Inactive'
     enums:
       visibility:
         institutional: 'Institutional'
