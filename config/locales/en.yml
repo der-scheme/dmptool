@@ -364,3 +364,9 @@ en:
       cancel_button: 'Cancel'
       back_button: '<< Back'
       logo_tooltip: 'Suggested Logo Size 170x60'
+    edit_user_roles_inst_admin:
+      user_roles_link: 'User Roles'
+      edit_user_roles: 'Edit User Roles'
+      current_roles: "%{user}'s Current Roles:"
+      save_changes_button: 'Save Changes'
+      back_button: 'Back'
