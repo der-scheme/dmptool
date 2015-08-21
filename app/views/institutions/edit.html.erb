@@ -123,9 +123,9 @@
 
 
 
-  <% if !(@acr.nil?) %>
+  <% if @acr %>
  <%= link_to t('.back_button'), institutions_path(anchor: @acr), class: 'btn', role: 'button' %>
-  <%elsif !@admin_acr.nil?  %>
+  <% @admin_acr %>
     <%= link_to t('.back_button'), users_path(anchor: @admin_acr), class: 'btn', role: 'button' %>
   <% else %>
     <%= link_to t('.back_button'), :back, class: 'btn', role: 'button' %>
