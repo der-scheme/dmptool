@@ -14,7 +14,7 @@
     <div class="controls">
 
       <%= f.text_field :shib_entity_id, readonly: @current_institution.is_shibboleth?, disabled: @disabled %>
-      <%= content_tag(:span, '', title: t('.shib_entity_id_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.shib_entity_id_tooltip', email: APP_CONFIG['feedback_email_to'].join(', ')), data: { toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip') %>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
     <div class="controls">
 
       <%= f.text_field :shib_domain, readonly: @current_institution.is_shibboleth? , disabled: @disabled %>
-      <%= content_tag(:span, '', title: t('.shib_domain_id_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.shib_domain_id_tooltip', email: APP_CONFIG['feedback_email_to'].join(', ')), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
     </div>
   </div>
 
@@ -49,7 +49,7 @@
 
       <% end %>
 
-      <%= content_tag(:span, '', title: t('.parent_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.parent_tooltip', email: APP_CONFIG['feedback_email_to'].join(', ')), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
 
     </div>
   </div>
