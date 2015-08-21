@@ -1,16 +1,16 @@
-<%if @resources_count > 0%>
+<% if @resources_count > 0 %>
 
-	<h2> Resources Available at <%= @current_institution.full_name %> </h2>
-	<p>Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.</p>
+	<%= content_tag :h2, t('.headline', institution: @current_institution.full_name) %>
+	<%= content_tag :p, t('.visibility_info_html') %>
 	<table class="table table-striped">
 
 		<thead>
 			<tr>
-				<th class="span4">Details</th>
-				<th>Action</th>
-				<th>Institution</th>
-				<th>Creation Date</th>
-				<th>Last Modification Date</th>
+				<%= content_tag :th, t('.details'), class: 'span4' %>
+				<%= content_tag :th, t('.action') %>
+				<%= content_tag :th, t('.institution') %>
+				<%= content_tag :th, t('.creation_date') %>
+				<%= content_tag :th, t('.modification_date') %>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,29 +18,29 @@
 			<tr>
 				<td>
 					<div class="toggle-links">
-						<%= resource_context.resource.nil? ? " " :  resource_context.resource.label %>
+						<%= resource_context.resource.label if resource_context.resource %>
 					</div>
 				</td>
 				<td><%= link_to raw(''), edit_resource_path(resource_context.resource_id, origin_url: smart_origin_url,
 	                    tab_number: (defined?(@tab_number) ? @tab_number: nil)), :class => 'icon edit-user', :title => 'Edit' %>
-					
+
 				</td>
-				<td><%= resource_context.institution.nil? ? " " :  resource_context.institution.nickname %></td>
-				<td><%= resource_context.resource.nil? ? " " :  resource_context.resource.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
-				<td><%= resource_context.resource.nil? ? " " :  resource_context.resource.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>		
+				<td><%= resource_context.institution.nickname if resource_context.institution %></td>
+				<td><%= l(resource_context.resource.created_at) if resource_context.resource %></td>
+				<td><%= l(resource_context.resource.updated_at) if resource_context.resource %></td>
 			</tr>
 		<% end %>
 		<tbody>
 	</table>
 
 
-	<div class="buttons pagination">	
-		<%= link_to "View All", institutions_path(anchor: 'tab_tab2', scope: "all"), :method => :get, :class => "btn", role: "button" %>	
+	<div class="buttons pagination">
+		<%= link_to t('.view_all_button'), institutions_path(anchor: 'tab_tab2', scope: 'all'), method: :get, class: 'btn', role: 'button' %>
 		<%= paginate @resource_contexts %>
 	</div>
-<%else%>
- <h2> There are currently no resources available at <%= @current_institution.full_name %>. </h2>
-<%end%>
+<% else %>
+ <%= content_tag :h2, t('.no_resources_info', institution: @current_institution.full_name) %>
+<% end %>
 <div class="buttons">
-	<%= link_to 'Create New Resource', new_resource_path(origin_url: request.original_url, tab_number: 'tab_tab2'), :class => "btn btn-green" %>
+	<%= link_to t('.new_button'), new_resource_path(origin_url: request.original_url, tab_number: 'tab_tab2'), class: 'btn btn-green' %>
 </div>
