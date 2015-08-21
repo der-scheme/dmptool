@@ -420,3 +420,10 @@ en:
       edit_user_role: 'Edit User Role'
       edit_user_role_tooltip: 'Edit user role'
       grant_role_button: 'Grant Role'
+    update_user_roles_inst_admin:
+      success_notice: 'User was successfully updated.'
+    create:
+      success_notice: 'Institution was successfully created.'
+    update:
+      success_notice: 'Institution was successfully updated.'
+      failure_notice: 'Something went wrong.'
