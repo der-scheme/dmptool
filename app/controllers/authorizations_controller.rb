@@ -46,11 +46,11 @@ class AuthorizationsController < ApplicationController
       @messages = []
 
       if !@invalid_emails.empty?
-        @messages << t('.not_found_message', emails: @invalid_emails.join(', '))
+        @messages << t('.not_found_message', emails: @invalid_emails.join(', '), count: @invalid_emails.size)
       end
 
       if !@existing_emails.empty?
-        @messages << t('.existing_message', emails: @existing_emails.join(', '))
+        @messages << t('.existing_message', emails: @existing_emails.join(', '), count: @existing_emails.size)
       end
 
       if !@outside_emails.empty?
@@ -58,7 +58,7 @@ class AuthorizationsController < ApplicationController
       end
 
       if !@saved_emails.empty?
-        @messages << t('.success_notice', emails: @saved_emails.join(', '))
+        @messages << t('.success_notice', emails: @saved_emails.join(', '), count: @saved_emails.size)
         flash.now[:notice] = @messages.join ' '
       else
         flash.now[:error] = @messages.join ' '
