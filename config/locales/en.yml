@@ -334,4 +334,11 @@ en:
       already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
       select_role_message: 'Please select at least a role to grant.'
       success_notice: '%{user} has been updated.'
-
+  institutions:
+    index:
+      profile: 'Institution Profile'
+      info: 'Institution Information'
+      resources: 'Institutional Resources'
+      hierarchy: 'Institution Hierarchy'
+      assign_roles: 'Assign Roles'
+      add_new: 'Add New Institution'
