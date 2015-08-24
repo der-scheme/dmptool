@@ -1,8 +1,8 @@
-<% @title_text = "Customization Overview" %>
-<h1 class="row-fluid"><span class="icon resource-template"></span>Customization Overview</h1>
+<% @title_text = t('.title') %>
+<h1 class="row-fluid"><span class="icon resource-template"></span><%= t('.title') %></h1>
 <div class="tabbable">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Basic Information</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab"><%= t('.basic_info') %></a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -11,10 +11,10 @@
 			  <%= render partial: "shared/errors", locals: {model: @resource_context } %>
 
 			  <div class="control-group" id="inst_text">
-			    <p class ="control-label">Customized for</p>
+					<%= content_tag :p, t('.customized_for'), class: 'control-label' %>
 			    <div class="controls">
 			      <p>
-			        <%= @resource_context.institution_id.nil? ? "Original funder / template creator" :  @resource_context.institution.name %>
+			        <%= @resource_context.institution_id ? @resource_context.institution.name : t('.institution_replacement') %>
 			      </p>
 			      <%= f.hidden_field :institution_id %>
 			    </div>
@@ -23,10 +23,12 @@
 			  <%= f.hidden_field :requirements_template_id %>
 
 			  <div class="control-group">
-			    <%= f.label :name , "Customization Name", :class=> "control-label " %>
+			    <%= f.label :name , t('.name'), class: 'control-label' %>
 			    <div class="controls">
 			      <%= f.text_field :name, :class => "input-xxlarge", readonly: true%>
-			      <%= content_tag(:span, '', :title => 'This field cannot be edited.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+			      <%= content_tag :span, '', title: t('.name_tooltip'),
+														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+														class: 'icon questionmark tip' %>
 			    </div>
 			  </div>
 
@@ -35,11 +37,11 @@
 						(user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(@req_temp.institution_id))) ||
 						(user_role_in?(:template_editor) && (current_user.institution.subtree_ids.include?(@req_temp.institution_id)))  %>
 				  <div class="control-group">
-				    <p class ="control-label">Associated DMP template</p>
+						<%= content_tag :p, t('.assoc_template'), class: 'control-label' %>
 				    <div class="controls">
 				      <span style="position: relative; top: 4px"><%= link_to @req_temp.name, edit_requirements_template_path(@req_temp) %></span>
 
-				      <%= content_tag(:span, '', :title => 'The DMP Template that this customization applies to.',
+				      <%= content_tag(:span, '', title: t('.assoc_template_tooltip'),
 				      								'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true',
 				      								:class => 'icon questionmark tip') %>
 				    </div>
@@ -48,59 +50,66 @@
 			  <%else%>
 
 			  	<div class="control-group">
-				    <p class ="control-label">Associated DMP template</p>
+						<%= content_tag :p, t('.assoc_template'), class: 'control-label' %>
 				    <div class="controls">
 
 				      <span style="position: relative; top: 4px"><%= @req_temp.name %></span>
-				      <%= content_tag(:span, '', :title => 'The DMP Template that this customization applies to.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+				      <%= content_tag :span, '', title: t('.assoc_template_tooltip'),
+															data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+															class: 'icon questionmark tip' %>
 				    </div>
 				  </div>
 
 			  <%end%>
 
 			  <div class="control-group" style="position: relative">
-			  	<%= content_tag(:span, '', :title => 'You can require institutional administrator review of plans submitted using this template.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 115px') %>
+			  	<%= content_tag :span, '', title: t('.review_tooltip'),
+													data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+													class: 'icon questionmark tip',
+													style: 'position: absolute; top: 7px; left: 115px' %>
 			    <p class ="control-label">Review type</p>
 			    <div class="controls checkbox-controls">
 			      <%= f.radio_button :review_type, :formal_review, :class => 'radio inline', :id => 'formal_review'  %>
-			      <%= label_tag :formal_review, 'Review Required', :class => 'checkbox-label'%><br/>
+			      <%= label_tag :formal_review, t('.formal_review_radio'), class: 'checkbox-label' %><br/>
 			      <%= f.radio_button :review_type, :informal_review, :class => 'radio inline', :id => 'informal_review'  %>
-			      <%= label_tag :informal_review, 'Informal Review Allowed', :class => 'checkbox-label'%><br/>
+			      <%= label_tag :informal_review, t('.informal_review_radio'), class: 'checkbox-label' %><br/>
 			      <%= f.radio_button :review_type, :no_review, :class => 'radio inline', :id => 'no_review'  %>
-			      <%= label_tag :no_review, 'No Review Needed', :class => 'checkbox-label'%>
+			      <%= label_tag :no_review, t('.no_review'), class: 'checkbox-label'%>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-			    <%= f.label :contact_info, 'Contact Information',:class => "control-label" %>
+			    <%= f.label :contact_info, t('.contact_info'), class: 'control-label' %>
 			    <div class="controls">
 			      <%= f.text_field :contact_info, :class => "input-xlarge" %>
-			      <%= content_tag(:span, '', :title => 'Name & E-mail for contact about this specific DMP Template customizations. Default is the institutional admin contact information.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+			      <%= content_tag :span, '', title: t('.contact_info_tooltip'),
+														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+														class: 'icon questionmark tip' %>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-			    <%= f.label :contact_email, 'Contact Email', :class => "control-label required" %>
+			    <%= f.label :contact_email, t('.contact_email'), class: 'control-label required' %>
 			    <div class="controls">
 			      <%= f.text_field :contact_email, :class => "input-xlarge", 'aria-required' => 'true' %>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-			    <p class ="control-label">Creation Date</p>
+					<%= content_tag :p, t('.creation_date'), class: 'control-label' %>
 			    <div class="controls">
-			      <p><%= (@resource_context.created_at.nil? ? 'none' : @resource_context.created_at) %></p>
+			      <p><%= @resource_context.created_at ? l(@resource_context.created_at) : t('.no_creation_date') %></p>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-			    <p class ="control-label">Last Modification Date</p>
+					<%= content_tag :p, t('.modification_date'), class: 'control-label' %>
 			    <div class="controls">
-			      <p><%= (@resource_context.updated_at.nil? ? 'none' : @resource_context.updated_at) %></p>
+			      <p><%= @resource_context.updated_at ? l(@resource_context.updated_at) : t('.no_modification_date') %></p>
 			    </div>
 			  </div>
 			<div class="buttons">
-			  <%= f.submit('Save') %>
+			  <%= f.submit t('.save_button') %>
 			</div>
 			<%= hidden_field_tag :after_save, 'this_page' %>
 			<% end %>
