@@ -476,3 +476,12 @@ en:
       shib_entity_id: 'Shib entity:'
       shib_domain: 'Shib domain:'
       logo: 'Logo:'
+  resource_contexts:
+    choose_institution:
+      select_institution: 'Select Institution for customization'
+      customized_for: 'Customize for'
+      general_radio: 'General customization, shown to all institutions using this template'
+      user_institution_radio: 'Customizing this template for my institution (%{institution}).'
+      select_institution_radio: 'Customizing this template for the following institution'
+      back_button: 'Previous page'
+      next_button: 'Next page'
