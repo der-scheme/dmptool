@@ -1,31 +1,24 @@
 <h1 class="row-fluid"><span class="icon institution-profile"></span>Partner Institutions</h1>
 <br/>
 <div class="row-fluid">
-  <p>Partner institutions can configure the tool to point to their
-    resources and services, provide customized help, and provide
-    suggested answers to the questions asked by funding agencies.
-    DMPTool users affiliated with partner institutions can login with
-    their own institutional accounts. For more information see
-    <%= link_to "About Partners", partners_path, :title => "About Partners" %>.
-  </p>
-  <p>Use the A-Z links below to narrow down the list by institution or
-    use the search box to search for specific institutions.</p>
+  <%= content_tag :p, t('.intro_html', link: link_to(t('.partners_link'), partners_path, title: t('.partners_tooltip'))) %>
+  <%= content_tag :p, t('.instructions') %>
 </div>
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<%= link_to('A - F', { :s => 'a', :e => 'f' , :all_scope => @all_scope}, :class => 'btn viewA-F') %> 
-		<%= link_to('G - L', { :s => 'g', :e => 'l' , :all_scope => @all_scope}, :class => 'btn viewG-L') %> 
-		<%= link_to('M - S', { :s => 'm', :e => 's' , :all_scope => @all_scope}, :class => 'btn viewM-S') %> 
-		<%= link_to('T - Z', { :s => 't', :e => 'z' , :all_scope => @all_scope}, :class => 'btn viewT-Z') %> 
-		<%= link_to('All', { :s => 'a', :e => 'z' , :all_scope => @all_scope}, :class => 'btn viewA-Z') %>
+		<%= link_to(t('.af_filter_link'), {s: 'a', e: 'f', all_scope: @all_scope}, class: 'btn viewA-F') %>
+		<%= link_to(t('.gl_filter_link'), {s: 'g', e: 'l', all_scope: @all_scope}, class: 'btn viewG-L') %>
+		<%= link_to(t('.ms_filter_link'), {s: 'm', e: 's', all_scope: @all_scope}, class: 'btn viewM-S') %>
+		<%= link_to(t('.tz_filter_link'), {s: 't', e: 'z', all_scope: @all_scope}, class: 'btn viewT-Z') %>
+		<%= link_to(t('.all_filter_link'), {s: 'a', e: 'z', all_scope: @all_scope}, class: 'btn viewA-Z') %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
 					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag('Search') %>
+					<%= label_tag :q, t('.search'), class: 'icon search' %>
+					<%= submit_tag t('.search_button') %>
 				</div>
 			<% end %>
 	</div>
@@ -33,9 +26,9 @@
 <table class="table table-striped">
 	<thead>
 	  <tr>
-	    <th class="span10">Name</th>
-	    <th class="span1">Shibboleth enabled?</th>
-	    <th class="span1">DMPTool Customized?</th>
+			<%= content_tag :th, t('.name'), class: 'span10' %>
+			<%= content_tag :th, t('.shib_enabled'), class: 'span1' %>
+			<%= content_tag :th, t('.custom_dmp'), class: 'span1' %>
 	  </tr>
 	</thead>
 	<tbody>
@@ -46,12 +39,12 @@
       <td class="span1"><% if institution.is_shibboleth? then %>
         <span class="icon confirm"></span>
       <% else %>
-        
+
       <% end %></td>
       <td class="span1"><% if institution.is_customized? then %>
         <span class="icon confirm"></span>
       <% else %>
-        
+
       <% end %></td>
     </tr>
   <% end %>
@@ -61,14 +54,16 @@
 
 <% if @all_scope == "all" %>
 	<div class="buttons pagination">
-		<%= link_to("View Less", {:action => "partners_list", :all_scope => "", :q => @q, :s => @s, :e => @e},
-              {:class => "btn"})%>
+		<%= link_to t('.view_less_button'),
+								{action: 'partners_list', all_scope: '', q: @q, s: @s, e: @e},
+								class: 'btn' %>
 		<%= paginate @institutions %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to("View All", {:action => "partners_list", :all_scope => "all", :q => @q, :s => @s, :e => @e},
-              {:class => "btn"})%>
+		<%= link_to t('.view_all_button'),
+								{action: 'partners_list', all_scope: 'all', q: @q, s: @s, e: @e},
+								class: 'btn' %>
 		<%= paginate @institutions %>
 	</div>
 <%end%>
