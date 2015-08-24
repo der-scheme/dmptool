@@ -1,23 +1,23 @@
-<% @title_text = "DMP Template Customizations" %>
-<h1 class="row-fluid"><span class="icon resource-template"></span>DMP Template Customizations</h1>
+<% @title_text = t('.title') %>
+<h1 class="row-fluid"><span class="icon resource-template"></span><%= t('.title') %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
       <th class="span4">
-      	<%= link_to "Name", {scope: @scope, order_scope: "Name"}%>
+      	<%= link_to t('.name'), {scope: @scope, order_scope: 'Name'} %>
       </th>
       <th>
-      	<%= link_to "Associated DMP Template", {scope: @scope, order_scope: "Template"}%>
+      	<%= link_to t('.template'), {scope: @scope, order_scope: "Template"}%>
       </th>
       <th>
-      	<%= link_to "Institution", {scope: @scope, order_scope: "Institution"}%>
+      	<%= link_to t('.institution'), {scope: @scope, order_scope: "Institution"}%>
       </th>
       <th>
-      	<%= link_to "Creation Date", {scope: @scope, order_scope: "Creation_Date"}%>
+      	<%= link_to t('.creation_date'), {scope: @scope, order_scope: "Creation_Date"}%>
       </th>
       <th>
-      	<%= link_to "Last Modification Date", 
-      				{scope: @scope, 
+      	<%= link_to t('.modification_date'),
+      				{scope: @scope,
               order_scope: "Last_Modification_Date"}
         %>
       </th>
@@ -30,12 +30,12 @@
 				<div class="toggle-links">
 					<%= content_tag(:strong, resource_context.name) %>
 					<div class="template-links">
-						<%= link_to 'Overview', edit_resource_context_path(resource_context) %> |
-            <%= link_to 'Details', customization_requirement_path(resource_context.id) %> |
-            <%= link_to 'Delete', 
-            				delete_resource_context_path(resource_context: resource_context), 
+						<%= link_to display_detail_overview, edit_resource_context_path(resource_context) %> |
+            <%= link_to display_detail_details, customization_requirement_path(resource_context.id) %> |
+            <%= link_to display_detail_delete,
+            				delete_resource_context_path(resource_context: resource_context),
                     method: :delete,
-                    confirm: "Are you sure?",
+                    confirm: t('.delete_confirm'),
                     :class => "delete" %>
 
 
@@ -49,10 +49,10 @@
 				<%= resource_context.institution.nil? ? " " :  resource_context.institution.full_name %>
 			</td>
 			<td>
-				<%= resource_context.created_at.nil? ? " " :  resource_context.created_at.strftime("%m/%d/%Y %I:%M%p") %>
+				<%= l(resource_context.created_at) if resource_context.created_at %>
 			</td>
 			<td>
-				<%= resource_context.updated_at.nil? ? " " :  resource_context.updated_at.strftime("%m/%d/%Y %I:%M%p") %>
+				<%= l(resource_context.updated_at) if resource_context.updated_at %>
 			</td>
 		</tr>
 	<% end %>
@@ -67,17 +67,21 @@
 
 <% if @scope == "all" %>
   <div class="buttons pagination">
-    <%= link_to "View Less", resource_contexts_path(scope: "less", order_scope: @order_scope ), :method => :get, :class => "btn", role: "button"%>
+    <%= link_to t('.view_less_button'),
+								resource_contexts_path(scope: 'less', order_scope: @order_scope ),
+								method: :get, class: 'btn', role: 'button' %>
     <%= paginate @resource_contexts %>
   </div>
 <% else %>
   <div class="buttons pagination">
-    <%= link_to "View All", resource_contexts_path(scope: "all", order_scope: @order_scope ), :method => :get, :class => "btn", role: "button"%>
+    <%= link_to t('.view_all_button'),
+								resource_contexts_path(scope: 'all', order_scope: @order_scope ),
+								method: :get, class: 'btn', role: 'button' %>
     <%= paginate @resource_contexts %>
   </div>
 <%end%>
 
-<%= link_to 'Create New Customization', dmp_for_customization_path, :class => "btn btn-green" %>
+<%= link_to t('.new_button'), dmp_for_customization_path, class: 'btn btn-green' %>
 
 
 
