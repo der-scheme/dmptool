@@ -77,7 +77,7 @@ class ResourceContextsController < ApplicationController
     make_institution_dropdown_list
 
     @req_temp = @resource_context.requirements_template
-    message = @resource_context.changed ? 'Customization was successfully created.' : ''
+    message = @resource_context.changed ? t('.success_notice') : ''
 
     respond_to do |format|
       if @resource_context.save
@@ -104,7 +104,7 @@ class ResourceContextsController < ApplicationController
 
 
     to_save = params['resource_context'].selected_items(pare_to)
-    message = @resource_context.changed ? 'Customization was successfully updated.' : ''
+    message = @resource_context.changed ? t('.success_notice') : ''
 
     make_institution_dropdown_list
     customization_resources_list
@@ -153,30 +153,36 @@ class ResourceContextsController < ApplicationController
 
       if @custom_origin == 'Overview'
         respond_to do |format|
-          format.html { redirect_to edit_resource_context_path(@customization_id),
-                          notice: "The resource was successfully unlinked." }
+          format.html do
+            redirect_to edit_resource_context_path(@customization_id),
+                        notice: t('.success_notice')
+          end
         end
       else #details
         respond_to do |format|
-          format.html { redirect_to customization_requirement_path(id: @customization_id,
-                        requirement_id:  @requirement_id,
-                        anchor: @tab_number),
-                          notice: "The resource was successfully unlinked." }
+          format.html do
+            redirect_to customization_requirement_path(id: @customization_id,
+                            requirement_id:  @requirement_id,
+                            anchor: @tab_number),
+                        notice: t('.success_notice')
+          end
         end
       end
 
     else
       respond_to do |format|
-          format.html { redirect_to edit_customization_resource_path(id: @resource_id,
-                                      customization_id: @customization_id,
-                                      template_id: @template_id,
-                                      resource_level: @resource_level,
-                                      requirement_id: @requirement_id,
-                                      tab_number:     @tab_number,
-                                      tab:            @tab,
-                                      custom_origin: @custom_origin,
-                                      origin_url:     request.original_url),
-                          notice: "The resource was successfully unlinked." }
+        format.html do
+          redirect_to edit_customization_resource_path(id: @resource_id,
+                                    customization_id: @customization_id,
+                                    template_id: @template_id,
+                                    resource_level: @resource_level,
+                                    requirement_id: @requirement_id,
+                                    tab_number:     @tab_number,
+                                    tab:            @tab,
+                                    custom_origin: @custom_origin,
+                                    origin_url:     request.original_url),
+                      notice: t('.success_notice')
+        end
       end
     end
 
@@ -206,29 +212,35 @@ class ResourceContextsController < ApplicationController
 
       if @custom_origin == 'Overview'
         respond_to do |format|
-          format.html { redirect_to edit_resource_context_path(@customization_id),
-                          notice: "The resource was successfully unlinked." }
+          format.html do
+            redirect_to edit_resource_context_path(@customization_id),
+                        notice: t('.success_notice')
+          end
         end
       else #details
         respond_to do |format|
-          format.html { redirect_to customization_requirement_path(id: @customization_id,
-                        requirement_id:  @requirement_id,
-                        anchor: @tab_number),
-                          notice: "The resource was successfully unlinked." }
+          format.html do
+            redirect_to customization_requirement_path(id: @customization_id,
+                              requirement_id:  @requirement_id,
+                              anchor: @tab_number),
+                        notice: t('.success_notice')
+          end
         end
       end
     else
       respond_to do |format|
-          format.html { redirect_to edit_customization_resource_path(id: @resource_id,
-                                      customization_id: @customization_id,
-                                      template_id: @template_id,
-                                      resource_level: @resource_level,
-                                      requirement_id: @requirement_id,
-                                      tab_number:     @tab_number,
-                                      tab:            @tab,
-                                      custom_origin: @custom_origin,
-                                      origin_url:     request.original_url),
-                          notice: "The resource was successfully unlinked." }
+        format.html do
+          redirect_to edit_customization_resource_path(id: @resource_id,
+                                    customization_id: @customization_id,
+                                    template_id: @template_id,
+                                    resource_level: @resource_level,
+                                    requirement_id: @requirement_id,
+                                    tab_number:     @tab_number,
+                                    tab:            @tab,
+                                    custom_origin: @custom_origin,
+                                    origin_url:     request.original_url),
+                        notice: t('.success_notice')
+        end
       end
 
     end
@@ -252,8 +264,10 @@ class ResourceContextsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to edit_resource_context_path(@customization_id),
-                        notice: "The resource was successfully unlinked." }
+      format.html do
+        redirect_to edit_resource_context_path(@customization_id),
+                    notice: t('.success_notice')
+        end
     end
   end
 
@@ -354,9 +368,9 @@ class ResourceContextsController < ApplicationController
     process_requirements_template(req_temp)
 
     @back_to = resource_contexts_path
-    @back_text = "Previous page"
+    @back_text = t('.back_text')
     @submit_to = new_resource_context_path
-    @submit_text = "Next page"
+    @submit_text = t('.submit_text')
   end
 
 
