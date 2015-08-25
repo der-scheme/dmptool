@@ -568,3 +568,9 @@ en:
   users:
     edit:
       title: 'My Profile'
+    edit_user_roles:
+      title: 'Edit User Roles'
+      user_roles_link: 'User Roles'
+      current_roles: "%{user}'s Current Roles:"
+      save_button: 'Save Changes'
+      back_button: 'Back'
