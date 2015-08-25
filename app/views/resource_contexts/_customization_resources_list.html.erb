@@ -1,25 +1,28 @@
 <br />
-<h2 class="row-fluid">Template Resources for <%= @template_name %>  - Customized for 
-	<% if @customization_institution_name %>
-			<%= @customization_institution_name %>
-	<% else %>	
-			<%= @all_institutions %>
-	<% end %>
-</h2>
+<% if @customization_institution_name %>
+	<%= content_tag :h2, t('.resources_customized_for_one',
+													template: @template_name,
+													institution: @customization_institution_name),
+									class: 'row-fluid' %>
+<% else %>
+	<%= content_tag :h2, t('.resources_customized_for_all', template: @template_name),
+									class: 'row-fluid' %>
+<% end %>
+
 <div>
-	<p>These resources will be displayed for all requirements defined for this template.</p>
+	<%= content_tag :p, t('.visibility_info') %>
 </div>
 
-	
+
 <table class="table table-striped">
 
 	<thead>
 		<tr>
-			<th class="span4">Details</th>
-			<th>Action</th>
-			<th>Institution</th>
-			<th>Creation Date</th>
-			<th>Last Modification Date</th>
+			<%= content_tag :th, t('.details'), class: 'span4' %>
+			<%= content_tag :th, t('.action') %>
+			<%= content_tag :th, t('.institution') %>
+			<%= content_tag :th, t('.creation_date') %>
+			<%= content_tag :th, t('.modification_date') %>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,11 +41,11 @@
                                                custom_origin: "Overview",
                                                origin_url: smart_origin_url),
                                                :class => 'icon edit-user',
-                                               :title => 'Edit' %>
+                                               title: t('.action_tooltip') %>
             </td>
 			<td><%= resource_context.institution.nil? ? " " :  resource_context.institution.nickname %></td>
-			<td><%= resource_context.created_at.nil? ? " " :  resource_context.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
-			<td><%= resource_context.updated_at.nil? ? " " :  resource_context.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+			<td><%= l(resource_context.created_at) if resource_context.created_at %></td>
+			<td><%= l(resource_context.updated_at) if resource_context.updated_at %></td>
 
 		</tr>
 	<% end %>
@@ -53,8 +56,8 @@
 
 
 <div class="buttons">
-	<%= button_to 'Add a resource', 
-								select_resource_path(template_id: @template.id, 
+	<%= button_to t('.add_resource_button'),
+								select_resource_path(template_id: @template.id,
 								customization_overview_id: @resource_context.id,
 								custom_origin: "Overview",
                 origin_url: smart_origin_url,

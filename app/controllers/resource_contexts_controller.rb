@@ -12,7 +12,7 @@ class ResourceContextsController < ApplicationController
 
   # GET /resource_templates/new
   def new
-    
+
     redirect_to :back and return if params[:requirements_template_id].blank?
     #institution_id, requirements_template_id, resource_id is NULL
     if user_role_in?(:dmp_admin) && params[:institution_id].blank?
@@ -70,7 +70,7 @@ class ResourceContextsController < ApplicationController
 
 
   def create
-    
+
     pare_to = ['institution_id', 'requirements_template_id', 'requirement_id', 'resource_id',
               'name', 'contact_info', 'contact_email', 'review_type']
     @resource_context = ResourceContext.new(params['resource_context'].selected_items(pare_to))
@@ -89,10 +89,10 @@ class ResourceContextsController < ApplicationController
       else
         format.html { render 'new'}
         format.json { head :no_content }
-        
+
       end
     end
-    
+
   end
 
 
@@ -101,7 +101,7 @@ class ResourceContextsController < ApplicationController
     @resource_context = ResourceContext.find(params[:id])
     pare_to = ['institution_id', 'requirements_template_id', 'requirement_id', 'resource_id',
                'name', 'contact_info', 'contact_email', 'review_type']
-    
+
 
     to_save = params['resource_context'].selected_items(pare_to)
     message = @resource_context.changed ? 'Customization was successfully updated.' : ''
@@ -119,10 +119,10 @@ class ResourceContextsController < ApplicationController
       else
         format.html { render 'edit'}
         format.json { head :no_content }
-        
+
       end
     end
-    
+
   end
 
 
@@ -138,29 +138,29 @@ class ResourceContextsController < ApplicationController
     @requirement_id = params[:requirement_id]
 
     @institution_customization = ResourceContext.find(@customization_id).institution_id
-    
+
     @resource_contexts = ResourceContext.
-                            where(resource_id:              @resource_id, 
+                            where(resource_id:              @resource_id,
                                   requirements_template_id: @template_id,
                                   requirement_id:           nil,
                                   institution_id:           @institution_customization)
-                                            
+
     @resource_contexts.each do |resource_context|
         resource_context.destroy
     end
 
     if @last_template == 'yes'
-    
+
       if @custom_origin == 'Overview'
         respond_to do |format|
-          format.html { redirect_to edit_resource_context_path(@customization_id), 
+          format.html { redirect_to edit_resource_context_path(@customization_id),
                           notice: "The resource was successfully unlinked." }
         end
       else #details
         respond_to do |format|
-          format.html { redirect_to customization_requirement_path(id: @customization_id, 
+          format.html { redirect_to customization_requirement_path(id: @customization_id,
                         requirement_id:  @requirement_id,
-                        anchor: @tab_number), 
+                        anchor: @tab_number),
                           notice: "The resource was successfully unlinked." }
         end
       end
@@ -175,7 +175,7 @@ class ResourceContextsController < ApplicationController
                                       tab_number:     @tab_number,
                                       tab:            @tab,
                                       custom_origin: @custom_origin,
-                                      origin_url:     request.original_url), 
+                                      origin_url:     request.original_url),
                           notice: "The resource was successfully unlinked." }
       end
     end
@@ -191,11 +191,11 @@ class ResourceContextsController < ApplicationController
     @custom_origin = params[:custom_origin]
     @tab_number = params[:tab_number]
     @tab = params[:tab]
-    @requirement_id = params[:requirement_id] 
-    @last_requirement = params[:last_requirement]  
+    @requirement_id = params[:requirement_id]
+    @last_requirement = params[:last_requirement]
 
-    @resource_contexts = ResourceContext.where(resource_id: @resource_id, 
-                                                requirement_id: @requirement_id, 
+    @resource_contexts = ResourceContext.where(resource_id: @resource_id,
+                                                requirement_id: @requirement_id,
                                                 requirements_template_id: @template_id)
 
     @resource_contexts.each do |resource_context|
@@ -203,17 +203,17 @@ class ResourceContextsController < ApplicationController
     end
 
     if (@last_requirement == 'yes')
-    
+
       if @custom_origin == 'Overview'
         respond_to do |format|
-          format.html { redirect_to edit_resource_context_path(@customization_id), 
+          format.html { redirect_to edit_resource_context_path(@customization_id),
                           notice: "The resource was successfully unlinked." }
         end
       else #details
         respond_to do |format|
-          format.html { redirect_to customization_requirement_path(id: @customization_id, 
+          format.html { redirect_to customization_requirement_path(id: @customization_id,
                         requirement_id:  @requirement_id,
-                        anchor: @tab_number), 
+                        anchor: @tab_number),
                           notice: "The resource was successfully unlinked." }
         end
       end
@@ -227,7 +227,7 @@ class ResourceContextsController < ApplicationController
                                       tab_number:     @tab_number,
                                       tab:            @tab,
                                       custom_origin: @custom_origin,
-                                      origin_url:     request.original_url), 
+                                      origin_url:     request.original_url),
                           notice: "The resource was successfully unlinked." }
       end
 
@@ -242,7 +242,7 @@ class ResourceContextsController < ApplicationController
     @template_id = params[:template_id]
     @resource_context = ResourceContext.find(params[:customization_id])
 
-    @resource_contexts = ResourceContext.where(resource_id: @resource_id, 
+    @resource_contexts = ResourceContext.where(resource_id: @resource_id,
                                               requirements_template_id: @template_id,
                                               requirement_id: nil,
                                               institution_id: @resource_context.institution_id)
@@ -250,9 +250,9 @@ class ResourceContextsController < ApplicationController
     @resource_contexts.each do |resource_context|
         resource_context.destroy
     end
-    
+
     respond_to do |format|
-      format.html { redirect_to edit_resource_context_path(@customization_id), 
+      format.html { redirect_to edit_resource_context_path(@customization_id),
                         notice: "The resource was successfully unlinked." }
     end
   end
@@ -262,7 +262,7 @@ class ResourceContextsController < ApplicationController
   #   @resource_context = ResourceContext.find(params[:resource_context_id])
   #   if @resource_context.destroy
   #     respond_to do |format|
-  #       format.html { redirect_to institutions_path(anchor: 'tab_tab2'), 
+  #       format.html { redirect_to institutions_path(anchor: 'tab_tab2'),
   #                       notice: "The resource was successfully unlinked." }
   #     end
   #   else
@@ -274,11 +274,11 @@ class ResourceContextsController < ApplicationController
 
   def destroy
     @resource_context = ResourceContext.find(params[:resource_context])
-    
+
     @resource_contexts = ResourceContext.
                           where(institution_id: @resource_context.institution_id,
                                 requirements_template_id: @resource_context.requirements_template_id)
-    
+
     @resource_contexts.each do |resource_context|
         resource_context.destroy
     end
@@ -299,7 +299,7 @@ class ResourceContextsController < ApplicationController
     end
 
     @scope = params[:scope]
-    @order_scope = params[:order_scope]   
+    @order_scope = params[:order_scope]
 
     case @order_scope
       when "Name"
@@ -311,7 +311,7 @@ class ResourceContextsController < ApplicationController
       when "Creation_Date"
         @resource_contexts = @resource_contexts.order_by_created_at
       when "Last_Modification_Date"
-        @resource_contexts = @resource_contexts.order_by_updated_at 
+        @resource_contexts = @resource_contexts.order_by_updated_at
       else
         @resource_contexts = @resource_contexts.order_by_name
     end
@@ -322,17 +322,17 @@ class ResourceContextsController < ApplicationController
       else
         @resource_contexts = @resource_contexts.page(params[:page]).per(10)
     end
-    
+
   end
 
 
   def dmp_for_customization
-    
+
     valid_buckets = nil
-    
+
     if user_role_in?(:dmp_admin)
       req_temp = RequirementsTemplate.includes(:institution).where(active: true)
-    
+
     elsif user_role_in?(:resource_editor, :institutional_admin)
       req_temp = RequirementsTemplate.
                         includes(:institution).
@@ -368,18 +368,14 @@ class ResourceContextsController < ApplicationController
     @customization_institution_name = (@customization_institution.nil? ? nil : @customization_institution.full_name)
 
     @template_name = (@customization.requirements_template.nil? ? nil : @customization.requirements_template.name)
-      
+
     @resource_contexts = ResourceContext.includes(:resource).
                           per_template(@template).
                           no_requirement.
                           help_text_and_url_resources.
                           resource_level.
                           where(institution_id:
-                                  (@customization_institution.nil? ? nil : [@customization_institution.subtree_ids])) 
-
-    
-    @all_institutions = "all Institutions"
-                                             
+                                  (@customization_institution.nil? ? nil : [@customization_institution.subtree_ids]))
   end
 
 
@@ -389,7 +385,7 @@ class ResourceContextsController < ApplicationController
 
 
   def select_resource
-    
+
     @origin_url = params[:origin_url]
     @custom_origin = params[:custom_origin]
     @tab = params[:tab]
@@ -405,7 +401,7 @@ class ResourceContextsController < ApplicationController
         @tab_number = 'tab_tab1'
       when "Links"
         @tab_number = 'tab_tab2'
-      when "Example Response" 
+      when "Example Response"
         @tab_number = 'tab_tab3'
       when "Suggested Response"
         @tab_number = 'tab_tab3'
@@ -427,7 +423,7 @@ class ResourceContextsController < ApplicationController
                               where("resource_id IS NOT NULL").
                               where(institution_id:
                                   (@customization.institution.nil? ? nil : [@customization.institution.subtree_ids])).
-                              group(:resource_id) 
+                              group(:resource_id)
 
       @any_resource =  ResourceContext.joins(:resource).
                               where("resource_id IS NOT NULL").
@@ -439,7 +435,7 @@ class ResourceContextsController < ApplicationController
       @resource_contexts = ResourceContext.joins(:resource).
                               where("resource_id IS NOT NULL").
                               where(institution_id: [current_user.institution.subtree_ids]).
-                              group(:resource_id) 
+                              group(:resource_id)
 
       @any_resource =  ResourceContext.joins(:resource).
                               where("resource_id IS NOT NULL").
@@ -466,7 +462,7 @@ class ResourceContextsController < ApplicationController
       else
        @resource_contexts = @resource_contexts
     end
-    
+
 
     if !params[:q].blank?
        @resource_contexts = @resource_contexts.search_terms(params[:q])
