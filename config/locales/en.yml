@@ -565,3 +565,6 @@ en:
     dmp_for_customization:
       back_text: 'Previous page'
       submit_text: 'Next page'
+  users:
+    edit:
+      title: 'My Profile'
