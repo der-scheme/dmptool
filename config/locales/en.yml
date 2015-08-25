@@ -532,3 +532,6 @@ en:
       modification_date: 'Last Modification Date'
       action_tooltip: 'Edit'
       add_resource_button: 'Add a resource'
+    resource_search:
+      search: 'Search'
+      search_button: 'Search'

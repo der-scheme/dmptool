@@ -2,10 +2,10 @@
 	<%= form_tag('', {:method => :get}) do %>
 	<div class="control-group">
 		<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-		<%= label_tag :q, "Search", :class => "icon search" %>
-		<%= submit_tag('Search') %>
+		<%= label_tag :q, t('.search'), class: 'icon search' %>
+		<%= submit_tag t('.search_button') %>
 
-	     
+
     <%= hidden_field_tag :custom_origin, @custom_origin  %>
     <%= hidden_field_tag :tab_number, @tab_number  %>
     <%= hidden_field_tag :template_id, @template_id  %>
