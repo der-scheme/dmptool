@@ -3,14 +3,14 @@
 <%= form_for @current_institution, html: { class: 'form-horizontal', multipart: true}  do |f| %>
   <%= render partial: 'shared/errors', locals: { model: @current_institution } %>
   <div class="control-group">
-    <%= f.label :full_name , t('.full_name'), class: 'control-label required' %>
+    <%= f.label :full_name, class: 'control-label required' %>
     <div class="controls">
 	    <%= f.text_field :full_name, class: 'input-xxlarge', 'aria-required' => 'true' %>
 	  </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :shib_entity_id, t('.shib_entity_id'), class: 'control-label' %>
+    <%= f.label :shib_entity_id, class: 'control-label' %>
     <div class="controls">
 
       <%= f.text_field :shib_entity_id, readonly: @current_institution.is_shibboleth?, disabled: @disabled %>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :parent_id , t('.parent'), class: 'control-label' %>
+    <%= f.label :parent_id, class: 'control-label' %>
     <div class="controls">
 
       <% if user_role_in?(:dmp_admin) %>
@@ -55,15 +55,15 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :nickname, t('.nickname'), class: 'control-label' %>
+    <%= f.label :nickname, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :nickname %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :url, t('.url'), class: 'control-label' %>
-    <%= f.label :url_text, t('.url_text'), class: 'hide' %>
+    <%= f.label :url, class: 'control-label' %>
+    <%= f.label :url_text, class: 'hide' %>
     <div class="controls">
       <%= f.text_field :url_text, placeholder: t('.url_text_placeholder') %>
       <%= f.text_field :url, placeholder: t('.url_placeholder') %>
@@ -72,8 +72,8 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :contact_info, t('.contact_info'), class: 'control-label' %>
-    <%= f.label :contact_email, t('.contact_email'), class: 'hide' %>
+    <%= f.label :contact_info, class: 'control-label' %>
+    <%= f.label :contact_email, class: 'hide' %>
     <div class="controls">
       <%= f.text_field :contact_info, placeholder: t('.contact_info_placeholder') %>
       <%= f.text_field :contact_email, placeholder: t('.contact_email_placeholder') %>
@@ -83,7 +83,7 @@
 
   <div class="control-group">
 
-    <%= f.label :logo, t('.logo'), class: 'control-label'  %>
+    <%= f.label :logo, class: 'control-label'  %>
 
     <div class="controls">
       <%= image_tag @current_institution.logo.url if @current_institution.logo? %>
@@ -100,7 +100,7 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :desc , t('.desc'), class: 'control-label' %>
+    <%= f.label :desc, class: 'control-label' %>
     <div class="controls">
       <%= f.text_area :desc, rows: 5, class: 'input-xxlarge' %>
     </div>
