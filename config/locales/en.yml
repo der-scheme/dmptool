@@ -29,6 +29,18 @@ en:
   datetime:
     formats:
       default: '%m/%d/%Y %I:%M %p'
+  activerecord:
+    models:
+      user: 'User'
+    attributes:
+      user:
+        login_id: 'Username'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        email: 'Email'
+        institution_id: 'Institution'
+        password_confirmation: 'Password Confirmation'
+        orcid_id: 'ORCID'
   globals:
     helpers:
       sortable:   # Used by ApplicationHelper#sortable
@@ -574,3 +586,23 @@ en:
       current_roles: "%{user}'s Current Roles:"
       save_button: 'Save Changes'
       back_button: 'Back'
+    personal:
+      instructions: 'Please update your account information.'
+      name: 'Name'
+      password: 'Password'
+      new_password: 'New Password'
+      password_tooltip: 'The password must be 8 to 30 characters long. It must contain at least one number and one letter.'
+      contact_info: 'Contact Information'
+      select_institution_new: '-Select an Institution-'
+      select_institution: 'Select Institution'
+      dmp_options: 'DMP Options'
+      roles: 'My Roles'
+      roles_tooltip_html: '<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>'
+      orcid: 'Orcid'
+      orcid_tooltip: 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.'
+      orcid_logo_alt: 'Orcid ID logo'
+      orcid_lookup_tooltip: 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.'
+      edit_orcid_link: 'Edit'
+      delete_orcid_link: 'Delete'
+      api_token: 'API Token'
+      token: 'My Token'
