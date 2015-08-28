@@ -145,15 +145,11 @@ module ApplicationHelper
            locals: {tid: t, content: content, attributes: options}
   end
 
-  def render_save_button(cntnt = nil,
-                         t: nil, translate: nil, content: nil,
-                         **options)
-    t ||= translate || '.save'
-    options[:class] ||= ''
-    options[:class].concat ' btn-green'
+  ##
+  # Proxies #render_submit_button and overwrites the translation parameter with
+  # <code>'.save'</code>.
 
-    render_submit_button(cntnt,
-                         t: t, translate: translate, content: content,
-                         **options)
+  def render_save_button(*args, t: nil, translate: nil, **options)
+    render_submit_button(*args, t: '.save', **options)
   end
 end
