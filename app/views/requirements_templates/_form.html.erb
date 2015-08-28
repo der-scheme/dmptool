@@ -10,7 +10,7 @@
         <%= render partial: "shared/errors", locals: {model: @requirements_template } %>
 
 				<div class="control-group">
-					<%= f.label :name, t('.template_name'), :class => 'control-label required' %>
+					<%= f.label :name, class: 'control-label required' %>
 					<div class="controls">
 						<%= f.text_field :name, :class => 'longfield', 'aria-required' => 'true' %>
 					</div>
@@ -18,7 +18,7 @@
 
 				<div class="control-group" style="position: relative">
 					<%= content_tag(:span, '', :title => t('.visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 125px') %>
-					<label class="control-label required"><%= t('.visibility') %></label>
+					<%= f.label :visibility, required: true, class: 'control-label required' %>
 					<div class="controls checkbox-controls">
 						<%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public', 'aria-required' => 'true'  %>
 						<%= label_tag :public, t('.visibility_public_radio'), :class => 'radio-label'%><br/>
@@ -61,7 +61,7 @@
 				<p><strong><%= t('.optional_info') %></strong></p>
 				<hr/>
 				<div class="control-group">
-					<%= label_tag :start_date, t('.start_date'), :class => "control-label" %>
+					<%= f.label :start_date, class: 'control-label' %>
 					<div class="controls">
 						<%= f.text_field :start_date, value: @requirements_template.start_date.blank? ? " " : l(@requirements_template.start_date), id: 'start_date', :class => 'datepicker shortfield' %>
 						<%= content_tag(:span, '', :title => t('.start_date_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
@@ -69,7 +69,7 @@
 				</div>
 
 				<div class="control-group">
-					<%= label_tag :end_date, t('.end_date'), :class => 'control-label' %>
+					<%= f.label :end_date, class: 'control-label' %>
 					<div class="controls">
 						<%= f.text_field :end_date, value: @requirements_template.end_date.blank? ? " " : l(@requirements_template.end_date), id: 'end_date', :class => 'datepicker shortfield' %>
 						<%= content_tag(:span, '', :title => t('.end_date_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
@@ -78,7 +78,7 @@
 
 				<div class="control-group" style="position: relative">
 					<%= content_tag(:span, '', :title => t('.review_requirement_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 65px') %>
-					<p class="control-label"><%= t('.review_requirement') %></p>
+					<%= f.label :review_requirement, class: 'control-label' %>
 					<div class="controls checkbox-controls">
 						<%= f.radio_button :review_type, :formal_review, :class => 'radio inline', :id => 'formal_review' %>
 						<%= label_tag :formal_review, t('.review_required_radio'), :class => 'radio-label' %><br/>
