@@ -461,7 +461,6 @@ en:
       logo_tooltip: 'Suggested Logo Size 170x60'
       upload_button: 'Upload'
       desc: 'Descriptive Text'
-      save_button: 'Save Changes'
       cancel_button: 'Cancel'
     partners_list:
       intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
