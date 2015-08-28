@@ -135,4 +135,25 @@ module ApplicationHelper
     t('globals.template.details.action_delete')
   end
 
+  def render_submit_button(cntnt = nil, trnslt = nil,
+                           t: nil, translate: nil, content: nil,
+                           **options)
+    t ||= translate || trnslt
+    content ||= cntnt
+
+    render 'shared/submit_button', object: t,
+           locals: {content: content, attributes: options}
+  end
+
+  def render_save_button(cntnt = nil,
+                         t: nil, translate: nil, content: nil,
+                         **options)
+    t ||= translate || '.save'
+    options[:class] ||= ''
+    options[:class].concat ' btn-green'
+
+    render_submit_button(cntnt,
+                         t: t, translate: translate, content: content,
+                         **options)
+  end
 end
