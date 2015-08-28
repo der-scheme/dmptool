@@ -410,7 +410,6 @@ en:
       logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
       upload_button: Upload
       desc: 'Descriptive Text'
-      save_button: 'Save Changes'
       cancel_button: 'Cancel'
     institutional_resources:
       headline: 'Resources Available at %{institution}'
