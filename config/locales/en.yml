@@ -409,7 +409,6 @@ en:
       logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
       upload_button: Upload
       desc: 'Descriptive Text'
-      cancel_button: 'Cancel'
     institutional_resources:
       headline: 'Resources Available at %{institution}'
       visibility_info_html: 'Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.'
