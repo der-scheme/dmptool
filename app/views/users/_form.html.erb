@@ -1,6 +1,6 @@
 <%= form_for @user, html: { :class => 'form-horizontal' } do |f| %>
   <%= render partial: "shared/errors", locals: {model: @user } %>
-      
+
     <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active"><%= link_to 'Personal Information', '#tab1', 'data-toggle' => 'tab' %></li>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="buttons">
-  		<%= f.submit 'Save', :class => 'btn' %>
+      <%= render_save_button %>
   		<%= link_to 'Cancel', edit_user_path(@user), :class => 'btn' %>
   	</div>
 
