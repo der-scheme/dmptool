@@ -82,6 +82,8 @@ en:
       submit: 'Submit'
       save: 'Save'
       save_changes: 'Save Changes'
+    button_button:
+      cancel: 'Cancel'
   layouts:
     header:
       locale_name: 'English'

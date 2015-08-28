@@ -160,4 +160,22 @@ module ApplicationHelper
   def render_save_changes_button(*args, t: nil, translate: nil, **options)
     render_submit_button(*args, t: '.save_changes', **options)
   end
+
+  def render_button(cntnt = nil, trnslt = nil,
+                           t: nil, translate: nil, content: nil,
+                           **options)
+    t ||= translate || trnslt
+    content ||= cntnt
+
+    render partial: 'shared/button_button',
+           locals: {tid: t, content: content, attributes: options}
+  end
+
+  ##
+  # Proxies #render_button and overwrites the translation parameter with
+  # <code>'.cancel'</code>.
+
+  def render_cancel_button(*args, t: nil, translate: nil, **options)
+    render_button(*args, t: '.cancel', **options)
+  end
 end
