@@ -141,8 +141,8 @@ module ApplicationHelper
     t ||= translate || trnslt
     content ||= cntnt
 
-    render 'shared/submit_button', object: t,
-           locals: {content: content, attributes: options}
+    render partial: 'shared/submit_button', object: t,
+           locals: {tid: t, content: content, attributes: options}
   end
 
   def render_save_button(cntnt = nil,

@@ -1,6 +1,6 @@
 <%# This partial makes maintaining translations for several kinds of submit
     buttons easier. Several helpers are available through the ApplicationHelper
     class. %>
-<% content ||= t(submit_button || '.submit') %>
+<% content ||= t(tid || '.submit') %>
 <% attributes ||= {} %>
 <%= submit_tag content, class: "btn #{attributes.delete :class}", **attributes %>
