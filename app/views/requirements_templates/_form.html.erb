@@ -111,12 +111,12 @@
 				<div class="buttons">
 					<% unless @requirements_template.new_record? %>
 						<%= render_save_button name: 'save_changes' %>
-						<%= button_tag t('.cancel_button'), type: :reset, :class => 'btn'%>
+						<%= render_cancel_button %>
 						<%= f.submit t('.save_and_next_button'), name: 'save_and_template_details', :class => 'btn btn-green pull-right' %>
 					<% else %>
 					  <%= f.submit t('.save_and_next_button'), name: 'save_and_template_details', :class => 'btn btn-success pull-right' %>
             <%= link_to t('.back_button'), :back, method: :get, :class => 'btn btn-green pull-left' %>
-            <%= button_tag t('.cancel_button'), type: :reset, :class => 'btn btn-success'%>
+            <%= render_cancel_button class: 'btn-success' %>
 	         <% end %>
 				</div>
 			<% end %>

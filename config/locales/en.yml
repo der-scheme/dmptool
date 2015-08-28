@@ -269,7 +269,6 @@ en:
       no_review_radio: 'No Review Needed'
       add_funder_link_link: 'Add Funder Link'
       add_sample_plan_link: 'Add Sample Plan'
-      cancel_button: 'Cancel'
       save_and_next_button: 'Save and Next >>'
       back_button: '<< Back'
     date_fields:
