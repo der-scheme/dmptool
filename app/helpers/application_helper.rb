@@ -167,7 +167,10 @@ module ApplicationHelper
     t ||= translate || trnslt
     content ||= cntnt
 
-    render partial: 'shared/button_button',
+    options[:class] ||= ''
+    options[:class].concat(' btn')
+
+    render partial: 'shared/button',
            locals: {tid: t, content: content, attributes: options}
   end
 
@@ -176,6 +179,6 @@ module ApplicationHelper
   # <code>'.cancel'</code>.
 
   def render_cancel_button(*args, t: nil, translate: nil, **options)
-    render_button(*args, t: '.cancel', **options)
+    render_button(*args, t: '.cancel', type: :reset, **options)
   end
 end
