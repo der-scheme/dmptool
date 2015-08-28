@@ -110,7 +110,7 @@
 
 				<div class="buttons">
 					<% unless @requirements_template.new_record? %>
-						<%= f.submit t('.save_button'), name: 'save_changes', :class => 'btn btn-green' %>
+						<%= render_save_button name: 'save_changes' %>
 						<%= button_tag t('.cancel_button'), type: :reset, :class => 'btn'%>
 						<%= f.submit t('.save_and_next_button'), name: 'save_and_template_details', :class => 'btn btn-green pull-right' %>
 					<% else %>
