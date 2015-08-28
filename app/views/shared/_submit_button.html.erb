@@ -3,4 +3,4 @@
     class. %>
 <% content ||= t(tid || '.submit') %>
 <% attributes ||= {} %>
-<%= submit_tag content, class: "btn #{attributes.delete :class}", **attributes %>
+<%= submit_tag content, **attributes %>
