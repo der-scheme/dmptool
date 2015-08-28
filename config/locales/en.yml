@@ -32,6 +32,7 @@ en:
   activerecord:
     models:
       user: 'User'
+      institution: 'Institution'
     attributes:
       user:
         login_id: 'Username'
@@ -41,6 +42,22 @@ en:
         institution_id: 'Institution'
         password_confirmation: 'Password Confirmation'
         orcid_id: 'ORCID'
+      institution:
+        ancestry: 'Ancestry'
+        contact_info: 'Administrator Contact'
+        contact_email: 'Administrator Contact Email'
+        created_at: 'Creation Date'
+        logo: 'Institutional Logo'
+        deleted_at: 'Deletion Date'
+        desc: 'Descriptive Text'
+        full_name: 'Institution Full Name'
+        nickname: 'Institution short name, or acronym'
+        parent_id: 'Parent Institution'
+        shib_entity_id: 'Entity_id'
+        shib_domain: 'Shibboleth Domain'
+        updated_at: 'Last Modification Date'
+        url: 'Institution URL'
+        url_text: 'Institution URL Text'
   globals:
     helpers:
       sortable:   # Used by ApplicationHelper#sortable
