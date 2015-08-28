@@ -214,12 +214,12 @@ class InstitutionsController < ApplicationController
           #format.html { redirect_to edit_institution_path(@current_institution),
                         #notice: 'Institution was successfully updated.' }
           format.html do
-            redirect_to institutions_path(@current_institution),
+            redirect_to institutions_path,
                         notice: t('.success_notice')
           end
         else
           format.html do
-            redirect_to institutions_path(@current_institution),
+            redirect_to institutions_path,
                         notice: t('.failure_notice')
           end
         end
