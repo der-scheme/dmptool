@@ -521,7 +521,6 @@ en:
       no_creation_date: 'none'
       modification_date: 'Creation Date'
       no_modification_date: 'none'
-      save_button: 'Save'
     display_buttons:
       choose_template_button: '<< Choose DMP Template'
       customizations_button: '<< Customizations'
