@@ -77,6 +77,10 @@ en:
         unit: 'Unit'
         owner: 'Owner'
         reviewer: 'Reviewer'
+  shared:
+    submit_button:
+      submit: 'Submit'
+      save: 'Save'
   layouts:
     header:
       locale_name: 'English'
