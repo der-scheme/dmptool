@@ -152,4 +152,12 @@ module ApplicationHelper
   def render_save_button(*args, t: nil, translate: nil, **options)
     render_submit_button(*args, t: '.save', **options)
   end
+
+  ##
+  # Proxies #render_submit_button and overwrites the translation parameter with
+  # <code>'.save_changes'</code>.
+
+  def render_save_changes_button(*args, t: nil, translate: nil, **options)
+    render_submit_button(*args, t: '.save_changes', **options)
+  end
 end
