@@ -25,12 +25,12 @@
 				<div class="buttons" >
 					<%if @user == current_user%>
 
-							<%= render_save_button t('.save_button'), id: 'current_dmp_admin_with_alert' %>
+							<%= render_save_changes_button id: 'current_dmp_admin_with_alert' %>
 							<%= link_to t('.back_button'), users_path(q: @user.email), class: 'btn' %>
 
 					<%else%>
 
-							<%= render_save_button t('.save_button'), id: 'other_user' %>
+							<%= render_save_changes_button id: 'other_user' %>
 							<%= link_to t('.back_button'), users_path(q: @user.email), class: 'btn' %>
 
 					<%end%>
