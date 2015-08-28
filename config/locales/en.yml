@@ -33,6 +33,7 @@ en:
     models:
       user: 'User'
       institution: 'Institution'
+      requirements_template: 'DMP Template'
     attributes:
       user:
         login_id: 'Username'
@@ -58,6 +59,16 @@ en:
         updated_at: 'Last Modification Date'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
+      requirements_template:
+        active: 'Active'
+        created_at: 'Creation Date'
+        end_date: 'End Date'
+        institution_id: 'Institution'
+        name: 'Template name'
+        review_type: 'Review Requirement'
+        start_date: 'Start Date'
+        updated_at: 'Last Modification Date'
+        visibility: 'Visibility'
   globals:
     helpers:
       sortable:   # Used by ApplicationHelper#sortable
