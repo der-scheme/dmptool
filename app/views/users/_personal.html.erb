@@ -191,7 +191,7 @@
   <p><strong><%= t('.api_token') %></strong></p>
   <hr/>
   <div class="control-group">
-    <%= content_tag :p, t('.token'), class: 'control-label' %>
+    <%= f.label :auth_token, class: 'control-label' %>
     <div class="controls everythingOnOneLine">
       <div id="token_partial">
         <%= render partial: 'token'%>
