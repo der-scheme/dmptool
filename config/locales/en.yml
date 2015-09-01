@@ -602,3 +602,6 @@ en:
       delete_orcid_link: 'Delete'
       api_token: 'API Token'
       token: 'My Token'
+    token:
+      generate_token_link: 'Generate New Token'
+      remove_token_link: 'Remove Token'
