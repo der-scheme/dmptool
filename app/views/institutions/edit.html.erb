@@ -124,11 +124,11 @@
 
 
   <% if @acr %>
- <%= link_to t('.back_button'), institutions_path(anchor: @acr), class: 'btn', role: 'button' %>
+    <%= render_back_button institutions_path(anchor: @acr), arrow: true, green: false %>
   <% elsif @admin_acr %>
-    <%= link_to t('.back_button'), users_path(anchor: @admin_acr), class: 'btn', role: 'button' %>
+    <%= render_back_button users_path(anchor: @admin_acr), arrow: true, green: false %>
   <% else %>
-    <%= link_to t('.back_button'), :back, class: 'btn', role: 'button' %>
+    <%= render_back_button arrow: true, green: false %>
   <% end %>
 
 

@@ -424,7 +424,6 @@ en:
       contact_info_placeholder: 'Name'
       contact_email_placeholder: 'Email'
       upload_button: 'Upload'
-      back_button: '<< Back'
       logo_tooltip: 'Suggested Logo Size 170x60'
 
     edit_user_roles_inst_admin:
