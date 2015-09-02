@@ -183,17 +183,13 @@
 
 <% if @all_scope == "all" %>
 	<div class="buttons pagination">
-		<%= link_to t('.view_less_button'),
-                requirements_templates_path(all_scope: '', order_scope: @order_scope, scope: @scope, direction: @direction),
-                method: :get, class: 'btn', role: 'button' %>
+    <%= render_button_link t('.view_less_button'), requirements_templates_path(all_scope: '', order_scope: @order_scope, scope: @scope, direction: @direction) %>
 		<%= paginate @requirements_templates %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to t('.view_all_button'),
-                requirements_templates_path(all_scope: 'all', order_scope: @order_scope, scope: @scope, direction: @direction),
-                method: :get, class: 'btn', role: 'button',
-                id: 'view_all_templates' %>
+		<%= render_button_link t('.view_all_button'), requirements_templates_path(all_scope: 'all', order_scope: @order_scope, scope: @scope, direction: @direction),
+													 id: 'view_all_templates' %>
 		<%= paginate @requirements_templates %>
 	</div>
 <%end%>
