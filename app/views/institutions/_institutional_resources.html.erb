@@ -35,12 +35,12 @@
 
 
 	<div class="buttons pagination">
-		<%= link_to t('.view_all_button'), institutions_path(anchor: 'tab_tab2', scope: 'all'), method: :get, class: 'btn', role: 'button' %>
+		<%= render_button_link t('.view_all_button'), institutions_path(anchor: 'tab_tab2', scope: 'all') %>
 		<%= paginate @resource_contexts %>
 	</div>
 <% else %>
  <%= content_tag :h2, t('.no_resources_info', institution: @current_institution.full_name) %>
 <% end %>
 <div class="buttons">
-	<%= link_to t('.new_button'), new_resource_path(origin_url: request.original_url, tab_number: 'tab_tab2'), class: 'btn btn-green' %>
+	<%= render_button_link t('.new_button'), new_resource_path(origin_url: request.original_url, tab_number: 'tab_tab2'), class: 'btn-green' %>
 </div>
