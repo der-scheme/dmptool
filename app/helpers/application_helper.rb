@@ -181,4 +181,34 @@ module ApplicationHelper
   def render_cancel_button(*args, t: nil, translate: nil, **options)
     render_button(*args, t: '.cancel', type: :reset, **options)
   end
+
+  def render_button_link(cntnt = nil, lnk = nil,
+                         t: nil, translate: nil, content: nil,
+                         link: nil, href: nil, url: nil,
+                         **options)
+    t ||= translate
+    content ||= cntnt if lnk
+    link ||= href || url || (lnk ? lnk : cntnt)
+
+    options[:class] ||= ''
+    options[:class].concat(' btn-green')
+
+    render partial: 'shared/button_link',
+           locals: {tid: t, content: content, href: link, attributes: options}
+  end
+
+  ##
+  # Proxies #render_back_button, overwrites the translation parameter with
+  # <code>'.back'</code> (or <code>'.arrow_back'</code> if
+  # <code>arrow: true</code>) and links to <code>:back</code>, unless otherwise
+  # specified.
+
+  def render_back_button(lnk = nil, arrow: false,
+                         link: nil, href: nil, url: nil,
+                         **options)
+    t = arrow ? '.arrow_back' : '.back'
+    link ||= href || url || lnk || :back
+
+    render_button_link(t: t, href: link)
+  end
 end

@@ -6,4 +6,4 @@
 <% attributes[:class] ||= '' %>
 <% attributes[:class].concat ' btn' %>
 
-<%= link_to content, method: :get, role: 'button', **attributes %>
+<%= link_to content, href, method: :get, role: 'button', **attributes %>
