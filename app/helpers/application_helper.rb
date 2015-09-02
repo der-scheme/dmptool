@@ -200,15 +200,15 @@ module ApplicationHelper
   # <code>arrow: true</code>) and links to <code>:back</code>, unless otherwise
   # specified.
 
-  def render_back_button(lnk = nil, arrow: false,
+  def render_back_button(lnk = nil, arrow: false, green: true,
                          link: nil, href: nil, url: nil,
                          **options)
     t = arrow ? '.arrow_back' : '.back'
     link ||= href || url || lnk || :back
 
     options[:class] ||= ''
-    options[:class].concat(' btn-green')
+    options[:class].concat(' btn-green') if green
 
-    render_button_link(t: t, href: link)
+    render_button_link(t: t, href: link, **options)
   end
 end
