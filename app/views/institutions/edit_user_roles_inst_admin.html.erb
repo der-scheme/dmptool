@@ -23,16 +23,12 @@
 
 				<div class="buttons" >
 					<% if @user == current_user %>
-
 							<%= render_save_changes_button id: 'current_admin_with_alert' %>
-							<%= link_to t('.back_button'), institutions_path(anchor: 'tab_tab4'), class: 'btn' %>
-
 					<% else %>
-
 							<%= render_save_changes_button anchor: 'tab_tab4', id: 'other_user' %>
-							<%= link_to t('.back_button'), institutions_path(anchor: 'tab_tab4'), class: 'btn' %>
-
 					<% end %>
+
+					<%= render_back_button institutions_path(anchor: 'tab_tab4'), green: false %>
 				</div>
 
 
