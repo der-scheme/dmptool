@@ -242,6 +242,18 @@ en:
       button_view_all: "View All"
 
   plans:
+    details:
+      dmp_details: 'DMP Details'
+      edit_instructions: 'Click on a section below to edit it at any time.'
+      complete_icon_meaning: ' = Complete'
+      mandatory_icon_meaning: ' = Mandatory'
+      template_outline: 'Template Outline'
+      instructions: 'Instructions'
+      links: 'Links'
+      suggested_response: 'Suggested Response'
+      example_response: 'Example Response'
+      mandatory: '(Mandatory)'
+      preview_button: 'DMP Preview >>'
     public:
       browser_title: "Public DMPs"
       title: "Public DMPs"
