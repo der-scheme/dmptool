@@ -190,9 +190,6 @@ module ApplicationHelper
     content ||= cntnt if lnk
     link ||= href || url || (lnk ? lnk : cntnt)
 
-    options[:class] ||= ''
-    options[:class].concat(' btn-green')
-
     render partial: 'shared/button_link',
            locals: {tid: t, content: content, href: link, attributes: options}
   end
@@ -208,6 +205,9 @@ module ApplicationHelper
                          **options)
     t = arrow ? '.arrow_back' : '.back'
     link ||= href || url || lnk || :back
+
+    options[:class] ||= ''
+    options[:class].concat(' btn-green')
 
     render_button_link(t: t, href: link)
   end
