@@ -316,9 +316,11 @@ en:
       add_sample_plan_link: 'Add Sample Plan'
       save_and_next_button: 'Save and Next >>'
       back_button: '<< Back'
+
     date_fields:
       creation_date: 'Creation date'
       modification_date: 'Modification date'
+
     additional_information_fields:
       funder_links: 'Funder links'
       link_url: 'Link Url'
@@ -326,6 +328,7 @@ en:
       link_url_placeholder: 'Link Url'
       remove_link: 'Remove'
       funder_links_tooltip: 'Add links to funder websites that may provide additional information about this template’s requirements.'
+
     sample_plan_fields:
       sample_plans: 'Sample plans'
       plan_url: 'Plan Url'
@@ -333,6 +336,7 @@ en:
       plan_url_placeholder: 'Plan Url'
       remove_link: 'Remove'
       sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
+
     index:
       dmp_templates: 'DMP Templates'
       all_filter_link: 'All (%{count})'
@@ -346,6 +350,7 @@ en:
       view_less_button: 'View Less'
       view_all_button: 'View All'
       new_button: 'Create New Template >>'
+
     template_information:
       new_template: 'Create New DMP Template'
       copy_template: 'Copy an Existing DMP Template'
@@ -354,16 +359,22 @@ en:
       copy_template_no_templates: 'There are no existing templates to edit.'
       new_template_explanation: 'Input basic and optional information of the new requirements template and edit the template details.'
       new_template_button: 'Create New Template'
+
     create:
       success_notice: 'DMP Template was successfully created.'
+
     update:
       success_notice: 'DMP Template was successfully updated.'
+
     destroy:
       success_notice: 'DMP template was deleted.'
+
     copy_existing_template:
       success_notice: 'Requirements template was successfully created.'
+
     toggle_active:
       failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
+
   authorizations:
     add_authorization:
       not_found_message:
@@ -376,9 +387,11 @@ en:
       success_notice:
         one: 'Role granted to the following user: %{emails}'
         other: 'Role granted to the following users: %{emails}'
+
     remove_authorization:
       success_notice: 'The role has been revoked.'
       not_allowed_message: "You don't have permission to revoke this role."
+
     add_role_autocomplete:
       blank_name_message: 'Please select a person to add as a %{role}.'
       incomplete_message: 'Please type and select the full name or email of a user.'
@@ -387,6 +400,7 @@ en:
       already_has_role_message: 'The user you chose is already a %{role}.'
       not_allowed_message: 'You do not have permission to assign this role.'
       success_notice: '%{user} has been added as a %{role}.'
+
     add_authorization_manage_users:
       blank_name_message: 'Please select a user.'
       incomplete_message: 'Please type and select the full name or email of a user.'
@@ -396,6 +410,7 @@ en:
       already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
       select_role_message: 'Please select at least a role to grant.'
       success_notice: '%{user} has been updated.'
+
   institutions:
     index:
       profile: 'Institution Profile'
@@ -404,6 +419,7 @@ en:
       hierarchy: 'Institution Hierarchy'
       assign_roles: 'Assign Roles'
       add_new: 'Add New Institution'
+
     edit:
       info: 'Institution Information'
       url_text_placeholder: 'URL Text'
@@ -413,11 +429,13 @@ en:
       upload_button: 'Upload'
       back_button: '<< Back'
       logo_tooltip: 'Suggested Logo Size 170x60'
+
     edit_user_roles_inst_admin:
       user_roles_link: 'User Roles'
       edit_user_roles: 'Edit User Roles'
       current_roles: "%{user}'s Current Roles:"
       back_button: 'Back'
+
     form:
       title: 'Institution Information'
       # Find the following translations in en.rb, as they interpolate
@@ -433,6 +451,7 @@ en:
       contact_tooltip: 'Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.'
       logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
       upload_button: Upload
+
     institutional_resources:
       headline: 'Resources Available at %{institution}'
       visibility_info_html: 'Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.'
@@ -444,6 +463,7 @@ en:
       modification_date: 'Last Modification Date'
       no_resources_info: 'There are currently no resources available at %{institution}.'
       new_button: 'Create New Resource'
+
     manage_users:
       all_filter_link: 'All(%{count})'
       resource_editors_filter_link: 'Resources Editors(%{count})'
@@ -458,13 +478,17 @@ en:
       edit_user_role: 'Edit User Role'
       edit_user_role_tooltip: 'Edit user role'
       grant_role_button: 'Grant Role'
+
     update_user_roles_inst_admin:
       success_notice: 'User was successfully updated.'
+
     create:
       success_notice: 'Institution was successfully created.'
+
     update:
       success_notice: 'Institution was successfully updated.'
       failure_notice: 'Something went wrong.'
+
     new:
       title: 'New institution'
       info: 'Institution Information'
@@ -474,6 +498,7 @@ en:
       contact_email_placeholder: 'Email'
       logo_tooltip: 'Suggested Logo Size 170x60'
       upload_button: 'Upload'
+
     partners_list:
       intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
       partners_link: 'About partners'
@@ -491,6 +516,7 @@ en:
       custom_dmp: 'DMPTool Customized?'
       view_less_button: 'View Less'
       view_all_button: 'View All'
+
     show:
       back_link: 'Back'
       full_name: 'Full name:'
@@ -503,6 +529,7 @@ en:
       shib_entity_id: 'Shib entity:'
       shib_domain: 'Shib domain:'
       logo: 'Logo:'
+
   resource_contexts:
     choose_institution:
       select_institution: 'Select Institution for customization'
@@ -512,6 +539,7 @@ en:
       select_institution_radio: 'Customizing this template for the following institution'
       back_button: 'Previous page'
       next_button: 'Next page'
+
     form:
       title: 'Customization Overview'
       basic_info: 'Basic Information'
@@ -532,10 +560,12 @@ en:
       no_creation_date: 'none'
       modification_date: 'Creation Date'
       no_modification_date: 'none'
+
     display_buttons:
       choose_template_button: '<< Choose DMP Template'
       customizations_button: '<< Customizations'
       details_button: 'Customization Details >>'
+
     resource_customization:
       title: 'DMP Template Customizations'
       name: 'Name'
@@ -547,6 +577,7 @@ en:
       view_less_button: 'View Less'
       view_all_button: 'View All'
       new_button: 'Create New Customization'
+
     customization_resources_list:
       # Find the following translations, merged into one, in en.rb:
       # - resources_customized_for_one
@@ -559,9 +590,11 @@ en:
       modification_date: 'Last Modification Date'
       action_tooltip: 'Edit'
       add_resource_button: 'Add a resource'
+
     resource_search:
       search: 'Search'
       search_button: 'Search'
+
     select_resource:
       existing: 'Existing Resources'
       for_user: 'For %{user}'
@@ -579,27 +612,36 @@ en:
       link_button: 'Link Selected Resource'
       add_resource_button: 'Add a new resource'
       back_button: '<< Back'
+
     create:
       success_notice: 'Customization was successfully created.'
+
     update:
       success_notice: 'Customization was successfully updated.'
+
     unlink_resource_from_template:
       success_notice: 'The resource was successfully unlinked.'
+
     unlink_resource_from_requirement:
       success_notice: 'The resource was successfully unlinked.'
+
     unlink_resource_from_customization:
       success_notice: 'The resource was successfully unlinked.'
+
     dmp_for_customization:
       back_text: 'Previous page'
       submit_text: 'Next page'
+
   users:
     edit:
       title: 'My Profile'
+
     edit_user_roles:
       title: 'Edit User Roles'
       user_roles_link: 'User Roles'
       current_roles: "%{user}'s Current Roles:"
       back_button: 'Back'
+
     personal:
       instructions: 'Please update your account information.'
       name: 'Name'
@@ -619,6 +661,7 @@ en:
       edit_orcid_link: 'Edit'
       delete_orcid_link: 'Delete'
       api_token: 'API Token'
+
     token:
       generate_token_link: 'Generate New Token'
       remove_token_link: 'Remove Token'
