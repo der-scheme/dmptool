@@ -533,8 +533,9 @@ en:
       view_all_button: 'View All'
       new_button: 'Create New Customization'
     customization_resources_list:
-      resources_customized_for_one: 'Template Resources for %{template}  - Customized for %{institution}'
-      resources_customized_for_all: 'Template Resources for %{template}  - Customized for all Institutions'
+      # Find the following translations, merged into one, in en.rb:
+      # - resources_customized_for_one
+      # - resources_customized_for_all
       visibility_info: 'These resources will be displayed for all requirements defined for this template.'
       details: 'Details'
       action: 'Action'

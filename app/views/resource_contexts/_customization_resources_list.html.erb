@@ -1,13 +1,8 @@
 <br />
-<% if @customization_institution_name %>
-	<%= content_tag :h2, t('.resources_customized_for_one',
-													template: @template_name,
-													institution: @customization_institution_name),
-									class: 'row-fluid' %>
-<% else %>
-	<%= content_tag :h2, t('.resources_customized_for_all', template: @template_name),
-									class: 'row-fluid' %>
-<% end %>
+<%= content_tag :h2, t('.resources_customized_for',
+											 template: @template_name,
+											 institution: @customization_institution_name),
+								class: 'row-fluid' %>
 
 <div>
 	<%= content_tag :p, t('.visibility_info') %>
