@@ -405,9 +405,11 @@ en:
       back_button: 'Back'
     form:
       title: 'Institution Information'
-      shib_entity_id_tooltip: 'Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact %{email} with any questions.'
-      shib_domain_id_tooltip: 'This can only be edited by the DMPTool Administrator. Contact %{email} with any questions.'
-      parent_tooltip: 'If you do not see your institution listed in the dropdown list, contact %{email}.'
+      # Find the following translations in en.rb, as they interpolate
+      # application globals:
+      # - shib_entity_id_tooltip
+      # - shib_domain_id_tooltip
+      # - parent_tooltip
       url_text_placeholder: 'URL Text'
       url_placeholder: 'URL'
       url_tooltip: 'This URL will appear at the top of the DMPTool, to the right of your institution name.'
