@@ -315,7 +315,6 @@ en:
       add_funder_link_link: 'Add Funder Link'
       add_sample_plan_link: 'Add Sample Plan'
       save_and_next_button: 'Save and Next >>'
-      back_button: '<< Back'
 
     date_fields:
       creation_date: 'Creation date'
