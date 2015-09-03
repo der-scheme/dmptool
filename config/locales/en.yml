@@ -583,10 +583,6 @@ en:
       action_tooltip: 'Edit'
       add_resource_button: 'Add a resource'
 
-    resource_search:
-      search: 'Search'
-      search_button: 'Search'
-
     select_resource:
       existing: 'Existing Resources'
       for_user: 'For %{user}'
