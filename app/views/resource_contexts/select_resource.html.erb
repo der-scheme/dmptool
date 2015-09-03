@@ -92,7 +92,7 @@
 			</table>
 			<%if @any_resource.count > 0 && (params[:q].blank? || @resource_contexts.length > 0)%>
 				<div class="buttons pagination">
-					<%= submit_tag t('.link_button'), class: 'btn btn-green' %>
+					<%= render_submit_button t('.link_button') %>
 					<%= paginate @resource_contexts %>
 				</div>
 			<%end%>
@@ -117,7 +117,7 @@
 			</div>
 		<%#end%>
 		<div class="actions pull-left">
-			<%= link_to t('.back_button'), "#{@origin_path}##{@tab_number}", class: 'btn' %>
+			<%= render_back_button "#{@origin_path}##{@tab_number}", arrow: true, green: false %>
 		</div>
 
 	<%#else%>
