@@ -508,8 +508,6 @@ en:
       ms_filter_link: 'M - S'
       tz_filter_link: 'T - Z'
       all_filter_link: 'All'
-      search: 'Search'
-      search_button: 'Search'
       name: 'Name'
       shib_enabled: 'Shibboleth enabled?'
       custom_dmp: 'DMPTool Customized?'

@@ -16,9 +16,7 @@
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
-					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-					<%= label_tag :q, t('.search'), class: 'icon search' %>
-					<%= submit_tag t('.search_button') %>
+					<%= render partial: 'shared/search' %>
 				</div>
 			<% end %>
 	</div>
