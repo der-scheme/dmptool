@@ -67,35 +67,14 @@
 
 <% if @scope == "all" %>
   <div class="buttons pagination">
-    <%= link_to t('.view_less_button'),
-								resource_contexts_path(scope: 'less', order_scope: @order_scope ),
-								method: :get, class: 'btn', role: 'button' %>
+		<%= render_button_link t: '.view_less', href: {scope: 'less', order_scope: @order_scope} %>
     <%= paginate @resource_contexts %>
   </div>
 <% else %>
   <div class="buttons pagination">
-    <%= link_to t('.view_all_button'),
-								resource_contexts_path(scope: 'all', order_scope: @order_scope ),
-								method: :get, class: 'btn', role: 'button' %>
+		<%= render_button_link t: '.view_all', href: {scope: 'all', order_scope: @order_scope} %>
     <%= paginate @resource_contexts %>
   </div>
 <%end%>
 
-<%= link_to t('.new_button'), dmp_for_customization_path, class: 'btn btn-green' %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%= render_button_link t('.new_button'), dmp_for_customization_path, green: true %>
