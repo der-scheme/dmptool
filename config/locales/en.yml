@@ -122,6 +122,8 @@ en:
     button_link:
       back: 'Back'
       arrow_back: '<< Back'
+      view_less: 'View Less'
+      view_all: 'View All'
   layouts:
     header:
       locale_name: 'English'
