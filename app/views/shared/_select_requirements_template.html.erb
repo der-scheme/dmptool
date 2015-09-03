@@ -8,9 +8,7 @@
   <div class="search-area span4 pull-right">
     <%= form_tag('', {:method => :get}) do %>
       <div class="control-group pull-right">
-        <%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-        <%= label_tag :q, "Search", :class => "icon search" %>
-        <%= submit_tag('Search') %>
+        <%= render partial: 'shared/search' %>
       </div>
     <% end %>
   </div>
@@ -117,7 +115,7 @@
     draggable: true,
     resizable: false,
     title: "Please Select a Template",
-    
+
     open: function () {
 
        $('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
@@ -127,7 +125,7 @@
       $('.ui-dialog').css('padding','0');
       $('.ui-dialog').css('background-color','white');
 
-      
+
       $('.ui-button-icon-primary').removeClass('ui-icon');
        $('.ui-button-icon-primary').removeClass('ui-icon-closethick');
       $('.ui-button-icon-primary').css('opacity', '0.2');
@@ -156,7 +154,7 @@
       $('#dialog').css('border-top-width','1px');
       $('#dialog').css('border-top-style','solid');
       $('#dialog').css('border-top-color','rgb(221, 221, 221)');
-     
+
       $("#dialog").dialog("open");
     },
     close: function () {
