@@ -1,7 +1,8 @@
 <%# This partial makes maintaining translations for several kinds of button
     style links easier. Several helpers are available through the
     ApplicationHelper class. %>
-<% content ||= t(tid) %>
+<% tparams ||= {} %>
+<% content ||= t(tid, **tparams) %>
 <% attributes ||= {} %>
 <% attributes[:class] ||= '' %>
 <% attributes[:class].concat ' btn' %>

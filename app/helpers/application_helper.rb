@@ -186,6 +186,7 @@ module ApplicationHelper
 
   def render_button_link(cntnt = nil, lnk = nil,
                          t: nil, translate: nil,
+                         tparams: {},
                          content: nil, text: nil,
                          link: nil, href: nil, url: nil,
                          green: false,
@@ -199,7 +200,7 @@ module ApplicationHelper
     options[:class].concat(' btn-green') if green
 
     render partial: 'shared/button_link',
-           locals: {tid: t, content: content, href: link, attributes: options}
+           locals: {tid: t, content: content, href: link, tparams: tparams, attributes: options}
   end
 
   ##
