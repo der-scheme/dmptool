@@ -124,6 +124,9 @@ en:
       arrow_back: '<< Back'
       view_less: 'View Less'
       view_all: 'View All'
+    search:
+      search_label: 'Search'
+      search_button: 'Search'
   layouts:
     header:
       locale_name: 'English'

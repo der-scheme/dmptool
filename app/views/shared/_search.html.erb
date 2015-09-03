@@ -1,0 +1,5 @@
+<% placeholder ||= nil %>
+
+<%= search_field_tag :q, params[:q], placeholder: placeholder, class: 'input-large' %>
+<%= label_tag :q, t('.search_label'), class: 'icon search' %>
+<%= submit_tag t('.search_button') %>
