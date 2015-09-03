@@ -265,7 +265,6 @@ en:
       browser_title: "Public DMPs"
       title: "Public DMPs"
       description_html: "<p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>"
-      search_button: "Search"
       show_all_button: "All"
       institutional_dmps: "Institutional DMPs"
 

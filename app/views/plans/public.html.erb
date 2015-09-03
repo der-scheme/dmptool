@@ -9,9 +9,7 @@
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
-					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag(t('.search_button')) %>
+					<%= render partial: 'shared/search' %>
 				</div>
 			<% end %>
 	</div>
@@ -19,13 +17,13 @@
 <br/>
 <div class="row-fluid">
 	<%= link_to('A - F', params.merge({ 's' => 'a', 'e' => 'f' , "public:page" => '1'}),
-				:class => 'btn viewA-F') %> 
+				:class => 'btn viewA-F') %>
 	<%= link_to('G - L', params.merge({ 's' => 'g', 'e' => 'l' , "public:page" => '1'}),
-				:class => 'btn viewG-L') %> 
+				:class => 'btn viewG-L') %>
 	<%= link_to('M - S', params.merge({ 's' => 'm', 'e' => 's' , "public:page" => '1'}),
-				:class => 'btn viewM-S') %> 
+				:class => 'btn viewM-S') %>
 	<%= link_to('T - Z', params.merge({ 's' => 't', 'e' => 'z' , "public:page" => '1'}),
-			:class => 'btn viewT-Z') %> 
+			:class => 'btn viewT-Z') %>
 	<%= link_to(t('.show_all_button'), params.merge({ 's' => 'a', 'e' => 'z' , "public:page" => '1'}),
 			:class => 'btn viewA-Z') %>
 </div>
