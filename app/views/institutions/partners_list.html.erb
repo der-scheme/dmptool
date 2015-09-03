@@ -7,11 +7,11 @@
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<%= link_to(t('.af_filter_link'), {s: 'a', e: 'f', all_scope: @all_scope}, class: 'btn viewA-F') %>
-		<%= link_to(t('.gl_filter_link'), {s: 'g', e: 'l', all_scope: @all_scope}, class: 'btn viewG-L') %>
-		<%= link_to(t('.ms_filter_link'), {s: 'm', e: 's', all_scope: @all_scope}, class: 'btn viewM-S') %>
-		<%= link_to(t('.tz_filter_link'), {s: 't', e: 'z', all_scope: @all_scope}, class: 'btn viewT-Z') %>
-		<%= link_to(t('.all_filter_link'), {s: 'a', e: 'z', all_scope: @all_scope}, class: 'btn viewA-Z') %>
+		<%= render_button_link t('.af_filter_link'), {s: 'a', e: 'f', all_scope: @all_scope}, class: 'viewA-F' %>
+		<%= render_button_link t('.gl_filter_link'), {s: 'g', e: 'l', all_scope: @all_scope}, class: 'viewG-L' %>
+		<%= render_button_link t('.ms_filter_link'), {s: 'm', e: 's', all_scope: @all_scope}, class: 'viewM-S' %>
+		<%= render_button_link t('.tz_filter_link'), {s: 't', e: 'z', all_scope: @all_scope}, class: 'viewT-Z' %>
+		<%= render_button_link t('.all_filter_link'), {s: 'a', e: 'z', all_scope: @all_scope}, class: 'viewA-Z' %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
@@ -54,16 +54,12 @@
 
 <% if @all_scope == "all" %>
 	<div class="buttons pagination">
-		<%= link_to t('.view_less_button'),
-								{action: 'partners_list', all_scope: '', q: @q, s: @s, e: @e},
-								class: 'btn' %>
+    <%= render_button_link t: '.view_less', href: {all_scope: '', q: @q, s: @s, e: @e} %>
 		<%= paginate @institutions %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to t('.view_all_button'),
-								{action: 'partners_list', all_scope: 'all', q: @q, s: @s, e: @e},
-								class: 'btn' %>
+		<%= render_button_link t: '.view_all', href: {all_scope: 'all', q: @q, s: @s, e: @e} %>
 		<%= paginate @institutions %>
 	</div>
 <%end%>

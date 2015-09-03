@@ -511,8 +511,6 @@ en:
       name: 'Name'
       shib_enabled: 'Shibboleth enabled?'
       custom_dmp: 'DMPTool Customized?'
-      view_less_button: 'View Less'
-      view_all_button: 'View All'
 
     show:
       back_link: 'Back'
