@@ -136,10 +136,11 @@ module ApplicationHelper
   end
 
   def render_submit_button(cntnt = nil, trnslt = nil,
-                           t: nil, translate: nil, content: nil,
+                           t: nil, translate: nil,
+                           content: nil, text: nil,
                            **options)
     t ||= translate || trnslt
-    content ||= cntnt
+    content ||= text || cntnt
 
     render partial: 'shared/submit_button', object: t,
            locals: {tid: t, content: content, attributes: options}
@@ -162,10 +163,11 @@ module ApplicationHelper
   end
 
   def render_button(cntnt = nil, trnslt = nil,
-                           t: nil, translate: nil, content: nil,
+                           t: nil, translate: nil,
+                           content: nil, text: nil,
                            **options)
     t ||= translate || trnslt
-    content ||= cntnt
+    content ||= text || cntnt
 
     options[:class] ||= ''
     options[:class].concat(' btn')
@@ -183,12 +185,14 @@ module ApplicationHelper
   end
 
   def render_button_link(cntnt = nil, lnk = nil,
-                         t: nil, translate: nil, content: nil,
+                         t: nil, translate: nil,
+                         content: nil, text: nil,
                          link: nil, href: nil, url: nil,
                          **options)
+
     t ||= translate
-    content ||= cntnt if lnk
-    link ||= href || url || (lnk ? lnk : cntnt)
+    content ||= text || cntnt
+    link ||= href || url || lnk
 
     render partial: 'shared/button_link',
            locals: {tid: t, content: content, href: link, attributes: options}
@@ -200,7 +204,8 @@ module ApplicationHelper
   # <code>arrow: true</code>) and links to <code>:back</code>, unless otherwise
   # specified.
 
-  def render_back_button(lnk = nil, arrow: false, green: true,
+  def render_back_button(lnk = nil,
+                         arrow: false, green: true,
                          link: nil, href: nil, url: nil,
                          **options)
     t = arrow ? '.arrow_back' : '.back'
