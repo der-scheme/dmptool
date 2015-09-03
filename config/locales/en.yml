@@ -632,7 +632,6 @@ en:
       title: 'Edit User Roles'
       user_roles_link: 'User Roles'
       current_roles: "%{user}'s Current Roles:"
-      back_button: 'Back'
 
     personal:
       instructions: 'Please update your account information.'
