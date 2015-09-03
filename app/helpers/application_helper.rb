@@ -188,11 +188,15 @@ module ApplicationHelper
                          t: nil, translate: nil,
                          content: nil, text: nil,
                          link: nil, href: nil, url: nil,
+                         green: false,
                          **options)
 
     t ||= translate
     content ||= text || cntnt
     link ||= href || url || lnk
+
+    options[:class] ||= ''
+    options[:class].concat(' btn-green') if green
 
     render partial: 'shared/button_link',
            locals: {tid: t, content: content, href: link, attributes: options}
@@ -211,9 +215,6 @@ module ApplicationHelper
     t = arrow ? '.arrow_back' : '.back'
     link ||= href || url || lnk || :back
 
-    options[:class] ||= ''
-    options[:class].concat(' btn-green') if green
-
-    render_button_link(t: t, href: link, **options)
+    render_button_link(t: t, href: link, green: green, **options)
   end
 end
