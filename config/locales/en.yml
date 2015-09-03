@@ -218,7 +218,6 @@ en:
       description_html: "<p>Use the A-Z links below to narrow down the list by institution or
                         use the search box to search for specific DMP Templates.  Sample
                         plans are not necessarily from the funder.</p>"
-      search_button: "Search"
       show_all_button: "All"
       requirements_for_institution: "DMP Requirements for "
       list_for_institution_html: "<p>Below is a list of DMP templates available in your institution</p>"
