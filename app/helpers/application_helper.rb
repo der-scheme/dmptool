@@ -218,4 +218,13 @@ module ApplicationHelper
 
     render_button_link(t: t, href: link, green: green, **options)
   end
+
+  def render_filter_button(url_options = {}, s: 'a', e: 'z', **options)
+    options[:class] ||= ''
+    options[:class].concat(" view#{s.upcase}-#{e.upcase}")
+
+    render_button_link t: '.filter', tparams: {s: s, e: e},
+                       href: params.merge(url_options).merge(s: s, e: e),
+                       **options
+  end
 end

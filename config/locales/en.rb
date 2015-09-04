@@ -21,6 +21,20 @@
             end
           end
       }
+    },
+    shared: {
+      button_link: {
+        filter: lambda do |key, s: nil, e: nil, **options|
+          s = s.to_s.upcase
+          e = e.to_s.upcase
+
+          if s != 'A' || e != 'Z'
+            "#{s} - #{e}"
+          else
+            "All"
+          end
+        end
+      }
     }
   }
 }
