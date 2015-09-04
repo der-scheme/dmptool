@@ -34,6 +34,7 @@ en:
       user: 'User'
       institution: 'Institution'
       requirements_template: 'DMP Template'
+      resource_context: 'Customization'
     attributes:
       user:
         active: 'Active'
@@ -76,6 +77,17 @@ en:
         start_date: 'Start Date'
         updated_at: 'Last Modification Date'
         visibility: 'Visibility'
+      resource_context:
+        contact_email: 'Contact Email'
+        contact_info: 'Contact Information'
+        created_at: 'Creation Date'
+        institution_id: 'Customized for'
+        name: 'Customization Name'
+        requirement_id: 'Requirement'
+        requirements_template_id: 'Associated DMP template'
+        resource_id: 'Resource'
+        review_type: 'Review Type'
+        updated_at: 'Modification Date'
   globals:
     helpers:
       sortable:   # Used by ApplicationHelper#sortable
