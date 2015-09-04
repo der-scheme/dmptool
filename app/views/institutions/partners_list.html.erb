@@ -7,11 +7,11 @@
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<%= render_button_link t('.af_filter_link'), {s: 'a', e: 'f', all_scope: @all_scope}, class: 'viewA-F' %>
-		<%= render_button_link t('.gl_filter_link'), {s: 'g', e: 'l', all_scope: @all_scope}, class: 'viewG-L' %>
-		<%= render_button_link t('.ms_filter_link'), {s: 'm', e: 's', all_scope: @all_scope}, class: 'viewM-S' %>
-		<%= render_button_link t('.tz_filter_link'), {s: 't', e: 'z', all_scope: @all_scope}, class: 'viewT-Z' %>
-		<%= render_button_link t('.all_filter_link'), {s: 'a', e: 'z', all_scope: @all_scope}, class: 'viewA-Z' %>
+		<%= render_filter_button s: 'a', e: 'f' %>
+		<%= render_filter_button s: 'g', e: 'l' %>
+		<%= render_filter_button s: 'm', e: 's' %>
+		<%= render_filter_button s: 't', e: 'z' %>
+		<%= render_filter_button s: 'a', e: 'z' %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
