@@ -85,6 +85,12 @@ en:
         resource_id: 'Resource'
         review_type: 'Review Type'
         updated_at: 'Modification Date'
+  enum:
+    resource_context:
+      review_type:
+        formal_review: 'Review Required'
+        informal_review: 'Informal Review Allowed'
+        no_review: 'No Review Needed'
   globals:
     helpers:
       sortable:   # Used by ApplicationHelper#sortable
