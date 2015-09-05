@@ -227,4 +227,19 @@ module ApplicationHelper
                        href: params.merge(url_options).merge(s: s, e: e),
                        **options
   end
+
+  def translate_enum(model, attribute, value)
+    model_scope = case model
+      when Symbol then model
+      else
+        if model.respond_to?(:to_model)
+          model.to_model.class.model_name.singular.i18n_key
+        else
+          model.to_s.to_sym
+        end
+    end
+
+    translate(value, scope: [:enum, model_scope, attribute])
+  end
+  alias_method :t_enum, :translate_enum
 end
