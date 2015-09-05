@@ -1,5 +1,25 @@
 {
   en: {
+    activerecord: {
+      models: {
+        institution: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'Institution' : 'Institutions'
+          unit ? "#{count} #{name}" : name
+        end,
+        requirements_template: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'DMP Template' : 'DMP Templates'
+          unit ? "#{count} #{name}" : name
+        end,
+        resource_context: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'Customization' : 'Customizations'
+          unit ? "#{count} #{name}" : name
+        end,
+        user: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'User' : 'Users'
+          unit ? "#{count} #{name}" : name
+        end
+      }
+    },
     institutions: {
       form: {
         shib_entity_id_tooltip: "Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact #{APP_CONFIG['feedback_email_to'].join(', ').gsub(/(.*),(.*)/, '\1 or\2')} with any questions.",

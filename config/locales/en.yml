@@ -30,11 +30,8 @@ en:
     formats:
       default: '%m/%d/%Y %I:%M %p'
   activerecord:
-    models:
-      user: 'User'
-      institution: 'Institution'
-      requirements_template: 'DMP Template'
-      resource_context: 'Customization'
+    # Human readable model names were moved to en.rb, as I18n's native
+    # pluralization feature proved to be not flexible enough.
     attributes:
       user:
         active: 'Active'
