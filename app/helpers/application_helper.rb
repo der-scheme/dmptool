@@ -6,8 +6,10 @@ module ApplicationHelper
 
 
 
-  def sortable(column, title = nil)
-    title ||= t("globals.helpers.sortable.#{column}")
+  def sortable(column, title = nil, model: nil)
+    title ||= model.human_attribute_name(column) if model.respond_to?(:human_attribute_name)
+    title ||= t(".#{column}", default: column.titleize)
+
     css_class = column == params[:order_scope] ? "current #{params[:direction]}" : nil
     direction = column == params[:order_scope] && params[:direction] == "asc" ? "desc" : "asc"
     link_to title,

@@ -113,15 +113,6 @@ en:
         informal_review: 'Informal Review Allowed'
         no_review: 'No Review Needed'
   globals:
-    helpers:
-      sortable:   # Used by ApplicationHelper#sortable
-        creation_date: 'Creation Date'
-        institution: 'Institution'
-        modification_date: 'Last Modification Date'
-        name: 'Name'
-        owner: 'Owner'
-        status: 'Status'
-        visibility: 'Visibility'
     template:
       details:    # Used by several ApplicationHelper instance methods.
         overview: 'Overview'
