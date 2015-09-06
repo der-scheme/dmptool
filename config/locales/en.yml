@@ -86,6 +86,10 @@ en:
         review_type: 'Review Type'
         updated_at: 'Modification Date'
   enum:
+    requirements_template:
+      visibility:
+        institutional: 'Institutional'
+        public: 'Public'
     resource_context:
       review_type:
         formal_review: 'Review Required'
