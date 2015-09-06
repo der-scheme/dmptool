@@ -55,6 +55,13 @@ en:
         updated_at: 'Last Modification Date'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
+      sample_plan:
+        id: 'Sample Plan'
+        created_at: 'Creation Date'
+        label: 'Plan Name'
+        requirements_template_id: 'DMP Template'
+        url: 'Plan Url'
+        updated_at: 'Last Modification Date'
       requirements_template:
         active: 'Active'
         created_at: 'Creation Date'
