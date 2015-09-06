@@ -33,21 +33,6 @@ en:
     # Human readable model names were moved to en.rb, as I18n's native
     # pluralization feature proved to be not flexible enough.
     attributes:
-      user:
-        active: 'Active'
-        auth_token: 'My Token'
-        created_at: 'Creation Date'
-        deleted_at: 'Deletion Date'
-        email: 'Email'
-        first_name: 'First Name'
-        last_name: 'Last Name'
-        login_id: 'Username'
-        orcid_id: 'ORCID'
-        password_confirmation: 'Password Confirmation'
-        prefs: 'Prefs'
-        token: 'Token'
-        token_expiration: 'Token Expiration'
-        updated_at: 'Last Modification Date'
       institution:
         ancestry: 'Ancestry'
         contact_info: 'Administrator Contact'
@@ -85,6 +70,21 @@ en:
         resource_id: 'Resource'
         review_type: 'Review Type'
         updated_at: 'Modification Date'
+      user:
+        active: 'Active'
+        auth_token: 'My Token'
+        created_at: 'Creation Date'
+        deleted_at: 'Deletion Date'
+        email: 'Email'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        login_id: 'Username'
+        orcid_id: 'ORCID'
+        password_confirmation: 'Password Confirmation'
+        prefs: 'Prefs'
+        token: 'Token'
+        token_expiration: 'Token Expiration'
+        updated_at: 'Last Modification Date'
   enum:
     requirements_template:
       review_type:
