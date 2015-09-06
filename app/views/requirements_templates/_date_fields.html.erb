@@ -1,11 +1,11 @@
 <div class="control-group">
-	<%= f.label :created_at, t('.creation_date'), :class => "control-label" %>
+	<%= f.label :created_at, class: 'control-label' %>
 	<div class="controls">
 		<%= f.text_field :created_at, value: l(@requirements_template.created_at), disabled: true, :class => 'datepicker' %>
 	</div>
 </div>
 <div class="control-group">
-	<%= f.label :updated_at, t('.modification_date'), :class => "control-label" %>
+	<%= f.label :updated_at, class: 'control-label' %>
 	<div class="controls">
 		<%= f.text_field :updated_at, value: l(@requirements_template.updated_at), disabled: true, :class => 'datepicker' %>
 	</div>

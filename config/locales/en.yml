@@ -339,10 +339,6 @@ en:
       add_sample_plan_link: 'Add Sample Plan'
       save_and_next_button: 'Save and Next >>'
 
-    date_fields:
-      creation_date: 'Creation date'
-      modification_date: 'Modification date'
-
     additional_information_fields:
       funder_links: 'Funder links'
       link_url: 'Link Url'
