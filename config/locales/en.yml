@@ -33,6 +33,12 @@ en:
     # Human readable model names were moved to en.rb, as I18n's native
     # pluralization feature proved to be not flexible enough.
     attributes:
+      additional_information:
+        created_at: 'Creation Date'
+        label: 'Link Label'
+        requirements_template_id: 'DMP Template'
+        updated_at: 'Last Modification Date'
+        url: 'Link Url'
       institution:
         ancestry: 'Ancestry'
         contact_info: 'Administrator Contact'
