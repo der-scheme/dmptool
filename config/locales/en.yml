@@ -361,7 +361,6 @@ en:
 
     sample_plan_fields:
       sample_plans: 'Sample plans'
-      plan_url: 'Plan Url'
       plan_name_placeholder: 'Plan Name'
       plan_url_placeholder: 'Plan Url'
       remove_link: 'Remove'
