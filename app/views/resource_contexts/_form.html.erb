@@ -11,10 +11,10 @@
 			  <%= render partial: "shared/errors", locals: {model: @resource_context } %>
 
 			  <div class="control-group" id="inst_text">
-					<%= content_tag :p, t('.customized_for'), class: 'control-label' %>
+					<%= content_tag :p, @resource_context.class.human_attribute_name(:institution_id), class: 'control-label' %>
 			    <div class="controls">
 			      <p>
-			        <%= @resource_context.institution_id ? @resource_context.institution.name : t('.institution_replacement') %>
+			        <%= @resource_context.institution_id ? @resource_context.institution.name : t('.no_institution_id') %>
 			      </p>
 			      <%= f.hidden_field :institution_id %>
 			    </div>
@@ -23,7 +23,7 @@
 			  <%= f.hidden_field :requirements_template_id %>
 
 			  <div class="control-group">
-			    <%= f.label :name , t('.name'), class: 'control-label' %>
+			    <%= f.label :name, class: 'control-label' %>
 			    <div class="controls">
 			      <%= f.text_field :name, :class => "input-xxlarge", readonly: true%>
 			      <%= content_tag :span, '', title: t('.name_tooltip'),
@@ -37,11 +37,11 @@
 						(user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(@req_temp.institution_id))) ||
 						(user_role_in?(:template_editor) && (current_user.institution.subtree_ids.include?(@req_temp.institution_id)))  %>
 				  <div class="control-group">
-						<%= content_tag :p, t('.assoc_template'), class: 'control-label' %>
+						<%= content_tag :p, @resource_context.class.human_attribute_name(:requirements_template_id), class: 'control-label' %>
 				    <div class="controls">
 				      <span style="position: relative; top: 4px"><%= link_to @req_temp.name, edit_requirements_template_path(@req_temp) %></span>
 
-				      <%= content_tag(:span, '', title: t('.assoc_template_tooltip'),
+				      <%= content_tag(:span, '', title: t('.template_tooltip'),
 				      								'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true',
 				      								:class => 'icon questionmark tip') %>
 				    </div>
@@ -50,11 +50,11 @@
 			  <%else%>
 
 			  	<div class="control-group">
-						<%= content_tag :p, t('.assoc_template'), class: 'control-label' %>
+						<%= content_tag :p, @resource_context.class.human_attribute_name(:requirements_template_id), class: 'control-label' %>
 				    <div class="controls">
 
 				      <span style="position: relative; top: 4px"><%= @req_temp.name %></span>
-				      <%= content_tag :span, '', title: t('.assoc_template_tooltip'),
+				      <%= content_tag :span, '', title: t('.template_tooltip'),
 															data: {toggle: 'tooltip', placement: 'right', html: 'true'},
 															class: 'icon questionmark tip' %>
 				    </div>
@@ -67,19 +67,19 @@
 													data: {toggle: 'tooltip', placement: 'right', html: 'true'},
 													class: 'icon questionmark tip',
 													style: 'position: absolute; top: 7px; left: 115px' %>
-			    <p class ="control-label">Review type</p>
+			    <%= f.label :review_type, class: 'control-label' %>
 			    <div class="controls checkbox-controls">
 			      <%= f.radio_button :review_type, :formal_review, :class => 'radio inline', :id => 'formal_review'  %>
-			      <%= label_tag :formal_review, t('.formal_review_radio'), class: 'checkbox-label' %><br/>
+			      <%= label_tag :formal_review, t_enum(:resource_context, :review_type, :formal_review), class: 'checkbox-label' %><br/>
 			      <%= f.radio_button :review_type, :informal_review, :class => 'radio inline', :id => 'informal_review'  %>
-			      <%= label_tag :informal_review, t('.informal_review_radio'), class: 'checkbox-label' %><br/>
+			      <%= label_tag :informal_review, t_enum(:resource_context, :review_type, :informal_review), class: 'checkbox-label' %><br/>
 			      <%= f.radio_button :review_type, :no_review, :class => 'radio inline', :id => 'no_review'  %>
-			      <%= label_tag :no_review, t('.no_review'), class: 'checkbox-label'%>
+			      <%= label_tag :no_review, t_enum(:resource_context, :review_type, :no_review), class: 'checkbox-label'%>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-			    <%= f.label :contact_info, t('.contact_info'), class: 'control-label' %>
+			    <%= f.label :contact_info, class: 'control-label' %>
 			    <div class="controls">
 			      <%= f.text_field :contact_info, :class => "input-xlarge" %>
 			      <%= content_tag :span, '', title: t('.contact_info_tooltip'),
@@ -89,23 +89,23 @@
 			  </div>
 
 			  <div class="control-group">
-			    <%= f.label :contact_email, t('.contact_email'), class: 'control-label required' %>
+			    <%= f.label :contact_email, class: 'control-label required' %>
 			    <div class="controls">
 			      <%= f.text_field :contact_email, :class => "input-xlarge", 'aria-required' => 'true' %>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-					<%= content_tag :p, t('.creation_date'), class: 'control-label' %>
+					<%= content_tag :p, @resource_context.class.human_attribute_name(:created_at), class: 'control-label' %>
 			    <div class="controls">
-			      <p><%= @resource_context.created_at ? l(@resource_context.created_at) : t('.no_creation_date') %></p>
+			      <p><%= @resource_context.created_at ? l(@resource_context.created_at) : t('.no_created_at') %></p>
 			    </div>
 			  </div>
 
 			  <div class="control-group">
-					<%= content_tag :p, t('.modification_date'), class: 'control-label' %>
+					<%= content_tag :p, @resource_context.class.human_attribute_name(:updated_at), class: 'control-label' %>
 			    <div class="controls">
-			      <p><%= @resource_context.updated_at ? l(@resource_context.updated_at) : t('.no_modification_date') %></p>
+			      <p><%= @resource_context.updated_at ? l(@resource_context.updated_at) : t('.no_updated_at') %></p>
 			    </div>
 			  </div>
 			<div class="buttons">
