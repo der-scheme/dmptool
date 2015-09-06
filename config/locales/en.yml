@@ -347,7 +347,6 @@ en:
 
     additional_information_fields:
       funder_links: 'Funder links'
-      link_url: 'Link Url'
       link_label_placeholder: 'Link Label'
       link_url_placeholder: 'Link Url'
       remove_link: 'Remove'
