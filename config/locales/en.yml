@@ -87,6 +87,10 @@ en:
         updated_at: 'Modification Date'
   enum:
     requirements_template:
+      review_type:
+        formal_review: 'Review Required'
+        informal_review: 'Informal Review Allowed'
+        no_review: 'No Review Needed'
       visibility:
         institutional: 'Institutional'
         public: 'Public'
