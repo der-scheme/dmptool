@@ -388,6 +388,9 @@ en:
       success_notice: 'DMP template was deleted.'
 
     copy_existing_template:
+      copy_of:
+        one: 'Copy of %{name}'
+        other: 'Copy %{count} of %{name}'
       success_notice: 'Requirements template was successfully created.'
 
     toggle_active:

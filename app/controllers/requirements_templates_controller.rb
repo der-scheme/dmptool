@@ -202,7 +202,7 @@ class RequirementsTemplatesController < ApplicationController
 
     @requirements_template = requirements_template.deep_clone include: [:sample_plans, :additional_informations, :requirements], validate: false
 
-    @requirements_template.name = "Copy of #{@requirements_template.name}"
+    @requirements_template.name = t('.copy_of', name: @requirements_template.name)
 
     count = 1
     while RequirementsTemplate.where(name: @requirements_template.name).count > 0
