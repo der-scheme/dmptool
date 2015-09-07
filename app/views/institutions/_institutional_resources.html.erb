@@ -8,9 +8,9 @@
 			<tr>
 				<%= content_tag :th, t('.details'), class: 'span4' %>
 				<%= content_tag :th, t('.action') %>
-				<%= content_tag :th, t('.institution') %>
-				<%= content_tag :th, t('.creation_date') %>
-				<%= content_tag :th, t('.modification_date') %>
+				<%= content_tag :th, Resource.human_attribute_name(:institution) %>
+				<%= content_tag :th, Resource.human_attribute_name(:created_at) %>
+				<%= content_tag :th, Resource.human_attribute_name(:updated_at) %>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,8 +21,12 @@
 						<%= resource_context.resource.label if resource_context.resource %>
 					</div>
 				</td>
-				<td><%= link_to raw(''), edit_resource_path(resource_context.resource_id, origin_url: smart_origin_url,
-	                    tab_number: (defined?(@tab_number) ? @tab_number: nil)), :class => 'icon edit-user', :title => 'Edit' %>
+				<td><%= link_to '',
+												edit_resource_path(resource_context.resource_id,
+																					 origin_url: smart_origin_url,
+																					 tab_number: @tab_number),
+												class: 'icon edit-user',
+												title: t('.action_tooltip') %>
 
 				</td>
 				<td><%= resource_context.institution.nickname if resource_context.institution %></td>
@@ -35,7 +39,7 @@
 
 
 	<div class="buttons pagination">
-		<%= render_button_link t('.view_all_button'), institutions_path(anchor: 'tab_tab2', scope: 'all') %>
+		<%= render_button_link t: '.view_all', href: institutions_path(anchor: 'tab_tab2', scope: 'all') %>
 		<%= paginate @resource_contexts %>
 	</div>
 <% else %>
