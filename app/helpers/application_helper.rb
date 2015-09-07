@@ -7,7 +7,10 @@ module ApplicationHelper
 
 
   def sortable(column, title = nil, model: nil)
-    title ||= model.human_attribute_name(column) if model.respond_to?(:human_attribute_name)
+    fail ArgumentError, 'expected model to be of type ActiveRecord::Base' if
+      model && !model.respond_to?(:human_attribute_name)
+
+    title ||= model.human_attribute_name(column) if model
     title ||= t(".#{column}", default: column.titleize)
 
     css_class = column == params[:order_scope] ? "current #{params[:direction]}" : nil
