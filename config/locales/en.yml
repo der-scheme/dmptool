@@ -533,16 +533,6 @@ en:
 
     show:
       back_link: 'Back'
-      full_name: 'Full name:'
-      nickname: 'Nickname:'
-      desc: 'Desc:'
-      contact_info: 'Contact info:'
-      contact_email: 'Contact email:'
-      url: 'Url:'
-      url_text: 'Url text:'
-      shib_entity_id: 'Shib entity:'
-      shib_domain: 'Shib domain:'
-      logo: 'Logo:'
 
   resource_contexts:
     choose_institution:

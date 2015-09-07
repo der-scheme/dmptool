@@ -2,35 +2,35 @@
 <%= link_to t('.back_link'), institutions_path %>
 <br>
 <br>
-<p><b><%= t('.full_name') %></b></p>
+<p><b><%= Institution.human_attribute_name(:full_name) %></b></p>
 
 <p><%= @institution.full_name %></p>
 
-<p><b><%= t('.nickname') %></b></p>
+<p><b><%= Institution.human_attribute_name(:nickname) %></b></p>
 <p><%= @institution.nickname %></p>
 
-<p><b><%= t('.desc') %></b></p>
+<p><b><%= Institution.human_attribute_name(:desc) %></b></p>
 <p><%= @institution.desc %></p>
 
-<p><b><%= t('.contact_info') %></b></p>
+<p><b><%= Institution.human_attribute_name(:contact_info) %></b></p>
 <p><%= @institution.contact_info %></p>
 
-<p><b><%= t('.contact_email') %></b></p>
+<p><b><%= Institution.human_attribute_name(:contact_email) %></b></p>
 <p><%= @institution.contact_email %></p>
 
-<p><b><%= t('.url') %></b></p>
+<p><b><%= Institution.human_attribute_name(:url) %></b></p>
 <p><%= @institution.url %></p>
 
-<p><b><%= t('.url_text') %></b></p>
+<p><b><%= Institution.human_attribute_name(:url_text) %></b></p>
 <p><%= @institution.url_text %></p>
 
-<p><b><%= t('.shib_entity_id') %></b></p>
+<p><b><%= Institution.human_attribute_name(:shib_entity_id) %></b></p>
 <p><%= @institution.shib_entity_id %></p>
 
-<p><b><%= t('.shib_domain') %></b></p>
+<p><b><%= Institution.human_attribute_name(:shib_domain) %></b></p>
 <p><%= @institution.shib_domain %></p>
 
-<p><b><%= t('.logo') %></b></p>
+<p><b><%= Institution.human_attribute_name(:logo) %></b></p>
 <p><%= image_tag @institution.logo.url if @institution.logo? %></p>
 
 <%= link_to t('.back_link'), institutions_path %>
