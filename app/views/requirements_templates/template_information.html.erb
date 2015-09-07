@@ -13,8 +13,8 @@
           <thead>
             <tr>
               <th class="span1"></th>
-              <%= content_tag :th, t('globals.helpers.sortable.name') %>
-              <%= content_tag :th, t('globals.helpers.sortable.status') %>
+              <%= content_tag :th, RequirementsTemplate.human_attribute_name(:name) %>
+              <%= content_tag :th, RequirementsTemplate.human_attribute_name(:active) %>
               </tr>
             </thead>
           <tbody>
