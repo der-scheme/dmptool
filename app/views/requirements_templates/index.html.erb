@@ -1,6 +1,6 @@
-<% @title_text = t('.dmp_templates') %>
+<% @title_text = RequirementsTemplate.model_name.human(count: 0, unit: false) %>
 <% @display_menu = "dmp_templates" %>
-<h1 class="row-fluid"><span class="icon dmp-template"></span><%= t('.dmp_templates') %></h1>
+<h1 class="row-fluid"><span class="icon dmp-template"></span><%= @title_text %></h1>
 
 <div class="table-scope">
 	<%= link_to t('.all_filter_link', count: @all), {scope: "all_limited", order_scope: @order_scope, all_scope: @all_scope}, class: 'all_limited' %>
@@ -172,7 +172,7 @@
 			</td>
 			<td><%= requirements_template.institution.full_name if requirements_template.institution %></td>
 			<td id="status_#{requirements_template.id}"><%= display_status_text(requirements_template) %></td>
-			<td><%= translate_visibility(requirements_template.visibility) %></td>
+			<td><%= t_enum(:requirements_template, :visibility, requirements_template.visibility) %></td>
 			<td><%= l(requirements_template.created_at) if requirements_template.created_at %></td>
 			<td><%= l(requirements_template.updated_at) if requirements_template.updated_at %></td>
 		</tr>
