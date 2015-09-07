@@ -14,6 +14,10 @@
           name = count == 1 ? 'Customization' : 'Customizations'
           unit ? "#{count} #{name}" : name
         end,
+        resource: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'Resource' : 'Resources'
+          unit ? "#{count} #{name}" : name
+        end,
         user: lambda do |_, count: nil, unit: true, **options|
           name = count == 1 ? 'User' : 'Users'
           unit ? "#{count} #{name}" : name

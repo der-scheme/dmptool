@@ -72,6 +72,14 @@ en:
         start_date: 'Start Date'
         updated_at: 'Last Modification Date'
         visibility: 'Visibility'
+      resource:
+        created_at: 'Creation Date'
+        id: 'ID'
+        label: 'Resource Label'
+        resource_type: 'Resource Type'
+        text: 'Text'
+        updated_at: 'Last Modification Date'
+        value: 'URL'
       resource_context:
         contact_email: 'Contact Email'
         contact_info: 'Contact Information'
