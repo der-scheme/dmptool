@@ -254,10 +254,10 @@ class RequirementsTemplatesController < ApplicationController
       @requirements = @requirements_template.requirements
       if @requirements.empty?
         @msg = t('.failure_message', template: @requirements_template.name)
-        format.js { render 'activate_errors.js.erb' }
+        format.js { render 'activate_errors' }
       else
         @requirements_template.toggle!(:active)
-        format.js { render 'toggle_active.js.erb'}
+        format.js { render 'toggle_active'}
       end
     end
   end
