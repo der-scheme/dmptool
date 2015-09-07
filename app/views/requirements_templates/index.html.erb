@@ -22,23 +22,23 @@
 		<tr>
       <th class="span4">
       	<%#= link_to "Template Name", {order_scope: "Name", scope: @scope, all_scope: @all_scope} %>
-      	<%= sortable 'name' %>
+      	<%= sortable 'name', model: RequirementsTemplate %>
       </th>
       <th class="span3">
-      	<%= sortable 'institution' %>
+      	<%= sortable 'institution', model: RequirementsTemplate %>
       </th>
       <th>
-      	<%= sortable 'status' %>
+      	<%= sortable 'status', model: RequirementsTemplate %>
       </th>
       <th>
-      	<%= sortable 'visibility' %>
+      	<%= sortable 'visibility', model: RequirementsTemplate %>
       	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
       </th>
       <th>
-      	<%= sortable 'creation_date' %>
+      	<%= sortable 'created_at', model: RequirementsTemplate %>
       </th>
       <th>
-      	<%= sortable 'last_modification_date' %>
+      	<%= sortable 'updated_at', model: RequirementsTemplate %>
       </th>
     </tr>
 	</thead>

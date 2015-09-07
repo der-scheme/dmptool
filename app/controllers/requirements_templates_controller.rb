@@ -18,7 +18,7 @@ class RequirementsTemplatesController < ApplicationController
       @requirements_templates = RequirementsTemplate.all
     end
 
-    @order_scope = params[:order_scope] || "last_modification_date"
+    @order_scope = params[:order_scope] || 'updated_at'
     @scope = params[:scope] || "all_limited"
     @all_scope = params[:all_scope] || ""
 
@@ -43,22 +43,15 @@ class RequirementsTemplatesController < ApplicationController
     end
 
     case @order_scope
-      when "name"
-        @requirements_templates = @requirements_templates.order('name'+ " " + @direction)
-      when "institution"
-        @requirements_templates = @requirements_templates.joins(:institution).
-                                    order('institutions.full_name'+ " " + @direction)
-      when "status"
-        @requirements_templates = @requirements_templates.
-                                  order('active'+ " " + (@direction == "asc" ? "desc" : "asc"))
-      when "visibility"
-        @requirements_templates = @requirements_templates.order('visibility'+ " " + @direction)
-      when "creation_date"
-        @requirements_templates = @requirements_templates.order('created_at'+ " " + @direction)
-      when "last_modification_date"
-        @requirements_templates = @requirements_templates.order('updated_at'+ " " + @direction)
-      else
-        @requirements_templates = @requirements_templates.order(name: :asc)
+    when 'name', 'visibility', 'created_at', 'updated_at'
+      @requirements_templates = @requirements_templates
+          .order("#{@order_scope} #{@direction}")
+    when 'institution'
+      @requirements_templates = @requirements_templates.joins(:institution)
+          .order("institutions.full_name #{@direction}")
+    when 'status'
+      @requirements_templates = @requirements_templates
+          .order("active #{@direction == 'asc' ? 'desc' : 'asc'}")
     end
 
     case @all_scope
