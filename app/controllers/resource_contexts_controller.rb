@@ -305,7 +305,7 @@ class ResourceContextsController < ApplicationController
 
 
   def resource_customizations
-    @resource_contexts = ResourceContext.template_level.no_resource_no_requirement.order_by_name
+    @resource_contexts = ResourceContext.template_level.no_resource_no_requirement
 
     unless user_role_in?(:dmp_admin)
       @resource_contexts = @resource_contexts.
@@ -315,19 +315,12 @@ class ResourceContextsController < ApplicationController
     @scope = params[:scope]
     @order_scope = params[:order_scope]
 
-    case @order_scope
-      when "Name"
-        @resource_contexts = @resource_contexts.order_by_name
-      when "Template"
-        @resource_contexts = @resource_contexts.order_by_template_name
-      when "Institution"
-        @resource_contexts = @resource_contexts.order_by_institution_name
-      when "Creation_Date"
-        @resource_contexts = @resource_contexts.order_by_created_at
-      when "Last_Modification_Date"
-        @resource_contexts = @resource_contexts.order_by_updated_at
-      else
-        @resource_contexts = @resource_contexts.order_by_name
+    direction = params[:direction] =~ /asc/i ? 'ASC' : 'DESC'
+
+    if ['name', 'requirements_template_id', 'institution_id', 'created_at', 'updated_at'].include?(@order_scope)
+      @resource_contexts = @resource_contexts.order("#{@order_scope} #{direction}")
+    else
+      @resource_contexts.order_by_name
     end
 
     case @scope

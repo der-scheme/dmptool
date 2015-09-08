@@ -4,22 +4,19 @@
   <thead>
     <tr>
       <th class="span4">
-      	<%= link_to t('.name'), {scope: @scope, order_scope: 'Name'} %>
+      	<%= sortable 'name', model: ResourceContext %>
       </th>
       <th>
-      	<%= link_to t('.template'), {scope: @scope, order_scope: "Template"}%>
+      	<%= sortable 'requirements_template_id', model: ResourceContext %>
       </th>
       <th>
-      	<%= link_to t('.institution'), {scope: @scope, order_scope: "Institution"}%>
+      	<%= sortable 'institution_id', model: ResourceContext %>
       </th>
       <th>
-      	<%= link_to t('.creation_date'), {scope: @scope, order_scope: "Creation_Date"}%>
+      	<%= sortable 'created_at', model: ResourceContext %>
       </th>
       <th>
-      	<%= link_to t('.modification_date'),
-      				{scope: @scope,
-              order_scope: "Last_Modification_Date"}
-        %>
+      	<%= sortable 'updated_at', model: ResourceContext %>
       </th>
     </tr>
   </thead>
