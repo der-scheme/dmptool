@@ -562,11 +562,6 @@ en:
 
     resource_customization:
       title: 'DMP Template Customizations'
-      name: 'Name'
-      template: 'Associated DMP Template'
-      institution: 'Institution'
-      creation_date: 'Creation Date'
-      modification_date: 'Last Modification Date'
       delete_confirm: 'Are you sure?'
       new_button: 'Create New Customization'
 
