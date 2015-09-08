@@ -29,73 +29,63 @@ en:
   datetime:
     formats:
       default: '%m/%d/%Y %I:%M %p'
+  # Generic attributes
+  attributes:
+    created_at: 'Creation Date'
+    deleted_at: 'Deletion Date'
+    updated_at: 'Last Modification Date'
   activerecord:
     # Human readable model names were moved to en.rb, as I18n's native
     # pluralization feature proved to be not flexible enough.
     attributes:
       additional_information:
-        created_at: 'Creation Date'
         label: 'Link Label'
         requirements_template_id: 'DMP Template'
-        updated_at: 'Last Modification Date'
         url: 'Link Url'
       institution:
         ancestry: 'Ancestry'
         contact_info: 'Administrator Contact'
         contact_email: 'Administrator Contact Email'
-        created_at: 'Creation Date'
         logo: 'Institutional Logo'
-        deleted_at: 'Deletion Date'
         desc: 'Descriptive Text'
         full_name: 'Institution Full Name'
         nickname: 'Institution short name, or acronym'
         parent_id: 'Parent Institution'
         shib_entity_id: 'Entity_id'
         shib_domain: 'Shibboleth Domain'
-        updated_at: 'Last Modification Date'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
       sample_plan:
         id: 'Sample Plan'
-        created_at: 'Creation Date'
         label: 'Plan Name'
         requirements_template_id: 'DMP Template'
         url: 'Plan Url'
-        updated_at: 'Last Modification Date'
       requirements_template:
         active: 'Active'
-        created_at: 'Creation Date'
         end_date: 'End Date'
         institution_id: 'Institution'
         name: 'Template name'
         review_type: 'Review Requirement'
         start_date: 'Start Date'
-        updated_at: 'Last Modification Date'
         visibility: 'Visibility'
       resource:
-        created_at: 'Creation Date'
         id: 'ID'
         label: 'Resource Label'
         resource_type: 'Resource Type'
         text: 'Text'
-        updated_at: 'Last Modification Date'
         value: 'URL'
       resource_context:
         contact_email: 'Contact Email'
         contact_info: 'Contact Information'
-        created_at: 'Creation Date'
         institution_id: 'Customized for'
         name: 'Customization Name'
         requirement_id: 'Requirement'
         requirements_template_id: 'Associated DMP template'
         resource_id: 'Resource'
         review_type: 'Review Type'
-        updated_at: 'Modification Date'
       user:
         active: 'Active'
         auth_token: 'My Token'
-        created_at: 'Creation Date'
-        deleted_at: 'Deletion Date'
         email: 'Email'
         first_name: 'First Name'
         full_name_last_first: 'User Name'
@@ -107,7 +97,6 @@ en:
         role_names: 'Current Role'
         token: 'Token'
         token_expiration: 'Token Expiration'
-        updated_at: 'Last Modification Date'
   enum:
     requirements_template:
       review_type:
