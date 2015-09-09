@@ -315,13 +315,11 @@ class ResourceContextsController < ApplicationController
     @scope = params[:scope]
     @order_scope = params[:order_scope]
 
-    direction = params[:direction] =~ /asc/i ? 'ASC' : 'DESC'
-
-    if ['name', 'requirements_template_id', 'institution_id', 'created_at', 'updated_at'].include?(@order_scope)
-      @resource_contexts = @resource_contexts.order("#{@order_scope} #{direction}")
-    else
-      @resource_contexts.order_by_name
-    end
+    sortable :name, default: true
+    sortable :requirements_template_id, nested: :name
+    sortable :institution_id, nested: :name
+    sortable :created_at
+    sortable :updated_at
 
     case @scope
       when "all"
