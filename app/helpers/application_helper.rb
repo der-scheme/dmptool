@@ -6,7 +6,7 @@ module ApplicationHelper
 
 
 
-  def sortable(column, title = nil, model: @model)
+  def sortable(column, title = nil, model: controller_name.classify.constantize)
     fail ArgumentError, 'expected model to be of type ActiveRecord::Base' if
       model && !model.respond_to?(:human_attribute_name)
 
