@@ -230,7 +230,7 @@ class ApplicationController < ActionController::Base
     # is triggered when the order_scope parameter is nil).
 
     def sortable(attribute, default: false, nested: nil, inst_var: nil, model: nil)
-      return unless params[:order_scope].to_sym == attribute ||
+      return unless (params[:order_scope] && params[:order_scope].to_sym == attribute) ||
                     (default && params[:order_scope].nil?)
 
       attribute   = attribute.to_sym
