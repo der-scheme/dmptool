@@ -39,7 +39,7 @@ class RequirementsTemplatesController < ApplicationController
     end
 
     sortable :name
-    sortable :institution_id, nested: :name
+    sortable :institution_id, nested: :full_name
     sortable :visibility
     sortable :status do |templates|
       templates.order("active #{@direction == 'asc' ? 'desc' : 'asc'}")
