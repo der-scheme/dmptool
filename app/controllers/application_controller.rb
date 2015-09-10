@@ -275,6 +275,10 @@ class ApplicationController < ActionController::Base
       request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
     end
 
+    ##
+    # Returns the associations name and plural_name, if an association can be
+    # found for the given +model+ and +attribute+.
+
     def model_association(model, attribute)
       assoc = model.reflect_on_association(attribute.to_sym)
       assoc ||= model.reflect_on_all_associations.find do |association|
