@@ -22,10 +22,6 @@ class RequirementsTemplatesController < ApplicationController
     @scope = params[:scope] || "all_limited"
     @all_scope = params[:all_scope] || ""
 
-    #to avoid sql injection
-    @direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-
-
     case @scope
       when "all_limited"
         @requirements_templates = @requirements_templates
@@ -42,17 +38,14 @@ class RequirementsTemplatesController < ApplicationController
                                     where(visibility: :public, institution_id: [current_user.institution.subtree_ids])
     end
 
-    case @order_scope
-    when 'name', 'visibility', 'created_at', 'updated_at'
-      @requirements_templates = @requirements_templates
-          .order("#{@order_scope} #{@direction}")
-    when 'institution'
-      @requirements_templates = @requirements_templates.joins(:institution)
-          .order("institutions.full_name #{@direction}")
-    when 'status'
-      @requirements_templates = @requirements_templates
-          .order("active #{@direction == 'asc' ? 'desc' : 'asc'}")
+    sortable :name
+    sortable :institution_id, nested: :name
+    sortable :visibility
+    sortable :status do |templates|
+      templates.order("active #{@direction == 'asc' ? 'desc' : 'asc'}")
     end
+    sortable :created_at
+    sortable :updated_at, default: true
 
     case @all_scope
       when "all"
