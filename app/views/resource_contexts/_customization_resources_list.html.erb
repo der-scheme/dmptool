@@ -13,11 +13,11 @@
 
 	<thead>
 		<tr>
-			<%= content_tag :th, t('.details'), class: 'span4' %>
+			<%= content_tag :th, t('.details', default: Resource.human_attribute_name(:label)), class: 'span4' %>
 			<%= content_tag :th, t('.action') %>
-			<%= content_tag :th, t('.institution') %>
-			<%= content_tag :th, t('.creation_date') %>
-			<%= content_tag :th, t('.modification_date') %>
+			<%= content_tag :th, Institution.model_name.human(count: 1, unit: false) %>
+			<%= content_tag :th, Resource.human_attribute_name(:created_at) %>
+			<%= content_tag :th, Resource.human_attribute_name(:updated_at) %>
 		</tr>
 	</thead>
 	<tbody>

@@ -560,9 +560,6 @@ en:
       visibility_info: 'These resources will be displayed for all requirements defined for this template.'
       details: 'Details'
       action: 'Action'
-      institution: 'Institution'
-      creation_date: 'Creation Date'
-      modification_date: 'Last Modification Date'
       action_tooltip: 'Edit'
       add_resource_button: 'Add a resource'
 
