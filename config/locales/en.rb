@@ -11,7 +11,7 @@
           unit ? "#{count} #{name}" : name
         end,
         resource_context: lambda do |_, count: nil, unit: true, **options|
-          name = count == 1 ? 'Customization' : 'Customizations'
+          name = count == 1 ? 'DMP Template Customization' : 'DMP Template Customizations'
           unit ? "#{count} #{name}" : name
         end,
         resource: lambda do |_, count: nil, unit: true, **options|

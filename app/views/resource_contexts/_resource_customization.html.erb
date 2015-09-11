@@ -1,5 +1,5 @@
-<% @title_text = t('.title') %>
-<h1 class="row-fluid"><span class="icon resource-template"></span><%= t('.title') %></h1>
+<% @title_text = ResourceContext.model_name.human(count: 0, unit: false) %>
+<h1 class="row-fluid"><span class="icon resource-template"></span><%= @title_text %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -32,7 +32,7 @@
             <%= link_to display_detail_delete,
             				delete_resource_context_path(resource_context: resource_context),
                     method: :delete,
-                    confirm: t('.delete_confirm'),
+                    confirm: t('globals.messages.prompt.confirm'),
                     :class => "delete" %>
 
 
@@ -55,7 +55,7 @@
 	<% end %>
 	<% if @resource_contexts.empty? %>
 		<tr>
-  		<td colspan="5">You have no template customizations</td>
+			<%= content_tag :td, t('.no_customizations'), colspan: 5 %>
   	</tr>
 	<% end %>
   </tbody>
