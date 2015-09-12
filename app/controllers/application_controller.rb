@@ -231,7 +231,7 @@ class ApplicationController < ActionController::Base
 
     def sortable(attribute, default: false, nested: nil, inst_var: nil, model: nil)
       return unless (params[:order_scope] && params[:order_scope].to_sym == attribute) ||
-                    (default && params[:order_scope].nil?)
+                    (default && params[:order_scope].blank?)
 
       attribute   = attribute.to_sym
       order_attr  = attribute
