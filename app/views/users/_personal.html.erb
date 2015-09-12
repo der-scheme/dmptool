@@ -141,7 +141,7 @@
     <% if @user.orcid_id.nil? || @user.orcid_id.blank? %>
       <div class="control-group" style="position: relative">
          <%= content_tag(:span, '', :title => 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 142px') %>
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= f.label :orcid_id, 'ORCID', class: 'control-label' %>
         <a href="http://orcid.org/">
           <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo" style="position: absolute; top: 11px; left: 230px">
         </a>
@@ -154,7 +154,7 @@
 
       <% @sub_orcid_id = @user.orcid_id.gsub("http://", "")%>
       <div class="control-group">
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= f.label :orcid_id, 'ORCID', class: 'control-label' %>
         <div class="controls everythingOnOneLine">
           <a href="http://orcid.org/">
             <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo">
@@ -168,7 +168,7 @@
       </div>
 
       <div class="control-group" id="orcid_input_box">
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= f.label :orcid_id, 'ORCID', class: 'control-label' %>
         <%= f.text_field :orcid_id, class: 'orcid_widget', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
         <%= javascript_include_tag("orcid_widget.js") %>
       </div>
