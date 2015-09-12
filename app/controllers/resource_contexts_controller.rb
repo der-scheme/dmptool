@@ -30,10 +30,13 @@ class ResourceContextsController < ApplicationController
         @resource_context.name = "#{@req_temp.name}"
       else
         that_inst = Institution.find(params[:institution_id])
-        @resource_context.name = "#{@req_temp.name} for #{that_inst.name}"
+        @resource_context.name =
+            t('.name', template: @req_temp.name, institution: that_inst.name)
       end
     else
-      @resource_context.name = "#{@req_temp.name} for #{current_user.institution.name}"
+      @resource_context.name = t('.name',
+                                 template: @req_temp.name,
+                                 institution: current_user.institution.name)
     end
 
     #the institution_id should be nil if it's none, otherwise set it

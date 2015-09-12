@@ -580,6 +580,9 @@ en:
       link_button: 'Link Selected Resource'
       add_resource_button: 'Add a new resource'
 
+    new:
+      name: '%{template} for %{institution}'
+
     create:
       success_notice: 'Customization was successfully created.'
 
