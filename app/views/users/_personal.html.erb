@@ -102,14 +102,14 @@
   <div class="controls">
     <% # filter institution list in my profile page only %>
     <% if @user.new_record? %>
-      <%= f.select( :institution_id, 
-          @institution_list, 
+      <%= f.select( :institution_id,
+          @institution_list,
           {prompt: "-Select an Institution-"},
           :class => "input-xxlarge") %>
     <% else %>
-      <%= f.select( :institution_id, 
-        @institution_list, 
-        {prompt: 'Select Institution'}, 
+      <%= f.select( :institution_id,
+        @institution_list,
+        {prompt: 'Select Institution'},
         :class => "input-xxlarge")%>
     <% end %>
 
@@ -145,14 +145,13 @@
         <a href="http://orcid.org/">
           <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo" style="position: absolute; top: 11px; left: 230px">
         </a>
-        <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
+        <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx" />
         <%= javascript_include_tag("orcid_widget.js") %>
-        </input>
         <%= content_tag(:span, '', :title => 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 12px; left: 780px') %>
       </div>
 
     <% else %>
-      
+
       <% @sub_orcid_id = @user.orcid_id.gsub("http://", "")%>
       <div class="control-group">
         <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
@@ -170,9 +169,8 @@
 
       <div class="control-group" id="orcid_input_box">
         <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
-          <input type="text" id="update_orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
-            <%= javascript_include_tag("orcid_widget.js") %>
-          </input>
+        <input type="text" id="update_orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx" />
+        <%= javascript_include_tag("orcid_widget.js") %>
       </div>
 
     <% end %>
