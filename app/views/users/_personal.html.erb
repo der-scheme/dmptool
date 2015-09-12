@@ -150,9 +150,8 @@
         <a href="http://orcid.org/">
           <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt'), style: 'position: absolute; top: 11px; left: 230px' %>
         </a>
-        <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
+        <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx" />
         <%= javascript_include_tag("orcid_widget.js") %>
-        </input>
         <%= content_tag :span, '', title: t('.orcid_lookup_tooltip'),
                         data: {placement: 'right'},
                         class: 'icon questionmark tip',
