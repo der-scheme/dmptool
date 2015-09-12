@@ -146,7 +146,7 @@
                         data: {placement: 'right'},
                         class: 'icon questionmark tip',
                         style: 'position: absolute; top: 7px; left: 142px' %>
-        <%= f.label :orcid_id, for: :orcid_id, class: 'control-label' %>
+        <%= f.label :orcid_id, class: 'control-label' %>
         <a href="http://orcid.org/">
           <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt'), style: 'position: absolute; top: 11px; left: 230px' %>
         </a>
@@ -163,7 +163,7 @@
 
       <% @sub_orcid_id = @user.orcid_id.gsub("http://", "")%>
       <div class="control-group">
-        <%= f.label :orcid_id, for: :orcid_id, class: 'control-label' %>
+        <%= f.label :orcid_id, class: 'control-label' %>
         <div class="controls everythingOnOneLine">
           <a href="http://orcid.org/">
             <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt') %>
@@ -177,7 +177,7 @@
       </div>
 
       <div class="control-group" id="orcid_input_box">
-        <%= f.label :orcid_id, for: :orcid_id, class: 'control-label' %>
+        <%= f.label :orcid_id, class: 'control-label' %>
           <input type="text" id="update_orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx" />
           <%= javascript_include_tag("orcid_widget.js") %>
       </div>
