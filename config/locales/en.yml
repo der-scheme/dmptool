@@ -612,6 +612,11 @@ en:
       user_roles_link: 'User Roles'
       current_roles: "%{user}'s Current Roles:"
 
+    finish_signup:
+      title: 'Finish Signup'
+      submit: 'Update Account'
+      reset: 'Reset Form'
+
     form:
       personal: 'Personal Information'
       notifications: 'Notification Preferences'
