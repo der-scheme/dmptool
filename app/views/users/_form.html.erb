@@ -3,8 +3,8 @@
 
     <div class="tabbable">
         <ul class="nav nav-tabs">
-          <li class="active"><%= link_to 'Personal Information', '#tab1', 'data-toggle' => 'tab' %></li>
-         	<li><%= link_to 'Notification Preferences', '#tab2', 'data-toggle' => 'tab' %></li>
+          <li class="active"><%= link_to t('.personal'), '#tab1', data: {toggle: 'tab'} %></li>
+         	<li><%= link_to t('.notifications'), '#tab2', data: {toggle: 'tab'} %></li>
         </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
@@ -17,7 +17,7 @@
     </div>
     <div class="buttons">
       <%= render_save_button %>
-  		<%= link_to 'Cancel', edit_user_path(@user), :class => 'btn' %>
+      <%= render_button_link t: '.cancel', href: edit_user_path(@user) %>
   	</div>
 
 <% end %>

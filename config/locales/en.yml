@@ -150,6 +150,7 @@ en:
       # - filter
       back: 'Back'
       arrow_back: '<< Back'
+      cancel: 'Cancel'
       view_less: 'View Less'
       view_all: 'View All'
     search:
@@ -610,6 +611,10 @@ en:
       title: 'Edit User Roles'
       user_roles_link: 'User Roles'
       current_roles: "%{user}'s Current Roles:"
+
+    form:
+      personal: 'Personal Information'
+      notifications: 'Notification Preferences'
 
     personal:
       instructions: 'Please update your account information.'
