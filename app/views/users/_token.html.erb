@@ -15,7 +15,7 @@
 
   <%else%>
 
-    <div>You don't have any token.</div>
+    <%= content_tag :div, t('.no_token') %>
     <div>
       &nbsp;&nbsp;&nbsp;
       <%= link_to t('.generate_token_link'),

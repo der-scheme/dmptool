@@ -634,6 +634,7 @@ en:
     token:
       generate_token_link: 'Generate New Token'
       remove_token_link: 'Remove Token'
+      no_token: "You don't have any token."
 
     user_search:
       search_placeholder: 'Search user by name or email'
