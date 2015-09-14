@@ -648,3 +648,8 @@ en:
 
     user_search:
       search_placeholder: 'Search user by name or email'
+
+    users_list:
+      edit_role: 'Edit User Role'
+      no_results: 'No results found'
+      remove_user: 'Remove User'
