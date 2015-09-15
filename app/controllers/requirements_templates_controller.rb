@@ -195,12 +195,12 @@ class RequirementsTemplatesController < ApplicationController
 
     @requirements_template = requirements_template.deep_clone include: [:sample_plans, :additional_informations, :requirements], validate: false
 
-    @requirements_template.name = t('.copy_of', name: @requirements_template.name)
+    @requirements_template.name = t('.copy_of', name: @requirements_template.name, count: 1)
 
     count = 1
     while RequirementsTemplate.where(name: @requirements_template.name).count > 0
       count += 1
-      @requirements_template.name[/^Copy [0-9]* ?of/] = "Copy #{count} of"
+      @requirements_template.name[/^Copy [0-9]* ?of/] = t('.copy_of', name: @requirements_template.name, count: count)
     end
 
     @requirements_template.institution_id = current_user.institution_id
