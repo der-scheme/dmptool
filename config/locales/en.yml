@@ -624,6 +624,9 @@ en:
     index:
       title: 'DMP Administration'
 
+    institutions_list:
+      add_new: 'Add New Institution'
+
     new:
       title: 'Create Account'
       submit_button: 'Create Account'
