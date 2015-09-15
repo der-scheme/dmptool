@@ -621,6 +621,9 @@ en:
       personal: 'Personal Information'
       notifications: 'Notification Preferences'
 
+    index:
+      title: 'DMP Administration'
+
     new:
       title: 'Create Account'
       submit_button: 'Create Account'
