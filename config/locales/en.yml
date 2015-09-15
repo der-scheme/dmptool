@@ -621,6 +621,10 @@ en:
       personal: 'Personal Information'
       notifications: 'Notification Preferences'
 
+    new:
+      title: 'Create Account'
+      submit_button: 'Create Account'
+
     personal:
       instructions: 'Please update your account information.'
       name: 'Name'
