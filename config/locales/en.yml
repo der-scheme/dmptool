@@ -673,6 +673,12 @@ en:
       delete_orcid_link: 'Delete'
       api_token: 'API Token'
 
+    plan_autocomplete_widget:
+      label: 'Add Co-owners:'
+      placeholder: 'Add co-owners; search by name or email address'
+      tooltip_html: '<ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>'
+
+
     token:
       generate_token_link: 'Generate New Token'
       remove_token_link: 'Remove Token'
