@@ -43,7 +43,7 @@
 	    },
 	    minLength: 1,
 	    select: function( event, ui ) {
-	    	$('#<%= user_role %>_id').val(ui.item.id); // set hidden field id  
+	    	$('#<%= user_role %>_id').val(ui.item.id); // set hidden field id
 	    },
 	    open: function() {
 	      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
@@ -56,8 +56,8 @@
 	});
 </script>
 <%= form_tag(submit_url, method: :post, :id => "#{user_role}_autocomplete_form") do %>
-    <%= label_tag "#{user_role}_name", "Name:", :class => "control-label" %>
-  	<%= text_field_tag "#{user_role}_name", '', placeholder: 'Search user by name or email' %>
+    <%= label_tag "#{user_role}_name", t('.label'), class: 'control-label' %>
+    <%= text_field_tag "#{user_role}_name", '', placeholder: t('.placeholder') %>
 		<%= hidden_field_tag "#{user_role}_id", '' %>
 		<%= hidden_field_tag "role_number", role_number %>
 		<%= hidden_field_tag "item_description", item_description %>
