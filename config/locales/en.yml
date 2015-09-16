@@ -631,6 +631,28 @@ en:
       title: 'Create Account'
       submit_button: 'Create Account'
 
+    notifications:
+      instructions: 'Check or uncheck boxes for email notifications.'
+      sel_all: 'Select / deselect all'
+      users: 'Users:'
+      template_owners: 'DMP owners and co-owners:'
+      template_editors: 'DMP Template editors:'
+      resource_editors: 'Resources editors:'
+      institutional_reviewers: 'Institutional Reviewers:'
+      role_granted: 'A new user role is granted'
+      plan_new_comment: 'A new comment has been added to my DMP'
+      plan_submitted: 'A submitted DMP is approved, rejected or finished informal review'
+      plan_vis_change: "My DMP's visibility has changed"
+      plan_user_added: 'I have been made a co-owner of a DMP'
+      plan_committed: 'A DMP is completed'
+      template_committed: 'An institutional DMP template is activated'
+      template_deactivated: 'An institutional DMP template is deactivated'
+      customization_deleted: 'A customization is deleted'
+      customization_associated_committed: 'A DMP Template associated with a customization is activated'
+      institutional_submitted: 'An Institutional DMP is submitted for review'
+      institutional_new_comment: 'A new comment is added to an Institutional DMP'
+      institutional_approved_rejected: 'An Institutional DMP is approved or rejected'
+
     personal:
       instructions: 'Please update your account information.'
       name: 'Name'
