@@ -717,11 +717,10 @@ en:
       submit: 'Reset Password'
 
     institution:
-      browser_title: "Log In"
-      title: "Institution Log In"
-      howto_title_html: "<h2>Log in through your institution</h2>"
-      howto_text: "Select your institution below and you will be directed to your institutional log in page."
-      promt_default_text: "Select your institution"
-      button_submit: "Next >>"
-      note_html: "<p>If you do not see your institution in the list, <br/>
-                please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
+      browser_title: 'Log In'
+      title: 'Institution Log In'
+      instructions_title: 'Log in through your institution'
+      instructions: 'Select your institution below and you will be directed to your institutional log in page.'
+      prompt_default_text: 'Select your institution'
+      submit_button: 'Next >>'
+      note_html: '<p>If you do not see your institution in the list, <br/>please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>'

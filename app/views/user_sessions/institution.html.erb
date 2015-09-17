@@ -3,15 +3,17 @@
 <h1 class="row-fluid"><span class="icon login"></span><%= t('.title') %></h1>
 <div class="login row-fluid">
 	<div class="span5 user_login">
-		<%= t('.howto_title_html') %>
+		<%= content_tag :h2, t('.instructions_title') %>
 	  <%= form_tag login_path, method: :post do %>
 			<div class="control-group select_institution">
-				<p><%= label_tag :institution_id, t('.howto_text') %></p>
-	    	<%= select_tag(:institution_id, options_for_select(@inst_list, :selected => session[:institution_id]),
-	    		:prompt => t('.promt_default_text'), :class => "institution") %>
-	    	
+				<p><%= label_tag :institution_id, t('.instructions') %></p>
+        <%= select_tag :institution_id,
+                       options_for_select(@inst_list, selected: session[:institution_id]),
+                       prompt: t('.prompt_default_text'),
+                       class: 'institution' %>
+
 	  	</div>
-	    <%= submit_tag t('.button_submit') %>
+	    <%= submit_tag t('.submit_button') %>
 	  <% end %>
 	  <%= t('.note_html') %>
 	</div>
