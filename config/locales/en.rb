@@ -63,6 +63,11 @@ end
           end
         end
       }
+    },
+    users: {
+      create: {
+        ldap_error: "There were problems adding this user to the LDAP directory. Please contact #{i18n_join(APP_CONFIG['feedback_email_to'])}."
+      }
     }
   }
 }

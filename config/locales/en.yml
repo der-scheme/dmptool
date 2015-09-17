@@ -604,8 +604,18 @@ en:
       submit_text: 'Next page'
 
   users:
+    create:
+      # Find some translations in en.rb.
+      account_deactivated_notice: "You already have a DMP Tool account with this username, but it's deactivated. Please contact us if you need to have it reactivated."
+      duplicate_username_notice: 'You already have a DMP Tool account with this username. Please log in with your current username and password to continue.'
+      duplicate_username_notice2: 'You already have a DMP Tool account. Your username is "%{user}".  Please log in with your current password to continue.'
+      user_sync_notice: "You're now in the DMP Tool with your existing %{institution} username, \"%{user}\".  Please log in to continue."
+      ldap_success_notice: "This LDAP DMPTool account has been created.  You may also log in with 'Not in List' institution in addition to your Shibboleth account."
+      success_notice: 'User was successfully created.'
+
     edit:
       title: 'My Profile'
+      failure_notice: "You may not edit the user you were attempting to edit.  You're now editing your own information."
 
     edit_user_roles:
       title: 'Edit User Roles'
@@ -616,6 +626,9 @@ en:
       title: 'Finish Signup'
       submit: 'Update Account'
       reset: 'Reset Form'
+
+    finish_signup_update:
+      success_notice: 'You have completed signing up for the DMP tool.'
 
     form:
       personal: 'Personal Information'
@@ -678,10 +691,23 @@ en:
       placeholder: 'Add co-owners; search by name or email address'
       tooltip_html: '<ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>'
 
+    remove_orcid:
+      success_notice: 'The orcid id has been successfully removed from your profile.'
+
+    require_current_user:
+      error: 'User information may only be edited by that user'
+
     token:
       generate_token_link: 'Generate New Token'
       remove_token_link: 'Remove Token'
       no_token: "You don't have any token."
+
+    update:
+      success_notice: 'User information updated.'
+      ldap_error: 'Error updating LDAP. Local update canceled.'
+
+    update_user_roles:
+      success_notice: 'User was successfully updated.'
 
     user_autocomplete_widget:
       label: 'Name:'
