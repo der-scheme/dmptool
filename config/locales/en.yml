@@ -321,17 +321,6 @@ en:
       description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
       view_all_button: "View All"
 
-  user_sessions:
-    institution:
-      browser_title: "Log In"
-      title: "Institution Log In"
-      howto_title_html: "<h2>Log in through your institution</h2>"
-      howto_text: "Select your institution below and you will be directed to your institutional log in page."
-      promt_default_text: "Select your institution"
-      button_submit: "Next >>"
-      note_html: "<p>If you do not see your institution in the list, <br/>
-                please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
-
   requirements_templates:
     form:
       template_overview: 'DMP Template Overview'
@@ -720,3 +709,19 @@ en:
       edit_role: 'Edit User Role'
       no_results: 'No results found'
       remove_user: 'Remove User'
+
+  user_sessions:
+    complete_password_reset:
+      title: 'Complete Password Reset'
+      instructions: 'You are resetting the password for %{email}. The DMPTool requires that your password be at least eight characters long and contain at least one number and one letter.'
+      submit: 'Reset Password'
+
+    institution:
+      browser_title: "Log In"
+      title: "Institution Log In"
+      howto_title_html: "<h2>Log in through your institution</h2>"
+      howto_text: "Select your institution below and you will be directed to your institutional log in page."
+      promt_default_text: "Select your institution"
+      button_submit: "Next >>"
+      note_html: "<p>If you do not see your institution in the list, <br/>
+                please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>"
