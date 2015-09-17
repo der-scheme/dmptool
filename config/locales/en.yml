@@ -735,3 +735,8 @@ en:
       reset_password_link: 'Forgot your password?'
       create_account: "Don't have a DMPTool account yet?"
       create_account_button: 'Create An Account'
+
+    password_reset:
+      title: 'Reset Password'
+      instructions: 'Enter your email address or username below to reset your password and send an email with the new password to your registered email address.'
+      email_or_username: 'Email or username'
