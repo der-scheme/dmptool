@@ -724,3 +724,14 @@ en:
       prompt_default_text: 'Select your institution'
       submit_button: 'Next >>'
       note_html: '<p>If you do not see your institution in the list, <br/>please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>'
+
+    login:
+      browser_title: 'Account Log In'
+      title: 'Log In'
+      institution: 'Log in to DMPTool through:'
+      remember_me_checkbox: 'Remember My Username'
+      submit_button: 'Login'
+      reset_username_link: 'Forgot your username?'
+      reset_password_link: 'Forgot your password?'
+      create_account: "Don't have a DMPTool account yet?"
+      create_account_button: 'Create An Account'
