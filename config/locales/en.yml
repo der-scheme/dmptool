@@ -34,6 +34,9 @@ en:
     created_at: 'Creation Date'
     deleted_at: 'Deletion Date'
     updated_at: 'Last Modification Date'
+    new_password: 'New Password'
+    password: 'Password'
+    password_confirmation: 'Password Confirmation'
   activerecord:
     # Human readable model names were moved to en.rb, as I18n's native
     # pluralization feature proved to be not flexible enough.
@@ -92,7 +95,6 @@ en:
         last_name: 'Last Name'
         login_id: 'Username'
         orcid_id: 'ORCID'
-        password_confirmation: 'Password Confirmation'
         prefs: 'Prefs'
         role_names: 'Current Role'
         token: 'Token'
@@ -669,8 +671,6 @@ en:
     personal:
       instructions: 'Please update your account information.'
       name: 'Name'
-      password: 'Password'
-      new_password: 'New Password'
       password_tooltip: 'The password must be 8 to 30 characters long. It must contain at least one number and one letter.'
       contact_info: 'Contact Information'
       select_institution_new: '-Select an Institution-'
