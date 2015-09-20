@@ -740,3 +740,8 @@ en:
       title: 'Reset Password'
       instructions: 'Enter your email address or username below to reset your password and send an email with the new password to your registered email address.'
       email_or_username: 'Email or username'
+
+    username_reminder:
+      title: 'Username Reminder'
+      instructions: 'Enter your email address below to send an email with the username for your account.'
+      email: 'Email'
