@@ -532,6 +532,12 @@ en:
       value_placeholder: 'URL'
       delete_resource: 'Delete Resource'
 
+    new:
+      new_resource_for: 'New Resource For %{institution}'
+      label_placeholder: 'Enter a name for this Resource'
+      text_placeholder: 'Enter the text'
+      value_placeholder: 'URL'
+
   resource_contexts:
     choose_institution:
       select_institution: 'Select Institution for customization'
