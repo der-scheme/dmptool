@@ -226,6 +226,7 @@ en:
 
   static_pages:
     home:
+      title: 'Home'
       dmp_headline: "Data Management Planning Tool"
       dmp_subtitle_html: "<strong>Create, review, and share data management plans</strong> that meet institutional and funder requirements."
       dmp_get_started_link: "Get Started"
