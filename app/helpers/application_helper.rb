@@ -4,20 +4,20 @@ module ApplicationHelper
   #current asc and current desc classes are for supporting an eventual arrow image
   #or css class (not yet implemented) associated with the sorting direction
 
-
-
-  def sortable(column, title = nil, model: controller_name.classify.constantize)
+  def sortable(column, title = nil,
+               order_scope: :order_scope,
+               model: controller_name.classify.constantize)
     fail ArgumentError, 'expected model to be of type ActiveRecord::Base' if
       model && !model.respond_to?(:human_attribute_name)
 
     title ||= model.human_attribute_name(column) if model
     title ||= t(".#{column}", default: column.titleize)
 
-    css_class = column == params[:order_scope] ? "current #{params[:direction]}" : nil
+    css_class = "current #{params[:direction]}" if column == params[order_scope]
     direction = (column.to_s == params[order_scope] && params[:direction] == 'asc') ? 'desc' : 'asc'
     link_to title,
-      {:order_scope => column, :direction => direction, :scope => @scope, :all_scope => @all_scope},
-      {:class => css_class}
+            {order_scope => column, direction: direction, scope: @scope, all_scope: @all_scope},
+            {class: css_class}
   end
 
   def link_to_add_fields(name, f, association)

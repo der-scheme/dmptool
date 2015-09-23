@@ -232,9 +232,10 @@ class ApplicationController < ActionController::Base
     # matches the order scope, or if the ordering is marked as default (which
     # is triggered when the order_scope parameter is nil).
 
-    def sortable(attribute, default: false, nested: nil, inst_var: nil, model: nil)
-      return unless (params[:order_scope] && params[:order_scope].to_sym == attribute) ||
-                    (default && params[:order_scope].blank?)
+    def sortable(attribute, default: false, nested: nil,
+                 inst_var: nil, model: nil, order_scope: :order_scope)
+      return unless (params[order_scope] && params[order_scope].to_sym == attribute) ||
+                    (default && params[order_scope].blank?)
 
       attribute   = attribute.to_sym
       order_attr  = attribute
