@@ -14,7 +14,7 @@ module ApplicationHelper
     title ||= t(".#{column}", default: column.titleize)
 
     css_class = column == params[:order_scope] ? "current #{params[:direction]}" : nil
-    direction = column == params[:order_scope] && params[:direction] == "asc" ? "desc" : "asc"
+    direction = (column.to_s == params[order_scope] && params[:direction] == 'asc') ? 'desc' : 'asc'
     link_to title,
       {:order_scope => column, :direction => direction, :scope => @scope, :all_scope => @all_scope},
       {:class => css_class}
