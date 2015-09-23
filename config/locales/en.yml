@@ -522,6 +522,26 @@ en:
       back_link: 'Back'
 
   resources:
+    edit_customization_resource:
+      title: 'Edit Customization Resource'
+      edit_resource: 'Edit %{label} Resource'
+      label_placeholder: 'Enter a name for this Resource'
+      text_placeholder: 'Enter the text'
+      value_placeholder: 'URL'
+      delete_resource: 'Delete Resource'
+      confirm_delete_prompt: 'Are you sure? This resource will be deleted from all templates and all requirements!'
+      resource_shown_in: 'This Resource is shown in:'
+      resource_global: 'This Resource is Global.'
+      templates: 'The following Templates:'
+      template: 'Template:'
+      unlink: 'Unlink'
+      unlink_tooltip: 'Unlinking a resource from a requirement or template means it will no longer appear to plan creators. If the resource is not linked to any other templates or requirements, unlinking it will cause it to be deleted from the DMPTool.'
+      template_tooltip: 'This is the name of the template you are currently working on.'
+      confirm_last_delete_prompt: 'Are you sure? This resource is not linked to any other templates; therefore unlinking it will cause it to be deleted from the DMPTool.'
+      requirements: 'The following Requirements:'
+      requirement: 'Requirement:'
+      assoc_template: 'Associated Template'
+
     edit_institutional_resource:
       title: 'Edit Institutional Resource'
       edit_resource_for: 'Edit %{resource} Resource For %{institution}'
