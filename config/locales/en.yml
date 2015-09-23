@@ -715,6 +715,28 @@ en:
       title: 'Complete Password Reset'
       instructions: 'You are resetting the password for %{email}. The DMPTool requires that your password be at least eight characters long and contain at least one number and one letter.'
       submit: 'Reset Password'
+      no_token_error: 'User not found or password reset not requested'
+      token_expired_error: 'Password reset token has expired. Please request a reset again.'
+      invalid_token_error: 'Invalid password reset token. Please request a reset again.'
+      illegal_password_error: 'Your password must be at least eight characters long and have at least one letter and at least one number.'
+      wrong_confirmation_error: 'Password and confirmation do no match. Please try again.'
+      ldap_error: 'Problem updating password in LDAP. Please retry.'
+      success_notice: 'You have successfully updated your password.'
+
+    create:
+      incomplete_info_error: "Your identify provider didn't provide complete information.  Please contact us so we can help troubleshoot this problem."
+      duplicate_email_error: 'Multiple users have the same email as you.  Please contact us to fix the problem.'
+      account_deactivated_error: 'Your user account is currently deactivated.  In order to be reactivate your account, please contact us.'
+      auth_wo_record_error: "You've previously logged in but do not have a current account. Contact us for help resolving this problem."
+      incommon_error: 'Problem with InCommon login.  Your InCommon provider may not be releasing the necessary attributes.'
+      incorrect_credentials_error: 'Incorrect username, password or institution'
+      incomplete_info_error: 'Please complete filling in your profile information.'
+
+    destroy:
+      notice: 'Signed out.'
+
+    failure:
+      error_message: 'Failure: Incorrect username, password or institution'
 
     institution:
       browser_title: 'Log In'
@@ -735,13 +757,22 @@ en:
       reset_password_link: 'Forgot your password?'
       create_account: "Don't have a DMPTool account yet?"
       create_account_button: 'Create An Account'
+      no_institution_error: 'Please choose your log in institution.'
 
     password_reset:
       title: 'Reset Password'
       instructions: 'Enter your email address or username below to reset your password and send an email with the new password to your registered email address.'
       email_or_username: 'Email or username'
+      success_notice: 'An email has been sent to {email} with instructions for resetting your password.'
+      no_such_user_error: 'No user found with email or username %{email}.'
+      reset_shib_error: "You must reset your Shibboleth password through your own institution's password reset mechanism. You do not have an independent login for the DMPTool."
+      ldap_disabled_error: 'Your LDAP account has not been enabled for use in the DMPTool. Your account must be set up in the DMPTool before you can change your password.'
+      incomplete_info_error: 'You must supply an email or username to request a password reset.'
 
     username_reminder:
       title: 'Username Reminder'
       instructions: 'Enter your email address below to send an email with the username for your account.'
       email: 'Email'
+      success_notice: 'Your username has been emailed to %{email}.'
+      no_such_user_error: 'No user found with email address %{email}.'
+      invalid_email_error: 'You must supply a valid email to obtain a username reminder.'
