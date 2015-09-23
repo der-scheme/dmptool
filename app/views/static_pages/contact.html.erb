@@ -20,18 +20,18 @@
 			<div class="control-group">
 		    <%= label_tag :name, t('.form_name'), :class => "required" %>
 		    <%= text_field_tag :name, (current_user ? current_user.full_name : params[:name]), readonly: !current_user.blank?, :class => "required" %>
-				
-		    <%= label_tag :email, t('.form_mail'), :class => "required" %>
+
+		    <%= label_tag :email, :class => "required" %>
 		    <%= email_field_tag :email, (current_user ? current_user.email : params[:email]), readonly: !current_user.blank?, :class => "required" %>
 		  </div>
 		  <div class="control-group">
-		    <%= label_tag :message, t('.form_message') %>
+		    <%= label_tag :message %>
 		    <%= text_area_tag "message", params[:message], :rows => 5, :cols => 35, placeholder: "", :class => "input-xxlarge required" %>
 		  </div>
 		  <br/>
 	    <%= recaptcha_tags %>
 	    <br/>
-		  <%= submit_tag t('.recaptcha_submit') %>
+      <%= render_submit_button %>
 		<% end %>
 	</div>
 	<div class="span4">

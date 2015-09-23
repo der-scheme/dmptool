@@ -33,10 +33,12 @@ en:
   attributes:
     created_at: 'Creation Date'
     deleted_at: 'Deletion Date'
-    updated_at: 'Last Modification Date'
+    email: 'Email'
+    message: 'Message'
     new_password: 'New Password'
     password: 'Password'
     password_confirmation: 'Password Confirmation'
+    updated_at: 'Last Modification Date'
   activerecord:
     # Human readable model names were moved to en.rb, as I18n's native
     # pluralization feature proved to be not flexible enough.
@@ -242,9 +244,6 @@ en:
       question_about_becoming_participating_institution: "Becoming a participating institution"
       question_about_other: "Other"
       form_name: "Your Name"
-      form_mail: "Email"
-      form_message: "Message"
-      recaptcha_submit: "Submit"
       tips: "Tips:"
       tips_text_html: "<p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p>
           <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool
