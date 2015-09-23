@@ -538,6 +538,12 @@ en:
       text_placeholder: 'Enter the text'
       value_placeholder: 'URL'
 
+    new_customization_resource:
+      new_resource_for: 'New Resource For %{template}'
+      label_placeholder: 'Enter a name for this Resource'
+      text_placeholder: 'Enter the text'
+      value_placeholder: 'URL'
+
   resource_contexts:
     choose_institution:
       select_institution: 'Select Institution for customization'
