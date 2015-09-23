@@ -108,6 +108,12 @@ en:
       visibility:
         institutional: 'Institutional'
         public: 'Public'
+    resource:
+      resource_type:
+        actionable_url: 'Links'
+        help_text: 'Guidance'
+        example_response: 'Example Response'
+        suggested_response: 'Suggested Response'
     resource_context:
       review_type:
         formal_review: 'Review Required'
@@ -514,6 +520,17 @@ en:
 
     show:
       back_link: 'Back'
+
+  resources:
+    edit_institutional_resource:
+      title: 'Edit Institutional Resource'
+      edit_resource_for: 'Edit %{resource} Resource For %{institution}'
+      resource_type_tooltip: 'Resources can be either actionable URLs or help text.'
+      label_placeholder: 'Enter a name for this Resource'
+      label_tooltip: 'The name for this resource. For example, “;UC3’s Merritt Repository”; would be the label for the URL http://merritt.cdlib.org.'
+      text_placeholder: 'Enter the text'
+      value_placeholder: 'URL'
+      delete_resource: 'Delete Resource'
 
   resource_contexts:
     choose_institution:
