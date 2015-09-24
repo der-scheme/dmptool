@@ -16,7 +16,7 @@ module ApplicationHelper
     css_class = "current #{params[:direction]}" if column == params[order_scope]
     direction = (column.to_s == params[order_scope] && params[:direction] == 'asc') ? 'desc' : 'asc'
     link_to title,
-            {order_scope => column, direction: direction, scope: @scope, all_scope: @all_scope},
+            filter_params.merge(order_scope => column, direction: direction),
             {class: css_class}
   end
 
