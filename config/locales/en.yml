@@ -277,8 +277,6 @@ en:
       sample_plans_tooltip: "Sample plans are provided by a funder, an institution or a trusted party."
       if_available: "(if available)"
       no_results: "No results found"
-      button_view_less: "View Less"
-      button_view_all: "View All"
 
   plans:
     details:

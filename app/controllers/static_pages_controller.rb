@@ -104,19 +104,10 @@ class StaticPagesController < ApplicationController
       @institution_templates = current_user.institution.requirements_templates_deep.institutional_visibility.active.current.
               includes(:institution, :sample_plans, :additional_informations)
 
-
-      case @order_scope2
-        when "Template"
-          @institution_templates = @institution_templates.order(name: :asc)
-        when "Institution"
-          @institution_templates = @institution_templates.order('institutions.full_name ASC')
-        when "InstitutionLink"
-          @institution_templates = @institution_templates.order('additional_informations.label ASC')
-        when "SamplePlans"
-          @institution_templates = @institution_templates.order('sample_plans.label ASC')
-        else
-          @institution_templates = @institution_templates.order(name: :asc)
-      end
+      sortable :name,                     default: true,      model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :institution_id,           nested: :full_name, model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :additional_informations,  nested: :label,     model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :sample_plans,             nested: :label,     model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
 
       case @scope2
         when "all"
