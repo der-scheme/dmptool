@@ -250,14 +250,11 @@ en:
             representative at your organization. Your organization may offer additional data management consultation services.</p>"
 
     guidance:
-      browser_title: "DMP Requirements"
-      title: "DMP Requirements"
-      description_html: "<p>Use the A-Z links below to narrow down the list by institution or
-                        use the search box to search for specific DMP Templates.  Sample
-                        plans are not necessarily from the funder.</p>"
-      show_all_button: "All"
-      requirements_for_institution: "DMP Requirements for "
-      list_for_institution_html: "<p>Below is a list of DMP templates available in your institution</p>"
+      browser_title: 'DMP Requirements'
+      title: 'DMP Requirements'
+      instructions: 'Use the A-Z links below to narrow down the list by institution or use the search box to search for specific DMP Templates.  Sample plans are not necessarily from the funder.'
+      requirements_for: "DMP Requirements for %{institution}"
+      requirements_scope_info: 'Below is a list of DMP templates available in your institution.'
 
     guidance_table:
       template: "Template"
