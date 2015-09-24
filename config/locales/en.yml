@@ -227,6 +227,11 @@ en:
       about_title: "About the California Digital Library Data Management Tool"
 
   static_pages:
+    dmptool_news:
+      latest_info: 'Latest information about data management and the DMPTool.'
+      more_link: 'More News'
+      unavailable: 'News is currently unavailable.'
+
     home:
       title: 'Home'
       dmp_headline: "Data Management Planning Tool"
