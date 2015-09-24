@@ -76,18 +76,10 @@ class StaticPagesController < ApplicationController
     @s = params[:s]
     @e = params[:e]
 
-    case @order_scope1
-      when "Template"
-        @public_templates = @public_templates.order(name: :asc)
-      when "Institution"
-        @public_templates = @public_templates.order('institutions.full_name ASC')
-      when "InstitutionLink"
-        @public_templates = @public_templates.order('additional_informations.label ASC')
-      when "SamplePlans"
-        @public_templates = @public_templates.order('sample_plans.label ASC')
-      else
-        @public_templates = @public_templates.order(name: :asc)
-    end
+    sortable :name,                     default: true,      model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :institution_id,           nested: :full_name, model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :additional_informations,  nested: :label,     model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :sample_plans,             nested: :label,     model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
 
     case @scope1
       when "all"
