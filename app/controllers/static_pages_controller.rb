@@ -38,12 +38,12 @@ class StaticPagesController < ApplicationController
     if request.post?
       if verify_recaptcha
         msg = []
-        msg.push('Please indicate what your question is about') if params[:question_about].blank?
-        msg.push('Please enter your name') if params[:name].blank?
-        msg.push('Please enter your email') if params[:email].blank?
-        msg.push('Please enter a message') if params[:message].blank?
+        msg.push(t('.question_about_missing')) if params[:question_about].blank?
+        msg.push(t('.name_missing')) if params[:name].blank?
+        msg.push(t('.email_missing')) if params[:email].blank?
+        msg.push(t('.message_missing')) if params[:message].blank?
         if !params[:email].blank? && !params[:email].match(/^\S+@\S+$/)
-          msg.push('Please enter a valid email address')
+          msg.push(t('.email_invalid'))
         end
         if msg.length > 0
           flash[:error] = msg
@@ -57,7 +57,7 @@ class StaticPagesController < ApplicationController
         all_emails.each do |i|
           GenericMailer.contact_email(params, i).deliver
         end
-        flash[:alert] = "Your email message was sent to the DMPTool team."
+        flash[:alert] = t('.success_message')
         redirect_to :back and return
       end
       redirect_to contact_path(question_about: params['question_about'], name: params['name'],

@@ -227,6 +227,14 @@ en:
       about_title: "About the California Digital Library Data Management Tool"
 
   static_pages:
+    contact:
+      question_about_missing: 'Please indicate what your question is about'
+      name_missing: 'Please enter your name'
+      email_missing: 'Please enter your email'
+      message_missing: 'Please enter a message'
+      email_invalid: 'Please enter a valid email address'
+      success_message: 'Your email message was sent to the DMPTool team.'
+
     dmptool_news:
       latest_info: 'Latest information about data management and the DMPTool.'
       more_link: 'More News'
