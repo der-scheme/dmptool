@@ -448,6 +448,13 @@ en:
       select_role_message: 'Please select at least a role to grant.'
       success_notice: '%{user} has been updated.'
 
+  comments:
+    index_owner_comments:
+      anonymous: 'Anonymous User'
+      delete_link: 'Delete'
+      show_more_link: 'More'
+      show_less_link: 'Show less'
+
   institutions:
     index:
       profile: 'Institution Profile'
