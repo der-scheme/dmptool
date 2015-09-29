@@ -304,6 +304,173 @@ en:
       if_available: "(if available)"
       no_results: "No results found"
 
+  authorizations:
+    add_authorization:
+      not_found_message:
+        one: 'Could not find user with the following email: %{emails}'
+        other: 'Could not find users with the following emails: %{emails}'
+      existing_message:
+        one: 'The following user has already been assigned this role: %{emails}'
+        other: 'The following users have already been assigned this role: %{emails}'
+      foreign_message: 'You cannot grant this role to users outside your institution: %{emails}. Please contact the DMP Administrator.'
+      success_notice:
+        one: 'Role granted to the following user: %{emails}'
+        other: 'Role granted to the following users: %{emails}'
+
+    remove_authorization:
+      success_notice: 'The role has been revoked.'
+      not_allowed_message: "You don't have permission to revoke this role."
+
+    add_role_autocomplete:
+      blank_name_message: 'Please select a person to add as a %{role}.'
+      incomplete_message: 'Please type and select the full name or email of a user.'
+      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
+      not_found_message: 'The user you entered was not found.'
+      already_has_role_message: 'The user you chose is already a %{role}.'
+      not_allowed_message: 'You do not have permission to assign this role.'
+      success_notice: '%{user} has been added as a %{role}.'
+
+    add_authorization_manage_users:
+      blank_name_message: 'Please select a user.'
+      incomplete_message: 'Please type and select the full name or email of a user.'
+      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
+      not_found_message: 'The user you entered was not found.'
+      foreign_message: 'The user you chose belongs to a different institution.'
+      already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
+      select_role_message: 'Please select at least a role to grant.'
+      success_notice: '%{user} has been updated.'
+
+  comments:
+    create:
+      success_notice: 'comment was successfully created.'
+
+    index_owner_comments:
+      anonymous: 'Anonymous User'
+      delete_link: 'Delete'
+      show_more_link: 'More'
+      show_less_link: 'Show less'
+
+    index_reviewer_comments:
+      anonymous: 'Anonymous User'
+      delete_link: 'Delete'
+      show_more_link: 'More'
+      show_less_link: 'Show less'
+
+    update:
+      success_notice: 'comment was successfully updated.'
+
+  customizations:
+    institution_view:
+      dmp_resources_section: 'DMP Resources'
+      global_resources_section: 'Global Resources'
+      institution_resources_section: '%{institution} Resources'
+      template_for_institution_resources_section: '%{template} for %{institution} Resources'
+      requirement_resources_section: 'Requirement Resources'
+
+    show:
+      title: 'Customization Details'
+      template_outline: 'Template Outline'
+      guidance_tab: 'Guidance'
+      links_tab: 'Links'
+      suggested_response_tab: 'Suggested Response'
+      example_response_tab: 'Example Response'
+      add_guidance_button: 'Add guidance'
+      add_links_button: 'Add Links'
+      add_suggested_response_button: 'Add Suggested Response'
+      add_example_response_button: 'Add Example Response'
+
+  institutions:
+    index:
+      profile: 'Institution Profile'
+      info: 'Institution Information'
+      resources: 'Institutional Resources'
+      hierarchy: 'Institution Hierarchy'
+      assign_roles: 'Assign Roles'
+      add_new: 'Add New Institution'
+
+    edit:
+      info: 'Institution Information'
+      url_text_placeholder: 'URL Text'
+      url_placeholder: 'URL'
+      contact_info_placeholder: 'Name'
+      contact_email_placeholder: 'Email'
+      upload_button: 'Upload'
+      logo_tooltip: 'Suggested Logo Size 170x60'
+
+    edit_user_roles_inst_admin:
+      user_roles_link: 'User Roles'
+      edit_user_roles: 'Edit User Roles'
+      current_roles: "%{user}'s Current Roles:"
+
+    form:
+      title: 'Institution Information'
+      # Find the following translations in en.rb, as they interpolate
+      # application globals:
+      # - shib_entity_id_tooltip
+      # - shib_domain_id_tooltip
+      # - parent_tooltip
+      url_text_placeholder: 'URL Text'
+      url_placeholder: 'URL'
+      url_tooltip: 'This URL will appear at the top of the DMPTool, to the right of your institution name.'
+      contact_info_placeholder: 'Name'
+      contact_email_placeholder: 'Email'
+      contact_tooltip: 'Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.'
+      logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
+      upload_button: Upload
+
+    institutional_resources:
+      headline: 'Resources Available at %{institution}'
+      visibility_info_html: 'Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.'
+      details: 'Details'
+      action: 'Action'
+      action_tooltip: 'Edit'
+      no_resources_info: 'There are currently no resources available at %{institution}.'
+      new_button: 'Create New Resource'
+
+    manage_users:
+      all_filter_link: 'All(%{count})'
+      resource_editors_filter_link: 'Resources Editors(%{count})'
+      template_editors_filter_link: 'Template Editors(%{count})'
+      inst_admins_filter_link: 'Institutional Administrators(%{count})'
+      inst_reviewers_filter_link: 'Institutional Reviewers(%{count})'
+      admins_filter_link: 'DMP Administrators(%{count})'
+      role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>'
+      edit_user_role: 'Edit User Role'
+      edit_user_role_tooltip: 'Edit user role'
+      grant_role_button: 'Grant Role'
+
+    update_user_roles_inst_admin:
+      success_notice: 'User was successfully updated.'
+
+    create:
+      success_notice: 'Institution was successfully created.'
+
+    update:
+      success_notice: 'Institution was successfully updated.'
+      failure_notice: 'Something went wrong.'
+
+    new:
+      title: 'New institution'
+      info: 'Institution Information'
+      url_text_placeholder: 'URL Text'
+      url_placeholder: 'URL'
+      contact_info_placeholder: 'Name'
+      contact_email_placeholder: 'Email'
+      logo_tooltip: 'Suggested Logo Size 170x60'
+      upload_button: 'Upload'
+
+    partners_list:
+      intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
+      partners_link: 'About partners'
+      partners_tooltip: 'About partners'
+      instructions: 'Use the A-Z links below to narrow down the list by institution or use the search box to search for specific institutions.'
+      name: 'Name'
+      shib_enabled: 'Shibboleth enabled?'
+      custom_dmp: 'DMPTool Customized?'
+
+    show:
+      back_link: 'Back'
+
   plans:
     details:
       dmp_details: 'DMP Details'
@@ -317,6 +484,7 @@ en:
       example_response: 'Example Response'
       mandatory: '(Mandatory)'
       preview_button: 'DMP Preview >>'
+
     public:
       browser_title: "Public DMPs"
       title: "Public DMPs"
@@ -411,173 +579,6 @@ en:
 
     toggle_active:
       failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
-
-  authorizations:
-    add_authorization:
-      not_found_message:
-        one: 'Could not find user with the following email: %{emails}'
-        other: 'Could not find users with the following emails: %{emails}'
-      existing_message:
-        one: 'The following user has already been assigned this role: %{emails}'
-        other: 'The following users have already been assigned this role: %{emails}'
-      foreign_message: 'You cannot grant this role to users outside your institution: %{emails}. Please contact the DMP Administrator.'
-      success_notice:
-        one: 'Role granted to the following user: %{emails}'
-        other: 'Role granted to the following users: %{emails}'
-
-    remove_authorization:
-      success_notice: 'The role has been revoked.'
-      not_allowed_message: "You don't have permission to revoke this role."
-
-    add_role_autocomplete:
-      blank_name_message: 'Please select a person to add as a %{role}.'
-      incomplete_message: 'Please type and select the full name or email of a user.'
-      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
-      not_found_message: 'The user you entered was not found.'
-      already_has_role_message: 'The user you chose is already a %{role}.'
-      not_allowed_message: 'You do not have permission to assign this role.'
-      success_notice: '%{user} has been added as a %{role}.'
-
-    add_authorization_manage_users:
-      blank_name_message: 'Please select a user.'
-      incomplete_message: 'Please type and select the full name or email of a user.'
-      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
-      not_found_message: 'The user you entered was not found.'
-      foreign_message: 'The user you chose belongs to a different institution.'
-      already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
-      select_role_message: 'Please select at least a role to grant.'
-      success_notice: '%{user} has been updated.'
-
-  comments:
-    create:
-      success_notice: 'comment was successfully created.'
-
-    index_owner_comments:
-      anonymous: 'Anonymous User'
-      delete_link: 'Delete'
-      show_more_link: 'More'
-      show_less_link: 'Show less'
-
-    index_reviewer_comments:
-      anonymous: 'Anonymous User'
-      delete_link: 'Delete'
-      show_more_link: 'More'
-      show_less_link: 'Show less'
-
-    update:
-      success_notice: 'comment was successfully updated.'
-
-  customizations:
-    show:
-      title: 'Customization Details'
-      template_outline: 'Template Outline'
-      guidance_tab: 'Guidance'
-      links_tab: 'Links'
-      suggested_response_tab: 'Suggested Response'
-      example_response_tab: 'Example Response'
-      add_guidance_button: 'Add guidance'
-      add_links_button: 'Add Links'
-      add_suggested_response_button: 'Add Suggested Response'
-      add_example_response_button: 'Add Example Response'
-
-    institution_view:
-      dmp_resources_section: 'DMP Resources'
-      global_resources_section: 'Global Resources'
-      institution_resources_section: '%{institution} Resources'
-      template_for_institution_resources_section: '%{template} for %{institution} Resources'
-      requirement_resources_section: 'Requirement Resources'
-
-  institutions:
-    index:
-      profile: 'Institution Profile'
-      info: 'Institution Information'
-      resources: 'Institutional Resources'
-      hierarchy: 'Institution Hierarchy'
-      assign_roles: 'Assign Roles'
-      add_new: 'Add New Institution'
-
-    edit:
-      info: 'Institution Information'
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      upload_button: 'Upload'
-      logo_tooltip: 'Suggested Logo Size 170x60'
-
-    edit_user_roles_inst_admin:
-      user_roles_link: 'User Roles'
-      edit_user_roles: 'Edit User Roles'
-      current_roles: "%{user}'s Current Roles:"
-
-    form:
-      title: 'Institution Information'
-      # Find the following translations in en.rb, as they interpolate
-      # application globals:
-      # - shib_entity_id_tooltip
-      # - shib_domain_id_tooltip
-      # - parent_tooltip
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      url_tooltip: 'This URL will appear at the top of the DMPTool, to the right of your institution name.'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      contact_tooltip: 'Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.'
-      logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
-      upload_button: Upload
-
-    institutional_resources:
-      headline: 'Resources Available at %{institution}'
-      visibility_info_html: 'Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.'
-      details: 'Details'
-      action: 'Action'
-      action_tooltip: 'Edit'
-      no_resources_info: 'There are currently no resources available at %{institution}.'
-      new_button: 'Create New Resource'
-
-    manage_users:
-      all_filter_link: 'All(%{count})'
-      resource_editors_filter_link: 'Resources Editors(%{count})'
-      template_editors_filter_link: 'Template Editors(%{count})'
-      inst_admins_filter_link: 'Institutional Administrators(%{count})'
-      inst_reviewers_filter_link: 'Institutional Reviewers(%{count})'
-      admins_filter_link: 'DMP Administrators(%{count})'
-      role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>'
-      edit_user_role: 'Edit User Role'
-      edit_user_role_tooltip: 'Edit user role'
-      grant_role_button: 'Grant Role'
-
-    update_user_roles_inst_admin:
-      success_notice: 'User was successfully updated.'
-
-    create:
-      success_notice: 'Institution was successfully created.'
-
-    update:
-      success_notice: 'Institution was successfully updated.'
-      failure_notice: 'Something went wrong.'
-
-    new:
-      title: 'New institution'
-      info: 'Institution Information'
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      logo_tooltip: 'Suggested Logo Size 170x60'
-      upload_button: 'Upload'
-
-    partners_list:
-      intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
-      partners_link: 'About partners'
-      partners_tooltip: 'About partners'
-      instructions: 'Use the A-Z links below to narrow down the list by institution or use the search box to search for specific institutions.'
-      name: 'Name'
-      shib_enabled: 'Shibboleth enabled?'
-      custom_dmp: 'DMPTool Customized?'
-
-    show:
-      back_link: 'Back'
 
   resources:
     edit_customization_resource:
