@@ -471,6 +471,21 @@ en:
     show:
       title: 'Customization Details'
       template_outline: 'Template Outline'
+      guidance_tab: 'Guidance'
+      links_tab: 'Links'
+      suggested_response_tab: 'Suggested Response'
+      example_response_tab: 'Example Response'
+      add_guidance_button: 'Add guidance'
+      add_links_button: 'Add Links'
+      add_suggested_response_button: 'Add Suggested Response'
+      add_example_response_button: 'Add Example Response'
+
+    institution_view:
+      dmp_resources_section: 'DMP Resources'
+      global_resources_section: 'Global Resources'
+      institution_resources_section: '%{institution} Resources'
+      template_for_institution_resources_section: '%{template} for %{institution} Resources'
+      requirement_resources_section: 'Requirement Resources'
 
   institutions:
     index:

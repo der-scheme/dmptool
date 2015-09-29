@@ -4,21 +4,22 @@ class CustomizationsController < ApplicationController
   before_action :check_customization_editor, only: [:show]
   before_action :check_editor_for_this_customization, only: [:show]
 
-  # information to display the repetitive tabs
-  # name is tab name
-  # partial is the partial to display
-  # scope is the scope to use from the requirements table
-  # requirement_only means that this item can only be displayed when attached to a
-  # specific requirement -- it shouldn't be displayed if erroneously attached as global or template-level resource
-  # the suggested responses and example responses can only be displayed for a specific requirement
-  TABS = [  {name: 'Guidance', button_text: "Add guidance", partial: 'guidance_item', scope: :guidance, requirement_only: false},
-            {name: 'Links', button_text: "Add Links", partial: 'actionable_url_item', scope: :actionable_url, requirement_only: false},
-            {name: 'Suggested Response', button_text: "Add Suggested Response", partial: 'guidance_item', scope: :suggested_response, requirement_only: true},
-            {name: 'Example Response', button_text: "Add Example Response", partial: 'guidance_item', scope: :example_response, requirement_only: true }
-          ]  #right now all but links are displayed with the guidance partial since they're the same
-
   def show
-    @tabs = TABS.clone
+    # information to display the repetitive tabs
+    # name is tab name
+    # partial is the partial to display
+    # scope is the scope to use from the requirements table
+    # requirement_only means that this item can only be displayed when attached to a
+    # specific requirement -- it shouldn't be displayed if erroneously attached as global or template-level resource
+    # the suggested responses and example responses can only be displayed for a specific requirement
+    @tabs =
+      [
+        {name: t('.guidance_tab'),           button_text: t('.add_guidance_button'),           partial: 'guidance_item',       scope: :guidance,           requirement_only: false},
+        {name: t('.links_tab'),              button_text: t('.add_links_button'),              partial: 'actionable_url_item', scope: :actionable_url,     requirement_only: false},
+        {name: t('.suggested_response_tab'), button_text: t('.add_suggested_response_button'), partial: 'guidance_item',       scope: :suggested_response, requirement_only: true},
+        {name: t('.example_response_tab'),   button_text: t('.add_example_response_button'),   partial: 'guidance_item',       scope: :example_response,   requirement_only: true }
+      ]  #right now all but links are displayed with the guidance partial since they're the same
+
     # :id is customization id and :requirement_id
     @customization = ResourceContext.find(params[:id])
     @resource_context = @customization
