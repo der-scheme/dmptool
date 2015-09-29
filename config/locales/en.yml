@@ -467,6 +467,11 @@ en:
     update:
       success_notice: 'comment was successfully updated.'
 
+  customizations:
+    show:
+      title: 'Customization Details'
+      template_outline: 'Template Outline'
+
   institutions:
     index:
       profile: 'Institution Profile'
