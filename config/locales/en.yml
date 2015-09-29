@@ -382,6 +382,8 @@ en:
       add_links_button: 'Add Links'
       add_suggested_response_button: 'Add Suggested Response'
       add_example_response_button: 'Add Example Response'
+      no_requirements_error: 'The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement.'
+      invalid_customization_error: "This isn't a valid customization"
 
   institutions:
     index:
