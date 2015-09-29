@@ -360,6 +360,10 @@ en:
       success_notice: 'comment was successfully updated.'
 
   customizations:
+    guidance_item:
+      show_less_link: 'Show less'
+      show_more_link: 'More'
+
     institution_view:
       dmp_resources_section: 'DMP Resources'
       global_resources_section: 'Global Resources'
