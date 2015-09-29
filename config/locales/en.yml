@@ -455,6 +455,12 @@ en:
       show_more_link: 'More'
       show_less_link: 'Show less'
 
+    index_reviewer_comments:
+      anonymous: 'Anonymous User'
+      delete_link: 'Delete'
+      show_more_link: 'More'
+      show_less_link: 'Show less'
+
   institutions:
     index:
       profile: 'Institution Profile'
