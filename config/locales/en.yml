@@ -47,6 +47,12 @@ en:
         label: 'Link Label'
         requirements_template_id: 'DMP Template'
         url: 'Link Url'
+      comment:
+        comment_type: 'Comment Type'
+        plan_id: 'DMP'
+        user_id: 'Author'
+        value: 'Comment'
+        visibility: 'Visibility'
       institution:
         ancestry: 'Ancestry'
         contact_info: 'Administrator Contact'
@@ -102,6 +108,13 @@ en:
         token: 'Token'
         token_expiration: 'Token Expiration'
   enum:
+    comment:
+      comment_type:
+        owner: 'Owner'
+        reviewer: 'Reviewer'
+      visibility:
+        owner: 'Owner'
+        reviewer: 'Reviewer'
     requirements_template:
       review_type:
         formal_review: 'Review Required'
