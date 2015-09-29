@@ -10,7 +10,7 @@
 		  <% trunc_text = truncate(strip_tags(comment.value), length: 150, separator: ' ') %>
 		  <%= trunc_text %>
 		  <% if trunc_text.length < strip_tags(comment.value).length %>
-   			&nbsp;&nbsp;&nbsp;<%= link_to t('.show_more_link'), '#', class: 'show_more' %>
+   			&nbsp;&nbsp;&nbsp;<%= link_to t('.show_more_link'), '#', class: 'show_full' %>
  			<% end %>
 		</p>
 		<div class="cust_text_full" id="comment_value_full_<%= comment.id %>">
