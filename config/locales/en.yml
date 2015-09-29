@@ -449,6 +449,9 @@ en:
       success_notice: '%{user} has been updated.'
 
   comments:
+    create:
+      success_notice: 'comment was successfully created.'
+
     index_owner_comments:
       anonymous: 'Anonymous User'
       delete_link: 'Delete'
@@ -460,6 +463,9 @@ en:
       delete_link: 'Delete'
       show_more_link: 'More'
       show_less_link: 'Show less'
+
+    update:
+      success_notice: 'comment was successfully updated.'
 
   institutions:
     index:

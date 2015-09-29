@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     @owner_comments = comments.owner_comments.order('created_at DESC')
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comments_path, notice: 'comment was successfully created.' }
+        format.html { redirect_to comments_path, notice: t('.success_notice')}
         format.json { render action: 'show', status: :created, location: @comment }
         format.js
       else
@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
     @owner_comments = comments.owner_comments.order('created_at DESC')
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comments_path, notice: 'comment was successfully updated.' }
+        format.html { redirect_to comments_path, notice: t('.success_notice')}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
