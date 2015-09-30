@@ -396,6 +396,50 @@ en:
       no_requirements_error: 'The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement.'
       invalid_customization_error: "This isn't a valid customization"
 
+  dashboard:
+    show:
+      title: 'My Dashboard'
+      overview: 'Overview'
+      my_plans: 'My DMPs'
+      my_plans_under_review_html: 'My DMPs under Review <span style="font-weight: normal">(where applicable)</span>'
+      plans_i_own:
+        one: '%{count} plan I own'
+        other: '%{count} plans I own'
+      plans_i_coown:
+        one: '%{count} plan I own'
+        other: '%{count} plans I co-own'
+      submitted_plans: '%{count} Submitted'
+      removed_plans: '%{count} Removed'
+      rejected_plans: '%{count} Rejected'
+      no_plan_under_review: 'No DMPs are under review.'
+      new_plan_button: 'Create New DMP'
+      plans_for_review: 'DMPs For My Review'
+      review_submitted_plans:
+        one: '%{count} DMP pending review'
+        other: '%{count} DMPs pending review'
+      review_approved_plans:
+        one: '%{count} DMP Approved'
+        other: '%{count} DMPs Approved'
+      review_rejected_plans:
+        one: '%{count} DMP Rejected'
+        other: '%{count} DMPs Rejected'
+      templates: 'DMP Templates'
+      within_my_institution: 'Within my Institution'
+      funder_requirements: 'Funder Requirements'
+      funder_requirements_tooltip: 'Funder Requirements are templates defined by an institution that are available to the public (everyone).'
+      institutional_templates:
+        one: '%{count} DMP Template only visible to my institution'
+        other: '%{count} DMP Templates only visible to my institution'
+      public_templates_from_us:
+        one: '%{count} Public DMP Template from my institution'
+        other: '%{count} Public DMP Templates from my institution'
+      new_template_button: 'Create New DMP Template'
+      template_customizations: 'DMP Template Customizations'
+      customizations:
+        one: '%{count} Customization'
+        other: '%{count} Customizations'
+      new_template_customization_button: 'Create New DMP Template Customization'
+
   institutions:
     index:
       profile: 'Institution Profile'
