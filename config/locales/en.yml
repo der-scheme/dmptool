@@ -115,6 +115,17 @@ en:
       visibility:
         owner: 'Owner'
         reviewer: 'Reviewer'
+    plan_state:
+      state:
+        approved: 'Approved'
+        committed: 'Completed'
+        deleted: 'Deleted'
+        inactive: 'Inactive'
+        new: 'New'
+        reviewed: 'Reviewed'
+        rejected: 'Rejected'
+        revised: 'Revised'
+        submitted: 'Submitted'
     requirements_template:
       review_type:
         formal_review: 'Review Required'
