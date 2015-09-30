@@ -95,7 +95,7 @@
           <div class="control-group">
             <p class="control-label">Current Status</p>
             <div class="controls">
-              <p><strong class="blue"><%= @plan.display_state %></strong> <%= link_to(content_tag(:span, "", :class => "icon-chevron-down") + "Show History", "#", :class => "view-plan-history") %><%= link_to(content_tag(:span, "", :class => "icon-chevron-up") + "Hide History", "#", :class => "hide-plan-history") %></p>
+              <p><strong class="blue"><%= translated_state(@plan) %></strong> <%= link_to(content_tag(:span, "", :class => "icon-chevron-down") + "Show History", "#", :class => "view-plan-history") %><%= link_to(content_tag(:span, "", :class => "icon-chevron-up") + "Hide History", "#", :class => "hide-plan-history") %></p>
               <div id="plan_history" class="history">
                 <%= render partial: 'plan_states_history' %>
               </div>
@@ -162,14 +162,14 @@
                 <p>
                   This DMP is <strong class="blue"><%=@plan.visibility.capitalize %></strong>
                 </p>
-                <%= link_to "Change Settings", "#", :class => "btn change_visibility_link", :'data-planid' => @plan.id, 
+                <%= link_to "Change Settings", "#", :class => "btn change_visibility_link", :'data-planid' => @plan.id,
                       :'data-visibility' => @plan.visibility, :style => "margin-left:-20px"%>
-                
+
                 <div style=" width:200px; float:right; margin-right:380px; margin-top:-36px; line-height:20px">
-                
+
                   Note: when visibility is set to "Public", your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site
-                  and it will be downloadable and copy-able. 
-                
+                  and it will be downloadable and copy-able.
+
                 </div>
               </div>
             </div>
