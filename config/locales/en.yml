@@ -195,6 +195,11 @@ en:
       title: '%{title_text}: DMPTool'
     clean:
       title: 'DmpTool2: %{title_text}'
+    dashboard_create_dmp_submenu:
+      new_plan_link: 'Create New DMP'
+      overview: 'DMP Overview'
+      details: 'DMP Details'
+      preview: 'DMP Preview'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
