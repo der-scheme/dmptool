@@ -10,8 +10,8 @@
 			<h1 class="red"> Oops... Something went wrong!</h1>
 			<br />
 			<p>We've been notified about this issue and we'll take a look at it shortly. </p>
-			<p>Please, try again in a few moments.</p> 
-			<p><strong><%= link_to "<< back", :back, :class => "btn btn-green" %></strong></p>
+			<p>Please, try again in a few moments.</p>
+			<p><strong><%= render_back_button green: true, arrow: true %></strong></p>
 		</div>
 
 	</body>
