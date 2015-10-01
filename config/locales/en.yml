@@ -200,6 +200,10 @@ en:
       overview: 'DMP Overview'
       details: 'DMP Details'
       preview: 'DMP Preview'
+    dashboard_customizations_submenu:
+      customizations: 'Customizations'
+      overview: 'Overview'
+      details: 'Details'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
