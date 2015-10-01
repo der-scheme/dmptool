@@ -208,6 +208,16 @@ en:
       templates: 'DMP Templates'
       overview: 'Customization Overview'
       details: 'Customization Details'
+    dashboard_header:
+      dashboard: 'My Dashboard'
+      plans: 'My DMPs'
+      new_plan: 'Create New DMP'
+      review_plans: 'Review DMPs'
+      templates: 'DMP Templates'
+      customizations: 'Customizations'
+      institution: 'Institution Profile'
+      my_profile: 'My Profile'
+      administration: 'DMP Administration'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
