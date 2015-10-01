@@ -204,6 +204,10 @@ en:
       customizations: 'Customizations'
       overview: 'Overview'
       details: 'Details'
+    dashboard_customizations_under_dmp_submenu:
+      templates: 'DMP Templates'
+      overview: 'Customization Overview'
+      details: 'Customization Details'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
