@@ -191,6 +191,8 @@ en:
       search_label: 'Search'
       search_button: 'Search'
   layouts:
+    application:
+      title: '%{title_text}: DMPTool'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
