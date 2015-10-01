@@ -193,6 +193,8 @@ en:
   layouts:
     application:
       title: '%{title_text}: DMPTool'
+    clean:
+      title: 'DmpTool2: %{title_text}'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
