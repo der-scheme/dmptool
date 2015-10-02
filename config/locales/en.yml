@@ -218,6 +218,12 @@ en:
       institution: 'Institution Profile'
       my_profile: 'My Profile'
       administration: 'DMP Administration'
+    dashboard_logo_row:
+      non_partner_info: 'You are logged in as a Non Partner Institution'
+      contact_mail: 'Contact %{email}'
+      institution_logo_tooltip: 'Institution Logo'
+      institution_name: 'Institution Name'
+      contact_admin_link: 'Contact Institution Admin'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
