@@ -224,6 +224,10 @@ en:
       institution_logo_tooltip: 'Institution Logo'
       institution_name: 'Institution Name'
       contact_admin_link: 'Contact Institution Admin'
+    dashboard_requirements_template_submenu:
+      templates: 'DMP Templates'
+      overview: 'Template Overview'
+      details: 'Template Details'
     header:
       locale_name: 'English'
       currently_chosen: 'Currently chosen'
