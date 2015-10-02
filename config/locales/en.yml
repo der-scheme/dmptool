@@ -570,6 +570,11 @@ en:
       back_link: 'Back'
 
   plans:
+    actionable_url:
+      general_resources: 'General Resources'
+      institutional_resources: '%{institution} Resources'
+      customized_for_institution_resources: '%{template} for %{institution} Resources'
+
     details:
       dmp_details: 'DMP Details'
       edit_instructions: 'Click on a section below to edit it at any time.'
