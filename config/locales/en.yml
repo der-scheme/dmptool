@@ -185,6 +185,7 @@ en:
       back: 'Back'
       arrow_back: '<< Back'
       cancel: 'Cancel'
+      done: 'Done'
       view_less: 'View Less'
       view_all: 'View All'
     search:
@@ -574,6 +575,12 @@ en:
       general_resources: 'General Resources'
       institutional_resources: '%{institution} Resources'
       customized_for_institution_resources: '%{template} for %{institution} Resources'
+
+    back_submit_buttons:
+      submit_for_review_button: 'Submit for Review'
+      review_not_defined: 'Review Process is not defined for the associated DMP Template'
+      done_tooltip_html: '<p>Complete your Plan.</p>'
+      submit_for_review_tooltip_html: '<p>Submit your Plan for an Informal Review from your institution.</p>'
 
     details:
       dmp_details: 'DMP Details'
