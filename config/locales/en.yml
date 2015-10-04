@@ -584,6 +584,12 @@ en:
       done_tooltip_html: '<p>Complete your Plan.</p>'
       submit_for_review_tooltip_html: '<p>Submit your Plan for an Informal Review from your institution.</p>'
 
+    change_visibility:
+      visibility_institutional: 'With others from %{institution}'
+      visibility_public: 'Publicly on the web. Your DMP will appear on the Public DMPs page of this site.'
+      visibility_private: 'Private (owners and co-owners only)'
+      visibility_unit: 'Within your institution/sub-institution unit only.'
+
     details:
       dmp_details: 'DMP Details'
       edit_instructions: 'Click on a section below to edit it at any time.'
