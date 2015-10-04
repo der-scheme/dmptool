@@ -2,7 +2,7 @@
   <% I18n.available_locales.each do |locale| %>
     <% locale_name = t('.locale_name', locale: locale, default: locale.to_s) %>
     <li>
-      <% if I18n.locale == locale %>
+      <% if I18n.locale == locale && params[:locale] %>
         <%= content_tag :span, locale_name, class: 'choose_language', title: t('.currently_chosen', default: 'Currently chosen') %>
       <% else %>
         <%= link_to locale_name, {locale: locale}, class: 'choose_language', title: locale_name %>
