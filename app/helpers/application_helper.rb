@@ -241,16 +241,18 @@ module ApplicationHelper
                        **options
   end
 
-  def translate_enum(model, attribute, value)
+  def translate_enum(model, attribute, value = nil)
     model_scope = case model
       when Symbol then model
       else
         if model.respond_to?(:to_model)
-          model.to_model.class.model_name.singular.i18n_key
+          model.to_model.class.model_name.i18n_key
         else
           model.to_s.to_sym
         end
     end
+
+    value ||= model.attributes[attribute.to_s]
 
     translate(value, scope: [:enum, model_scope, attribute])
   end
