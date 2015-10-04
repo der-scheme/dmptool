@@ -230,8 +230,6 @@ en:
       overview: 'Template Overview'
       details: 'Template Details'
     header:
-      locale_name: 'English'
-      currently_chosen: 'Currently chosen'
       dmptool_logo_alt: "DMPTOOL"
       dmptool_logo_title: "DMPTool Home"
       welcome: "Welcome!"
@@ -287,6 +285,10 @@ en:
       contact_title: "Contact Us"
       about_link: "About"
       about_title: "About the California Digital Library Data Management Tool"
+
+    language_switcher:
+      locale_name: 'English'
+      currently_chosen: 'Currently chosen'
 
   static_pages:
     contact:
