@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(function() {
-	$("#submission_deadline.datepicker").datepicker( {
+	$("#plan_submission_deadline.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
 		dateFormat: "mm/dd/yy",
@@ -39,7 +39,7 @@ $(function() {
       close: function() {
         $('#comment_dialog-form').dialog("close");
         $(this).find('form')[0].reset();
-        window.location.reload() 
+        window.location.reload()
       }
 		}).prev ().find(".ui-dialog-titlebar-close").show();
 		return false
@@ -126,7 +126,7 @@ $(function() {
 			draggable: true,
 			resizable: false,
 			title: "Share my DMP",
-			
+
 		 	buttons: {
 				Cancel: function(){
 					//$('#ui-id-1').unwrap();
@@ -139,10 +139,10 @@ $(function() {
 				}
 			},
 			open: function()
-			{   
+			{
 
         $('.ui-widget-overlay').addClass('custom-overlay');
-        
+
         $('#visibility_dialog_form').prev().css('color', '#4C4C4E');
         $('#visibility_dialog_form').prev().css('font-family', 'Helvetica, sans-serif');
         $('#visibility_dialog_form').prev().css('font-size', '12px');
@@ -159,14 +159,14 @@ $(function() {
         $('#visibility_dialog_form').prev().find('button').css('font-size','20');
         $('#visibility_dialog_form').prev().find('button').css('font-color','black');
         $('#visibility_dialog_form').prev().find('button').css('opacity','0.2');
-               
+
     		$(this).parent().find('button:contains("Cancel")').removeClass('ui-corner-all');
     		$(this).parent().find('button:contains("Cancel")').removeClass('ui-widget');
     		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button');
     		$(this).parent().find('button:contains("Cancel")').removeClass('ui-state-default');
     		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button-text-only');
 				$(this).parent().find('button:contains("Cancel")').addClass('btn');
-				
+
 
     		$(this).parent().find('button:contains("Submit")').removeClass('ui-corner-all');
     		$(this).parent().find('button:contains("Submit")').removeClass('ui-widget');
@@ -174,22 +174,22 @@ $(function() {
     		$(this).parent().find('button:contains("Submit")').removeClass('ui-state-default');
     		$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text-only');
 				$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text');
-				$(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');			
+				$(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');
 
 				$('#ui-id-1').parent().removeClass('ui-widget-overlay');
 				$('#ui-id-1').parent().removeClass('ui-widget-header');
 				$('#ui-id-1').parent().removeClass('ui-dialog-title');
 				$('#ui-id-1').parent().addClass('modal-header');
-				
+
 				// $('#ui-id-1').css('font-weight','bold');
 				// $('#ui-id-1').css('font-family', 'Helvetica, sans-serif');
 				// $('#ui-id-1').css('font-size', '12px');
 
-				
+
 				$('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
 
 				$('#visibility_dialog_form').next().removeClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
-				$('#visibility_dialog_form').next().addClass('modal-footer');	
+				$('#visibility_dialog_form').next().addClass('modal-footer');
 
 				$("#visibility_dialog_form").dialog("open");
 				$(".copyright span7").hide();
@@ -198,7 +198,7 @@ $(function() {
       	$('#ui-id-1').first().unwrap();
       	$('#ui-id-1').first().unwrap();
         $('#visibility_dialog_form').dialog("close");
-        
+
         //window.location.reload(true);
       }
 		}).prev ().find(".ui-dialog-titlebar-close").show();
