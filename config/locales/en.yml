@@ -66,11 +66,6 @@ en:
         shib_domain: 'Shibboleth Domain'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
-      sample_plan:
-        id: 'Sample Plan'
-        label: 'Plan Name'
-        requirements_template_id: 'DMP Template'
-        url: 'Plan Url'
       requirements_template:
         active: 'Active'
         end_date: 'End Date'
@@ -94,6 +89,11 @@ en:
         requirements_template_id: 'Associated DMP template'
         resource_id: 'Resource'
         review_type: 'Review Type'
+      sample_plan:
+        id: 'Sample Plan'
+        label: 'Plan Name'
+        requirements_template_id: 'DMP Template'
+        url: 'Plan Url'
       user:
         active: 'Active'
         auth_token: 'My Token'
