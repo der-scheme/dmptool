@@ -66,6 +66,14 @@ en:
         shib_domain: 'Shibboleth Domain'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
+      plan:
+        current_plan_state_id: 'Plan State'   # Guessed (not taken from source)
+        id: 'Plan ID'   # Guessed (not taken from source)
+        name: 'DMP Title'
+        requirements_template_id: 'DMP Template'    # Guessed (not taken from source)
+        solicitation_identifier: 'Proposal Solicitation Number'
+        submission_deadline: 'Proposal Submission Deadline'
+        visibility: 'Visibility'
       requirements_template:
         active: 'Active'
         end_date: 'End Date'
