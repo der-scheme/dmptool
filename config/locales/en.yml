@@ -67,7 +67,7 @@ en:
         url: 'Institution URL'
         url_text: 'Institution URL Text'
       plan:
-        current_plan_state_id: 'Plan State'   # Guessed (not taken from source)
+        current_plan_state_id: 'Current Status'
         id: 'Plan ID'   # Guessed (not taken from source)
         name: 'DMP Title'
         requirements_template_id: 'DMP Template'    # Guessed (not taken from source)
