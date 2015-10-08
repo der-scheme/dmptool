@@ -654,6 +654,14 @@ en:
       submit_plan_link: 'Submit DMP'
       delete_plan_link: 'Delete DMP'
 
+    guidance:
+      box_size: 'box size:'
+      box_size_small: 'small'
+      box_size_medium: 'medium'
+      box_size_full: 'full'
+      guidance: 'Guidance'
+      additional_help: 'Additional help for: %{institution}'
+
     preview:
       title: 'DMP Preview'
       pdf_button: 'Export as PDF'
