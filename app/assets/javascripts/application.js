@@ -106,3 +106,7 @@ translate = function(key, interpolants = {}) {
   return I18n[key].interpolate(interpolants);
 };
 t = translate;
+
+localized_temporal_format = function(temporal = 'datetime', format = 'default') {
+  return t(temporal + '.formats.' + format).replace(/%/g, '');
+};
