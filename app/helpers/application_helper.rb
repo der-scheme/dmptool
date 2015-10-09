@@ -258,25 +258,25 @@ module ApplicationHelper
   end
   alias_method :t_enum, :translate_enum
 
-  def i18n_include_tag(*keys)
-    keys = [
+  def i18n_include_tag(*scopes)
+    scopes = [
       'date.formats', 'time.formats', 'datetime.formats',
-      'globals.messages.prompt', '.'
-    ] if keys.empty?
+      'globals.messages.prompt', '.', 'js.application'
+    ] if scopes.empty?
 
     translations = {}
-    fu = keys.map!(&:to_s).each do |key|
-      scoped_key = scope_key_by_partial(key)
-      I18n.t(scoped_key).each do |k, value|
-        next unless value.is_a?(String)
-
-        if key.first == '.'
-          translations["#{scoped_key}#{k}"] = value
-          translations[".#{k}"] = value
-        else
-          translations["#{scoped_key}.#{k}"] = value
-        end
+    scopes.map!(&:to_s).each do |scope|
+      result = I18n.t(scope_key_by_partial(scope), default: {})
+      if scope.first == '.'
+        result.merge!(I18n.t("js.#{controller_name}#{scope}", default: {}))
       end
+
+      scope.gsub!(/\.\z/, '')
+      result.each do |key, value|
+          next unless value.is_a?(String)
+
+          translations["#{scope}.#{key}"] = value
+        end
     end
 
     javascript_tag <<EOF
