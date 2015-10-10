@@ -668,6 +668,9 @@ en:
       no_owner: '[non specified]'
       no_si: '[not specified]'
 
+    plan_states_history:
+      status_change_html: '<strong>%{user}</strong> set the status to <strong class="blue">%{state}</strong>'
+
     preview:
       title: 'DMP Preview'
       pdf_button: 'Export as PDF'
