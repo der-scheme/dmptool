@@ -664,6 +664,10 @@ en:
       guidance: 'Guidance'
       additional_help: 'Additional help for: %{institution}'
 
+    html_render:
+      no_owner: '[non specified]'
+      no_si: '[not specified]'
+
     preview:
       title: 'DMP Preview'
       pdf_button: 'Export as PDF'

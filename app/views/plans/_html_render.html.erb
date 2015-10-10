@@ -3,46 +3,46 @@
 <table>
 
   <tr>
-    <td><strong>DMP Name:</strong></td>
+    <td><%= content_tag :strong, Plan.human_attribute_name(:name) %></td>
     <td><%= plan.name %></td>
     <td></td>
-    <td></td>   
+    <td></td>
   </tr>
 
   <tr>
-    <td><strong>DMP Template:</strong></td>
+    <td><%= content_tag :strong, Plan.human_attribute_name(:requirements_template_id) %></td>
     <% unless plan.requirements_template.nil? %>
       <td><%= plan.requirements_template.name %></td>
     <% else %>
        <td></td>
     <% end %>
-    <td><strong>Last Modified Date:</strong></td>
-    <td><%= plan.updated_at.strftime("%B %d, %Y")%></td> 
+    <td><%= content_tag :strong, Plan.human_attribute_name(:updated_at) %></td>
+    <td><%= l(plan.updated_at.to_date, format: :long) %></td>
   </tr>
 
   <tr>
-    <td><strong>Owner:</strong></td>
-    <td><%= plan.owner.full_name || "[non specified]" %></td>
+    <td><%= content_tag :strong, Plan.human_attribute_name(:owner) %></td>
+    <td><%= plan.owner.full_name || t('.no_owner') %></td>
     <td><strong>Co-owner[s]:</strong></td>
 
     <td>
       <%if @coowners%>
         <%= @coowners.map { |coowner| coowner.full_name.to_s }.join(", ") %>
       <%end%>
-    </td>   
+    </td>
   </tr>
 
   <tr>
-  <td><strong>Institution:</strong></td>
+  <td><%= content_tag :strong, User.human_attribute_name(:institution_id) %></td>
     <% unless plan.owner.nil? %>
       <td><%= plan.owner.institution.name %></td>
     <% else %>
        <td></td>
     <% end %>
-  <td><strong>Solicitation Number:</strong></td>
+  <td><%= content_tag :strong, Plan.human_attribute_name(:solicitation_identifier) %></td>
   <td>
-    <%= plan.solicitation_identifier || "[not specified]" %>
-  </td>  
+    <%= plan.solicitation_identifier || t('.no_si') %>
+  </td>
   </tr>
 
 </table>
