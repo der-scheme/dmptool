@@ -23,6 +23,7 @@ en:
   date:
     formats:
       default: '%m/%d/%Y'
+      long: '%B %d, %Y'
   time:
     formats:
       default: '%m/%d/%Y %I:%M %p'
@@ -70,9 +71,10 @@ en:
         current_plan_state_id: 'Current Status'
         id: 'Plan ID'   # Guessed (not taken from source)
         name: 'DMP Title'
-        requirements_template_id: 'DMP Template'    # Guessed (not taken from source)
-        solicitation_identifier: 'Proposal Solicitation Number'
-        submission_deadline: 'Proposal Submission Deadline'
+        owner: 'Owner'
+        requirements_template_id: 'DMP Template'
+        solicitation_identifier: 'Solicitation Number'
+        submission_deadline: 'Submission Deadline'
         visibility: 'Visibility'
       requirements_template:
         active: 'Active'
