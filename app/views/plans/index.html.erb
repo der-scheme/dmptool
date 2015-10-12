@@ -27,24 +27,22 @@
   <thead>
     <tr>
       <th>
-        <%#= link_to "Name", {order_scope: "Name", scope: @scope, all_scope: @all_scope}%>
-        <%= sortable "name"%>
+        <%= sortable :name %>
       </th>
       <th class="span3">
-        <%#= link_to "Owner", {order_scope: "Owner", scope: @scope, all_scope: @all_scope}%>
-        <%= sortable "owner"%>
+        <%= sortable :owner %>
       </th>
       <th>
-        <%= sortable "status"%>
+        <%= sortable :current_plan_state_id %>
       </th>
       <th>
-        <%= sortable "visibility" %>
+        <%= sortable :visibility %>
         <%= render partial: 'plans_table_visibility_tooltip' %>
       </th>
 
 
       <th>
-        <%= sortable "last_modification_date", "Last Modification Date" %>
+        <%= sortable :updated_at %>
       </th>
     </tr>
   </thead>

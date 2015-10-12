@@ -56,21 +56,13 @@ class PlansController < ApplicationController
         @plans = @plans.reviewed
     end
 
-    case @order_scope
-      when "name"
-        @plans = @plans.order('name'+ " " + @direction)
-      when "owner"
-        @plans = @plans.joins(:current_state, :users).
-                  order('users.first_name'+ " " + @direction , 'users.last_name'+ " " + @direction)
-      when "status"
-        @plans = @plans.joins(:current_state).order('CONVERT(plan_states.state USING utf8)' + " " + @direction)
-      when "visibility"
-        @plans = @plans.order('visibility'+ " " + @direction)
-      when "last_modification_date"
-        @plans = @plans.order('updated_at'+ " " + @direction)
-      else
-        @plans = @plans.order(updated_at: :desc)
+    sortable :name, default: true
+    sortable :owner do |collection|
+      collection.joins(:current_state, :users)
+          .order("users.first_name #{@direction}", "users.last_name #{@direction}")
     end
+    sortable :current_plan_state_id, nested: :state
+    sortable :updated_at
 
     case @all_scope
       when "all"
@@ -248,7 +240,7 @@ class PlansController < ApplicationController
       user_plans.delete_all
       plan_states.delete_all
       @plan.destroy
-      redirect_to plans_url(order_scope: params[:order_scope], scope: params[:scope], all_scope: params[:all_scope], 
+      redirect_to plans_url(order_scope: params[:order_scope], scope: params[:scope], all_scope: params[:all_scope],
                         direction: params[:direction]), notice: "The plan has been successfully deleted."
     end
   end
@@ -256,7 +248,7 @@ class PlansController < ApplicationController
   def template_information
     public_plans_ids = Plan.public_visibility.ids
     current_user_plan_ids = UserPlan.where(user_id: @user.id).pluck(:plan_id)
-    
+
     institutionally_visible_plans_ids  = Plan.joins(:users)
           .where(users: {institution_id: @user.institution.root.subtree_ids})
           .institutional_visibility.pluck(:id)
@@ -264,7 +256,7 @@ class PlansController < ApplicationController
     unit_visible_plans_ids = Plan.joins(:users)
           .where(users: {institution_id: @user.institution.subtree_ids})
           .unit_visibility.pluck(:id)
-    
+
     plans = (current_user_plan_ids + public_plans_ids + institutionally_visible_plans_ids + unit_visible_plans_ids).uniq
     @plans = Plan.where(id: plans)
     @plans = Kaminari.paginate_array(@plans).page(params[:page]).per(5)
@@ -296,14 +288,14 @@ class PlansController < ApplicationController
       @plans = Plan.plans_per_institution(Institution.all.ids)
 
     elsif user_role_in?(:institutional_reviewer, :institutional_admin)
-      
+
       institutions = Institution.find(@user.institution_id).subtree_ids
       @submitted_plans = Plan.plans_to_be_reviewed(institutions)
       @approved_plans = Plan.plans_approved(institutions)
       @rejected_plans = Plan.plans_rejected(institutions)
       @reviewed_plans = Plan.plans_reviewed(institutions)
       @plans = Plan.plans_per_institution(institutions)
-      
+
     end
 
     review_count
@@ -469,10 +461,10 @@ class PlansController < ApplicationController
           .where("user_plans.owner = 1").where(visibility: :unit)
 
     @show_institution = false
-    
+
     if current_user
 
-      (user_role_in?(:dmp_admin) || current_user.institution.has_children? || current_user.institution.parent ) ? @show_institution = true : @show_institution = false   
+      (user_role_in?(:dmp_admin) || current_user.institution.has_children? || current_user.institution.parent ) ? @show_institution = true : @show_institution = false
 
       #show institutional for my institution
       @inst_plans_ids = @inst_plans.where("users.institution_id IN (?)", current_user.institution.root.subtree_ids).pluck(:id)
@@ -485,14 +477,14 @@ class PlansController < ApplicationController
          @inst_plans = Plan.where(id: [@unit_plans_ids])
       elsif @inst_plans_ids == [] && @unit_plans_ids == []
          @inst_plans = nil
-      else 
+      else
         @inst_plans = Plan.where(id: [@inst_plans_ids, @unit_plans_ids])
-      end  
-         
+      end
+
     else
       @inst_plans = nil
     end
-    
+
     @plans = multitable(@plans, public_params)
     # if @inst_plans
       @inst_plans = multitable(@inst_plans, inst_params)
@@ -573,9 +565,9 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :requirements_template_id, :solicitation_identifier, :submission_deadline, 
-                                  :visibility, :current_plan_state_id, :current_user_id, :original_plan_id, 
-                                  responses_attributes: [:id, :plan_id, :requirement_id, :text_value, :numeric_value, 
+      params.require(:plan).permit(:name, :requirements_template_id, :solicitation_identifier, :submission_deadline,
+                                  :visibility, :current_plan_state_id, :current_user_id, :original_plan_id,
+                                  responses_attributes: [:id, :plan_id, :requirement_id, :text_value, :numeric_value,
                                     :date_value, :enumeration_id, :lock_version, :label_id])
     end
 
@@ -683,14 +675,14 @@ class PlansController < ApplicationController
 
     def check_read_only_plan_access
       @plan = Plan.find(params[:id])
-      if current_user 
+      if current_user
         unless user_role_in?(:dmp_admin)
           case @plan.visibility
-          when :private 
+          when :private
             redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user == @plan.owner || @plan.coowners.include?(current_user)
           when :institutional
             redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.root.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
-          when :unit 
+          when :unit
             redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
           else #this plan is public
             #do nothing
@@ -700,7 +692,7 @@ class PlansController < ApplicationController
         unless @plan.visibility == :public
           flash[:error] = "You don't have access to this content."
           redirect_to root_url
-        end 
+        end
       end
     end
 
@@ -715,7 +707,7 @@ class PlansController < ApplicationController
 
         case subparams['order_scope']
         when "plan"
-          collection = collection.order(name: :asc) 
+          collection = collection.order(name: :asc)
         when "template"
           collection = collection.joins(:requirements_template).order('requirements_templates.name ASC')
         when "institution"
@@ -726,7 +718,7 @@ class PlansController < ApplicationController
          collection = collection.order(visibility: :desc)
         else
           collection = collection.order(name: :asc)
-        end             
+        end
 
       end
 
