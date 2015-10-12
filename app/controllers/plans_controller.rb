@@ -36,9 +36,6 @@ class PlansController < ApplicationController
     @scope = params[:scope] || ""
     @all_scope = params[:all_scope] || ""
 
-    #to avoid sql injection
-    @direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-
     case @scope
       when "owned"
         @plans = @owned_plans
