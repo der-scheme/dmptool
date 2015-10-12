@@ -6,6 +6,10 @@ end
   en: {
     activerecord: {
       models: {
+        comment: lambda do |_, count: nil, unit: true, **options|
+          name = count == 1 ? 'Comment' : 'Comments'
+          unit ? "#{count} #{name}" : name
+        end,
         institution: lambda do |_, count: nil, unit: true, **options|
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
