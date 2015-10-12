@@ -213,6 +213,7 @@ en:
       done: 'Done'
       view_less: 'View Less'
       view_all: 'View All'
+      previous_page: 'Previous Page'
     search:
       search_label: 'Search'
       search_button: 'Search'
@@ -958,8 +959,6 @@ en:
     unlink_resource_from_customization:
       success_notice: 'The resource was successfully unlinked.'
 
-    dmp_for_customization:
-      back_text: 'Previous page'
 
   users:
     create:

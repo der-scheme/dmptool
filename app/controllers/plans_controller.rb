@@ -357,7 +357,7 @@ class PlansController < ApplicationController
     process_requirements_template(req_temp)
 
     @back_to = plan_template_information_path
-    @back_text = "<< Back"
+    @back_text = '.arrow_back'
     @submit_to = new_plan_path
   end
 

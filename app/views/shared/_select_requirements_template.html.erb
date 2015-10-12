@@ -60,7 +60,7 @@
         </ul>
       </div>
     </div>
-    <%= link_to(@back_text, @back_to, method: :get, :class => "btn pull-left") %>
+    <%= render_button_link t: @back_text, href: @back_to, class: 'pull-left' %>
     <%= submit_tag("Next >>", id: 'next', method: :get , :class => "btn pull-right") %>
   <% end %>
 

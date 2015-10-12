@@ -362,7 +362,7 @@ class ResourceContextsController < ApplicationController
     process_requirements_template(req_temp)
 
     @back_to = resource_contexts_path
-    @back_text = t('.back_text')
+    @back_text = '.previous_page'
     @submit_to = new_resource_context_path
   end
 
