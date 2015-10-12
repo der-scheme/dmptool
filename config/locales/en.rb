@@ -39,6 +39,16 @@ end
         parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
     },
+    plans: {
+      create: {
+        no_such_users_error: ->(_, count: nil, users: nil) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+      },
+      update: {
+        no_such_users_error: ->(_, count: nil, users: nil) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+      }
+    },
     resource_contexts: {
       customization_resources_list: {
         resources_customized_for:

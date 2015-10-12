@@ -188,6 +188,13 @@ en:
         unit: 'Unit'
         owner: 'Owner'
         reviewer: 'Reviewer'
+  helpers:
+    controller:
+      plan:
+        not_found_error: 'The Plan you were looking for does not exist.'
+        not_allowed_error: "You don't have access to this content."
+        not_authorized_error: 'You need to be logged in.'
+        no_plan_selected_error: 'Please select an existing Plan to copy.'
   js:
     application:
   shared:
@@ -596,6 +603,11 @@ en:
       institutional_resources: '%{institution} Resources'
       customized_for_institution_resources: '%{template} for %{institution} Resources'
 
+    create:
+      # Also find some translations in en.rb
+      cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
+      success_notice: 'Plan was successfully created.'
+
     back_submit_buttons:
       submit_for_review_button: 'Submit for Review'
       review_not_defined: 'Review Process is not defined for the associated DMP Template'
@@ -607,6 +619,13 @@ en:
       visibility_public: 'Publicly on the web. Your DMP will appear on the Public DMPs page of this site.'
       visibility_private: 'Private (owners and co-owners only)'
       visibility_unit: 'Within your institution/sub-institution unit only.'
+
+    delete_coowner:
+      success_notice: 'The selected Coowner associated with the Plan has been deleted successfully'
+
+    destroy:
+      coowner_not_privileged_error: 'A Co-Owner cannot delete a Plan.'
+      success_notice: 'The plan has been successfully deleted.'
 
     details:
       dmp_details: 'DMP Details'
@@ -620,6 +639,7 @@ en:
       example_response: 'Example Response'
       mandatory: '(Mandatory)'
       preview_button: 'DMP Preview >>'
+      missing_requirements_error: 'The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement. "%{template}" needs to be fixed before you may continue customizing it.'
 
     example_response:
       box_size: 'box size:'
@@ -742,6 +762,11 @@ en:
     public_dmps:
       description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
       view_all_button: "View All"
+
+    update:
+      # Also find some translations in en.rb
+      cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
+      success_notice: 'Plan was successfully updated.'
 
   requirements_templates:
     form:

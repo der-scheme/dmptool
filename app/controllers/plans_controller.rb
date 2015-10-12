@@ -117,9 +117,9 @@ class PlansController < ApplicationController
           UserPlan.create!(user_id: @user.id, plan_id: @plan.id, owner: true)
           PlanState.create!(plan_id: @plan.id, state: :new, user_id: @user.id )
           add_coowner_autocomplete
-          @invalid_users.count > 1 ? @notice_1 = "Could not find the following users #{@invalid_users.join(', ')}." : @notice_1 = "Could not find the following user #{@invalid_users.join(', ')}."
-          @existing_coowners.count > 1 ? @notice_2 = "The users chosen #{@existing_coowners.join(', ')} are already #{@item_description}s of this Plan." : @notice_2 = "The user chosen #{@existing_coowners.join(', ')} is already a #{@item_description} of this Plan."
-          @notice_3 = "The user chosen #{@owner[0].to_s} is the owner of the Plan. An owner cannot be #{@item_description} for the same plan."
+          @notice_1 = t('.no_such_users_error', count: @invalid_users.count, users: @invalid_users)
+          @notice_2 = t('.users_already_assigned_error', count: @existing_coowners.count, users: @existing_coowners, description: @item_description)
+          @notice_3 = t('.cant_reassign_owner_error', owner: @owner[0], description: @item_description)
           if !@invalid_users.empty? && !@existing_coowners.empty? && !@owner.empty?
             format.html { flash[:error] << @notice_1 << @notice_2 << @notice_3
                   redirect_to details_plan_path(@plan)}
@@ -142,8 +142,10 @@ class PlansController < ApplicationController
             format.html { flash[:error] << @notice_3
                   redirect_to details_plan_path(@plan)}
           else
-          format.html { flash[:notice] = "Plan was successfully created."
-                  redirect_to details_plan_path(@plan)}
+          format.html do
+            flash[:notice] = t('.success_notice')
+            redirect_to details_plan_path(@plan)
+          end
           format.json { head :no_content }
           end
         else
@@ -172,9 +174,9 @@ class PlansController < ApplicationController
     set_comments
     coowners
     add_coowner_autocomplete
-    @invalid_users.count > 1 ? @notice_1 = "Could not find the following users #{@invalid_users.join(', ')}." : @notice_1 = "Could not find the following user #{@invalid_users.join(', ')}."
-    @existing_coowners.count > 1 ? @notice_2 = "The users chosen #{@existing_coowners.join(', ')} are already #{@item_description}s of this Plan." : @notice_2 = "The user chosen #{@existing_coowners.join(', ')} is already a #{@item_description} of this Plan."
-    @notice_3 = "The user chosen #{@owner[0].to_s} is the owner of the Plan. An owner cannot be #{@item_description} for the same plan."
+    @notice_1 = t('.no_such_users_error', count: @invalid_users.count, users: @invalid_users)
+    @notice_2 = t('.users_already_assigned_error', count: @existing_coowners.count, users: @existing_coowners, description: @item_description)
+    @notice_3 = t('.cant_reassign_owner_error', owner: @owner[0], description: @item_description)
     respond_to do |format|
       if !@invalid_users.empty? && !@existing_coowners.empty? && !@owner.empty?
         format.html { flash[:error] << @notice_1 << @notice_2 << @notice_3
@@ -200,8 +202,10 @@ class PlansController < ApplicationController
       else
         if params[:save_changes] || !params[:save_and_dmp_details]
           if @plan.update(plan_params)
-            format.html { flash[:notice] = "Plan was successfully updated."
-                    redirect_to edit_plan_path(@plan)}
+            format.html do
+              flash[:notice] = t('.success_notice')
+              redirect_to edit_plan_path(@plan)
+            end
             format.json { head :no_content }
           else
             add_coowner_autocomplete
@@ -229,7 +233,7 @@ class PlansController < ApplicationController
   def destroy
     user_plan_ids  = UserPlan.where(plan_id: @plan.id, owner: false).pluck(:user_id)
     if user_plan_ids.include?(@user.id) && !user_role_in?(:dmp_admin, :institutional_admin)
-      flash[:error] =  "A Co-Owner cannot delete a Plan."
+      flash[:error] =  t('.coowner_not_privileged_error')
       redirect_to :back
     else
       user_plans = UserPlan.where(plan_id: @plan.id)
@@ -238,7 +242,7 @@ class PlansController < ApplicationController
       plan_states.delete_all
       @plan.destroy
       redirect_to plans_url(order_scope: params[:order_scope], scope: params[:scope], all_scope: params[:all_scope],
-                        direction: params[:direction]), notice: "The plan has been successfully deleted."
+                            direction: params[:direction]), notice: t('.success_notice')
     end
   end
 
@@ -368,7 +372,7 @@ class PlansController < ApplicationController
         requirement = @requirements_template.first_question
         last_requirement = @requirements_template.last_question
         if requirement.nil?
-          flash[:error] =  "The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement. \"#{@requirements_template.name}\" needs to be fixed before you may continue customizing it."
+          flash[:error] =  t('.missing_requirements_error', template: @requirements_template.name)
           redirect_to resource_contexts_path  and return
         end
         params[:requirement_id] = requirement.id.to_s
@@ -542,7 +546,7 @@ class PlansController < ApplicationController
       user_plan = UserPlan.where(user_id: @coowner.id, plan_id: @plan.id, owner: false).last
       user_plan.destroy
       respond_to do |format|
-        format.html { redirect_to edit_plan_path(@plan), notice: "The selected Coowner associated with the Plan has been deleted successfully" }
+        format.html { redirect_to edit_plan_path(@plan), notice: t('.success_notice') }
         format.json { head :no_content }
       end
     end
@@ -555,7 +559,7 @@ class PlansController < ApplicationController
       begin
         @plan = Plan.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to plans_path, error: "The Plan you were looking for does not exist."
+        redirect_to plans_path, error: t('helpers.controller.plan.not_found_error')
         return
       end
     end
@@ -642,11 +646,11 @@ class PlansController < ApplicationController
         @plan = Plan.find(params[:id])
         user_plans = UserPlan.where(user_id: @user.id, plan_id: @plan.id)
         unless !user_plans.empty?
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to plans_path # halts request cycle
         end
       else
-        flash[:error] = "You need to be logged in."
+        flash[:error] = t('helpers.controller.plan.not_authorized_error')
         redirect_to root_url
       end
     end
@@ -654,7 +658,7 @@ class PlansController < ApplicationController
     def check_copy_plan_access
     ## This params is from Copy Existing Template action
       if params[:plan] == "" || params[:plan].nil?
-        flash[:error] = "Please select an existing Plan to copy."
+        flash[:error] = t('helpers.controller.plan.no_plan_selected_error')
         redirect_to plans_path
       else
         @copy_plan = Plan.find(params[:plan])
@@ -663,7 +667,7 @@ class PlansController < ApplicationController
         public_plans = Plan.public_visibility
         copy_plans = user_plans + institutionally_visible_plans + public_plans
         unless !copy_plans.empty?
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to plans_path # halts request cycle
         end
       end
@@ -676,18 +680,18 @@ class PlansController < ApplicationController
         unless user_role_in?(:dmp_admin)
           case @plan.visibility
           when :private
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user == @plan.owner || @plan.coowners.include?(current_user)
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user == @plan.owner || @plan.coowners.include?(current_user)
           when :institutional
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.root.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user.institution.root.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
           when :unit
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user.institution.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
           else #this plan is public
             #do nothing
           end
         end
       else #(=> user is not logged in)
         unless @plan.visibility == :public
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to root_url
         end
       end
