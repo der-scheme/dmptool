@@ -668,6 +668,27 @@ en:
       no_owner: '[non specified]'
       no_si: '[not specified]'
 
+    index:
+      title: 'My DMPs'
+      filter_all_link: 'All (%{count})'
+      filter_owned_link: 'Owned (%{count})'
+      filter_coowned_link: 'Co-owned (%{count})'
+      filter_approved_link: 'Approved (%{count})'
+      filter_submitted_link: 'Submitted (%{count})'
+      filter_committed_link: 'Completed (%{count})'
+      filter_rejected_link: 'Rejected (%{count})'
+      filter_reviewed_link: 'Reviewed (%{count})'
+      filter_tooltip_html: '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned: DMPs that you have created.</li><li>Co-owned: DMPs for which others have designated you as a co-owner.</li><li>Approved: Your DMP has been approved by your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Submitted: Your DMP has been submitted for review to your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Completed: After clicking Done on the DMP Preview screen, your plan will marked Completed.</li><li>Rejected. Your DMP has been rejected by your institutional administrator (only applies if your institution has enabled the “Review” functionality.)</li><li>Reviewed: Your DMP which was submitted for Informal review and has been reviewed by the Institutional Reviewer.</li></ul>'
+      overview_link: 'Overview'
+      details_link: 'Details'
+      share_link: 'Share'
+      preview_link: 'Preview'
+      copy_link: 'Copy'
+      export_pdf_link: 'Export as PDF'
+      export_docx_link: 'Export as DOCX'
+      delete_link: 'Delete'
+      new_plan_button: 'Create New DMP'
+
     plan_states_history:
       status_change_html: '<strong>%{user}</strong> set the status to <strong class="blue">%{state}</strong>'
 

@@ -1,0 +1,14 @@
+<%# As this was not easy to i13e in a clean way, it got moved into its own
+    partial. %>
+
+<% if current_user && (current_user.institution.has_children? || current_user.institution.parent) %>
+  <%= content_tag :span, '',
+                  title: "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the #{link_to 'Public DMPs', public_dmps_path} page of this site.</li></ul>",
+                  data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                  class: 'icon questionmark tip' %>
+<% else %>
+  <%= content_tag :span, '',
+                  title: "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the #{link_to 'Public DMPs', public_dmps_path} page of this site.</li></ul>",
+                  data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                  class: 'icon questionmark tip' %>
+<% end %>
