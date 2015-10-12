@@ -286,11 +286,21 @@ class ApplicationController < ActionController::Base
     def model_association(model, attribute)
       assoc = model.reflect_on_association(attribute.to_sym)
       assoc ||= model.reflect_on_all_associations.find do |association|
-        association.options[:foreign_key] &&
-          association.options[:foreign_key].to_sym == attribute.to_sym
+        case association.macro
+        when :has_one
+          association.options[:primary_key] &&
+            association.options[:primary_key].to_sym == attribute.to_sym
+        else
+          association.options[:foreign_key] &&
+            association.options[:foreign_key].to_sym == attribute.to_sym
+        end
       end
       assoc ||= model.reflect_on_association(attribute.to_s.gsub(/_id\z/, '').to_sym)
 
-      return assoc.name, assoc.plural_name if assoc
+      if assoc
+        return assoc.name, assoc.options[:class_name].constantize.model_name.plural if
+          assoc.options[:class_name]
+        return assoc.name, assoc.plural_name
+      end
     end
   end
