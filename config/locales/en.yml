@@ -188,6 +188,8 @@ en:
         unit: 'Unit'
         owner: 'Owner'
         reviewer: 'Reviewer'
+  js:
+    application:
   shared:
     submit_button:
       submit: 'Submit'

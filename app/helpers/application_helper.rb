@@ -257,4 +257,34 @@ module ApplicationHelper
     translate(value, scope: [:enum, model_scope, attribute])
   end
   alias_method :t_enum, :translate_enum
+
+  def i18n_include_tag(*scopes)
+    scopes = [
+      'date.formats', 'time.formats', 'datetime.formats',
+      'globals.messages.prompt', '.', 'js.application'
+    ] if scopes.empty?
+
+    translations = {}
+    scopes.map!(&:to_s).each do |scope|
+      result = I18n.t(scope_key_by_partial(scope), default: {})
+      if scope.first == '.'
+        result.merge!(I18n.t("js.#{controller_name}#{scope}", default: {}))
+      end
+
+      scope.gsub!(/\.\z/, '')
+      result.each do |key, value|
+          next unless value.is_a?(String)
+
+          translations["#{scope}.#{key}"] = value
+        end
+    end
+
+    javascript_tag <<EOF
+      I18n = (typeof x === 'undefined') ? {} : I18n;
+      {
+        var translations = #{translations.to_json.html_safe};
+        for (var key in translations) { I18n[key] = translations[key]; }
+      }
+EOF
+  end
 end
