@@ -1,4 +1,4 @@
-def i18n_join(array)
+def i18n_join_en(array)
   array.join(', ').gsub(/(.*),(.*)/, '\1 or\2')
 end
 
@@ -34,9 +34,9 @@ end
     },
     institutions: {
       form: {
-        shib_entity_id_tooltip: "Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact #{i18n_join(APP_CONFIG['feedback_email_to'])} with any questions.",
-        shib_domain_id_tooltip: "This can only be edited by the DMPTool Administrator. Contact #{i18n_join APP_CONFIG['feedback_email_to']} with any questions.",
-        parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join(APP_CONFIG['feedback_email_to'])}."
+        shib_entity_id_tooltip: "Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])} with any questions.",
+        shib_domain_id_tooltip: "This can only be edited by the DMPTool Administrator. Contact #{i18n_join_en APP_CONFIG['feedback_email_to']} with any questions.",
+        parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
     },
     resource_contexts: {
@@ -70,7 +70,7 @@ end
     },
     users: {
       create: {
-        ldap_error: "There were problems adding this user to the LDAP directory. Please contact #{i18n_join(APP_CONFIG['feedback_email_to'])}."
+        ldap_error: "There were problems adding this user to the LDAP directory. Please contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
     }
   }
