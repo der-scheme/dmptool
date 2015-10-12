@@ -691,6 +691,17 @@ en:
       delete_link: 'Delete'
       new_plan_button: 'Create New DMP'
 
+    perform_review:
+      title: 'Review DMPs'
+      perform_review: 'Perform Review'
+      no_comments: 'There are currently no comments.'
+      add_comment_button: 'Add Comments'
+      review_decision: 'Review Decision:'
+      plan_state_html: '<strong>The Plan is set to <span class ="blue">%</span> state.</strong>'
+      approve_button: 'Approve'
+      reject_button: 'Reject'
+      reviewed_button: 'Plan Reviewed'
+
     plan_states_history:
       status_change_html: '<strong>%{user}</strong> set the status to <strong class="blue">%{state}</strong>'
 
