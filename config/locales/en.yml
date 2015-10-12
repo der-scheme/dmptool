@@ -761,7 +761,6 @@ en:
 
     public_dmps:
       description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
-      view_all_button: "View All"
 
     update:
       # Also find some translations in en.rb
