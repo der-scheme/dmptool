@@ -364,7 +364,6 @@ class ResourceContextsController < ApplicationController
     @back_to = resource_contexts_path
     @back_text = t('.back_text')
     @submit_to = new_resource_context_path
-    @submit_text = t('.submit_text')
   end
 
 

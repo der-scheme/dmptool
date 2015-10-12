@@ -359,8 +359,6 @@ class PlansController < ApplicationController
     @back_to = plan_template_information_path
     @back_text = "<< Back"
     @submit_to = new_plan_path
-    @submit_text = "Next >>"
-
   end
 
   def details
