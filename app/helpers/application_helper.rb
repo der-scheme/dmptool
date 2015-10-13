@@ -229,7 +229,7 @@ module ApplicationHelper
     options[:class].concat(" view#{s.upcase}-#{e.upcase}")
 
     render_button_link t: '.filter', tparams: {s: s, e: e},
-                       href: params.merge(url_options).merge(s: s, e: e),
+                       href: filter_params.merge(url_options).merge(s: s, e: e),
                        **options
   end
 
