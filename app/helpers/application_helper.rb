@@ -152,14 +152,6 @@ module ApplicationHelper
   end
 
   ##
-  # Return the #params, purged from those we don't want in there (like the
-  # ones inserted by ajax calls).
-
-  def filter_params
-    params.reject {|k, v| k == 'authenticity_token' || k == '_method'}
-  end
-
-  ##
   # Proxies #render_submit_button and overwrites the translation parameter with
   # <code>'.save'</code>.
 
@@ -237,7 +229,7 @@ module ApplicationHelper
     options[:class].concat(" view#{s.upcase}-#{e.upcase}")
 
     render_button_link t: '.filter', tparams: {s: s, e: e},
-                       href: filter_params.merge(url_options).merge(s: s, e: e),
+                       href: params.merge(url_options).merge(s: s, e: e),
                        **options
   end
 
