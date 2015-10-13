@@ -279,4 +279,12 @@ module ApplicationHelper
       }
 EOF
   end
+
+  ##
+  # Return the #params, purged from those we don't want in there (like the
+  # ones inserted by ajax calls).
+
+  def filter_params
+    params.reject {|k, v| k == 'authenticity_token' || k == '_method'}
+  end
 end
