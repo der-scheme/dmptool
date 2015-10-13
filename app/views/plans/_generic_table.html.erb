@@ -11,17 +11,17 @@
   <thead>
 
     <tr>
-      <th class="span5"><%= link_to "Plan Title", params.merge({"#{namespace}:order_scope" => "plan"}) %></th>
-      <th class="span5"><%= link_to "Funder Template", params.merge({"#{namespace}:order_scope" => "template"}) %></th>
-      
+      <th class="span5"><%= link_to "Plan Title", filter_params.merge({"#{namespace}:order_scope" => "plan"}) %></th>
+      <th class="span5"><%= link_to "Funder Template", filter_params.merge({"#{namespace}:order_scope" => "template"}) %></th>
+
       <% if show_institution %>
-        <th class="span5"><%= link_to "Institution", params.merge({"#{namespace}:order_scope" => "institution"}) %></th>
+        <th class="span5"><%= link_to "Institution", filter_params.merge({"#{namespace}:order_scope" => "institution"}) %></th>
       <% end %>
-      <th class="span5"><%= link_to "Owner", params.merge({"#{namespace}:order_scope" => "owner"}) %></th>
+      <th class="span5"><%= link_to "Owner", filter_params.merge({"#{namespace}:order_scope" => "owner"}) %></th>
       <th>Download</th>
       <%if namespace == "institutional" %>
-         
-       <th> <%= link_to "Visibility", params.merge({"#{namespace}:order_scope" => "visibility"}) %></th>
+
+       <th> <%= link_to "Visibility", filter_params.merge({"#{namespace}:order_scope" => "visibility"}) %></th>
       <%end%>
     </tr>
 
@@ -62,13 +62,13 @@
 
   <% if params["#{namespace}:all_scope"] == "all" %>
     <div class="buttons pagination">
-      <%= link_to "View Less", params.merge({"#{namespace}:all_scope" => "less"}),
+      <%= link_to "View Less", filter_params.merge({"#{namespace}:all_scope" => "less"}),
                   { :class => "btn" } %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
   <% else %>
     <div class="buttons pagination">
-      <%= link_to "View All", params.merge({"#{namespace}:all_scope" => "all"}),
+      <%= link_to "View All", filter_params.merge({"#{namespace}:all_scope" => "all"}),
                   { :class => "btn", :id => "#{namespace}_view_all_plans" } %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
