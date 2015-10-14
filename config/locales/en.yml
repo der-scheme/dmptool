@@ -718,7 +718,7 @@ en:
       no_comments: 'There are currently no comments.'
       add_comment_button: 'Add Comments'
       review_decision: 'Review Decision:'
-      plan_state_html: '<strong>The Plan is set to <span class ="blue">%</span> state.</strong>'
+      plan_state_html: '<strong>The Plan is set to <span class ="blue">%{state}</span> state.</strong>'
       approve_button: 'Approve'
       reject_button: 'Reject'
       reviewed_button: 'Plan Reviewed'
