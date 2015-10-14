@@ -762,6 +762,10 @@ en:
     public_dmps:
       description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
 
+    reject_with_comments:
+      value_placeholder: 'Add a Comment'
+      reject_button: 'Reject'
+
     update:
       # Also find some translations in en.rb
       cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
