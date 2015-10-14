@@ -3,8 +3,8 @@
     ApplicationHelper class. %>
 <% tparams ||= {} %>
 <% content ||= t(tid, **tparams) %>
-<% attributes ||= {} %>
+<% attributes = attributes.merge(attributes || {}) %>
 <% attributes[:class] ||= '' %>
 <% attributes[:class].concat ' btn' %>
 
-<%= link_to content, href, method: :get, role: 'button', **attributes %>
+<%= link_to content, href, **attributes %>
