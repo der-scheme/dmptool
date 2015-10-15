@@ -766,6 +766,17 @@ en:
       value_placeholder: 'Add a Comment'
       reject_button: 'Reject'
 
+    review_dmps:
+      title: 'Review DMPs'
+      filter_all_link: 'All (%{count})'
+      filter_submitted_link: 'Pending My Review (%{count})'
+      filter_approved_link: 'Approved (%{count})'
+      filter_rejected_link: 'Rejected (%{count})'
+      filter_reviewed_link: 'Reviewed (%{count})'
+      submission_date_tooltip: 'Date the DMP was submitted for review by the plan owner.'
+      review_plan: 'Review DMP'
+      submission_date: 'Submission Date'
+
     update:
       # Also find some translations in en.rb
       cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'

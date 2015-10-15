@@ -318,18 +318,13 @@ class PlansController < ApplicationController
         @plans
     end
 
-    case @order_scope
-      when "DMPName"
-        @plans = @plans.order(name: :asc)
-      when "Owner"
-        @plans = @plans.order_by_owner
-      when "SubmissionDate"
-        @plans = @plans.order(updated_at: :desc)
-      when "Status"
-        @plans = @plans.order_by_current_state
-      else
-        @plans = @plans.order(name: :asc)
+    sortable :name, :default
+    sortable :owner do |collection|
+      collection.joins(:current_state, :users)
+          .order("users.first_name #{@direction}", "users.last_name #{@direction}")
     end
+    sortable :updated_at
+    sortable :current_plan_state_id, nested: :state
 
     case @all_scope
       when "all"
