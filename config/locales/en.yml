@@ -679,6 +679,16 @@ en:
       submit_plan_link: 'Submit DMP'
       delete_plan_link: 'Delete DMP'
 
+    generic_table:
+      plan_title_link: 'Plan Title'
+      funder_template_link: 'Funder Template'
+      institution_link: 'Institution'
+      owner_link: 'Owner'
+      download: 'Download'
+      visibility_link: 'Visibility'
+      button_view_less: 'View Less'
+      button_view_all: 'View All'
+
     guidance:
       box_size: 'box size:'
       box_size_small: 'small'
@@ -741,6 +751,9 @@ en:
       description_html: "<p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>"
       institutional_dmps: "Institutional DMPs"
 
+    public_dmps:
+      description_html: '<p>List of sample data management plans provided by DMPTool users.</p>'
+
     public_dmps_no_result:
       plan_title_link: "Plan Title"
       funder_template_link: "Funder Template"
@@ -748,19 +761,6 @@ en:
       owner_link: "Owner"
       download: "Download"
       no_results: "No results found"
-
-    generic_table:
-      plan_title_link: "Plan Title"
-      funder_template_link: "Funder Template"
-      institution_link: "Institution"
-      owner_link: "Owner"
-      download: "Download"
-      visibility_link: "Visibility"
-      button_view_less: "View Less"
-      button_view_all: "View All"
-
-    public_dmps:
-      description_html: "<p>List of sample data management plans provided by DMPTool users.</p>"
 
     reject_with_comments:
       value_placeholder: 'Add a Comment'
