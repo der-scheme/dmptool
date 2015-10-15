@@ -30,7 +30,9 @@
   <tbody>
     <% @plans.each do |plan| %>
       <tr>
-				<td class="span7", id="#{plan.name}"><strong><%= plan.name %></strong></td>
+				<%= content_tag :td, class: 'span7', id: plan.id do %>
+          <strong><%= plan.name %></strong>
+        <% end %>
         <td><%= owner_name(plan) %></td>
         <td><%= l(plan.updated_at) %></td>
         <td class="span1"><strong><%= translated_state(plan) %></strong></td>
