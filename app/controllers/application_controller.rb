@@ -226,11 +226,11 @@ class ApplicationController < ActionController::Base
     ##
     # Declares an attribute sortable.
     #
-    # The class variable with the pluralized controller name (i.e.
+    # The instance variable with the pluralized controller name (i.e.
     # "resource_contexts" in case of the ResourceContextsController) is treated
     # as the collection to be sorted and will be sorted if the attribute
     # matches the order scope, or if the ordering is marked as default (which
-    # is triggered when the order_scope parameter is nil).
+    # is triggered when the order_scope #param is blank).
 
     def sortable(attribute, _default = nil, default: false, nested: nil,
                  inst_var: nil, model: nil, order_scope: :order_scope)
