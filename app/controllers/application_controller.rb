@@ -232,8 +232,12 @@ class ApplicationController < ActionController::Base
     # matches the order scope, or if the ordering is marked as default (which
     # is triggered when the order_scope parameter is nil).
 
-    def sortable(attribute, default: false, nested: nil,
+    def sortable(attribute, _default = nil, default: false, nested: nil,
                  inst_var: nil, model: nil, order_scope: :order_scope)
+      fail ArgumentError,
+           'expected the 2nd parameter to be one of: :default, nil' unless
+        _default.nil? || :default == _default
+      default ||= _default
       return unless (params[order_scope] && params[order_scope].to_sym == attribute) ||
                     (default && params[order_scope].blank?)
 
