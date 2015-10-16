@@ -54,12 +54,12 @@ module Sortable
 
       attribute   = attribute.to_sym
       order_attr  = attribute
-      dir = params[direction] =~ /desc/i ? 'desc' : 'asc'
+      dir = params[direction] =~ /desc/i ? :desc : :asc
       # The following code is considered deprecated.
       controller.instance_variable_set("@direction", dir)
 
       if nested
-        assoc, assocs = *model_association(model, attribute)
+        assoc, assocs = *model_association(attribute)
         self.collection = collection.joins(assoc)
         order_attr = "#{assocs}.#{nested}"
       end
@@ -88,7 +88,7 @@ module Sortable
     # Returns the associations name and plural_name, if an association can be
     # found for the given +model+ and +attribute+.
 
-    def model_association(model, attribute)
+    def model_association(attribute)
       assoc = model.reflect_on_association(attribute.to_sym)
       assoc ||= model.reflect_on_all_associations.find do |association|
         case association.macro

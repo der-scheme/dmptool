@@ -1,8 +1,10 @@
 
+require 'delegate'
+
 require 'sortable/common'
 
 module Sortable
-  class HelperGroup
+  class HelperGroup < SimpleDelegator
     include Common
 
     def initialize(helper: nil,
@@ -15,6 +17,7 @@ module Sortable
       @model = model
       @namespace = namespace
       @order_scope = order_scope
+      super(helper)
     end
 
     attr_reader :helper
