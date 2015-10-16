@@ -1,6 +1,17 @@
 
+require 'sortable/controller_group'
+
 module Sortable
   module Controller
+
+    def sortable_group(inst_var: controller_name.pluralize,
+                       model: controller_name.classify.constantize,
+                       order_scope: :order_scope, namespace: nil,
+                       &group)
+      ControllerGroup.new(controller: self, inst_var: inst_var, model: model,
+                          order_scope: order_scope, namespace: namespace)
+          .instance_exec(&group)
+    end
 
     ##
     # Declares an attribute sortable.
@@ -12,41 +23,10 @@ module Sortable
     # is triggered when the order_scope #param is blank).
 
     def sortable(attribute, _default = nil,
-                 default: false, nested: nil,
-                 inst_var: controller_name.pluralize,
-                 model: controller_name.classify.constantize,
-                 order_scope: :order_scope, namespace: nil)
-      fail ArgumentError,
-           'expected the 2nd parameter to be one of: :default, nil' unless
-        _default.nil? || :default == _default
-
-      default ||= _default
-      order_scope = :"#{namespace}:order_scope" if namespace
-      direction = namespace ? :"#{namespace}:direction" : :direction
-
-      return unless (params[order_scope] && params[order_scope].to_sym == attribute) ||
-                    (default && params[order_scope].blank?)
-
-      attribute   = attribute.to_sym
-      order_attr  = attribute
-      @direction  ||= params[direction] =~ /desc/i ? 'desc' : 'asc'
-
-      collection  = instance_variable_get("@#{inst_var}")
-
-      if nested
-        assoc, assocs = *model_association(model, attribute)
-        collection = collection.joins(assoc)
-        order_attr = "#{assocs}.#{nested}"
+                 default: false, nested: nil, **options, &block)
+      sortable_group(**options) do
+        sortable(attribute, _default, default: default, nested: nested, &block)
       end
-
-      if block_given?
-        collection = yield collection
-      else
-        collection = collection.order("#{order_attr} #{@direction}")
-      end
-
-      instance_variable_set("@#{inst_var}", collection)
-      nil
     end
 
   end

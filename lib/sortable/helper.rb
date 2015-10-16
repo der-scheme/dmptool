@@ -1,29 +1,21 @@
 
+require 'sortable/helper_group'
+
 module Sortable
   module Helper
 
+    def sortable_group(model: controller_name.classify.constantize,
+                       namespace: nil, order_scope: :order_scope,
+                       &group)
+      HelperGroup.new(helper: self, model: model, namespace: namespace,
+                      order_scope: order_scope)
+          .instance_exec(&group)
+    end
+
     ## Creates a link that renders a column sortable with toggle effects.
 
-    def sortable(column, title = nil,
-                 order_scope: :order_scope, namespace: nil,
-                 model: controller_name.classify.constantize)
-      fail ArgumentError, 'expected model to be of type ActiveRecord::Base' if
-        model && !model.respond_to?(:human_attribute_name)
-
-      order_scope = :"#{namespace}:order_scope" if namespace
-      direction = namespace ? :"#{namespace}:direction" : :direction
-
-      title ||= model.human_attribute_name(column) if model
-      title ||= t(".#{column}", default: column.titleize)
-
-      # current asc and current desc classes are for supporting an eventual
-      # arrow image or css class (not yet implemented) associated with the
-      # sorting direction
-      css_class = "current #{params[direction]}" if column == params[order_scope]
-      direction = (column.to_s == params[order_scope] && params[direction] == 'asc') ? 'desc' : 'asc'
-      link_to title,
-              filter_params.merge(order_scope => column, direction: direction),
-              {class: css_class}
+    def sortable(column, title = nil, **options, &block)
+      sortable_group(**options) {sortable(column, title, &block)}
     end
 
   end

@@ -241,29 +241,4 @@ class ApplicationController < ActionController::Base
     def extract_locale_from_accept_language_header
       request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
     end
-
-    ##
-    # Returns the associations name and plural_name, if an association can be
-    # found for the given +model+ and +attribute+.
-
-    def model_association(model, attribute)
-      assoc = model.reflect_on_association(attribute.to_sym)
-      assoc ||= model.reflect_on_all_associations.find do |association|
-        case association.macro
-        when :has_one
-          association.options[:primary_key] &&
-            association.options[:primary_key].to_sym == attribute.to_sym
-        else
-          association.options[:foreign_key] &&
-            association.options[:foreign_key].to_sym == attribute.to_sym
-        end
-      end
-      assoc ||= model.reflect_on_association(attribute.to_s.gsub(/_id\z/, '').to_sym)
-
-      if assoc
-        return assoc.name, assoc.options[:class_name].constantize.model_name.plural if
-          assoc.options[:class_name]
-        return assoc.name, assoc.plural_name
-      end
-    end
   end
