@@ -65,14 +65,14 @@
 
   <% if params["#{namespace}:all_scope"] == "all" %>
     <div class="buttons pagination">
-      <%= link_to t('.button_view_less'), filter_params.merge({"#{namespace}:all_scope" => "less"}),
-                  { :class => "btn" } %>
+      <%= render_button_link t: '.view_less',
+                             href: filter_params.merge("#{namespace}:all_scope" => 'less') %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
   <% else %>
     <div class="buttons pagination">
-      <%= link_to t('.button_view_all'), filter_params.merge({"#{namespace}:all_scope" => "all"}),
-                  { :class => "btn", :id => "#{namespace}_view_all_plans" } %>
+      <%= render_button_link t: '.view_all',
+                             href: filter_params.merge("#{namespace}:all_scope" => 'all') %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
   <%end%>

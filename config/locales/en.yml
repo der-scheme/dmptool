@@ -682,8 +682,6 @@ en:
     generic_table:
       funder_template_link: 'Funder Template'
       download: 'Download'
-      button_view_less: 'View Less'
-      button_view_all: 'View All'
 
     guidance:
       box_size: 'box size:'
