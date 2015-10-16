@@ -680,12 +680,8 @@ en:
       delete_plan_link: 'Delete DMP'
 
     generic_table:
-      plan_title_link: 'Plan Title'
       funder_template_link: 'Funder Template'
-      institution_link: 'Institution'
-      owner_link: 'Owner'
       download: 'Download'
-      visibility_link: 'Visibility'
       button_view_less: 'View Less'
       button_view_all: 'View All'
 

@@ -12,18 +12,18 @@
 
     <tr>
       <%# sortable_group namespace: namespace do %>
-        <th class="span5"><%= sortable :name, t('.plan_title_link'), namespace: namespace %></th>
+        <th class="span5"><%= sortable :name, namespace: namespace %></th>
         <th class="span5"><%= sortable :requirements_template_id, t('.funder_template_link'), namespace: namespace %></th>
 
         <% if show_institution %>
-          <th class="span5"><%= sortable :institution_id, t('.institution_link'), namespace: namespace %></th>
+          <th class="span5"><%= sortable :institution_id, namespace: namespace %></th>
         <% end %>
 
-        <th class="span5"><%= sortable :owner, t('.owner_link'), namespace: namespace %></th>
+        <th class="span5"><%= sortable :owner, namespace: namespace %></th>
         <th><%= t('.download') %></th>
 
         <% if namespace == :institutional %>
-         <th><%= sortable :visibility, t('.visibility_link'), namespace: namespace %></th>
+         <th><%= sortable :visibility, namespace: namespace %></th>
         <% end %>
       <%# end %>
     </tr>
