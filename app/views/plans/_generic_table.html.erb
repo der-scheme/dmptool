@@ -55,7 +55,7 @@
       </td>
       <%unless plan.visibility == :public %>
         <td>
-          <%= plan.visibility %>
+          <%= t_enum(plan, :visibility) %>
         </td>
       <%end%>
     </tr>
