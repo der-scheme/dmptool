@@ -479,6 +479,30 @@ class PlansController < ApplicationController
       @inst_plans = nil
     end
 
+    sortable_group namespace: :public do
+      sortable :name, default: true
+      sortable :requirements_template_id, nested: :name
+      sortable :institution_id do |collection, direction|
+        collection.order("institutions.full_name #{direction}")
+      end
+      sortable :owner do |collection, direction|
+        collection.joins(:current_state, :users)
+            .order("users.first_name #{direction}", "users.last_name #{@direction}")
+      end
+    end
+    sortable_group inst_var: :inst_plans, namespace: :institutional do
+      sortable :name, default: true
+      sortable :requirements_template_id, nested: :name
+      sortable :institution_id do |collection, direction|
+        collection.order("institutions.full_name #{direction}")
+      end
+      sortable :owner do |collection, direction|
+        collection.joins(:current_state, :users)
+            .order("users.first_name #{direction}", "users.last_name #{@direction}")
+      end
+      sortable :visibility
+    end
+
     @plans = multitable(@plans, public_params)
     # if @inst_plans
       @inst_plans = multitable(@inst_plans, inst_params)
@@ -693,28 +717,6 @@ class PlansController < ApplicationController
 
     def multitable(collection, subparams)
       return nil if collection.nil?
-      valid_sort = ["plan", "institution", "visibility",
-                    "owner", "template"]
-
-
-      if valid_sort.include?(subparams['order_scope'])
-
-        case subparams['order_scope']
-        when "plan"
-          collection = collection.order(name: :asc)
-        when "template"
-          collection = collection.joins(:requirements_template).order('requirements_templates.name ASC')
-        when "institution"
-          collection = collection.order_by_institution
-        when "owner"
-         collection = collection.order_by_owner
-        when "visibility"
-         collection = collection.order(visibility: :desc)
-        else
-          collection = collection.order(name: :asc)
-        end
-
-      end
 
       if subparams['all_scope'] != 'all'
         p = ( subparams['page'].nil? ? 1 : subparams['page'].to_i )

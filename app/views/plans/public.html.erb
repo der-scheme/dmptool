@@ -27,13 +27,13 @@
 <%if params[:q] && @plans.count == 0%>
 	<%= render partial: 'public_dmps_no_result', locals: {plans: @plans, namespace: 'public', show_institution: true} %>
 <%else%>
-	<%= render partial: 'generic_table', locals: {plans: @plans, namespace: 'public', show_institution: true} %>
+	<%= render partial: 'generic_table', locals: {plans: @plans, namespace: :public, show_institution: true} %>
 <%end%>
 
 <% unless @inst_plans.nil? || @inst_plans.length < 1 %>
   <br/>
   <h1 class="row-fluid"><span class="icon public-dmps"></span><%= t('.institutional_dmps') %></h1>
-  <%= render partial: 'generic_table', locals: {plans: @inst_plans, namespace: 'institutional',
+  <%= render partial: 'generic_table', locals: {plans: @inst_plans, namespace: :institutional,
               show_institution: @show_institution} %>
 <% end %>
 

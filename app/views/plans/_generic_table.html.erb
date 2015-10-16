@@ -11,18 +11,21 @@
   <thead>
 
     <tr>
-      <th class="span5"><%= link_to t('.plan_title_link'), filter_params.merge({"#{namespace}:order_scope" => "plan"}) %></th>
-      <th class="span5"><%= link_to t('.funder_template_link'), filter_params.merge({"#{namespace}:order_scope" => "template"}) %></th>
+      <%# sortable_group namespace: namespace do %>
+        <th class="span5"><%= sortable :name, t('.plan_title_link'), namespace: namespace %></th>
+        <th class="span5"><%= sortable :requirements_template_id, t('.funder_template_link'), namespace: namespace %></th>
 
-      <% if show_institution %>
-        <th class="span5"><%= link_to t('.institution_link'), filter_params.merge({"#{namespace}:order_scope" => "institution"}) %></th>
-      <% end %>
-      <th class="span5"><%= link_to t('.owner_link'), filter_params.merge({"#{namespace}:order_scope" => "owner"}) %></th>
-      <th><%= t('.download') %></th>
-      <%if namespace == "institutional" %>
+        <% if show_institution %>
+          <th class="span5"><%= sortable :institution_id, t('.institution_link'), namespace: namespace %></th>
+        <% end %>
 
-       <th> <%= link_to t('.visibility_link'), filter_params.merge({"#{namespace}:order_scope" => "visibility"}) %></th>
-      <%end%>
+        <th class="span5"><%= sortable :owner, t('.owner_link'), namespace: namespace %></th>
+        <th><%= t('.download') %></th>
+
+        <% if namespace == :institutional %>
+         <th><%= sortable :visibility, t('.visibility_link'), namespace: namespace %></th>
+        <% end %>
+      <%# end %>
     </tr>
 
 </thead>
