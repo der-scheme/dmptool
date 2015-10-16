@@ -749,10 +749,7 @@ en:
       description_html: '<p>List of sample data management plans provided by DMPTool users.</p>'
 
     public_dmps_no_result:
-      plan_title_link: "Plan Title"
       funder_template_link: "Funder Template"
-      institution_link: "Institution"
-      owner_link: "Owner"
       download: "Download"
       no_results: "No results found"
 

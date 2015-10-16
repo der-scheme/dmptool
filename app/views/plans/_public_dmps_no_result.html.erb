@@ -11,12 +11,12 @@
 <thead>
 <%# wanted_params = params.slice('all_scope','s', 'e') %>
 <tr>
-  <th class="span5"><%= link_to t('.plan_title_link'), filter_params.merge({"#{namespace}:order_scope" => "plans.name"}) %></th>
-  <th class="span5"><%= link_to t('.funder_template_link'), filter_params.merge({"#{namespace}:order_scope" => "requirements_templates.name"}) %></th>
+  <th class="span5"><%= sortable :name, namespace: namespace %></th>
+  <th class="span5"><%= sortable :requirements_template_id, t('.funder_template_link'), namespace: namespace %></th>
   <% if show_institution %>
-    <th class="span5"><%= link_to t('.institution_link'), filter_params.merge({"#{namespace}:order_scope" => "institutions.full_name"}) %></th>
+    <th class="span5"><%= sortable :institution_id, namespace: namespace %></th>
   <% end %>
-  <th class="span5"><%= link_to t('.owner_link'), filter_params.merge({"#{namespace}:order_scope" => "CONCAT(users.first_name, ' ', users.last_name)"}) %></th>
+  <th class="span5"><%= sortable :owner, namespace: namespace %></th>
   <th><%= t('.download') %></th>
 </tr>
 </thead>
