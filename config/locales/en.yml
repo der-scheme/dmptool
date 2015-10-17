@@ -768,6 +768,15 @@ en:
       review_plan: 'Review DMP'
       submission_date: 'Submission Date'
 
+    suggested_response:
+      box_size: 'box size:'
+      box_size_small: 'small'
+      box_size_medium: 'medium'
+      box_size_full: 'full'
+      guidance: 'Guidance'
+      institution_customization_resources: '%{institution} Resources'
+      template_customization_resources: '%{template} for %{institution} Resources'
+
     update:
       # Also find some translations in en.rb
       cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
