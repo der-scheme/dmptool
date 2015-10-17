@@ -97,16 +97,6 @@ module ApplicationHelper
             current_page?(customization_requirement_path(@resource_context, requirement_id: params[:requirement_id])))
   end
 
-  def set_page_history
-    if session[:page_history].blank?
-      session[:page_history] = []
-    end
-    if session[:page_history].length > 4
-      session[:page_history].pop
-    end
-    session[:page_history].insert(0, request.path)
-  end
-
   def require_admin
     unless user_role_in?(:dmp_admin)
       flash[:error] = "You must be an administrator to access this page."

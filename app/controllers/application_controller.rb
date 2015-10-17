@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
           :institutional_reviewer => Role::INSTITUTIONAL_REVIEWER,
           :institutional_admin    => Role::INSTITUTIONAL_ADMIN}
 
+  after_action :update_history
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -224,5 +225,21 @@ class ApplicationController < ActionController::Base
       inst_ids = insts.map { |i|  (i.ancestor_ids + [ i.id])[least_depth] }
 
       Institution.find(inst_ids)
+    end
+
+    ## Stores the current #params in the #session hash.
+    #
+    # Note that unlike the previous functionality (implemented in 
+    # ApplicationHelper#set_page_history), which stored entire URLs, this one
+    # stores the parameters that can be used to build URLs using #url_for.
+    #
+    # This saves later computation time, as the only current purpose is to
+    # later retrieve controller and action names, and also works around a Rails
+    # bug we encountered when implementing i18n.
+
+    def update_history
+      history = (session[:page_history] ||= [])
+      history.unshift(params)
+      history.slice!(5, 42)   # delete some entries if history.size > 4
     end
   end
