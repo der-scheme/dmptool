@@ -241,6 +241,6 @@ class ApplicationController < ActionController::Base
       return unless status == 200
       history = (session[:page_history] ||= [])
       history.unshift(params)
-      history.slice!(5, 42)   # delete some entries if history.size > 4
+      history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end
