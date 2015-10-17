@@ -238,6 +238,7 @@ class ApplicationController < ActionController::Base
     # bug we encountered when implementing i18n.
 
     def update_history
+      return unless status == 200
       history = (session[:page_history] ||= [])
       history.unshift(params)
       history.slice!(5, 42)   # delete some entries if history.size > 4
