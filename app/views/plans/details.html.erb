@@ -58,8 +58,7 @@
     </div>
   </div>
   <div>
-    <% referer_action %>
-    <% if (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'new') || (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'copy_existing_template') %>
+    <% if (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'new') || (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'copy_existing_template') %>
       <%= link_to '<< Back', edit_plan_path(@plan),  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>
     <% else %>
       <%= link_to '<< Back', :back,  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>

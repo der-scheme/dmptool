@@ -66,7 +66,7 @@ module PlansHelper
     end
 	end
 
-	def referer_action
-    @referer_url = session[:page_history][0] || {}
+  def referer_hash
+    @referer_hash ||= session[:page_history][0] || {}
 	end
 end
