@@ -1,23 +1,22 @@
-<% @title_text = "Create New DMP" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "plans" %>
-<h1 class="row-fluid"><span class="icon new-template"></span>Create New DMP</h1>
+<h1 class="row-fluid"><span class="icon new-template"></span><%= @title %></h1>
 <div class="dmptool-page row-fluid">
 	<div class="span6">
-		<h2>Start with a DMP Template</h2>
-		<p>To create a new DMP, select a funder or institutional template.</p>
-		<%= button_to "Select Template >>", select_dmp_template_path, :method => :get, :class => "btn" %>
+		<%= content_tag :h2, t('.use_template') %>
+		<%= t('.use_template_instructions_html') %>
+		<%= button_to t('.use_template_button'), select_dmp_template_path, method: :get, class: 'btn' %>
 	</div>
 	<div class="span6">
-		<h2>Copy an Existing DMP</h2>
-		<p>The existing DMPs in this list are either publicly shared by any user, shared within your institution by other DMP creators, or are plans that you have previously created.</p>
-		<p>Select an existing DMP below and add text to the template.</p>
+		<%= content_tag :h2, t('.copy_plan') %>
+		<%= t('.copy_plan_instructions_html') %>
 		<%= form_tag copy_existing_plans_template_path, method: :get do %>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th class="span1"></th>
-						<th>Name</th>
-						<th>Owner</th>
+						<%= content_tag :th, Plan.human_attribute_name(:name) %>
+						<%= content_tag :th, Plan.human_attribute_name(:owner) %>
 						</tr>
 					</thead>
 				<tbody>
@@ -34,7 +33,7 @@
 			<div class="buttons pagination">
 				<%= paginate @plans %>
 			</div>
-			<%= submit_tag "Copy this DMP >>", :class => "btn" %>
+			<%= submit_tag t('.copy_plan_button'), class: 'btn' %>
 		<% end %>
 	</div>
 </div>

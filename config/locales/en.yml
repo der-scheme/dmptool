@@ -777,6 +777,15 @@ en:
       institution_customization_resources: '%{institution} Resources'
       template_customization_resources: '%{template} for %{institution} Resources'
 
+    template_information:
+      title: 'Create New DMP'
+      use_template: 'Start with a DMP Template'
+      use_template_instructions_html: '<p>To create a new DMP, select a funder or institutional template.</p>'
+      use_template_button: 'Select Template >>'
+      copy_plan: 'Copy an Existing DMP'
+      copy_plan_instructions_html: '<p>The existing DMPs in this list are either publicly shared by any user, shared within your institution by other DMP creators, or are plans that you have previously created.</p><p>Select an existing DMP below and add text to the template.</p>'
+      copy_plan_button: 'Copy this DMP >>'
+
     update:
       # Also find some translations in en.rb
       cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
