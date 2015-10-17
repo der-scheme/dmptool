@@ -76,6 +76,17 @@ en:
         solicitation_identifier: 'Solicitation Number'
         submission_deadline: 'Submission Deadline'
         visibility: 'Visibility'
+      requirement:
+        ancestry: 'Ancestry'    # not taken from source
+        default: '(set default)'
+        group: 'Group'          # not taken from source
+        id: 'Requirement ID'    # not taken from source
+        obligation: 'Obligation'
+        position: 'Position'    # not taken from source
+        requirement_type: 'Question Type'
+        requirements_template_id: 'DMP Template'    # not taken from source
+        text_brief: 'Label'     # original value in source is context-sensitive
+        text_full: 'Detailed Question'
       requirements_template:
         active: 'Active'
         end_date: 'End Date'
@@ -142,6 +153,17 @@ en:
         rejected: 'Rejected'
         revised: 'Revised'
         submitted: 'Submitted'
+    requirement:
+      obligation:
+        mandatory: 'Mandatory'
+        mandatory_applicable: 'Mandatory If Applicable'
+        optional: 'Optional'
+        recommended: 'Recommended'
+      requirement_type:
+        date: 'date'
+        enum: 'enum'
+        numeric: 'numeric'
+        text: 'text'
     requirements_template:
       review_type:
         formal_review: 'Review Required'
