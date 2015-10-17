@@ -30,6 +30,19 @@ end
           name = count == 1 ? 'User' : 'Users'
           unit ? "#{count} #{name}" : name
         end
+      },
+      attributes: {
+        requirement: {
+          text_brief: lambda do |_, group: nil|
+            if group.nil?
+              'Label'
+            elsif group
+              'Group Label'
+            else
+              'Requirement Label'
+            end
+          end
+        }
       }
     },
     institutions: {

@@ -85,7 +85,7 @@ en:
         position: 'Position'    # not taken from source
         requirement_type: 'Question Type'
         requirements_template_id: 'DMP Template'    # not taken from source
-        text_brief: 'Label'     # original value in source is context-sensitive
+        # Find translation for text_brief in en.rb
         text_full: 'Detailed Question'
       requirements_template:
         active: 'Active'
