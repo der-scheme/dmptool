@@ -6,6 +6,6 @@ module RequirementsTemplatesHelper
     requirements_template.active? ? 'Active' : 'Inactive'
   end
   def referer_action
-    @referer_url = Rails.application.routes.recognize_path(URI((session[:page_history].blank? ? "": session[:page_history][0])).path)
+    @referer_url = session[:page_history][0] || {}
   end
 end
