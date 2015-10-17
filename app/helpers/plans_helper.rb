@@ -66,8 +66,8 @@ module PlansHelper
     end
 	end
 
-	def referer_action
-    @referer_url = Rails.application.routes.recognize_path(URI((session[:page_history].blank? ? "": session[:page_history][0])).path)
+  def referer_hash
+    @referer_hash ||= session[:page_history][0] || {}
 	end
 
 	def translated_state(state)
