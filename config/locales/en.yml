@@ -54,6 +54,12 @@ en:
         user_id: 'Author'
         value: 'Comment'
         visibility: 'Visibility'
+      enumeration:
+        default: '(set default)'
+        id: 'Enumeration ID'            # not taken from source
+        position: 'Position'            # not taken from source
+        requirement_id: 'Requirement'   # not taken from source
+        value: 'Item Value'
       institution:
         ancestry: 'Ancestry'
         contact_info: 'Administrator Contact'
