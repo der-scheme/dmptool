@@ -78,7 +78,7 @@ en:
         visibility: 'Visibility'
       requirement:
         ancestry: 'Ancestry'    # not taken from source
-        default: '(set default)'
+        default: '(set default)'    # not necessarily taken from the correct place
         group: 'Group'          # not taken from source
         id: 'Requirement ID'    # not taken from source
         obligation: 'Obligation'
