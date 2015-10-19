@@ -251,7 +251,7 @@ module ApplicationHelper
       selected = selected.try(attribute)
     end
 
-    model ||= controller_name.constantize.classify
+    model ||= controller_name.classify.constantize
     args  ||= model.columns_hash[attribute.to_s].limit
 
     options_for_select(args.map {|arg| [t_enum(model, attribute, arg), arg]},
