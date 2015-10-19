@@ -73,6 +73,11 @@ en:
         shib_domain: 'Shibboleth Domain'
         url: 'Institution URL'
         url_text: 'Institution URL Text'
+      label:
+        desc: 'Unit of Measure'
+        id: 'Label ID'                  # not taken from source
+        position: 'Position'            # not taken from source
+        requirement_id: 'Requirement'   # not taken from source
       plan:
         current_plan_state_id: 'Current Status'
         id: 'Plan ID'   # Guessed (not taken from source)
