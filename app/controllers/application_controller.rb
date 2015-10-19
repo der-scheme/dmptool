@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
 
     def default_url_options(options = {})
-      {locale: nil}.merge options
+      {locale: params[:locale]}.merge options
     end
 
     def current_user
