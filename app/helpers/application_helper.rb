@@ -238,6 +238,25 @@ module ApplicationHelper
   end
   alias_method :t_enum, :translate_enum
 
+  def options_for_enum_select(args = nil, selectd = nil, model: nil, attribute: nil, **options)
+    unless args.is_a? Array
+      selectd = args
+      args = nil
+    end
+
+    selected ||= selectd
+    if selected.is_a? ActiveRecord::Base
+      model ||= selected.class
+      selected = selected.try(attribute)
+    end
+
+    model ||= controller_name.constantize.classify
+    args  ||= model.columns_hash[attribute.to_s].limit
+
+    options_for_select(args.map {|arg| [t_enum(model, attribute, arg), arg]},
+                       **options.merge(selected: selected))
+  end
+
   def i18n_include_tag(*scopes)
     scopes = [
       'date.formats', 'time.formats', 'datetime.formats',
