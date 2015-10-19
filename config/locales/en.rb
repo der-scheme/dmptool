@@ -35,7 +35,7 @@ end
         requirement: {
           text_brief: proc do |_, group: nil, **options|
             if group.nil?
-              'Label'
+              'Text brief'
             elsif group
               'Group Label'
             else

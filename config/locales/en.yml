@@ -93,9 +93,9 @@ en:
         group: 'Group'          # not taken from source
         id: 'Requirement ID'    # not taken from source
         obligation: 'Obligation'
-        position: 'Position'    # not taken from source
+        position: 'Order'
         requirement_type: 'Question Type'
-        requirements_template_id: 'DMP Template'    # not taken from source
+        requirements_template_id: 'Requirements template'
         # Find translation for text_brief in en.rb
         text_full: 'Detailed Question'
       requirements_template:
