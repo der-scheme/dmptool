@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
 
+  before_action :return_to_last_locale, only: [:create, :destroy, :failure]
+
   def login
     if !params[:institution_id].blank?
       session['institution_id'] = params[:institution_id]
@@ -53,12 +55,12 @@ class UserSessionsController < ApplicationController
         session.delete(:return_to)
         redirect_to r and return
       end
-      redirect_to dashboard_path(locale: last_locale) and return
+      redirect_to dashboard_path and return
     end
   end
 
   def failure
-    redirect_to choose_institution_path(locale: last_locale), flash: { error: t('.error_message')}
+    redirect_to choose_institution_path, flash: { error: t('.error_message')}
   end
 
   def destroy
@@ -202,7 +204,7 @@ private
   # empty hash instead (which will yield a nil locale, implying fallback to
   # browser settings).
 
-  def last_locale
-    session[:page_history].try(:first).try(:fetch, :locale)
+  def return_to_last_locale
+    params[:locale] = session[:page_history].try(:first).try(:fetch, :locale, nil)
   end
 end
