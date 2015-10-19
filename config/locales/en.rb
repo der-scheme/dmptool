@@ -33,7 +33,7 @@ end
       },
       attributes: {
         requirement: {
-          text_brief: lambda do |_, group: nil|
+          text_brief: proc do |_, group: nil, **options|
             if group.nil?
               'Label'
             elsif group
