@@ -204,6 +204,23 @@ module ApplicationHelper
                        **options
   end
 
+  ## Renders a remove link.
+
+  def render_remove_link(cntnt = nil, lnk = '#',
+                         t: :remove, translate: nil, content: nil, text: nil,
+                         link: nil, href: nil, url: nil, **options)
+
+    translate ||= t
+    content ||= text || cntnt || t("helpers.render.link.#{translate}")
+    link ||= href || url || lnk
+
+    options[:class] ||= ''
+    options[:class].concat(' red remove_fields')
+
+    link_to content_tag(:span, '', class: 'icon remove') + content,
+            '#', **options
+  end
+
   def translate_enum(model, attribute, value = nil)
     model_scope = case model
       when Symbol then model

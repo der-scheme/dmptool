@@ -223,6 +223,10 @@ en:
         not_allowed_error: "You don't have access to this content."
         not_authorized_error: 'You need to be logged in.'
         no_plan_selected_error: 'Please select an existing Plan to copy.'
+    render:
+      link:
+        remove: 'Remove'
+        delete: 'Delete'
   js:
     application:
   shared:
