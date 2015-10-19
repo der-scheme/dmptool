@@ -1,11 +1,11 @@
 <div class="control-group">
-  <%= f.label :value, 'Item Value', class: 'control-label' %>
+  <%= f.label :value, class: 'control-label' %>
   <div class="controls">
 	    <%= f.text_field(:value, :class => "input-medium") %>
 	    <%= f.check_box(:default, :class => "requirement_enumerations_attributes") %>
-	    <%= f.label :default, '(set default)', class: 'checkbox-label' %>
+      <%= f.label :default, class: 'checkbox-label' %>
     	<%= f.hidden_field :_destroy %>
-    	<%= link_to(content_tag(:span, "", :class => "icon remove")+ 'Remove', '#', :class => "red remove_fields") %>
+      <%= render_remove_link %>
   </div>
 </div>
 
