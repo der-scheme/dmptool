@@ -206,5 +206,6 @@ private
 
   def return_to_last_locale
     params[:locale] = session[:page_history].try(:first).try(:fetch, :locale, nil)
+    set_locale
   end
 end
