@@ -45,14 +45,6 @@ class UserSessionsController < ApplicationController
     session[:user_id] = user.id
     session[:login_method] = auth[:provider]
 
-    # In case of a login method were the user is redirected to a statically
-    # chosen URL we lose the info which locale they've chosen before.
-    # We use our page history to look up the params that were used in previous
-    # visits of the site, or (if the page history is empty) just rely one an
-    # empty hash instead (which will yield a nil locale, implying fallback to
-    # browser settings).
-    last_page = session[:page_history].try(:first) || {}
-
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?
       redirect_to edit_user_path(user), flash: {error: t('.incomplete_info_error')} and return
     else
@@ -61,12 +53,12 @@ class UserSessionsController < ApplicationController
         session.delete(:return_to)
         redirect_to r and return
       end
-      redirect_to dashboard_path(locale: last_page[:locale]) and return
+      redirect_to dashboard_path(locale: last_locale) and return
     end
   end
 
   def failure
-    redirect_to choose_institution_path, flash: { error: t('.error_message')}
+    redirect_to choose_institution_path(locale: last_locale), flash: { error: t('.error_message')}
   end
 
   def destroy
@@ -197,5 +189,20 @@ class UserSessionsController < ApplicationController
 
   def legal_password(password)
     (8..30).include?(password.length) and password.match(/\d/) and password.match(/[A-Za-z]/)
+  end
+
+private
+
+  ## Return the last locale chosen by the user.
+  #
+  # In case of a login method were the user is redirected to a statically
+  # chosen URL we lose the info which locale they've chosen before.
+  # We use our page history to look up the params that were used in previous
+  # visits of the site, or (if the page history is empty) just rely one an
+  # empty hash instead (which will yield a nil locale, implying fallback to
+  # browser settings).
+
+  def last_locale
+    session[:page_history].try(:first).try(:fetch, :locale)
   end
 end
