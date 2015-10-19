@@ -828,6 +828,13 @@ en:
       cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
       success_notice: 'Plan was successfully updated.'
 
+  requirements:
+    form:
+      obligation_tooltip_html: 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.'
+      group_type_tooltip_html: 'Tooltip &#8220;text&#8221; goes here.'
+      requirement_type_tooltip_html: 'You can designate the format of the answer to be given to a requirement. The default format is text (minimal structured text format). Other options: <ul><li>Numeric format: for integer or real number answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM, or YYYY-MM-DD</li><li>Enum format: answers are an ordered list of values from which the researcher can select.</li></ul>'
+      add_item_link: 'Click to Add Item'
+
   requirements_templates:
     form:
       template_overview: 'DMP Template Overview'
