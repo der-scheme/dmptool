@@ -180,7 +180,7 @@ module ApplicationHelper
   end
 
   ##
-  # Proxies #render_back_button, overwrites the translation parameter with
+  # Proxies #render_button_link, overwrites the translation parameter with
   # <code>'.back'</code> (or <code>'.arrow_back'</code> if
   # <code>arrow: true</code>) and links to <code>:back</code>, unless otherwise
   # specified.
