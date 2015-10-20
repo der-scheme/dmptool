@@ -165,6 +165,9 @@ en:
         revised: 'Revised'
         submitted: 'Submitted'
     requirement:
+      group:
+        "false": 'Requirement'
+        "true": 'Group'
       obligation:
         mandatory: 'Mandatory'
         mandatory_applicable: 'Mandatory If Applicable'
