@@ -255,6 +255,8 @@ module ApplicationHelper
     value = model_class.columns_hash[attribute.to_s]
         .limit.try(:first) || false   unless value || value == false
 
+    value = value.to_s.to_sym unless value.is_a? Symbol
+
     translate(value, scope: [:enum, model_scope, attribute])
   end
   alias_method :t_enum, :translate_enum
