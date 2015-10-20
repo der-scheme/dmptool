@@ -176,6 +176,9 @@ en:
         numeric: 'numeric'
         text: 'text'
     requirements_template:
+      active:
+        false: 'Inactive'
+        true: 'Active'
       review_type:
         formal_review: 'Review Required'
         informal_review: 'Informal Review Allowed'
