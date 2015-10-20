@@ -250,6 +250,7 @@ en:
       back: 'Back'
       arrow_back: '<< Back'
       cancel: 'Cancel'
+      delete: 'Delete'
       done: 'Done'
       view_less: 'View Less'
       view_all: 'View All'
