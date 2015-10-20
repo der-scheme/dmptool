@@ -195,6 +195,23 @@ module ApplicationHelper
     render_button_link(t: t, href: link, green: green, **options)
   end
 
+  ##
+  # Proxies #render_button_link, overwrites the translation parameter with
+  # <code>'.delete'</code> and the +method+ with +:delete+.
+
+  def render_delete_button(lnk = nil,
+                           link: nil, href: nil, url: nil,
+                           **options)
+    t = '.delete'
+    link ||= href || url || lnk
+
+    render_button_link(t: t, href: link,
+                       **{
+                          method: :delete,
+                          data: {confirm: t('globals.messages.prompt.confirm')}
+                         }.deep_merge!(options))
+  end
+
   def render_filter_button(url_options = {}, s: 'a', e: 'z', **options)
     options[:class] ||= ''
     options[:class].concat(" view#{s.upcase}-#{e.upcase}")
