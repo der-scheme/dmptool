@@ -99,10 +99,10 @@ en:
         # Find translation for text_brief in en.rb
         text_full: 'Detailed Question'
       requirements_template:
-        active: 'Active'
+        active: 'Status'
         end_date: 'End Date'
         institution_id: 'Institution'
-        name: 'Template name'
+        name: 'Template Name'
         review_type: 'Review Requirement'
         start_date: 'Start Date'
         visibility: 'Visibility'
