@@ -221,19 +221,39 @@ module ApplicationHelper
             '#', **options
   end
 
+  ##
+  # Return a human readable translation for the given enum (or boolean)
+  # attribute value.
+  #
+  # The +value+ parameter can be omitted with the following semantics.
+  # 1. If +model+ is an instance of ActiveRecord::Base, the value of the
+  #    +attribute+ will be used.
+  # 2. Otherwise, a deduction of the actual model class and lookup of its
+  #    corresponding attribute is attempted. If the contents of the +limit+
+  #    parameter is an array, its first entry is chosen.
+  # 3. The fallback value is always +false+.
+
   def translate_enum(model, attribute, value = nil)
-    model_scope = case model
-      when Symbol then model
-      when Class  then model.model_name.i18n_key
-      else
-        if model.respond_to?(:to_model)
-          return translate_enum(model.to_model.class, attribute, value)
-        else
-          model.to_s.to_sym
-        end
+    case model
+    when Symbol
+      model_scope = model
+      model_class = model.to_s.classify.constantize
+    when Class
+      model_scope = model.model_name.i18n_key
+      model_class = model
+    when ActiveRecord::Base
+      model_class = model.class
+      model_scope = model_class.model_name.i18n_key
+    else
+      model = model.to_s
+      model_scope = model.to_sym
+      model_class = model.classify.constantize
     end
 
-    value ||= model.attributes[attribute.to_s]
+    value = model.try(:attributes)
+        .try(:[], attribute.to_s)     unless value || value == false
+    value = model_class.columns_hash[attribute.to_s]
+        .limit.try(:first) || false   unless value || value == false
 
     translate(value, scope: [:enum, model_scope, attribute])
   end
