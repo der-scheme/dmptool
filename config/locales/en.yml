@@ -836,6 +836,9 @@ en:
       success_notice: 'Plan was successfully updated.'
 
   requirements:
+    create:
+      group_success_notice: 'Group was successfully created.'
+      requirement_success_notice: 'Requirement was successfully created.'
     form:
       obligation_tooltip_html: 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.'
       group_type_tooltip_html: 'Tooltip &#8220;text&#8221; goes here.'
@@ -853,6 +856,9 @@ en:
       template_status: 'DMP Template Status:'
       template_status_tooltip_html: 'The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.'
       cant_delete_template: 'This template cannot be deleted until all DMPs that use it have been removed.'
+
+    update:
+      success_notice: 'Requirement was successfully updated.'
 
   requirements_templates:
     form:
