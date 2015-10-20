@@ -219,14 +219,6 @@ en:
     messages:
       prompt:
         confirm: 'Are you sure?'
-    enums:
-      visibility:   # Used by ApplicationHelper#translate_visibility
-        institutional: 'Institutional'
-        public: 'Public'
-        private: 'Private'
-        unit: 'Unit'
-        owner: 'Owner'
-        reviewer: 'Reviewer'
   helpers:
     controller:
       plan:

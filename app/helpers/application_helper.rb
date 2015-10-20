@@ -91,10 +91,6 @@ module ApplicationHelper
     end
   end
 
-  def translate_visibility(visibility)
-    t("globals.enums.visibility.#{visibility}")
-  end
-
   def display_detail_overview
     t('globals.template.details.overview')
   end
