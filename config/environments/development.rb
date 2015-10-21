@@ -26,6 +26,8 @@ Dmptool2::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  config.log_level = :debug
 
   #special settings if you want to configure Unicorn logs for development use of unicorn server
   if defined? Hulk
@@ -39,5 +41,19 @@ Dmptool2::Application.configure do
       # ...
     end
   end
+
+  # for email notifications when an exception occurs
+  # !!!!! change exception_recipients accordingly !!!!
+  Dmptool2::Application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Dmptool2 Exception] ",
+      :sender_address => %{"notifier"},
+      :exception_recipients => %w{exception_receiver1@localhost execption_receiver2@localhost}
+    }
+
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.file_settings = { :location => Rails.root.join('tmp/mail') }
 
 end
