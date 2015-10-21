@@ -63,7 +63,9 @@
 				<div class="control-group">
 					<%= f.label :start_date, class: 'control-label' %>
 					<div class="controls">
-						<%= f.text_field :start_date, value: @requirements_template.start_date.blank? ? " " : l(@requirements_template.start_date), :class => 'datepicker shortfield' %>
+						<%= f.date_field :start_date,
+														 value: (l(@requirements_template.start_date) if @requirements_template.start_date.present?),
+														 class: 'datepicker shortfield' %>
 						<%= content_tag(:span, '', :title => t('.start_date_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
 					</div>
 				</div>
@@ -71,7 +73,9 @@
 				<div class="control-group">
 					<%= f.label :end_date, class: 'control-label' %>
 					<div class="controls">
-						<%= f.text_field :end_date, value: @requirements_template.end_date.blank? ? " " : l(@requirements_template.end_date), :class => 'datepicker shortfield' %>
+						<%= f.date_field :end_date,
+														 value: (l(@requirements_template.end_date) if @requirements_template.end_date.present?),
+														 class: 'datepicker shortfield' %>
 						<%= content_tag(:span, '', :title => t('.end_date_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
 					</div>
 				</div>
