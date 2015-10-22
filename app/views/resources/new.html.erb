@@ -10,11 +10,7 @@
       <div class="control-group">
         <%= f.label :resource_type, class: 'control-label' %>
         <div class="controls">
-          <%= f.select :resource_type,
-                       options_for_select([
-                             [t_enum(:resource, :resource_type, :actionable_url), :actionable_url],
-                             [t_enum(:resource, :resource_type, :help_text), :help_text]
-                           ], @resource.resource_type) %>
+          <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text], @resource) %>
         </div>
       </div>
 
