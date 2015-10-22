@@ -258,6 +258,27 @@ module ApplicationHelper
   end
   alias_method :t_enum, :translate_enum
 
+  ##
+  # Return a string of i18ned options tags for an enum select.
+  #
+  # The method will try to deduce all parameters if not specified.
+  #
+  # [model]
+  #   1. +record+'s class if it is a model.
+  #   2. The constantized #controller_name.
+  # [attribute]
+  #   1. One of the +model+'s enum columns.
+  # [collection]
+  #   1. The allowed values of +model+'s +attribute+ column.
+  # [selected]
+  #   1. The actual value of +record+'s +attribute+.
+  #
+  # Note that the method currently does not implement error handling. If you
+  # use it the wrong way, you will not get descriptive error messages.
+  #
+  # :call-seq: options_for_enum_select(collection = nil, record = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(collection = nil, selected = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(record = nil, selected = nil, model: nil, attribute: nil, **options)
 
   def options_for_enum_select(args = nil, selected = nil, model: nil, attribute: nil, **options)
     if args.is_a? Enumerable
