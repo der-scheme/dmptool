@@ -619,6 +619,7 @@ en:
       upload_button: 'Upload'
 
     partners_list:
+      partner_institutions: 'Partner Institutions'
       intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
       partners_link: 'About partners'
       partners_tooltip: 'About partners'
