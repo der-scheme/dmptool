@@ -985,6 +985,24 @@ en:
       select_institution_radio: 'Customizing this template for the following institution'
       next_button: 'Next page'
 
+    customization_resources_list:
+      # Find the following translations, merged into one, in en.rb:
+      # - resources_customized_for_one
+      # - resources_customized_for_all
+      visibility_info: 'These resources will be displayed for all requirements defined for this template.'
+      details: 'Details'
+      action: 'Action'
+      action_tooltip: 'Edit'
+      add_resource_button: 'Add a resource'
+
+    create:
+      success_notice: 'Customization was successfully created.'
+
+    display_buttons:
+      choose_template_button: '<< Choose DMP Template'
+      customizations_button: '<< Customizations'
+      details_button: 'Customization Details >>'
+
     form:
       title: 'Customization Overview'
       basic_info: 'Basic Information'
@@ -996,24 +1014,12 @@ en:
       no_created_at: 'none'
       no_updated_at: 'none'
 
-    display_buttons:
-      choose_template_button: '<< Choose DMP Template'
-      customizations_button: '<< Customizations'
-      details_button: 'Customization Details >>'
+    new:
+      name: '%{template} for %{institution}'
 
     resource_customization:
       no_customizations: 'You have no template customizations'
       new_button: 'Create New Customization'
-
-    customization_resources_list:
-      # Find the following translations, merged into one, in en.rb:
-      # - resources_customized_for_one
-      # - resources_customized_for_all
-      visibility_info: 'These resources will be displayed for all requirements defined for this template.'
-      details: 'Details'
-      action: 'Action'
-      action_tooltip: 'Edit'
-      add_resource_button: 'Add a resource'
 
     select_resource:
       existing: 'Existing Resources'
@@ -1032,15 +1038,6 @@ en:
       link_button: 'Link Selected Resource'
       add_resource_button: 'Add a new resource'
 
-    new:
-      name: '%{template} for %{institution}'
-
-    create:
-      success_notice: 'Customization was successfully created.'
-
-    update:
-      success_notice: 'Customization was successfully updated.'
-
     unlink_resource_from_template:
       success_notice: 'The resource was successfully unlinked.'
 
@@ -1049,6 +1046,9 @@ en:
 
     unlink_resource_from_customization:
       success_notice: 'The resource was successfully unlinked.'
+
+    update:
+      success_notice: 'Customization was successfully updated.'
 
 
   users:
