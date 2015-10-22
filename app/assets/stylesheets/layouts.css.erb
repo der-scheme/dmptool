@@ -19,7 +19,7 @@
 .centered {
 	text-align: center;
 	margin: 0 auto; }
-	
+
 /* Header */
 .header {
 	background: url(<%= asset_path 'header_bg_iqf.jpg' %>) no-repeat 0 0 #86A641;
@@ -42,19 +42,24 @@
 	top: 0; }
 .header a.logo:hover img {
 	top: -25px; }
-.header a.choose_language {
-        color: #FFF;
-        display: block;
+.header .language_switcher {
         margin-right: 5px;
         margin-top: 5px;
         text-align: right; }
+.header ul.language_switcher > li {
+	display: inline-block; }
+.header .choose_language {
+        color: #FFF;
+        display: block; }
+.header span.choose_language {
+	color: #AAA; }
 .header .welcome {
 	position: absolute;
 	top: 30px;
 	right: 35px; }
 .header .welcome p {
 	margin: 0; }
-	
+
 /* Header Navigation */
 .header .navbar {
 	background: url(<%= asset_path 'header_nav_bg_iqf.jpg' %>) repeat-x 0 0 transparent;
@@ -96,13 +101,13 @@
 	margin-right: 0; }
 .header ul.nav > li.login a {
 	padding-left: 45px;
-	position: relative; }	
+	position: relative; }
 .header ul.nav > li.login a .icon.user-login {
 	position: absolute;
 	top: 13px;
 	left: 15px; }
-.header ul.nav > li.login a:hover .icon.user-login, 
-.header ul.nav > li.login a:focus .icon.user-login, 
+.header ul.nav > li.login a:hover .icon.user-login,
+.header ul.nav > li.login a:focus .icon.user-login,
 .header ul.nav > li.login a:active .icon.user-login {
 	background-position: -180px -110px; }
 .header ul.nav > li.parent > a:after {
@@ -170,7 +175,7 @@
 .footer .footer-links[class*="span"] {
 	float: right;
 	text-align: right;
-	padding-top: 7px; 
+	padding-top: 7px;
 	width: 450px; }
 .footer .footer-links p {
 	display: inline-block;
@@ -184,7 +189,7 @@
 .footer .footer-feeds a {
 	float: left;
 	margin-left: 7px; }
-	
+
 /* Dashboard */
 .dashboard { }
 /* Dashboard Header */

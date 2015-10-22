@@ -95,3 +95,18 @@ function add_tab_to_pagination(){
     });
   });
 }
+
+String.prototype.interpolate = function(interpolants) {
+  return this.replace(/%\{(\w+)\}/g, function(match, key) {
+    return interpolants[key];
+  });
+};
+
+translate = function(key, interpolants = {}) {
+  return I18n[key].interpolate(interpolants);
+};
+t = translate;
+
+localized_temporal_format = function(temporal = 'datetime', format = 'default') {
+  return t(temporal + '.formats.' + format).replace(/%/g, '');
+};

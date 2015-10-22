@@ -1,10 +1,12 @@
 class UserSessionsController < ApplicationController
 
+  before_action :return_to_last_locale, only: [:create, :destroy, :failure]
+
   def login
     if !params[:institution_id].blank?
       session['institution_id'] = params[:institution_id]
     elsif session['institution_id'].blank?
-      redirect_to choose_institution_path, flash: {error: 'Please choose your log in institution.'} and return
+      redirect_to choose_institution_path, flash: {error: t('.no_institution_error')} and return
     end
     @institution = Institution.find(session[:institution_id])
     if !@institution.shib_domain.blank?
@@ -26,27 +28,27 @@ class UserSessionsController < ApplicationController
       msg = ex.to_s
       case ex.to_s
         when 'incomplete information from identity provider'
-          msg = "Your identify provider didn't provide complete information.  Please contact us so we can help troubleshoot this problem."
+          msg = t('.incomplete_info_error')
         when 'multiple users with same email'
-          msg = "Multiple users have the same email as you.  Please contact us to fix the problem."
+          msg = t('.duplicate_email_error')
         when 'user deactivated'
-          msg = "Your user account is currently deactivated.  In order to be reactivate your account, please contact us."
+          msg = t('.account_deactivated_error')
         when 'authentication without user record'
-          msg = "You've previously logged in but do not have a current account. Contact us for help resolving this problem."
+          msg = t('.auth_wo_record_error')
       end
       redirect_to choose_institution_path, flash: { error: msg } and return
     end
     if auth[:provider] == 'shibboleth' && user.nil?
-      redirect_to choose_institution_path, flash: { error: 'Problem with InCommon login.  Your InCommon provider may not be releasing the necessary attributes.'} and return
+      redirect_to choose_institution_path, flash: { error: t('.incommon_error')} and return
     end
     if user.nil? || !user.active?
-     redirect_to choose_institution_path, flash: { error: "Incorrect username, password or institution" } and return
-    end 
+     redirect_to choose_institution_path, flash: { error: t('.incorrect_credentials_error')} and return
+    end
     session[:user_id] = user.id
     session[:login_method] = auth[:provider]
 
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?
-      redirect_to edit_user_path(user), flash: {error: 'Please complete filling in your profile information.'} and return
+      redirect_to edit_user_path(user), flash: {error: t('.incomplete_info_error')} and return
     else
       unless session[:return_to].blank?
         r = session[:return_to]
@@ -58,20 +60,20 @@ class UserSessionsController < ApplicationController
   end
 
   def failure
-    redirect_to choose_institution_path, flash: { error: "Failure: Incorrect username, password or institution" }
+    redirect_to choose_institution_path, flash: { error: t('.error_message')}
   end
 
   def destroy
     reset_session
     session[:user_id]
-    redirect_to root_path, notice: "Signed out."
+    redirect_to root_path, notice: t('.notice')
   end
 
   #allow choosing the institution before logging in.
   def institution
      @inst_list = InstitutionsController.institution_select_list
   end
-  
+
   #email username from email address -- get the form, post the submission
   def username_reminder
     if request.post?
@@ -81,19 +83,19 @@ class UserSessionsController < ApplicationController
         if users.length > 0
           uid = users.first.authentications.first.uid
           UsersMailer.username_reminder(uid, email).deliver
-          flash[:notice] = "Your username has been emailed to #{email}."
+          flash[:notice] = t('.success_notice', email: email)
           redirect_to login_path
         else
-          flash[:error] = "No user found with email address #{email}."
+          flash[:error] = t('.no_such_user_error', email: email)
           redirect_to(:action => 'username_reminder', email: email) and return
         end
       else
-        flash[:error] = "You must supply a valid email to obtain a username reminder."
+        flash[:error] = t('.invalid_email_error')
         redirect_to(:action => 'username_reminder', email: email) and return
       end
     end
   end
-  
+
   #reset the password for an email address and mail it -- get is the form, post the submission
   def password_reset
     if request.post?
@@ -122,73 +124,88 @@ class UserSessionsController < ApplicationController
           token = user.ensure_token
           reset_url = complete_password_reset_url(:id => user.id, :token => token, :protocol => 'https')
           UsersMailer.password_reset(user.login_id, email, reset_url).deliver
-          
-          flash[:notice] = "An email has been sent to #{email} with instructions for resetting your password."
+
+          flash[:notice] = t('.success_notice', email: email)
           redirect_to login_path and return
         elsif users.length < 1
-          flash[:error] = "No user found with email or username #{email}."
+          flash[:error] = t('.no_such_user_error', email: email)
           redirect_to(:action => 'password_reset', email: email) and return
         elsif ldap_user.nil?
-          flash[:error] = "You must reset your Shibboleth password through your own institution's password reset mechanism." +
-                          "  You do not have an independent login for the DMPTool."
+          flash[:error] = t('.reset_shib_error')
           redirect_to(:action => 'password_reset', email: email) and return
         elsif dmp_user == false
-          flash[:error] = "Your LDAP account has not been enabled for use in the DMPTool.  Your account must be set up in the DMPTool before you can change your password."
+          flash[:error] = t('.ldap_disabled_error')
           redirect_to(:action => 'password_reset', email: email) and return
         end
       else
-        flash[:error] = "You must supply an email or username to request a password reset."
+        flash[:error] = t('.incomplete_info_error')
         redirect_to(:action => 'password_reset', email: email) and return
       end
     end
   end
-  
+
   def complete_password_reset
     user_id = params[:id]
     token = params[:token]
     @user = User.find_by_id(user_id)
     unless @user && @user.token && @user.token_expiration
-      flash[:error] = 'User not found or password reset not requested'
+      flash[:error] = t('.no_token_error')
       redirect_to(root_path) and return
     end
     if @user.token_expiration < Time.now
-      flash[:error] = 'Password reset token has expired. Please request a reset again.'
+      flash[:error] = t('.token_expired_error')
       redirect_to(:action => 'password_reset') and return
     end
     unless @user.token == token
-      flash[:error] = 'Invalid password reset token. Please request a reset again.'
+      flash[:error] = t('.invalid_token_error')
       redirect_to(:action => 'password_reset') and return
     end
-    
-    
+
+
     if request.post?
       password = params[:password]
       password_confirmation = params[:password_confirmation]
-  
+
       unless legal_password(password)
-        flash[:error] = 'Your password must be at least eight characters long and have at least one letter and at least one number.'
+        flash[:error] = t('.illegal_password_error')
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-      
+
       unless password == password_confirmation
-        flash[:error] = 'Password and confirmation do no match. Please try again.'
+        flash[:error] = t('.wrong_confirmation_error')
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-  
+
       begin
         Ldap_User.find_by_email(@user.email).change_password(password)
       rescue Exception => ex
-        flash[:error] = "Problem updating password in LDAP. Please retry."
+        flash[:error] = t('.ldap_error')
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-  
+
       @user.clear_token
-      flash[:notice] = "You have successfully updated your password."
+      flash[:notice] = t('.success_notice')
       redirect_to login_path and return
     end
   end
-  
+
   def legal_password(password)
     (8..30).include?(password.length) and password.match(/\d/) and password.match(/[A-Za-z]/)
+  end
+
+private
+
+  ## Return the last locale chosen by the user.
+  #
+  # In case of a login method were the user is redirected to a statically
+  # chosen URL we lose the info which locale they've chosen before.
+  # We use our page history to look up the params that were used in previous
+  # visits of the site, or (if the page history is empty) just rely one an
+  # empty hash instead (which will yield a nil locale, implying fallback to
+  # browser settings).
+
+  def return_to_last_locale
+    params[:locale] = session[:page_history].try(:first).try(:fetch, :locale, nil)
+    set_locale
   end
 end

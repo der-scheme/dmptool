@@ -6,11 +6,9 @@
       <%= f.check_box :group, id: 'if_group', style: 'display: none;' %>
     </div>
     <div class="control-group">
-      <% if params[:node_type] == 'group'%>
-        <%= f.label :text_brief, 'Group Label', :class => 'control-label required' %>
-      <% else %>
-        <%= f.label :text_brief, 'Requirement Label', :class => 'control-label required' %>
-      <% end %>
+      <%= f.label :text_brief,
+                  Requirement.human_attribute_name(:text_brief, group: params[:node_type].present?),
+                  class: 'control-label required' %>
       <div class="controls">
         <%= f.text_field(:text_brief, :class => 'input-block-level', 'aria-required' => 'true') %>
       </div>
@@ -18,14 +16,14 @@
 
     <% if params[:node_type] == 'group'%>
       <div class="control-group">
-        <%= f.label :text_full, 'Detailed Question', :class => 'control-label' %>
+        <%= f.label :text_full, class: 'control-label' %>
         <div class="controls">
           <%= f.text_area(:text_full, rows: 5, :class => 'input-block-level') %>
         </div>
       </div>
     <% else %>
       <div class="control-group">
-        <%= f.label :text_full, 'Detailed Question', :class => 'control-label required' %>
+        <%= f.label :text_full, class: 'control-label required' %>
         <div class="controls">
           <%= f.text_area(:text_full, rows: 5, :class => 'input-block-level', 'aria-required' => 'true') %>
         </div>
@@ -33,38 +31,47 @@
     <% end %>
 
     <div class="control-group" id="obligation" style="position: relative">
-      <%= content_tag(:span, '', :title => 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 120px') %>
-      <p class="control-label">Obligation</p>
+      <%= content_tag :span, '', title: t('.obligation_tooltip_html'),
+                      data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                      class: 'icon questionmark tip', style: 'position: absolute; top: 7px; left: 120px' %>
+      <%= content_tag :p, Requirement.human_attribute_name(:obligation), class: 'control-label' %>
       <div class="controls checkbox-controls">
         <%= f.radio_button :obligation, :mandatory, :class => 'radio inline', :id => 'mandatory'%>
-        <%= label_tag :mandatory, "Mandatory", :class => "radio-label" %><br/>
+        <%= label_tag :mandatory, t_enum(:enumeration, :obligation, :mandatory), class: 'radio-label' %>
+        <br/>
         <%= f.radio_button :obligation, :mandatory_applicable, :class => 'radio inline', :id => 'mandatory_applicable'%>
-        <%= label_tag :mandatory_applicable, "Mandatory If Applicable", :class => "radio-label" %><br/>
+        <%= label_tag :mandatory_applicable, t_enum(:enumeration, :obligation, :mandatory_applicable), class: 'radio-label' %>
+        <br/>
         <%= f.radio_button :obligation, :recommended, :class => 'radio inline', :id => 'recommended' %>
-        <%= label_tag :recommended, "Recommended", :class => "radio-label" %><br/>
+        <%= label_tag :recommended, t_enum(:enumeration, :obligation, :recommended), class: 'radio-label' %>
+        <br/>
         <% if params[:node_type] == 'group' && @requirement.new_record? %>
           <%= f.radio_button :obligation, :optional, :class => 'radio inline', :id => 'optional' %>
-          <%= label_tag :optional, "Optional", :class => "radio-label" %>
+          <%= label_tag :optional, t_enum(:enumeration, :obligation, :optional), class: 'radio-label' %>
         <% elsif @requirement.new_record? %>
           <%= f.radio_button :obligation, :optional, checked: true, :class => 'radio inline', :id => 'optional' %>
-          <%= label_tag :optional, "Optional", :class => "radio-label" %>
+          <%= label_tag :optional, t_enum(:enumeration, :obligation, :optional), class: 'radio-label' %>
         <% else %>
           <%= f.radio_button :obligation, :optional, :class => 'radio inline', :id => 'optional' %>
-          <%= label_tag :optional, "Optional", :class => "radio-label" %>
+          <%= label_tag :optional, t_enum(:enumeration, :obligation, :optional), class: 'radio-label' %>
         <% end %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :requirement_type, 'Question Type', :class => 'control-label' %>
+      <%= f.label :requirement_type, class: 'control-label' %>
       <% if params[:node_type] == 'group'%>
         <div class="controls">
-          <%= f.select :requirement_type, options_for_select([:text, :numeric, :date, :enum]) %>
-          <%= content_tag(:span, '', :title => 'Tooltip &#8220;text&#8221; goes here.', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+          <%= f.select :requirement_type, options_for_enum_select(attribute: :requirement_type) %>
+          <%= content_tag :span, '', title: t('.group_type_tooltip_html'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </div>
       <% else %>
         <div class="controls">
-          <%= f.select :requirement_type, options_for_select([:text, :numeric, :date, :enum], @requirement.requirement_type) %>
-          <%= content_tag(:span, '', :title => 'You can designate the format of the answer to be given to a requirement. The default format is text (minimal structured text format). Other options: <ul><li>Numeric format: for integer or real number answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM, or YYYY-MM-DD</li><li>Enum format: answers are an ordered list of values from which the researcher can select.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+          <%= f.select :requirement_type, options_for_enum_select(@requirement, attribute: :requirement_type) %>
+          <%= content_tag :span, '', title: t('.requirement_type_tooltip_html'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </div>
       <% end %>
     </div>
@@ -73,7 +80,7 @@
       <%= f.fields_for :enumerations do |builder| %>
         <%= render 'enumeration_fields', f: builder %>
       <% end %>
-      <%= link_to_add_fields 'Click to Add Item', f, :enumerations %>
+      <%= link_to_add_fields t('.add_item_link'), f, :enumerations %>
     </fieldset>
 
     <fieldset class="requirement_type_numeric">
@@ -84,7 +91,7 @@
 
   </fieldset>
   <div class="buttons">
-	  <%= f.submit 'Save', :class => 'btn' %>
-    <%= button_tag 'Cancel', type: :reset, :class => 'btn', id: 'cancel_button'%>
-	</div>
+    <%= render_submit_button t: '.save' %>
+    <%= render_cancel_button id: 'cancel_button'%>
+  </div>
 <% end %>

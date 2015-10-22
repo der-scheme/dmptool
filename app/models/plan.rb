@@ -46,10 +46,10 @@ class Plan < ActiveRecord::Base
 
 
   def plan_responses_ids
-    @response_ids = [] 
+    @response_ids = []
     responses.each do |response|
       @response_ids << response.id
-      
+
     end
     @response_ids
   end
@@ -136,13 +136,8 @@ class Plan < ActiveRecord::Base
     updated_at.to_date.strftime("%m/%d/%Y")
   end
 
-  def display_state
-    return '' if self.current_state.nil?
-    self.current_state.display_state
-  end
-
   def plans_count_for_institution(institution)
-    Plan.joins(:users).where(user_plans: {owner: true}).where("users.institution_id = ?", institution.id).count 
+    Plan.joins(:users).where(user_plans: {owner: true}).where("users.institution_id = ?", institution.id).count
   end
 
   def current_plan_state

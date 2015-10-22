@@ -1,15 +1,15 @@
-<% @title_text = "DMP Details" %>
+<% @title_text = t('.dmp_details') %>
 <% @display_menu = "plans:details" %>
 
-<h1 class="row-fluid"><span class="icon template-details"></span>DMP Details</h1>
+<h1 class="row-fluid"><span class="icon template-details"></span><%= t('.dmp_details') %></h1>
 <h2><%= @requirements_template.name %></h2>
 <div class="row-fluid">
   <div class="details span4">
-    <p>Click on a section below to edit it at any time.</p>
-    <p><span class="icon confirm"></span> = Complete</p>
-    <p><span class="required"> &nbsp;* </span>  &nbsp;&nbsp;= Mandatory</p>
+    <%= content_tag :p, t('.edit_instructions') %>
+    <p><span class="icon confirm"></span><%= t('.complete_icon_meaning') %></p>
+    <p><span class="required"> &nbsp;* </span><%= t('.mandatory_icon_meaning') %></p>
     <div class="border-box">
-      <p><strong>Template Outline</strong></p>
+      <p><strong><%= t('.template_outline') %></strong></p>
       <hr/>
       <div class="requirements-tree-view">
         <%= render partial: 'shared/requirements_tree', locals: { requirements: @requirements.roots } %>
@@ -18,18 +18,18 @@
   </div>
   <div class="tabbable span8">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Instructions</a></li>
+      <li class="active"><a href="#tab1" data-toggle="tab"><%= t('.instructions') %></a></li>
 
       <% unless @url_resources.empty? && @requirement.global_resources.actionable_url.empty? && @requirement.template_resources.actionable_url.empty? && @requirement.requirement_resources.actionable_url.empty? && @requirement.template_customization_resources(current_user.institution_id).actionable_url.empty? && @requirement.institution_customization_resources(current_user.institution_id).actionable_url.empty? %>
-          <li><a href="#tab2" data-toggle="tab">Links</a></li>
+          <li><a href="#tab2" data-toggle="tab"><%= t('.links') %></a></li>
       <% end %>
 
       <% unless @suggested_resources.empty? && @requirement.global_resources.suggested_response.empty? && @requirement.template_resources.suggested_response.empty? && @requirement.requirement_resources.suggested_response.empty? && @requirement.template_customization_resources(current_user.institution_id).suggested_response.empty? && @requirement.institution_customization_resources(current_user.institution_id).suggested_response.empty? %>
-          <li><a href="#tab3" data-toggle="tab">Suggested Response</a></li>
+          <li><a href="#tab3" data-toggle="tab"><%= t('.suggested_response') %></a></li>
       <% end %>
 
       <% unless @example_resources.empty? && @requirement.global_resources.example_response.empty? && @requirement.template_resources.example_response.empty? && @requirement.requirement_resources.example_response.empty? && @requirement.template_customization_resources(current_user.institution_id).example_response.empty? && @requirement.institution_customization_resources(current_user.institution_id).example_response.empty? %>
-          <li><a href="#tab4" data-toggle="tab">Example Response</a></li>
+          <li><a href="#tab4" data-toggle="tab"><%= t('.example_response') %></a></li>
       <% end %>
     </ul>
 
@@ -51,20 +51,19 @@
       <fieldset>
         <!-- <strong style="color:#516935; margin-left: 1em;"> Your Response </strong> -->
         <% if @requirement.obligation == :mandatory %>
-          <strong style="margin-left: 10px;">(Mandatory)</strong>
+          <strong style="margin-left: 10px;"><%= t('.mandatory') %></strong>
         <% end %>
         <%= render partial: 'responses/form', locals: { requirement_id: params[:requirement_id], plan_id: @plan.id } %>
       </fieldset>
     </div>
   </div>
   <div>
-    <% referer_action %>
-    <% if (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'new') || (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'copy_existing_template') %>
-      <%= link_to '<< Back', edit_plan_path(@plan),  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>
+    <% if (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'new') || (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'copy_existing_template') %>
+      <%= render_back_button edit_plan_path(@plan), arrow: true, class: 'pull-left' %>
     <% else %>
-      <%= link_to '<< Back', :back,  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>
+      <%= render_back_button arrow: true, class: 'pull-left' %>
     <% end %>
-    <%= link_to 'DMP Preview >>', preview_plan_path(@plan),  method: 'get', :class => 'btn btn-green pull-right', role: "button" %>
+    <%= render_button_link t('.preview_button'), preview_plan_path(@plan), class: 'pull-right' %>
   </div>
 </div>
 <script type="text/javascript">

@@ -13,7 +13,7 @@
       <% if tab[:requirement_only] %>
         <% # Tabs that skip levels one and two since they are only for requirements  %>
         <%= render :partial => 'section_display', #level 3
-                   :locals => {:section_name  => 'DMP Resources',
+                   :locals => {:section_name  => t('.dmp_resources_section'),
                                :partial_name  => tab[:partial],
                                :collection    => @requirement.requirement_resources.send(tab[:scope]),
                                :editable      => editable, #editable if this is a template customization or if user: dmp_admin
@@ -25,7 +25,7 @@
       <% else %>
 
         <%= render :partial => 'section_display', #level 1
-                   :locals => {:section_name  => 'Global Resources',
+                   :locals => {:section_name  => t('.global_resources_section'),
                                :partial_name  => tab[:partial],
                                :collection    => @requirement.global_resources.send(tab[:scope]),
                                :editable      => editable,
@@ -35,7 +35,7 @@
         %>
 
         <%= render :partial => 'section_display', #levels 2 + 3
-                   :locals => {:section_name  => 'DMP Resources',
+                   :locals => {:section_name  => t('.dmp_resources_section'),
                                :partial_name  => tab[:partial],
                                :collection    => @requirement.template_resources.send(tab[:scope]) +
                                    @requirement.requirement_resources.send(tab[:scope]),
@@ -49,7 +49,7 @@
       <% unless template_cust #don't display these for template-only customization  %>
         <% unless tab[:requirement_only] %>
           <%= render :partial => 'section_display', #level 4
-                     :locals => {:section_name => "#{@institution.name} Resources",
+                     :locals => {:section_name => t('.institution_resources', instution: @institution.name),
                                  :partial_name => tab[:partial],
                                  :collection => @requirement.institution_customization_resources(@institution).send(tab[:scope]),
                                  #:editable => !template_cust,
@@ -59,21 +59,24 @@
                                  :tab_number    => index+1 }
           %>
 
-          <%= render :partial => 'section_display', #level 5
-                     :locals => {:section_name => "#{@requirements_template.name} for #{@institution.name} Resources",
-                                 :partial_name => tab[:partial],
-                                 :collection => @requirement.template_customization_resources(@institution).send(tab[:scope]),
-                                 #:editable => !template_cust,
-                                 :editable      => true,
-                                 :cust_level    => '5',
-                                 :tab_name      => tab[:name],
-                                 :tab_number    => index+1 }
+          <%= render partial: 'section_display', #level 5
+                     locals: {
+                               section_name: t('.template_for_institution_resources_section',
+                                               template: @requirements_template.name,
+                                               institution: @institution.name),
+                               partial_name: tab[:partial],
+                               collection: @requirement.template_customization_resources(@institution).send(tab[:scope]),
+                               editable: true,
+                               cust_level: '5',
+                               tab_name: tab[:name],
+                               tab_number: index + 1
+                             }
           %>
 
         <% end %>
 
         <%= render :partial => 'section_display', #level 7
-                   :locals => {:section_name => 'Requirement Resources',
+                   :locals => {:section_name => t('.requirement_resources_section'),
                                :partial_name => tab[:partial],
                                :collection => @requirement.requirement_customization_resources(@institution).send(tab[:scope]),
                                #:editable      => !template_cust,
@@ -88,7 +91,7 @@
 
 
       <p style="clear:both;">
-        <%= link_to tab[:button_text],
+        <%= link_to t(tab[:button_text]),
                     select_resource_path(template_id: @requirements_template.id,
                                          requirement_id: @requirement.id,
                                          resource_level: 'requirement',

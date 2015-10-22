@@ -1,44 +1,44 @@
-<% @title_text = "DMP Templates" %>
+<% @title_text = RequirementsTemplate.model_name.human(count: 0, unit: false) %>
 <% @display_menu = "dmp_templates" %>
-<h1 class="row-fluid"><span class="icon dmp-template"></span>DMP Templates</h1>
+<h1 class="row-fluid"><span class="icon dmp-template"></span><%= @title_text %></h1>
 
 <div class="table-scope">
-	<%= link_to "All (#{@all})", {scope: "all_limited", order_scope: @order_scope, all_scope: @all_scope}, :class => "all_limited" %>
+	<%= link_to t('.all_filter_link', count: @all), {scope: "all_limited", order_scope: @order_scope, all_scope: @all_scope}, class: 'all_limited' %>
 	|
-	<%= link_to "Active  (#{@active})", {scope: "active", order_scope: @order_scope, all_scope: @all_scope}, :class => "active" %>
+	<%= link_to t('.active_filter_link', count: @active), {scope: "active", order_scope: @order_scope, all_scope: @all_scope}, class: 'active' %>
 	|
-	<%= link_to "Inactive (#{@inactive})", {scope: "inactive", order_scope: @order_scope, all_scope: @all_scope}, :class => "inactive" %>
+	<%= link_to t('.inactive_filter_link', count: @inactive), {scope: "inactive", order_scope: @order_scope, all_scope: @all_scope}, class: 'inactive' %>
 	|
-	<%= link_to "Institution only (#{@institutional})", {scope: "institutional", order_scope: @order_scope, all_scope: @all_scope}, :class => "institutional" %>
+	<%= link_to t('.institutional_filter_link', count: @institutional), {scope: "institutional", order_scope: @order_scope, all_scope: @all_scope}, class: 'institutional' %>
 	|
-	<%= link_to "Public (#{@public})", {scope: "public", order_scope: @order_scope, all_scope: @all_scope}, :class => "public" %>
+	<%= link_to t('.public_filter_link', count: @public), {scope: "public", order_scope: @order_scope, all_scope: @all_scope}, class: 'public' %>
 	|
-	<%= link_to "Public defined by my Institution (#{@your_inst_public})", {scope: "your_inst_public", order_scope: @order_scope, all_scope: @all_scope}, :class => "your_inst_public" %>
+	<%= link_to t('.inst_public_filter_link', count: @your_inst_public), {scope: "your_inst_public", order_scope: @order_scope, all_scope: @all_scope}, class: 'your_inst_public' %>
 
-	<%= content_tag(:span, '', :title => '<ul><li>Active: Will appear as an optional funder template when a researcher creates a DMP. It can be visible either publicly (to anyone logged into the tool) or for institutional researchers only.</li><li>Inactive: will not appear as an optional funder template when a researcher creates a DMP. This may be because the template that is no longer in use, or that has not been completed (finalized) by an administrator.</li><li>Institution only: Active or inactive DMP templates for your institution only.</li><li>Public:  All DMP templates with “Public” visibility. They may be active or inactive.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+	<%= content_tag(:span, '', title: t('.filter_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
 </div>
 <table class="table table-striped" id="dmp_templates">
 	<thead>
 		<tr>
       <th class="span4">
-      	<%#= link_to "Template Name", {order_scope: "Name", scope: @scope, all_scope: @all_scope}%>
-      	<%= sortable "name"%>
+      	<%#= link_to "Template Name", {order_scope: "Name", scope: @scope, all_scope: @all_scope} %>
+      	<%= sortable :name %>
       </th>
       <th class="span3">
-      	<%= sortable "institution"%>
+      	<%= sortable :institution_id %>
       </th>
       <th>
-      	<%= sortable "status"%>
+      	<%= sortable :status %>
       </th>
       <th>
-      	<%= sortable "visibility"%>
-      	<%= content_tag(:span, '', :title => 'Once live, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      	<%= sortable :visibility %>
+      	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
       </th>
       <th>
-      	<%= sortable "creation_date", "Creation Date"%>
+      	<%= sortable :created_at %>
       </th>
       <th>
-      	<%= sortable "last_modification_date", "Last Modification Date" %>
+      	<%= sortable :updated_at %>
       </th>
     </tr>
 	</thead>
@@ -47,81 +47,121 @@
 		<tr>
 			<td class="requirements_template_name">
 				<div class="toggle-links">
-					
-					<%=content_tag(:strong, requirements_template.name, id: requirements_template.name)%>
+
+					<%= content_tag(:strong, requirements_template.name, id: requirements_template.name)%>
 
 					<% if user_role_in?(:dmp_admin) %>
 						<div class="template-links">
-							<%= link_to "Overview", edit_requirements_template_path(requirements_template) %> |
-							<%= link_to "Details",requirements_template_requirements_path(requirements_template), :class => "details" %> |
-							<%= link_to activate_link_text(requirements_template),
-										toggle_active_requirements_template_path(requirements_template),remote: true, id: "activate_link_#{requirements_template.id}", 
-										:class => "ajax" %> |
-							<%= link_to "Customize", resource_contexts_choose_institution_path(requirements_template_id: requirements_template.id) %>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %> |
+              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %> |
+              <%= link_to t('.toggle_status_link', template: requirements_template),
+                          toggle_active_requirements_template_path(requirements_template),
+                          remote: true,
+                          id: "activate_link_#{requirements_template.id}",
+                          class: "ajax" %> |
+              <%= link_to t('.customize_link'), resource_contexts_choose_institution_path(requirements_template_id: requirements_template.id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to 'Delete', requirements_template_path(requirements_template, after_url: request.original_url), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
-              <% end %>
-						</div>
-					
-					<% elsif user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
-						<div class="template-links">
-							<%= (link_to "Overview", edit_requirements_template_path(requirements_template))+" | "+
-									(link_to "Details",requirements_template_requirements_path(requirements_template), :class => "details")+" | "+
-									(link_to activate_link_text(requirements_template), 
-										toggle_active_requirements_template_path(requirements_template),remote: true, id: "activate_link_#{requirements_template.id}", 
-										:class => "ajax")+" | "+
-									(link_to "Customize", new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id))%>
-              <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to 'Delete', requirements_template_path(requirements_template, after_url: request.original_url), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+                | <%= link_to t('.delete_link'),
+                              requirements_template_path(requirements_template,
+                              after_url: request.original_url),
+                              method: :delete,
+                              data: { confirm: t('globals.messages.prompt.confirm') } %>
               <% end %>
 						</div>
 
-					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
+					<% elsif user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= (link_to "Customize", new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id))%>
-						</div>
-
-					<%elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
-						<div class="template-links">
-							<%= (link_to "Overview", edit_requirements_template_path(requirements_template))+" | "+
-									(link_to "Details",requirements_template_requirements_path(requirements_template), :class => "details")+" | "+
-									(link_to activate_link_text(requirements_template), 
-										toggle_active_requirements_template_path(requirements_template),remote: true, id: "activate_link_#{requirements_template.id}", 
-										:class => "ajax")+" | "+
-									(link_to "Customize", new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id))%>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              |
+              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %>
+              |
+              <%= link_to t('.toggle_status_link', template: requirements_template),
+                          toggle_active_requirements_template_path(requirements_template),
+                          remote: true,
+                          id: "activate_link_#{requirements_template.id}",
+                          class: "ajax" %>
+              |
+              <%= link_to t('.customize_link'),
+                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to 'Delete', requirements_template_path(requirements_template, after_url: request.original_url), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+                | <%= link_to t('.delete_link'),
+                              requirements_template_path(requirements_template,
+                              after_url: request.original_url),
+                              method: :delete,
+                              data: { confirm: t('globals.messages.prompt.confirm') } %>
               <% end %>
 						</div>
 
-					<%elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
+					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= (link_to "Customize", new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id))%>
+              <%= link_to t('.customize_link'),
+                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
-					<%elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
+					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
+						<div class="template-links">
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              |
+              <%= link_to t('.details_link'),
+                          requirements_template_requirements_path(requirements_template),
+                          class: "details" %>
+              |
+							<%= link_to t('.toggle_status_link', template: requirements_template),
+                          toggle_active_requirements_template_path(requirements_template),
+                          remote: true,
+                          id: "activate_link_#{requirements_template.id}",
+                          class: "ajax" %>
+              |
+              <%= link_to t('.customize_link'),
+                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <% if requirements_template.user_can_delete_me?(current_user) %>
+                | <%= link_to t('.delete_link'),
+                              requirements_template_path(requirements_template, after_url: request.original_url),
+                              method: :delete,
+                              data: { confirm: t('globals.messages.prompt.confirm') } %>
+              <% end %>
+						</div>
+
+					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
+						<div class="template-links">
+              <%= link_to t('.customize_link'),
+                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+						</div>
+
+					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 					<div class="template-links">
 						<br>
 					</div>
 
-					<%elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id))%>
+					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 					<div class="template-links">
 						<div class="template-links">
-							<%= (link_to "Overview", edit_requirements_template_path(requirements_template))+" | "+
-									(link_to "Details",requirements_template_requirements_path(requirements_template), :class => "details")+" | "+
-									(link_to activate_link_text(requirements_template), 
-										toggle_active_requirements_template_path(requirements_template),remote: true, id: "activate_link_#{requirements_template.id}", 
-										:class => "ajax")%>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              |
+              <%= link_to t('.details_link'),
+                          requirements_template_requirements_path(requirements_template),
+                          class: "details" %>
+              |
+              <%= link_to t('.toggle_status_link', template: requirements_template),
+                          toggle_active_requirements_template_path(requirements_template),
+                          remote: true,
+                          id: "activate_link_#{requirements_template.id}",
+                          class: "ajax" %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to 'Delete', requirements_template_path(requirements_template, after_url: request.original_url), :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+                | <%= link_to t('.delete_link'),
+                              requirements_template_path(requirements_template,
+                              after_url: request.original_url),
+                              method: :delete,
+                              data: { confirm: t('globals.messages.prompt.confirm') } %>
               <% end %>
 					</div>
-				
-					<%elsif (user_role_in?(:resource_editor))%>
+
+					<% elsif (user_role_in?(:resource_editor)) %>
 						<div class="template-links">
-							<%= (link_to "Customize", new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id))%>
+              <%= link_to t('.customize_link'),
+                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
-						
+
 					<%else%>
 						<div class="template-links">
 							<br>
@@ -130,11 +170,11 @@
 
 				</div>
 			</td>
-			<td><%= requirements_template.institution.nil? ? " " :  requirements_template.institution.full_name %></td>
-			<td id="status_#{requirements_template.id}"><%= requirements_template.active ? "Active" : "Inactive" %></td>
-			<td><%= requirements_template.visibility.capitalize %></td>
-			<td><%= requirements_template.created_at.nil? ? " " :  requirements_template.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
-			<td><%= requirements_template.updated_at.nil? ? " " :  requirements_template.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+			<td><%= requirements_template.institution.full_name if requirements_template.institution %></td>
+      <%= content_tag :td, t_enum(requirements_template, :active), id: "status_#{requirements_template.id}" %>
+			<td><%= t_enum(requirements_template, :visibility) %></td>
+			<td><%= l(requirements_template.created_at) if requirements_template.created_at %></td>
+			<td><%= l(requirements_template.updated_at) if requirements_template.updated_at %></td>
 		</tr>
 	<% end %>
 	<tbody>
@@ -143,20 +183,20 @@
 
 <% if @all_scope == "all" %>
 	<div class="buttons pagination">
-		<%= link_to "View Less", 
-				requirements_templates_path(:all_scope => "", order_scope: @order_scope, scope: @scope, direction: @direction), 
-				:method => :get, :class => "btn", role: "button" %>
+    <%= render_button_link t: '.view_less',
+			   href: requirements_templates_path(params.merge(all_scope: '')) %>
 		<%= paginate @requirements_templates %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to "View All", 
-			requirements_templates_path(:all_scope => "all", order_scope: @order_scope, scope: @scope, direction: @direction), 
-			:method => :get, :class => "btn", role: "button", :id => "view_all_templates" %>
+    <%= render_button_link t: '.view_all',
+			   href: requirements_templates_path(params.merge(all_scope: 'all')),
+			   id: 'view_all_templates' %>
 		<%= paginate @requirements_templates %>
 	</div>
 <%end%>
-<% if user_role_in?(:dmp_admin, :template_editor,  :institutional_admin) %>
-  <%= button_to "Create New Template >>", requirements_template_information_path, :method => :get, :class => "btn"  %>
+<% if user_role_in?(:dmp_admin, :template_editor, :institutional_admin) %>
+  <%= button_to t('.new_button'), requirements_template_information_path,
+                method: :get, class: 'btn'  %>
 <% end %>
 

@@ -11,7 +11,7 @@
   <% trunc_text = truncate(strip_tags(resource.text), length: 150, separator: ' ') %>
   <%= trunc_text %>
   <% if trunc_text != resource.text %>
-    &nbsp;&nbsp;&nbsp;<a href="#" class="show_full">More</a>
+    &nbsp;&nbsp;&nbsp;<%= link_to t('.show_more_link'), '#', class: 'show_full' %>
   <% end %>
 </p>
 
@@ -19,7 +19,6 @@
   <div>
     <%= raw(resource.text) %>
   </div>
-  <a href="#" class="show_brief">Show less</a>
+  <%= link_to t('.show_less_link'), '#', class: 'show_brief' %>
 </div>
 
- 

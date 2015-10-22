@@ -66,7 +66,18 @@ module PlansHelper
     end
 	end
 
-	def referer_action
-    @referer_url = Rails.application.routes.recognize_path(URI((session[:page_history].blank? ? "": session[:page_history][0])).path)
+  def referer_hash
+    @referer_hash ||= session[:page_history][0] || {}
+	end
+
+	def translated_state(state)
+		case state
+		when Plan			 then state = state.current_state.state
+		when PlanState then state = state.state
+		when Symbol
+		else								state = state.to_s
+		end
+
+		t_enum(:plan_state, :state, state)
 	end
 end

@@ -1,6 +1,8 @@
 class UsersMailer < ActionMailer::Base
   default :from => APP_CONFIG['feedback_email_from']
 
+  before_filter :set_url_options
+
   def username_reminder(uid, email)
     @uid = uid
     @email = email
@@ -46,6 +48,11 @@ class UsersMailer < ActionMailer::Base
       when 'production'
         "[DMPTool]"
     end
+  end
+
+private
+  def set_url_options
+    default_url_options[:locale] ||= nil
   end
 
 end

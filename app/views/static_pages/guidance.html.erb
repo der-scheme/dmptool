@@ -4,37 +4,35 @@
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<%= t('.description_html') %>
+		<%= content_tag :p, t('.instructions') %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
-					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag(t('.search_button')) %>
+					<%= render partial: 'shared/search' %>
 				</div>
 			<% end %>
 	</div>
 </div>
 <br/>
 <div class="row-fluid">
-	<%= link_to('A - F', { :s => 'a', :e => 'f' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewA-F') %> 
-	<%= link_to('G - L', { :s => 'g', :e => 'l' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewG-L') %> 
-	<%= link_to('M - S', { :s => 'm', :e => 's' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewM-S') %> 
-	<%= link_to('T - Z', { :s => 't', :e => 'z' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewT-Z') %> 
-	<%= link_to(t('.show_all_button'), { :s => 'a', :e => 'z' , order_scope1: @order_scope1, scope1: @scope1}, :class => 'btn viewA-Z') %>
+	<%= render_filter_button s: 'a', e: 'f' %>
+	<%= render_filter_button s: 'g', e: 'l' %>
+	<%= render_filter_button s: 'm', e: 's' %>
+	<%= render_filter_button s: 't', e: 'z' %>
+	<%= render_filter_button s: 'a', e: 'z' %>
 </div>
 <br/>
 
 <%= render partial: 'guidance_table', :locals => {templates: @public_templates, public: true} %>
 
-<% if defined?(@institution_templates) && @institution_templates.length > 0 %>
+<% if @institution_templates && @institution_templates.length > 0 %>
 <h1 class="row-fluid">
-	<span class="icon institution-guidance"></span><%= t('.requirements_for_institution') %> <%= current_user.institution.full_name %>
+	<span class="icon institution-guidance"></span><%= t('.requirements_for', institution: current_user.institution.full_name) %>
 </h1>
 
 	<div class="table-scope">
-		<%= t('.list_for_institution_html') %>
+		<%= content_tag :p, t('.requirements_scope_info') %>
 	</div>
 	<%= render partial: 'guidance_table_institutional', :locals => {templates: @institution_templates, public: false} %>
 <% end %>

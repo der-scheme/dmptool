@@ -1,112 +1,112 @@
-<% provide(:title, 'Institution Information') %>
+<% provide(:title, t('.title')) %>
 
-<%= form_for @current_institution, html:{ :class => 'form-horizontal', multipart: true}  do |f| %>
-  <%= render partial: "shared/errors", locals: {model: @current_institution } %>
+<%= form_for @current_institution, html: { class: 'form-horizontal', multipart: true}  do |f| %>
+  <%= render partial: 'shared/errors', locals: { model: @current_institution } %>
   <div class="control-group">
-    <%= f.label :full_name , "Institution Full Name", :class => "control-label required" %>
+    <%= f.label :full_name, class: 'control-label required' %>
     <div class="controls">
-	    <%= f.text_field :full_name, :class => "input-xxlarge", 'aria-required' => 'true' %>
+	    <%= f.text_field :full_name, class: 'input-xxlarge', 'aria-required' => 'true' %>
 	  </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :shib_entity_id, "Entity_id", :class => "control-label " %>
+    <%= f.label :shib_entity_id, class: 'control-label' %>
     <div class="controls">
-      
+
       <%= f.text_field :shib_entity_id, readonly: @current_institution.is_shibboleth?, disabled: @disabled %>
-      <%= content_tag(:span, '', :title => 'Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact uc3@ucop.edu with any questions.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.shib_entity_id_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip') %>
     </div>
   </div>
 
   <div class="control-group">
     <%= f.label :shib_domain , "Shibboleth Domain", :class => "control-label "%>
     <div class="controls">
-      
+
       <%= f.text_field :shib_domain, readonly: @current_institution.is_shibboleth? , disabled: @disabled %>
-      <%= content_tag(:span, '', :title => 'This can only be edited by the DMPTool Administrator. Contact uc3@ucop.edu with any questions.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.shib_domain_id_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :parent_id , "Parent Institution", :class => "control-label"%>
-    <div class="controls">    
+    <%= f.label :parent_id, class: 'control-label' %>
+    <div class="controls">
 
       <% if user_role_in?(:dmp_admin) %>
-        <%= f.select :parent_id, 
+        <%= f.select :parent_id,
               @categories,
               { selected:  @current_institution.parent_id, :include_blank => 'none'},
               {:disabled => true}
         %>
       <% else %>
 
-        <%= f.select :parent_id, 
+        <%= f.select :parent_id,
             @sub_institutions,
             #@institution_pool,
             #{:disabled => (!@current_institution.is_shibboleth? || !user_role_in?(:institutional_admin))}
             { selected:  @current_institution.parent_id, :include_blank => 'none'},
             {:disabled => true}
         %>
-    
+
       <% end %>
-      
-      <%= content_tag(:span, '', :title => 'If you do not see your institution listed in the dropdown list, contact uc3@ucop.edu.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
-         
+
+      <%= content_tag(:span, '', title: t('.parent_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
+
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :nickname, "Institution short name, or acronym", :class => "control-label" %>
+    <%= f.label :nickname, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :nickname %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :url, "Institution URL", :class => "control-label" %>
-    <%= f.label :url_text, "URL Text", :class => "hide" %>
+    <%= f.label :url, class: 'control-label' %>
+    <%= f.label :url_text, class: 'hide' %>
     <div class="controls">
-      <%= f.text_field :url_text, placeholder: "URL Text" %>
-      <%= f.text_field :url, placeholder: "URL" %>
-      <%= content_tag(:span, '', :title => 'This URL will appear at the top of the DMPTool, to the right of your institution name.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      <%= f.text_field :url_text, placeholder: t('.url_text_placeholder') %>
+      <%= f.text_field :url, placeholder: t('.url_placeholder') %>
+      <%= content_tag(:span, '', title: t('.url_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :contact_info, "Administrator Contact", :class => "control-label" %>
-    <%= f.label :contact_email, "Administrator Email", :class => "hide" %>
+    <%= f.label :contact_info, class: 'control-label' %>
+    <%= f.label :contact_email, class: 'hide' %>
     <div class="controls">
-      <%= f.text_field :contact_info, placeholder: "Name" %>
-      <%= f.text_field :contact_email, placeholder: "Email" %>
-      <%= content_tag(:span, '', :title => 'Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      <%= f.text_field :contact_info, placeholder: t('.contact_info_placeholder') %>
+      <%= f.text_field :contact_email, placeholder: t('.contact_email_placeholder') %>
+      <%= content_tag(:span, '', title: t('.contact_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
     </div>
   </div>
 
   <div class="control-group">
 
-    <%= f.label :logo, 'Institutional Logo', :class => "control-label"  %>
+    <%= f.label :logo, class: 'control-label'  %>
 
     <div class="controls">
       <%= image_tag @current_institution.logo.url if @current_institution.logo? %>
       <%= f.file_field :logo, :onchange =>"validateFiles(this);" %>
       <%= f.hidden_field :logo_cache %>
-      <%= content_tag(:span, '', :title => 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+      <%= content_tag(:span, '', title: t('.logo_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
     </div>
   </div>
 
   <div class="control-group">
     <div class="controls">
-      <%= f.submit "Upload", :class => "btn" %>
+      <%= f.submit t('.upload_button'), class: 'btn' %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :desc , "Descriptive Text", :class => "control-label" %>
+    <%= f.label :desc, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :desc, rows: 5, :class => "input-xxlarge" %>
+      <%= f.text_area :desc, rows: 5, class: 'input-xxlarge' %>
     </div>
   </div>
   <div class="buttons">
-    <%= f.submit "Save Changes", :class => "btn btn-green" %>
-    <%= button_tag "Cancel", type: :reset, :class => "btn" %>
+    <%= render_save_changes_button %>
+    <%= render_cancel_button %>
   </div>
 <% end %>

@@ -1,26 +1,26 @@
 <li <%= 'class=current-parent' if menu_level(0) == 'plans' %>>
-  <%= link_to(content_tag(:span, 'Create New DMP'), plan_template_information_path) %>
+  <%= link_to content_tag(:span, t('.new_plan_link')), plan_template_information_path %>
   <ul class="children dmp-templates">
     <!-- The following adds "current" class when on DMP Overview page -->
     <% if menu_level(1) == 'overview' %>
-      <li class="current"><%= link_to(content_tag(:span, 'DMP Overview'), '#') %></li>
+      <li class="current"><%= link_to content_tag(:span, t('.overview')), '#' %></li>
       <% if @plan && @plan.id %>
-        <li><%= link_to(content_tag(:span, 'DMP Details'), details_plan_path(@plan)) %></li>
-        <li><%= link_to(content_tag(:span, 'DMP Preview'), preview_plan_path(@plan)) %></li>
+        <li><%= link_to content_tag(:span, t('.details')), details_plan_path(@plan) %></li>
+        <li><%= link_to content_tag(:span, t('.preview')), preview_plan_path(@plan) %></li>
       <% end %>
       <li class="last"></li>
     <% end %>
     <!-- The following adds "current" class when on DMP Details page -->
     <% if menu_level(1) == 'details' %>
-      <li><%= link_to(content_tag(:span, 'DMP Overview'), edit_plan_path(@plan)) %></li>
-      <li class="current"><%= link_to(content_tag(:span, 'DMP Details'), '#') %></li>
-      <li><%= link_to(content_tag(:span, 'DMP Preview'), preview_plan_path(@plan)) %></li>
+      <li><%= link_to content_tag(:span, t('.overview')), edit_plan_path(@plan)  %></li>
+      <li class="current"><%= link_to content_tag(:span, t('.details')), '#' %></li>
+      <li><%= link_to content_tag(:span, t('.preview')), preview_plan_path(@plan) %></li>
       <li class="last"></li>
     <% end %>
     <% if menu_level(1) == 'preview' %>
-      <li><%= link_to(content_tag(:span, 'DMP Overview'), edit_plan_path(@plan)) %></li>
-      <li><%= link_to(content_tag(:span, 'DMP Details'), details_plan_path(@plan)) %></li>
-      <li class="current"><%= link_to(content_tag(:span, 'DMP Preview'), '#') %></li>
+      <li><%= link_to content_tag(:span, t('.overview')), edit_plan_path(@plan) %></li>
+      <li><%= link_to content_tag(:span, t('.details')), details_plan_path(@plan) %></li>
+      <li class="current"><%= link_to content_tag(:span, t('.preview')), '#' %></li>
       <li class="last"></li>
     <% end %>
   </ul>

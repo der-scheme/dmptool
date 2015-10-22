@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::Base
+  include Sortable::Controller
 
   ROLES =
-      {	  :dmp_admin              => Role::DMP_ADMIN,
+      {   :dmp_admin              => Role::DMP_ADMIN,
           :resource_editor        => Role::RESOURCE_EDITOR,
           :template_editor        => Role::TEMPLATE_EDITOR,
           :institutional_reviewer => Role::INSTITUTIONAL_REVIEWER,
           :institutional_admin    => Role::INSTITUTIONAL_ADMIN}
 
+  after_action :update_history
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -20,15 +22,16 @@ class ApplicationController < ActionController::Base
   protected
 
     def set_locale
-      I18n.locale = params[:locale] || I18n.default_locale
-    end
-  
-    def default_url_options(options = {})
-      { locale: I18n.locale }.merge options
+      I18n.locale = params[:locale] ||
+          extract_locale_from_accept_language_header || I18n.default_locale
     end
 
-  	def current_user
-    	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    def default_url_options(options = {})
+      {locale: params[:locale]}.merge options
+    end
+
+    def current_user
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
 
     def require_login
@@ -36,6 +39,9 @@ class ApplicationController < ActionController::Base
         flash[:error] = "You must be logged in to access this page."
         session[:return_to] = request.original_url
         redirect_to choose_institution_path and return
+      elsif controller_name != 'users' && (current_user.first_name.blank? || current_user.last_name.blank?)
+        flash[:error] = "You must fill in your first and last name and save your account information to continue using the DMP tool."
+        redirect_to edit_user_path(session[:user_id])
       end
     end
 
@@ -61,7 +67,7 @@ class ApplicationController < ActionController::Base
     def check_editor_for_this_customization
       if params[:id].blank?
         flash[:error] = 'A customization id is missing'
-        redirect_to resource_contexts_path and return 
+        redirect_to resource_contexts_path and return
       end
       cust = ResourceContext.find_by_id(params[:id])
       level = cust.resource_level unless cust.nil?
@@ -134,7 +140,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    
+
 
     def check_DMPTemplate_editor_access
       unless user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor)
@@ -231,5 +237,26 @@ class ApplicationController < ActionController::Base
       inst_ids = insts.map { |i|  (i.ancestor_ids + [ i.id])[least_depth] }
 
       Institution.find(inst_ids)
+    end
+
+    def extract_locale_from_accept_language_header
+      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+    end
+
+    ## Stores the current #params in the #session hash.
+    #
+    # Note that unlike the previous functionality (implemented in
+    # ApplicationHelper#set_page_history), which stored entire URLs, this one
+    # stores the parameters that can be used to build URLs using #url_for.
+    #
+    # This saves later computation time, as the only current purpose is to
+    # later retrieve controller and action names, and also works around a Rails
+    # bug we encountered when implementing i18n.
+
+    def update_history
+      return unless status == 200
+      history = (session[:page_history] ||= [])
+      history.unshift(params)
+      history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end

@@ -1,4 +1,4 @@
-<h2> New Resource For  <%= @current_institution.full_name %> </h2>
+<%= content_tag :h2, t('.new_resource_for', institution: @current_institution.full_name) %>
 <% @display_menu = "customizations" %>
 
 
@@ -8,38 +8,41 @@
 
     <fieldset>
       <div class="control-group">
-        <%= f.label :resource_type, "Resource Type", :class => "control-label" %>
+        <%= f.label :resource_type, class: 'control-label' %>
         <div class="controls">
           <%= f.select :resource_type,
-          		options_for_select([['Links', :actionable_url], ['Guidance', :help_text]], @resource.resource_type) %>
+                       options_for_select([
+                                   [t_enum(:resource, :resource_type, :actionable_url), :actionable_url],
+                                   [t_enum(:resource, :resource_type, :help_text), :help_text]
+                       ], @resource.resource_type) %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :label_label, "Resource Label", :class => "control-label required", id: "label_label" %>
+        <%= f.label :label_label, class: 'control-label required', id: 'label_label' %>
         <div class="controls">
-          <%= f.text_field :label, placeholder: "Enter a name for this Resource", :class => "input-xlarge" %>
+          <%= f.text_field :label, placeholder: t('.label_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :text, "Text", :class => "control-label", id: "text" %>
+        <%= f.label :text, class: 'control-label', id: 'text' %>
         <div class="controls">
-          <%= f.text_area :text, size: "20x10",placeholder: "Enter the text", :class => "input-xlarge" %>
+          <%= f.text_area :text, size: '20x10', placeholder: t('.text_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
 
       <div class="control-group">
-         <%= f.label :value_label, "Value", :class => "control-label", id: "value_label" %>
+         <%= f.label :value_label, class: 'control-label', id: 'value_label' %>
         <div class="controls">
-          <%= f.text_field :value, placeholder: "URL", :class => "input-xlarge" %>
+          <%= f.text_field :value, placeholder: t('.value_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
       <div class="actions pull-right">
-        <%= f.submit 'Save Changes', :class => "btn" %>
-        <%= button_tag 'Cancel', type: :reset, :class => "btn" %>
+        <%= render_submit_button t: '.save_changes' %>
+        <%= render_cancel_button %>
       </div>
     </fieldset>
   <% end %>

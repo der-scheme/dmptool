@@ -1,21 +1,23 @@
 <table class="table table-striped">
 	<thead>
-		<tr>			
-      <th><%= link_to t('.template'), {order_scope2: "Template", scope2: @scope2}%></th>
-      <th class="span5"><%= link_to (public ? t('.funder') : t('.institution')), {order_scope2: "Institution", scope2: @scope2}%></th>
-      <th><%= link_to (public ? t('.funder_links') : t('.institution_links')), {order_scope2: "InstitutionLink", scope2: @scope2}%></th>
-      <th>
-      	<%= link_to t('.sample_plans'), {order_scope2: "SamplePlans", scope2: @scope2}%>
-      	<%= content_tag(:span, '', :title => t('.sample_plans_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %><br><%= t('.if_available') %>
+		<tr>
+			<th><%= sortable :name,                    t('.template'),                                     model: RequirementsTemplate, order_scope: :order_scope2 %></th>
+			<th><%= sortable :institution_id,          t(public ? '.funder' : '.institution'),             model: RequirementsTemplate, order_scope: :order_scope2 %></th>
+			<th><%= sortable :additional_informations, t(public ? '.funder_links' : '.institution_links'), model: RequirementsTemplate, order_scope: :order_scope2 %></th>
+			<th>
+				<%=   sortable :sample_plans,            t('.sample_plans'),                                 model: RequirementsTemplate, order_scope: :order_scope2 %>
+      	<%= content_tag :span, '', title: t('.sample_plans_tooltip'), data: {toggle: 'tooltip', placement: 'top', html: 'true'}, class:'icon questionmark tip' %>
+      	<br>
+      	<%= t('.if_available') %>
       </th>
 		</tr>
 	</thead>
 	<tbody>
 		<% templates.each do |t| %>
-			<tr>	
-				
-				<td><%= link_to t.name,	basic_requirements_template_path(t, format: :rtf ), :target => '_blank' %>
-						<%= link_to '', basic_requirements_template_path(t, format: :rtf), :class => 'icon rtf', :target => '_blank' %>
+			<tr>
+
+				<td><%= link_to t.name,	basic_requirements_template_path(t, format: :docx ), :target => '_blank' %>
+						<%= link_to '', basic_requirements_template_path(t, format: :docx), :class => 'icon docx', :target => '_blank' %>
 				</td>
 				<td><%= (t.institution ? t.institution.full_name: '') %></td>
 				<td>
@@ -40,12 +42,13 @@
 
 <% if @scope2 == "all" %>
 	<div class="buttons pagination">
+		<%= render_button_link t: '.view_less', href: {order_scope2: @order_scope2, scope2: ''} %>
 		<%= link_to t('.button_view_less'), {:method => :get, order_scope2: @order_scope2, scope2: ""}, {:class => "btn"}%>
 		<%= paginate @institution_templates, {:param_name => 'institutional_guidance_page', order_scope2: @order_scope2} %>
 	</div>
 <% else %>
 	<div class="buttons pagination">
-		<%= link_to t('.button_view_all'), {:method => :get, order_scope2: @order_scope2, scope2: "all"}, {:class => "btn"}%>
+		<%= render_button_link t: '.view_all', href: {order_scope2: @order_scope2, scope2: 'all'} %>
 		<%= paginate @institution_templates, {:param_name => 'institutional_guidance_page', order_scope2: @order_scope2} %>
 	</div>
 <%end%>
