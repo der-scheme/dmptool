@@ -928,6 +928,22 @@ en:
       failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
 
   resources:
+    copy_selected_customization_resource:
+      already_in_context_error: 'The resource you selected is already in your context.'
+      success_notice: 'Resource was successfully added.'
+      unknown_error: 'A problem prevented this resource to be added.'
+
+    create:
+      success_notice: 'Resource was successfully created.'
+
+    create_customization_resource:
+      malformed_url_error: 'The url: %{url} is a not valid url.'
+      success_notice: 'Resource was successfully created.'
+
+    destroy:
+      success_notice: 'Resource was successfully eliminated.'
+      error_message: 'A problem prevented this resource to be eliminated.'
+
     edit_customization_resource:
       title: 'Edit Customization Resource'
       edit_resource: 'Edit %{label} Resource'
@@ -975,6 +991,13 @@ en:
       label_placeholder: 'Enter a name for this Resource'
       text_placeholder: 'Enter the text'
       value_placeholder: 'URL'
+
+    update:
+      success_notice: 'Resource was successfully updated.'
+
+    update_customization_resource:
+      malformed_url_error: 'The url: %{url} is a not valid url.'
+      sucess_notice: 'Resource was successfully updated.'
 
   resource_contexts:
     choose_institution:
