@@ -65,6 +65,9 @@ end
     requirements_templates: {
       index: {
         toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
+      },
+      toggle_active: {
+        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
       }
     },
     resource_contexts: {
