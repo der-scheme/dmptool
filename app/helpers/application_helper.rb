@@ -258,23 +258,23 @@ module ApplicationHelper
   end
   alias_method :t_enum, :translate_enum
 
-  def options_for_enum_select(args = nil, selectd = nil, model: nil, attribute: nil, **options)
-    unless args.is_a? Array
-      selectd = args
-      args = nil
+
+  def options_for_enum_select(args = nil, selected = nil, model: nil, attribute: nil, **options)
+    if args.is_a? Enumerable
+      record, selected = selected, nil if selected.is_a? ActiveRecord::Base
+    else
+      record, args = args, nil
     end
 
-    selected ||= selectd
-    if selected.is_a? ActiveRecord::Base
-      model ||= selected.class
-      selected = selected.try(attribute)
-    end
+    model     ||= record.class if record.is_a? ActiveRecord::Base
+    model     ||= controller_name.classify.constantize
+    attribute ||= model.columns.find {|c| c.type == :enum}.try(:name)
+    args      ||= model.columns_hash[attribute.to_s].limit
 
-    model ||= controller_name.classify.constantize
-    args  ||= model.columns_hash[attribute.to_s].limit
+    selected  ||= record.try(attribute) if record.is_a? ActiveRecord::Base
 
     options_for_select(args.map {|arg| [t_enum(model, attribute, arg), arg]},
-                       **options.merge(selected: selected))
+                       **{selected: selected}.merge!(options))
   end
 
   def i18n_include_tag(*scopes)
