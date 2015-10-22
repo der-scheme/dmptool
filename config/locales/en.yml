@@ -484,6 +484,9 @@ en:
       template_for_institution_resources_section: '%{template} for %{institution} Resources'
       requirement_resources_section: 'Requirement Resources'
 
+    section_display:
+      edit_link_tooltip: 'Edit Customization'
+
     show:
       title: 'Customization Details'
       template_outline: 'Template Outline'
