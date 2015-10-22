@@ -890,6 +890,10 @@ en:
       filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template when a researcher creates a DMP. It can be visible either publicly (to anyone logged into the tool) or for institutional researchers only.</li><li>Inactive: will not appear as an optional funder template when a researcher creates a DMP. This may be because the template that is no longer in use, or that has not been completed (finalized) by an administrator.</li><li>Institution only: Active or inactive DMP templates for your institution only.</li><li>Public:  All DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
       sort_by_visibility_tooltip_html: 'Once live, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
       new_button: 'Create New Template >>'
+      overview_link: 'Overview'
+      details_link: 'Details'
+      customize_link: 'Customize'
+      delete_link: 'Delete'
 
     template_information:
       new_template: 'Create New DMP Template'

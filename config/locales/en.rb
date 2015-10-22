@@ -62,6 +62,11 @@ end
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
       }
     },
+    requirements_templates: {
+      index: {
+        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
+      }
+    },
     resource_contexts: {
       customization_resources_list: {
         resources_customized_for:

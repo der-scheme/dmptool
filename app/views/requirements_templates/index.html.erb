@@ -52,16 +52,16 @@
 
 					<% if user_role_in?(:dmp_admin) %>
 						<div class="template-links">
-							<%= link_to display_detail_overview, edit_requirements_template_path(requirements_template) %> |
-							<%= link_to display_detail_details, requirements_template_requirements_path(requirements_template), class: "details" %> |
-							<%= link_to activate_link_text(requirements_template),
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %> |
+              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %> |
+              <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %> |
-							<%= link_to display_detail_customize, resource_contexts_choose_institution_path(requirements_template_id: requirements_template.id) %>
+              <%= link_to t('.customize_link'), resource_contexts_choose_institution_path(requirements_template_id: requirements_template.id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to display_detail_delete,
+                | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
                               after_url: request.original_url),
                               method: :delete,
@@ -71,20 +71,20 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= link_to display_detail_overview, edit_requirements_template_path(requirements_template) %>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
               |
-							<%= link_to display_detail_details, requirements_template_requirements_path(requirements_template), class: "details" %>
+              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %>
               |
-							<%= link_to activate_link_text(requirements_template),
+              <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to display_detail_customize,
+              <%= link_to t('.customize_link'),
                           new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to display_detail_delete,
+                | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
                               after_url: request.original_url),
                               method: :delete,
@@ -94,28 +94,28 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= link_to display_detail_customize,
+              <%= link_to t('.customize_link'),
                           new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= link_to display_detail_overview, edit_requirements_template_path(requirements_template) %>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
               |
-              <%= link_to display_detail_details,
+              <%= link_to t('.details_link'),
                           requirements_template_requirements_path(requirements_template),
                           class: "details" %>
               |
-							<%= link_to activate_link_text(requirements_template),
+							<%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-							<%= link_to display_detail_customize,
+              <%= link_to t('.customize_link'),
                           new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to display_detail_delete,
+                | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template, after_url: request.original_url),
                               method: :delete,
                               data: { confirm: t('globals.messages.prompt.confirm') } %>
@@ -124,7 +124,7 @@
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-							<%= link_to display_detail_customize,
+              <%= link_to t('.customize_link'),
                           new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
@@ -136,19 +136,19 @@
 					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 					<div class="template-links">
 						<div class="template-links">
-							<%= link_to display_detail_overview, edit_requirements_template_path(requirements_template) %>
+              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
               |
-							<%= link_to display_detail_details,
+              <%= link_to t('.details_link'),
                           requirements_template_requirements_path(requirements_template),
                           class: "details" %>
               |
-              <%= link_to activate_link_text(requirements_template),
+              <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
-                | <%= link_to display_detail_delete,
+                | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
                               after_url: request.original_url),
                               method: :delete,
@@ -158,7 +158,7 @@
 
 					<% elsif (user_role_in?(:resource_editor)) %>
 						<div class="template-links">
-							<%= link_to display_detail_customize,
+              <%= link_to t('.customize_link'),
                           new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
@@ -171,8 +171,8 @@
 				</div>
 			</td>
 			<td><%= requirements_template.institution.full_name if requirements_template.institution %></td>
-			<td id="status_#{requirements_template.id}"><%= display_status_text(requirements_template) %></td>
-			<td><%= t_enum(:requirements_template, :visibility, requirements_template.visibility) %></td>
+      <%= content_tag :td, t_enum(requirements_template, :active), id: "status_#{requirements_template.id}" %>
+			<td><%= t_enum(requirements_template, :visibility) %></td>
 			<td><%= l(requirements_template.created_at) if requirements_template.created_at %></td>
 			<td><%= l(requirements_template.updated_at) if requirements_template.updated_at %></td>
 		</tr>
