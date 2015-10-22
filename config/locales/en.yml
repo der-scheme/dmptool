@@ -108,9 +108,9 @@ en:
         visibility: 'Visibility'
       resource:
         id: 'ID'
-        label: 'Resource Label'
+        label: 'Resource Label'     # not sure if taken from source, change to 'URL Label' if not
         resource_type: 'Resource Type'
-        text: 'Text'
+        text: 'Details'
         value: 'URL'
       resource_context:
         contact_email: 'Contact Email'
