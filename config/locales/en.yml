@@ -1020,6 +1020,9 @@ en:
     resource_customization:
       no_customizations: 'You have no template customizations'
       new_button: 'Create New Customization'
+      overview_link: 'Overview'
+      details_link: 'Details'
+      delete_link: 'Delete'
 
     select_resource:
       existing: 'Existing Resources'
