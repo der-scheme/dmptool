@@ -102,11 +102,16 @@ String.prototype.interpolate = function(interpolants) {
   });
 };
 
-translate = function(key, interpolants = {}) {
+function translate(key, interpolants) {
+  interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
+
   return I18n[key].interpolate(interpolants);
 };
 t = translate;
 
-localized_temporal_format = function(temporal = 'datetime', format = 'default') {
+function localized_temporal_format(temporal, format) {
+  temporal = (typeof temporal === 'undefined') ? 'datetime' : temporal;
+  format = (typeof format === 'undefined') ? 'default' : format;
+
   return t(temporal + '.formats.' + format).replace(/%/g, '');
 };
