@@ -20,9 +20,9 @@
       <div class="controls">
 
         <% if  @resource_level=="requirement" %>
-          <%= f.select :resource_type, options_for_enum_select %>
+          <%= f.select :resource_type, options_for_enum_select(@resource) %>
         <% else %>
-          <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text]) %>
+          <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text], @resource) %>
         <% end %>
 
       </div>
