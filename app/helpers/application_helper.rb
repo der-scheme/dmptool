@@ -91,22 +91,6 @@ module ApplicationHelper
     end
   end
 
-  def display_detail_overview
-    t('globals.template.details.overview')
-  end
-
-  def display_detail_details
-    t('globals.template.details.details')
-  end
-
-  def display_detail_customize
-    t('globals.template.details.action_customize')
-  end
-
-  def display_detail_delete
-    t('globals.template.details.action_delete')
-  end
-
   def render_submit_button(cntnt = nil, trnslt = nil,
                            t: nil, translate: nil,
                            content: nil, text: nil,

@@ -108,9 +108,9 @@ en:
         visibility: 'Visibility'
       resource:
         id: 'ID'
-        label: 'Resource Label'
+        label: 'Resource Label'     # not sure if taken from source, change to 'URL Label' if not
         resource_type: 'Resource Type'
-        text: 'Text'
+        text: 'Details'
         value: 'URL'
       resource_context:
         contact_email: 'Contact Email'
@@ -884,6 +884,7 @@ en:
       sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
 
     index:
+      # Find translation for toggle_status_link in en.rb
       dmp_templates: 'DMP Templates'
       all_filter_link: 'All (%{count})'
       active_filter_link: 'Active  (%{count})'
@@ -984,6 +985,24 @@ en:
       select_institution_radio: 'Customizing this template for the following institution'
       next_button: 'Next page'
 
+    customization_resources_list:
+      # Find the following translations, merged into one, in en.rb:
+      # - resources_customized_for_one
+      # - resources_customized_for_all
+      visibility_info: 'These resources will be displayed for all requirements defined for this template.'
+      details: 'Details'
+      action: 'Action'
+      action_tooltip: 'Edit'
+      add_resource_button: 'Add a resource'
+
+    create:
+      success_notice: 'Customization was successfully created.'
+
+    display_buttons:
+      choose_template_button: '<< Choose DMP Template'
+      customizations_button: '<< Customizations'
+      details_button: 'Customization Details >>'
+
     form:
       title: 'Customization Overview'
       basic_info: 'Basic Information'
@@ -995,50 +1014,29 @@ en:
       no_created_at: 'none'
       no_updated_at: 'none'
 
-    display_buttons:
-      choose_template_button: '<< Choose DMP Template'
-      customizations_button: '<< Customizations'
-      details_button: 'Customization Details >>'
+    new:
+      name: '%{template} for %{institution}'
 
     resource_customization:
       no_customizations: 'You have no template customizations'
       new_button: 'Create New Customization'
-
-    customization_resources_list:
-      # Find the following translations, merged into one, in en.rb:
-      # - resources_customized_for_one
-      # - resources_customized_for_all
-      visibility_info: 'These resources will be displayed for all requirements defined for this template.'
-      details: 'Details'
-      action: 'Action'
-      action_tooltip: 'Edit'
-      add_resource_button: 'Add a resource'
+      overview_link: 'Overview'
+      details_link: 'Details'
+      delete_link: 'Delete'
 
     select_resource:
       existing: 'Existing Resources'
       for_user: 'For %{user}'
       select: 'Select'
-      resource_id: 'Resource Id'
       details: 'Details'
       type: 'Type'
       institution: 'Institution'
-      created_at: 'Creation Date'
-      updated_at: 'Last Modification Date'
       level: 'Level'
       action: 'Edit'
       no_results: 'No results found'
       none_existing: 'There are no existing resources'
       link_button: 'Link Selected Resource'
       add_resource_button: 'Add a new resource'
-
-    new:
-      name: '%{template} for %{institution}'
-
-    create:
-      success_notice: 'Customization was successfully created.'
-
-    update:
-      success_notice: 'Customization was successfully updated.'
 
     unlink_resource_from_template:
       success_notice: 'The resource was successfully unlinked.'
@@ -1048,6 +1046,9 @@ en:
 
     unlink_resource_from_customization:
       success_notice: 'The resource was successfully unlinked.'
+
+    update:
+      success_notice: 'Customization was successfully updated.'
 
 
   users:

@@ -475,22 +475,11 @@ class ResourceContextsController < ApplicationController
        @resource_contexts = @resource_contexts.search_terms(params[:q])
     end
 
-    case params[:scope]
-      when "Resource_id"
-        @resource_contexts = @resource_contexts.order_by_resource_id
-      when "Details"
-        @resource_contexts = @resource_contexts.order_by_resource_label
-      when "Type"
-        @resource_contexts = @resource_contexts.order_by_resource_type
-      when "Institution"
-        @resource_contexts = @resource_contexts.order_by_institution_name
-      when "Creation_Date"
-        @resource_contexts = @resource_contexts.order_by_resource_created_at
-      when "Last_Modification_Date"
-        @resource_contexts = @resource_contexts.order_by_resource_updated_at
-      else
-       @resource_contexts = @resource_contexts.order_by_resource_label
-    end
+    sortable :resource_id, nested: :text
+    sortable :resource_id, nested: :label, namespace: :label, default: true
+    sortable :resource_id, nested: :resource_type, namespace: :type
+    sortable :created_at
+    sortable :updated_at
 
     @resource_contexts = @resource_contexts.page(params[:page]).per(20)
 

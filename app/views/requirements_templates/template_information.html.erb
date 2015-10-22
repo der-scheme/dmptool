@@ -24,7 +24,7 @@
                 <%= radio_button_tag :requirements_template,
                                       requirements_template.id, checked: false %></td>
               <td><%= requirements_template.name %></td>
-              <td><%= display_status_text(requirements_template) %></td>
+              <td><%= t_enum(requirements_template, :active) %></td>
             </tr>
           <% end %>
           </tbody>

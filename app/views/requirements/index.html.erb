@@ -47,7 +47,7 @@
                         class: 'icon questionmark tip' %>
       </p>
 	  	<div>
-		    <%= link_to activate_link_text(@requirements_template),
+		    <%= link_to t('requirements_templates.index.toggle_status_link', template: @requirements_template),
 		      toggle_active_requirements_template_path(@requirements_template), remote: true, id: "activate_link_#{@requirements_template.id}", :class => 'btn' %>
 	    </div>
       <div>
