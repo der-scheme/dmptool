@@ -4,4 +4,4 @@
     <li><%= link_to plan.name, plan_path(plan, format: "pdf") %></li>
   <% end %>
 </ul>
-<%= render_button_link '.view_all', public_dmps_path, class: 'btn-gray' %>
+<%= render_button_link t: '.view_all', href: public_dmps_path, class: 'btn-gray' %>
