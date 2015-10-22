@@ -60,14 +60,14 @@ module Sortable
 
       if nested
         assoc, assocs = *model_association(attribute)
-        self.collection = collection.joins(assoc)
+        self.collection &&= collection.joins(assoc)
         order_attr = "#{assocs}.#{nested}"
       end
 
       if block_given?
-        self.collection = yield(collection, dir)
+        self.collection &&= yield(collection, dir)
       else
-        self.collection = collection.order("#{order_attr} #{dir}")
+        self.collection &&= collection.order("#{order_attr} #{dir}")
       end
 
       nil
