@@ -54,12 +54,12 @@ end
     },
     plans: {
       create: {
-        no_such_users_error: ->(_, count: nil, users: nil) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
-        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+        no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
       },
       update: {
-        no_such_users_error: ->(_, count: nil, users: nil) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
-        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+        no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
       }
     },
     requirements_templates: {
