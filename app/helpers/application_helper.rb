@@ -258,23 +258,44 @@ module ApplicationHelper
   end
   alias_method :t_enum, :translate_enum
 
-  def options_for_enum_select(args = nil, selectd = nil, model: nil, attribute: nil, **options)
-    unless args.is_a? Array
-      selectd = args
-      args = nil
+  ##
+  # Return a string of i18ned options tags for an enum select.
+  #
+  # The method will try to deduce all parameters if not specified.
+  #
+  # [model]
+  #   1. +record+'s class if it is a model.
+  #   2. The constantized #controller_name.
+  # [attribute]
+  #   1. One of the +model+'s enum columns.
+  # [collection]
+  #   1. The allowed values of +model+'s +attribute+ column.
+  # [selected]
+  #   1. The actual value of +record+'s +attribute+.
+  #
+  # Note that the method currently does not implement error handling. If you
+  # use it the wrong way, you will not get descriptive error messages.
+  #
+  # :call-seq: options_for_enum_select(collection = nil, record = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(collection = nil, selected = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(record = nil, selected = nil, model: nil, attribute: nil, **options)
+
+  def options_for_enum_select(args = nil, selected = nil, model: nil, attribute: nil, **options)
+    if args.is_a? Enumerable
+      record, selected = selected, nil if selected.is_a? ActiveRecord::Base
+    else
+      record, args = args, nil
     end
 
-    selected ||= selectd
-    if selected.is_a? ActiveRecord::Base
-      model ||= selected.class
-      selected = selected.try(attribute)
-    end
+    model     ||= record.class if record.is_a? ActiveRecord::Base
+    model     ||= controller_name.classify.constantize
+    attribute ||= model.columns.find {|c| c.type == :enum}.try(:name)
+    args      ||= model.columns_hash[attribute.to_s].limit
 
-    model ||= controller_name.classify.constantize
-    args  ||= model.columns_hash[attribute.to_s].limit
+    selected  ||= record.try(attribute) if record.is_a? ActiveRecord::Base
 
     options_for_select(args.map {|arg| [t_enum(model, attribute, arg), arg]},
-                       **options.merge(selected: selected))
+                       **{selected: selected}.merge!(options))
   end
 
   def i18n_include_tag(*scopes)
