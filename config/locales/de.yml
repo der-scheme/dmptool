@@ -1,8 +1,6 @@
 de:
   layouts:
     header:
-      english: "English"
-      german: "German"
       welcome: "Willkommen!"
       home_link: "Home"
       home_title: "Home"
@@ -46,6 +44,10 @@ de:
       contact_title: "Kontakt"
       about_link: "About"
       about_title: "About the California Digital Library Data Management Tool"
+
+    language_switcher:
+      locale_name: 'Deutsch'
+      currently_chosen: 'Aktuelle Sprache'
 
   static_pages:
     home:
