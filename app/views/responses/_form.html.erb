@@ -37,7 +37,7 @@
     <div class="control-group">
       <%= f.label :date_value, :class => "control-label" %>
       <div class="controls">
-        <%= f.text_field :date_value, value: @response.date_value.blank? ? " " : @response.date_value.strftime('%m/%d/%Y'), :class => 'datepicker', id:'response_date_value' %>
+        <%= f.date_field :date_value, value: (@response.date_value.strftime('%m/%d/%Y') if @response.date_value), class: 'datepicker', id:'response_date_value' %>
       </div>
     </div>
   <% end %>
@@ -52,13 +52,14 @@
   <% end %>
 
   <br/>
-  <% if requirement(requirement_id).obligation == :mandatory %>
-      <%= f.submit "Save and Next", name: 'save_and_next', :class => 'btn btn-success pull-right', method: 'post', id: 'save_and_next', remote: true %>
-      <%= f.submit "Save Response", name: 'save_only', :class => 'btn btn-success pull-right', method: 'post', id: 'save_only', remote: true %>
+  <div class="actions">
+    <% if requirement(requirement_id).obligation == :mandatory %>
+      <%= f.submit "Save and Next", name: 'save_and_next', class: 'btn btn-success pull-right', id: 'save_and_next' %>
+      <%= f.submit "Save Response", name: 'save_only', class: 'btn btn-success pull-right', id: 'save_only' %>
       <%= link_to 'Cancel Changes', details_plan_path(@plan), :class => "btn" %>
     <% else %>
-      <%= f.submit "Save and Next", name: 'save_and_next', :class => 'btn btn-success pull-right', method: 'post', remote: true  %>
-      <%= f.submit "Save Response", name: 'save_only', :class => 'btn btn-success pull-right', method: 'post', remote: true %>
+      <%= f.submit "Save and Next", name: 'save_and_next', class: 'btn btn-success pull-right'  %>
+      <%= f.submit "Save Response", name: 'save_only', class: 'btn btn-success pull-right' %>
       <%= link_to 'Cancel Changes', details_plan_path(@plan), :class => "btn", role: "button" %>
     <% end %>
   </div>
