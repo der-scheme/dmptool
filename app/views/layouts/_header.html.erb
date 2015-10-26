@@ -1,7 +1,6 @@
 <header class="header container">
   <%= render partial: 'layouts/language_switcher' %>
 
-  <%= link_to(image_tag("dmp_logo.png", :alt => t('.dmptool_logo_alt'), :width => "146", :height => "25"), root_path, :class => "logo", :title => t('.dmptool_logo_title')) %>
   <div class="welcome">
     <p><%= t('.welcome') unless current_user.nil? %>
       <%= content_tag(:strong, "#{current_user.full_name}") unless current_user.nil? %></p>
