@@ -322,14 +322,17 @@ en:
       logOut: "Log Out"
 
     footer:
-      copyright_text_intro_html: "DMPTOOL is a service of the %{link1} of the %{link2}"
-      copyright_link1: "University of California Curation Center"
-      copyright_link1_url: "http://www.cdlib.org/services/uc3"
-      copyright_link1_title: "University of California Curation Center"
-      copyright_link2: "California Digital Library"
-      copyright_link2_url: "http://www.cdlib.org/services/uc3"
-      copyright_link2_title: "California Digital Libary"
-      copyright_text_html: "Copyright &copy; 2010-%{year} The Regents of the University of California"
+      copyright_text_intro_html: ""
+      copyright_link1: ""
+      copyright_link1_url: ""
+      copyright_link1_title: ""
+      copyright_link2: ""
+      copyright_link2_url: ""
+      copyright_link2_title: ""
+      copyright_link3: ""
+      copyright_link3_url: ""
+      copyright_link3_title: ""
+      copyright_text_html: ""
       footer_facebook_link: "https://www.facebook.com/DMPTool"
       footer_facebook_title: "Follow the California Digital Library on Facebook"
       footer_twitter_link: "https://twitter.com/TheDMPTool"
@@ -371,9 +374,47 @@ en:
       dmp_headline: "Data Management Planning Tool"
       dmp_subtitle_html: "<strong>Create, review, and share data management plans</strong> that meet institutional and funder requirements."
       dmp_get_started_link: "Get Started"
-      public_dmps: "Public DMPs"
-      dmp_news: "DMPTool News"
-      dmp_help: "DMPTool Help"
+      after_banner_title: ""
+      left_bucket_title: "WHO IS THE TOOL FOR?"
+      right_bucket_title: "A SHORT INTRODUCTION TO THE TOOL"
+
+    dmptool_for:
+      title: "This tool is meant to help researchers, universities and higher education institutions"
+      listing_html: "<li>For Researchers</li>
+                     <ul>
+                        <li>Are you writing project proposals for funders such as the EU, NSF, DFG, ... ? \
+                            More and more often you will be asked to explain how you will manage the data \
+                            that you generate during your research project.</li>
+                        <li>It makes sense for your project team to start thinking about data management \
+                            issues early in the project (access rights, file formats you want to use, \
+                            ethical and legal issues, reuse of data, ...). You can write down your joint \
+                            approach in a data management plan for future reference.</li>
+                        <li>This tool can assist you with writing and managing a data management plan that suits your and your funder's needs.</li>
+                    </ul>
+                    <li>For Universities and Higher Education Institutions</li>
+                    <ul>
+                      <li>Professional data management will benefit your institution's research output.</li>
+                    </ul>"
+    dmptool_info:
+      title: "The dmp tool makes work easier for you."
+      listing_html: "<li>For Researchers</li>
+                     <ul>
+                       <li>Use templates to easily create a plan and receive assistance</li>
+                       <li>Write and manage DMPs together in your project group</li>
+                       <li>Share your DMPs with other people - either with individual persons, researchers from your institution, or everybody</li>
+                       <li>Export your plan (pdf, rtf)</li>
+                       <li>Optional: Let experts from your institution have a look at your data management plan (if offered by your institution)</li>
+                     </ul>
+                     <li>For Universities and Higher Education Institutions</li>
+                     <ul>
+                       <li>Create your own templates tailored to your researchers needs</li>
+                       <li>Offer exemplary plans to reserchers for better orientation</li>
+                       <li>You can review plans from researchers of your institution (if you wish to offer this \
+                           feature). You can thereby help increase chances that project submissions from your \
+                           institution will be accepted by funders with data management requirements.</li>
+                       <li>Comfortable login via Shibboleth for members of your institution</li>
+                     </ul>"
+      
 
     contact:
       browser_title: "Contact Us"
@@ -1225,7 +1266,7 @@ en:
       instructions: 'Select your institution below and you will be directed to your institutional log in page.'
       prompt_default_text: 'Select your institution'
       submit_button: 'Next >>'
-      note_html: '<p>If you do not see your institution in the list, <br/>please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>'
+#      note_html: '<p>If you do not see your institution in the list, <br/>please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>'
 
     login:
       browser_title: 'Account Log In'
