@@ -6,8 +6,8 @@
 		<%= form_tag do %>
 			<h2><%= t('.form_tag') %></h2>
 		  <div class="control-group">
-		    <%= radio_button_tag :question_about, "using the dmptool", params[:question_about] == 'Using the dmptool' %>
-		    <%= label_tag :question_about_Using_the_dmptool, t('.question_about_using_dmptool'), :class => "checkbox-label" %>
+		    <%= radio_button_tag :question_about, "Using the dmptool", params[:question_about] == 'Using the dmptool' %>
+		    <%= label_tag :question_about_Using_the_dmptool, "Using the DMP Tool", :class => "checkbox-label" %>
 		  </div>
 		  <div class="control-group">
 		    <%= radio_button_tag :question_about, "Becoming a participating institution", params[:question_about] == 'Becoming a participating institution' %>
