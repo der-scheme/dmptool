@@ -1260,7 +1260,7 @@ de:
     institution:
       browser_title: "LOG-IN"
       title: "LOG-IN"
-      instructions_title: 'Mit den Uni-Daten einloggen<'
+      instructions_title: 'Mit den Uni-Daten einloggen'
       instructions: 'Wählen Sie Ihre Einrichtung aus, um auf die institutionelle Anmeldeseite zu gelangen.'
       prompt_default_text: "Wählen Sie Ihre Einrichtung aus"
       submit_button: "Weiter >>"
