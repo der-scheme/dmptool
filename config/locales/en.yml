@@ -360,6 +360,17 @@ en:
       message_missing: 'Please enter a message'
       email_invalid: 'Please enter a valid email address'
       success_message: 'Your email message was sent to the DMPTool team.'
+      browser_title: "Contact Us"
+      title: "Contact Us"
+      form_tag: "Your message is about:"
+      question_about_using_dmptool: "Using the DMP Tool"
+      question_about_becoming_participating_institution: "Becoming a participating institution"
+      question_about_other: "Other"
+      form_name: "Your Name"
+      tips: "Tips:"
+      tips_text_html: "<p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p>
+          <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool
+            representative at your organization. Your organization may offer additional data management consultation services.</p>"
 
     dmptool_news:
       latest_info: 'Latest information about data management and the DMPTool.'
@@ -374,21 +385,6 @@ en:
       public_dmps: "Public DMPs"
       dmp_news: "DMPTool News"
       dmp_help: "DMPTool Help"
-
-    contact:
-      browser_title: "Contact Us"
-      title: "Contact Us"
-      form_tag: "Your message is about:"
-      question_about_using_dmptool: "Using the DMP Tool"
-      question_about_becoming_participating_institution: "Becoming a participating institution"
-      question_about_other: "Other"
-      form_name: "Your Name"
-      form_mail: "Email"
-      form_message: "Message"
-      tips: "Tips:"
-      tips_text_html: "<p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p>
-          <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool
-            representative at your organization. Your organization may offer additional data management consultation services.</p>"
 
     guidance:
       browser_title: 'DMP Requirements'
