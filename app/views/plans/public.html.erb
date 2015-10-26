@@ -16,11 +16,11 @@
 </div>
 <br/>
 <div class="row-fluid">
-	<%= render_filter_button 'public:page' => 1, s: 'a', e: 'f' %>
-	<%= render_filter_button 'public:page' => 1, s: 'g', e: 'l' %>
-	<%= render_filter_button 'public:page' => 1, s: 'm', e: 's' %>
-	<%= render_filter_button 'public:page' => 1, s: 't', e: 'z' %>
-	<%= render_filter_button 'public:page' => 1, s: 'a', e: 'z' %>
+	<%= render_filter_button({'public:page' => 1}, s: 'a', e: 'f') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'g', e: 'l') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'm', e: 's') %>
+	<%= render_filter_button({'public:page' => 1}, s: 't', e: 'z') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'a', e: 'z') %>
 </div>
 <br/>
 
