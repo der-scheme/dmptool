@@ -292,8 +292,6 @@ en:
       overview: 'Template Overview'
       details: 'Template Details'
     header:
-      dmptool_logo_alt: "DMPTOOL"
-      dmptool_logo_title: "DMPTool Home"
       welcome: "Welcome!"
       home_link: "Home"
       home_title: "Home"
@@ -303,8 +301,6 @@ en:
       dmpRequirements_title: "DMP Requirements"
       publicDMPs_link: "Public DMPs"
       publicDMPs_title: "Sample DMPs"
-      news_link: "News"
-      news_title: "News"
       help_link: "Help"
       help_title: "Help"
       contact_link: "Contact Us"
@@ -314,8 +310,6 @@ en:
       faq_link: "FAQ"
       faq_url: "http://dmptool.askbot.com/"
       faq_title: "FAQ"
-      video_link: "Video"
-      video_title: "Video"
       partnerInstitutions_link: "Partner Institutions"
       partnerInstitutions_title: "Partner Institutions"
       logIn: "Log In"

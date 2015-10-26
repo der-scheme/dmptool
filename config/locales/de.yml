@@ -292,8 +292,6 @@ de:
       overview: 'Template Overview'
       details: 'Template Details'
     header:
-      dmptool_logo_alt: "DMPTOOL"
-      dmptool_logo_title: "DMPTool Home"
       welcome: "Willkommen!"
       home_link: "Home"
       home_title: "Home"
@@ -303,8 +301,6 @@ de:
       dmpRequirements_title: "DMP-Vorlagen"
       publicDMPs_link: "Beispiel-DMPs"
       publicDMPs_title: "Beispiel-DMPs"
-      news_link: "News"
-      news_title: "News"
       help_link: "Hilfe"
       help_title: "Hilfe"
       contact_link: "Kontakt"
@@ -314,12 +310,10 @@ de:
       faq_link: "FAQ"
       faq_url: "http://dmptool.askbot.com/"
       faq_title: "FAQ"
-      video_link: "Video"
-      video_title: "Video"
       partnerInstitutions_link: "Partnereinrichtungen"
       partnerInstitutions_title: "Partnereinrichtungen"
-      logIn: "Log In"
-      logOut: "Log Out"
+      logIn: "Login"
+      logOut: "Logout"
 
     footer:
       copyright_text_intro_html: "Dieses DMP-Tool wird im Rahmen des IQF-Projekts zwischen dem <br /> %{link1} dem %{link2} und der %{link3} als Testversion bereitgestellt."
