@@ -229,7 +229,7 @@ class ApplicationController < ActionController::Base
 
     ## Stores the current #params in the #session hash.
     #
-    # Note that unlike the previous functionality (implemented in 
+    # Note that unlike the previous functionality (implemented in
     # ApplicationHelper#set_page_history), which stored entire URLs, this one
     # stores the parameters that can be used to build URLs using #url_for.
     #
@@ -240,7 +240,7 @@ class ApplicationController < ActionController::Base
     def update_history
       return unless status == 200
       history = (session[:page_history] ||= [])
-      history.unshift(params)
+      history.unshift(params) unless params == history.first
       history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end
