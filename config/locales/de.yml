@@ -234,7 +234,7 @@ de:
     application:
   shared:
     submit_button:
-      submit: 'Submit'
+      submit: 'Abschicken'
       save: 'Save'
       save_changes: 'Save Changes'
     button_button:
@@ -333,12 +333,6 @@ de:
       copyright_link3_url: "http://www.ub.uni-freiburg.de"
       copyright_link3_title: "UB Freiburg"
       copyright_text_html: ""
-      footer_facebook_link: "https://www.facebook.com/DMPTool"
-      footer_facebook_title: "Follow the California Digital Library on Facebook"
-      footer_twitter_link: "https://twitter.com/TheDMPTool"
-      footer_twitter_title: "Follow the California Digital Library on Twitter"
-      footer_rss_link: "https://blog.dmptool.org/feed"
-      footer_rss_title: "California Digital Library RSS Feed"
       privacy_policy_link: "Datenschutzerklärung"
       privacy_policy_title: "Datenschutzerklärung"
       accessibility_policy_link: "Accessibility Policy"
@@ -349,7 +343,7 @@ de:
       contact_link: "Kontakt"
       contact_title: "Kontakt"
       about_link: "About"
-      about_title: "About the California Digital Library Data Management Tool"
+      about_title: "About"
 
     language_switcher:
       locale_name: 'Deutsch'
