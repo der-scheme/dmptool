@@ -256,7 +256,7 @@ class ApplicationController < ActionController::Base
     def update_history
       return unless status == 200
       history = (session[:page_history] ||= [])
-      history.unshift(params)
+      history.unshift(params) unless params == history.first
       history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end
