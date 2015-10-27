@@ -121,6 +121,16 @@ en:
         requirements_template_id: 'Associated DMP template'
         resource_id: 'Resource'
         review_type: 'Review Type'
+      response:
+        date_value: 'Date Value'
+        enumeration_id: 'Please Select One'
+        id: 'Response ID'                       # not taken from source
+        label_id: 'Unit of Measure'
+        lock_version: 'Lock Version'            # not taken from source
+        numeric_value: 'Value'
+        plan_id: 'DMP'                          # not taken from source
+        requirement_id: 'Requirement'           # not taken from source
+        text_value: 'Your Response'
       sample_plan:
         id: 'Sample Plan'
         label: 'Plan Name'
