@@ -256,6 +256,8 @@ en:
       view_less: 'View Less'
       view_all: 'View All'
       previous_page: 'Previous Page'
+    errors:
+      # Find translations in en.rb
     search:
       search_label: 'Search'
       search_button: 'Search'
