@@ -261,6 +261,13 @@ en:
     search:
       search_label: 'Search'
       search_button: 'Search'
+    select_requirements_template:
+      title: 'Select DMP Template'
+      instructions_html: '<p>Select one of the funder DMP Templates listed to proceed to the next step. The type of template chosen can affect what information you will need to provide in the following steps.</p>'
+      no_results: 'No DMP templates were available to show. If you are filtering or searching, please modify your search to see more items.'
+      dialog_text: 'You must select a DMP template before continuing.'
+      dialog_title: 'Please select a DMP Template'
+      submit_button: 'Next >>'
     submit_button:
       submit: 'Submit'
       save: 'Save'
