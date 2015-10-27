@@ -6,27 +6,27 @@ end
   en: {
     activerecord: {
       models: {
-        comment: lambda do |_, count: nil, unit: true, **options|
+        comment: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Comment' : 'Comments'
           unit ? "#{count} #{name}" : name
         end,
-        institution: lambda do |_, count: nil, unit: true, **options|
+        institution: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
         end,
-        requirements_template: lambda do |_, count: nil, unit: true, **options|
+        requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template' : 'DMP Templates'
           unit ? "#{count} #{name}" : name
         end,
-        resource_context: lambda do |_, count: nil, unit: true, **options|
+        resource_context: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template Customization' : 'DMP Template Customizations'
           unit ? "#{count} #{name}" : name
         end,
-        resource: lambda do |_, count: nil, unit: true, **options|
+        resource: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Resource' : 'Resources'
           unit ? "#{count} #{name}" : name
         end,
-        user: lambda do |_, count: nil, unit: true, **options|
+        user: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'User' : 'Users'
           unit ? "#{count} #{name}" : name
         end
