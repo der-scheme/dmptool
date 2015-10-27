@@ -243,10 +243,6 @@ en:
   js:
     application:
   shared:
-    submit_button:
-      submit: 'Submit'
-      save: 'Save'
-      save_changes: 'Save Changes'
     button_button:
       cancel: 'Cancel'
     button_link:
@@ -263,6 +259,10 @@ en:
     search:
       search_label: 'Search'
       search_button: 'Search'
+    submit_button:
+      submit: 'Submit'
+      save: 'Save'
+      save_changes: 'Save Changes'
   layouts:
     application:
       title: '%{title_text}: DMPTool'
