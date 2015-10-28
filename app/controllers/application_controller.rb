@@ -240,7 +240,8 @@ class ApplicationController < ActionController::Base
     end
 
     def extract_locale_from_accept_language_header
-      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+      locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+      locale if Rails.application.config.i18n.available_locales.include?(locale)
     end
 
     ## Stores the current #params in the #session hash.
