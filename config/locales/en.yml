@@ -210,21 +210,6 @@ en:
         informal_review: 'Informal Review Allowed'
         no_review: 'No Review Needed'
   globals:
-    template:
-      details:    # Used by several ApplicationHelper instance methods.
-        overview: 'Overview'
-        details: 'Details'
-        action_customize: 'Customize'
-        action_delete: 'Delete'
-        action_activate: 'Activate'
-        action_deactivate: 'Deactivate'
-        action_share: 'Share'
-        action_preview: 'Preview'
-        action_copy: 'Copy'
-        action_export_pdf: 'Export as PDF'
-        action_export_rtf: 'Export as RTF'
-        status_active: 'Active'
-        status_inactive: 'Inactive'
     messages:
       prompt:
         confirm: 'Are you sure?'
