@@ -414,7 +414,6 @@ en:
     guidance_table:
       template: "Template"
       funder: "Funder"
-      funder_links: "Funder Links"
       institution: "Institution"
       institution_links: "Institution Links"
       sample_plans: "Sample Plans"
@@ -425,7 +424,6 @@ en:
     guidance_table_institutional:
       template: "Template"
       funder: "Funder"
-      funder_links: "Funder Links"
       institution: "Institution"
       institution_links: "Institution Links"
       sample_plans: "Sample Plans"
