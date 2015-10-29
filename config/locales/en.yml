@@ -884,14 +884,12 @@ en:
       save_and_next_button: 'Save and Next >>'
 
     additional_information_fields:
-      funder_links: 'Funder links'
       link_label_placeholder: 'Link Label'
       link_url_placeholder: 'Link Url'
       remove_link: 'Remove'
       funder_links_tooltip: 'Add links to funder websites that may provide additional information about this template’s requirements.'
 
     sample_plan_fields:
-      sample_plans: 'Sample plans'
       plan_name_placeholder: 'Plan Name'
       plan_url_placeholder: 'Plan Url'
       remove_link: 'Remove'

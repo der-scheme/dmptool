@@ -1,5 +1,5 @@
 <div class="control-group">
-	<%= f.label :label, t('.funder_links'), class: 'control-label' %>
+	<%= f.label :label, AdditionalInformation.model_name.human(count: nil), class: 'control-label' %>
 	<%= f.label :url, class: 'hide' %>
 	<div class="controls">
 		<%= f.text_field :label, placeholder: t('.link_label_placeholder') %>
