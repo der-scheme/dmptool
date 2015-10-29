@@ -139,7 +139,6 @@ en:
       user:
         active: 'Active'
         auth_token: 'My Token'
-        email: 'Email'
         first_name: 'First Name'
         full_name_last_first: 'User Name'
         last_name: 'Last Name'
