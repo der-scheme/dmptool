@@ -6,6 +6,10 @@ end
   en: {
     activerecord: {
       models: {
+        additional_information: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Funder Link' : 'Funder Links'
+          unit ? "#{count} #{name}" : name
+        end,
         comment: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Comment' : 'Comments'
           unit ? "#{count} #{name}" : name
@@ -24,6 +28,10 @@ end
         end,
         resource: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Resource' : 'Resources'
+          unit ? "#{count} #{name}" : name
+        end,
+        sample_plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Sample Plan' : 'Sample Plans'
           unit ? "#{count} #{name}" : name
         end,
         user: lambda do |_, count: 1, unit: false, **__|
