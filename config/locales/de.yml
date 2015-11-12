@@ -277,10 +277,10 @@ de:
       new_plan: 'Neuen DMP erstellen'
       review_plans: 'DMPs begutachten'
       templates: 'DMP-Vorlagen'
-      customizations: 'Customizations'
+      customizations: 'Anpassungen'
       institution: 'Einrichtungsprofil'
       my_profile: 'Mein Profil'
-      administration: 'DMP Administration'
+      administration: 'Admin'
     dashboard_logo_row:
       non_partner_info: 'You are logged in as a Non Partner Institution'
       contact_mail: 'Contact %{email}'
