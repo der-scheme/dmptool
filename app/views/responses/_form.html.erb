@@ -13,20 +13,20 @@
   </div>
   <% if requirement(requirement_id).requirement_type == :text %>
     <div class="control-group">
-    		<%= f.label :text_value, 'Your Response', :class => 'hide' %>
-        <%= f.cktext_area :text_value, :class => "input-block-level", :placeholder => "Your Response" %>
+        <%= f.label :text_value, class: 'hide' %>
+        <%= f.cktext_area :text_value, class: 'input-block-level', placeholder: @response.class.human_attribute_name(:text_value) %>
     </div>
   <% end %>
 
   <% if requirement(requirement_id).requirement_type == :numeric %>
     <div class="control-group">
-      <%= f.label :numeric_value, 'Value', :class => 'control-label' %>
+      <%= f.label :numeric_value, class: 'control-label' %>
       <div class="controls">
         <%= f.number_field :numeric_value %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :label_id, 'Unit of Measure', :class => 'control-label' %>
+      <%= f.label :label_id, class: 'control-label' %>
       <div class="controls">
         <%= f.select(:label_id, requirement(requirement_id).labels.collect {|l| [ l.desc, l.id ] }) %>
       </div>
@@ -35,18 +35,20 @@
 
   <% if requirement(requirement_id).requirement_type == :date %>
     <div class="control-group">
-      <%= f.label :date_value, :class => "control-label" %>
+      <%= f.label :date_value, class: 'control-label' %>
       <div class="controls">
-        <%= f.date_field :date_value, value: (@response.date_value.strftime('%m/%d/%Y') if @response.date_value), class: 'datepicker', id:'response_date_value' %>
+        <%= f.date_field :date_value, value: (l(@response.date_value) if @response.date_value), class: 'datepicker', id:'response_date_value' %>
       </div>
     </div>
   <% end %>
 
   <% if requirement(requirement_id).requirement_type == :enum %>
     <div class="control-group">
-      <%= f.label :enumeration_id, 'Please Select One', :class => 'control-label', :style => 'margin-left: 10px; width: auto' %>
+      <%= f.label :enumeration_id, class: 'control-label', style: 'margin-left: 10px; width: auto' %>
       <div class="controls" style="margin-left: 100px">
-        <%= f.select(:enumeration_id, requirement(requirement_id).enumerations.collect {|e| [ e.value, e.id ]}, prompt: "Select a value" ) %>
+        <%= f.select :enumeration_id,
+                     requirement(requirement_id).enumerations.map {|e| [e.value, e.id]},
+                     prompt: @response.class.human_attribute_name(:enumeration_id) %>
       </div>
     </div>
   <% end %>
@@ -54,17 +56,16 @@
   <br/>
   <div class="actions">
     <% if requirement(requirement_id).obligation == :mandatory %>
-      <%= f.submit "Save and Next", name: 'save_and_next', class: 'btn btn-success pull-right', id: 'save_and_next' %>
-      <%= f.submit "Save Response", name: 'save_only', class: 'btn btn-success pull-right', id: 'save_only' %>
-      <%= link_to 'Cancel Changes', details_plan_path(@plan), :class => "btn" %>
+      <%= f.submit t('.save_and_next_button'), name: 'save_and_next', class: 'btn btn-success pull-right', id: 'save_and_next' %>
+      <%= f.submit t('.save_button'), name: 'save_only', class: 'btn btn-success pull-right', id: 'save_only' %>
+      <%= link_to t('.back_button'), details_plan_path(@plan), class: 'btn' %>
     <% else %>
-      <%= f.submit "Save and Next", name: 'save_and_next', class: 'btn btn-success pull-right'  %>
-      <%= f.submit "Save Response", name: 'save_only', class: 'btn btn-success pull-right' %>
-      <%= link_to 'Cancel Changes', details_plan_path(@plan), :class => "btn", role: "button" %>
+      <%= f.submit t('.save_and_next_button'), name: 'save_and_next', class: 'btn btn-success pull-right'  %>
+      <%= f.submit t('.save_button'), name: 'save_only', class: 'btn btn-success pull-right' %>
+      <%= link_to t('.back_button'), details_plan_path(@plan), class: 'btn', role: 'button' %>
     <% end %>
   </div>
 <% end %>
 
-<div id="alert_message" title="Please Enter a Valid Response.">
-  Cannot save an empty Response. Please enter a valid Response before continuing.
-</div>
+<%= content_tag :div, t('.alert_message'), id: 'alert_message',
+                title: '.alert_message_tooltip' %>

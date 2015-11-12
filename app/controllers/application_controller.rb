@@ -240,7 +240,10 @@ class ApplicationController < ActionController::Base
     end
 
     def extract_locale_from_accept_language_header
-      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+      locale = request.env['HTTP_ACCEPT_LANGUAGE']
+          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})/)
+          .try(:first).try(:to_sym)
+      locale if locale.in?(Rails.application.config.i18n.available_locales)
     end
 
     ## Stores the current #params in the #session hash.
@@ -256,7 +259,7 @@ class ApplicationController < ActionController::Base
     def update_history
       return unless status == 200
       history = (session[:page_history] ||= [])
-      history.unshift(params)
+      history.unshift(params) unless params == history.first
       history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end

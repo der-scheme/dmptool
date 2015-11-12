@@ -3,7 +3,11 @@
 		<tr>
 			<th><%= sortable :name,                    t('.template'),                                     model: RequirementsTemplate, order_scope: :order_scope2 %></th>
 			<th><%= sortable :institution_id,          t(public ? '.funder' : '.institution'),             model: RequirementsTemplate, order_scope: :order_scope2 %></th>
-			<th><%= sortable :additional_informations, t(public ? '.funder_links' : '.institution_links'), model: RequirementsTemplate, order_scope: :order_scope2 %></th>
+			<th>
+				<%= sortable :additional_informations,
+										 (public ? AdditionalInformation.model_name.human(count: nil) : t('.institution_links')),
+										 model: RequirementsTemplate, order_scope: :order_scope2 %>
+			</th>
 			<th>
 				<%=   sortable :sample_plans,            t('.sample_plans'),                                 model: RequirementsTemplate, order_scope: :order_scope2 %>
       	<%= content_tag :span, '', title: t('.sample_plans_tooltip'), data: {toggle: 'tooltip', placement: 'top', html: 'true'}, class:'icon questionmark tip' %>

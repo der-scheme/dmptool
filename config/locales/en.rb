@@ -6,27 +6,35 @@ end
   en: {
     activerecord: {
       models: {
-        comment: lambda do |_, count: nil, unit: true, **options|
+        additional_information: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Funder Link' : 'Funder Links'
+          unit ? "#{count} #{name}" : name
+        end,
+        comment: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Comment' : 'Comments'
           unit ? "#{count} #{name}" : name
         end,
-        institution: lambda do |_, count: nil, unit: true, **options|
+        institution: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
         end,
-        requirements_template: lambda do |_, count: nil, unit: true, **options|
+        requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template' : 'DMP Templates'
           unit ? "#{count} #{name}" : name
         end,
-        resource_context: lambda do |_, count: nil, unit: true, **options|
+        resource_context: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template Customization' : 'DMP Template Customizations'
           unit ? "#{count} #{name}" : name
         end,
-        resource: lambda do |_, count: nil, unit: true, **options|
+        resource: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Resource' : 'Resources'
           unit ? "#{count} #{name}" : name
         end,
-        user: lambda do |_, count: nil, unit: true, **options|
+        sample_plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Sample Plan' : 'Sample Plans'
+          unit ? "#{count} #{name}" : name
+        end,
+        user: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'User' : 'Users'
           unit ? "#{count} #{name}" : name
         end
@@ -100,6 +108,9 @@ end
             "All"
           end
         end
+      },
+      errors: {
+        message: ->(_, model: nil, **__) {"#{model.errors.size} error#{'s' if model.errors.size != 1} prohibited this #{model.class.model_name.human.downcase} from being saved:"}
       }
     },
     users: {

@@ -121,6 +121,16 @@ en:
         requirements_template_id: 'Associated DMP template'
         resource_id: 'Resource'
         review_type: 'Review Type'
+      response:
+        date_value: 'Date Value'
+        enumeration_id: 'Please Select One'
+        id: 'Response ID'                       # not taken from source
+        label_id: 'Unit of Measure'
+        lock_version: 'Lock Version'            # not taken from source
+        numeric_value: 'Value'
+        plan_id: 'DMP'                          # not taken from source
+        requirement_id: 'Requirement'           # not taken from source
+        text_value: 'Your Response'
       sample_plan:
         id: 'Sample Plan'
         label: 'Plan Name'
@@ -129,7 +139,6 @@ en:
       user:
         active: 'Active'
         auth_token: 'My Token'
-        email: 'Email'
         first_name: 'First Name'
         full_name_last_first: 'User Name'
         last_name: 'Last Name'
@@ -201,21 +210,6 @@ en:
         informal_review: 'Informal Review Allowed'
         no_review: 'No Review Needed'
   globals:
-    template:
-      details:    # Used by several ApplicationHelper instance methods.
-        overview: 'Overview'
-        details: 'Details'
-        action_customize: 'Customize'
-        action_delete: 'Delete'
-        action_activate: 'Activate'
-        action_deactivate: 'Deactivate'
-        action_share: 'Share'
-        action_preview: 'Preview'
-        action_copy: 'Copy'
-        action_export_pdf: 'Export as PDF'
-        action_export_rtf: 'Export as RTF'
-        status_active: 'Active'
-        status_inactive: 'Inactive'
     messages:
       prompt:
         confirm: 'Are you sure?'
@@ -233,10 +227,6 @@ en:
   js:
     application:
   shared:
-    submit_button:
-      submit: 'Submit'
-      save: 'Save'
-      save_changes: 'Save Changes'
     button_button:
       cancel: 'Cancel'
     button_link:
@@ -250,9 +240,22 @@ en:
       view_less: 'View Less'
       view_all: 'View All'
       previous_page: 'Previous Page'
+    errors:
+      # Find translations in en.rb
     search:
       search_label: 'Search'
       search_button: 'Search'
+    select_requirements_template:
+      title: 'Select DMP Template'
+      instructions_html: '<p>Select one of the funder DMP Templates listed to proceed to the next step. The type of template chosen can affect what information you will need to provide in the following steps.</p>'
+      no_results: 'No DMP templates were available to show. If you are filtering or searching, please modify your search to see more items.'
+      dialog_text: 'You must select a DMP template before continuing.'
+      dialog_title: 'Please select a DMP Template'
+      submit_button: 'Next >>'
+    submit_button:
+      submit: 'Submit'
+      save: 'Save'
+      save_changes: 'Save Changes'
   layouts:
     application:
       title: '%{title_text}: DMPTool'
@@ -373,6 +376,9 @@ en:
       dmp_headline: "Data Management Planning Tool"
       dmp_subtitle_html: "<strong>Create, review, and share data management plans</strong> that meet institutional and funder requirements."
       dmp_get_started_link: "Get Started"
+      public_dmps: "Public DMPs"
+      dmp_news: "DMPTool News"
+      dmp_help: "DMPTool Help"
       after_banner_title: ""
       left_bucket_title: "WHO IS THE TOOL FOR?"
       right_bucket_title: "A SHORT INTRODUCTION TO THE TOOL"
@@ -414,7 +420,6 @@ en:
                        <li>Comfortable login via Shibboleth for members of your institution</li>
                      </ul>"
       
-
     guidance:
       browser_title: 'DMP Requirements'
       title: 'DMP Requirements'
@@ -425,7 +430,6 @@ en:
     guidance_table:
       template: "Template"
       funder: "Funder"
-      funder_links: "Funder Links"
       institution: "Institution"
       institution_links: "Institution Links"
       sample_plans: "Sample Plans"
@@ -436,7 +440,6 @@ en:
     guidance_table_institutional:
       template: "Template"
       funder: "Funder"
-      funder_links: "Funder Links"
       institution: "Institution"
       institution_links: "Institution Links"
       sample_plans: "Sample Plans"
@@ -897,14 +900,12 @@ en:
       save_and_next_button: 'Save and Next >>'
 
     additional_information_fields:
-      funder_links: 'Funder links'
       link_label_placeholder: 'Link Label'
       link_url_placeholder: 'Link Url'
       remove_link: 'Remove'
       funder_links_tooltip: 'Add links to funder websites that may provide additional information about this template’s requirements.'
 
     sample_plan_fields:
-      sample_plans: 'Sample plans'
       plan_name_placeholder: 'Plan Name'
       plan_url_placeholder: 'Plan Url'
       remove_link: 'Remove'
@@ -953,6 +954,14 @@ en:
 
     toggle_active:
       failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
+
+  responses:
+    form:
+      save_and_next_button: 'Save and Next'
+      save_button: 'Save Response'
+      back_button: 'Cancel Changes'
+      alert_message: 'Cannot save an empty Response. Please enter a valid Response before continuing.'
+      alert_message_tooltip: 'Please Enter a Valid Response.'
 
   resources:
     copy_selected_customization_resource:
