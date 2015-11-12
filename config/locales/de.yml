@@ -26,10 +26,10 @@ de:
       long: '%B %d, %Y'
   time:
     formats:
-      default: '%m/%d/%Y %I:%M %p'
+      default: '%d.%m.%Y, %H:%M Uhr'
   datetime:
     formats:
-      default: '%m/%d/%Y %I:%M %p'
+      default: '%d.%m.%Y, %H:%M Uhr'
   # Generic attributes
   attributes:
     created_at: 'Creation Date'
@@ -268,7 +268,7 @@ de:
       overview: 'Overview'
       details: 'Details'
     dashboard_customizations_under_dmp_submenu:
-      templates: 'DMP Templates'
+      templates: 'DMP-Vorlagen'
       overview: 'Customization Overview'
       details: 'Customization Details'
     dashboard_header:
@@ -288,7 +288,7 @@ de:
       institution_name: 'Institution Name'
       contact_admin_link: 'Contact Institution Admin'
     dashboard_requirements_template_submenu:
-      templates: 'DMP Templates'
+      templates: 'DMP-Vorlagen'
       overview: 'Template Overview'
       details: 'Template Details'
     header:
