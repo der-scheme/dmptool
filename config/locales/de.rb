@@ -6,27 +6,35 @@ end
   de: {
     activerecord: {
       models: {
-        comment: lambda do |_, count: nil, unit: true, **options|
+        additional_information: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Funder Link' : 'Funder Links'
+          unit ? "#{count} #{name}" : name
+        end,
+        comment: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Comment' : 'Comments'
           unit ? "#{count} #{name}" : name
         end,
-        institution: lambda do |_, count: nil, unit: true, **options|
+        institution: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
         end,
-        requirements_template: lambda do |_, count: nil, unit: true, **options|
+        requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template' : 'DMP Templates'
           unit ? "#{count} #{name}" : name
         end,
-        resource_context: lambda do |_, count: nil, unit: true, **options|
+        resource_context: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template Customization' : 'DMP Template Customizations'
           unit ? "#{count} #{name}" : name
         end,
-        resource: lambda do |_, count: nil, unit: true, **options|
+        resource: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'Resource' : 'Resources'
           unit ? "#{count} #{name}" : name
         end,
-        user: lambda do |_, count: nil, unit: true, **options|
+        sample_plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'Sample Plan' : 'Sample Plans'
+          unit ? "#{count} #{name}" : name
+        end,
+        user: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'User' : 'Users'
           unit ? "#{count} #{name}" : name
         end
@@ -56,6 +64,9 @@ end
       create: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+      },
+      form: {
+        visibility_note_html: "<span>Note: when visibility is set to \"Public\", your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">Public DMPs</a> page of this site and it will be downloadable and copy-able. </span>"
       },
       update: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
@@ -97,6 +108,9 @@ end
             "All"
           end
         end
+      },
+      errors: {
+        message: ->(_, model: nil, **__) {"#{model.errors.size} error#{'s' if model.errors.size != 1} prohibited this #{model.class.model_name.human.downcase} from being saved:"}
       }
     },
     users: {
