@@ -1,2 +1,2 @@
 
-require 'route-18n/translation_helper'
+require 'route-i18n/translation_helper'
