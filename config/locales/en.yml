@@ -226,6 +226,9 @@ en:
         delete: 'Delete'
   js:
     application:
+  routes:
+    plans:
+      public: 'Public DMPs'
   shared:
     button_button:
       cancel: 'Cancel'
