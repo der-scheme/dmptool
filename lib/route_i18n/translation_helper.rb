@@ -10,7 +10,7 @@ module RouteI18n
 
     def url_text_i18n_keys(controller: nil, action: :index, format: :html,
                            **options)
-      options[:controller] ||= params[:controller]
+      controller ||= params[:controller]
       return :"routes.#{controller}.#{action}.#{format}",
              :"routes.#{controller}.#{action}"
     end
