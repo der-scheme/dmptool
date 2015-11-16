@@ -22,13 +22,11 @@ module RouteI18n
         define_method(:"link_to_#{route.name}") do |url = nil,
                                                     html_options = nil, &body|
           url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
-          url = {id: url.id} if url.is_a? ActiveRecord::Base
-          url ||= {}
           html_options ||= {}
 
           text = send(:"#{route.name}_text")
 
-          link_to route.defaults.merge(url), html_options do
+          link_to send(:"#{route.name}_path", url), html_options do
             body ? body.call(text) : text
           end
         end
