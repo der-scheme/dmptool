@@ -5,12 +5,12 @@
 
       <!-- My Dashboard -->
       <li <%= "class=current" if menu_level(0) == 'dashboard' %>>
-        <%= link_to content_tag(:span, t('.dashboard')), dashboard_path %>
+        <%= link_to_dashboard {|text| content_tag :span, text} %>
       </li>
 
       <!-- My DMPs -->
       <li <%= "class=current" if menu_level(0) == 'my_dmps' %>>
-        <%= link_to content_tag(:span, t('.plans')), plans_path %>
+        <%= link_to_plans {|text| content_tag :span, text} %>
       </li>
 
       <!-- Create New DMP -->
@@ -18,14 +18,14 @@
         <%= render partial: 'layouts/dashboard_create_dmp_submenu' %>
       <% else %>
         <li <%= "class=current" if menu_level(0) == 'plans' %>>
-          <%= link_to content_tag(:span, t('.new_plan')), plan_template_information_path %>
+          <%= link_to_plan_template_information {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
       <!-- Review DMPs -->
       <% if user_role_in?(:institutional_reviewer, :dmp_admin) %>
         <li <%= "class=current" if menu_level(0) == 'review_dmp' %>>
-          <%= link_to content_tag(:span, t('.review_plans')), review_dmps_path %>
+          <%= link_to_review_dmps {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
@@ -41,7 +41,7 @@
           <% end %>
         <% else %>
           <li <%= 'class=current' if menu_level(0) == 'dmp_templates' %>>
-            <%= link_to content_tag(:span, t('.templates')), requirements_templates_path %>
+            <%= link_to_requirements_templates {|text| content_tag :span, text} %>
           </li>
         <% end %>
       <% end %>
@@ -52,7 +52,7 @@
           <%= render partial: 'layouts/dashboard_customizations_submenu' %>
         <% else %>
           <li <%= 'class=current' if menu_level(0) == 'customizations' %> >
-            <%= link_to content_tag(:span, t('.customizations')), resource_contexts_path %>
+            <%= link_to_resource_contexts {|text| content_tag :span, text} %>
           </li>
         <% end %>
       <% end %>
@@ -60,19 +60,19 @@
       <!-- Institution Profile -->
       <% if user_role_in?(:institutional_admin, :dmp_admin) %>
         <li <%= 'class=current' if menu_level(0) == 'institution' %> >
-          <%= link_to content_tag(:span, t('.institution')), institutions_path %>
+          <%= link_to_institutions {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
       <!-- My Profile -->
       <li <%= 'class=current' if menu_level(0) == 'my_profile' %>>
-        <%= link_to content_tag(:span, t('.my_profile')), edit_user_path(current_user) %>
+        <%= link_to_edit_user(current_user) {|text| content_tag :span, text} %>
       </li>
 
       <!-- DMP Administration -->
       <% if user_role_in?(:dmp_admin) %>
         <li <%= 'class=current' if menu_level(0) == 'dmp_admin' %>>
-          <%= link_to content_tag(:span, t('.administration')), users_url %>
+          <%= link_to_users {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
