@@ -6,8 +6,9 @@
     <%= image_tag 'dmp_logo.png', alt: t('.dmptool_logo_alt'), width: 146, height: 25 %>
   <% end %>
   <div class="welcome">
-    <p><%= t('.welcome') unless current_user.nil? %>
-      <%= content_tag(:strong, "#{current_user.full_name}") unless current_user.nil? %></p>
+    <p>
+      <%= t('.welcome_html', user: current_user.full_name) if current_user %>
+    </p>
   </div>
   <nav class="navbar">
     <ul class="nav">

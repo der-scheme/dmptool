@@ -337,7 +337,7 @@ en:
     header:
       dmptool_logo_alt: "DMPTOOL"
       dmptool_logo_tooltip: 'DMPTool Home'
-      welcome: "Welcome!"
+      welcome_html: 'Welcome! <strong>%{user}</strong>'
       public_dmps_tooltip: 'Sample DMPs'
       news_link: "News"
       news_title: "News"
