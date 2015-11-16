@@ -268,11 +268,13 @@ en:
       video: 'Video'
     user_sessions:
       destroy: 'Log Out'
+      institution: 'Log In'
       login: 'Log In'
     users:
       add_token: 'Generate New Token'
       edit: 'My Profile'
       index: 'DMP Administration'
+      new: 'Create An Account'
       remove_token: 'Remove Token'
   shared:
     button_button:
