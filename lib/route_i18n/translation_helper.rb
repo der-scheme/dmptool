@@ -3,22 +3,27 @@ module RouteI18n
   module TranslationHelper
 
     ##
-    # Returns the localized link text for the specified url options.
+    # Returns the I18n keys for route translation lookup.
     #
     # I18n keys are composed in the following way:
     # "routes.controller.action[.format]"
 
-    def url_text_for(controller: nil, action: :index, format: :html, **options)
-      controller ||= params[:controller]
-      options[:default] ||= [
-                              url_for(controller: controller, action: action,
-                                      format: format, **options)
-                            ]
+    def url_text_i18n_keys(controller: nil, action: :index, format: :html,
+                           **options)
+      options[:controller] ||= params[:controller]
+      return :"routes.#{controller}.#{action}.#{format}",
+             :"routes.#{controller}.#{action}"
+    end
 
-      result = I18n.t(action, scope: [:routes, controller], **options)
-      return result unless result.is_a?(Hash)
+    ##
+    # Returns the localized link text for the specified url options.
 
-      I18n.t(format, scope: [:routes, controller, action], **options)
+    def url_text_for(default: nil, **options)
+      key, fallback = url_text_i18n_keys(**options)
+      default ||= [url_for(**options)]
+      default.unshift(fallback)
+
+      I18n.t(key, default: default, **options)
     end
 
     ##
