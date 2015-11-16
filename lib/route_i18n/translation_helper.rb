@@ -22,6 +22,13 @@ module RouteI18n
     end
 
     ##
+    # Returns the localized link text for the current page.
+
+    def current_url_text
+      url_text_for params
+    end
+
+    ##
     # Defines a method "#{route.name}_text" which returns the localized link
     # text for each route available.
 
