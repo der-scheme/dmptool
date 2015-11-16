@@ -227,8 +227,53 @@ en:
   js:
     application:
   routes:
+    dashboard:
+      show: 'My Dashboard'
+    institutions:
+      index: 'Institution Profile'
+      new: 'Add New Institution'
+    requirements_templates:
+      destroy: 'Delete'
+      edit: 'Overview'
+      index: 'DMP Templates'
+      new: 'Create New DMP Template'
+      requirements: 'Details'
+    resource_contexts:
+      choose_institution: 'Customize'
+      destroy: 'Delete'
+      edit: 'Overview'
+      index: 'Customizations'
+      requirements: 'Details'
     plans:
+      copy_existing_template: 'Copy'
+      destroy: 'Delete'
+      details: 'Details'
+      edit: 'Overview'
+      index: 'My DMPs'
+      preview: 'Preview'
       public: 'Public DMPs'
+      review_dmps: 'Review DMPs'
+      show:
+        docx: 'Export as DOCX'
+        pdf: 'Export as PDF'
+        rtf: 'Export as RTF'
+      template_information: 'Create New DMP'
+    static_pages:
+      about: 'About'
+      contact: 'Contact Us'
+      guidance: 'DMP Requirements'
+      help: 'Help'
+      home: 'Home'
+      partners: 'Partner Institutions'
+      video: 'Video'
+    user_sessions:
+      destroy: 'Log Out'
+      login: 'Log In'
+    users:
+      add_token: 'Generate New Token'
+      edit: 'My Profile'
+      index: 'DMP Administration'
+      remove_token: 'Remove Token'
   shared:
     button_button:
       cancel: 'Cancel'
