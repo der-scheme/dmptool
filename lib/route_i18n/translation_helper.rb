@@ -8,8 +8,9 @@ module RouteI18n
     # I18n keys are composed in the following way:
     # "routes.controller.action[.format]"
 
-    def url_text_i18n_keys(controller: nil, action: :index, format: :html,
+    def url_text_i18n_keys(controller: nil, action: nil, format: :html,
                            **options)
+      action ||= controller ? :index : params[:action]
       controller ||= params[:controller]
       return :"routes.#{controller}.#{action}.#{format}",
              :"routes.#{controller}.#{action}"
