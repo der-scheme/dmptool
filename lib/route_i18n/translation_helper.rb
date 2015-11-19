@@ -19,12 +19,15 @@ module RouteI18n
     ##
     # Returns the localized link text for the specified url options.
 
-    def url_text_for(default: nil, **options)
-      key, fallback = url_text_i18n_keys(**options)
-      default ||= [url_for(**options)]
+    def url_text_for(url_options = {}, t: nil, default: nil, **options)
+      url_options = url_options.merge(options)
+      key, fallback = url_text_i18n_keys(**url_options)
+      default ||= [url_for(**url_options)]
       default.unshift(fallback)
+      t &&= scope_key_by_partial(t)
 
-      I18n.t(key, default: default, **options)
+      return I18n.t(key, default: default, **url_options) unless t
+      I18n.t(t, default: default.unshift(t), **url_options)
     end
 
     ##
@@ -40,7 +43,7 @@ module RouteI18n
 
     def self.included(_)
       Rails.application.routes.routes.each do |route|
-        define_method(:"#{route.name}_text") do |*args, **options|
+        define_method(:"#{route.name}_text") do |*args, t: nil, **options|
           fail ArgumentError,
                "wrong number of arguments (#{args.size} for 0..1)" if
             args.size > 1
@@ -50,7 +53,7 @@ module RouteI18n
           options[:default] ||= [route.name.titlecase]
           controller, action = route.defaults.values_at(:controller, :action)
 
-          url_text_for(controller: controller, action: action, **options)
+          url_text_for(controller: controller, action: action, t: t, **options)
         end
       end
     end

@@ -23,8 +23,10 @@ module RouteI18n
                                                     html_options = nil, &body|
           url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
           html_options ||= {}
+          t = html_options.delete(:t)
 
-          text = send(:"#{route.name}_text")
+          route_name_text = :"#{route.name}_text"
+          text = send(route_name_text, t: t, **(url.is_a?(Hash) ? url : {}))
 
           link_to send(:"#{route.name}_path", url), html_options do
             body ? body.call(text) : text
