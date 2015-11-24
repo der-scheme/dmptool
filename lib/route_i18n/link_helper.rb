@@ -6,10 +6,11 @@ module RouteI18n
     include TranslationHelper
 
     ##
-    # Defines a method "link_to_#{name}" which generates a link to
-    # "#{name}_path", labelled with the "#{name}_text", for the given +route+.
+    # Defines a method "link_to_#{route.name}" which generates a link to
+    # "#{route.name}_path", labelled with the "#{route.name}_text", for the
+    # given +route+.
 
-    def self.add(name, route)
+    def self.add(route)
 
       ##
       # Returns a labelled link to the route in question.
@@ -32,15 +33,22 @@ module RouteI18n
       end
     end
 
+    module NamedRouteCollection
+      def define_url_helper(route, *args)
+        RouteI18n::LinkHelper.add(route)
+
+        super(route, *args)
+      end
+    end
   end
 end
 
 class ActionDispatch::Routing::RouteSet::NamedRouteCollection
   mod = Module.new do
-    def add(name, route)
-      RouteI18n::LinkHelper.add(name, route)
+    def define_url_helper(route, *args)
+      RouteI18n::LinkHelper.add(route)
 
-      super
+      super(route, *args)
     end
   end
 

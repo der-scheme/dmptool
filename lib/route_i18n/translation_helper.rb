@@ -38,18 +38,18 @@ module RouteI18n
     end
 
     ##
-    # Defines a method "#{name}_text" which returns the localized link text for
-    # the given +route+.
+    # Defines a method "#{route.name}_text" which returns the localized link
+    # text for the given +route+.
 
-    def self.add(name, route)
-      define_method(:"#{name}_text") do |*args, t: nil, **options|
+    def self.add(route)
+      define_method(:"#{route.name}_text") do |*args, t: nil, **options|
         fail ArgumentError,
              "wrong number of arguments (#{args.size} for 0..1)" if
           args.size > 1
 
         options[:id] ||= args.first if args.size == 1
         options[:format]  ||= :html
-        options[:default] ||= [name.titlecase]
+        options[:default] ||= [route.name.titlecase]
         controller, action = route.defaults.values_at(:controller, :action)
 
         url_text_for(controller: controller, action: action, t: t, **options)
@@ -61,10 +61,10 @@ end
 
 class ActionDispatch::Routing::RouteSet::NamedRouteCollection
   mod = Module.new do
-    def add(name, route)
-      RouteI18n::TranslationHelper.add(name, route)
+    def define_url_helper(route, *args)
+      RouteI18n::TranslationHelper.add(route)
 
-      super
+      super(route, *args)
     end
   end
 
