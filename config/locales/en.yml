@@ -568,7 +568,7 @@ en:
         one: '%{count} plan I own'
         other: '%{count} plans I own'
       plans_i_coown:
-        one: '%{count} plan I own'
+        one: '%{count} plan I co-own'
         other: '%{count} plans I co-own'
       submitted_plans: '%{count} Submitted'
       removed_plans: '%{count} Removed'
