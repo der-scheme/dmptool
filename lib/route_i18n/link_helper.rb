@@ -7,31 +7,50 @@ module RouteI18n
 
     ##
     # Defines a method "link_to_#{route.name}" which generates a link to
-    # "#{route.name}_path", labelled with the "#{route.name}_text", for each
-    # route available.
+    # "#{route.name}_path", labelled with the "#{route.name}_text", for the
+    # given +route+.
 
-    def self.included(_)
-      Rails.application.routes.routes.each do |route|
+    def self.add(route)
 
-        ##
-        # Returns a labelled link to the route in question.
-        #
-        # :call-seq: link_to_route_name(html_options = {}) {|text| …}?
-        # :call-seq: link_to_route_name(url = {}, html_options = {}) {|text| …}?
+      ##
+      # Returns a labelled link to the route in question.
+      #
+      # :call-seq: link_to_route_name(html_options = {}) {|text| …}?
+      # :call-seq: link_to_route_name(url = {}, html_options = {}) {|text| …}?
 
-        define_method(:"link_to_#{route.name}") do |url = nil,
-                                                    html_options = nil, &body|
-          url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
-          html_options ||= {}
+      define_method(:"link_to_#{route.name}") do |url = nil,
+                                                  html_options = nil, &body|
+        url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
+        html_options ||= {}
+        t = html_options.delete(:t)
 
-          text = send(:"#{route.name}_text")
+        route_name_text = :"#{route.name}_text"
+        text = send(route_name_text, t: t, **(url.is_a?(Hash) ? url : {}))
 
-          link_to send(:"#{route.name}_path", url), html_options do
-            body ? body.call(text) : text
-          end
+        link_to send(:"#{route.name}_path", url), html_options do
+          body ? body.call(text) : text
         end
       end
     end
 
+    module NamedRouteCollection
+      def define_url_helper(route, *args)
+        RouteI18n::LinkHelper.add(route)
+
+        super(route, *args)
+      end
+    end
   end
+end
+
+class ActionDispatch::Routing::RouteSet::NamedRouteCollection
+  mod = Module.new do
+    def define_url_helper(route, *args)
+      RouteI18n::LinkHelper.add(route)
+
+      super(route, *args)
+    end
+  end
+
+  prepend mod
 end
