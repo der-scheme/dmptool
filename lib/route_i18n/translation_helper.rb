@@ -38,25 +38,35 @@ module RouteI18n
     end
 
     ##
-    # Defines a method "#{route.name}_text" which returns the localized link
-    # text for each route available.
+    # Defines a method "#{name}_text" which returns the localized link text for
+    # the given +route+.
 
-    def self.included(_)
-      Rails.application.routes.routes.each do |route|
-        define_method(:"#{route.name}_text") do |*args, t: nil, **options|
-          fail ArgumentError,
-               "wrong number of arguments (#{args.size} for 0..1)" if
-            args.size > 1
+    def self.add(name, route)
+      define_method(:"#{name}_text") do |*args, t: nil, **options|
+        fail ArgumentError,
+             "wrong number of arguments (#{args.size} for 0..1)" if
+          args.size > 1
 
-          options[:id] ||= args.first if args.size == 1
-          options[:format]  ||= :html
-          options[:default] ||= [route.name.titlecase]
-          controller, action = route.defaults.values_at(:controller, :action)
+        options[:id] ||= args.first if args.size == 1
+        options[:format]  ||= :html
+        options[:default] ||= [name.titlecase]
+        controller, action = route.defaults.values_at(:controller, :action)
 
-          url_text_for(controller: controller, action: action, t: t, **options)
-        end
+        url_text_for(controller: controller, action: action, t: t, **options)
       end
     end
 
   end
+end
+
+class ActionDispatch::Routing::RouteSet::NamedRouteCollection
+  mod = Module.new do
+    def add(name, route)
+      RouteI18n::TranslationHelper.add(name, route)
+
+      super
+    end
+  end
+
+  prepend mod
 end
