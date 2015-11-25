@@ -332,7 +332,6 @@ en:
       institution_name: 'Institution Name'
       contact_admin_link: 'Contact Institution Admin'
     dashboard_requirements_template_submenu:
-      templates: 'DMP Templates'
       overview: 'Template Overview'
       details: 'Template Details'
     header:
