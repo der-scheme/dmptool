@@ -232,18 +232,19 @@ en:
     institutions:
       index: 'Institution Profile'
       new: 'Add New Institution'
+    requirements:
+      index: 'Details'
     requirements_templates:
       destroy: 'Delete'
       edit: 'Overview'
       index: 'DMP Templates'
-      new: 'Create New DMP Template'
       requirements: 'Details'
+      template_information: 'Create New DMP Template'
     resource_contexts:
       choose_institution: 'Customize'
       destroy: 'Delete'
       edit: 'Overview'
       index: 'Customizations'
-      requirements: 'Details'
     plans:
       copy_existing_template: 'Copy'
       destroy: 'Delete'
