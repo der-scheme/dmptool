@@ -33,13 +33,6 @@ module RouteI18n
       end
     end
 
-    module NamedRouteCollection
-      def define_url_helper(route, *args)
-        RouteI18n::LinkHelper.add(route)
-
-        super(route, *args)
-      end
-    end
   end
 end
 
