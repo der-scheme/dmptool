@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   date:
     formats:
@@ -30,450 +9,422 @@ en:
   datetime:
     formats:
       default: '%m/%d/%Y %I:%M %p'
-  # Generic attributes
   attributes:
-    created_at: 'Creation Date'
-    deleted_at: 'Deletion Date'
-    email: 'Email'
-    message: 'Message'
-    new_password: 'New Password'
-    password: 'Password'
-    password_confirmation: 'Password Confirmation'
-    updated_at: 'Last Modification Date'
+    created_at: Creation Date
+    deleted_at: Deletion Date
+    email: Email
+    message: Message
+    new_password: New Password
+    password: Password
+    password_confirmation: Password Confirmation
+    updated_at: Last Modification Date
   activerecord:
-    # Human readable model names were moved to en.rb, as I18n's native
-    # pluralization feature proved to be not flexible enough.
     attributes:
       additional_information:
-        label: 'Link Label'
-        requirements_template_id: 'DMP Template'
-        url: 'Link Url'
+        label: Link Label
+        requirements_template_id: DMP Template
+        url: Link Url
       comment:
-        comment_type: 'Comment Type'
-        plan_id: 'DMP'
-        user_id: 'Author'
-        value: 'Comment'
-        visibility: 'Visibility'
+        comment_type: Comment Type
+        plan_id: DMP
+        user_id: Author
+        value: Comment
+        visibility: Visibility
       enumeration:
-        default: '(set default)'
-        id: 'Enumeration ID'            # not taken from source
-        position: 'Position'            # not taken from source
-        requirement_id: 'Requirement'   # not taken from source
-        value: 'Item Value'
+        default: (set default)
+        id: Enumeration ID
+        position: Position
+        requirement_id: Requirement
+        value: Item Value
       institution:
-        ancestry: 'Ancestry'
-        contact_info: 'Administrator Contact'
-        contact_email: 'Administrator Contact Email'
-        logo: 'Institutional Logo'
-        desc: 'Descriptive Text'
-        full_name: 'Institution Full Name'
-        nickname: 'Institution short name, or acronym'
-        parent_id: 'Parent Institution'
-        shib_entity_id: 'Entity_id'
-        shib_domain: 'Shibboleth Domain'
-        url: 'Institution URL'
-        url_text: 'Institution URL Text'
+        ancestry: Ancestry
+        contact_info: Administrator Contact
+        contact_email: Administrator Contact Email
+        logo: Institutional Logo
+        desc: Descriptive Text
+        full_name: Institution Full Name
+        nickname: Institution short name, or acronym
+        parent_id: Parent Institution
+        shib_entity_id: Entity_id
+        shib_domain: Shibboleth Domain
+        url: Institution URL
+        url_text: Institution URL Text
       label:
-        desc: 'Unit of Measure'
-        id: 'Label ID'                  # not taken from source
-        position: 'Position'            # not taken from source
-        requirement_id: 'Requirement'   # not taken from source
+        desc: Unit of Measure
+        id: Label ID
+        position: Position
+        requirement_id: Requirement
       plan:
-        current_plan_state_id: 'Current Status'
-        id: 'Plan ID'   # Guessed (not taken from source)
-        name: 'DMP Title'
-        owner: 'Owner'
-        requirements_template_id: 'DMP Template'
-        solicitation_identifier: 'Solicitation Number'
-        submission_deadline: 'Submission Deadline'
-        visibility: 'Visibility'
+        current_plan_state_id: Current Status
+        id: Plan ID
+        name: DMP Title
+        owner: Owner
+        requirements_template_id: DMP Template
+        solicitation_identifier: Solicitation Number
+        submission_deadline: Submission Deadline
+        visibility: Visibility
       requirement:
-        ancestry: 'Ancestry'    # not taken from source
-        default: '(set default)'    # not necessarily taken from the correct place
-        group: 'Group'          # not taken from source
-        id: 'Requirement ID'    # not taken from source
-        obligation: 'Obligation'
-        position: 'Order'
-        requirement_type: 'Question Type'
-        requirements_template_id: 'Requirements template'
+        ancestry: Ancestry
+        default: (set default)
+        group: Group
+        id: Requirement ID
+        obligation: Obligation
+        position: Order
+        requirement_type: Question Type
+        requirements_template_id: Requirements template
         # Find translation for text_brief in en.rb
-        text_full: 'Detailed Question'
+        text_full: Detailed Question
       requirements_template:
-        active: 'Status'
-        end_date: 'End Date'
-        institution_id: 'Institution'
-        name: 'Template Name'
-        review_type: 'Review Requirement'
-        start_date: 'Start Date'
-        visibility: 'Visibility'
+        active: Status
+        end_date: End Date
+        institution_id: Institution
+        name: Template Name
+        review_type: Review Requirement
+        start_date: Start Date
+        visibility: Visibility
       resource:
-        id: 'ID'
-        label: 'Resource Label'     # not sure if taken from source, change to 'URL Label' if not
-        resource_type: 'Resource Type'
-        text: 'Details'
-        value: 'URL'
+        id: ID
+        label: Resource Label
+        resource_type: Resource Type
+        text: Details
+        value: URL
       resource_context:
-        contact_email: 'Contact Email'
-        contact_info: 'Contact Information'
-        institution_id: 'Customized for'
-        name: 'Customization Name'
-        requirement_id: 'Requirement'
-        requirements_template_id: 'Associated DMP template'
-        resource_id: 'Resource'
-        review_type: 'Review Type'
+        contact_email: Contact Email
+        contact_info: Contact Information
+        institution_id: Customized for
+        name: Customization Name
+        requirement_id: Requirement
+        requirements_template_id: Associated DMP template
+        resource_id: Resource
+        review_type: Review Type
       response:
-        date_value: 'Date Value'
-        enumeration_id: 'Please Select One'
-        id: 'Response ID'                       # not taken from source
-        label_id: 'Unit of Measure'
-        lock_version: 'Lock Version'            # not taken from source
-        numeric_value: 'Value'
-        plan_id: 'DMP'                          # not taken from source
-        requirement_id: 'Requirement'           # not taken from source
-        text_value: 'Your Response'
+        date_value: Date Value
+        enumeration_id: Please Select One
+        id: Response ID
+        label_id: Unit of Measure
+        lock_version: Lock Version
+        numeric_value: Value
+        plan_id: DMP
+        requirement_id: Requirement
+        text_value: Your Response
       sample_plan:
-        id: 'Sample Plan'
-        label: 'Plan Name'
-        requirements_template_id: 'DMP Template'
-        url: 'Plan Url'
+        id: Sample Plan
+        label: Plan Name
+        requirements_template_id: DMP Template
+        url: Plan Url
       user:
-        active: 'Active'
-        auth_token: 'My Token'
-        first_name: 'First Name'
-        full_name_last_first: 'User Name'
-        last_name: 'Last Name'
-        login_id: 'Username'
-        orcid_id: 'ORCID'
-        prefs: 'Prefs'
-        role_names: 'Current Role'
-        token: 'Token'
-        token_expiration: 'Token Expiration'
+        active: Active
+        auth_token: My Token
+        first_name: First Name
+        full_name_last_first: User Name
+        last_name: Last Name
+        login_id: Username
+        orcid_id: ORCID
+        prefs: Prefs
+        role_names: Current Role
+        token: Token
+        token_expiration: Token Expiration
   enum:
     comment:
       comment_type:
-        owner: 'Owner'
-        reviewer: 'Reviewer'
+        owner: Owner
+        reviewer: Reviewer
       visibility:
-        owner: 'Owner'
-        reviewer: 'Reviewer'
+        owner: Owner
+        reviewer: Reviewer
     plan:
       visibility:
-        institutional: 'Institutional'
-        private: 'Private'
-        public: 'Public'
-        unit: 'Unit'
+        institutional: Institutional
+        private: Private
+        public: Public
+        unit: Unit
     plan_state:
       state:
-        approved: 'Approved'
-        committed: 'Completed'
-        deleted: 'Deleted'
-        inactive: 'Inactive'
-        new: 'New'
-        reviewed: 'Reviewed'
-        rejected: 'Rejected'
-        revised: 'Revised'
-        submitted: 'Submitted'
+        approved: Approved
+        committed: Completed
+        deleted: Deleted
+        inactive: Inactive
+        new: New
+        reviewed: Reviewed
+        rejected: Rejected
+        revised: Revised
+        submitted: Submitted
     requirement:
       group:
-        "false": 'Requirement'
-        "true": 'Group'
+        false: Requirement
+        true: Group
       obligation:
-        mandatory: 'Mandatory'
-        mandatory_applicable: 'Mandatory If Applicable'
-        optional: 'Optional'
-        recommended: 'Recommended'
+        mandatory: Mandatory
+        mandatory_applicable: Mandatory If Applicable
+        optional: Optional
+        recommended: Recommended
       requirement_type:
-        date: 'date'
-        enum: 'enum'
-        numeric: 'numeric'
-        text: 'text'
+        date: date
+        enum: enum
+        numeric: numeric
+        text: text
     requirements_template:
       active:
-        "false": 'Inactive'
-        "true": 'Active'
+        false: Inactive
+        true: Active
       review_type:
-        formal_review: 'Review Required'
-        informal_review: 'Informal Review Allowed'
-        no_review: 'No Review Needed'
+        formal_review: Review Required
+        informal_review: Informal Review Allowed
+        no_review: No Review Needed
       visibility:
-        institutional: 'Institutional'
-        public: 'Public'
+        institutional: Institutional
+        public: Public
     resource:
       resource_type:
-        actionable_url: 'Links'
-        help_text: 'Guidance'
-        example_response: 'Example Response'
-        suggested_response: 'Suggested Response'
+        actionable_url: Links
+        help_text: Guidance
+        example_response: Example Response
+        suggested_response: Suggested Response
     resource_context:
       review_type:
-        formal_review: 'Review Required'
-        informal_review: 'Informal Review Allowed'
-        no_review: 'No Review Needed'
+        formal_review: Review Required
+        informal_review: Informal Review Allowed
+        no_review: No Review Needed
   globals:
     messages:
       prompt:
-        confirm: 'Are you sure?'
+        confirm: Are you sure?
   helpers:
     controller:
       plan:
-        not_found_error: 'The Plan you were looking for does not exist.'
+        not_found_error: The Plan you were looking for does not exist.
         not_allowed_error: "You don't have access to this content."
-        not_authorized_error: 'You need to be logged in.'
-        no_plan_selected_error: 'Please select an existing Plan to copy.'
+        not_authorized_error: You need to be logged in.
+        no_plan_selected_error: Please select an existing Plan to copy.
     render:
       link:
-        remove: 'Remove'
-        delete: 'Delete'
-  js:
-    application:
+        remove: Remove
+        delete: Delete
   routes:
     dashboard:
-      show: 'My Dashboard'
+      show: My Dashboard
     institutions:
-      index: 'Institution Profile'
-      new: 'Add New Institution'
+      index: Institution Profile
+      new: Add New Institution
     requirements_templates:
-      destroy: 'Delete'
-      edit: 'Overview'
-      index: 'DMP Templates'
-      new: 'Create New DMP Template'
-      requirements: 'Details'
+      destroy: Delete
+      edit: Overview
+      index: DMP Templates
+      new: Create New DMP Template
+      requirements: Details
     resource_contexts:
-      choose_institution: 'Customize'
-      destroy: 'Delete'
-      edit: 'Overview'
-      index: 'Customizations'
-      requirements: 'Details'
+      choose_institution: Customize
+      destroy: Delete
+      edit: Overview
+      index: Customizations
+      requirements: Details
     plans:
-      copy_existing_template: 'Copy'
-      destroy: 'Delete'
-      details: 'Details'
-      edit: 'Overview'
-      index: 'My DMPs'
-      preview: 'Preview'
-      public: 'Public DMPs'
-      review_dmps: 'Review DMPs'
+      copy_existing_template: Copy
+      destroy: Delete
+      details: Details
+      edit: Overview
+      index: My DMPs
+      preview: Preview
+      public: Public DMPs
+      review_dmps: Review DMPs
       show:
-        docx: 'Export as DOCX'
-        pdf: 'Export as PDF'
-        rtf: 'Export as RTF'
-      template_information: 'Create New DMP'
+        docx: Export as DOCX
+        pdf: Export as PDF
+        rtf: Export as RTF
+      template_information: Create New DMP
     static_pages:
-      about: 'About'
-      contact: 'Contact Us'
-      guidance: 'DMP Requirements'
-      help: 'Help'
-      home: 'Home'
-      partners: 'Partner Institutions'
-      video: 'Video'
+      about: About
+      contact: Contact Us
+      guidance: DMP Requirements
+      help: Help
+      home: Home
+      partners: Partner Institutions
+      video: Video
     user_sessions:
-      destroy: 'Log Out'
-      institution: 'Log In'
-      login: 'Log In'
+      destroy: Log Out
+      institution: Log In
+      login: Log In
     users:
-      add_token: 'Generate New Token'
-      edit: 'My Profile'
-      index: 'DMP Administration'
-      new: 'Create An Account'
-      remove_token: 'Remove Token'
+      add_token: Generate New Token
+      edit: My Profile
+      index: DMP Administration
+      new: Create An Account
+      remove_token: Remove Token
   shared:
     button_button:
-      cancel: 'Cancel'
+      cancel: Cancel
     button_link:
       # Find the following translations in en.rb:
       # - filter
-      back: 'Back'
-      arrow_back: '<< Back'
-      cancel: 'Cancel'
-      delete: 'Delete'
-      done: 'Done'
-      view_less: 'View Less'
-      view_all: 'View All'
-      previous_page: 'Previous Page'
-    errors:
-      # Find translations in en.rb
+      back: Back
+      arrow_back: << Back
+      cancel: Cancel
+      delete: Delete
+      done: Done
+      view_less: View Less
+      view_all: View All
+      previous_page: Previous Page
     search:
-      search_label: 'Search'
-      search_button: 'Search'
+      search_label: Search
+      search_button: Search
     select_requirements_template:
-      title: 'Select DMP Template'
-      instructions_html: '<p>Select one of the funder DMP Templates listed to proceed to the next step. The type of template chosen can affect what information you will need to provide in the following steps.</p>'
-      no_results: 'No DMP templates were available to show. If you are filtering or searching, please modify your search to see more items.'
-      dialog_text: 'You must select a DMP template before continuing.'
-      dialog_title: 'Please select a DMP Template'
-      submit_button: 'Next >>'
+      title: Select DMP Template
+      instructions_html: <p>Select one of the funder DMP Templates listed to proceed to the next step. The type of template chosen can affect what information you will need to provide in the following steps.</p>
+      no_results: No DMP templates were available to show. If you are filtering or searching, please modify your search to see more items.
+      dialog_text: You must select a DMP template before continuing.
+      dialog_title: Please select a DMP Template
+      submit_button: Next >>
     submit_button:
-      submit: 'Submit'
-      save: 'Save'
-      save_changes: 'Save Changes'
+      submit: Submit
+      save: Save
+      save_changes: Save Changes
   layouts:
     application:
       title: '%{title_text}: DMPTool'
     clean:
       title: 'DmpTool2: %{title_text}'
     dashboard_create_dmp_submenu:
-      new_plan_link: 'Create New DMP'
-      overview: 'DMP Overview'
-      details: 'DMP Details'
-      preview: 'DMP Preview'
+      new_plan_link: Create New DMP
+      overview: DMP Overview
+      details: DMP Details
+      preview: DMP Preview
     dashboard_customizations_submenu:
-      customizations: 'Customizations'
-      overview: 'Overview'
-      details: 'Details'
+      customizations: Customizations
+      overview: Overview
+      details: Details
     dashboard_customizations_under_dmp_submenu:
-      templates: 'DMP Templates'
-      overview: 'Customization Overview'
-      details: 'Customization Details'
+      templates: DMP Templates
+      overview: Customization Overview
+      details: Customization Details
     dashboard_logo_row:
-      non_partner_info: 'You are logged in as a Non Partner Institution'
-      contact_mail: 'Contact %{email}'
-      institution_logo_tooltip: 'Institution Logo'
-      institution_name: 'Institution Name'
-      contact_admin_link: 'Contact Institution Admin'
+      non_partner_info: You are logged in as a Non Partner Institution
+      contact_mail: Contact %{email}
+      institution_logo_tooltip: Institution Logo
+      institution_name: Institution Name
+      contact_admin_link: Contact Institution Admin
     dashboard_requirements_template_submenu:
-      templates: 'DMP Templates'
-      overview: 'Template Overview'
-      details: 'Template Details'
+      templates: DMP Templates
+      overview: Template Overview
+      details: Template Details
     header:
-      dmptool_logo_alt: "DMPTOOL"
-      dmptool_logo_tooltip: 'DMPTool Home'
-      welcome_html: 'Welcome! <strong>%{user}</strong>'
-      public_dmps_tooltip: 'Sample DMPs'
-      news_link: "News"
-      news_title: "News"
-      faq_link: "FAQ"
-      faq_url: "http://dmptool.askbot.com/"
-      faq_title: "FAQ"
-
+      dmptool_logo_alt: DMPTOOL
+      dmptool_logo_tooltip: DMPTool Home
+      welcome_html: Welcome! <strong>%{user}</strong>
+      public_dmps_tooltip: Sample DMPs
+      news_link: News
+      news_title: News
+      faq_link: FAQ
+      faq_url: http://dmptool.askbot.com/
+      faq_title: FAQ
     footer:
-      copyright_text_intro_html: "This DMP tool is a test version provided by the %{link1}, the %{link2}, and the %{link3}."
-      copyright_link1: "Communication and Information Center (kiz) of Ulm University"
-      copyright_link1_url: "http://www.uni-ulm.de/einrichtungen/kiz.html"
-      copyright_link1_title: "Communication and Information Center (kiz) of Ulm University"
-      copyright_link2: "University IT Services of Freiburg University"
-      copyright_link2_url: "http://www.rz.uni-freiburg.de/"
-      copyright_link2_title: "University IT Services of Freiburg University"
-      copyright_link3: "Freiburg University Library"
-      copyright_link3_url: "http://www.ub.uni-freiburg.de"
-      copyright_link3_title: "Freiburg University Library"
+      copyright_text_intro_html: This DMP tool is a test version provided by the %{link1}, the %{link2}, and the %{link3}.
+      copyright_link1: Communication and Information Center (kiz) of Ulm University
+      copyright_link1_url: http://www.uni-ulm.de/einrichtungen/kiz.html
+      copyright_link1_title: Communication and Information Center (kiz) of Ulm University
+      copyright_link2: University IT Services of Freiburg University
+      copyright_link2_url: http://www.rz.uni-freiburg.de/
+      copyright_link2_title: University IT Services of Freiburg University
+      copyright_link3: Freiburg University Library
+      copyright_link3_url: http://www.ub.uni-freiburg.de
+      copyright_link3_title: Freiburg University Library
       copyright_text_html: ""
-      privacy_policy_link: "Privacy Policy"
-      privacy_policy_title: "Privacy Policy"
-      accessibility_policy_link: "Accessibility Policy"
-      accessibility_policy_url: "http://www.ucop.edu/electronic-accessibility/initiative/policy.html"
-      accessibility_policy_title: "Accessibility Policy"
-      termsOfUse_link: "Terms of Use"
-      termsOfUse_title: "Terms of Use"
-      contact_link: "Contact Us"
-      contact_title: "Contact Us"
-      about_link: "About"
-      about_title: "About"
-
+      privacy_policy_link: Privacy Policy
+      privacy_policy_title: Privacy Policy
+      accessibility_policy_link: Accessibility Policy
+      accessibility_policy_url: http://www.ucop.edu/electronic-accessibility/initiative/policy.html
+      accessibility_policy_title: Accessibility Policy
+      termsOfUse_link: Terms of Use
+      termsOfUse_title: Terms of Use
+      contact_link: Contact Us
+      contact_title: Contact Us
+      about_link: About
+      about_title: About the California Digital Library Data Management Tool
     language_switcher:
-      locale_name: 'English'
-      currently_chosen: 'Currently chosen'
-
+      locale_name: English
+      currently_chosen: Currently chosen
   static_pages:
     contact:
-      question_about_missing: 'Please indicate what your question is about'
-      name_missing: 'Please enter your name'
-      email_missing: 'Please enter your email'
-      message_missing: 'Please enter a message'
-      email_invalid: 'Please enter a valid email address'
-      success_message: 'Your email message was sent to the DMPTool team.'
-      browser_title: "Contact Us"
-      title: "Contact Us"
-      form_tag: "Your message is about:"
-      question_about_using_dmptool: "Using the DMP Tool"
-      question_about_becoming_participating_institution: "Becoming a participating institution"
-      question_about_other: "Other"
-      form_name: "Your Name"
-      tips: "Tips:"
-      tips_text_html: "<p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p>
-          <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool
-            representative at your organization. Your organization may offer additional data management consultation services.</p>"
-
+      question_about_missing: Please indicate what your question is about
+      name_missing: Please enter your name
+      email_missing: Please enter your email
+      message_missing: Please enter a message
+      email_invalid: Please enter a valid email address
+      success_message: Your email message was sent to the DMPTool team.
+      browser_title: Contact Us
+      title: Contact Us
+      form_tag: 'Your message is about:'
+      question_about_using_dmptool: Using the DMP Tool
+      question_about_becoming_participating_institution: Becoming a participating institution
+      question_about_other: Other
+      form_name: Your Name
+      tips: 'Tips:'
+      tips_text_html: <p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p> <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool representative at your organization. Your organization may offer additional data management consultation services.</p>
     dmptool_news:
-      latest_info: 'Latest information about data management and the DMPTool.'
-      more_link: 'More News'
-      unavailable: 'News is currently unavailable.'
-
+      latest_info: Latest information about data management and the DMPTool.
+      more_link: More News
+      unavailable: News is currently unavailable.
     home:
-      title: 'Home'
-      dmp_headline: "Data Management Planning Tool"
-      dmp_subtitle_html: "<strong>Create, review, and share data management plans</strong> that meet institutional and funder requirements."
-      dmp_get_started_link: "Get Started"
-      public_dmps: "Public DMPs"
-      dmp_news: "DMPTool News"
-      dmp_help: "DMPTool Help"
-      after_banner_title: ""
-      left_bucket_title: "WHO IS THE TOOL FOR?"
-      right_bucket_title: "A SHORT INTRODUCTION TO THE TOOL"
-
+      title: Home
+      dmp_headline: Data Management Planning Tool
+      dmp_subtitle_html: <strong>Create, review, and share data management plans</strong> that meet institutional and funder requirements.
+      dmp_get_started_link: Get Started
+      public_dmps: Public DMPs
+      dmp_news: DMPTool News
+      dmp_help: DMPTool Help
+      left_bucket_title: WHO IS THE TOOL FOR?
+      right_bucket_title: A SHORT INTRODUCTION TO THE TOOL
     dmptool_for:
-      title: "This tool is meant to help researchers, universities and higher education institutions"
-      listing_html: "<li>For Researchers</li>
-                     <ul>
-                        <li>Are you writing project proposals for funders such as the EU, NSF, DFG, ... ? \
-                            More and more often you will be asked to explain how you will manage the data \
-                            that you generate during your research project.</li>
-                        <li>It makes sense for your project team to start thinking about data management \
-                            issues early in the project (access rights, file formats you want to use, \
-                            ethical and legal issues, reuse of data, ...). You can write down your joint \
-                            approach in a data management plan for future reference.</li>
-                        <li>This tool can assist you with writing and managing a data management plan that suits your and your funder's needs.</li>
-                    </ul>
-                    <li>For Universities and Higher Education Institutions</li>
-                    <ul>
-                      <li>Professional data management will benefit your institution's research output.</li>
-                    </ul>"
+      title: This tool is meant to help researchers, universities and higher education institutions
+      listing_html: "<li>For Researchers</li> <ul> <li>Are you writing project proposals\
+        \ for funders such as the EU, NSF, DFG, ... ? More and more often you will\
+        \ be asked to explain how you will manage the data that you generate during\
+        \ your research project.</li> <li>It makes sense for your project team to\
+        \ start thinking about data management issues early in the project (access\
+        \ rights, file formats you want to use, ethical and legal issues, reuse of\
+        \ data, ...). You can write down your joint approach in a data management\
+        \ plan for future reference.</li> <li>This tool can assist you with writing\
+        \ and managing a data management plan that suits your and your funder's needs.</li>\
+        \ </ul> <li>For Universities and Higher Education Institutions</li> <ul> <li>Professional\
+        \ data management will benefit your institution's research output.</li> </ul>"
     dmptool_info:
-      title: "The dmp tool makes work easier for you."
-      listing_html: "<li>For Researchers</li>
-                     <ul>
-                       <li>Use templates to easily create a plan and receive assistance</li>
-                       <li>Write and manage DMPs together in your project group</li>
-                       <li>Share your DMPs with other people - either with individual persons, researchers from your institution, or everybody</li>
-                       <li>Export your plan (pdf, rtf)</li>
-                       <li>Optional: Let experts from your institution have a look at your data management plan (if offered by your institution)</li>
-                     </ul>
-                     <li>For Universities and Higher Education Institutions</li>
-                     <ul>
-                       <li>Create your own templates tailored to your researchers needs</li>
-                       <li>Offer exemplary plans to reserchers for better orientation</li>
-                       <li>You can review plans from researchers of your institution (if you wish to offer this \
-                           feature). You can thereby help increase chances that project submissions from your \
-                           institution will be accepted by funders with data management requirements.</li>
-                       <li>Comfortable login via Shibboleth for members of your institution</li>
-                     </ul>"
-      
+      title: The dmp tool makes work easier for you.
+      listing_html: '<li>For Researchers</li> <ul> <li>Use templates to easily create
+        a plan and receive assistance</li> <li>Write and manage DMPs together in your
+        project group</li> <li>Share your DMPs with other people - either with individual
+        persons, researchers from your institution, or everybody</li> <li>Export your
+        plan (pdf, rtf)</li> <li>Optional: Let experts from your institution have
+        a look at your data management plan (if offered by your institution)</li>
+        </ul> <li>For Universities and Higher Education Institutions</li> <ul> <li>Create
+        your own templates tailored to your researchers needs</li> <li>Offer exemplary
+        plans to reserchers for better orientation</li> <li>You can review plans from
+        researchers of your institution (if you wish to offer this feature). You can
+        thereby help increase chances that project submissions from your institution
+        will be accepted by funders with data management requirements.</li> <li>Comfortable
+        login via Shibboleth for members of your institution</li> </ul>'
     guidance:
-      browser_title: 'DMP Requirements'
-      title: 'DMP Requirements'
-      instructions: 'Use the A-Z links below to narrow down the list by institution or use the search box to search for specific DMP Templates.  Sample plans are not necessarily from the funder.'
-      requirements_for: "DMP Requirements for %{institution}"
-      requirements_scope_info: 'Below is a list of DMP templates available in your institution.'
-
+      browser_title: DMP Requirements
+      title: DMP Requirements
+      instructions: Use the A-Z links below to narrow down the list by institution or use the search box to search for specific DMP Templates.  Sample plans are not necessarily from the funder.
+      requirements_for: DMP Requirements for %{institution}
+      requirements_scope_info: Below is a list of DMP templates available in your institution.
     guidance_table:
-      template: "Template"
-      funder: "Funder"
-      institution: "Institution"
-      institution_links: "Institution Links"
-      sample_plans: "Sample Plans"
-      sample_plans_tooltip: "Sample plans are provided by a funder, an institution or a trusted party."
-      if_available: "(if available)"
-      no_results: "No results found"
-
+      template: Template
+      funder: Funder
+      institution: Institution
+      institution_links: Institution Links
+      sample_plans: Sample Plans
+      sample_plans_tooltip: Sample plans are provided by a funder, an institution or a trusted party.
+      if_available: (if available)
+      no_results: No results found
     guidance_table_institutional:
-      template: "Template"
-      funder: "Funder"
-      institution: "Institution"
-      institution_links: "Institution Links"
-      sample_plans: "Sample Plans"
-      sample_plans_tooltip: "Sample plans are provided by a funder, an institution or a trusted party."
-      if_available: "(if available)"
-      no_results: "No results found"
-
+      template: Template
+      funder: Funder
+      institution: Institution
+      institution_links: Institution Links
+      sample_plans: Sample Plans
+      sample_plans_tooltip: Sample plans are provided by a funder, an institution or a trusted party.
+      if_available: (if available)
+      no_results: No results found
   authorizations:
     add_authorization:
       not_found_message:
@@ -482,88 +433,80 @@ en:
       existing_message:
         one: 'The following user has already been assigned this role: %{emails}'
         other: 'The following users have already been assigned this role: %{emails}'
-      foreign_message: 'You cannot grant this role to users outside your institution: %{emails}. Please contact the DMP Administrator.'
+      foreign_message: 'You cannot grant this role to users outside your institution:
+        %{emails}. Please contact the DMP Administrator.'
       success_notice:
         one: 'Role granted to the following user: %{emails}'
         other: 'Role granted to the following users: %{emails}'
-
     remove_authorization:
-      success_notice: 'The role has been revoked.'
+      success_notice: The role has been revoked.
       not_allowed_message: "You don't have permission to revoke this role."
-
     add_role_autocomplete:
-      blank_name_message: 'Please select a person to add as a %{role}.'
-      incomplete_message: 'Please type and select the full name or email of a user.'
-      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
-      not_found_message: 'The user you entered was not found.'
-      already_has_role_message: 'The user you chose is already a %{role}.'
-      not_allowed_message: 'You do not have permission to assign this role.'
+      blank_name_message: Please select a person to add as a %{role}.
+      incomplete_message: Please type and select the full name or email of a user.
+      ambiguous_message: Please select the user with this name from the list. There is more than one user with this name.
+      not_found_message: The user you entered was not found.
+      already_has_role_message: The user you chose is already a %{role}.
+      not_allowed_message: You do not have permission to assign this role.
       success_notice: '%{user} has been added as a %{role}.'
-
     add_authorization_manage_users:
-      blank_name_message: 'Please select a user.'
-      incomplete_message: 'Please type and select the full name or email of a user.'
-      ambiguous_message: 'Please select the user with this name from the list. There is more than one user with this name.'
-      not_found_message: 'The user you entered was not found.'
-      foreign_message: 'The user you chose belongs to a different institution.'
-      already_has_role_message: "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
-      select_role_message: 'Please select at least a role to grant.'
+      blank_name_message: Please select a user.
+      incomplete_message: Please type and select the full name or email of a user.
+      ambiguous_message: Please select the user with this name from the list. There is more than one user with this name.
+      not_found_message: The user you entered was not found.
+      foreign_message: The user you chose belongs to a different institution.
+      already_has_role_message: "The user you chose has already been granted a role.\
+        \ You can click on 'Edit User' to grant other roles."
+      select_role_message: Please select at least a role to grant.
       success_notice: '%{user} has been updated.'
-
   comments:
     create:
-      success_notice: 'comment was successfully created.'
-
+      success_notice: comment was successfully created.
     index_owner_comments:
-      anonymous: 'Anonymous User'
-      delete_link: 'Delete'
-      show_more_link: 'More'
-      show_less_link: 'Show less'
-
+      anonymous: Anonymous User
+      delete_link: Delete
+      show_more_link: More
+      show_less_link: Show less
     index_reviewer_comments:
-      anonymous: 'Anonymous User'
-      delete_link: 'Delete'
-      show_more_link: 'More'
-      show_less_link: 'Show less'
-
+      anonymous: Anonymous User
+      delete_link: Delete
+      show_more_link: More
+      show_less_link: Show less
     update:
-      success_notice: 'comment was successfully updated.'
-
+      success_notice: comment was successfully updated.
   customizations:
     guidance_item:
-      show_less_link: 'Show less'
-      show_more_link: 'More'
-
+      show_less_link: Show less
+      show_more_link: More
     institution_view:
-      dmp_resources_section: 'DMP Resources'
-      global_resources_section: 'Global Resources'
+      dmp_resources_section: DMP Resources
+      global_resources_section: Global Resources
       institution_resources_section: '%{institution} Resources'
-      template_for_institution_resources_section: '%{template} for %{institution} Resources'
-      requirement_resources_section: 'Requirement Resources'
-
+      template_for_institution_resources_section: '%{template} for %{institution}
+        Resources'
+      requirement_resources_section: Requirement Resources
     section_display:
-      edit_link_tooltip: 'Edit Customization'
-
+      edit_link_tooltip: Edit Customization
     show:
-      title: 'Customization Details'
-      template_outline: 'Template Outline'
-      guidance_tab: 'Guidance'
-      links_tab: 'Links'
-      suggested_response_tab: 'Suggested Response'
-      example_response_tab: 'Example Response'
-      add_guidance_button: 'Add guidance'
-      add_links_button: 'Add Links'
-      add_suggested_response_button: 'Add Suggested Response'
-      add_example_response_button: 'Add Example Response'
-      no_requirements_error: 'The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement.'
+      title: Customization Details
+      template_outline: Template Outline
+      guidance_tab: Guidance
+      links_tab: Links
+      suggested_response_tab: Suggested Response
+      example_response_tab: Example Response
+      add_guidance_button: Add guidance
+      add_links_button: Add Links
+      add_suggested_response_button: Add Suggested Response
+      add_example_response_button: Add Example Response
+      no_requirements_error: The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement.
       invalid_customization_error: "This isn't a valid customization"
-
   dashboard:
     show:
-      title: 'My Dashboard'
-      overview: 'Overview'
-      my_plans: 'My DMPs'
-      my_plans_under_review_html: 'My DMPs under Review <span style="font-weight: normal">(where applicable)</span>'
+      title: My Dashboard
+      overview: Overview
+      my_plans: My DMPs
+      my_plans_under_review_html: 'My DMPs under Review <span style="font-weight:
+        normal">(where applicable)</span>'
       plans_i_own:
         one: '%{count} plan I own'
         other: '%{count} plans I own'
@@ -573,9 +516,9 @@ en:
       submitted_plans: '%{count} Submitted'
       removed_plans: '%{count} Removed'
       rejected_plans: '%{count} Rejected'
-      no_plan_under_review: 'No DMPs are under review.'
-      new_plan_button: 'Create New DMP'
-      plans_for_review: 'DMPs For My Review'
+      no_plan_under_review: No DMPs are under review.
+      new_plan_button: Create New DMP
+      plans_for_review: DMPs For My Review
       review_submitted_plans:
         one: '%{count} DMP pending review'
         other: '%{count} DMPs pending review'
@@ -585,737 +528,683 @@ en:
       review_rejected_plans:
         one: '%{count} DMP Rejected'
         other: '%{count} DMPs Rejected'
-      templates: 'DMP Templates'
-      within_my_institution: 'Within my Institution'
-      funder_requirements: 'Funder Requirements'
-      funder_requirements_tooltip: 'Funder Requirements are templates defined by an institution that are available to the public (everyone).'
+      templates: DMP Templates
+      within_my_institution: Within my Institution
+      funder_requirements: Funder Requirements
+      funder_requirements_tooltip: Funder Requirements are templates defined by an institution that are available to the public (everyone).
       institutional_templates:
         one: '%{count} DMP Template only visible to my institution'
         other: '%{count} DMP Templates only visible to my institution'
       public_templates_from_us:
         one: '%{count} Public DMP Template from my institution'
         other: '%{count} Public DMP Templates from my institution'
-      new_template_button: 'Create New DMP Template'
-      template_customizations: 'DMP Template Customizations'
+      new_template_button: Create New DMP Template
+      template_customizations: DMP Template Customizations
       customizations:
         one: '%{count} Customization'
         other: '%{count} Customizations'
-      new_template_customization_button: 'Create New DMP Template Customization'
-
+      new_template_customization_button: Create New DMP Template Customization
   institutions:
     create:
-      success_notice: 'Institution was successfully created.'
-
+      success_notice: Institution was successfully created.
     edit:
-      info: 'Institution Information'
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      upload_button: 'Upload'
-      logo_tooltip: 'Suggested Logo Size 170x60'
-
+      info: Institution Information
+      url_text_placeholder: URL Text
+      url_placeholder: URL
+      contact_info_placeholder: Name
+      contact_email_placeholder: Email
+      upload_button: Upload
+      logo_tooltip: Suggested Logo Size 170x60
     edit_user_roles_inst_admin:
-      user_roles_link: 'User Roles'
-      edit_user_roles: 'Edit User Roles'
+      user_roles_link: User Roles
+      edit_user_roles: Edit User Roles
       current_roles: "%{user}'s Current Roles:"
-
     form:
-      title: 'Institution Information'
+      title: Institution Information
       # Find the following translations in en.rb, as they interpolate
-      # application globals:
       # - shib_entity_id_tooltip
       # - shib_domain_id_tooltip
       # - parent_tooltip
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      url_tooltip: 'This URL will appear at the top of the DMPTool, to the right of your institution name.'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      contact_tooltip: 'Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.'
-      logo_tooltip: 'Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.'
+      url_text_placeholder: URL Text
+      url_placeholder: URL
+      url_tooltip: This URL will appear at the top of the DMPTool, to the right of your institution name.
+      contact_info_placeholder: Name
+      contact_email_placeholder: Email
+      contact_tooltip: Person or organization that plan creators can contact in case of questions. This will appear at the top of the DMPTool, under the Institution’s URL.
+      logo_tooltip: Logos can be in .jpeg, .png, .jpg, or .gif format. They should be approximately 170 by 60, but will be re-sized on upload.
       upload_button: Upload
-
     index:
-      profile: 'Institution Profile'
-      info: 'Institution Information'
-      resources: 'Institutional Resources'
-      hierarchy: 'Institution Hierarchy'
-      assign_roles: 'Assign Roles'
-      add_new: 'Add New Institution'
-
+      profile: Institution Profile
+      info: Institution Information
+      resources: Institutional Resources
+      hierarchy: Institution Hierarchy
+      assign_roles: Assign Roles
+      add_new: Add New Institution
     institutional_resources:
-      headline: 'Resources Available at %{institution}'
-      visibility_info_html: 'Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.'
-      details: 'Details'
-      action: 'Action'
-      action_tooltip: 'Edit'
-      no_resources_info: 'There are currently no resources available at %{institution}.'
-      new_button: 'Create New Resource'
-
+      headline: Resources Available at %{institution}
+      visibility_info_html: Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.
+      details: Details
+      action: Action
+      action_tooltip: Edit
+      no_resources_info: There are currently no resources available at %{institution}.
+      new_button: Create New Resource
     manage_users:
-      all_filter_link: 'All(%{count})'
-      resource_editors_filter_link: 'Resources Editors(%{count})'
-      template_editors_filter_link: 'Template Editors(%{count})'
-      inst_admins_filter_link: 'Institutional Administrators(%{count})'
-      inst_reviewers_filter_link: 'Institutional Reviewers(%{count})'
-      admins_filter_link: 'DMP Administrators(%{count})'
-      role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>'
-      edit_user_role: 'Edit User Role'
-      edit_user_role_tooltip: 'Edit user role'
-      grant_role_button: 'Grant Role'
-
+      all_filter_link: All (%{count})
+      resource_editors_filter_link: Resources Editors(%{count})
+      template_editors_filter_link: Template Editors(%{count})
+      inst_admins_filter_link: Institutional Administrators(%{count})
+      inst_reviewers_filter_link: Institutional Reviewers(%{count})
+      admins_filter_link: DMP Administrators(%{count})
+      role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local,
+        institutional, DMP templates</li><li>Resources editor: add/modify DMP template
+        customizations, which include links to resources, local help text, suggested
+        text, and example responses</li><li>Institutional reviewer: review, informally
+        or formally, data management plans</li><li>Institutional administrator: assign
+        additional DMPTool institutional administrators; performs all above administrative
+        roles</li></ul>'
+      edit_user_role: Edit User Role
+      edit_user_role_tooltip: Edit user role
+      grant_role_button: Grant Role
     new:
-      title: 'New institution'
-      info: 'Institution Information'
-      url_text_placeholder: 'URL Text'
-      url_placeholder: 'URL'
-      contact_info_placeholder: 'Name'
-      contact_email_placeholder: 'Email'
-      logo_tooltip: 'Suggested Logo Size 170x60'
-      upload_button: 'Upload'
-
+      title: New institution
+      info: Institution Information
+      url_text_placeholder: URL Text
+      url_placeholder: URL
+      contact_info_placeholder: Name
+      contact_email_placeholder: Email
+      logo_tooltip: Suggested Logo Size 170x60
+      upload_button: Upload
     partners_list:
-      partner_institutions: 'Partner Institutions'
-      intro_html: 'Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.'
-      partners_link: 'About partners'
-      partners_tooltip: 'About partners'
-      instructions: 'Use the A-Z links below to narrow down the list by institution or use the search box to search for specific institutions.'
-      name: 'Name'
-      shib_enabled: 'Shibboleth enabled?'
-      custom_dmp: 'DMPTool Customized?'
-
+      partner_institutions: Partner Institutions
+      intro_html: Partner institutions can configure the tool to point to their resources and services, provide customized help, and provide suggested answers to the questions asked by funding agencies. DMPTool users affiliated with partner institutions can login with their own institutional accounts. For more information see %{link}.
+      partners_link: About partners
+      partners_tooltip: About partners
+      instructions: Use the A-Z links below to narrow down the list by institution or use the search box to search for specific institutions.
+      name: Name
+      shib_enabled: Shibboleth enabled?
+      custom_dmp: DMPTool Customized?
     show:
-      back_link: 'Back'
-
+      back_link: Back
     update_user_roles_inst_admin:
-      success_notice: 'User was successfully updated.'
-
+      success_notice: User was successfully updated.
     update:
-      success_notice: 'Institution was successfully updated.'
-      failure_notice: 'Something went wrong.'
-
+      success_notice: Institution was successfully updated.
+      failure_notice: Something went wrong.
   plans:
     actionable_url:
-      general_resources: 'General Resources'
+      general_resources: General Resources
       institutional_resources: '%{institution} Resources'
       customized_for_institution_resources: '%{template} for %{institution} Resources'
-
     create:
       # Also find some translations in en.rb
-      cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
-      success_notice: 'Plan was successfully created.'
-
+      cant_reassign_owner_error: The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.
+      success_notice: Plan was successfully created.
     back_submit_buttons:
-      submit_for_review_button: 'Submit for Review'
-      review_not_defined: 'Review Process is not defined for the associated DMP Template'
-      done_tooltip_html: '<p>Complete your Plan.</p>'
-      submit_for_review_tooltip_html: '<p>Submit your Plan for an Informal Review from your institution.</p>'
-
+      submit_for_review_button: Submit for Review
+      review_not_defined: Review Process is not defined for the associated DMP Template
+      done_tooltip_html: <p>Complete your Plan.</p>
+      submit_for_review_tooltip_html: <p>Submit your Plan for an Informal Review from your institution.</p>
     change_visibility:
-      visibility_institutional: 'With others from %{institution}'
-      visibility_public: 'Publicly on the web. Your DMP will appear on the Public DMPs page of this site.'
-      visibility_private: 'Private (owners and co-owners only)'
-      visibility_unit: 'Within your institution/sub-institution unit only.'
-
+      visibility_institutional: With others from %{institution}
+      visibility_public: Publicly on the web. Your DMP will appear on the Public DMPs page of this site.
+      visibility_private: Private (owners and co-owners only)
+      visibility_unit: Within your institution/sub-institution unit only.
     delete_coowner:
-      success_notice: 'The selected Coowner associated with the Plan has been deleted successfully'
-
+      success_notice: The selected Coowner associated with the Plan has been deleted successfully
     destroy:
-      coowner_not_privileged_error: 'A Co-Owner cannot delete a Plan.'
-      success_notice: 'The plan has been successfully deleted.'
-
+      coowner_not_privileged_error: A Co-Owner cannot delete a Plan.
+      success_notice: The plan has been successfully deleted.
     details:
-      dmp_details: 'DMP Details'
-      edit_instructions: 'Click on a section below to edit it at any time.'
+      dmp_details: DMP Details
+      edit_instructions: Click on a section below to edit it at any time.
       complete_icon_meaning: ' = Complete'
       mandatory_icon_meaning: ' = Mandatory'
-      template_outline: 'Template Outline'
-      instructions: 'Instructions'
-      links: 'Links'
-      suggested_response: 'Suggested Response'
-      example_response: 'Example Response'
-      mandatory: '(Mandatory)'
-      preview_button: 'DMP Preview >>'
-      missing_requirements_error: 'The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement. "%{template}" needs to be fixed before you may continue customizing it.'
-
+      template_outline: Template Outline
+      instructions: Instructions
+      links: Links
+      suggested_response: Suggested Response
+      example_response: Example Response
+      mandatory: (Mandatory)
+      preview_button: DMP Preview >>
+      missing_requirements_error: The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement. "%{template}" needs to be fixed before you may continue customizing it.
     example_response:
       box_size: 'box size:'
-      box_size_small: 'small'
-      box_size_medium: 'medium'
-      box_size_full: 'full'
-      guidance: 'Guidance'
+      box_size_small: small
+      box_size_medium: medium
+      box_size_full: full
+      guidance: Guidance
       institution_customization_resources: '%{institution} Resources'
       template_customization_resources: '%{template} for %{institution} Resources'
-
     form:
-      title: 'DMP Overview'
-      plan_overview_link: 'DMP Overview'
-      selected_requirement_template_name: 'DMP Template'
-      copy_of: 'Copy of %{plan}'
-      solicitation_identifier_tooltip: 'Proposal solicitation number or identifier for the call associated with this proposal and DMP.'
-      submission_deadline_tooltip: 'Deadline for submitting the proposal associated with this DMP.'
-      visibility_tooltip_html: 'Three visibility options: <ul><li>Public: anyone can view, copy and or download the plan.</li><li>Institutional: anyone logged in from your institution can view, copy and or download the plan.</li><li>Private: only owners and co-owners can view the plan.</li></ul>'
-      save_and_next: 'Save and Next >>'
-      owner_html: '<span>Owner:</span> <strong class="blue">%{owner},</strong>'
+      title: DMP Overview
+      plan_overview_link: DMP Overview
+      selected_requirement_template_name: DMP Template
+      copy_of: Copy of %{plan}
+      solicitation_identifier_tooltip: Proposal solicitation number or identifier for the call associated with this proposal and DMP.
+      submission_deadline_tooltip: Deadline for submitting the proposal associated with this DMP.
+      visibility_tooltip_html: 'Three visibility options: <ul><li>Public: anyone can
+        view, copy and or download the plan.</li><li>Institutional: anyone logged
+        in from your institution can view, copy and or download the plan.</li><li>Private:
+        only owners and co-owners can view the plan.</li></ul>'
+      save_and_next: Save and Next >>
+      owner_html: <span>Owner:</span> <strong class="blue">%{owner},</strong>
       coowners: 'Existing Co-owners:'
-      remove_coowner_link: 'Remove Co-owner'
-      current_status: 'Current Status'
-      show_history_link: 'Show History'
-      hide_history_link: 'Hide History'
-      reviewer_comments: 'Reviewer Comments'
-      view_comments_link: 'View'
-      hide_comments_link: 'Hide'
-      no_comments: 'There are currently no comments.'
-      add_comment_button: 'Add Comments'
-      owner_comments: 'Owner Comments'
-      plan_visibility_html: 'This DMP is <strong class="blue">%{visibility}</strong>'
-      change_settings_button: 'Change Settings'
-      actions: 'Available Actions'
-      preview_plan_link: 'Preview DMP'
-      submit_plan_link: 'Submit DMP'
-      delete_plan_link: 'Delete DMP'
-
+      remove_coowner_link: Remove Co-owner
+      current_status: Current Status
+      show_history_link: Show History
+      hide_history_link: Hide History
+      reviewer_comments: Reviewer Comments
+      view_comments_link: View
+      hide_comments_link: Hide
+      no_comments: There are currently no comments.
+      add_comment_button: Add Comments
+      owner_comments: Owner Comments
+      plan_visibility_html: This DMP is <strong class="blue">%{visibility}</strong>
+      change_settings_button: Change Settings
+      actions: Available Actions
+      preview_plan_link: Preview DMP
+      submit_plan_link: Submit DMP
+      delete_plan_link: Delete DMP
     generic_table:
-      funder_template_link: 'Funder Template'
-      download: 'Download'
-
+      funder_template_link: Funder Template
+      download: Download
     guidance:
       box_size: 'box size:'
-      box_size_small: 'small'
-      box_size_medium: 'medium'
-      box_size_full: 'full'
-      guidance: 'Guidance'
+      box_size_small: small
+      box_size_medium: medium
+      box_size_full: full
+      guidance: Guidance
       additional_help: 'Additional help for: %{institution}'
-
     html_render:
       no_owner: '[non specified]'
       no_si: '[not specified]'
-
     index:
-      title: 'My DMPs'
-      filter_all_link: 'All (%{count})'
-      filter_owned_link: 'Owned (%{count})'
-      filter_coowned_link: 'Co-owned (%{count})'
-      filter_approved_link: 'Approved (%{count})'
-      filter_submitted_link: 'Submitted (%{count})'
-      filter_committed_link: 'Completed (%{count})'
-      filter_rejected_link: 'Rejected (%{count})'
-      filter_reviewed_link: 'Reviewed (%{count})'
-      filter_tooltip_html: '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned: DMPs that you have created.</li><li>Co-owned: DMPs for which others have designated you as a co-owner.</li><li>Approved: Your DMP has been approved by your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Submitted: Your DMP has been submitted for review to your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Completed: After clicking Done on the DMP Preview screen, your plan will marked Completed.</li><li>Rejected. Your DMP has been rejected by your institutional administrator (only applies if your institution has enabled the “Review” functionality.)</li><li>Reviewed: Your DMP which was submitted for Informal review and has been reviewed by the Institutional Reviewer.</li></ul>'
-      overview_link: 'Overview'
-      details_link: 'Details'
-      share_link: 'Share'
-      preview_link: 'Preview'
-      copy_link: 'Copy'
-      export_pdf_link: 'Export as PDF'
-      export_docx_link: 'Export as DOCX'
-      delete_link: 'Delete'
-      new_plan_button: 'Create New DMP'
-
+      title: My DMPs
+      filter_all_link: All (%{count})
+      filter_owned_link: Owned (%{count})
+      filter_coowned_link: Co-owned (%{count})
+      filter_approved_link: Approved (%{count})
+      filter_submitted_link: Submitted (%{count})
+      filter_committed_link: Completed (%{count})
+      filter_rejected_link: Rejected (%{count})
+      filter_reviewed_link: Reviewed (%{count})
+      filter_tooltip_html: '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned:
+        DMPs that you have created.</li><li>Co-owned: DMPs for which others have designated
+        you as a co-owner.</li><li>Approved: Your DMP has been approved by your institutional
+        administrator (only applies if your institution has enabled the &#8220;Review&#8221;
+        functionality.)</li><li>Submitted: Your DMP has been submitted for review
+        to your institutional administrator (only applies if your institution has
+        enabled the &#8220;Review&#8221; functionality.)</li><li>Completed: After
+        clicking Done on the DMP Preview screen, your plan will marked Completed.</li><li>Rejected.
+        Your DMP has been rejected by your institutional administrator (only applies
+        if your institution has enabled the “Review” functionality.)</li><li>Reviewed:
+        Your DMP which was submitted for Informal review and has been reviewed by
+        the Institutional Reviewer.</li></ul>'
+      overview_link: Overview
+      details_link: Details
+      share_link: Share
+      preview_link: Preview
+      copy_link: Copy
+      export_pdf_link: Export as PDF
+      export_docx_link: Export as DOCX
+      delete_link: Delete
+      new_plan_button: Create New DMP
     perform_review:
-      title: 'Review DMPs'
-      perform_review: 'Perform Review'
-      no_comments: 'There are currently no comments.'
-      add_comment_button: 'Add Comments'
+      title: Review DMPs
+      perform_review: Perform Review
+      no_comments: There are currently no comments.
+      add_comment_button: Add Comments
       review_decision: 'Review Decision:'
-      plan_state_html: '<strong>The Plan is set to <span class ="blue">%{state}</span> state.</strong>'
-      approve_button: 'Approve'
-      reject_button: 'Reject'
-      reviewed_button: 'Plan Reviewed'
-
+      plan_state_html: <strong>The Plan is set to <span class ="blue">%{state}</span> state.</strong>
+      approve_button: Approve
+      reject_button: Reject
+      reviewed_button: Plan Reviewed
     plan_states_history:
-      status_change_html: '<strong>%{user}</strong> set the status to <strong class="blue">%{state}</strong>'
-
+      status_change_html: <strong>%{user}</strong> set the status to <strong class="blue">%{state}</strong>
     preview:
-      title: 'DMP Preview'
-      pdf_button: 'Export as PDF'
-      docx_button: 'Export as DOCX'
-      print_button: 'Print'
-      change_visibility_button: 'Change Settings'
-      visibility_instructions_html: 'Note: when visibility is set to "Public", your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site and it will be downloadable and copy-able.'
-      plan_visibility_html: 'This DMP is <strong class="blue">%{visibility}</strong>'
-
+      title: DMP Preview
+      pdf_button: Export as PDF
+      docx_button: Export as DOCX
+      print_button: Print
+      change_visibility_button: Change Settings
+      visibility_instructions_html: 'Note: when visibility is set to "Public", your
+        DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this
+        site and it will be downloadable and copy-able.'
+      plan_visibility_html: This DMP is <strong class="blue">%{visibility}</strong>
     public:
-      browser_title: "Public DMPs"
-      title: "Public DMPs"
-      description_html: "<p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>"
-      institutional_dmps: "Institutional DMPs"
-
+      browser_title: Public DMPs
+      title: Public DMPs
+      description_html: <p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>
+      institutional_dmps: Institutional DMPs
     public_dmps:
-      description_html: '<p>List of sample data management plans provided by DMPTool users.</p>'
-
+      description_html: <p>List of sample data management plans provided by DMPTool users.</p>
     public_dmps_no_result:
-      funder_template_link: "Funder Template"
-      download: "Download"
-      no_results: "No results found"
-
+      funder_template_link: Funder Template
+      download: Download
+      no_results: No results found
     reject_with_comments:
-      value_placeholder: 'Add a Comment'
-      reject_button: 'Reject'
-
+      value_placeholder: Add a Comment
+      reject_button: Reject
     review_dmps:
-      title: 'Review DMPs'
-      filter_all_link: 'All (%{count})'
-      filter_submitted_link: 'Pending My Review (%{count})'
-      filter_approved_link: 'Approved (%{count})'
-      filter_rejected_link: 'Rejected (%{count})'
-      filter_reviewed_link: 'Reviewed (%{count})'
-      submission_date_tooltip: 'Date the DMP was submitted for review by the plan owner.'
-      review_plan: 'Review DMP'
-      submission_date: 'Submission Date'
-
+      title: Review DMPs
+      filter_all_link: All (%{count})
+      filter_submitted_link: Pending My Review (%{count})
+      filter_approved_link: Approved (%{count})
+      filter_rejected_link: Rejected (%{count})
+      filter_reviewed_link: Reviewed (%{count})
+      submission_date_tooltip: Date the DMP was submitted for review by the plan owner.
+      review_plan: Review DMP
+      submission_date: Submission Date
     suggested_response:
       box_size: 'box size:'
-      box_size_small: 'small'
-      box_size_medium: 'medium'
-      box_size_full: 'full'
-      guidance: 'Guidance'
+      box_size_small: small
+      box_size_medium: medium
+      box_size_full: full
+      guidance: Guidance
       institution_customization_resources: '%{institution} Resources'
       template_customization_resources: '%{template} for %{institution} Resources'
-
     template_information:
-      title: 'Create New DMP'
-      use_template: 'Start with a DMP Template'
-      use_template_instructions_html: '<p>To create a new DMP, select a funder or institutional template.</p>'
-      use_template_button: 'Select Template >>'
-      copy_plan: 'Copy an Existing DMP'
-      copy_plan_instructions_html: '<p>The existing DMPs in this list are either publicly shared by any user, shared within your institution by other DMP creators, or are plans that you have previously created.</p><p>Select an existing DMP below and add text to the template.</p>'
-      copy_plan_button: 'Copy this DMP >>'
-
+      title: Create New DMP
+      use_template: Start with a DMP Template
+      use_template_instructions_html: <p>To create a new DMP, select a funder or institutional template.</p>
+      use_template_button: Select Template >>
+      copy_plan: Copy an Existing DMP
+      copy_plan_instructions_html: <p>The existing DMPs in this list are either publicly shared by any user, shared within your institution by other DMP creators, or are plans that you have previously created.</p><p>Select an existing DMP below and add text to the template.</p>
+      copy_plan_button: Copy this DMP >>
     update:
       # Also find some translations in en.rb
-      cant_reassign_owner_error: 'The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.'
-      success_notice: 'Plan was successfully updated.'
-
+      cant_reassign_owner_error: The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.
+      success_notice: Plan was successfully updated.
   requirements:
     create:
-      group_success_notice: 'Group was successfully created.'
-      requirement_success_notice: 'Requirement was successfully created.'
+      group_success_notice: Group was successfully created.
+      requirement_success_notice: Requirement was successfully created.
     form:
-      obligation_tooltip_html: 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.'
-      group_type_tooltip_html: 'Tooltip &#8220;text&#8221; goes here.'
-      requirement_type_tooltip_html: 'You can designate the format of the answer to be given to a requirement. The default format is text (minimal structured text format). Other options: <ul><li>Numeric format: for integer or real number answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM, or YYYY-MM-DD</li><li>Enum format: answers are an ordered list of values from which the researcher can select.</li></ul>'
-      add_item_link: 'Click to Add Item'
-
+      obligation_tooltip_html: Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.
+      group_type_tooltip_html: Tooltip &#8220;text&#8221; goes here.
+      requirement_type_tooltip_html: 'You can designate the format of the answer to
+        be given to a requirement. The default format is text (minimal structured
+        text format). Other options: <ul><li>Numeric format: for integer or real number
+        answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM,
+        or YYYY-MM-DD</li><li>Enum format: answers are an ordered list of values from
+        which the researcher can select.</li></ul>'
+      add_item_link: Click to Add Item
     index:
-      title: 'DMP Template Details'
-      please_wait: 'Please wait a moment . . .'
-      template_outline: 'Template Outline'
-      add_group_link: 'Add Group'
-      add_group_tooltip_html: 'Similar requirements may be grouped together under a single requirement &#8220;group&#8221;.'
-      add_requirement_link: 'Add Requirement'
-      add_requirement_tooltip_html: 'A requirement is the specific question that a researcher is to answer.'
+      title: DMP Template Details
+      please_wait: Please wait a moment . . .
+      template_outline: Template Outline
+      add_group_link: Add Group
+      add_group_tooltip_html: Similar requirements may be grouped together under a single requirement &#8220;group&#8221;.
+      add_requirement_link: Add Requirement
+      add_requirement_tooltip_html: A requirement is the specific question that a researcher is to answer.
       template_status: 'DMP Template Status:'
-      template_status_tooltip_html: 'The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.'
-      cant_delete_template: 'This template cannot be deleted until all DMPs that use it have been removed.'
-
+      template_status_tooltip_html: The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.
+      cant_delete_template: This template cannot be deleted until all DMPs that use it have been removed.
     update:
-      success_notice: 'Requirement was successfully updated.'
-
+      success_notice: Requirement was successfully updated.
   requirements_templates:
     form:
-      template_overview: 'DMP Template Overview'
-      basic_info_link: 'Basic Information'
-      visibility_tooltip_html: 'Once active, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
-      optional_info: 'Optional Information'
-      start_date_tooltip: 'Start date for the template, often provided by the funder as a proposal submission start date.'
-      end_date_tooltip: 'End date for the template, often provided by the funder as a proposal submission end date.'
-      review_type_tooltip: 'You can require institutional administrator review of plans submitted using this template.'
-      add_funder_link_link: 'Add Funder Link'
-      add_sample_plan_link: 'Add Sample Plan'
-      save_and_next_button: 'Save and Next >>'
-
+      template_overview: DMP Template Overview
+      basic_info_link: Basic Information
+      visibility_tooltip_html: 'Once active, template visibility can be either: <ul><li>Public:
+        anyone can view the template.</li><li>Institutional: only those logged in
+        from your institution can view the template.</li></ul>'
+      optional_info: Optional Information
+      start_date_tooltip: Start date for the template, often provided by the funder as a proposal submission start date.
+      end_date_tooltip: End date for the template, often provided by the funder as a proposal submission end date.
+      review_type_tooltip: You can require institutional administrator review of plans submitted using this template.
+      add_funder_link_link: Add Funder Link
+      add_sample_plan_link: Add Sample Plan
+      save_and_next_button: Save and Next >>
     additional_information_fields:
-      link_label_placeholder: 'Link Label'
-      link_url_placeholder: 'Link Url'
-      remove_link: 'Remove'
-      funder_links_tooltip: 'Add links to funder websites that may provide additional information about this template’s requirements.'
-
+      link_label_placeholder: Link Label
+      link_url_placeholder: Link Url
+      remove_link: Remove
+      funder_links_tooltip: Add links to funder websites that may provide additional information about this template’s requirements.
     sample_plan_fields:
-      plan_name_placeholder: 'Plan Name'
-      plan_url_placeholder: 'Plan Url'
-      remove_link: 'Remove'
-      sample_plans_tooltip: 'Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.'
-
+      plan_name_placeholder: Plan Name
+      plan_url_placeholder: Plan Url
+      remove_link: Remove
+      sample_plans_tooltip: Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.
     index:
       # Find translation for toggle_status_link in en.rb
-      dmp_templates: 'DMP Templates'
-      all_filter_link: 'All (%{count})'
-      active_filter_link: 'Active  (%{count})'
-      inactive_filter_link: 'Inactive (%{count})'
-      institutional_filter_link: 'Institution only (%{count})'
-      public_filter_link: 'Public (%{count})'
-      inst_public_filter_link: 'Public defined by my Institution (%{count})'
-      filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template when a researcher creates a DMP. It can be visible either publicly (to anyone logged into the tool) or for institutional researchers only.</li><li>Inactive: will not appear as an optional funder template when a researcher creates a DMP. This may be because the template that is no longer in use, or that has not been completed (finalized) by an administrator.</li><li>Institution only: Active or inactive DMP templates for your institution only.</li><li>Public:  All DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
-      sort_by_visibility_tooltip_html: 'Once live, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
-      new_button: 'Create New Template >>'
-      overview_link: 'Overview'
-      details_link: 'Details'
-      customize_link: 'Customize'
-      delete_link: 'Delete'
-
+      dmp_templates: DMP Templates
+      all_filter_link: All (%{count})
+      active_filter_link: Active  (%{count})
+      inactive_filter_link: Inactive (%{count})
+      institutional_filter_link: Institution only (%{count})
+      public_filter_link: Public (%{count})
+      inst_public_filter_link: Public defined by my Institution (%{count})
+      filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template
+        when a researcher creates a DMP. It can be visible either publicly (to anyone
+        logged into the tool) or for institutional researchers only.</li><li>Inactive:
+        will not appear as an optional funder template when a researcher creates a
+        DMP. This may be because the template that is no longer in use, or that has
+        not been completed (finalized) by an administrator.</li><li>Institution only:
+        Active or inactive DMP templates for your institution only.</li><li>Public:  All
+        DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
+      sort_by_visibility_tooltip_html: 'Once live, template visibility can be either:
+        <ul><li>Public: anyone can view the template.</li><li>Institutional: only
+        those logged in from your institution can view the template.</li></ul>'
+      new_button: Create New Template >>
+      overview_link: Overview
+      details_link: Details
+      customize_link: Customize
+      delete_link: Delete
     template_information:
-      new_template: 'Create New DMP Template'
-      copy_template: 'Copy an Existing DMP Template'
-      copy_template_explanation: 'Select an existing requirements template below and edit the template information and details.'
-      copy_template_button: 'Copy Template'
-      copy_template_no_templates: 'There are no existing templates to edit.'
-      new_template_explanation: 'Input basic and optional information of the new requirements template and edit the template details.'
-      new_template_button: 'Create New Template'
-
+      new_template: Create New DMP Template
+      copy_template: Copy an Existing DMP Template
+      copy_template_explanation: Select an existing requirements template below and edit the template information and details.
+      copy_template_button: Copy Template
+      copy_template_no_templates: There are no existing templates to edit.
+      new_template_explanation: Input basic and optional information of the new requirements template and edit the template details.
+      new_template_button: Create New Template
     create:
-      success_notice: 'DMP Template was successfully created.'
-
+      success_notice: DMP Template was successfully created.
     update:
-      success_notice: 'DMP Template was successfully updated.'
-
+      success_notice: DMP Template was successfully updated.
     destroy:
-      success_notice: 'DMP template was deleted.'
-
+      success_notice: DMP template was deleted.
     copy_existing_template:
       copy_of:
-        one: 'Copy of %{name}'
-        other: 'Copy %{count} of %{name}'
-      success_notice: 'Requirements template was successfully created.'
-
+        one: Copy of %{name}
+        other: Copy %{count} of %{name}
+      success_notice: Requirements template was successfully created.
     toggle_active:
-      failure_message: 'The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.'
-
+      failure_message: The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.
   responses:
     form:
-      save_and_next_button: 'Save and Next'
-      save_button: 'Save Response'
-      back_button: 'Cancel Changes'
-      alert_message: 'Cannot save an empty Response. Please enter a valid Response before continuing.'
-      alert_message_tooltip: 'Please Enter a Valid Response.'
-
+      save_and_next_button: Save and Next
+      save_button: Save Response
+      back_button: Cancel Changes
+      alert_message: Cannot save an empty Response. Please enter a valid Response before continuing.
+      alert_message_tooltip: Please Enter a Valid Response.
   resources:
     copy_selected_customization_resource:
-      already_in_context_error: 'The resource you selected is already in your context.'
-      success_notice: 'Resource was successfully added.'
-      unknown_error: 'A problem prevented this resource to be added.'
-
+      already_in_context_error: The resource you selected is already in your context.
+      success_notice: Resource was successfully added.
+      unknown_error: A problem prevented this resource to be added.
     create:
-      success_notice: 'Resource was successfully created.'
-
+      success_notice: Resource was successfully created.
     create_customization_resource:
       malformed_url_error: 'The url: %{url} is a not valid url.'
-      success_notice: 'Resource was successfully created.'
-
+      success_notice: Resource was successfully created.
     destroy:
-      success_notice: 'Resource was successfully eliminated.'
-      error_message: 'A problem prevented this resource to be eliminated.'
-
+      success_notice: Resource was successfully eliminated.
+      error_message: A problem prevented this resource to be eliminated.
     edit_customization_resource:
-      title: 'Edit Customization Resource'
-      edit_resource: 'Edit %{label} Resource'
-      label_placeholder: 'Enter a name for this Resource'
-      text_placeholder: 'Enter the text'
-      value_placeholder: 'URL'
-      delete_resource: 'Delete Resource'
-      confirm_delete_prompt: 'Are you sure? This resource will be deleted from all templates and all requirements!'
+      title: Edit Customization Resource
+      edit_resource: Edit %{label} Resource
+      label_placeholder: Enter a name for this Resource
+      text_placeholder: Enter the text
+      value_placeholder: URL
+      delete_resource: Delete Resource
+      confirm_delete_prompt: Are you sure? This resource will be deleted from all templates and all requirements!
       resource_shown_in: 'This Resource is shown in:'
-      resource_global: 'This Resource is Global.'
+      resource_global: This Resource is Global.
       templates: 'The following Templates:'
       template: 'Template:'
-      unlink: 'Unlink'
-      unlink_tooltip: 'Unlinking a resource from a requirement or template means it will no longer appear to plan creators. If the resource is not linked to any other templates or requirements, unlinking it will cause it to be deleted from the DMPTool.'
-      template_tooltip: 'This is the name of the template you are currently working on.'
-      confirm_last_delete_prompt: 'Are you sure? This resource is not linked to any other templates; therefore unlinking it will cause it to be deleted from the DMPTool.'
+      unlink: Unlink
+      unlink_tooltip: Unlinking a resource from a requirement or template means it will no longer appear to plan creators. If the resource is not linked to any other templates or requirements, unlinking it will cause it to be deleted from the DMPTool.
+      template_tooltip: This is the name of the template you are currently working on.
+      confirm_last_delete_prompt: Are you sure? This resource is not linked to any other templates; therefore unlinking it will cause it to be deleted from the DMPTool.
       requirements: 'The following Requirements:'
       requirement: 'Requirement:'
-      assoc_template: 'Associated Template'
-
+      assoc_template: Associated Template
     edit_institutional_resource:
-      title: 'Edit Institutional Resource'
-      edit_resource_for: 'Edit %{resource} Resource For %{institution}'
-      resource_type_tooltip: 'Resources can be either actionable URLs or help text.'
-      label_placeholder: 'Enter a name for this Resource'
-      label_tooltip: 'The name for this resource. For example, “;UC3’s Merritt Repository”; would be the label for the URL http://merritt.cdlib.org.'
-      text_placeholder: 'Enter the text'
-      value_placeholder: 'URL'
-      delete_resource: 'Delete Resource'
-
+      title: Edit Institutional Resource
+      edit_resource_for: Edit %{resource} Resource For %{institution}
+      resource_type_tooltip: Resources can be either actionable URLs or help text.
+      label_placeholder: Enter a name for this Resource
+      label_tooltip: The name for this resource. For example, “;UC3’s Merritt Repository”; would be the label for the URL http://merritt.cdlib.org.
+      text_placeholder: Enter the text
+      value_placeholder: URL
+      delete_resource: Delete Resource
     new:
-      new_resource_for: 'New Resource For %{institution}'
-      label_placeholder: 'Enter a name for this Resource'
-      text_placeholder: 'Enter the text'
-      value_placeholder: 'URL'
-
+      new_resource_for: New Resource For %{institution}
+      label_placeholder: Enter a name for this Resource
+      text_placeholder: Enter the text
+      value_placeholder: URL
     new_customization_resource:
-      new_resource_for: 'New Resource For %{template}'
-      label_placeholder: 'Enter a name for this Resource'
-      text_placeholder: 'Enter the text'
-      value_placeholder: 'URL'
-
+      new_resource_for: New Resource For %{template}
+      label_placeholder: Enter a name for this Resource
+      text_placeholder: Enter the text
+      value_placeholder: URL
     new_institutional_resource:
-      new_resource_for: 'New Resource For %{institution}'
-      label_placeholder: 'Enter a name for this Resource'
-      text_placeholder: 'Enter the text'
-      value_placeholder: 'URL'
-
+      new_resource_for: New Resource For %{institution}
+      label_placeholder: Enter a name for this Resource
+      text_placeholder: Enter the text
+      value_placeholder: URL
     update:
-      success_notice: 'Resource was successfully updated.'
-
+      success_notice: Resource was successfully updated.
     update_customization_resource:
       malformed_url_error: 'The url: %{url} is a not valid url.'
-      sucess_notice: 'Resource was successfully updated.'
-
+      sucess_notice: Resource was successfully updated.
   resource_contexts:
     choose_institution:
-      select_institution: 'Select Institution for customization'
-      customized_for: 'Customize for'
-      general_radio: 'General customization, shown to all institutions using this template'
-      user_institution_radio: 'Customizing this template for my institution (%{institution}).'
-      select_institution_radio: 'Customizing this template for the following institution'
-      next_button: 'Next page'
-
+      select_institution: Select Institution for customization
+      customized_for: Customize for
+      general_radio: General customization, shown to all institutions using this template
+      user_institution_radio: Customizing this template for my institution (%{institution}).
+      select_institution_radio: Customizing this template for the following institution
+      next_button: Next page
     customization_resources_list:
       # Find the following translations, merged into one, in en.rb:
       # - resources_customized_for_one
       # - resources_customized_for_all
-      visibility_info: 'These resources will be displayed for all requirements defined for this template.'
-      details: 'Details'
-      action: 'Action'
-      action_tooltip: 'Edit'
-      add_resource_button: 'Add a resource'
-
+      visibility_info: These resources will be displayed for all requirements defined for this template.
+      details: Details
+      action: Action
+      action_tooltip: Edit
+      add_resource_button: Add a resource
     create:
-      success_notice: 'Customization was successfully created.'
-
+      success_notice: Customization was successfully created.
     display_buttons:
-      choose_template_button: '<< Choose DMP Template'
-      customizations_button: '<< Customizations'
-      details_button: 'Customization Details >>'
-
+      choose_template_button: << Choose DMP Template
+      customizations_button: << Customizations
+      details_button: Customization Details >>
     form:
-      title: 'Customization Overview'
-      basic_info: 'Basic Information'
-      no_institution_id: 'Original funder / template creator'
-      name_tooltip: 'This field cannot be edited.'
-      template_tooltip: 'The DMP Template that this customization applies to.'
-      review_tooltip: 'You can require institutional administrator review of plans submitted using this template.'
-      contact_info_tooltip: 'Name & E-mail for contact about this specific DMP Template customizations. Default is the institutional admin contact information.'
-      no_created_at: 'none'
-      no_updated_at: 'none'
-
+      title: Customization Overview
+      basic_info: Basic Information
+      no_institution_id: Original funder / template creator
+      name_tooltip: This field cannot be edited.
+      template_tooltip: The DMP Template that this customization applies to.
+      review_tooltip: You can require institutional administrator review of plans submitted using this template.
+      contact_info_tooltip: Name & E-mail for contact about this specific DMP Template customizations. Default is the institutional admin contact information.
+      no_created_at: none
+      no_updated_at: none
     new:
       name: '%{template} for %{institution}'
-
     resource_customization:
-      no_customizations: 'You have no template customizations'
-      new_button: 'Create New Customization'
-      overview_link: 'Overview'
-      details_link: 'Details'
-      delete_link: 'Delete'
-
+      no_customizations: You have no template customizations
+      new_button: Create New Customization
+      overview_link: Overview
+      details_link: Details
+      delete_link: Delete
     select_resource:
-      existing: 'Existing Resources'
-      for_user: 'For %{user}'
-      select: 'Select'
-      details: 'Details'
-      type: 'Type'
-      institution: 'Institution'
-      level: 'Level'
-      action: 'Edit'
-      no_results: 'No results found'
-      none_existing: 'There are no existing resources'
-      link_button: 'Link Selected Resource'
-      add_resource_button: 'Add a new resource'
-
+      existing: Existing Resources
+      for_user: For %{user}
+      select: Select
+      details: Details
+      type: Type
+      institution: Institution
+      level: Level
+      action: Edit
+      no_results: No results found
+      none_existing: There are no existing resources
+      link_button: Link Selected Resource
+      add_resource_button: Add a new resource
     unlink_resource_from_template:
-      success_notice: 'The resource was successfully unlinked.'
-
+      success_notice: The resource was successfully unlinked.
     unlink_resource_from_requirement:
-      success_notice: 'The resource was successfully unlinked.'
-
+      success_notice: The resource was successfully unlinked.
     unlink_resource_from_customization:
-      success_notice: 'The resource was successfully unlinked.'
-
+      success_notice: The resource was successfully unlinked.
     update:
-      success_notice: 'Customization was successfully updated.'
-
-
+      success_notice: Customization was successfully updated.
   users:
     create:
       # Find some translations in en.rb.
-      account_deactivated_notice: "You already have a DMP Tool account with this username, but it's deactivated. Please contact us if you need to have it reactivated."
-      duplicate_username_notice: 'You already have a DMP Tool account with this username. Please log in with your current username and password to continue.'
-      duplicate_username_notice2: 'You already have a DMP Tool account. Your username is "%{user}".  Please log in with your current password to continue.'
-      user_sync_notice: "You're now in the DMP Tool with your existing %{institution} username, \"%{user}\".  Please log in to continue."
-      ldap_success_notice: "This LDAP DMPTool account has been created.  You may also log in with 'Not in List' institution in addition to your Shibboleth account."
-      success_notice: 'User was successfully created.'
-
+      account_deactivated_notice: "You already have a DMP Tool account with this username,\
+        \ but it's deactivated. Please contact us if you need to have it reactivated."
+      duplicate_username_notice: You already have a DMP Tool account with this username. Please log in with your current username and password to continue.
+      duplicate_username_notice2: You already have a DMP Tool account. Your username is "%{user}".  Please log in with your current password to continue.
+      user_sync_notice: "You're now in the DMP Tool with your existing %{institution}\
+        \ username, \"%{user}\".  Please log in to continue."
+      ldap_success_notice: "This LDAP DMPTool account has been created.  You may also\
+        \ log in with 'Not in List' institution in addition to your Shibboleth account."
+      success_notice: User was successfully created.
     edit:
-      title: 'My Profile'
-      failure_notice: "You may not edit the user you were attempting to edit.  You're now editing your own information."
-
+      title: My Profile
+      failure_notice: "You may not edit the user you were attempting to edit.  You're\
+        \ now editing your own information."
     edit_user_roles:
-      title: 'Edit User Roles'
-      user_roles_link: 'User Roles'
+      title: Edit User Roles
+      user_roles_link: User Roles
       current_roles: "%{user}'s Current Roles:"
-
     finish_signup:
-      title: 'Finish Signup'
-      submit: 'Update Account'
-      reset: 'Reset Form'
-
+      title: Finish Signup
+      submit: Update Account
+      reset: Reset Form
     finish_signup_update:
-      success_notice: 'You have completed signing up for the DMP tool.'
-
+      success_notice: You have completed signing up for the DMP tool.
     form:
-      personal: 'Personal Information'
-      notifications: 'Notification Preferences'
-
+      personal: Personal Information
+      notifications: Notification Preferences
     index:
-      title: 'DMP Administration'
-
+      title: DMP Administration
     institutions_list:
-      add_new: 'Add New Institution'
-
+      add_new: Add New Institution
     new:
-      title: 'Create Account'
-      submit_button: 'Create Account'
-
+      title: Create Account
+      submit_button: Create Account
     notifications:
-      instructions: 'Check or uncheck boxes for email notifications.'
-      sel_all: 'Select / deselect all'
+      instructions: Check or uncheck boxes for email notifications.
+      sel_all: Select / deselect all
       users: 'Users:'
       template_owners: 'DMP owners and co-owners:'
       template_editors: 'DMP Template editors:'
       resource_editors: 'Resources editors:'
       institutional_reviewers: 'Institutional Reviewers:'
-      role_granted: 'A new user role is granted'
-      plan_new_comment: 'A new comment has been added to my DMP'
-      plan_submitted: 'A submitted DMP is approved, rejected or finished informal review'
+      role_granted: A new user role is granted
+      plan_new_comment: A new comment has been added to my DMP
+      plan_submitted: A submitted DMP is approved, rejected or finished informal review
       plan_vis_change: "My DMP's visibility has changed"
-      plan_user_added: 'I have been made a co-owner of a DMP'
-      plan_committed: 'A DMP is completed'
-      template_committed: 'An institutional DMP template is activated'
-      template_deactivated: 'An institutional DMP template is deactivated'
-      customization_deleted: 'A customization is deleted'
-      customization_associated_committed: 'A DMP Template associated with a customization is activated'
-      institutional_submitted: 'An Institutional DMP is submitted for review'
-      institutional_new_comment: 'A new comment is added to an Institutional DMP'
-      institutional_approved_rejected: 'An Institutional DMP is approved or rejected'
-
+      plan_user_added: I have been made a co-owner of a DMP
+      plan_committed: A DMP is completed
+      template_committed: An institutional DMP template is activated
+      template_deactivated: An institutional DMP template is deactivated
+      customization_deleted: A customization is deleted
+      customization_associated_committed: A DMP Template associated with a customization is activated
+      institutional_submitted: An Institutional DMP is submitted for review
+      institutional_new_comment: A new comment is added to an Institutional DMP
+      institutional_approved_rejected: An Institutional DMP is approved or rejected
     personal:
-      instructions: 'Please update your account information.'
-      name: 'Name'
-      password_tooltip: 'The password must be 8 to 30 characters long. It must contain at least one number and one letter.'
-      contact_info: 'Contact Information'
-      select_institution_new: '-Select an Institution-'
-      select_institution: 'Select Institution'
-      dmp_options: 'DMP Options'
-      roles: 'My Roles'
-      roles_tooltip_html: '<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>'
-      orcid: 'Orcid'
-      orcid_tooltip: 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.'
-      orcid_logo_alt: 'Orcid ID logo'
-      orcid_lookup_tooltip: 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.'
-      edit_orcid_link: 'Edit'
-      delete_orcid_link: 'Delete'
-      api_token: 'API Token'
-
+      instructions: Please update your account information.
+      name: Name
+      password_tooltip: The password must be 8 to 30 characters long. It must contain at least one number and one letter.
+      contact_info: Contact Information
+      select_institution_new: -Select an Institution-
+      select_institution: Select Institution
+      dmp_options: DMP Options
+      roles: My Roles
+      roles_tooltip_html: '<ul><li>Template editor: create local, institutional, DMP
+        templates</li><li>Resources editor: add/modify DMP template customizations,
+        which include links to resources, local help text, suggested text, and example
+        responses</li><li>Institutional reviewer: review, informally or formally,
+        data management plans</li><li>Institutional administrator: assign additional
+        DMPTool institutional administrators; performs all above administrative roles</li></ul>'
+      orcid: Orcid
+      orcid_tooltip: ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.
+      orcid_logo_alt: Orcid ID logo
+      orcid_lookup_tooltip: Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.
+      edit_orcid_link: Edit
+      delete_orcid_link: Delete
+      api_token: API Token
     plan_autocomplete_widget:
       label: 'Add Co-owners:'
-      placeholder: 'Add co-owners; search by name or email address'
-      tooltip_html: '<ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>'
-
+      placeholder: Add co-owners; search by name or email address
+      tooltip_html: <ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>
     remove_orcid:
-      success_notice: 'The orcid id has been successfully removed from your profile.'
-
+      success_notice: The orcid id has been successfully removed from your profile.
     require_current_user:
-      error: 'User information may only be edited by that user'
-
+      error: User information may only be edited by that user
     token:
-      generate_token_link: 'Generate New Token'
-      remove_token_link: 'Remove Token'
+      generate_token_link: Generate New Token
+      remove_token_link: Remove Token
       no_token: "You don't have any token."
-
     update:
-      success_notice: 'User information updated.'
-      ldap_error: 'Error updating LDAP. Local update canceled.'
-
+      success_notice: User information updated.
+      ldap_error: Error updating LDAP. Local update canceled.
     update_user_roles:
-      success_notice: 'User was successfully updated.'
-
+      success_notice: User was successfully updated.
     user_autocomplete_widget:
       label: 'Name:'
-      placeholder: 'Search user by name or email'
-
+      placeholder: Search user by name or email
     user_search:
-      search_placeholder: 'Search user by name or email'
-
+      search_placeholder: Search user by name or email
     users_list:
-      edit_role: 'Edit User Role'
-      no_results: 'No results found'
-      remove_user: 'Remove User'
-
+      edit_role: Edit User Role
+      no_results: No results found
+      remove_user: Remove User
   user_sessions:
     complete_password_reset:
-      title: 'Complete Password Reset'
-      instructions: 'You are resetting the password for %{email}. The DMPTool requires that your password be at least eight characters long and contain at least one number and one letter.'
-      submit: 'Reset Password'
-      no_token_error: 'User not found or password reset not requested'
-      token_expired_error: 'Password reset token has expired. Please request a reset again.'
-      invalid_token_error: 'Invalid password reset token. Please request a reset again.'
-      illegal_password_error: 'Your password must be at least eight characters long and have at least one letter and at least one number.'
-      wrong_confirmation_error: 'Password and confirmation do no match. Please try again.'
-      ldap_error: 'Problem updating password in LDAP. Please retry.'
-      success_notice: 'You have successfully updated your password.'
-
+      title: Complete Password Reset
+      instructions: You are resetting the password for %{email}. The DMPTool requires that your password be at least eight characters long and contain at least one number and one letter.
+      submit: Reset Password
+      no_token_error: User not found or password reset not requested
+      token_expired_error: Password reset token has expired. Please request a reset again.
+      invalid_token_error: Invalid password reset token. Please request a reset again.
+      illegal_password_error: Your password must be at least eight characters long and have at least one letter and at least one number.
+      wrong_confirmation_error: Password and confirmation do no match. Please try again.
+      ldap_error: Problem updating password in LDAP. Please retry.
+      success_notice: You have successfully updated your password.
     create:
-      incomplete_info_error: "Your identify provider didn't provide complete information.  Please contact us so we can help troubleshoot this problem."
-      duplicate_email_error: 'Multiple users have the same email as you.  Please contact us to fix the problem.'
-      account_deactivated_error: 'Your user account is currently deactivated.  In order to be reactivate your account, please contact us.'
-      auth_wo_record_error: "You've previously logged in but do not have a current account. Contact us for help resolving this problem."
-      incommon_error: 'Problem with InCommon login.  Your InCommon provider may not be releasing the necessary attributes.'
-      incorrect_credentials_error: 'Incorrect username, password or institution'
-      incomplete_info_error: 'Please complete filling in your profile information.'
-
+      duplicate_email_error: Multiple users have the same email as you.  Please contact us to fix the problem.
+      account_deactivated_error: Your user account is currently deactivated.  In order to be reactivate your account, please contact us.
+      auth_wo_record_error: "You've previously logged in but do not have a current\
+        \ account. Contact us for help resolving this problem."
+      incommon_error: Problem with InCommon login.  Your InCommon provider may not be releasing the necessary attributes.
+      incorrect_credentials_error: Incorrect username, password or institution
+      incomplete_info_error: Please complete filling in your profile information.
     destroy:
-      notice: 'Signed out.'
-
+      notice: Signed out.
     failure:
       error_message: 'Failure: Incorrect username, password or institution'
-
     institution:
-      browser_title: 'Log In'
-      title: 'Institution Log In'
-      instructions_title: 'Log in through your institution'
-      instructions: 'Select your institution below and you will be directed to your institutional log in page.'
-      prompt_default_text: 'Select your institution'
-      submit_button: 'Next >>'
-      note_html: ''
-
+      browser_title: Log In
+      title: Institution Log In
+      instructions_title: Log in through your institution
+      instructions: Select your institution below and you will be directed to your institutional log in page.
+      prompt_default_text: Select your institution
+      submit_button: Next >>
+      note_html: ""
     login:
-      browser_title: 'Account Log In'
-      title: 'Log In'
+      browser_title: Account Log In
+      title: Log In
       institution: 'Log in to DMPTool through:'
-      remember_me_checkbox: 'Remember My Username'
-      submit_button: 'Login'
-      reset_username_link: 'Forgot your username?'
-      reset_password_link: 'Forgot your password?'
+      remember_me_checkbox: Remember My Username
+      submit_button: Login
+      reset_username_link: Forgot your username?
+      reset_password_link: Forgot your password?
       create_account: "Don't have a DMPTool account yet?"
-      create_account_button: 'Create An Account'
-      no_institution_error: 'Please choose your log in institution.'
-
+      create_account_button: Create An Account
+      no_institution_error: Please choose your log in institution.
     password_reset:
-      title: 'Reset Password'
-      instructions: 'Enter your email address or username below to reset your password and send an email with the new password to your registered email address.'
-      email_or_username: 'Email or username'
-      success_notice: 'An email has been sent to {email} with instructions for resetting your password.'
-      no_such_user_error: 'No user found with email or username %{email}.'
-      reset_shib_error: "You must reset your Shibboleth password through your own institution's password reset mechanism. You do not have an independent login for the DMPTool."
-      ldap_disabled_error: 'Your LDAP account has not been enabled for use in the DMPTool. Your account must be set up in the DMPTool before you can change your password.'
-      incomplete_info_error: 'You must supply an email or username to request a password reset.'
-
+      title: Reset Password
+      instructions: Enter your email address or username below to reset your password and send an email with the new password to your registered email address.
+      email_or_username: Email or username
+      success_notice: An email has been sent to {email} with instructions for resetting your password.
+      no_such_user_error: No user found with email or username %{email}.
+      reset_shib_error: "You must reset your Shibboleth password through your own\
+        \ institution's password reset mechanism. You do not have an independent login\
+        \ for the DMPTool."
+      ldap_disabled_error: Your LDAP account has not been enabled for use in the DMPTool. Your account must be set up in the DMPTool before you can change your password.
+      incomplete_info_error: You must supply an email or username to request a password reset.
     username_reminder:
-      title: 'Username Reminder'
-      instructions: 'Enter your email address below to send an email with the username for your account.'
-      email: 'Email'
-      success_notice: 'Your username has been emailed to %{email}.'
-      no_such_user_error: 'No user found with email address %{email}.'
-      invalid_email_error: 'You must supply a valid email to obtain a username reminder.'
+      title: Username Reminder
+      instructions: Enter your email address below to send an email with the username for your account.
+      email: Email
+      success_notice: Your username has been emailed to %{email}.
+      no_such_user_error: No user found with email address %{email}.
+      invalid_email_error: You must supply a valid email to obtain a username reminder.
