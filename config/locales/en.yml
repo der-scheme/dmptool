@@ -227,23 +227,26 @@ en:
   js:
     application:
   routes:
+    customizations:
+      show: 'Details'
     dashboard:
       show: 'My Dashboard'
     institutions:
       index: 'Institution Profile'
       new: 'Add New Institution'
+    requirements:
+      index: 'Details'
     requirements_templates:
       destroy: 'Delete'
       edit: 'Overview'
       index: 'DMP Templates'
-      new: 'Create New DMP Template'
       requirements: 'Details'
+      template_information: 'Create New DMP Template'
     resource_contexts:
       choose_institution: 'Customize'
       destroy: 'Delete'
       edit: 'Overview'
       index: 'Customizations'
-      requirements: 'Details'
     plans:
       copy_existing_template: 'Copy'
       destroy: 'Delete'
@@ -316,10 +319,6 @@ en:
       overview: 'DMP Overview'
       details: 'DMP Details'
       preview: 'DMP Preview'
-    dashboard_customizations_submenu:
-      customizations: 'Customizations'
-      overview: 'Overview'
-      details: 'Details'
     dashboard_customizations_under_dmp_submenu:
       templates: 'DMP Templates'
       overview: 'Customization Overview'
@@ -331,7 +330,6 @@ en:
       institution_name: 'Institution Name'
       contact_admin_link: 'Contact Institution Admin'
     dashboard_requirements_template_submenu:
-      templates: 'DMP Templates'
       overview: 'Template Overview'
       details: 'Template Details'
     header:
@@ -903,7 +901,6 @@ en:
 
     index:
       # Find translation for toggle_status_link in en.rb
-      dmp_templates: 'DMP Templates'
       all_filter_link: 'All (%{count})'
       active_filter_link: 'Active  (%{count})'
       inactive_filter_link: 'Inactive (%{count})'
@@ -913,9 +910,6 @@ en:
       filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template when a researcher creates a DMP. It can be visible either publicly (to anyone logged into the tool) or for institutional researchers only.</li><li>Inactive: will not appear as an optional funder template when a researcher creates a DMP. This may be because the template that is no longer in use, or that has not been completed (finalized) by an administrator.</li><li>Institution only: Active or inactive DMP templates for your institution only.</li><li>Public:  All DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
       sort_by_visibility_tooltip_html: 'Once live, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>'
       new_button: 'Create New Template >>'
-      overview_link: 'Overview'
-      details_link: 'Details'
-      customize_link: 'Customize'
       delete_link: 'Delete'
 
     template_information:

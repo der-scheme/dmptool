@@ -1,3 +1,6 @@
+
+require 'route_i18n'    # This seems to be autoloaded in production, but not in development mode.
+
 Dmptool2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
