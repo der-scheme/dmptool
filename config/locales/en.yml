@@ -315,7 +315,6 @@ en:
     clean:
       title: 'DmpTool2: %{title_text}'
     dashboard_create_dmp_submenu:
-      new_plan_link: 'Create New DMP'
       overview: 'DMP Overview'
       details: 'DMP Details'
       preview: 'DMP Preview'
