@@ -227,6 +227,8 @@ en:
   js:
     application:
   routes:
+    customizations:
+      show: 'Details'
     dashboard:
       show: 'My Dashboard'
     institutions:
