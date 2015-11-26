@@ -27,7 +27,10 @@ module RouteI18n
         route_name_text = :"#{route.name}_text"
         text = send(route_name_text, t: t, **(url.is_a?(Hash) ? url : {}))
 
-        link_to send(:"#{route.name}_path", url), html_options do
+        # I have no idea why I have to insert the locale manually. Also,
+        # default_url_options seems to be empty at this point, no matter what I
+        # try.
+        link_to send(:"#{route.name}_path", url, locale: params[:locale]), html_options do
           body ? body.call(text) : text
         end
       end
