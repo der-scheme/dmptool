@@ -201,16 +201,20 @@ en:
         remove: Remove
         delete: Delete
   routes:
+    customizations:
+      show: 'Details'
     dashboard:
       show: My Dashboard
     institutions:
       index: Institution Profile
       new: Add New Institution
+    requirements:
+      index: Details
     requirements_templates:
       destroy: Delete
       edit: Overview
       index: DMP Templates
-      new: Create New DMP Template
+      template_information: Create New DMP Template
       requirements: Details
     resource_contexts:
       choose_institution: Customize

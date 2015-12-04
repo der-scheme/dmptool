@@ -1,18 +1,26 @@
 <li class='current-parent'>
-  <%= link_to content_tag(:span, t('.customizations')), resource_contexts_path %>
+  <%= link_to_resource_contexts {|text| content_tag :span, text} %>
   <ul class="children dmp-templates">
     <!-- The following adds "current" class when on Customization Overview page -->
     <% if menu_level(1) == 'overview' %>
-      <li class="current"><%= link_to content_tag(:span, t('.overview')), '#' %></li>
+      <li class="current">
+        <%= link_to content_tag(:span, edit_resource_context_text), '#' %>
+      </li>
       <% unless @resource_context.new_record? %>
-        <li><%= link_to content_tag(:span, t('.details')), customization_requirement_path(@resource_context) %></li>
+        <li>
+          <%= link_to_customization_requirement(@resource_context) {|text| content_tag :span, text} %>
+        </li>
       <% end %>
       <li class="last"></li>
     <% end %>
     <!-- The following adds "current" class when on Customization Details page -->
     <% if menu_level(1) == 'details' %>
-      <li><%= link_to content_tag(:span, t('.overview')), edit_resource_context_path(@resource_context) %></li>
-      <li class="current"><%= link_to content_tag(:span, t('.details')), '#' %></li>
+      <li>
+        <%= link_to_edit_resource_context(@resource_context) {|text| content_tag :span, text} %>
+      </li>
+      <li class="current">
+        <%= link_to content_tag(:span, customization_requirement_text), '#' %>
+      </li>
       <li class="last"></li>
     <% end %>
   </ul>

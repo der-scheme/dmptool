@@ -1,6 +1,6 @@
-<% @title_text = RequirementsTemplate.model_name.human(count: false) %>
+<% @title_text = page_title %>
 <% @display_menu = "dmp_templates" %>
-<h1 class="row-fluid"><span class="icon dmp-template"></span><%= @title_text %></h1>
+<h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 
 <div class="table-scope">
 	<%= link_to t('.all_filter_link', count: @all), {scope: "all_limited", order_scope: @order_scope, all_scope: @all_scope}, class: 'all_limited' %>
@@ -52,14 +52,16 @@
 
 					<% if user_role_in?(:dmp_admin) %>
 						<div class="template-links">
-              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %> |
-              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %> |
+              <%= link_to_edit_requirements_template requirements_template  %>
+              |
+              <%= link_to_requirements_template_requirements requirements_template, class: 'details' %>
+              |
               <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %> |
-              <%= link_to t('.customize_link'), resource_contexts_choose_institution_path(requirements_template_id: requirements_template.id) %>
+              <%= link_to_resource_contexts_choose_institution(requirements_template_id: requirements_template.id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
@@ -71,9 +73,9 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              <%= link_to_edit_requirements_template requirements_template %>
               |
-              <%= link_to t('.details_link'), requirements_template_requirements_path(requirements_template), class: "details" %>
+              <%= link_to_requirements_template_requirements requirements_template, class: 'details' %>
               |
               <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
@@ -81,8 +83,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to t('.customize_link'),
-                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
@@ -94,17 +95,14 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to t('.customize_link'),
-                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              <%= link_to_edit_requirements_template requirements_template %>
               |
-              <%= link_to t('.details_link'),
-                          requirements_template_requirements_path(requirements_template),
-                          class: "details" %>
+              <%= link_to_requirements_template_requirements requirements_template, class: 'details' %>
               |
 							<%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
@@ -112,8 +110,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to t('.customize_link'),
-                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template, after_url: request.original_url),
@@ -124,8 +121,7 @@
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to t('.customize_link'),
-                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
@@ -136,11 +132,9 @@
 					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 					<div class="template-links">
 						<div class="template-links">
-              <%= link_to t('.overview_link'), edit_requirements_template_path(requirements_template) %>
+              <%= link_to_edit_requirements_template requirements_template %>
               |
-              <%= link_to t('.details_link'),
-                          requirements_template_requirements_path(requirements_template),
-                          class: "details" %>
+              <%= link_to_requirements_template_requirements requirements_template, class: 'details' %>
               |
               <%= link_to t('.toggle_status_link', template: requirements_template),
                           toggle_active_requirements_template_path(requirements_template),
@@ -158,8 +152,7 @@
 
 					<% elsif (user_role_in?(:resource_editor)) %>
 						<div class="template-links">
-              <%= link_to t('.customize_link'),
-                          new_resource_context_path(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
 						</div>
 
 					<%else%>
@@ -196,7 +189,8 @@
 	</div>
 <%end%>
 <% if user_role_in?(:dmp_admin, :template_editor, :institutional_admin) %>
-  <%= button_to t('.new_button'), requirements_template_information_path,
+  <%= button_to requirements_template_information_text(t: '.new_button'),
+                requirements_template_information_path,
                 method: :get, class: 'btn'  %>
 <% end %>
 
