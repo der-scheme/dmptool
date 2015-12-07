@@ -292,10 +292,6 @@ en:
       overview: DMP Overview
       details: DMP Details
       preview: DMP Preview
-    dashboard_customizations_submenu:
-      customizations: Customizations
-      overview: Overview
-      details: Details
     dashboard_customizations_under_dmp_submenu:
       templates: DMP Templates
       overview: Customization Overview
@@ -307,7 +303,6 @@ en:
       institution_name: Institution Name
       contact_admin_link: Contact Institution Admin
     dashboard_requirements_template_submenu:
-      templates: DMP Templates
       overview: Template Overview
       details: Template Details
     header:
@@ -872,7 +867,6 @@ en:
       sample_plans_tooltip: Add example or sample plans for to this template. Provide the plan name (e.g., “Example plan for UVA researcher submitting NSF-BIO proposal”). Provide the URL where the sample plan is located.
     index:
       # Find translation for toggle_status_link in en.rb
-      dmp_templates: DMP Templates
       all_filter_link: All (%{count})
       active_filter_link: Active  (%{count})
       inactive_filter_link: Inactive (%{count})
@@ -891,9 +885,6 @@ en:
         <ul><li>Public: anyone can view the template.</li><li>Institutional: only
         those logged in from your institution can view the template.</li></ul>'
       new_button: Create New Template >>
-      overview_link: Overview
-      details_link: Details
-      customize_link: Customize
       delete_link: Delete
     template_information:
       new_template: Create New DMP Template
