@@ -19,7 +19,9 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    redirect_to choose_institution_path if session[:institution_id].blank? and return
+    redirect_to choose_institution_path,
+                flash: {error: t('.incorrect_credentials_error')} and
+      return if session[:institution_id].blank?
     auth = env["omniauth.auth"]
     user = nil
     begin
