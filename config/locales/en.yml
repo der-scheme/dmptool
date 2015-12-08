@@ -151,8 +151,8 @@ en:
         submitted: Submitted
     requirement:
       group:
-        false: Requirement
-        true: Group
+        "false": Requirement
+        "true": Group
       obligation:
         mandatory: Mandatory
         mandatory_applicable: Mandatory If Applicable
@@ -165,8 +165,8 @@ en:
         text: text
     requirements_template:
       active:
-        false: Inactive
-        true: Active
+        "false": Inactive
+        "true": Active
       review_type:
         formal_review: Review Required
         informal_review: Informal Review Allowed
@@ -202,7 +202,7 @@ en:
         delete: Delete
   routes:
     customizations:
-      show: 'Details'
+      show: Details
     dashboard:
       show: My Dashboard
     institutions:
@@ -214,14 +214,13 @@ en:
       destroy: Delete
       edit: Overview
       index: DMP Templates
-      template_information: Create New DMP Template
       requirements: Details
+      template_information: Create New DMP Template
     resource_contexts:
       choose_institution: Customize
       destroy: Delete
       edit: Overview
       index: Customizations
-      requirements: Details
     plans:
       copy_existing_template: Copy
       destroy: Delete
@@ -268,6 +267,8 @@ en:
       view_less: View Less
       view_all: View All
       previous_page: Previous Page
+    errors:
+      # Find translations in en.rb
     search:
       search_label: Search
       search_button: Search
@@ -288,7 +289,6 @@ en:
     clean:
       title: 'DmpTool2: %{title_text}'
     dashboard_create_dmp_submenu:
-      new_plan_link: Create New DMP
       overview: DMP Overview
       details: DMP Details
       preview: DMP Preview
@@ -310,8 +310,6 @@ en:
       dmptool_logo_tooltip: DMPTool Home
       welcome_html: Welcome! <strong>%{user}</strong>
       public_dmps_tooltip: Sample DMPs
-      news_link: News
-      news_title: News
       faq_link: FAQ
       faq_url: http://dmptool.askbot.com/
       faq_title: FAQ
