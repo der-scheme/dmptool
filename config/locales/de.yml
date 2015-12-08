@@ -1,8 +1,8 @@
 de:
   date:
     formats:
-      default: '%m/%d/%Y'
-      long: '%B %d, %Y'
+      default: '%d.%m.%Y'
+      long: '%e. %B %Y'
   time:
     formats:
       default: '%d.%m.%Y, %H:%M Uhr'
@@ -20,31 +20,88 @@ de:
     updated_at: Zuletzt geändert am
   activerecord:
     attributes:
+      additional_information:
+        label: Bezeichnung des Links
+        requirements_template_id: DMP-Vorlage
+        url: URL des Links
       comment:
+        comment_type: Kommentartyp
+        plan_id: DMP
+        user_id: Verfasser
         value: Kommentar
         visibility: Sichtbarkeit
+      enumeration:
+        position: Position
+        requirement_id: Unterpunkt
+        value: Wert
+      institution:
+        ancestry: Abstammung
+        contact_info: Administrator Kontakt
+        contact_email: Administrator E-Mail
+        logo: Logo der Einrichtung
+        desc: Beschreibung
+        full_name: Vollständiger Name der Einrichtung
+        nickname: Kurzname oder Acronym der Einrichtung
+        parent_id: Übergeordnete Einrichtung
+        shib_entity_id: Entitäten-ID
+        shib_domain: Shibboleth-Domäne
+        url: Link zur Einrichtung
+        url_text: Text des Links zur Einrichtung
+      label:
+        desc: Maßeinheit
+        position: Position
+        requirement_id: Unterpunkt
       plan:
+        current_plan_state_id: Aktueller Status
+        id: ID des Plans
+        name: Titel des DMPs
         owner: Besitzer
+        requirements_template_id: DMP-Vorlage
+        submission_deadline: Abgabefrist
         visibility: Sichtbarkeit
       requirement:
+        ancestry: Abstammung
         group: Gruppe
+        id: Unterpunkt-ID
+        obligation: Verpflichtung
+        position: Reihenfolge
+        requirement_type: Fragetyp
+        requirements_template_id: Vorlage für Unterpunkt
+        # Find translation for text_brief in en.rb
+        text_full: Frage im Detail
       requirements_template:
         active: Status
         end_date: Ende am
+        institution_id: Einrichtung
         name: Name der Vorlage
         review_type: Option für Begutachtung
         start_date: Start am
         visibility: Sichtbarkeit
       resource:
+        id: ID
+        label: Bezeichnung der Ressource
+        resource_type: Ressourcentyp
         text: Details
         value: URL
       resource_context:
+        contact_email: Kontakt via E-Mail
+        contact_info: Kontaktinformation
         institution_id: Angepasst für
+        name: Name der Anpassung
+        requirement_id: Unterpunkt
         requirements_template_id: Zugrundeliegende DMP-Vorlage
         resource_id: Ressource
+        review_type: Art der Begutachtung
       response:
+        enumeration_id: Bitte auswählen
+        id: Antwort-ID
+        label_id: Maßeinheit
+        numeric_value: Wert
+        plan_id: DMP
+        requirement_id: Unterpunkt
         text_value: Ihre Antwort
       sample_plan:
+        id: Musterplan
         label: Name des Plans
         requirements_template_id: DMP-Vorlage
         url: URL des Plans
@@ -72,6 +129,7 @@ de:
         institutional: Institutionell
         private: Privat
         public: Öffentlich
+        unit: Einheit
     plan_state:
       state:
         approved: Für gut befunden
@@ -85,7 +143,13 @@ de:
         submitted: Eingereicht
     requirement:
       group:
+        false: Unterpunkt
         true: Gruppe
+      obligation:
+        mandatory: Verpflichtend
+        mandatory_applicable: Verpflichtend (sofern zutreffend)
+        optional: Optional
+        recommended: Empfohlen
       requirement_type:
         date: Datum
         text: Text
@@ -127,25 +191,39 @@ de:
         remove: Entfernen
         delete: Löschen
   routes:
+    customizations:
+      show: Details
     dashboard:
       show: Mein Dashboard
     institutions:
       index: Einrichtungsprofil
+      new: Neue Einrichtung hinzufügen
+    requirements:
+      index: Details
     requirements_templates:
       destroy: Löschen
       edit: Übersicht
       index: DMP-Vorlagen
-      new: Neue DMP-Vorlage erstellen
+      requirements: Details
+      template_information: Neue DMP-Vorlage erstellen
     resource_contexts:
+      choose_institution: Anpassen
       destroy: Löschen
       edit: Übersicht
       index: Anpassungen
     plans:
+      copy_existing_template: Kopieren
       destroy: Löschen
+      details: Details
       edit: Übersicht
       index: Meine DMPs
+      preview: Vorschau
       public: Beispiel-DMPs
       review_dmps: DMPs begutachten
+      show:
+        docx: Exportiere als DOCX
+        pdf: Exportiere als PDF
+        rtf: Exportiere als RTF
       template_information: Neuen DMP erstellen
     static_pages:
       about: About
@@ -162,6 +240,8 @@ de:
     users:
       edit: Mein Profil
       index: Admin
+      new: Account anlegen
+      remove_token: Token entfernen
   shared:
     button_button:
       cancel: Abbrechen
@@ -194,26 +274,25 @@ de:
     application:
       title: '%{title_text}: DMP-Tool'
     dashboard_create_dmp_submenu:
-      new_plan_link: Neuen DMP erstellen
       overview: Übersicht über DMP
       details: Details des DMP
       preview: Vorschau auf DMP
-    dashboard_customizations_submenu:
-      customizations: Anpassungen
-      overview: Übersicht
-      details: Details
     dashboard_customizations_under_dmp_submenu:
       templates: DMP-Vorlagen
       overview: Übersicht über Anpassung
       details: Details der Anpassung
+    dashboard_logo_row:
+      institution_logo_tooltip: Logo der Einrichtung
+      institution_name: Name der Einrichtung
+      contact_admin_link: Kontakt lokaler Admin
     dashboard_requirements_template_submenu:
-      templates: DMP-Vorlagen
+      overview: Übersicht DMP-Vorlage
+      details: Vorlagendetails
     header:
       dmptool_logo_alt: DMPTOOL
+      dmptool_logo_tooltip: 'DMP-Tool Startseite '
       welcome_html: Willkommen! <strong>%{user}</strong>
-      public_dmps_tooltip: Beispiel-DMPs
-      news_link: Nachrichten
-      news_title: Nachrichten
+      public_dmps_tooltip: Musterpläne
       faq_link: FAQ
       faq_url: http://dmptool.askbot.com/
       faq_title: FAQ
@@ -244,7 +323,12 @@ de:
       currently_chosen: Aktuelle Sprache
   static_pages:
     contact:
+      question_about_missing: Worauf bezieht sich Ihre Frage?
       name_missing: Bitte geben Sie Ihren Namen ein.
+      email_missing: Bitte geben Sie Ihre E-Mail-Adresse an.
+      message_missing: Bitte geben Sie eine Nachricht ein.
+      email_invalid: Bitte geben Sie eine gültige E-Mail-Adresse an.
+      success_message: Ihre E-Mail-Nachricht wurde an das DMP-Tool Team geschickt.
       browser_title: Kontakt
       title: Kontakt
       form_tag: Worum geht es?
@@ -290,8 +374,8 @@ de:
     guidance_table:
       template: Vorlage
       funder: Forschungsförderer
-      institution: Institution
-      institution_links: Link zur Institution
+      institution: Einrichtung
+      institution_links: Link zur Einrichtung
       sample_plans: Musterpläne
       sample_plans_tooltip: Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt.
       if_available: (falls verfügbar)
@@ -299,12 +383,44 @@ de:
     guidance_table_institutional:
       template: Vorlage
       funder: Forschungsförderer
-      institution: Institution
-      institution_links: Link zur Institution
+      institution: Einrichtung
+      institution_links: Link zur Einrichtung
       sample_plans: Musterpläne
       sample_plans_tooltip: Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt.
       if_available: (falls verfügbar)
       no_results: Keine Ergebnisse gefunden
+  authorizations:
+    add_authorization:
+      not_found_message:
+        one: 'Benutzer mit der folgenden E-Mail-Adresse konnte nicht gefunden werden:
+          %{emails}'
+        other: 'Benutzer mit den folgenden E-Mail-Adressen konnten nicht gefunden
+          werden: %{emails}'
+      existing_message:
+        one: 'Folgendem Benutzer wurde diese Rolle bereits zugewiesen: %{emails}'
+        other: 'Folgenden Benutzern wurde diese Rolle bereits zugewiesen: %{emails}'
+      foreign_message: 'Diese Rolle kann Benutzern außerhalb der eigenen Einrichtung
+        nicht zugewiesen werden: %{emails}. Bitte kontaktieren Sie den DMP-Administrator.'
+      success_notice:
+        one: 'Die Rolle wurde folgendem Benutzer zugeteilt: %{emails}'
+        other: 'Die Rolle wurde folgenden Benutzern zugeteilt: %{emails}'
+    remove_authorization:
+      success_notice: Die Rolle wurde entfernt.
+      not_allowed_message: Sie sind nicht dazu berechtigt, diese Rolle zu entfernen.
+    add_role_autocomplete:
+      blank_name_message: Bitte wählen Sie eine Person aus, die als %{role} hinzugefügt werden soll.
+      incomplete_message: Bitte geben Sie den Namen oder die E-Mail-Adresse eines Benutzers ein und treffen Sie eine Auswahl.
+      ambiguous_message: Es gibt es mehr als einen Benutzer mit diesem Namen. Bitte wählen Sie den passenden Benutzer aus der Liste aus.
+      not_found_message: Der Benutzer konnte nicht gefunden werden.
+      already_has_role_message: Dieser Benutzer ist bereits ein %{role}.
+      not_allowed_message: Sie sind nicht dazu berechtigt, diese Rolle zuweisen.
+      success_notice: '%{user} wurde als %{role} hinzugefügt.'
+    add_authorization_manage_users:
+      blank_name_message: Bitte wählen Sie einen Benutzer aus.
+      incomplete_message: Bitte geben Sie den Namen oder die E-Mail-Adresse eines Benutzers ein und treffen Sie eine Auswahl.
+      ambiguous_message: Es gibt es mehr als einen Benutzer mit diesem Namen. Bitte wählen Sie den passenden Benutzer aus der Liste aus.
+      not_found_message: Der Benutzer konnte nicht gefunden werden.
+      foreign_message: Der ausgewählte Benutzer gehört zu einer anderen Einrichtung.
   comments:
     index_owner_comments:
       delete_link: Löschen
@@ -316,6 +432,18 @@ de:
     guidance_item:
       show_less_link: Weniger anzeigen
       show_more_link: Mehr
+    institution_view:
+      dmp_resources_section: DMP-Ressourcen
+      global_resources_section: Globale Ressourcen
+    show:
+      guidance_tab: Hinweise
+      suggested_response_tab: Copy&Paste Antwort
+      example_response_tab: Beispielantwort
+      add_guidance_button: Hinweise hinzufügen
+      add_links_button: Links hinzufügen
+      add_suggested_response_button: Copy&Paste Antwort hinzufügen
+      add_example_response_button: Beispielantwort hinzufügen
+      no_requirements_error: Die DMP-Vorlage, die Sie anpassen möchten, enthält keine Unterpunkte. Eine Vorlage muss mindestens einen Unterpunkt enthalten.
   dashboard:
     show:
       title: Mein Dashboard
@@ -359,16 +487,47 @@ de:
         other: '%{count} Anpassungen'
   institutions:
     edit:
-      contact_email_placeholder: E-Mail
-    form:
-      contact_email_placeholder: E-Mail
-    index:
-      profile: Einrichtungsprofil
-    institutional_resources:
-      action_tooltip: Bearbeiten
-    new:
+      url_placeholder: URL
       contact_info_placeholder: Name
       contact_email_placeholder: E-Mail
+      upload_button: Hochladen
+      logo_tooltip: Empfohlene Größe des Logos 170x60
+    edit_user_roles_inst_admin:
+      edit_user_roles: Benutzerrollen bearbeiten
+    form:
+      url_placeholder: URL
+      url_tooltip: Diese URL wird oben im DMP-Tool rechts neben dem Namen Ihrer Einrichtung erscheinen.
+      contact_info_placeholder: Name
+      contact_email_placeholder: E-Mail
+      logo_tooltip: Logos können im JPEG-, PNG-, JPG- oder GIF-Format vorliegen. Sie sollten etwa 170x60 groß sein. Ihre Größe wird beim Hochladen jedoch angepasst.
+      upload_button: Hochladen
+    index:
+      profile: Einrichtungsprofil
+      resources: Institutionelle Ressourcen
+      hierarchy: Einrichtungshierarchie
+      assign_roles: Rollen zuweisen
+      add_new: Neue Einrichtung hinzufügen
+    institutional_resources:
+      details: Details
+      action: Aktion
+      action_tooltip: Bearbeiten
+      new_button: Neue Ressource erstellen
+    manage_users:
+      all_filter_link: Alle (%{count})
+      resource_editors_filter_link: Ressourcen-Redakteure(%{count})
+      template_editors_filter_link: Vorlagen-Redakteure(%{count})
+      inst_admins_filter_link: Institutionelle Administratoren(%{count})
+      admins_filter_link: DMP-Administratoren(%{count})
+      edit_user_role: Benutzerrolle bearbeiten
+      edit_user_role_tooltip: Benutzerrolle bearbeiten
+      grant_role_button: Rolle zuweisen
+    new:
+      title: Neue Einrichtung
+      url_placeholder: URL
+      contact_info_placeholder: Name
+      contact_email_placeholder: E-Mail
+      logo_tooltip: Empfohlene Größe des Logos 170x60
+      upload_button: Hochladen
     partners_list:
       partner_institutions: Partnereinrichtungen
       intro_html: Partnereinrichtungen können das Tool konfigurieren, um auf eigene Ressourcen und Services zu verweisen, um den Wissenschaftlern zugeschnittene Hilfe anzubieten und Beispielantworten für die Fragen der Forschungsförderer anzubieten. Angehörige der Partnereinrichtungen können sich mit ihrem gewohnten institutionellen Login beim DMP-Tool einloggen. Für weitere Informationen siehe %{link}.
@@ -378,7 +537,22 @@ de:
       name: Name
       shib_enabled: Shibboleth-Login?
       custom_dmp: DMP-Tool angepasst?
+    show:
+      back_link: Zurück
+    update_user_roles_inst_admin:
+      success_notice: Benutzer wurde erfolgreich aktualisiert.
+    update:
+      success_notice: Einrichtung wurde erfolgreich aktualisiert.
   plans:
+    actionable_url:
+      institutional_resources: 'Ressourcen für: %{institution}'
+    create:
+      success_notice: Der Plan wurde erfolgreich erstellt.
+    back_submit_buttons:
+      done_tooltip_html: <p>Bitte vervollständigen Sie Ihren Plan.</p>
+    change_visibility:
+      visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
+      visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispiel-DMPs" angezeigt werden.
     example_response:
       box_size_small: klein
       box_size_medium: mittel
@@ -435,7 +609,6 @@ de:
       sample_plans_tooltip: Fügen Sie einen oder mehrere Musterpläne zu dieser Vorlage hinzu. Geben Sie dazu jeweils den Link zum Plan und einen passenden Namen ein (z.B. "Beispiel für DMPs im Rahmen von Horizon 2020").
     index:
       # Find translation for toggle_status_link in en.rb
-      dmp_templates: DMP-Vorlagen
       all_filter_link: Alle (%{count})
       active_filter_link: Aktiv (%{count})
       inactive_filter_link: Inaktiv (%{count})
@@ -454,13 +627,16 @@ de:
         sein: <ul><li>Öffentlich: jeder kann die Vorlage sehen</li><li>Institutionell:
         nur Nutzer, die über Ihre Einrichtung eingeloggt sind, können die Vorlage sehen</li></ul>'
       new_button: Neue Vorlage erstellen >>
-      overview_link: Übersicht
       delete_link: Löschen
     template_information:
       new_template: Neue DMP-Vorlage erstellen
   resources:
     edit_customization_resource:
+      label_placeholder: Geben Sie eine Bezeichnung für diese Ressource ein
       template: 'Vorlage:'
+      template_tooltip: Dies ist der Name der Vorlage, an der Sie gerade arbeiten.
+    new_customization_resource:
+      label_placeholder: Geben Sie eine Bezeichnung für diese Ressource ein
   resource_contexts:
     customization_resources_list:
       action_tooltip: Bearbeiten
