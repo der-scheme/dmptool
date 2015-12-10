@@ -554,6 +554,7 @@ en:
     form:
       title: Institution Information
       # Find the following translations in en.rb, as they interpolate
+      # application globals:
       # - shib_entity_id_tooltip
       # - shib_domain_id_tooltip
       # - parent_tooltip
@@ -582,11 +583,11 @@ en:
       new_button: Create New Resource
     manage_users:
       all_filter_link: All (%{count})
-      resource_editors_filter_link: Resources Editors(%{count})
-      template_editors_filter_link: Template Editors(%{count})
-      inst_admins_filter_link: Institutional Administrators(%{count})
+      resource_editors_filter_link: Resources Editors (%{count})
+      template_editors_filter_link: Template Editors (%{count})
+      inst_admins_filter_link: Institutional Administrators (%{count})
       inst_reviewers_filter_link: Institutional Reviewers(%{count})
-      admins_filter_link: DMP Administrators(%{count})
+      admins_filter_link: DMP Administrators (%{count})
       role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local,
         institutional, DMP templates</li><li>Resources editor: add/modify DMP template
         customizations, which include links to resources, local help text, suggested

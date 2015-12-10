@@ -418,7 +418,7 @@ de:
       ambiguous_message: Es gibt es mehr als einen Benutzer mit diesem Namen. Bitte wählen Sie den passenden Benutzer aus der Liste aus.
       not_found_message: Der Benutzer konnte nicht gefunden werden.
       already_has_role_message: Dieser Benutzer ist bereits ein %{role}.
-      not_allowed_message: Sie sind nicht dazu berechtigt, diese Rolle zuweisen.
+      not_allowed_message: Sie sind nicht dazu berechtigt, diese Rolle zuzuweisen.
       success_notice: '%{user} wurde als %{role} hinzugefügt.'
     add_authorization_manage_users:
       blank_name_message: Bitte wählen Sie einen Benutzer aus.
@@ -529,7 +529,7 @@ de:
     edit_user_roles_inst_admin:
       user_roles_link: Benutzerrollen
       edit_user_roles: Benutzerrollen bearbeiten
-      current_roles: '%{user} s aktuelle Rollen:'
+      current_roles: "%{user}'s aktuelle Rollen:"
     form:
       title: Information über Einrichtung
       # Find the following translations in en.rb, as they interpolate
@@ -560,10 +560,10 @@ de:
       new_button: Neue Ressource erstellen
     manage_users:
       all_filter_link: Alle (%{count})
-      resource_editors_filter_link: Ressourcen-Redakteure(%{count})
-      template_editors_filter_link: Vorlagen-Redakteure(%{count})
-      inst_admins_filter_link: Institutionelle Administratoren(%{count})
-      admins_filter_link: DMP-Administratoren(%{count})
+      resource_editors_filter_link: Ressourcen-Redakteure (%{count})
+      template_editors_filter_link: Vorlagen-Redakteure (%{count})
+      inst_admins_filter_link: Institutionelle Administratoren (%{count})
+      admins_filter_link: DMP-Administratoren (%{count})
       edit_user_role: Benutzerrolle bearbeiten
       edit_user_role_tooltip: Benutzerrolle bearbeiten
       grant_role_button: Rolle zuweisen
@@ -724,7 +724,7 @@ de:
       add_requirement_link: Unterpunkt hinzufügen
       add_requirement_tooltip_html: Ein Unterpunkt fordert den Wissenschaftler dazu auf, Fragen zu einem bestimmten Aspekt des Datenmanagements zu beantworten.
       template_status: Status der DMP-Vorlage
-      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzern des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie  über &#8220;aktivieren&#8221; sichtbar gemacht werden.
+      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzern des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie über &#8220;aktivieren&#8221; sichtbar gemacht werden.
       cant_delete_template: Diese Vorlage kann nicht gelöscht werden, solange noch Pläne im Tool liegen, die mit ihr erstellt wurden.
     update:
       success_notice: Unterpunkt wurde erfolgreich aktualisiert.
@@ -799,7 +799,7 @@ de:
       save_and_next_button: Speichern und Weiter
       save_button: Antwort speichern
       back_button: Änderungen verwerfen
-      alert_message: Eine leere Antwort kann nicht gespeichert werden. Bitte geben Sie eine gültige Antwor t ein, um fortfahren zu können.
+      alert_message: Eine leere Antwort kann nicht gespeichert werden. Bitte geben Sie eine gültige Antwort ein, um fortfahren zu können.
       alert_message_tooltip: Geben Sie bitte eine gültige Antwort ein.
   resources:
     copy_selected_customization_resource:
@@ -818,7 +818,7 @@ de:
       title: Ressource bearbeiten
       edit_resource:  %{label} Ressource bearbeiten
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
-      text_placeholder: Geben Sie den Text
+      text_placeholder: Geben Sie den Text ein
       value_placeholder: URL
       delete_resource: Ressource löschen
       confirm_delete_prompt: Sind Sie sicher? Diese Ressource wird aus allen Vorlagen und allen Unterpunkten gelöscht werden!
@@ -836,17 +836,17 @@ de:
     new:
       new_resource_for: 'Neue Ressource für: %{institution}'
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
-      text_placeholder: Geben Sie den Text
+      text_placeholder: Geben Sie den Text ein
       value_placeholder: URL
     new_customization_resource:
       new_resource_for: Neue Ressource für %{template}
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
-      text_placeholder: Geben Sie den Text
+      text_placeholder: Geben Sie den Text ein
       value_placeholder: URL
     new_institutional_resource:
       new_resource_for: 'Neue Ressource für: %{institution}'
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
-      text_placeholder: Geben Sie den Text
+      text_placeholder: Geben Sie den Text ein
       value_placeholder: URL
   resource_contexts:
     customization_resources_list:
