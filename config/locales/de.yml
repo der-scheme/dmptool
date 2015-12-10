@@ -140,7 +140,7 @@ de:
         reviewed: Begutachtet
         rejected: Abgelehnt
         revised: Überarbeitet
-        submitted: Eingereicht
+        submitted: Abgeschickt
     requirement:
       group:
         false: Unterpunkt
@@ -152,6 +152,7 @@ de:
         recommended: Empfohlen
       requirement_type:
         date: Datum
+        numeric: numerisch
         text: Text
     requirements_template:
       active:
@@ -238,6 +239,7 @@ de:
       institution: Login
       login: Login
     users:
+      add_token: Neuen Token erstellen
       edit: Mein Profil
       index: Admin
       new: Account anlegen
@@ -282,6 +284,8 @@ de:
       overview: Übersicht über Anpassung
       details: Details der Anpassung
     dashboard_logo_row:
+      non_partner_info: Sie sind als Nicht-Partnereinrichtung eingeloggt.
+      contact_mail: Kontakt %{email}
       institution_logo_tooltip: Logo der Einrichtung
       institution_name: Name der Einrichtung
       contact_admin_link: Kontakt lokaler Admin
@@ -318,6 +322,7 @@ de:
       contact_link: Kontakt
       contact_title: Kontakt
       about_link: About
+      about_title: Über das Datenmanagement-Tool der California Digital Library
     language_switcher:
       locale_name: Deutsch
       currently_chosen: Aktuelle Sprache
@@ -327,7 +332,7 @@ de:
       name_missing: Bitte geben Sie Ihren Namen ein.
       email_missing: Bitte geben Sie Ihre E-Mail-Adresse an.
       message_missing: Bitte geben Sie eine Nachricht ein.
-      email_invalid: Bitte geben Sie eine gültige E-Mail-Adresse an.
+      email_invalid: Geben Sie bitte eine gültige E-Mail-Adresse an.
       success_message: Ihre E-Mail-Nachricht wurde an das DMP-Tool Team geschickt.
       browser_title: Kontakt
       title: Kontakt
@@ -421,13 +426,23 @@ de:
       ambiguous_message: Es gibt es mehr als einen Benutzer mit diesem Namen. Bitte wählen Sie den passenden Benutzer aus der Liste aus.
       not_found_message: Der Benutzer konnte nicht gefunden werden.
       foreign_message: Der ausgewählte Benutzer gehört zu einer anderen Einrichtung.
+      select_role_message: Bitte wählen Sie mindestens eine Rolle zur Zuweisung aus.
+      success_notice: '%{user} wurde aktualisiert.'
   comments:
+    create:
+      success_notice: Kommentar wurde erfolgreich angelegt.
     index_owner_comments:
+      anonymous: Anonymer Benutzer
       delete_link: Löschen
       show_more_link: Mehr
+      show_less_link: Weniger anzeigen
     index_reviewer_comments:
+      anonymous: Anonymer Benutzer
       delete_link: Löschen
       show_more_link: Mehr
+      show_less_link: Weniger anzeigen
+    update:
+      success_notice: Kommentar wurde erfolgreich aktualisiert.
   customizations:
     guidance_item:
       show_less_link: Weniger anzeigen
@@ -435,8 +450,17 @@ de:
     institution_view:
       dmp_resources_section: DMP-Ressourcen
       global_resources_section: Globale Ressourcen
+      institution_resources_section: 'Ressourcen für: %{institution}'
+      template_for_institution_resources_section: '%{template} für die Ressourcen
+        für: %{institution} '
+      requirement_resources_section: Ressourcen für Unterpunkt
+    section_display:
+      edit_link_tooltip: Anpassungen bearbeiten
     show:
+      title: Details der Anpassung
+      template_outline: Vorlage im Überblick
       guidance_tab: Hinweise
+      links_tab: Links
       suggested_response_tab: Copy&Paste Antwort
       example_response_tab: Beispielantwort
       add_guidance_button: Hinweise hinzufügen
@@ -444,6 +468,7 @@ de:
       add_suggested_response_button: Copy&Paste Antwort hinzufügen
       add_example_response_button: Beispielantwort hinzufügen
       no_requirements_error: Die DMP-Vorlage, die Sie anpassen möchten, enthält keine Unterpunkte. Eine Vorlage muss mindestens einen Unterpunkt enthalten.
+      invalid_customization_error: Dies ist keine gültige Anpassung
   dashboard:
     show:
       title: Mein Dashboard
@@ -457,6 +482,9 @@ de:
       plans_i_coown:
         one: '%{count} Plan als Co-Besitzer'
         other: '%{count} Pläne als Co-Besitzer'
+      submitted_plans: '%{count} abgeschickt'
+      removed_plans: '%{count} entfernt'
+      rejected_plans: '%{count} abgelehnt'
       no_plan_under_review: Es sind keine DMPs im Review-Prozess.
       new_plan_button: Neuen DMP erstellen
       plans_for_review: DMPs für meine Begutachtung
@@ -482,19 +510,34 @@ de:
         one: '%{count} öffentliche DMP-Vorlage aus meiner Einrichtung'
         other: '%{count} öffentliche DMP-Vorlagen aus meiner Einrichtung'
       new_template_button: Neue DMP-Vorlage erstellen
+      template_customizations: Anpassungen von DMP-Vorlagen
       customizations:
         one: '%{count} Anpassung'
         other: '%{count} Anpassungen'
+      new_template_customization_button: Neue Anpassung einer DMP-Vorlage erstellen
   institutions:
+    create:
+      success_notice: Einrichtung wurde erfolgreich angelegt.
     edit:
+      info: Information über Einrichtung
+      url_text_placeholder: URL Text
       url_placeholder: URL
       contact_info_placeholder: Name
       contact_email_placeholder: E-Mail
       upload_button: Hochladen
       logo_tooltip: Empfohlene Größe des Logos 170x60
     edit_user_roles_inst_admin:
+      user_roles_link: Benutzerrollen
       edit_user_roles: Benutzerrollen bearbeiten
+      current_roles: '%{user} s aktuelle Rollen:'
     form:
+      title: Information über Einrichtung
+      # Find the following translations in en.rb, as they interpolate
+      # application globals:
+      # - shib_entity_id_tooltip
+      # - shib_domain_id_tooltip
+      # - parent_tooltip
+      url_text_placeholder: URL Text
       url_placeholder: URL
       url_tooltip: Diese URL wird oben im DMP-Tool rechts neben dem Namen Ihrer Einrichtung erscheinen.
       contact_info_placeholder: Name
@@ -503,14 +546,17 @@ de:
       upload_button: Hochladen
     index:
       profile: Einrichtungsprofil
+      info: Information über Einrichtung
       resources: Institutionelle Ressourcen
       hierarchy: Einrichtungshierarchie
       assign_roles: Rollen zuweisen
       add_new: Neue Einrichtung hinzufügen
     institutional_resources:
+      headline: 'Verfügbare Ressourcen für: %{institution}'
       details: Details
       action: Aktion
       action_tooltip: Bearbeiten
+      no_resources_info: 'Es gibt im Moment keine verfügbaren Ressourcen für: %{institution}'
       new_button: Neue Ressource erstellen
     manage_users:
       all_filter_link: Alle (%{count})
@@ -523,6 +569,8 @@ de:
       grant_role_button: Rolle zuweisen
     new:
       title: Neue Einrichtung
+      info: Information über Einrichtung
+      url_text_placeholder: URL Text
       url_placeholder: URL
       contact_info_placeholder: Name
       contact_email_placeholder: E-Mail
@@ -543,33 +591,114 @@ de:
       success_notice: Benutzer wurde erfolgreich aktualisiert.
     update:
       success_notice: Einrichtung wurde erfolgreich aktualisiert.
+      failure_notice: Es ist ein Fehler aufgetreten.
   plans:
     actionable_url:
+      general_resources: Allgemeine Ressourcen
       institutional_resources: 'Ressourcen für: %{institution}'
+      customized_for_institution_resources: '%{template} für die Ressourcen für: %{institution} '
     create:
-      success_notice: Der Plan wurde erfolgreich erstellt.
+      # Also find some translations in en.rb
+      cant_reassign_owner_error: Die ausgewählte Benutzer %{owner} ist der Besitzer des Plans. Ein Besitzer kann nicht %{description} des gleichen Plans sein.
+      success_notice: Plan wurde erfolgreich erstellt.
     back_submit_buttons:
       done_tooltip_html: <p>Bitte vervollständigen Sie Ihren Plan.</p>
     change_visibility:
       visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
       visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispiel-DMPs" angezeigt werden.
+      visibility_private: Privat (nur Besitzer und Mitbesitzer)
+      visibility_unit: Nur innerhalb Ihrer Einrichtung / Untereinrichtung
+    delete_coowner:
+      success_notice: Die ausgewählte Mitbesitzer dieses Plans wurde erfolgreich gelöscht
+    destroy:
+      coowner_not_privileged_error: Ein Mitbesitzer kann den Plan nicht löschen.
+      success_notice: Der Plan wurde erfolgreich gelöscht.
+    details:
+      dmp_details: Details des DMP
+      edit_instructions: Indem Sie auf einen Abschnitt klicken, können Sie ihn bearbeiten.
+      complete_icon_meaning:  = Fertig
+      mandatory_icon_meaning:  = Verpflichtend
+      template_outline: Vorlage im Überblick
+      instructions: Anleitung
+      links: Links
+      suggested_response: Copy&Paste Antwort
+      example_response: Beispielantwort
+      mandatory: (Verpflichtend)
+      preview_button: Vorschau auf DMP >>
+      missing_requirements_error: Die DMP-Vorlage, die Sie anpassen möchtne, hat keine Anforderungen. Eine Vorlage muss mindestens einen Unterpunkt enthalten. "%{template}" muss berichtigt werden, bevor Sie mit der Anpassung fortfahren können.
     example_response:
+      box_size: 'Kastengröße:'
       box_size_small: klein
       box_size_medium: mittel
       box_size_full: voll
+      guidance: Hinweise
+      institution_customization_resources: 'Ressourcen für: %{institution}'
+      template_customization_resources: '%{template} für die Ressourcen für: %{institution} '
+    form:
+      title: Übersicht über DMP
+      plan_overview_link: Übersicht über DMP
+      selected_requirement_template_name: DMP-Vorlage
+      copy_of: Kopie von %{plan}
+      solicitation_identifier_tooltip: Nummer oder Identifier für den Call, in dessen Rahmen der Projektantrag und DMP eingereicht werden.
+      submission_deadline_tooltip: Einreichungsfrist für den Projektantrag, für den dieser DMP geschrieben wird.
+      visibility_tooltip_html: 'Drei Sichtbarkeitsoptionen: <ul><li>Öffentlich: Jeder
+        kann den Plan anschauen, kopieren und herunterladen.</li><li>Institutionell:
+        Jeder, der über Ihre Einrichtung angemeldet ist, kann den Plan anschauen,
+        kopieren und herunterladen.</li><li>Privat: Nur Besitzer und Mitbesitzer können
+        den Plan anschauen, kopieren und herunterladen.</li></ul>'
+      save_and_next: Speichern und Weiter >>
+      owner_html: <span>Besitzer:</span> <strong class="blue">%{owner},</strong>
+      coowners: 'Bestehende Mitbesitzer:'
+      remove_coowner_link: Mitbesitzer entfernen
+      current_status: Aktueller Status
+      show_history_link: Verlauf anzeigen
+      hide_history_link: Verlauf ausblenden
+      view_comments_link: Anschauen
+      hide_comments_link: Verbergen
+      no_comments: Es liegen derzeit keine Kommentare vor.
+      add_comment_button: Kommentare hinzufügen
+      owner_comments: Kommentare des Besitzers
+      plan_visibility_html: Dieser DMP ist <strong class="blue">%{visibility}</strong>
+      change_settings_button: Einstellungen ändern
+      actions: Mögliche Aktionen
+      preview_plan_link: Vorschau auf DMP
+      submit_plan_link: DMP abschicken
+      delete_plan_link: DMP löschen
     generic_table:
       funder_template_link: Vorlage
+      download: Herunterladen
     guidance:
+      box_size: 'Kastengröße:'
       box_size_small: klein
       box_size_medium: mittel
       box_size_full: voll
+      guidance: Hinweise
+      additional_help: 'Zusätzliche Hilfe für: %{institution}'
     index:
       title: Meine DMPs
+      filter_all_link: Alle (%{count})
+      filter_owned_link: Als Besitzer (%{count})
+      filter_coowned_link: Als Mitbesitzer (%{count})
+      filter_approved_link: Für gut befunden (%{count})
+      filter_submitted_link: Abgeschickt (%{count})
       overview_link: Übersicht
+      details_link: Details
+      share_link: Teilen
+      preview_link: Vorschau
+      copy_link: Kopieren
+      export_pdf_link: Exportiere als PDF
+      export_docx_link: Exportiere als DOCX
       delete_link: Löschen
       new_plan_button: Neuen DMP erstellen
     perform_review:
       title: DMPs begutachten
+      no_comments: Es liegen derzeit keine Kommentare vor.
+      add_comment_button: Kommentare hinzufügen
+    preview:
+      title: Vorschau auf DMP
+      pdf_button: Exportiere als PDF
+      docx_button: Exportiere als DOCX
+      print_button: Drucken
     public:
       browser_title: Beispiel-DMPs
       title: Beispiel-DMPs
@@ -585,6 +714,20 @@ de:
       box_size_full: voll
     template_information:
       title: Neuen DMP erstellen
+  requirements:
+    index:
+      title: Details der DMP-Vorlage
+      please_wait: Einen Moment bitte...
+      template_outline: Vorlage im Überblick
+      add_group_link: Gruppe hinzufügen
+      add_group_tooltip_html: Ähnliche Unterpunkte könnenzu einer &#8220;Gruppe&#8221; zusammengefasst werden.
+      add_requirement_link: Unterpunkt hinzufügen
+      add_requirement_tooltip_html: Ein Unterpunkt fordert den Wissenschaftler dazu auf, Fragen zu einem bestimmten Aspekt des Datenmanagements zu beantworten.
+      template_status: Status der DMP-Vorlage
+      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzern des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie  über &#8220;aktivieren&#8221; sichtbar gemacht werden.
+      cant_delete_template: Diese Vorlage kann nicht gelöscht werden, solange noch Pläne im Tool liegen, die mit ihr erstellt wurden.
+    update:
+      success_notice: Unterpunkt wurde erfolgreich aktualisiert.
   requirements_templates:
     form:
       template_overview: ÜBERSICHT DMP-VORLAGE
@@ -602,10 +745,12 @@ de:
     additional_information_fields:
       link_label_placeholder: Bezeichnung des Links
       link_url_placeholder: URL des Links
+      remove_link: Entfernen
       funder_links_tooltip: Fügen Sie Links zu Seiten des Drittmittelgebers hinzu, die als weitere Hilfestellung zu dieser Vorlage dienen können.
     sample_plan_fields:
       plan_name_placeholder: Name des Plans
       plan_url_placeholder: URL des Plans
+      remove_link: Entfernen
       sample_plans_tooltip: Fügen Sie einen oder mehrere Musterpläne zu dieser Vorlage hinzu. Geben Sie dazu jeweils den Link zum Plan und einen passenden Namen ein (z.B. "Beispiel für DMPs im Rahmen von Horizon 2020").
     index:
       # Find translation for toggle_status_link in en.rb
@@ -630,13 +775,79 @@ de:
       delete_link: Löschen
     template_information:
       new_template: Neue DMP-Vorlage erstellen
+      copy_template: Kopiere eine bereits vorhandene DMP-Vorlage
+      copy_template_explanation: Wählen Sie eine bereits vorhandene Vorlage aus und editieren Sie anschließend die Infomationen zur Vorlage und die Details der Vorlage.
+      copy_template_button: Vorlage kopieren
+      copy_template_no_templates: Es gibt keine Vorlagen, die bearbeitet werden können.
+      new_template_explanation: Geben Sie die grundlegenden und optionalen Informationen zur neuen Vorlage ein und bearbeiten Sie die Details der Vorlage.
+      new_template_button: Neue Vorlage erstellen
+    create:
+      success_notice: DMP-Vorlage wurde erfolgreich angelegt.
+    update:
+      success_notice: DMP Template wurde erfolgreich aktualisiert.
+    destroy:
+      success_notice: DMP-Vorlage wurde gelöscht.
+    copy_existing_template:
+      copy_of:
+        one: Kopie von %{name}
+        other: Kopie %{count} von %{name}
+      success_notice: Vorlage wurde erfolgreich angelegt.
+    toggle_active:
+      failure_message: Die DMP-Vorlage "%{template}", die Sie aktivieren möchten, hat keine Unterpunkte. Die Vorlage muss mindestens einen Unterpunkt enthalten, um aktiviert werden zu können.
+  responses:
+    form:
+      save_and_next_button: Speichern und Weiter
+      save_button: Antwort speichern
+      back_button: Änderungen verwerfen
+      alert_message: Eine leere Antwort kann nicht gespeichert werden. Bitte geben Sie eine gültige Antwor t ein, um fortfahren zu können.
+      alert_message_tooltip: Geben Sie bitte eine gültige Antwort ein.
   resources:
+    copy_selected_customization_resource:
+      already_in_context_error: Die ausgewählte Ressource ist bereits in Ihrem Kontext.
+      success_notice: Ressource wurde erfolgreich hinzugefügt.
+      unknown_error: Diese Ressource konnte aufgrund eines Problems nicht hinzugefügt werden.
+    create:
+      success_notice: Ressource wurde erfolgreich angelegt.
+    create_customization_resource:
+      malformed_url_error: 'Die URL: %{url} ist nicht gültig.'
+      success_notice: Ressource wurde erfolgreich angelegt.
+    destroy:
+      success_notice: Ressource wurde erfolgreich entfernt.
+      error_message: Diese Ressource konnte aufgrund eines Problems nicht entfernt werden.
     edit_customization_resource:
-      label_placeholder: Geben Sie eine Bezeichnung für diese Ressource ein
+      title: Ressource bearbeiten
+      edit_resource:  %{label} Ressource bearbeiten
+      label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      text_placeholder: Geben Sie den Text
+      value_placeholder: URL
+      delete_resource: Ressource löschen
+      confirm_delete_prompt: Sind Sie sicher? Diese Ressource wird aus allen Vorlagen und allen Unterpunkten gelöscht werden!
+      resource_shown_in: 'Diese Ressource wird angezeigt bei:'
+      resource_global: Diese Ressource ist global.
+      templates: 'Die folgenden Vorlagen:'
       template: 'Vorlage:'
+      unlink: Verknüpfung aufheben
       template_tooltip: Dies ist der Name der Vorlage, an der Sie gerade arbeiten.
+    edit_institutional_resource:
+      label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      text_placeholder: Geben Sie den Text
+      value_placeholder: URL
+      delete_resource: Ressource löschen
+    new:
+      new_resource_for: 'Neue Ressource für: %{institution}'
+      label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      text_placeholder: Geben Sie den Text
+      value_placeholder: URL
     new_customization_resource:
-      label_placeholder: Geben Sie eine Bezeichnung für diese Ressource ein
+      new_resource_for: Neue Ressource für %{template}
+      label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      text_placeholder: Geben Sie den Text
+      value_placeholder: URL
+    new_institutional_resource:
+      new_resource_for: 'Neue Ressource für: %{institution}'
+      label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      text_placeholder: Geben Sie den Text
+      value_placeholder: URL
   resource_contexts:
     customization_resources_list:
       action_tooltip: Bearbeiten
