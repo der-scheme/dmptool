@@ -739,16 +739,20 @@ en:
         if your institution has enabled the “Review” functionality.)</li><li>Reviewed:
         Your DMP which was submitted for Informal review and has been reviewed by
         the Institutional Reviewer.</li></ul>'
-      filter_visibility_parent_institution_tooltip: "Four possible states:<ul><li>Private (red lock): 
-        only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged 
-        in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within 
-        unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy 
-        and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download 
-        the plan. Your DMP will appear on the %{public_dmps_link} page of this site.</li></ul>"
-      filter_visibility_own_institution_tooltip: 'Four possible states:<ul><li>Private (red lock): only owners 
-        and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your 
-        institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, 
-        copy and or download the plan. Your DMP will appear on the %{public_dmps_link} page of this site.</li></ul>'
+      filter_visibility_parent_institution_tooltip: 'Four possible states:<ul><li>Private
+        (red lock): only owners and co-owners can view the plan.</li><li>Shared with
+        institution (yellow key): anyone logged in from your entire institution hierarchy
+        can view, copy and or download the plan.</li><li>Shared within unit (hierarchy
+        icon): anyone logged in from your institution or from a parent institution
+        can view, copy and or download the plan. </li><li>Share publicly (green people):
+        anyone can view, copy and or download the plan. Your DMP will appear on the
+        %{public_dmps_link} page of this site.</li></ul>'
+      filter_visibility_own_institution_tooltip: 'Four possible states:<ul><li>Private
+        (red lock): only owners and co-owners can view the plan.</li><li>Shared with
+        institution (yellow key): anyone logged in from your institution can view,
+        copy and or download the plan.</li><li>Share publicly (green people): anyone
+        can view, copy and or download the plan. Your DMP will appear on the %{public_dmps_link}
+        page of this site.</li></ul>'
       public_dmps_link: Public DMPs
       overview_link: Overview
       details_link: Details
