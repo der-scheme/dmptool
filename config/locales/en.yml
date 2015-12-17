@@ -32,9 +32,9 @@ en:
         visibility: Visibility
       enumeration:
         default: (set default)
-        id: Enumeration ID
-        position: Position
-        requirement_id: Requirement
+        id: Enumeration ID            # not taken from source
+        position: Position            # not taken from source
+        requirement_id: Requirement   # not taken from source
         value: Item Value
       institution:
         ancestry: Ancestry
@@ -51,12 +51,12 @@ en:
         url_text: Institution URL Text
       label:
         desc: Unit of Measure
-        id: Label ID
-        position: Position
-        requirement_id: Requirement
+        id: Label ID                  # not taken from source
+        position: Position            # not taken from source
+        requirement_id: Requirement   # not taken from source
       plan:
         current_plan_state_id: Current Status
-        id: Plan ID
+        id: Plan ID   # Guessed (not taken from source)
         name: DMP Title
         owner: Owner
         requirements_template_id: DMP Template
@@ -64,10 +64,10 @@ en:
         submission_deadline: Submission Deadline
         visibility: Visibility
       requirement:
-        ancestry: Ancestry
-        default: (set default)
-        group: Group
-        id: Requirement ID
+        ancestry: Ancestry    # not taken from source
+        default: (set default)    # not necessarily taken from the correct place
+        group: Group          # not taken from source
+        id: Requirement ID    # not taken from source
         obligation: Obligation
         position: Order
         requirement_type: Question Type
@@ -84,7 +84,7 @@ en:
         visibility: Visibility
       resource:
         id: ID
-        label: Resource Label
+        label: Resource Label     # not sure if taken from source, change to URL Label if not
         resource_type: Resource Type
         text: Details
         value: URL
@@ -100,12 +100,12 @@ en:
       response:
         date_value: Date Value
         enumeration_id: Please Select One
-        id: Response ID
+        id: Response ID                       # not taken from source
         label_id: Unit of Measure
-        lock_version: Lock Version
+        lock_version: Lock Version            # not taken from source
         numeric_value: Value
-        plan_id: DMP
-        requirement_id: Requirement
+        plan_id: DMP                          # not taken from source
+        requirement_id: Requirement           # not taken from source
         text_value: Your Response
       sample_plan:
         id: Sample Plan
@@ -733,6 +733,21 @@ en:
         if your institution has enabled the “Review” functionality.)</li><li>Reviewed:
         Your DMP which was submitted for Informal review and has been reviewed by
         the Institutional Reviewer.</li></ul>'
+      filter_visibility_parent_institution_tooltip: 'Four possible states:<ul><li>Private
+        (red lock): only owners and co-owners can view the plan.</li><li>Shared with
+        institution (yellow key): anyone logged in from your entire institution hierarchy
+        can view, copy and or download the plan.</li><li>Shared within unit (hierarchy
+        icon): anyone logged in from your institution or from a parent institution
+        can view, copy and or download the plan. </li><li>Share publicly (green people):
+        anyone can view, copy and or download the plan. Your DMP will appear on the
+        %{public_dmps_link} page of this site.</li></ul>'
+      filter_visibility_own_institution_tooltip: 'Four possible states:<ul><li>Private
+        (red lock): only owners and co-owners can view the plan.</li><li>Shared with
+        institution (yellow key): anyone logged in from your institution can view,
+        copy and or download the plan.</li><li>Share publicly (green people): anyone
+        can view, copy and or download the plan. Your DMP will appear on the %{public_dmps_link}
+        page of this site.</li></ul>'
+      public_dmps_link: Public DMPs
       overview_link: Overview
       details_link: Details
       share_link: Share
