@@ -31,6 +31,8 @@ de:
         value: Kommentar
         visibility: Sichtbarkeit
       enumeration:
+        default: (Grundeinstellung)
+        id: ID für Aufzählung
         position: Position
         requirement_id: Unterpunkt
         value: Wert
@@ -49,6 +51,7 @@ de:
         url_text: Text des Links zur Einrichtung
       label:
         desc: Maßeinheit
+        id: ID für Bezeichnung
         position: Position
         requirement_id: Unterpunkt
       plan:
@@ -57,10 +60,12 @@ de:
         name: Titel des DMPs
         owner: Besitzer
         requirements_template_id: DMP-Vorlage
+        solicitation_identifier: Bewerbungs-/Einreichungsnummer
         submission_deadline: Abgabefrist
         visibility: Sichtbarkeit
       requirement:
         ancestry: Abstammung
+        default: (Grundeinstellung)
         group: Gruppe
         id: Unterpunkt-ID
         obligation: Verpflichtung
@@ -74,7 +79,7 @@ de:
         end_date: Ende am
         institution_id: Einrichtung
         name: Name der Vorlage
-        review_type: Option für Begutachtung
+        review_type: Optionen für Feedback
         start_date: Start am
         visibility: Sichtbarkeit
       resource:
@@ -91,11 +96,13 @@ de:
         requirement_id: Unterpunkt
         requirements_template_id: Zugrundeliegende DMP-Vorlage
         resource_id: Ressource
-        review_type: Art der Begutachtung
+        review_type: Art des Feedbacks
       response:
+        date_value: Datumswert
         enumeration_id: Bitte auswählen
         id: Antwort-ID
         label_id: Maßeinheit
+        lock_version: Lock Version
         numeric_value: Wert
         plan_id: DMP
         requirement_id: Unterpunkt
@@ -113,6 +120,7 @@ de:
         last_name: Nachname
         login_id: Benutzername
         orcid_id: ORCID
+        prefs: Prefs
         role_names: Aktuelle Rolle
         token: Token
         token_expiration: Ablauf des Tokens
@@ -120,10 +128,10 @@ de:
     comment:
       comment_type:
         owner: Besitzer
-        reviewer: Reviewer
+        reviewer: Ansprechpartner für Feedback
       visibility:
         owner: Besitzer
-        reviewer: Reviewer
+        reviewer: Ansprechpartner für Feedback
     plan:
       visibility:
         institutional: Institutionell
@@ -137,10 +145,10 @@ de:
         deleted: Gelöscht
         inactive: Inaktiv
         new: Neu
-        reviewed: Begutachtet
-        rejected: Abgelehnt
+        reviewed: Feedback gegeben
+        rejected: Überarbeitung empfohlen
         revised: Überarbeitet
-        submitted: Abgeschickt
+        submitted: Feedback ausstehend
     requirement:
       group:
         false: Unterpunkt
@@ -152,6 +160,7 @@ de:
         recommended: Empfohlen
       requirement_type:
         date: Datum
+        enum: enum
         numeric: numerisch
         text: Text
     requirements_template:
@@ -159,9 +168,9 @@ de:
         false: Inaktiv
         true: Aktiv
       review_type:
-        formal_review: Begutachtung erforderlich
-        informal_review: Informelles Review möglich
-        no_review: Keine Begutachtung nötig
+        formal_review: Feedback erforderlich
+        informal_review: Unverbindliches Feedback kann angefordert werden
+        no_review: Feedback muss nicht angefordert werden
       visibility:
         institutional: institutionell
         public: öffentlich
@@ -170,12 +179,12 @@ de:
         actionable_url: Links
         help_text: Hinweise
         example_response: Beispielantwort
-        suggested_response: Copy&Paste Antwort
+        suggested_response: Unverbindliche Vorlage
     resource_context:
       review_type:
-        formal_review: Begutachtung erforderlich
-        informal_review: Informelles Review möglich
-        no_review: Keine Begutachtung nötig
+        formal_review: Feedback erforderlich
+        informal_review: Unverbindliches Feedback kann angefordert werden
+        no_review: Feedback muss nicht angefordert werden
   globals:
     messages:
       prompt:
@@ -220,7 +229,7 @@ de:
       index: Meine DMPs
       preview: Vorschau
       public: Beispiel-DMPs
-      review_dmps: DMPs begutachten
+      review_dmps: Feedback zu DMPs geben
       show:
         docx: Exportiere als DOCX
         pdf: Exportiere als PDF
@@ -242,7 +251,7 @@ de:
       add_token: Neuen Token erstellen
       edit: Mein Profil
       index: Admin
-      new: Account anlegen
+      new: Einen Account anlegen
       remove_token: Token entfernen
   shared:
     button_button:
@@ -275,6 +284,8 @@ de:
   layouts:
     application:
       title: '%{title_text}: DMP-Tool'
+    clean:
+      title: 'Dmp-Tool2: %{title_text}'
     dashboard_create_dmp_submenu:
       overview: Übersicht über DMP
       details: Details des DMP
@@ -426,6 +437,7 @@ de:
       ambiguous_message: Es gibt es mehr als einen Benutzer mit diesem Namen. Bitte wählen Sie den passenden Benutzer aus der Liste aus.
       not_found_message: Der Benutzer konnte nicht gefunden werden.
       foreign_message: Der ausgewählte Benutzer gehört zu einer anderen Einrichtung.
+      already_has_role_message: Dem ausgewählten Benutzer wurde bereits eine Rolle zugewiesen. Sie können auf "Benutzer bearbeiten" klicken, um weitere Rollen zuzuweisen.
       select_role_message: Bitte wählen Sie mindestens eine Rolle zur Zuweisung aus.
       success_notice: '%{user} wurde aktualisiert.'
   comments:
@@ -461,11 +473,11 @@ de:
       template_outline: Vorlage im Überblick
       guidance_tab: Hinweise
       links_tab: Links
-      suggested_response_tab: Copy&Paste Antwort
+      suggested_response_tab: Unverbindliche Vorlage
       example_response_tab: Beispielantwort
       add_guidance_button: Hinweise hinzufügen
       add_links_button: Links hinzufügen
-      add_suggested_response_button: Copy&Paste Antwort hinzufügen
+      add_suggested_response_button: Unverbindliche Vorlage hinzufügen
       add_example_response_button: Beispielantwort hinzufügen
       no_requirements_error: Die DMP-Vorlage, die Sie anpassen möchten, enthält keine Unterpunkte. Eine Vorlage muss mindestens einen Unterpunkt enthalten.
       invalid_customization_error: Dies ist keine gültige Anpassung
@@ -474,7 +486,7 @@ de:
       title: Mein Dashboard
       overview: Übersicht
       my_plans: Meine DMPs
-      my_plans_under_review_html: 'Meine DMPs im Review-Prozess <span style="font-weight:
+      my_plans_under_review_html: 'Meine DMPs im Feedback-Prozess <span style="font-weight:
         normal">(wo zutreffend)</span>'
       plans_i_own:
         one: '%{count} Plan als Besitzer'
@@ -482,21 +494,21 @@ de:
       plans_i_coown:
         one: '%{count} Plan als Co-Besitzer'
         other: '%{count} Pläne als Co-Besitzer'
-      submitted_plans: '%{count} abgeschickt'
+      submitted_plans: '%{count} Feedback ausstehend'
       removed_plans: '%{count} entfernt'
-      rejected_plans: '%{count} abgelehnt'
-      no_plan_under_review: Es sind keine DMPs im Review-Prozess.
+      rejected_plans: '%{count} Überarbeitung empfohlen'
+      no_plan_under_review: Es befinden sich keine Pläne im Feedback-Prozess.
       new_plan_button: Neuen DMP erstellen
-      plans_for_review: DMPs für meine Begutachtung
+      plans_for_review: DMPs, für die Feedback angefordert wurde
       review_submitted_plans:
         one: '%{count} DMP Begutachtung ausstehend'
-        other: '%{count} DMPs Begutachtungen ausstehend'
+        other: '%{count} DMPs Feedback ausstehend'
       review_approved_plans:
         one: '%{count} DMP für gut befunden'
         other: '%{count} DMPs für gut befunden'
       review_rejected_plans:
-        one: '%{count} DMP abgelehnt'
-        other: '%{count} DMPs abgelehnt'
+        one: '%{count} DMP - Überarbeitung empfohlen'
+        other: '%{count} DMPs - Überarbeitung empfohlen'
       templates: DMP-Vorlagen
       within_my_institution: Innerhalb meiner Einrichtung
       funder_requirements: Geteilte DMP-Vorlagen
@@ -519,7 +531,7 @@ de:
     create:
       success_notice: Einrichtung wurde erfolgreich angelegt.
     edit:
-      info: Information über Einrichtung
+      info: Information über die Einrichtung
       url_text_placeholder: URL Text
       url_placeholder: URL
       contact_info_placeholder: Name
@@ -531,7 +543,7 @@ de:
       edit_user_roles: Benutzerrollen bearbeiten
       current_roles: "%{user}'s aktuelle Rollen:"
     form:
-      title: Information über Einrichtung
+      title: Information über die Einrichtung
       # Find the following translations in en.rb, as they interpolate
       # application globals:
       # - shib_entity_id_tooltip
@@ -542,6 +554,7 @@ de:
       url_tooltip: Diese URL wird oben im DMP-Tool rechts neben dem Namen Ihrer Einrichtung erscheinen.
       contact_info_placeholder: Name
       contact_email_placeholder: E-Mail
+      contact_tooltip: Ansprechpartner / Einrichtung, an die sich Planersteller bei Fragen wenden können. Diese Information wird oben im DMP-Tool erscheinen, unter der URL der Einrichtung.
       logo_tooltip: Logos können im JPEG-, PNG-, JPG- oder GIF-Format vorliegen. Sie sollten etwa 170x60 groß sein. Ihre Größe wird beim Hochladen jedoch angepasst.
       upload_button: Hochladen
     index:
@@ -553,6 +566,7 @@ de:
       add_new: Neue Einrichtung hinzufügen
     institutional_resources:
       headline: 'Verfügbare Ressourcen für: %{institution}'
+      visibility_info_html: Institutionelle Ressourcen werden eingeloggten Nutzern der Einrichtung bei <strong>jeder DMP-Vorlage</strong> angezeigt werden.
       details: Details
       action: Aktion
       action_tooltip: Bearbeiten
@@ -563,7 +577,15 @@ de:
       resource_editors_filter_link: Ressourcen-Redakteure (%{count})
       template_editors_filter_link: Vorlagen-Redakteure (%{count})
       inst_admins_filter_link: Institutionelle Administratoren (%{count})
+      inst_reviewers_filter_link: Ansprechpartner für Feedback (%{count})
       admins_filter_link: DMP-Administratoren (%{count})
+      role_tooltip_html: 'Mögliche Rollen sind:<ul><li>Vorlagen-Redakteur: Vorlagen
+        erstellen</li><li>Ressourcen-Redakteur: DMP-Vorlagen anpassen, indem Links
+        zu Ressourcen, lokalen Hilfetexten, Beispielantworten und unverbindlichen
+        Vorlagen eingebunden werden.</li><li>Ansprechpartner für Feedback: Geben Sie
+        formloses oder spezifischeres Feedback zu Datenmanagementplänen.</li><li>Institutioneller
+        Administrator: Ernennen Sie weitere institutionelle Administratoren; beinhaltet
+        alle bereits genannten Rollen</li></ul>'
       edit_user_role: Benutzerrolle bearbeiten
       edit_user_role_tooltip: Benutzerrolle bearbeiten
       grant_role_button: Rolle zuweisen
@@ -600,9 +622,12 @@ de:
     create:
       # Also find some translations in en.rb
       cant_reassign_owner_error: Die ausgewählte Benutzer %{owner} ist der Besitzer des Plans. Ein Besitzer kann nicht %{description} des gleichen Plans sein.
-      success_notice: Plan wurde erfolgreich erstellt.
+      success_notice: Plan wurde erfolgreich angelegt.
     back_submit_buttons:
+      submit_for_review_button: Feedback anfordern
+      review_not_defined: Es gibt keine Feedbackmöglichkeit bei dieser DMP-Vorlage.
       done_tooltip_html: <p>Bitte vervollständigen Sie Ihren Plan.</p>
+      submit_for_review_tooltip_html: <p>Fordern Sie ein unverbindliches Feedback zum Plan durch Ansprechpartner Ihrer Einrichtung an.</p>
     change_visibility:
       visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
       visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispiel-DMPs" angezeigt werden.
@@ -619,9 +644,9 @@ de:
       complete_icon_meaning:  = Fertig
       mandatory_icon_meaning:  = Verpflichtend
       template_outline: Vorlage im Überblick
-      instructions: Anleitung
+      instructions: Worum geht es in diesem Abschnitt?
       links: Links
-      suggested_response: Copy&Paste Antwort
+      suggested_response: Unverbindliche Vorlage
       example_response: Beispielantwort
       mandatory: (Verpflichtend)
       preview_button: Vorschau auf DMP >>
@@ -653,6 +678,7 @@ de:
       current_status: Aktueller Status
       show_history_link: Verlauf anzeigen
       hide_history_link: Verlauf ausblenden
+      reviewer_comments: Kommentare der Ansprechpartner Ihrer Einrichtung
       view_comments_link: Anschauen
       hide_comments_link: Verbergen
       no_comments: Es liegen derzeit keine Kommentare vor.
@@ -674,13 +700,32 @@ de:
       box_size_full: voll
       guidance: Hinweise
       additional_help: 'Zusätzliche Hilfe für: %{institution}'
+    html_render:
+      no_owner: '[keine Angabe]'
+      no_si: '[keine Angabe]'
     index:
       title: Meine DMPs
       filter_all_link: Alle (%{count})
       filter_owned_link: Als Besitzer (%{count})
       filter_coowned_link: Als Mitbesitzer (%{count})
       filter_approved_link: Für gut befunden (%{count})
-      filter_submitted_link: Abgeschickt (%{count})
+      filter_submitted_link: Feedback ausstehend (%{count})
+      filter_committed_link: Fertig (%{count})
+      filter_rejected_link: Überarbeitung empfohlen (%{count})
+      filter_reviewed_link: Feedback gegeben (%{count})
+      filter_tooltip_html: '<ul><li>Alle: Alle DMPs, bei denen Sie Besitzer oder Mitbesitzer
+        sind.</li><li>Als Besitzer: DMPs, die Sie selbst angelegt haben.</li><li>Als
+        Mitbesitzer: DMPs anderer Personen, die Sie als Mitbesitzer hinzugefügt haben.</li><li>Für
+        gut befunden: Ihr DMP erhielt von den Ansprechpartner Ihrer Einrichtung ein
+        positives Feedback (nur zutreffend wenn Ihre Einrichtung die &#8220;Feedback&#8221;
+        Funktion anbietet.)</li><li>Feedback ausstehend: Sie haben die Ansprechpartner
+        in Ihrer Einrichtung um Feedback gebeten (nur zutreffend wenn Ihre Einrichtung
+        die &#8220;Feedback&#8221; Funktion anbietet.)</li><li>Fertiggestellt: Nachdem
+        Sie auf der DMP-Vorschau-Seite auf Fertig geklickt haben, wird Ihr Plan als
+        fertiggestellt markiert.</li><li>Überarbeitung empfohlen: Die Ansprechpartner
+        in Ihrer Einrichtung haben eine Überarbeitung des Plans empfohlen (nur zutreffend
+        wenn Ihre Einrichtung die &#8220;Feedback&#8221; Funktion anbietet.)</li><li>Feedback
+        erfolgt: Ihr DMP, bei dem Sie um Feedback gebeten haben, wurde durchgesehen.</li></ul>'
       overview_link: Übersicht
       details_link: Details
       share_link: Teilen
@@ -691,30 +736,85 @@ de:
       delete_link: Löschen
       new_plan_button: Neuen DMP erstellen
     perform_review:
-      title: DMPs begutachten
+      title: Feedback zu DMPs geben
+      perform_review: Feedback geben
       no_comments: Es liegen derzeit keine Kommentare vor.
       add_comment_button: Kommentare hinzufügen
+      review_decision: 'Feedback:'
+      plan_state_html: <strong>Der Plan hat den Status <span class ="blue">%{state}</span></strong>
+      approve_button: Für gut befunden
+      reject_button: Überarbeitung empfohlen
+      reviewed_button: Feedback zum Plan gegeben
+    plan_states_history:
+      status_change_html: |
+        <strong>%{user}</strong> auf den Status <strong class="blue">%{state}</strong> setzen
     preview:
       title: Vorschau auf DMP
       pdf_button: Exportiere als PDF
       docx_button: Exportiere als DOCX
       print_button: Drucken
+      change_visibility_button: Einstellungen ändern
+      visibility_instructions_html: 'Hinweis: Wenn bei der Sichtbarkeit "Öffentlich"
+        eingestellt ist, wird Ihr DMP auf der Seite <a href="/public_dmps">Public
+        DMPs</a> erscheinen. Er wird herunterladbar und dublizierbar sein.'
+      plan_visibility_html: Dieser DMP ist <strong class="blue">%{visibility}</strong>
     public:
       browser_title: Beispiel-DMPs
       title: Beispiel-DMPs
       description_html: <p>Die hier aufgeführten Pläne sind von Nutzern, die ihre Pläne mit der Öffentlichkeit geteilt haben. Sie wurden hierfür nicht separat auf ihre Qualität und Vollständigkeit geprüft und unterscheiden sich dadurch von den Musterplänen.</p>
+      institutional_dmps: Institutionelle DMPs
+    public_dmps:
+      description_html: <p>Liste mit Beispiel-DMPs von Nutzern des DMP-Tool.</p>
     public_dmps_no_result:
       funder_template_link: Vorlage
+      download: Herunterladen
       no_results: Kein Ergebnisse gefunden
+    reject_with_comments:
+      value_placeholder: Einen Kommentar hinzufügen
+      reject_button: Überarbeitung empfohlen
     review_dmps:
-      title: DMPs begutachten
+      title: Feedback zu DMPs geben
+      filter_all_link: Alle (%{count})
+      filter_submitted_link: Feedback ausstehend (%{count})
+      filter_approved_link: Für gut befunden (%{count})
+      filter_rejected_link: Überarbeitung empfohlen (%{count})
+      filter_reviewed_link: Feedback gegeben (%{count})
+      submission_date_tooltip: Datum, an dem der Besitzer des DMP ein Feedback angefordert hat.
+      review_plan: Jetzt Feedback geben
+      submission_date: Feedback angefordert am
     suggested_response:
+      box_size: 'Kastengröße:'
       box_size_small: klein
       box_size_medium: mittel
       box_size_full: voll
+      guidance: Hinweise
+      institution_customization_resources: '%{institution} Ressourcen'
+      template_customization_resources: '%{template} für die Ressourcen für: %{institution} '
     template_information:
       title: Neuen DMP erstellen
+      use_template: Eine DMP-Vorlage auswählen
+      use_template_instructions_html: <p>Bitte wählen Sie im nächsten Schritt eine DMP-Vorlage aus, um einen neuen Datenmanagementplan auf Basis der Vorlage zu erstellen.</p>
+      use_template_button: DMP-Vorlage auswählen >>
+      copy_plan: Bereits vorhandenen DMP kopieren
+      copy_plan_instructions_html: <p>Die DMPs in der Auswahlliste sind entweder Pläne, die von anderen Nutzern erstellt und öffentlich oder für Ihre Einrichtung verfügbar gemacht wurden. Sie selbst sehen zusätzlich auch Ihre eigenen bereits erstellten Pläne.</p><p>Wählen Sie unten einen DMP aus und fügen Sie Ihren eigenen Text hinzu.</p>
+      copy_plan_button: Diesen DMP kopieren >>
+    update:
+      # Also find some translations in en.rb
+      cant_reassign_owner_error: Die ausgewählte Benutzer %{owner} ist der Besitzer des Plans. Ein Besitzer kann nicht %{description} des gleichen Plans sein.
+      success_notice: Plan wurde erfolgreich aktualisiert.
   requirements:
+    create:
+      group_success_notice: Gruppe wurde erfolgreich angelegt.
+      requirement_success_notice: Unterpunkt wurde erfolgreich angelegt.
+    form:
+      obligation_tooltip_html: Legen Sie fest, ob ein Unterpunkt verpflichtend beantwortet werden muss (ansonsten kein Fortfahren möglich), oder ob eine Antwort optional ist. Die Grundeinstellung ist optional.
+      group_type_tooltip_html: Tool-Tipp &#8220;text&#8221; steht hier.
+      requirement_type_tooltip_html: 'Sie können das Format der Antwort zu diesem
+        Unterpunkt festlegen. Die Grundeinstlelung ist Text (minimal strukturiertes
+        Textformat). Weitere Optionen:<ul><li>Numerisch: für Zahlen, mit optionaler
+        Angabe der Maßeinheit.</li><li>Datum: YYYY, YYY-MM, oder YYYY-MM-DD</li><li>Enum:
+        Auswahlliste mit möglichen Antworten.</li></ul>'
+      add_item_link: Objekt hinzufügen
     index:
       title: Details der DMP-Vorlage
       please_wait: Einen Moment bitte...
@@ -738,7 +838,7 @@ de:
       optional_info: Optionale Angaben
       start_date_tooltip: Das Anfangsdatum für die Vorlage - wird oft vom Drittmittelgeber als Anfangsdatum für die Antragsstellung genannt.
       end_date_tooltip: Das Enddatum für die Vorlage - wird oft vom Drittmittelgeber als Enddatum für die Antragsstellung genannt.
-      review_type_tooltip: Sie können bei Plänen, die mit dieser Vorlage erstellt werden, aus drei Optionen für die Begutachtung durch einen institutionellen Administrator wählen.
+      review_type_tooltip: Sie können bei Plänen, die mit dieser Vorlage erstellt werden, aus drei Feedback-Optionen durch Ansprechpartner an Ihrer Einrichtung wählen.
       add_funder_link_link: Link zum Drittmittelgeber hinzufügen
       add_sample_plan_link: Musterplan hinzufügen
       save_and_next_button: Speichern und Weiter >>
@@ -827,9 +927,18 @@ de:
       templates: 'Die folgenden Vorlagen:'
       template: 'Vorlage:'
       unlink: Verknüpfung aufheben
+      unlink_tooltip: Wenn die Verknüpfung einer Ressource mit einem Unterpunkt oder einer Vorlage entfernt wird, können Vorlagen-Redakteure die Ressource nicht mehr sehen. Wenn die Ressource mit keiner anderen Vorlage oder keinem anderen Unterpunkt mehr verlinkt ist, wird sie zudem komplett aus dem DMP-Tool gelöscht.
       template_tooltip: Dies ist der Name der Vorlage, an der Sie gerade arbeiten.
+      confirm_last_delete_prompt: Sind Sie sicher? Diese Ressource ist nicht bei anderen Vorlagen eingebunden. Das Aufheben der Verknüpfung bedeutet, dass die Ressource komplett aus dem DMP-Tool entfernt wird.
+      requirements: 'Die folgenden Unterpunkte:'
+      requirement: 'Unterpunkt:'
+      assoc_template: Zugrundeliegende Vorlage
     edit_institutional_resource:
+      title: Institutionelle Ressourcen bearbeiten
+      edit_resource_for: '%{resource} Ressource für %{institution} bearbeiten'
+      resource_type_tooltip: Ressourcen können entweder klickbare URLs oder Hilfetexte sein.
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
+      label_tooltip: Der Name für diese Ressource. "; Merritt Repository UC3"; wäre beispielsweise die angezeigte Bezeichnung, hinter der die URL http://merritt.cdlib.org hinterlegt ist.
       text_placeholder: Geben Sie den Text
       value_placeholder: URL
       delete_resource: Ressource löschen
@@ -848,21 +957,202 @@ de:
       label_placeholder: Geben Sie einen Namen für diese Ressource ein
       text_placeholder: Geben Sie den Text ein
       value_placeholder: URL
+    update:
+      success_notice: Ressource wurde erfolgreich aktualisiert.
+    update_customization_resource:
+      malformed_url_error: 'Die URL: %{url} ist nicht gültig.'
+      sucess_notice: Ressource wurde erfolgreich aktualisiert.
   resource_contexts:
+    choose_institution:
+      select_institution: Für welche Einrichtung soll die Anpassung erfolgen?
+      customized_for: Anpassen für
+      general_radio: Allgemeine Anpassung, die bei allen Einrichtungen angezeigt wird, die diese Vorlage nutzen
+      user_institution_radio: Diese Vorlage für meine Einrichtung (%{institution}) anpassen.
+      select_institution_radio: Diese Vorlage für folgende Einrichtung anpassen
+      next_button: Nächste Seite
     customization_resources_list:
+      # Find the following translations, merged into one, in en.rb:
+      # - resources_customized_for_one
+      # - resources_customized_for_all
+      visibility_info: Diese Ressourcen werden bei jedem Unterpunkt dieser Vorlage angezeigt werden.
+      details: Details
+      action: Aktion
       action_tooltip: Bearbeiten
+      add_resource_button: Ressource hinzufügen
+    create:
+      success_notice: Anpassung wurde erfolgreich angelegt.
+    display_buttons:
+      choose_template_button: << DMP-Vorlage auswählen
+      customizations_button: << Anpassungen
+      details_button: Details der Anpassung >>
+    form:
+      title: Übersicht über Anpassung
+      basic_info: Grundlegende Angaben
+      no_institution_id: Vorlage ursprünglich erstellt durch
+      name_tooltip: Dieses Feld kann nicht bearbeitet werden.
+      template_tooltip: DMP-Vorlage, bei der die Anpassung vorgenommen wird.
+      review_tooltip: Diese DMP-Vorlage ermöglicht es Ihnen, am Ende ein Feedback zu Ihrem Plan anzufordern.
+      contact_info_tooltip: Kontaktdaten (Name & E-Mail) für Anfragen zu den Anpassungen dieser DMP-Vorlage. Als Grundeinstellung werden hier die Kontaktdaten des institutionellen Administrators angezeigt.
+      no_created_at: keine
+      no_updated_at: keine
+    new:
+      name: '%{template} für %{institution}'
     resource_customization:
+      no_customizations: Sie haben keine angepasste DMP-Vorlagen
+      new_button: Neue Anpassung erstellen
       overview_link: Übersicht
+      details_link: Details
       delete_link: Löschen
     select_resource:
+      existing: Vorhandene Ressourcen
+      for_user: Für %{user}
+      select: Auswählen
+      details: Details
+      type: Art
+      institution: Einrichtung
+      level: Ebene
       action: Bearbeiten
+      no_results: Keine Ergebnisse gefunden
+      none_existing: Keine Ressourcen vorhanden
+      link_button: Ausgewählte Ressource einbinden
+      add_resource_button: Neue Ressource hinzufügen
+    unlink_resource_from_template:
+      success_notice: Verknüpfung wurde erfolgreich aufgehoben.
+    unlink_resource_from_requirement:
+      success_notice: Verknüpfung wurde erfolgreich aufgehoben.
+    unlink_resource_from_customization:
+      success_notice: Verknüpfung wurde erfolgreich aufgehoben.
+    update:
+      success_notice: Anpassung wurde erfolgreich aktualisiert.
   users:
+    create:
+      # Find some translations in en.rb.
+      account_deactivated_notice: Sie haben bereits einen DMP-Tool-Account mit diesem Benutzernamen. Der Account ist deaktiviert. Bitte kontaktieren Sie uns, wenn Sie ihn reaktivieren möchten.
+      duplicate_username_notice: Sie haben bereits einen DMP-Tool-Account mit diesem Benutzernamen. Bitte melden Sie sich mit Ihrem aktuellen Benutzernamen und Passwort an.
+      duplicate_username_notice2: Sie haben bereits einen DMP-Tool-Account. Ihr Benutzername ist %{user}. Bitte melden Sie sich mit Ihrem aktuellen Benutzernamen und Passwort an.
+      user_sync_notice: Sie sind nun im DMP-Tool mit Ihrem bereits vorhandenen %{institution} Benutzername, "%{user}". Bitte loggen Sie sich ein, um fortzufahren.
+      ldap_success_notice: Dieser LDAP DMP-Tool-Account wurde angelegt. Sie können sich zusätzlich zu Ihrem Shibboleth-Account ggf. auch als Nicht-Partner-Einrichtung einloggen.
+      success_notice: Benutzer wurde erfolgreich angelegt.
     edit:
       title: Mein Profil
+      failure_notice: Sie sind nicht berechtigt, diesen Benutzer zu bearbeiten. Sie können nun die Bearbeitung Ihrer eigenen Informationen vornehmen.
+    edit_user_roles:
+      title: Benutzerrollen bearbeiten
+      user_roles_link: Benutzerrollen
+      current_roles: 'Aktuelle Rollen von %{user}:'
+    finish_signup:
+      title: Registrierung abschließen
+      submit: Account aktualisieren
+      reset: Formular zurücksetzen
+    finish_signup_update:
+      success_notice: Sie haben sich erfolgreich im DMP-Tool registriert.
+    form:
+      personal: Persönliche Informationen
+      notifications: Benachrichtigungseinstellungen
+    index:
+      title: Admin
+    institutions_list:
+      add_new: Neue Einrichtung hinzufügen
+    new:
+      title: Account anlegen
+      submit_button: Account anlegen
+    notifications:
+      instructions: Markierungen für E-Mail-Benachrichtigungen setzen oder aufheben.
+      sel_all: Alle auswählen / deselektieren
+      users: 'Benutzer:'
+      template_owners: 'DMP-Besitzer und Mitbesitzer:'
+      template_editors: DMP-Vorlagen-Redakteure
+      resource_editors: 'Ressourcen-Redakteure:'
+      institutional_reviewers: 'Ansprechpartner für Feedback:'
+      role_granted: Eine neue Benutzerrolle wird zugewiesen
+      plan_new_comment: Neuer Kommentar zu meinem DMP vorhanden
+      plan_submitted: Ein eingereichter DMP wird für gut befunden oder es wird eine Überarbeitung empfohlen oder das Feedback wird formlos abgegeben.
+      plan_vis_change: Die Sichtbarkeit meines DMPs hat sich geändert
+      plan_user_added: Ich wurde als Mitbesitzer eines DMPs hinzugefügt
+      plan_committed: Fertig
+      template_committed: Eine institutionelle DMP-Vorlage wird aktiviert
+      template_deactivated: Eine institutionelle DMP-Vorlage wird deaktiviert
+      customization_deleted: Eine Anpassung wird gelöscht
+      customization_associated_committed: Eine DMP-Vorlage, für die eine Anpassung vorliegt, wird aktiviert
+      institutional_submitted: Für einen institutionellen DMP wird Feedback angefordert
+      institutional_new_comment: Neuer Kommentar wird zu institutionellem DMP hinzugefügt
+      institutional_approved_rejected: Ein institutioneller DMP wird für gut befunden oder eine Überarbeitung wird empfohlen
     personal:
+      instructions: Bitte aktualisieren Sie Ihre Account-Informationen.
+      password_tooltip: Das Passwort muss 8 bis 30 Zeichen lang sein. Es muss mindestens eine Zahl und einen Buchstaben enthalten.
+      contact_info: Kontaktinformation
+      select_institution_new: -Wählen Sie eine Einrichtung aus-
+      select_institution: Einrichtung auswählen
+      dmp_options: DMP-Optionen
+      roles: Meine Rollen
+      roles_tooltip_html: '<ul><li>Vorlagen-Redakteur: Vorlagen erstellen</li><li>Ressourcen-Redakteur:
+        DMP-Vorlagen anpassen, indem Links zu Ressourcen, lokalen Hilfetexten, Beispielantworten
+        und unverbindlichen Vorlagen eingebunden werden.</li><li>Ansprechpartner für
+        Feedback: Geben Sie formloses oder spezifischeres Feedback zu Datenmanagementplänen.</li><li>Institutioneller
+        Administrator: Ernennen Sie weitere institutionelle Administratoren; beinhaltet
+        alle bereits genannten Rollen</li></ul>'
+      orcid: Orcid
+      orcid_tooltip: ORCID steht für Open Researcher and Contributor ID. Siehe orcid.org für weitere Informationen.
+      orcid_logo_alt: Orcid ID Logo
+      orcid_lookup_tooltip: Schlagen Sie Ihre ORCID-ID nach, oder wählen Sie "Suchen" aus, um über den Namen zu suchen. Wir raten von einer manuellen Eingabe der ORCID-ID ab.
+      edit_orcid_link: Bearbeiten
       delete_orcid_link: Löschen
+      api_token: API Token
+    plan_autocomplete_widget:
+      label: 'Mitbesitzer hinzufügen:'
+      placeholder: Mitbesitzer hinzufügen; über den Namen oder die E-Mail-Adresse suchen
+      tooltip_html: '<ul><li>Mitbesitzer hinzufügen: Geben Sie einen Namen oder eine
+        E-Mail-Adresse ein und wählen Sie den Namen anschließend aus.</li><li>Mitbenutzer
+        haben Lese- und Schreibrechte am DMP. Mitbenutzer müssen sich bereits einmal
+        im DMP-Tool eingeloggt haben, um zu einem Plan hinzugefügt zu werden.</li></ul>'
+    remove_orcid:
+      success_notice: Die Orcid-ID wurde erfolgreich aus Ihrem Profil entfernt.
+    require_current_user:
+      error: Benutzerinformationen dürfen nur durch den Benutzer selbst bearbeitet werden
+    token:
+      generate_token_link: Neuen Token erstellen
+      remove_token_link: Token entfernen
+      no_token: Sie haben keine Token.
+    update:
+      success_notice: Benutzerinformationen aktualisiert.
+      ldap_error: Fehler beim Aktualisieren von LDAP. Lokales Update abgebrochen.
+    update_user_roles:
+      success_notice: Benutzer wurde erfolgreich aktualisiert.
+    user_autocomplete_widget:
+      label: 'Name:'
+      placeholder: Benutzer über Namen oder E-Mail-Adresse suchen
+    user_search:
+      search_placeholder: Benutzer über Namen oder E-Mail-Adresse suchen
+    users_list:
+      edit_role: Benutzerrolle bearbeiten
+      no_results: Keine Ergebnisse gefunden
+      remove_user: Benutzer entfernen
   user_sessions:
+    complete_password_reset:
+      title: Vollständiges Passwort-Reset
+      instructions: Sie setzen das Passwort für %{email} zurück. Das DMP-Tool verlangt, dass das Passwort mindestens 8 Zeichen lang ist und mindestens eine Zahl und einen Buchstaben enthält.
+      submit: Passwort zurücksetzen
+      no_token_error: Benutzer nicht gefunden oder Passwort-Reset nicht angefordert
+      token_expired_error: Token für das Passwort-Reset ist abgelaufen. Bitte fordern Sie erneut ein Reset an.
+      invalid_token_error: Ungültiges Token für das Passwort-Reset. Bitte fordern Sie erneut ein Reset an.
+      illegal_password_error: Ihr Passwort muss mindestens acht Zeichen lang sein und mindestens einen Buchstaben und mindestens eine Zahl enthalten.
+      wrong_confirmation_error: Passwörter stimmen nicht überein. Bitte versuchen Sie es erneut.
+      ldap_error: Problem beim Aktualisieren des Passworts im LDAP. Bitte versuchen Sie erneut.
+      success_notice: Sie haben Ihr Passwort erfolgreich aktualisiert.
+    create:
+      duplicate_email_error: Mehrere Benutzer haben die gleiche E-Mail-Adresse wie Sie. Bitte kontaktieren Sie uns, um das Problem zu beheben.
+      account_deactivated_error: Ihr Account ist momentan deaktiviert. Bitte nehmen Sie Kontakt mit uns auf, wenn Sie Ihren Account reaktivieren möchten.
+      auth_wo_record_error: Sie haben sich schon einmal angemeldet, haben jedoch keinen aktuellen Account. Kontaktieren Sie uns, um Hilfe bei der Lösung dieses Problems zu erhalten.
+      incommon_error: Problem mit InCommon-Login. Ihr InCommon-Provider stellt die erforderlichen Attribute möglicherweise nicht zur Verfügung.
+      incorrect_credentials_error: Benutzername, Passwort oder Einrichtung ist falsch.
+      incomplete_info_error: Bitte vervollständigen Sie die Angaben in Ihrem Profil.
+    destroy:
+      notice: Abgemeldet.
+    failure:
+      error_message: 'Fehlgeschlagen: Benutzername, Passwort oder Einrichtung ist
+        falsch.'
     institution:
+      browser_title: Login
       title: Login
       instructions_title: Mit den Uni-Daten einloggen
       instructions: Wählen Sie Ihre Einrichtung aus, um auf die institutionelle Anmeldeseite zu gelangen.
@@ -872,3 +1162,27 @@ de:
     login:
       browser_title: Login
       title: Login
+      institution: 'Beim DMP-Tool anmelden durch:'
+      remember_me_checkbox: Benutzername merken
+      submit_button: Login
+      reset_username_link: Benutzernamen vergessen?
+      reset_password_link: Passwort vergessen?
+      create_account: Haben Sie noch keinen DMP-Tool-Account?
+      create_account_button: Einen Account anlegen
+      no_institution_error: Wählen Sie Ihre Einrichtung aus.
+    password_reset:
+      title: Passwort zurücksetzen
+      instructions: Geben Sie unten Ihre E-Mail-Adresse oder Ihren Benutzername ein, um Ihr Passwort zurückzusetzen. Das System wird daraufhin eine E-Mail mit dem neuen Passwort an Ihre registrierte E-Mail-Adresse senden.
+      email_or_username: E-Mail Adresse oder Benutzername
+      success_notice: Eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts wurde an {email} geschickt.
+      no_such_user_error: Kein Benutzer mit der E-Mail-Adresse oder dem Benutzernamen %{email} gefunden.
+      reset_shib_error: Sie müssen Ihr Kennwort über den Passwort-Reset-Mechanismus Ihrer eigenen Einrichtung zurückgesetzt. Ihre Anmeldung am DMP-Tool beruht auf Ihren Shibboleth-Account-Daten.
+      ldap_disabled_error: Ihr LDAP-Account wurde nicht für die Benutzung im DMP-Tool aktiviert. Ihr Account muss zunächst im DMP-Tool eingerichtet werden, bevor Sie Ihr Passwort ändern können.
+      incomplete_info_error: Sie müssen eine E-Mail-Adresse oder einen Benutzernamen angeben, um ein Passwort-Reset zu beantragen.
+    username_reminder:
+      title: Erinnerung an den Benutzernamen
+      instructions: Geben Sie unten Ihre E-Mail-Adresse ein, um eine E-Mail mit dem Benutzernamen zu versenden.
+      email: E-Mail
+      success_notice: Eine E-Mail mit Ihrem Benutzernamen wurde an %{email} geschickt.
+      no_such_user_error: Kein Benutzer mit der E-Mail-Adresse %{email} gefunden.
+      invalid_email_error: Sie müssen eine gültige E-Mail-Adresse angeben, um eine Erinnerung an Ihren Benutzernamen zu erhalten.

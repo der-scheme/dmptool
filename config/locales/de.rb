@@ -1,4 +1,4 @@
-def i18n_join_en(array)
+def i18n_join_de(array)
   array.join(', ').gsub(/(.*),(.*)/, '\1 or\2')
 end
 
@@ -7,31 +7,31 @@ end
     activerecord: {
       models: {
         additional_information: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'Funder Link' : 'Funder Links'
+          name = count == 1 ? 'Link zum Drittmittelgeber' : 'Links zum Drittmittelgeber'
           unit ? "#{count} #{name}" : name
         end,
         comment: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'Comment' : 'Comments'
+          name = count == 1 ? 'Kommentar' : 'Kommentare'
           unit ? "#{count} #{name}" : name
         end,
         institution: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'Institution' : 'Institutions'
+          name = count == 1 ? 'Einrichtung' : 'Einrichtungen'
           unit ? "#{count} #{name}" : name
         end,
         requirements_template: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'DMP Template' : 'DMP Templates'
+          name = count == 1 ? 'DMP-Vorlage' : 'DMP-Vorlagen'
           unit ? "#{count} #{name}" : name
         end,
         resource_context: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'DMP Template Customization' : 'DMP Template Customizations'
+          name = count == 1 ? 'Anpassung einer DMP-Vorlage' : 'Anpassungen einer DMP-Vorlage'
           unit ? "#{count} #{name}" : name
         end,
         resource: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'Resource' : 'Resources'
+          name = count == 1 ? 'Ressource' : 'Ressourcen'
           unit ? "#{count} #{name}" : name
         end,
         sample_plan: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'Sample Plan' : 'Sample Plans'
+          name = count == 1 ? 'Musterplan' : 'Musterpläne'
           unit ? "#{count} #{name}" : name
         end,
         user: lambda do |_, count: 1, unit: false, **__|
@@ -43,11 +43,11 @@ end
         requirement: {
           text_brief: proc do |_, group: nil, **options|
             if group.nil?
-              'Text brief'
+              'Kurztext'
             elsif group
-              'Group Label'
+              'Bezeichnung der Gruppe'
             else
-              'Requirement Label'
+              'Bezeichnung des Unterpunkts'
             end
           end
         }
@@ -55,43 +55,43 @@ end
     },
     institutions: {
       form: {
-        shib_entity_id_tooltip: "Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])} with any questions.",
-        shib_domain_id_tooltip: "This can only be edited by the DMPTool Administrator. Contact #{i18n_join_en APP_CONFIG['feedback_email_to']} with any questions.",
-        parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
+        shib_entity_id_tooltip: "Shibboleth-Endpunkt innerhalb der Förderation. Diese Einstellung kann nur durch einen DMPTool-Administator geändert werden. Bei Fragen wenden Sie sich bitte an #{i18n_join_de(APP_CONFIG['feedback_email_to'])}.",
+        shib_domain_id_tooltip: "Dies kann nur durch einen DMPTool-Administrator geändert werden. Bei Fragen wenden Sie sich bitte an #{i18n_join_de APP_CONFIG['feedback_email_to']}.",
+        parent_tooltip: "Falls Ihre Einrichtung nicht in der Dropdown-Liste enthalten ist, kontaktieren Sie bitte #{i18n_join_de(APP_CONFIG['feedback_email_to'])}."
       }
     },
     plans: {
       create: {
-        no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
-        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+        no_such_users_error: ->(_, count: nil, users: nil, **__) {"#{count == 1 ? 'Folgender Benutzer konnte' : 'Folgende Benutzer konnten'} nicht gefunden werden: #{i18n_join_de(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"#{count == 1 ? 'Der ausgewählte Benutzer ist' : 'Die ausgewählten Benutzer sind'} #{i18n_join_de(users)} bereits #{description}#{'s' if count == 1} dieses Plans."}
       },
       form: {
-        visibility_note_html: "<span>Note: when visibility is set to \"Public\", your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">Public DMPs</a> page of this site and it will be downloadable and copy-able. </span>"
+        visibility_note_html: "<span>Hinweis: Wenn bei der Sichtbarkeit \"Öffentlich\" eingestellt ist, wird Ihr DMP auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">Beispiel-DMPs</a> erscheinen. Er wird herunterladbar und dublizierbar sein.</span>"
       },
       update: {
-        no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
-        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
+        no_such_users_error: ->(_, count: nil, users: nil, **__) {"#{count == 1 ? 'Folgender Benutzer konnte' : 'Folgende Benutzer konnten'} nicht gefunden werden: #{i18n_join_de(users)}."},
+        users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"#{count == 1 ? 'Der ausgewählte Benutzer ist' : 'Die ausgewählten Benutzer sind'} #{i18n_join_de(users)} bereits #{description}#{'s' if count == 1} dieses Plans."}
       }
     },
     requirements_templates: {
       index: {
-        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
+        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deaktivieren' : 'Aktivieren'}
       },
       toggle_active: {
-        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
+        toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deaktivieren' : 'Aktivieren'}
       }
     },
     resource_contexts: {
       customization_resources_list: {
         resources_customized_for:
           lambda do |key,
-                     template: fail(ArgumentError, 'template missing'),
+                     template: fail(ArgumentError, 'DMP-Vorlage nicht vorhanden'),
                      institution: nil,
                      **options|
             if institution
-              "Template Resources for #{template}  - Customized for %{institution}"
+              "Ressourcen für #{template}  - angepasst für: %{institution}"
             else
-              "Template Resources for #{template}  - Customized for all Institutions"
+              "Ressourcen für #{template}  - angepasst für alle Einrichtungen"
             end
           end
       }
@@ -105,17 +105,17 @@ end
           if s != 'A' || e != 'Z'
             "#{s} - #{e}"
           else
-            "All"
+            "Alle"
           end
         end
       },
       errors: {
-        message: ->(_, model: nil, **__) {"#{model.errors.size} error#{'s' if model.errors.size != 1} prohibited this #{model.class.model_name.human.downcase} from being saved:"}
+        message: ->(_, model: nil, **__) {"#{model.errors.size} Fehler #{model.errors.size == 1 ? 'verhinderte' : 'verhinderten'}, dass #{model.class.model_name.human.downcase} gespeichert wurde:"}
       }
     },
     users: {
       create: {
-        ldap_error: "There were problems adding this user to the LDAP directory. Please contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
+        ldap_error: "Es gab Probleme beim Hinzufügen dieses Benutzers zum LDAP-Verzeichnis. Bitte kontaktieren Sie #{i18n_join_de(APP_CONFIG['feedback_email_to'])}."
       }
     }
   }
