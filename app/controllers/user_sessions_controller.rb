@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
 
+  before_action :return_to_last_locale, only: [:create, :destroy, :failure]
+
   def login
     if !params[:institution_id].blank?
       session['institution_id'] = params[:institution_id]
@@ -189,5 +191,21 @@ class UserSessionsController < ApplicationController
 
   def legal_password(password)
     (8..30).include?(password.length) and password.match(/\d/) and password.match(/[A-Za-z]/)
+  end
+
+private
+
+  ## Return the last locale chosen by the user.
+  #
+  # In case of a login method were the user is redirected to a statically
+  # chosen URL we lose the info which locale they've chosen before.
+  # We use our page history to look up the params that were used in previous
+  # visits of the site, or (if the page history is empty) just rely one an
+  # empty hash instead (which will yield a nil locale, implying fallback to
+  # browser settings).
+
+  def return_to_last_locale
+    params[:locale] = session[:page_history].try(:first).try(:fetch, :locale, nil)
+    set_locale
   end
 end

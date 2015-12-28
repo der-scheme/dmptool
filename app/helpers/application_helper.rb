@@ -1,24 +1,6 @@
 module ApplicationHelper
-
-  #to enable column sorting with toggle effects
-  #current asc and current desc classes are for supporting an eventual arrow image
-  #or css class (not yet implemented) associated with the sorting direction
-
-  def sortable(column, title = nil,
-               order_scope: :order_scope,
-               model: controller_name.classify.constantize)
-    fail ArgumentError, 'expected model to be of type ActiveRecord::Base' if
-      model && !model.respond_to?(:human_attribute_name)
-
-    title ||= model.human_attribute_name(column) if model
-    title ||= t(".#{column}", default: column.titleize)
-
-    css_class = "current #{params[:direction]}" if column == params[order_scope]
-    direction = (column.to_s == params[order_scope] && params[:direction] == 'asc') ? 'desc' : 'asc'
-    link_to title,
-            filter_params.merge(order_scope => column, direction: direction),
-            {class: css_class}
-  end
+  include Sortable::Helper
+  include RouteI18n::Helper   # implicitly includes TranslationHelper
 
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
@@ -102,42 +84,12 @@ module ApplicationHelper
             current_page?(customization_requirement_path(@resource_context, requirement_id: params[:requirement_id])))
   end
 
-  def set_page_history
-    if session[:page_history].blank?
-      session[:page_history] = []
-    end
-    if session[:page_history].length > 4
-      session[:page_history].pop
-    end
-    session[:page_history].insert(0, request.path)
-  end
-
   def require_admin
     unless user_role_in?(:dmp_admin)
       flash[:error] = "You must be an administrator to access this page."
       session[:return_to] = request.original_url
       redirect_to choose_institution_path and return
     end
-  end
-
-  def translate_visibility(visibility)
-    t("globals.enums.visibility.#{visibility}")
-  end
-
-  def display_detail_overview
-    t('globals.template.details.overview')
-  end
-
-  def display_detail_details
-    t('globals.template.details.details')
-  end
-
-  def display_detail_customize
-    t('globals.template.details.action_customize')
-  end
-
-  def display_detail_delete
-    t('globals.template.details.action_delete')
   end
 
   def render_submit_button(cntnt = nil, trnslt = nil,
@@ -149,14 +101,6 @@ module ApplicationHelper
 
     render partial: 'shared/submit_button', object: t,
            locals: {tid: t, content: content, attributes: options}
-  end
-
-  ##
-  # Return the #params, purged from those we don't want in there (like the
-  # ones inserted by ajax calls).
-
-  def filter_params
-    params.reject {|k, v| k == 'authenticity_token' || k == '_method'}
   end
 
   ##
@@ -217,7 +161,7 @@ module ApplicationHelper
   end
 
   ##
-  # Proxies #render_back_button, overwrites the translation parameter with
+  # Proxies #render_button_link, overwrites the translation parameter with
   # <code>'.back'</code> (or <code>'.arrow_back'</code> if
   # <code>arrow: true</code>) and links to <code>:back</code>, unless otherwise
   # specified.
@@ -232,6 +176,23 @@ module ApplicationHelper
     render_button_link(t: t, href: link, green: green, **options)
   end
 
+  ##
+  # Proxies #render_button_link, overwrites the translation parameter with
+  # <code>'.delete'</code> and the +method+ with +:delete+.
+
+  def render_delete_button(lnk = nil,
+                           link: nil, href: nil, url: nil,
+                           **options)
+    t = '.delete'
+    link ||= href || url || lnk
+
+    render_button_link(t: t, href: link,
+                       **{
+                          method: :delete,
+                          data: {confirm: t('globals.messages.prompt.confirm')}
+                         }.deep_merge!(options))
+  end
+
   def render_filter_button(url_options = {}, s: 'a', e: 'z', **options)
     options[:class] ||= ''
     options[:class].concat(" view#{s.upcase}-#{e.upcase}")
@@ -241,22 +202,102 @@ module ApplicationHelper
                        **options
   end
 
+  ## Renders a remove link.
+
+  def render_remove_link(cntnt = nil, lnk = '#',
+                         t: :remove, translate: nil, content: nil, text: nil,
+                         link: nil, href: nil, url: nil, **options)
+
+    translate ||= t
+    content ||= text || cntnt || t("helpers.render.link.#{translate}")
+    link ||= href || url || lnk
+
+    options[:class] ||= ''
+    options[:class].concat(' red remove_fields')
+
+    link_to content_tag(:span, '', class: 'icon remove') + content,
+            '#', **options
+  end
+
+  ##
+  # Return a human readable translation for the given enum (or boolean)
+  # attribute value.
+  #
+  # The +value+ parameter can be omitted with the following semantics.
+  # 1. If +model+ is an instance of ActiveRecord::Base, the value of the
+  #    +attribute+ will be used.
+  # 2. Otherwise, a deduction of the actual model class and lookup of its
+  #    corresponding attribute is attempted. If the contents of the +limit+
+  #    parameter is an array, its first entry is chosen.
+  # 3. The fallback value is always +false+.
+
   def translate_enum(model, attribute, value = nil)
-    model_scope = case model
-      when Symbol then model
-      else
-        if model.respond_to?(:to_model)
-          model.to_model.class.model_name.i18n_key
-        else
-          model.to_s.to_sym
-        end
+    case model
+    when Symbol
+      model_scope = model
+      model_class = model.to_s.classify.constantize
+    when Class
+      model_scope = model.model_name.i18n_key
+      model_class = model
+    when ActiveRecord::Base
+      model_class = model.class
+      model_scope = model_class.model_name.i18n_key
+    else
+      model = model.to_s
+      model_scope = model.to_sym
+      model_class = model.classify.constantize
     end
 
-    value ||= model.attributes[attribute.to_s]
+    value = model.try(:attributes)
+        .try(:[], attribute.to_s)     unless value || value == false
+    value = model_class.columns_hash[attribute.to_s]
+        .limit.try(:first) || false   unless value || value == false
+
+    value = value.to_s.to_sym unless value.is_a? Symbol
 
     translate(value, scope: [:enum, model_scope, attribute])
   end
   alias_method :t_enum, :translate_enum
+
+  ##
+  # Return a string of i18ned options tags for an enum select.
+  #
+  # The method will try to deduce all parameters if not specified.
+  #
+  # [model]
+  #   1. +record+'s class if it is a model.
+  #   2. The constantized #controller_name.
+  # [attribute]
+  #   1. One of the +model+'s enum columns.
+  # [collection]
+  #   1. The allowed values of +model+'s +attribute+ column.
+  # [selected]
+  #   1. The actual value of +record+'s +attribute+.
+  #
+  # Note that the method currently does not implement error handling. If you
+  # use it the wrong way, you will not get descriptive error messages.
+  #
+  # :call-seq: options_for_enum_select(collection = nil, record = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(collection = nil, selected = nil, model: nil, attribute: nil, **options)
+  # :call-seq: options_for_enum_select(record = nil, selected = nil, model: nil, attribute: nil, **options)
+
+  def options_for_enum_select(args = nil, selected = nil, model: nil, attribute: nil, **options)
+    if args.is_a? Enumerable
+      record, selected = selected, nil if selected.is_a? ActiveRecord::Base
+    else
+      record, args = args, nil
+    end
+
+    model     ||= record.class if record.is_a? ActiveRecord::Base
+    model     ||= controller_name.classify.constantize
+    attribute ||= model.columns.find {|c| c.type == :enum}.try(:name)
+    args      ||= model.columns_hash[attribute.to_s].limit
+
+    selected  ||= record.try(attribute) if record.is_a? ActiveRecord::Base
+
+    options_for_select(args.map {|arg| [t_enum(model, attribute, arg), arg]},
+                       **{selected: selected}.merge!(options))
+  end
 
   def i18n_include_tag(*scopes)
     scopes = [
@@ -286,5 +327,13 @@ module ApplicationHelper
         for (var key in translations) { I18n[key] = translations[key]; }
       }
 EOF
+  end
+
+  ##
+  # Return the #params, purged from those we don't want in there (like the
+  # ones inserted by ajax calls).
+
+  def filter_params
+    params.reject {|k, v| k == 'authenticity_token' || k == '_method'}
   end
 end

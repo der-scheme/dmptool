@@ -1,4 +1,4 @@
-<% @title_text = ResourceContext.model_name.human(count: 0, unit: false) %>
+<% @title_text = ResourceContext.model_name.human(count: false) %>
 <h1 class="row-fluid"><span class="icon resource-template"></span><%= @title_text %></h1>
 <table class="table table-striped">
   <thead>
@@ -27,13 +27,12 @@
 				<div class="toggle-links">
 					<%= content_tag(:strong, resource_context.name) %>
 					<div class="template-links">
-						<%= link_to display_detail_overview, edit_resource_context_path(resource_context) %> |
-            <%= link_to display_detail_details, customization_requirement_path(resource_context.id) %> |
-            <%= link_to display_detail_delete,
-            				delete_resource_context_path(resource_context: resource_context),
-                    method: :delete,
-                    confirm: t('globals.messages.prompt.confirm'),
-                    :class => "delete" %>
+            <%= link_to t('.overview_link'), edit_resource_context_path(resource_context) %> |
+            <%= link_to t('.details_link'), customization_requirement_path(resource_context.id) %> |
+            <%= link_to t('.delete_link'),
+                        delete_resource_context_path(resource_context: resource_context),
+                        method: :delete, confirm: t('globals.messages.prompt.confirm'),
+                        class: 'delete' %>
 
 
 					</div>

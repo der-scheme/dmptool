@@ -57,9 +57,9 @@
       </fieldset>
     </div>
   </div>
+  <div style="clear: both;"></div>
   <div>
-    <% referer_action %>
-    <% if (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'new') || (@referer_url[:controller] == 'plans' && @referer_url[:action] == 'copy_existing_template') %>
+    <% if (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'new') || (referer_hash[:controller] == 'plans' && referer_hash[:action] == 'copy_existing_template') %>
       <%= render_back_button edit_plan_path(@plan), arrow: true, class: 'pull-left' %>
     <% else %>
       <%= render_back_button arrow: true, class: 'pull-left' %>

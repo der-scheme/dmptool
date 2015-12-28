@@ -2,8 +2,10 @@
 	<% unless @plan_states.nil? %>
 		<% @plan_states.each do |planstate| %>
 		<% unless planstate.state.nil? %>
-		  <li><span class="date-updated"><%= planstate.updated_at.strftime("%m/%d/%Y %I:%M%p")%></span>
-		  	<strong><%= plan_user(planstate) %></strong> set the status to <strong class="blue"><%= translated_state(planstate) %></strong></li>
+		  <li>
+				<span class="date-updated"><%= l(planstate.updated_at)%></span>
+				<%= t('.status_change_html', user: plan_user(planstate), state: translated_state(planstate)) %>
+		  </li>
 			<% end %>
 		<% end %>
 	<% end %>

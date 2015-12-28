@@ -36,9 +36,6 @@ class PlansController < ApplicationController
     @scope = params[:scope] || ""
     @all_scope = params[:all_scope] || ""
 
-    #to avoid sql injection
-    @direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-
     case @scope
       when "owned"
         @plans = @owned_plans
@@ -56,21 +53,13 @@ class PlansController < ApplicationController
         @plans = @plans.reviewed
     end
 
-    case @order_scope
-      when "name"
-        @plans = @plans.order('name'+ " " + @direction)
-      when "owner"
-        @plans = @plans.joins(:current_state, :users).
-                  order('users.first_name'+ " " + @direction , 'users.last_name'+ " " + @direction)
-      when "status"
-        @plans = @plans.joins(:current_state).order('CONVERT(plan_states.state USING utf8)' + " " + @direction)
-      when "visibility"
-        @plans = @plans.order('visibility'+ " " + @direction)
-      when "last_modification_date"
-        @plans = @plans.order('updated_at'+ " " + @direction)
-      else
-        @plans = @plans.order(updated_at: :desc)
+    sortable :name, default: true
+    sortable :owner do |collection|
+      collection.joins(:current_state, :users)
+          .order("users.first_name #{@direction}", "users.last_name #{@direction}")
     end
+    sortable :current_plan_state_id, nested: :state
+    sortable :updated_at
 
     case @all_scope
       when "all"
@@ -128,9 +117,9 @@ class PlansController < ApplicationController
           UserPlan.create!(user_id: @user.id, plan_id: @plan.id, owner: true)
           PlanState.create!(plan_id: @plan.id, state: :new, user_id: @user.id )
           add_coowner_autocomplete
-          @invalid_users.count > 1 ? @notice_1 = "Could not find the following users #{@invalid_users.join(', ')}." : @notice_1 = "Could not find the following user #{@invalid_users.join(', ')}."
-          @existing_coowners.count > 1 ? @notice_2 = "The users chosen #{@existing_coowners.join(', ')} are already #{@item_description}s of this Plan." : @notice_2 = "The user chosen #{@existing_coowners.join(', ')} is already a #{@item_description} of this Plan."
-          @notice_3 = "The user chosen #{@owner[0].to_s} is the owner of the Plan. An owner cannot be #{@item_description} for the same plan."
+          @notice_1 = t('.no_such_users_error', count: @invalid_users.count, users: @invalid_users)
+          @notice_2 = t('.users_already_assigned_error', count: @existing_coowners.count, users: @existing_coowners, description: @item_description)
+          @notice_3 = t('.cant_reassign_owner_error', owner: @owner[0], description: @item_description)
           if !@invalid_users.empty? && !@existing_coowners.empty? && !@owner.empty?
             format.html { flash[:error] << @notice_1 << @notice_2 << @notice_3
                   redirect_to details_plan_path(@plan)}
@@ -153,8 +142,10 @@ class PlansController < ApplicationController
             format.html { flash[:error] << @notice_3
                   redirect_to details_plan_path(@plan)}
           else
-          format.html { flash[:notice] = "Plan was successfully created."
-                  redirect_to details_plan_path(@plan)}
+          format.html do
+            flash[:notice] = t('.success_notice')
+            redirect_to details_plan_path(@plan)
+          end
           format.json { head :no_content }
           end
         else
@@ -183,9 +174,9 @@ class PlansController < ApplicationController
     set_comments
     coowners
     add_coowner_autocomplete
-    @invalid_users.count > 1 ? @notice_1 = "Could not find the following users #{@invalid_users.join(', ')}." : @notice_1 = "Could not find the following user #{@invalid_users.join(', ')}."
-    @existing_coowners.count > 1 ? @notice_2 = "The users chosen #{@existing_coowners.join(', ')} are already #{@item_description}s of this Plan." : @notice_2 = "The user chosen #{@existing_coowners.join(', ')} is already a #{@item_description} of this Plan."
-    @notice_3 = "The user chosen #{@owner[0].to_s} is the owner of the Plan. An owner cannot be #{@item_description} for the same plan."
+    @notice_1 = t('.no_such_users_error', count: @invalid_users.count, users: @invalid_users)
+    @notice_2 = t('.users_already_assigned_error', count: @existing_coowners.count, users: @existing_coowners, description: @item_description)
+    @notice_3 = t('.cant_reassign_owner_error', owner: @owner[0], description: @item_description)
     respond_to do |format|
       if !@invalid_users.empty? && !@existing_coowners.empty? && !@owner.empty?
         format.html { flash[:error] << @notice_1 << @notice_2 << @notice_3
@@ -211,8 +202,10 @@ class PlansController < ApplicationController
       else
         if params[:save_changes] || !params[:save_and_dmp_details]
           if @plan.update(plan_params)
-            format.html { flash[:notice] = "Plan was successfully updated."
-                    redirect_to edit_plan_path(@plan)}
+            format.html do
+              flash[:notice] = t('.success_notice')
+              redirect_to edit_plan_path(@plan)
+            end
             format.json { head :no_content }
           else
             add_coowner_autocomplete
@@ -240,7 +233,7 @@ class PlansController < ApplicationController
   def destroy
     user_plan_ids  = UserPlan.where(plan_id: @plan.id, owner: false).pluck(:user_id)
     if user_plan_ids.include?(@user.id) && !user_role_in?(:dmp_admin, :institutional_admin)
-      flash[:error] =  "A Co-Owner cannot delete a Plan."
+      flash[:error] =  t('.coowner_not_privileged_error')
       redirect_to :back
     else
       user_plans = UserPlan.where(plan_id: @plan.id)
@@ -248,15 +241,15 @@ class PlansController < ApplicationController
       user_plans.delete_all
       plan_states.delete_all
       @plan.destroy
-      redirect_to plans_url(order_scope: params[:order_scope], scope: params[:scope], all_scope: params[:all_scope], 
-                        direction: params[:direction]), notice: "The plan has been successfully deleted."
+      redirect_to plans_url(order_scope: params[:order_scope], scope: params[:scope], all_scope: params[:all_scope],
+                            direction: params[:direction]), notice: t('.success_notice')
     end
   end
 
   def template_information
     public_plans_ids = Plan.public_visibility.ids
     current_user_plan_ids = UserPlan.where(user_id: @user.id).pluck(:plan_id)
-    
+
     institutionally_visible_plans_ids  = Plan.joins(:users)
           .where(users: {institution_id: @user.institution.root.subtree_ids})
           .institutional_visibility.pluck(:id)
@@ -264,7 +257,7 @@ class PlansController < ApplicationController
     unit_visible_plans_ids = Plan.joins(:users)
           .where(users: {institution_id: @user.institution.subtree_ids})
           .unit_visibility.pluck(:id)
-    
+
     plans = (current_user_plan_ids + public_plans_ids + institutionally_visible_plans_ids + unit_visible_plans_ids).uniq
     @plans = Plan.where(id: plans)
     @plans = Kaminari.paginate_array(@plans).page(params[:page]).per(5)
@@ -296,14 +289,14 @@ class PlansController < ApplicationController
       @plans = Plan.plans_per_institution(Institution.all.ids)
 
     elsif user_role_in?(:institutional_reviewer, :institutional_admin)
-      
+
       institutions = Institution.find(@user.institution_id).subtree_ids
       @submitted_plans = Plan.plans_to_be_reviewed(institutions)
       @approved_plans = Plan.plans_approved(institutions)
       @rejected_plans = Plan.plans_rejected(institutions)
       @reviewed_plans = Plan.plans_reviewed(institutions)
       @plans = Plan.plans_per_institution(institutions)
-      
+
     end
 
     review_count
@@ -325,18 +318,13 @@ class PlansController < ApplicationController
         @plans
     end
 
-    case @order_scope
-      when "DMPName"
-        @plans = @plans.order(name: :asc)
-      when "Owner"
-        @plans = @plans.order_by_owner
-      when "SubmissionDate"
-        @plans = @plans.order(updated_at: :desc)
-      when "Status"
-        @plans = @plans.order_by_current_state
-      else
-        @plans = @plans.order(name: :asc)
+    sortable :name, :default
+    sortable :owner do |collection|
+      collection.joins(:current_state, :users)
+          .order("users.first_name #{@direction}", "users.last_name #{@direction}")
     end
+    sortable :updated_at
+    sortable :current_plan_state_id, nested: :state
 
     case @all_scope
       when "all"
@@ -364,10 +352,8 @@ class PlansController < ApplicationController
     process_requirements_template(req_temp)
 
     @back_to = plan_template_information_path
-    @back_text = "<< Back"
+    @back_text = '.arrow_back'
     @submit_to = new_plan_path
-    @submit_text = "Next >>"
-
   end
 
   def details
@@ -379,7 +365,7 @@ class PlansController < ApplicationController
         requirement = @requirements_template.first_question
         last_requirement = @requirements_template.last_question
         if requirement.nil?
-          flash[:error] =  "The DMP template you are attempting to customize has no requirements. A template must contain at least one requirement. \"#{@requirements_template.name}\" needs to be fixed before you may continue customizing it."
+          flash[:error] =  t('.missing_requirements_error', template: @requirements_template.name)
           redirect_to resource_contexts_path  and return
         end
         params[:requirement_id] = requirement.id.to_s
@@ -469,10 +455,10 @@ class PlansController < ApplicationController
           .where("user_plans.owner = 1").where(visibility: :unit)
 
     @show_institution = false
-    
+
     if current_user
 
-      (user_role_in?(:dmp_admin) || current_user.institution.has_children? || current_user.institution.parent ) ? @show_institution = true : @show_institution = false   
+      (user_role_in?(:dmp_admin) || current_user.institution.has_children? || current_user.institution.parent ) ? @show_institution = true : @show_institution = false
 
       #show institutional for my institution
       @inst_plans_ids = @inst_plans.where("users.institution_id IN (?)", current_user.institution.root.subtree_ids).pluck(:id)
@@ -485,14 +471,38 @@ class PlansController < ApplicationController
          @inst_plans = Plan.where(id: [@unit_plans_ids])
       elsif @inst_plans_ids == [] && @unit_plans_ids == []
          @inst_plans = nil
-      else 
+      else
         @inst_plans = Plan.where(id: [@inst_plans_ids, @unit_plans_ids])
-      end  
-         
+      end
+
     else
       @inst_plans = nil
     end
-    
+
+    sortable_group namespace: :public do
+      sortable :name, default: true
+      sortable :requirements_template_id, nested: :name
+      sortable :institution_id do |collection, direction|
+        collection.order("institutions.full_name #{direction}")
+      end
+      sortable :owner do |collection, direction|
+        collection.joins(:current_state, :users)
+            .order("users.first_name #{direction}", "users.last_name #{@direction}")
+      end
+    end
+    sortable_group inst_var: :inst_plans, namespace: :institutional do
+      sortable :name, default: true
+      sortable :requirements_template_id, nested: :name
+      sortable :institution_id do |collection, direction|
+        collection.order("institutions.full_name #{direction}")
+      end
+      sortable :owner do |collection, direction|
+        collection.joins(:current_state, :users)
+            .order("users.first_name #{direction}", "users.last_name #{@direction}")
+      end
+      sortable :visibility
+    end
+
     @plans = multitable(@plans, public_params)
     # if @inst_plans
       @inst_plans = multitable(@inst_plans, inst_params)
@@ -553,7 +563,7 @@ class PlansController < ApplicationController
       user_plan = UserPlan.where(user_id: @coowner.id, plan_id: @plan.id, owner: false).last
       user_plan.destroy
       respond_to do |format|
-        format.html { redirect_to edit_plan_path(@plan), notice: "The selected Coowner associated with the Plan has been deleted successfully" }
+        format.html { redirect_to edit_plan_path(@plan), notice: t('.success_notice') }
         format.json { head :no_content }
       end
     end
@@ -566,16 +576,16 @@ class PlansController < ApplicationController
       begin
         @plan = Plan.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to plans_path, error: "The Plan you were looking for does not exist."
+        redirect_to plans_path, error: t('helpers.controller.plan.not_found_error')
         return
       end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :requirements_template_id, :solicitation_identifier, :submission_deadline, 
-                                  :visibility, :current_plan_state_id, :current_user_id, :original_plan_id, 
-                                  responses_attributes: [:id, :plan_id, :requirement_id, :text_value, :numeric_value, 
+      params.require(:plan).permit(:name, :requirements_template_id, :solicitation_identifier, :submission_deadline,
+                                  :visibility, :current_plan_state_id, :current_user_id, :original_plan_id,
+                                  responses_attributes: [:id, :plan_id, :requirement_id, :text_value, :numeric_value,
                                     :date_value, :enumeration_id, :lock_version, :label_id])
     end
 
@@ -653,11 +663,11 @@ class PlansController < ApplicationController
         @plan = Plan.find(params[:id])
         user_plans = UserPlan.where(user_id: @user.id, plan_id: @plan.id)
         unless !user_plans.empty?
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to plans_path # halts request cycle
         end
       else
-        flash[:error] = "You need to be logged in."
+        flash[:error] = t('helpers.controller.plan.not_authorized_error')
         redirect_to root_url
       end
     end
@@ -665,7 +675,7 @@ class PlansController < ApplicationController
     def check_copy_plan_access
     ## This params is from Copy Existing Template action
       if params[:plan] == "" || params[:plan].nil?
-        flash[:error] = "Please select an existing Plan to copy."
+        flash[:error] = t('helpers.controller.plan.no_plan_selected_error')
         redirect_to plans_path
       else
         @copy_plan = Plan.find(params[:plan])
@@ -674,7 +684,7 @@ class PlansController < ApplicationController
         public_plans = Plan.public_visibility
         copy_plans = user_plans + institutionally_visible_plans + public_plans
         unless !copy_plans.empty?
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to plans_path # halts request cycle
         end
       end
@@ -683,52 +693,30 @@ class PlansController < ApplicationController
 
     def check_read_only_plan_access
       @plan = Plan.find(params[:id])
-      if current_user 
+      if current_user
         unless user_role_in?(:dmp_admin)
           case @plan.visibility
-          when :private 
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user == @plan.owner || @plan.coowners.include?(current_user)
+          when :private
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user == @plan.owner || @plan.coowners.include?(current_user)
           when :institutional
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.root.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
-          when :unit 
-            redirect_to root_url, :flash=>{:error=>"You don't have access to this content."} unless current_user.institution.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user.institution.root.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
+          when :unit
+            redirect_to root_url, flash: {error: t('helpers.controller.plan.not_allowed_error')} unless current_user.institution.subtree_ids.include?(@plan.owner.institution_id) || @plan.coowners.include?(current_user)
           else #this plan is public
             #do nothing
           end
         end
       else #(=> user is not logged in)
         unless @plan.visibility == :public
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.plan.not_allowed_error')
           redirect_to root_url
-        end 
+        end
       end
     end
 
 
     def multitable(collection, subparams)
       return nil if collection.nil?
-      valid_sort = ["plan", "institution", "visibility",
-                    "owner", "template"]
-
-
-      if valid_sort.include?(subparams['order_scope'])
-
-        case subparams['order_scope']
-        when "plan"
-          collection = collection.order(name: :asc) 
-        when "template"
-          collection = collection.joins(:requirements_template).order('requirements_templates.name ASC')
-        when "institution"
-          collection = collection.order_by_institution
-        when "owner"
-         collection = collection.order_by_owner
-        when "visibility"
-         collection = collection.order(visibility: :desc)
-        else
-          collection = collection.order(name: :asc)
-        end             
-
-      end
 
       if subparams['all_scope'] != 'all'
         p = ( subparams['page'].nil? ? 1 : subparams['page'].to_i )

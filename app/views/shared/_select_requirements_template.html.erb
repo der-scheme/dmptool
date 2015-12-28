@@ -1,10 +1,7 @@
-<h1 class="row-fluid"><span class="icon select"></span>Select DMP Template</h1>
+<h1 class="row-fluid"><span class="icon select"></span><%= t('.title') %></h1>
 <br/>
 <div class="row-fluid">
-  <div class="span8">
-    <p>Select one of the funder DMP Templates listed to proceed to the next step. The type of template chosen can affect
-      what information you will need to provide in the following steps.</p>
-  </div>
+  <%= content_tag :div, t('.instructions_html'), class: 'span8' %>
   <div class="search-area span4 pull-right">
     <%= form_tag('', {:method => :get}) do %>
       <div class="control-group pull-right">
@@ -15,11 +12,11 @@
 </div>
 <br/>
 <div class="buttons-alpha row">
-  <%= link_to('A - F', {:s => 'a', :e => 'f'}, :class => 'btn viewA-F') %>
-  <%= link_to('G - L', {:s => 'g', :e => 'l'}, :class => 'btn viewG-L') %>
-  <%= link_to('M - S', {:s => 'm', :e => 's'}, :class => 'btn viewM-S') %>
-  <%= link_to('T - Z', {:s => 't', :e => 'z'}, :class => 'btn viewT-Z') %>
-  <%= link_to('All', {:s => 'a', :e => 'z'}, :class => 'btn viewA-Z') %>
+  <%= render_filter_button s: 'a', e: 'f' %>
+  <%= render_filter_button s: 'g', e: 'l' %>
+  <%= render_filter_button s: 'm', e: 's' %>
+  <%= render_filter_button s: 't', e: 'z' %>
+  <%= render_filter_button s: 'a', e: 'z' %>
 </div>
 <br/>
 <% unless @rt_tree.blank? %>
@@ -60,19 +57,15 @@
         </ul>
       </div>
     </div>
-    <%= link_to(@back_text, @back_to, method: :get, :class => "btn pull-left") %>
-    <%= submit_tag("Next >>", id: 'next', method: :get , :class => "btn pull-right") %>
+    <%= render_button_link t: @back_text, href: @back_to, class: 'pull-left' %>
+    <%= render_submit_button t('.submit_button'), id: 'next', class: 'pull-right' %>
   <% end %>
 
 <% else %>
   <br/>
-  <p>No DMP templates were available to show. If you are filtering or searching, please modify your search to see more
-    items.</p>
+  <%= content_tag :p, t('.no_results') %>
 <% end %>
-<div id="dialog" title="Please select a DMP Template">
-  You must select a DMP template before continuing.
-</div>
-
+<%= content_tag :div, t('.dialog_text'), id: 'dialog', title: t('.dialog_title') %>
 
 <script type="text/javascript">
   $('.accordioner').click(function (event) {
@@ -114,7 +107,7 @@
     closeOnEscape: true,
     draggable: true,
     resizable: false,
-    title: "Please Select a Template",
+    title: '<%= j(t('.dialog_title')) %>',
 
     open: function () {
 

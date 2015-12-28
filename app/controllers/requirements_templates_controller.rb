@@ -44,8 +44,8 @@ class RequirementsTemplatesController < ApplicationController
     sortable :name
     sortable :institution_id, nested: :full_name
     sortable :visibility
-    sortable :status do |templates|
-      templates.order("active #{@direction == 'asc' ? 'desc' : 'asc'}")
+    sortable :status do |templates, direction|
+      templates.order("active #{direction == :asc ? :desc : :asc}")
     end
     sortable :created_at
     sortable :updated_at, default: true
@@ -74,9 +74,10 @@ class RequirementsTemplatesController < ApplicationController
     response.etag = nil
     respond_to do |format|
       format.rtf do
-        headers["Content-Disposition"] = "attachment; filename=\"" + sanitize_for_filename(@rt.name) + ".rtf\""
-        render :layout => false,
-               :content_type=> 'application/rtf'
+        redirect_to action: 'basic', id: params[:id], format: 'docx'
+        #headers["Content-Disposition"] = "attachment; filename=\"" + sanitize_for_filename(@rt.name) + ".rtf\""
+        #render :layout => false,
+        #       :content_type=> 'application/rtf'
                #:action => 'basic.rtf.erb',
       end
       format.pdf do

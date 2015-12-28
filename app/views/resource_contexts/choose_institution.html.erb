@@ -33,7 +33,7 @@
     </div>
   </div>
   <div style="clear:both"></div>
-  <%= render_button_link t('.back_button'), dmp_for_customization_path, method: :get, class: 'pull-left' %>
+  <%= render_button_link t: '.previous_page', href: dmp_for_customization_path, method: :get, class: 'pull-left' %>
   <%= render_submit_button t('.next_button'), id: 'next', class: 'pull-right' %>
 <% end %>
 

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Sortable::Controller
 
   ROLES =
       {   :dmp_admin              => Role::DMP_ADMIN,
@@ -7,6 +8,7 @@ class ApplicationController < ActionController::Base
           :institutional_reviewer => Role::INSTITUTIONAL_REVIEWER,
           :institutional_admin    => Role::INSTITUTIONAL_ADMIN}
 
+  after_action :update_history
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -25,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
 
     def default_url_options(options = {})
-      {locale: nil}.merge options
+      {locale: params[:locale]}.merge options
     end
 
     def current_user
@@ -223,44 +225,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    ##
-    # Declares an attribute sortable.
-    #
-    # The class variable with the pluralized controller name (i.e.
-    # "resource_contexts" in case of the ResourceContextsController) is treated
-    # as the collection to be sorted and will be sorted if the attribute
-    # matches the order scope, or if the ordering is marked as default (which
-    # is triggered when the order_scope parameter is nil).
-
-    def sortable(attribute, default: false, nested: nil,
-                 inst_var: nil, model: nil, order_scope: :order_scope)
-      return unless (params[order_scope] && params[order_scope].to_sym == attribute) ||
-                    (default && params[order_scope].blank?)
-
-      attribute   = attribute.to_sym
-      order_attr  = attribute
-      inst_var    ||= self.class.controller_name.pluralize
-      model       ||= self.class.controller_name.classify.constantize
-      @direction  ||= params[:direction] =~ /desc/i ? 'desc' : 'asc'
-
-      collection  = instance_variable_get("@#{inst_var}")
-
-      if nested
-        assoc, assocs = *model_association(model, attribute)
-        collection = collection.joins(assoc)
-        order_attr = "#{assocs}.#{nested}"
-      end
-
-      if block_given?
-        collection = yield collection
-      else
-        collection = collection.order("#{order_attr} #{@direction}")
-      end
-
-      instance_variable_set("@#{inst_var}", collection)
-      nil
-    end
-
   private
     def get_base_institution_buckets(requirements_templates)
       insts = Institution.where(id: requirements_templates.pluck(:institution_id)).distinct
@@ -276,21 +240,26 @@ class ApplicationController < ActionController::Base
     end
 
     def extract_locale_from_accept_language_header
-      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+      locale = request.env['HTTP_ACCEPT_LANGUAGE']
+          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})/)
+          .try(:first).try(:to_sym)
+      locale if locale.in?(Rails.application.config.i18n.available_locales)
     end
 
-    ##
-    # Returns the associations name and plural_name, if an association can be
-    # found for the given +model+ and +attribute+.
+    ## Stores the current #params in the #session hash.
+    #
+    # Note that unlike the previous functionality (implemented in
+    # ApplicationHelper#set_page_history), which stored entire URLs, this one
+    # stores the parameters that can be used to build URLs using #url_for.
+    #
+    # This saves later computation time, as the only current purpose is to
+    # later retrieve controller and action names, and also works around a Rails
+    # bug we encountered when implementing i18n.
 
-    def model_association(model, attribute)
-      assoc = model.reflect_on_association(attribute.to_sym)
-      assoc ||= model.reflect_on_all_associations.find do |association|
-        association.options[:foreign_key] &&
-          association.options[:foreign_key].to_sym == attribute.to_sym
-      end
-      assoc ||= model.reflect_on_association(attribute.to_s.gsub(/_id\z/, '').to_sym)
-
-      return assoc.name, assoc.plural_name if assoc
+    def update_history
+      return unless status == 200
+      history = (session[:page_history] ||= [])
+      history.unshift(params) unless params == history.first
+      history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end

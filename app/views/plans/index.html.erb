@@ -1,56 +1,48 @@
-<% @title_text = "My DMPs" %>
+<% @title_text = page_title %>
 <% @display_menu = "my_dmps" %>
 
 <% @plan_id = nil %>
-<h1 class="row-fluid"><span class="icon dmp-template"></span>My DMPs</h1>
+<h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 <div class="table-scope">
-  <%= link_to "All (#{@all}) ", {order_scope: @order_scope, scope: "all_limited", all_scope: @all_scope}, :class => "all_limited" %>
+  <%= link_to t('.filter_all_link',       count: @all),       {order_scope: @order_scope, scope: 'all_limited', all_scope: @all_scope}, class: 'all_limited' %>
   |
-  <%= link_to "Owned (#{@owned}) ", {order_scope: @order_scope, scope: "owned", all_scope: @all_scope}, :class => "owned" %>
+  <%= link_to t('.filter_owned_link',     count: @owned),     {order_scope: @order_scope, scope: 'owned',       all_scope: @all_scope}, class: 'owned' %>
   |
-  <%= link_to "Co-owned (#{@coowned}) ", {order_scope: @order_scope, scope: "coowned", all_scope: @all_scope}, :class => "coowned" %>
+  <%= link_to t('.filter_coowned_link',   count: @coowned),   {order_scope: @order_scope, scope: 'coowned',     all_scope: @all_scope}, class: 'coowned' %>
   |
-  <%= link_to "Approved (#{@approved}) ", {order_scope: @order_scope,scope: "approved",  all_scope: @all_scope}, :class => "approved" %>
+  <%= link_to t('.filter_approved_link',  count: @approved),  {order_scope: @order_scope, scope: 'approved',    all_scope: @all_scope}, class: 'approved' %>
   |
-  <%= link_to "Submitted (#{@submitted}) ", { order_scope: @order_scope, scope: "submitted", all_scope: @all_scope}, :class => "submitted" %>
+  <%= link_to t('.filter_submitted_link', count: @submitted), {order_scope: @order_scope, scope: 'submitted',   all_scope: @all_scope}, class: 'submitted' %>
   |
-  <%= link_to "Completed (#{@committed}) ", {order_scope: @order_scope, scope: "committed",  all_scope: @all_scope}, :class => "committed" %>
+  <%= link_to t('.filter_committed_link', count: @committed), {order_scope: @order_scope, scope: 'committed',   all_scope: @all_scope}, class: 'committed' %>
   |
-  <%= link_to "Rejected (#{@rejected}) ", {order_scope: @order_scope, scope: "rejected",  all_scope: @all_scope}, :class => "rejected" %>
+  <%= link_to t('.filter_rejected_link',  count: @rejected),  {order_scope: @order_scope, scope: 'rejected',    all_scope: @all_scope}, class: 'rejected' %>
   |
-  <%= link_to "Reviewed (#{@reviewed}) ", {order_scope: @order_scope, scope: "reviewed",  all_scope: @all_scope}, :class => "reviewed" %>
+  <%= link_to t('.filter_reviewed_link',  count: @reviewed),  {order_scope: @order_scope, scope: 'reviewed',    all_scope: @all_scope}, class: 'reviewed' %>
 
-  <%= content_tag(:span, '', :title => '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned: DMPs that you have created.</li><li>Co-owned: DMPs for which others have designated you as a co-owner.</li><li>Approved: Your DMP has been approved by your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Submitted: Your DMP has been submitted for review to your institutional administrator (only applies if your institution has enabled the &#8220;Review&#8221; functionality.)</li><li>Completed: After clicking Done on the DMP Preview screen, your plan will marked Completed.</li><li>Rejected. Your DMP has been rejected by your institutional administrator (only applies if your institution has enabled the “Review” functionality.)</li><li>Reviewed: Your DMP which was submitted for Informal review and has been reviewed by the Institutional Reviewer.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+  <%= content_tag :span, '', title: t('.filter_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
 </div>
 
 <table class="table table-striped" id="dmp_plans">
   <thead>
     <tr>
       <th>
-        <%#= link_to "Name", {order_scope: "Name", scope: @scope, all_scope: @all_scope}%>
-        <%= sortable "name"%>
+        <%= sortable :name %>
       </th>
       <th class="span3">
-        <%#= link_to "Owner", {order_scope: "Owner", scope: @scope, all_scope: @all_scope}%>
-        <%= sortable "owner"%>
+        <%= sortable :owner %>
       </th>
       <th>
-        <%= sortable "status"%>
+        <%= sortable :current_plan_state_id %>
       </th>
       <th>
-        <%= sortable "visibility" %>
-        <%if current_user && (current_user.institution.has_children? || current_user.institution.parent) %>
-          <%= content_tag(:span, '', :title => 'Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download the plan.
-            Your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %>
-        <%else%>
-          <%= content_tag(:span, '', :title => 'Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan.
-            Your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %>
-        <%end%>
+        <%= sortable :visibility %>
+        <%= render partial: 'plans_table_visibility_tooltip' %>
       </th>
 
 
       <th>
-        <%= sortable "last_modification_date", "Last Modification Date" %>
+        <%= sortable :updated_at %>
       </th>
     </tr>
   </thead>
@@ -62,20 +54,20 @@
             <strong id=<%= plan.name %>> <%= plan.name %></strong>
             <div class="template-links">
               <% @plan_id = plan.id %>
-                <%= link_to('Overview', edit_plan_path(plan)) %>
-              | <%= link_to('Details', details_plan_path(plan)) %>
-              | <%= link_to('Share', '#', {:class => 'change_visibility_link', :'data-planid' => plan.id, :'data-visibility' => plan.visibility }) %>
+                <%= link_to_edit_plan(plan) %>
+              | <%= link_to_details_plan(plan) %>
+              | <%= link_to t('.share_link'), '#', class: 'change_visibility_link', data: {planid: plan.id, visibility: plan.visibility} %>
 
               <%# if (review_type(plan) == true) || (review_type(plan) == nil && plan.requirements_template.try(:review_type) && plan.requirements_template.review_type != :no_review) %>
-                | <%= link_to('Preview', preview_plan_path(plan)) %>
+                | <%= link_to_preview_plan(plan) %>
               <%# end %>
-              | <%= link_to('Copy', copy_existing_plans_template_path(:plan => plan)) %>
-              <br><%= link_to('Export as PDF', plan_path(plan, :format => "pdf")) %>
-              | <%= link_to('Export as DOCX', plan_path(plan, :format => "docx")) %>
+              | <%= link_to t('.copy_link'), copy_existing_plans_template_path(plan: plan) %>
+              <br><%= link_to_plan(plan, format: :pdf) %>
+              | <%= link_to_plan(plan, format: :docx) %>
               <% unless coowner(plan) == true %>
 
-              | <%= link_to 'Delete', plan_path(plan, order_scope: @order_scope, scope: @scope,  all_scope: @all_scope),
-                { :class => "delete",  method: :delete, :data => { :confirm => 'Are you sure?' } }  %>
+              | <%= link_to t('.delete_link'), plan_path(plan, order_scope: @order_scope, scope: @scope,  all_scope: @all_scope),
+                            class: 'delete',  method: :delete, data: {confirm: t('globals.messages.prompt.confirm')} %>
               <% end %>
             </div>
           </div>
@@ -85,20 +77,30 @@
 
         <%case plan.visibility%>
         <%when :private%>
-          <td class="span1"><span class="private-visibility icon" title="Private"></span></td>
+          <td class="span1">
+            <%= content_tag :span, '', title: t_enum(:plan, :visibility, :private), class: 'private-visibility icon' %>
+          </td>
         <%when :public%>
-          <td class="span1"><span class="public-visibility icon" title="Public"></span></td>
+          <td class="span1">
+            <%= content_tag :span, '', title: t_enum(:plan, :visibility, :public), class: 'public-visibility icon' %>
+          </td>
         <%when :institutional%>
-          <td class="span1"><span class="institutional-visibility icon" title="Institutional"></span></td>
+          <td class="span1">
+            <%= content_tag :span, '', title: t_enum(:plan, :visibility, :institutional), class: 'institutional-visibility icon' %>
+          </td>
         <%when :unit%>
           <td class="span1"><span title="Unit"></span>
-            <%= image_tag 'unit.png', size: "38x28", alt: 'Unit', title: 'Unit' %>
+            <%= image_tag 'unit.png', size: '38x28',
+                          alt: t_enum(:plan, :visibility, :unit),
+                          title: t_enum(:plan, :visibility, :unit) %>
           </td>
         <%else%>
-          <td class="span1"><span class="public-visibility icon" title="Public"></span></td>
+          <td class="span1">
+            <%= content_tag :span, '', title: t_enum(:plan, :visibility, :public), class: 'public-visibility icon' %>
+          </td>
         <%end%>
 
-        <td><%= plan.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+        <td><%= l(plan.updated_at) %></td>
       </tr>
     <% end %>
   <tbody>
@@ -106,12 +108,16 @@
 
   <% if @all_scope == "all" %>
     <div class="buttons pagination">
-      <%= link_to "View Less", plans_path(order_scope: @order_scope, scope: @scope, all_scope: "", direction: @direction), :method => :get, :class => "btn", :id => 'view_all_plans', role: "button" %>
+      <%= render_button_link t: '.view_less',
+                             href: plans_path(order_scope: @order_scope, scope: @scope, all_scope: '', direction: @direction),
+                             id: 'view_all_plans' %>
       <%= paginate @plans %>
     </div>
   <% else %>
     <div class="buttons pagination">
-      <%= link_to "View All", plans_path(order_scope: @order_scope, scope: @scope, all_scope: "all", direction: @direction), :method => :get, :class => "btn", :id => 'view_all_plans', role: "button" %>
+      <%= render_button_link t: '.view_all',
+                             href: plans_path(order_scope: @order_scope, scope: @scope, all_scope: 'all', direction: @direction),
+                             id: 'view_all_plans' %>
       <%= paginate @plans %>
     </div>
   <%end%>
@@ -119,7 +125,7 @@
     <!-- </tr> -->
   <!-- </tbody> -->
 <!-- </table> -->
-<%= button_to 'Create New DMP', plan_template_information_path, :method => :get, :class => 'btn' %>
+<%= button_to plan_template_information_text, plan_template_information_path, method: :get, class: 'btn' %>
 <div id = 'visibility_dialog_form'>
   <%= render partial: 'change_visibility', locals: {:plan_id => @plan_id} %>
 </div>
