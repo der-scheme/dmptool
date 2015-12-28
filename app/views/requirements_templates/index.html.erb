@@ -61,7 +61,7 @@
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %> |
-              <%= link_to_resource_contexts_choose_institution(requirements_template_id: requirements_template.id) %>
+              <%= link_to_resource_contexts_choose_institution({requirements_template_id: requirements_template.id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,

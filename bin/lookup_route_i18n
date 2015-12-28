@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+if ! [ $# = 2 ]; then
+  echo "Usage: $0 CONTROLLER ACTION" >&2
+  exit 1
+fi
+
+pattern=$(rake routes | grep "\b$1#$2\b" | grep -v "api/v1/$1#$2" | sed -r 's/^ *([^ ]*) *(GET|HEAD|POST|PUT|DELETE|TRACE|OPTIONS|CONNECT|PATCH).*$/\1/' | tail -n1)
+grep --color -R $pattern app/views

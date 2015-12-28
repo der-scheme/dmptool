@@ -718,7 +718,6 @@ en:
       no_owner: '[non specified]'
       no_si: '[not specified]'
     index:
-      title: My DMPs
       filter_all_link: All (%{count})
       filter_owned_link: Owned (%{count})
       filter_coowned_link: Co-owned (%{count})
@@ -753,16 +752,10 @@ en:
         copy and or download the plan.</li><li>Share publicly (green people): anyone
         can view, copy and or download the plan. Your DMP will appear on the %{public_dmps_link}
         page of this site.</li></ul>'
-      public_dmps_link: Public DMPs
-      overview_link: Overview
-      details_link: Details
       share_link: Share
       preview_link: Preview
       copy_link: Copy
-      export_pdf_link: Export as PDF
-      export_docx_link: Export as DOCX
       delete_link: Delete
-      new_plan_button: Create New DMP
     perform_review:
       title: Review DMPs
       perform_review: Perform Review
