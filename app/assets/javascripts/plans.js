@@ -4,7 +4,7 @@ $(function() {
 	$("#plan_submission_deadline.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
+		dateFormat: localized_temporal_format(),
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1
@@ -23,7 +23,7 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Add New Comments",
+			title: t('.comment_dialog_title'),
 			show: {
 				effect: "blind",
 				duration: 1000
@@ -118,6 +118,24 @@ $(function() {
 	$('#visibility_dialog_form').hide();
 	$('.change_visibility_link').click(function(event) {
 		event.preventDefault();
+
+    // Since Javascript doesn't support dynamic keys (which we need for I18n)
+    // in literal object syntax, we have to define them manually.
+    var buttons = {};
+    Object.defineProperty(buttons, t('shared.button_button.cancel'), {
+      enumerable: true,
+      value: function() {
+        $(this).dialog("close");
+      }
+    });
+    Object.defineProperty(buttons, t('shared.submit_button.submit'), {
+      enumerable: true,
+      value: function() {
+        $("#visibility_form").submit();
+        $(this).dialog( "close" );
+      }
+    });
+
 		$('#visibility_dialog_form').dialog( {
 			width: 600,
 			height: 200,
@@ -125,19 +143,9 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Share my DMP",
+			title: t('.visibility_dialog_title'),
 
-		 	buttons: {
-				Cancel: function(){
-					//$('#ui-id-1').unwrap();
-					$(this).dialog( "close" );
-				},
-				Submit: function() {
-
-          $("#visibility_form").submit();
-          $(this).dialog( "close" );
-				}
-			},
+		 	buttons: buttons,
 			open: function()
 			{
 
@@ -160,21 +168,24 @@ $(function() {
         $('#visibility_dialog_form').prev().find('button').css('font-color','black');
         $('#visibility_dialog_form').prev().find('button').css('opacity','0.2');
 
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-corner-all');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-widget');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-state-default');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button-text-only');
-				$(this).parent().find('button:contains("Cancel")').addClass('btn');
+        var cancel_button = $(this).parent().find(
+              'button:contains("' + t('shared.button_button.cancel') + '")');
+        cancel_button.removeClass('ui-corner-all');
+        cancel_button.removeClass('ui-widget');
+        cancel_button.removeClass('ui-button');
+        cancel_button.removeClass('ui-state-default');
+        cancel_button.removeClass('ui-button-text-only');
+        cancel_button.addClass('btn');
 
-
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-corner-all');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-widget');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-state-default');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text-only');
-				$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text');
-				$(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');
+        var submit_button = $(this).parent().find(
+              'button:contains("' + t('shared.submit_button.submit') + '")');
+        submit_button.removeClass('ui-corner-all');
+        submit_button.removeClass('ui-widget');
+        submit_button.removeClass('ui-button');
+        submit_button.removeClass('ui-state-default');
+        submit_button.removeClass('ui-button-text-only');
+        submit_button.removeClass('ui-button-text');
+        submit_button.addClass('btn btn-green confirm');
 
 				$('#ui-id-1').parent().removeClass('ui-widget-overlay');
 				$('#ui-id-1').parent().removeClass('ui-widget-header');
@@ -208,9 +219,14 @@ $(function() {
 
 
 $(function() {
-	$('#visibility_dialog_form').parent().find('button:contains("Cancel")').bind("click",function() {
-		$("#visibility_dialog_form").reset();
-	});
+  var parent = $('#visibility_dialog_form').parent();
+  if (parent.length === 0)
+    return;
+
+    parent.find('button:contains("' + t('shared.button_button.cancel') + '")')
+      .bind("click", function() {
+    $("#visibility_dialog_form").reset();
+  });
 });
 
 
@@ -252,7 +268,7 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Reason for rejection (mandatory)",
+			title: t('.reject_dialog_title'),
 			show: {
 				effect: "blind",
 				duration: 1000

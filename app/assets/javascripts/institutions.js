@@ -48,7 +48,7 @@ $(function() {
 // //automatically checks Institutional reviewer role when Institutional Administrator role gets checked
 $(function() {
 	$('#5').change(function(){
-		if ($('#5').is(':checked')) { 
+		if ($('#5').is(':checked')) {
 			$('#4').prop('checked', true);
 		}
 	});
@@ -57,8 +57,8 @@ $(function() {
 // alert message if Institutional Admin remove his own Inst admin role
 $(function() {
 	$('#current_admin_with_alert').click(function(){
-		if (!$('#5').is(':checked')) { 
-			if (confirm( "Do you really want to remove yourself from the Institutional Administrator role? You will lose all administrative permissions.")){
+		if (!$('#5').is(':checked')) {
+			if (confirm(t('.confirm_self_revoke'))){
 				return true;
  			} else {
 				return false;
@@ -79,19 +79,19 @@ $.extend({ alert: function (message, title) {
 });
 
 function validateFiles(inputFile) {
-  var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif or .png is allowed";
+  var extErrorMessage = t('.wrong_file_ext_error');
   var allowedExtension = ["jpg", "jpeg", "gif", "png"];
   var extName;
   var extError = false;
- 
+
   $.each(inputFile.files, function() {
     extName = this.name.split('.').pop();
     if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
   });
- 
+
   if (extError) {
     // window.alert(extErrorMessage);
-    $.alert(extErrorMessage, "Wrong File Extension");
+    $.alert(extErrorMessage, t('.wrong_file_ext_title'));
     $(inputFile).val('');
   };
 }

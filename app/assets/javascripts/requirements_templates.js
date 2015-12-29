@@ -5,7 +5,7 @@ $(function() {
 	$("#requirements_template_start_date.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
+		dateFormat: localized_temporal_format(),
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1,
@@ -17,7 +17,7 @@ $(function() {
 	$("#requirements_template_end_date.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
+		dateFormat: localized_temporal_format(),
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1,
@@ -59,7 +59,7 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Grant New Role",
+			title: t('.role_dialog_title'),
 			show: {
 				effect: "blind",
 				duration: 1000

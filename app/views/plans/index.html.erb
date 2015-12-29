@@ -2,6 +2,9 @@
 <% @display_menu = "my_dmps" %>
 
 <% @plan_id = nil %>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 <div class="table-scope">
   <%= link_to t('.filter_all_link',       count: @all),       {order_scope: @order_scope, scope: 'all_limited', all_scope: @all_scope}, class: 'all_limited' %>
