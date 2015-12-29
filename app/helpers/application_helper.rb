@@ -305,7 +305,8 @@ module ApplicationHelper
   # ==== Parameters =====
   # [scopes]
   #     Pass the scopes of all translations you explicity need, or leave blank
-  #     to pass the defaults.
+  #     to pass the defaults. Note that this will only add the direct
+  #     descendants of each scope.
 
   def i18n_include_tag(*scopes)
     scopes = [
