@@ -105,7 +105,7 @@ String.prototype.interpolate = function(interpolants) {
 function translate(key, interpolants) {
   interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
 
-  return I18n[key].interpolate(interpolants);
+  return I18n[key].toString().interpolate(interpolants);
 };
 t = translate;
 
