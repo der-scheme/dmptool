@@ -219,8 +219,11 @@ $(function() {
 
 
 $(function() {
-  $('#visibility_dialog_form').parent()
-      .find('button:contains("' + t('shared.button_button.cancel') + '")')
+  var parent = $('#visibility_dialog_form').parent();
+  if (parent.length === 0)
+    return;
+
+    parent.find('button:contains("' + t('shared.button_button.cancel') + '")')
       .bind("click", function() {
     $("#visibility_dialog_form").reset();
   });
