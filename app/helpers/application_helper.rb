@@ -329,7 +329,7 @@ module ApplicationHelper
     end
 
     javascript_tag <<EOF
-      I18n = (typeof x === 'undefined') ? {} : I18n;
+      I18n = (typeof I18n === 'undefined') ? {} : I18n;
       {
         var translations = #{translations.to_json.html_safe};
         for (var key in translations) { I18n[key] = translations[key]; }
