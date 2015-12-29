@@ -234,6 +234,8 @@ en:
       visibility_dialog_title: Share my DMP
       comment_dialog_title: Add New Comments
       reject_dialog_title: Reason for rejection (mandatory)
+    requirements_templates:
+      role_dialog_title: Grant New Role
   routes:
     customizations:
       show: 'Details'
