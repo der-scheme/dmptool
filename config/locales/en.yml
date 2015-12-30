@@ -238,6 +238,8 @@ en:
       role_dialog_title: Grant New Role
     responses:
       alert_title: Please Enter a Valid Response.
+    roles:
+      dialog_title: Grant New Role
   routes:
     customizations:
       show: 'Details'
