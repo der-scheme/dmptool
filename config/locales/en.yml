@@ -236,6 +236,8 @@ en:
       reject_dialog_title: Reason for rejection (mandatory)
     requirements_templates:
       role_dialog_title: Grant New Role
+    responses:
+      alert_title: Please Enter a Valid Response.
   routes:
     customizations:
       show: 'Details'
