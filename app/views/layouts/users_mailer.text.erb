@@ -1,0 +1,10 @@
+Hello <%= @vars[:user].full_name %>,
+
+<%= yield %>
+
+If you have questions pertaining to this action, please visit the DMP Overview page at <%= edit_plan_url(id: @vars[:plan].id) %>
+
+You may change your notification preferences at <%= edit_user_url(@vars[:user], anchor: 'tab_tab2') %>.
+
+Please do not reply to this email.
+You may always visit our contact page at <%= contact_url %>.
