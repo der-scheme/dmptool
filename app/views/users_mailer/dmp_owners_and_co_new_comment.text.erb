@@ -1,9 +1,5 @@
-Hello <%= @vars[:user].full_name %>,
-
 <%= @vars[:commenter].full_name %> has commented on the plan "<%= @vars[:plan].name %>" :
 
 <%= @vars[:comment] %>
 
 If you have questions pertaining to this action, please visit the DMP Overview page at <%= edit_plan_url(@vars[:plan]) %>
-
-<%= render :partial => 'users_mailer/notification_boilerplate.text.erb' %>
