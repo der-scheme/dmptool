@@ -86,7 +86,7 @@
   <%= render partial: 'reject_with_comments', locals: {:plan_id => params[:id] } %>
 </div>
 <hr/>
-<%= link_to 'Back', review_dmps_path(@plan), method: :get, :class => 'btn btn-green pull-left' %>
+<%= link_to 'Back', review_dmps_path, method: :get, :class => 'btn btn-green pull-left' %>
 
 <script type="text/javascript">
   $("div.scrollable-container").resizable({ containment: "parent", minHeight: 150, handles: "s" });
