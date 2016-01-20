@@ -23,8 +23,8 @@ module RouteI18n
 
         url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
         html_options ||= {}
-        format = html_options.delete(:format) || :html
-        locale = html_options.delete(:locale)
+        format = html_options.delete(:format)
+        locale = html_options.delete(:locale) || params[:locale]
         t = html_options.delete(:t)
 
         text_method = :"#{route.name}_text"
