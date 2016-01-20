@@ -1,5 +1,7 @@
 <% @title_text = page_title %>
 <% @display_menu = "dmp_templates" %>
+
+<%= i18n_include_tag %>
 <h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 
 <div class="table-scope">
@@ -61,7 +63,7 @@
                           remote: true,
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %> |
-              <%= link_to_resource_contexts_choose_institution(requirements_template_id: requirements_template.id) %>
+              <%= link_to_resource_contexts_choose_institution({requirements_template_id: requirements_template.id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,

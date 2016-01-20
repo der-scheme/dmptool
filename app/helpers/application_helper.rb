@@ -299,6 +299,15 @@ module ApplicationHelper
                        **{selected: selected}.merge!(options))
   end
 
+  ##
+  # Add a Javascript tag importing some default I18n translations to the page.
+  #
+  # ==== Parameters =====
+  # [scopes]
+  #     Pass the scopes of all translations you explicity need, or leave blank
+  #     to pass the defaults. Note that this will only add the direct
+  #     descendants of each scope.
+
   def i18n_include_tag(*scopes)
     scopes = [
       'date.formats', 'time.formats', 'datetime.formats',
@@ -321,7 +330,7 @@ module ApplicationHelper
     end
 
     javascript_tag <<EOF
-      I18n = (typeof x === 'undefined') ? {} : I18n;
+      I18n = (typeof I18n === 'undefined') ? {} : I18n;
       {
         var translations = #{translations.to_json.html_safe};
         for (var key in translations) { I18n[key] = translations[key]; }

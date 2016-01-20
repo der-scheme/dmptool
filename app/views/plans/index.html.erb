@@ -1,8 +1,11 @@
-<% @title_text = t('.title') %>
+<% @title_text = page_title %>
 <% @display_menu = "my_dmps" %>
 
 <% @plan_id = nil %>
-<h1 class="row-fluid"><span class="icon dmp-template"></span><%= @title_text %></h1>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
+<h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 <div class="table-scope">
   <%= link_to t('.filter_all_link',       count: @all),       {order_scope: @order_scope, scope: 'all_limited', all_scope: @all_scope}, class: 'all_limited' %>
   |
@@ -59,16 +62,16 @@
             <strong id=<%= plan.name %>> <%= plan.name %></strong>
             <div class="template-links">
               <% @plan_id = plan.id %>
-                <%= link_to t('.overview_link'), edit_plan_path(plan) %>
-              | <%= link_to t('.details_link'), details_plan_path(plan) %>
+                <%= link_to_edit_plan(plan) %>
+              | <%= link_to_details_plan(plan) %>
               | <%= link_to t('.share_link'), '#', class: 'change_visibility_link', data: {planid: plan.id, visibility: plan.visibility} %>
 
               <%# if (review_type(plan) == true) || (review_type(plan) == nil && plan.requirements_template.try(:review_type) && plan.requirements_template.review_type != :no_review) %>
-                | <%= link_to t('.preview_link'), preview_plan_path(plan) %>
+                | <%= link_to_preview_plan(plan) %>
               <%# end %>
               | <%= link_to t('.copy_link'), copy_existing_plans_template_path(plan: plan) %>
-              <br><%= link_to t('.export_pdf_link'), plan_path(plan, format: :pdf) %>
-              | <%= link_to t('.export_docx_link'), plan_path(plan, format: :docx) %>
+              <br><%= link_to_plan(plan, format: :pdf) %>
+              | <%= link_to_plan(plan, format: :docx) %>
               <% unless coowner(plan) == true %>
 
               | <%= link_to t('.delete_link'), plan_path(plan, order_scope: @order_scope, scope: @scope,  all_scope: @all_scope),
@@ -130,7 +133,7 @@
     <!-- </tr> -->
   <!-- </tbody> -->
 <!-- </table> -->
-<%= button_to t('.new_plan_button'), plan_template_information_path, method: :get, class: 'btn' %>
+<%= button_to plan_template_information_text, plan_template_information_path, method: :get, class: 'btn' %>
 <div id = 'visibility_dialog_form'>
   <%= render partial: 'change_visibility', locals: {:plan_id => @plan_id} %>
 </div>
