@@ -104,12 +104,17 @@ String.prototype.interpolate = function(interpolants) {
 
 function translate(key, interpolants) {
   if (typeof I18n === 'undefined') {
-    return 'undefined';
+    return 'I18n definition missing';
   }
 
   interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
+  var translation = I18n[key];
 
-  return I18n[key].toString().interpolate(interpolants);
+  if (typeof translation === 'undefined') {
+    return 'Translation missing: ' + key;
+  }
+
+  return translation.interpolate(interpolants);
 };
 t = translate;
 
