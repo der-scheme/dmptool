@@ -212,6 +212,13 @@ en:
       reject_dialog_title: Reason for rejection (mandatory)
     requirements_templates:
       role_dialog_title: Grant New Role
+    responses:
+      alert_title: Please Enter a Valid Response.
+    roles:
+      dialog_title: Grant New Role
+    users:
+      current_dmp_admin_confirm: Do you really want to remove yourself from the DMP Administrator role? You will lose all administrative permissions.
+      roles_dialog_title: Edit Roles for the User
   routes:
     customizations:
       show: Details
