@@ -380,6 +380,11 @@ en:
     language_switcher:
       locale_name: English
       currently_chosen: Currently chosen
+    users_mailer:
+      greetings: 'Hello %{user},'
+      preferences_hint: 'You may change your notification preferences at %{url}.'
+      dont_reply: Please do not reply to this email.
+      contact_us: 'You may always visit our contact page at %{url}.'
   static_pages:
     contact:
       question_about_missing: Please indicate what your question is about

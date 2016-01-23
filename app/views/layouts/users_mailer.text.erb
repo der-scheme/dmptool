@@ -1,8 +1,8 @@
-Hello <%= @user.full_name %>,
+<%= t('.greetings', user: @user.full_name) %>
 
 <%= yield %>
 
-You may change your notification preferences at <%= edit_user_url(@user, anchor: 'tab_tab2') %>.
+<%= t('.preferences_hint', url: edit_user_url(@user, anchor: 'tab_tab2')) %>
 
-Please do not reply to this email.
-You may always visit our contact page at <%= contact_url %>.
+<%= t('.dont_reply') %>
+<%= t('.contact_us', url: contact_url) %>
