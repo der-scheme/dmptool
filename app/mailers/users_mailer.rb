@@ -4,13 +4,17 @@ class UsersMailer < ActionMailer::Base
   def username_reminder(uid, email)
     @uid = uid
     @email = email
-    mail to: email, subject: 'DMPTool username reminder'
+    mail to: email, subject: 'DMPTool username reminder' do |format|
+      format.text {render layout: 'plain'}
+    end
   end
 
   def password_reset(uid, email, reset_path)
     @uid = uid
     @url = reset_path
-    mail to: email, subject: 'DMPTool password reset'
+    mail to: email, subject: 'DMPTool password reset' do |format|
+      format.text {render layout: 'plain'}
+    end
   end
 
   #pass in the email addresses, the email subject and the template name that has the text
