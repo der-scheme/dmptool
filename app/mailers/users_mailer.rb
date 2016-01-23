@@ -30,6 +30,7 @@ class UsersMailer < ActionMailer::Base
     else
       email_address_array = [email_address]
     end
+    @user = locals.delete(:user)
     @vars = locals
     mail( :to             => email_address_array.join(','),
           :subject        => "#{dmp_string} #{subject}",
