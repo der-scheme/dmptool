@@ -24,6 +24,7 @@ class UsersMailer < ActionMailer::Base
   #                           'that frosty mug taste', 'test_mail').deliver
   def notification(email_address, subject, message_template, locals)
     email_address_array = [*email_address]
+    @plan = locals.delete(:plan)
     @user = locals.delete(:user)
     @vars = locals
     mail to:            email_address_array.join(','),
