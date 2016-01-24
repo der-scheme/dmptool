@@ -23,7 +23,7 @@ module UserPlanEmail
       UsersMailer.notification(
             user.email,
             "New #{new_user_type} of #{plan.name}",
-            "dmp_owners_and_co_user_added",
+            "plan_user_added",
             {:user => user, :plan => plan, :new_user => new_user, :new_user_type => new_user_type } ).deliver
     end
   end
