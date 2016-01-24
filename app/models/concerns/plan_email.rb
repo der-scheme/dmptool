@@ -50,7 +50,7 @@ module PlanEmail
         UsersMailer.notification(
             user.email,
             "PLAN COMPLETED: #{self.name}",
-            "dmp_owners_and_co_committed",
+            "plan_completed",
             {:user => user, :plan => self } ).deliver
       end
 
