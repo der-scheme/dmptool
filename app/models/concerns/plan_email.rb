@@ -24,7 +24,7 @@ module PlanEmail
           UsersMailer.notification(
               user.email,
               "DMP Visibility Changed: #{self.name}",
-              "dmp_owners_and_co_vis_change",
+              "plan_visibility_changed",
               { :user => user, :plan => self } ).deliver
         end
       end
