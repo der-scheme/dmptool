@@ -23,7 +23,7 @@ module CommentEmail
         UsersMailer.notification(
             user.email,
             "NEW COMMENT: #{plan.name}",
-            "dmp_owners_and_co_new_comment",
+            "plan_commented",
             {:comment => self.value, :user => user, :commenter => commenter, :plan => plan } ).deliver
       end
     #end
