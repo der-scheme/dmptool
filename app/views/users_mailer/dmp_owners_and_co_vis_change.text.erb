@@ -8,4 +8,5 @@ Institutional - Visible to others from <%= @user.institution.name %>
 
 Public - visible publicly on the web
 
-If you have questions pertaining to this action, please visit the DMP Overview page at <%= edit_plan_url(@plan) %>
+<%= render partial: 'information_link',
+           locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>
