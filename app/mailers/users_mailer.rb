@@ -1,5 +1,6 @@
 class UsersMailer < ActionMailer::Base
-  default from: APP_CONFIG['feedback_email_from']
+  default from: APP_CONFIG['feedback_email_from'],
+          reply_to: APP_CONFIG['feedback_email_to']
 
   def username_reminder(uid, email)
     @uid = uid
@@ -29,7 +30,6 @@ class UsersMailer < ActionMailer::Base
     @vars = locals
     mail to:            email_address_array.join(','),
          subject:       "#{dmp_string} #{subject}",
-         reply_to:      APP_CONFIG['feedback_email_from'],
          template_name: message_template
   end
 
