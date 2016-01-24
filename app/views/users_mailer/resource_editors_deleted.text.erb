@@ -1,3 +1,4 @@
 The DMP Template Customization "<%= @vars[:customization].name %>" has been deleted.
 
-If you have questions pertaining to this action, please contact <%= @user.institution.contact_info %> at <%= @user.institution.contact_email %>
+<%= render partial: 'information_email',
+           locals: {contact: @user.institution.contact_info, email: @user.institution.contact_email} %>

@@ -6,4 +6,5 @@ You currently have the following roles.
 
 <%= @user.roles.pluck(:name).join(", ") %>
 
-If you have questions pertaining to this action, please contact the DMP Administrator at uc3@ucop.edu.
+<%= render partial: 'information_email',
+           locals: {contact: 'the DMP Administrator', email: 'uc3@ucop.edu'} %>
