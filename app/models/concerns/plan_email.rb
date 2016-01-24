@@ -63,7 +63,7 @@ module PlanEmail
         UsersMailer.notification(
             user.email,
             "DMP #{current_state.state}: #{self.name}",
-            "dmp_owners_and_co_submitted",
+            "plan_state_updated",
             { :user => user, :plan => self, :state => current_state } ).deliver
       end
 
