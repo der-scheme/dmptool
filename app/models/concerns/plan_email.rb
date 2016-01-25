@@ -87,7 +87,7 @@ module PlanEmail
         UsersMailer.notification(
             user.email,
             "#{self.name} has been submitted for institutional review",
-            "institutional_reviewers_submitted",
+            "plan_under_review",
             {:user => user, :plan => self} ).deliver
       end
     end
