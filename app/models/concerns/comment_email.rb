@@ -13,13 +13,9 @@ module CommentEmail
 
     #mail all owners and co-owners for a plan that has a new comment
     #if self.comment_type == :owner
-      users = self.plan.users
-      plan = self.plan
-      commenter = self.user
-      return true if users.nil? || plan.nil? || commenter.nil?
-      users.delete_if {|u| !u[:prefs][:dmp_owners_and_co][:new_comment] }
-      users.delete_if {|u| !u.id == self.user_id }
-      users.each do |user|
+      commenter = user
+      return true unless plan && commenter
+      if user.prefs[:dmp_owners_and_co][:new_comment]
         UsersMailer.notification(
             user.email,
             "NEW COMMENT: #{plan.name}",
@@ -30,14 +26,7 @@ module CommentEmail
 
     #mail All institutional reviewers for plan's institution
     if self.comment_type == :reviewer
-      institution = self.user.institution
-      users = institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
-      users.delete_if {|u| !u[:prefs][:institutional_reviewers][:new_comment] }
-      users.delete_if {|u| !u.id == self.user_id }
-      plan = self.plan
-      commenter = self.user
-      return true if institution.nil? || plan.nil? || commenter.nil?
-      users.each do |user|
+      if user.prefs[:institutional_reviewers][:new_comment]
         UsersMailer.notification(
             user.email,
             "A new comment was added",
