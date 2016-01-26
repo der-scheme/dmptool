@@ -222,10 +222,12 @@
 .dashboard-nav {
 	border-top: 1px solid #B6B6B7;
 	border-bottom: 1px solid #B6B6B7;
-	height: 50px;
 	margin: 0;
 	padding: 0 0 0 20px; }
 .dashboard-nav ul.nav {
+	display: flex;
+	justify-content: flex-start;
+
 	font-size: 1.167em;
 	margin: 0;
 	padding: 0; }
@@ -234,16 +236,21 @@
 .dashboard-nav ul.nav > li {
 	float: left;
 	list-style: none;
-	height: 49px;
-	position: relative; }
+	position: relative;
+	flex: 0 1 auto;
+
+	text-align: center;
+}
 .dashboard-nav ul.nav > li.current-parent {
 	height: 98px; }
 .dashboard-nav ul.nav > li > a {
 	float: left;
 	color: #4C4C4E; }
 .dashboard-nav ul.nav > li > a {
-	 height: 14px;
-	 padding: 17px 0; }
+	box-sizing: border-box;
+	padding: 17px 0;
+	height: 100%;
+}
 .dashboard-nav ul.nav > li > a:first-child {
 	padding-left: 0; }
 .dashboard-nav ul.nav > li > a:hover, .dashboard-nav ul.nav > li > a:focus, .dashboard-nav ul.nav > li > a:active {
@@ -254,10 +261,13 @@
 	color: #516935;
 	text-decoration: none; }
 .dashboard-nav ul.nav > li > a > span {
+	box-sizing: border-box;
 	display: inline-block;
+	padding: 0 8px;
+	height: 100%;
+
 	border-left: 1px solid #B6B6B7;
-	height: 14px;
-	padding: 0 8px; }
+}
 .dashboard-nav ul.nav > li:first-child > a > span {
 	border-left: none; }
 /* Dasbhoard Breadcrumbs */
