@@ -21,7 +21,7 @@ module ResourceContextEmail
         UsersMailer.notification(
             user.email,
             "DMP Template Customization Deleted: #{template.name}",
-            "resource_editors_deleted",
+            "template_customization_deleted",
             {:user => user, :customization => self} ).deliver
       end
     end
