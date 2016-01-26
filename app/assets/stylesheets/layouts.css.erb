@@ -271,7 +271,7 @@
 .dashboard-nav ul.nav > li:first-child > a > span {
 	border-left: none; }
 /* Dasbhoard Breadcrumbs */
-.dashboard-nav ul.nav ul.children {
+.dashboard-submenu .children {
 	float: left;
 	display: none;
 	min-width: 500px;
@@ -280,7 +280,7 @@
 	bottom: 0; }
 .dashboard-nav ul.nav > li.current-parent ul {
 	display: block; }
-.dashboard-nav ul.nav ul li {
+.dashboard-submenu li {
 	float: left;
 	background: #E9E9EA;
 	list-style: none;
@@ -288,14 +288,14 @@
 	margin-right: -15px;
 	padding: 10px 0;
 	position: relative; }
-.dashboard-nav ul.nav ul li:first-child {
+.dashboard-submenu li:first-child {
 	margin-right: 0;
 	padding-left: 15px; }
-.dashboard-nav ul.nav ul li.last {
+.dashboard-submenu li.last {
 	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 -87px transparent;
 	width: 15px;
 	margin-left: -15px; }
-.dashboard-nav ul.nav ul li a {
+.dashboard-submenu li a {
 	float: left;
 	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 0 transparent;
 	color: #516935;
@@ -307,17 +307,17 @@
 	padding: 0 30px;
 	position: relative;
 	left: -15px; }
-.dashboard-nav ul.nav ul li:first-child a {
+.dashboard-submenu li:first-child a {
 	border-left: 2px solid #FFFFFF;
 	background-position: -15px 0;
 	padding-left: 15px;
 	left: 0; }
-.dashboard-nav ul.nav ul li a:hover, .dashboard-nav ul.nav ul li a:focus, .dashboard-nav ul.nav ul li a:active {
+.dashboard-submenu li a:hover, .dashboard-submenu li a:focus, .dashboard-submenu li a:active {
 	background-position: 0 -29px;
 	text-decoration: none; }
-.dashboard-nav ul.nav ul li:first-child a:hover, .dashboard-nav ul.nav ul li:first-child a:focus, .dashboard-nav ul.nav ul li:first-child a:active {
+.dashboard-submenu li:first-child a:hover, .dashboard-submenu li:first-child a:focus, .dashboard-submenu li:first-child a:active {
 	background-position: -15px -29px; }
-.dashboard-nav ul.nav ul li.current a {
+.dashboard-submenu li.current a {
 	background-position: 0 -58px; }
-.dashboard-nav ul.nav ul li:first-child.current a {
+.dashboard-submenu li:first-child.current a {
 	background-position: -15px -58px; }
