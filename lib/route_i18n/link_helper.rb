@@ -40,7 +40,7 @@ module RouteI18n
           end
         else
           text = send(text_method, url, format: format, locale: locale, t: t)
-          link_to send(path_method, url, format: format, locale: locale, t: t),
+          link_to send(path_method, url, format: format, locale: locale),
                   html_options do
             body ? body.call(text) : text
           end
