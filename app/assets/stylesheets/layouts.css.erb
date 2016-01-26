@@ -273,18 +273,29 @@
 /* Dasbhoard Breadcrumbs */
 .dashboard-submenu {
 	font-size: 1.167em;
+/*
+	Uncomment the following to move submenus to the center instead of having them
+	aligned to the left.
+*/
+/*
+	text-align: center;
+*/
+
+	background: #E9E9EA;
+	border-bottom: 1px solid #B6B6B7;
 }
 .dashboard-submenu .children {
-	float: left;
+	display: inline-block;
 	min-width: 500px;
 	margin: 0;
 	bottom: 0; }
 .dashboard-submenu li {
-	float: left;
-	background: #E9E9EA;
+	display: inline-block;
+
 	list-style: none;
 	height: 29px;
 	margin-right: -15px;
+	margin-bottom: 0;
 	padding: 10px 0;
 	position: relative; }
 .dashboard-submenu li:first-child {
