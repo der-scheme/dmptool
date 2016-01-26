@@ -23,7 +23,7 @@ module RequirementsTemplateEmail
         UsersMailer.notification(
             user.email,
             "DMP Template Deactivated: #{self.name}",
-            "requirement_editors_deactived",
+            "template_deactivated",
             {:user => user, :template => self} ).deliver
       end
 
