@@ -12,9 +12,6 @@
       <!-- Create New DMP -->
       <%= content_tag :li, class: ('current' if menu_level(0) == 'plans') do %>
         <%= link_to(content_tag(:span, 'Create New DMP'), plan_template_information_path) %>
-        <% if menu_level(0) == 'plans' && !menu_level(1).blank? %>
-          <%= render partial: 'layouts/dashboard_create_dmp_submenu' %>
-        <% end %>
       <% end %>
 
       <!-- Review DMPs -->
@@ -25,27 +22,11 @@
       <!-- DMP Templates -->
       <%= content_tag :li, class: ('current' if menu_level(0) == 'dmp_templates') do %>
         <%= link_to(content_tag(:span, 'DMP Templates'), requirements_templates_path) %>
-        <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
-          <% if menu_level(0) == 'dmp_templates' ||
-              ((user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
-                  !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' ) %>
-            <% if menu_level(0) == 'customizations' %>
-              <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
-            <% else %>
-              <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
-            <% end %>
-          <% end %>
-        <% end %>
       <% end %>
 
       <!-- Customizations -->
       <%= content_tag :li, class: ('current' if menu_level(0) == 'customizations') do %>
         <%= link_to(content_tag(:span, 'Customizations'), resource_contexts_path) %>
-        <% if user_role_in?(:dmp_admin) %>
-          <% if menu_level(0) == 'customizations' && !menu_level(1).blank? %>
-            <%= render partial: 'layouts/dashboard_customizations_submenu' %>
-          <% end %>
-        <% end %>
       <% end %>
 
       <!-- Institution Profile -->
@@ -69,4 +50,33 @@
 
     </ul>
   </div>
+
+<!--
+  Create New DMP
+-->
+  <% if menu_level(0) == 'plans' && !menu_level(1).blank? %>
+    <%= render partial: 'layouts/dashboard_create_dmp_submenu' %>
+  <% end %>
+<!--
+  DMP Templates
+-->
+  <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
+    <% if menu_level(0) == 'dmp_templates' ||
+        ((user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
+            !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' ) %>
+      <% if menu_level(0) == 'customizations' %>
+        <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
+      <% else %>
+        <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
+      <% end %>
+    <% end %>
+  <% end %>
+<!--
+  Customizations
+-->
+  <% if user_role_in?(:dmp_admin) %>
+    <% if menu_level(0) == 'customizations' && !menu_level(1).blank? %>
+      <%= render partial: 'layouts/dashboard_customizations_submenu' %>
+    <% end %>
+  <% end %>
 </div>
