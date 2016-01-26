@@ -89,7 +89,19 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 	border-left: 4px solid #A0DF00;
 	padding-left: 3px;
 } */
-    
+
+.control-label .questionmark {
+	position: relative;
+	top: 3px;
+	left: -5px;
+}
+
+.control-label.required .questionmark {
+	left: -31px;
+	margin-left: 0;
+	margin-right: -19px;
+}
+
 /* Search Area */
 .search-area[class*="span"] {
   width: auto;
