@@ -32,9 +32,14 @@
       </div>
     <% end %>
 
-    <div class="control-group" id="obligation" style="position: relative">
-      <%= content_tag(:span, '', :title => 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 120px') %>
-      <p class="control-label">Obligation</p>
+    <div class="control-group" id="obligation">
+      <p class="control-label">
+        <%= content_tag :span, '',
+                        title: 'Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.',
+                        data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                        class: 'icon questionmark tip' %>
+        Obligation
+      </p>
       <div class="controls checkbox-controls">
         <%= f.radio_button :obligation, :mandatory, :class => 'radio inline', :id => 'mandatory'%>
         <%= label_tag :mandatory, "Mandatory", :class => "radio-label" %><br/>
