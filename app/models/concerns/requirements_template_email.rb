@@ -40,7 +40,7 @@ module RequirementsTemplateEmail
         UsersMailer.notification(
             user.email,
             "DMP Template Activated: #{self.name}",
-            "requirement_editors_committed",
+            "template_activated",
             {:user => user, :template => self} ).deliver
       end
 
