@@ -58,9 +58,14 @@
 
 			  <%end%>
 
-			  <div class="control-group" style="position: relative">
-			  	<%= content_tag(:span, '', :title => 'You can require institutional administrator review of plans submitted using this template.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 115px') %>
-			    <p class ="control-label">Review type</p>
+			  <div class="control-group">
+          <p class ="control-label">
+            <%= content_tag :span, '',
+                          title: 'You can require institutional administrator review of plans submitted using this template.',
+                          data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                          class: 'icon questionmark tip' %>
+            Review type
+          </p>
 			    <div class="controls checkbox-controls">
 			      <%= f.radio_button :review_type, :formal_review, :class => 'radio inline', :id => 'formal_review'  %>
 			      <%= label_tag :formal_review, 'Review Required', :class => 'checkbox-label'%><br/>
