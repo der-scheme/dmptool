@@ -1,5 +1,4 @@
-<li class='current-parent'>
-  <%= link_to_resource_contexts {|text| content_tag :span, text} %>
+<nav class="dashboard-submenu">
   <ul class="children dmp-templates">
     <!-- The following adds "current" class when on Customization Overview page -->
     <% if menu_level(1) == 'overview' %>
@@ -24,4 +23,4 @@
       <li class="last"></li>
     <% end %>
   </ul>
-</li>
+</nav>
