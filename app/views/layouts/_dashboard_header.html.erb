@@ -67,14 +67,11 @@
   DMP Templates
 -->
   <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
-    <% if menu_level(0) == 'dmp_templates' ||
-        ((user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
-            !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' ) %>
-      <% if menu_level(0) == 'customizations' %>
-        <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
-      <% else %>
-        <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
-      <% end %>
+    <% if (user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
+           !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' %>
+      <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
+    <% elsif menu_level(0) == 'dmp_templates' && menu_level(1).present? %>
+      <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
     <% end %>
   <% end %>
 <!--
