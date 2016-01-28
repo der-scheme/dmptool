@@ -42,6 +42,8 @@ class UserSessionsController < ApplicationController
     session[:user_id] = user.id
     session[:login_method] = auth[:provider]
 
+    user.save(validate: false)
+
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?
       redirect_to edit_user_path(user), flash: {error: 'Please complete filling in your profile information.'} and return
     else

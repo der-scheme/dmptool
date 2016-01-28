@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :user_plans
   has_many :plans, through: :user_plans
   has_many :comments
-  has_many :authentications
+  has_many :authentications, autosave: true
   has_many :authorizations
   has_many :roles, through: :authorizations
 
@@ -62,29 +62,44 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth, institution_id)
     auth = auth.with_indifferent_access
-
-    auth[:info] = auth[:info].with_indifferent_access unless auth[:info].blank?
+    info = auth[:info] = auth[:info].with_indifferent_access unless auth[:info].blank?
 
     uid = smart_userid_from_omniauth(auth) #gets info[:uid] or auth[:uid], reduced long LDAP string to simple user_id
+    email = smart_email_from_omniauth(info.try(:[], :email))
 
-    raise LoginException.new('incomplete information from identity provider') if uid.blank? || auth[:info].blank? || auth[:info][:email].blank?
+    fail LoginException, 'incomplete information from identity provider' unless uid && email
 
-    email = smart_email_from_omniauth(auth[:info][:email])
-
+    # The following two lines are scary.
+    # In User#create, email uniqueness validation is turned off, which is
+    # probably the reason why we have them here. Anyway, I couldn't find out if
+    # it really matters, therefore I'm not touching that.
     u = User.with_deleted.where(email: email)
 
     raise LoginException.new('multiple users with same email') if u.length > 1
 
+    # Not sure why we have this. user_sessions#create already validates if
+    # users are active, thus this code is probably redundant.
     raise LoginException.new('user deactivated') if u.length == 1 && (!u.first.deleted_at.blank? || u.active == false)
 
-    a = Authentication.find_by_uid(uid)
+    a = Authentication.find_or_initialize_by(uid: uid, provider: auth[:provider])
+    if a.new_record?
+      user = User.find_or_initialize_by(email: email)
 
-    if a.nil?
-      create_from_omniauth(auth, institution_id)
+      if user.new_record?
+        user.attributes = {
+          login_id: uid,
+          first_name: info.try(:[], :first_name),
+          last_name: info.try(:[], :last_name),
+          institution_id: institution_id
+        }
+      elsif auth[:provider] == :shibboleth
+        user.institution_id = institution_id
+      end
     else
       raise LoginException.new('authentication without user record') if a.user.nil?
-      a.user
     end
+
+    a.user
   end
 
   def self.create_from_omniauth(auth, institution_id)
