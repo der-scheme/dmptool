@@ -36,10 +36,7 @@ class UserSessionsController < ApplicationController
       end
       redirect_to choose_institution_path, flash: { error: msg } and return
     end
-    if auth[:provider] == 'shibboleth' && user.nil?
-      redirect_to choose_institution_path, flash: { error: 'Problem with InCommon login.  Your InCommon provider may not be releasing the necessary attributes.'} and return
-    end
-    if user.nil? || !user.active?
+    unless user.active?
      redirect_to choose_institution_path, flash: { error: "Incorrect username, password or institution" } and return
     end 
     session[:user_id] = user.id
