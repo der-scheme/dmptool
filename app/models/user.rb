@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
   validates_format_of :password, with: /([A-Za-z])/, :allow_blank => true
   validates_format_of :password, with: /([0-9])/, :allow_blank => true
   validates_length_of :password, within: 8..30, :allow_blank => true
- 
-  before_validation :create_default_preferences, if: Proc.new { |x| x.prefs.empty? }
+
+  before_validation :default_preferences, if: Proc.new { |x| x.prefs.empty? }
   before_validation :add_default_institution, if: Proc.new { |x| x.institution_id.nil? }
 
   before_update :try_update_ldap, :if => :email_changed?
@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
         #fix login_id for CDL LDAP to be simple username
         user.login_id = smart_userid_from_omniauth(auth)
         user.institution_id = institution_id
-        user.prefs = create_default_preferences
+        user.prefs = default_preferences
         user.save(:validate => false)
       elsif user.institution.nil? || auth[:provider].to_s == 'shibboleth'
         user.institution_id = institution_id
@@ -248,12 +248,12 @@ class User < ActiveRecord::Base
     self.institution_id = 0
   end
 
-  def create_default_preferences
-    self.prefs = self.class.create_default_preferences
+  def default_preferences
+    self.prefs = self.class.default_preferences
   end
 
-  def self.create_default_preferences
-    default_prefs = {
+  def self.default_preferences
+    {
         users:                   {
             role_granted: true
         },
