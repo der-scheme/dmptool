@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :user_plans
   has_many :plans, through: :user_plans
   has_many :comments
-  has_many :authentications, autosave: true
+  has_many :authentications, autosave: true, dependent: :destroy
   has_many :authorizations
   has_many :roles, through: :authorizations
 
