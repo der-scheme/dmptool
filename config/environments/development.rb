@@ -40,4 +40,5 @@ Dmptool2::Application.configure do
     end
   end
 
+  config.prompt_external_signup = [:ldap, :shibboleth]
 end
