@@ -19,9 +19,19 @@ class UserSessionsController < ApplicationController
   def create
     redirect_to choose_institution_path if session[:institution_id].blank? and return
     auth = env["omniauth.auth"]
-    user = nil
     begin
-      user = User.from_omniauth(auth, session['institution_id'])
+      if session.delete(:import_successful)
+        user = User.new(session.delete(:foreign_user))
+        a12n = Authentication.new(session.delete(:authentication))
+        user.authentications << a12n
+
+        # We have to turn validation off because the User model is
+        # misconfigured in so many ways.
+        a12n.save(validate: false)
+        user.save(validate: false)
+      else
+        user, a12n = User.from_omniauth(auth, session['institution_id'])
+      end
     rescue User::LoginException => ex
       msg = ex.to_s
       case ex.to_s
@@ -36,12 +46,21 @@ class UserSessionsController < ApplicationController
       end
       redirect_to choose_institution_path, flash: { error: msg } and return
     end
+
+    if user.new_record?
+      session[:foreign_user] = user.attributes.with_indifferent_access
+      session[:authentication] = a12n.attributes.with_indifferent_access
+      redirect_to import_user_path and return
+    end
+
     unless user.active?
      redirect_to choose_institution_path, flash: { error: "Incorrect username, password or institution" } and return
-    end 
+    end
     session[:user_id] = user.id
     session[:login_method] = auth[:provider]
 
+    # Validation turned off, because see above.
+    a12n.save(validate: false)
     user.save(validate: false)
 
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?

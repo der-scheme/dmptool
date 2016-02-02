@@ -86,6 +86,14 @@ Dmptool2::Application.routes.draw do
       patch :finish_signup_update
     end
   end
+  # We have to do it like this, because:
+  # 1. With plain get/post we cannot create the same named helper for both.
+  # 2. With non-singular resources the route accepts an ID which is not what we
+  #    want.
+  resource :user, only: [] do
+    get :import
+    post :import, to: :import_accepted
+  end
 
   # resources :resources do
   #   resources :resource_contexts

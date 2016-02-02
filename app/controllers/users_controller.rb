@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :require_login, except: [:create, :finish_signup, :finish_signup_update, :new]
+  before_action :require_login, except: [:create, :finish_signup, :finish_signup_update, :import, :import_accepted, :new]
 
   include InstitutionsHelper
 
@@ -372,12 +372,25 @@ class UsersController < ApplicationController
     @user.save
     respond_to do |format|
       format.js
-    end 
+    end
   end
 
+  # GET /users/import
+  def import
+    redirect_to choose_institution_path and return unless session.key?(:foreign_user)
+    @user = User.new(session[:foreign_user])
+  end
+
+  # POST /users/import
+  def import_accepted
+    redirect_to choose_institution_path and return unless session.key?(:foreign_user)
+    session[:import_successful] = true
+    redirect_to({controller: :user_sessions, action: :create,
+                 provider: session[:authentication][:provider]})
+  end
 
   private
-  
+
 
   def map_users_for_autocomplete(users)
     @users.map {|u| Hash[ id: u.id, full_name: u.full_name, label: u.label]}
@@ -459,6 +472,5 @@ class UsersController < ApplicationController
     end
     return false
   end
-
 
 end

@@ -83,23 +83,24 @@ class User < ActiveRecord::Base
 
     a = Authentication.find_or_initialize_by(uid: uid, provider: auth[:provider])
     if a.new_record?
-      user = User.find_or_initialize_by(email: email)
+      a.user = User.find_or_initialize_by(email: email)
 
-      if user.new_record?
-        user.attributes = {
+      if a.user.new_record?
+        a.user.attributes = {
           login_id: uid,
           first_name: info.try(:[], :first_name),
           last_name: info.try(:[], :last_name),
-          institution_id: institution_id
+          institution_id: institution_id,
+          prefs: default_preferences
         }
       elsif auth[:provider] == :shibboleth
-        user.institution_id = institution_id
+        a.user.institution_id = institution_id
       end
     else
       raise LoginException.new('authentication without user record') if a.user.nil?
     end
 
-    a.user
+    return a.user, a
   end
 
   def self.create_from_omniauth(auth, institution_id)
