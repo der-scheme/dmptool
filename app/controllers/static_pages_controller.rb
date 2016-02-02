@@ -38,12 +38,12 @@ class StaticPagesController < ApplicationController
     if request.post?
       if verify_recaptcha
         msg = []
-        msg.push('Please indicate what your question is about') if params[:question_about].blank?
-        msg.push('Please enter your name') if params[:name].blank?
-        msg.push('Please enter your email') if params[:email].blank?
-        msg.push('Please enter a message') if params[:message].blank?
+        msg.push(t('.question_about_missing')) if params[:question_about].blank?
+        msg.push(t('.name_missing')) if params[:name].blank?
+        msg.push(t('.email_missing')) if params[:email].blank?
+        msg.push(t('.message_missing')) if params[:message].blank?
         if !params[:email].blank? && !params[:email].match(/^\S+@\S+$/)
-          msg.push('Please enter a valid email address')
+          msg.push(t('.email_invalid'))
         end
         if msg.length > 0
           flash[:error] = msg
@@ -57,7 +57,7 @@ class StaticPagesController < ApplicationController
         all_emails.each do |i|
           GenericMailer.contact_email(params, i).deliver
         end
-        flash[:alert] = "Your email message was sent to the DMPTool team."
+        flash[:alert] = t('.success_message')
         redirect_to :back and return
       end
       redirect_to contact_path(question_about: params['question_about'], name: params['name'],
@@ -76,18 +76,10 @@ class StaticPagesController < ApplicationController
     @s = params[:s]
     @e = params[:e]
 
-    case @order_scope1
-      when "Template"
-        @public_templates = @public_templates.order(name: :asc)
-      when "Institution"
-        @public_templates = @public_templates.order('institutions.full_name ASC')
-      when "InstitutionLink"
-        @public_templates = @public_templates.order('additional_informations.label ASC')
-      when "SamplePlans"
-        @public_templates = @public_templates.order('sample_plans.label ASC')
-      else
-        @public_templates = @public_templates.order(name: :asc)
-    end
+    sortable :name,                     default: true,      model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :institution_id,           nested: :full_name, model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :additional_informations,  nested: :label,     model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
+    sortable :sample_plans,             nested: :label,     model: RequirementsTemplate, inst_var: :public_templates, order_scope: :order_scope1
 
     case @scope1
       when "all"
@@ -112,19 +104,10 @@ class StaticPagesController < ApplicationController
       @institution_templates = current_user.institution.requirements_templates_deep.institutional_visibility.active.current.
               includes(:institution, :sample_plans, :additional_informations)
 
-
-      case @order_scope2
-        when "Template"
-          @institution_templates = @institution_templates.order(name: :asc)
-        when "Institution"
-          @institution_templates = @institution_templates.order('institutions.full_name ASC')
-        when "InstitutionLink"
-          @institution_templates = @institution_templates.order('additional_informations.label ASC')
-        when "SamplePlans"
-          @institution_templates = @institution_templates.order('sample_plans.label ASC')
-        else
-          @institution_templates = @institution_templates.order(name: :asc)
-      end
+      sortable :name,                     default: true,      model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :institution_id,           nested: :full_name, model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :additional_informations,  nested: :label,     model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
+      sortable :sample_plans,             nested: :label,     model: RequirementsTemplate, inst_var: :institution_templates, order_scope: :order_scope2
 
       case @scope2
         when "all"

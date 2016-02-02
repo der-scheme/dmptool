@@ -1,6 +1,6 @@
 module UsersHelper
   def password_label user
-    user.new_record? ? 'Password' : 'New Password'
+    User.human_attribute_name(user.new_record? ? :password : :new_password)
   end
 
 end

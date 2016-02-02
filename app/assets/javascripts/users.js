@@ -9,7 +9,7 @@ $(document).ready(function() {
 		$('#roles_dialog_form').dialog( {
 			width: 600,
 			height: 200,
-			title: "Edit Roles for the User",
+			title: t('.roles_dialog_title'),
 			buttons: {
 				"Cancel" : function() {
 					$("#roles_dialog_form").dialog("close");
@@ -28,7 +28,7 @@ $(document).ready(function() {
 // //automatically checks Institutional reviewer role when Institutional Administrator role gets checked
 $(function() {
 	$('#5').change(function(){
-		if ($('#5').is(':checked')) { 
+		if ($('#5').is(':checked')) {
 			$('#4').prop('checked', true);
 		}
 	});
@@ -50,17 +50,11 @@ $(function() {
 // alert message if DMP Admin remove his own DMP admin role
 $(function() {
 	$('#current_dmp_admin_with_alert').click(function(){
-		if (!$('#1').is(':checked')) { 
+		if (!$('#1').is(':checked')) {
 
 			//showConfirmDialog
 
-			//if ($('#current_admin_with_alert').confirm( "Do you really want to remove yourself from the DMP Administrator role? You will lose all administrative permissions.")){
-			if (confirm( "Do you really want to remove yourself from the DMP Administrator role? You will lose all administrative permissions.")){
-				return true;
-			}
-			else {
-				return false;
-			};
+			return confirm(t('.current_dmp_admin_confirm'));;
 		};
 	});
 });

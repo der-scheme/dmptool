@@ -1,92 +1,95 @@
 <% @display_menu = "institution" %>
 <div class="tabble">
 	<ul class="nav nav-tabs">
-		<li class="active"><%= link_to 'Institution Information', '#tab1', 'data-toggle' => 'tab' %></li>
+		<li class="active"><%= link_to t('.info'), '#tab1', data: { toggle: 'tab' } %></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
-			
 
-		<% provide(:title, 'Institution Information') %>
 
-<%= form_for @current_institution, html:{ :class => 'form-horizontal', multipart: true}  do |f| %>
-  <%= render partial: "shared/errors", locals: {model: @current_institution } %>
+		<% provide(:title, t('.info')) %>
+
+<%= form_for @current_institution, html: { class: 'form-horizontal', multipart: true} do |f| %>
+  <%= render partial: 'shared/errors', locals: { model: @current_institution } %>
   <div class="control-group">
-    <%= f.label :full_name , "Institution Full Name", :class => "control-label required" %>
+    <%= f.label :full_name, class: 'control-label required' %>
     <div class="controls">
-	    <%#= f.text_field :full_name, :class => "input-xxlarge", 'aria-required' => 'true' %>
-      <%= f.text_field :full_name, :class => "input-xxlarge" %>
+	    <%#= f.text_field :full_name, class: 'input-xxlarge', 'aria-required' => 'true' %>
+      <%= f.text_field :full_name, class: 'input-xxlarge' %>
 	  </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :shib_entity_id, "Entity_id", :class => "control-label " %>
+    <%= f.label :shib_entity_id, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :shib_entity_id, readonly: @current_institution.is_shibboleth? %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :shib_domain , "Shibboleth Domain", :class => "control-label "%>
+    <%= f.label :shib_domain, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :shib_domain, readonly: @current_institution.is_shibboleth? %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :parent_id , "Parent Institution", :class => "control-label"%>
+    <%= f.label :parent_id, class: 'control-label' %>
     <div class="controls">
 
 		<% if user_role_in?(:dmp_admin) %>
 
-			<%= f.select :parent_id, 
-          @institution_pool,
-          	{ selected:  @current_institution.parent_id, :include_blank => 'none'},
-            {:disabled => true}
+			<%= f.select :parent_id,
+                   @institution_pool,
+                   { selected:  @current_institution.parent_id, include_blank: 'none'},
+                   { disabled: true}
       %>
 
 		<% else %>
 
-			<%= f.select :parent_id, 
-          @institution_pool,
-          	{ selected:  @current_institution.parent_id, :include_blank => 'none'},
-            {:disabled => true} 
+			<%= f.select :parent_id,
+                   @institution_pool,
+                   { selected:  @current_institution.parent_id, include_blank: 'none'},
+                   { disabled: true }
           	#{:disabled => (!@current_institution.is_shibboleth? || !user_role_in?(:institutional_admin))}
-            
+
       %>
 
     <% end %>
-         
+
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :nickname, "Institution short name, or acronym", :class => "control-label" %>
+    <%= f.label :nickname, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :nickname %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :url_text, "Institution URL Text", :class => "control-label hide" %>
-    <%= f.label :url, "Institution URL", :class => "control-label" %>
+    <%= f.label :url_text, class: 'control-label hide' %>
+    <%= f.label :url, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :url_text, placeholder: "URL Text" %>
-      <%= f.text_field :url, placeholder: "URL" %>
+      <%= f.text_field :url_text, placeholder: t('.url_text_placeholder') %>
+      <%= f.text_field :url, placeholder: t('.url_placeholder') %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :contact_info, "Administrator Contact", :class => "control-label" %>
-    <%= f.label :contact_email, "Administrator Contact Email", :class => "control-label hide" %>
+    <%= f.label :contact_info, class: 'control-label' %>
+    <%= f.label :contact_email, class: 'control-label hide' %>
     <div class="controls">
-      <%= f.text_field :contact_info, placeholder: "Name" %>
-      <%= f.text_field :contact_email, placeholder: "Email" %>
+      <%= f.text_field :contact_info, placeholder: t('.contact_info_placeholder') %>
+      <%= f.text_field :contact_email, placeholder: t('.contact_email_placeholder') %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :logo, "Institutional Logo", :class => "control-label tip", 'data-toggle' => "tooltip", 'data-placement' => "left",  'title' => "Suggested Logo Size 170x60" %>
+    <%= f.label :logo, t('.logo'),
+                class: 'control-label tip',
+                data: { toggle: 'tooltip', placement: 'left'},
+                title: t('.logo_tooltip') %>
 
     <div class="controls">
       <%= image_tag @current_institution.logo.url if @current_institution.logo? %>
@@ -97,19 +100,19 @@
 
   <div class="control-group">
     <div class="controls">
-      <%= f.submit "Upload", :class => "btn" %>
+      <%= f.submit t('.upload_button'), class: 'btn' %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :desc , "Descriptive Text", :class => "control-label" %>
+    <%= f.label :desc, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :desc, rows: 5, :class => "input-xxlarge" %>
+      <%= f.text_area :desc, rows: 5, class: 'input-xxlarge' %>
     </div>
   </div>
   <div class="buttons">
-    <%= f.submit "Save Changes", :class => "btn btn-green" %>
-    <%= button_tag "Cancel", type: :reset, :class => "btn" %>
+    <%= render_save_changes_button %>
+    <%= render_cancel_button %>
   </div>
 <% end %>
 
@@ -117,15 +120,15 @@
 		</div>
 	</div>
 	<br/>
-  
 
 
-  <% if !(@acr.nil?) %>
-   <%= link_to '<< Back', institutions_path(anchor: @acr), :class => 'btn', role: "button" %>
-  <%elsif !@admin_acr.nil?  %>
-    <%= link_to '<< Back', users_path(anchor: @admin_acr), :class => 'btn', role: "button" %>
-  <%else%>
-    <%= link_to '<< Back', :back, :class => 'btn', role: "button" %>
-  <%end%>
+
+  <% if @acr %>
+    <%= render_back_button institutions_path(anchor: @acr), arrow: true, green: false %>
+  <% elsif @admin_acr %>
+    <%= render_back_button users_path(anchor: @admin_acr), arrow: true, green: false %>
+  <% else %>
+    <%= render_back_button arrow: true, green: false %>
+  <% end %>
 
 

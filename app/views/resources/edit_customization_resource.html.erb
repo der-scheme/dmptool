@@ -1,7 +1,6 @@
-<% @title_text = "Edit Customization Resource" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "Customizations" %>
-<h2> Edit <%= @resource.label %> Resource </h2>
-
+<%= content_tag :h2, t('.edit_resource', label: @resource.label) %>
 
 <%= form_for @resource ,
         url: update_customization_resource_path(customization_id: @customization_id,
@@ -17,76 +16,68 @@
 
   <fieldset>
     <div class="control-group">
-      <%= f.label :resource_type, "Resource Type", :class => "control-label" %>
+      <%= f.label :resource_type, class: 'control-label' %>
       <div class="controls">
 
         <% if  @resource_level=="requirement" %>
-          <%= f.select :resource_type,
-              options_for_select([['Links', :actionable_url], ['Guidance', :help_text], ['Example Response', :example_response], ['Suggested Response', :suggested_response]],
-                selected: @resource.resource_type) %>
+          <%= f.select :resource_type, options_for_enum_select(@resource) %>
         <% else %>
-          <%= f.select :resource_type,
-              options_for_select([['Links', :actionable_url], ['Guidance', :help_text]],
-                selected: @resource.resource_type) %>
+          <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text], @resource) %>
         <% end %>
 
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :label, "Resource Label", :class => "control-label required" %>
+      <%= f.label :label, class: 'control-label required' %>
       <div class="controls">
-        <%= f.text_field :label, placeholder: "Enter a name for this Resource", :class => "input-xlarge", 'aria-required' => 'true' %>
+        <%= f.text_field :label, placeholder: t('.label_placeholder'), class: 'input-xlarge', aria: {required: 'true'} %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :text, "Text", :class => "control-label", :id => 'text' %>
+      <%= f.label :text, class: 'control-label', :id => 'text' %>
       <div class="controls">
-        <%= f.text_area :text, size: "20x10",placeholder: "Enter the text", :class => "full-length" %>
+        <%= f.text_area :text, size: '20x10', placeholder: t('.text_placeholder'), class: 'full-length' %>
       </div>
     </div>
 
 
     <div class="control-group">
-       <%= f.label :value, "Value", :class => "control-label", id: "value_label" %>
+       <%= f.label :value, class: 'control-label', id: 'value_label' %>
       <div class="controls">
-        <%= f.text_field :value, placeholder: "URL", :class => "input-xlarge" %>
+        <%= f.text_field :value, placeholder: t('.value_placeholder'), class: 'input-xlarge' %>
       </div>
     </div>
 
     <div class="actions pull-left">
       <% if @custom_origin == 'Details' %>
-        <%= link_to '<< Back', 
-                  "#{@origin_path}"+
-                  '#'+
-                  "#{@tab_number}",  
-                  :class => "btn" %>
+        <%= render_back_button href: "#{@origin_path}##{@tab_number}",
+                               arrow: true, green: false %>
       <%else%>
-        <%= link_to '<< Back', 
-                  "#{@origin_path}",  
-                  :class => "btn" %>
+        <%= render_back_button href: @origin_path.to_s,
+                               arrow: true, green: false %>
       <%end%>
     </div>
 
     <div class="actions pull-right">
 
-      <%= button_tag 'Cancel', type: :reset, :class => "btn" %>
+      <%= render_cancel_button %>
 
-      <%= f.submit 'Save Changes', :class => "btn" %>
+      <%= render_submit_button t: '.save_changes' %>
 
 
-      <%= link_to(content_tag(:span, "", :class => "icon remove") + "Delete Resource",
-                                      delete_resource_path(resource_id: @resource.id,
-                                      customization_overview_id: @customization_id,
-                                      custom_origin: @custom_origin,
-                                      requirement_id: @requirement_id,
-                                      tab_number: @tab_number,
-                                      tab: @tab,
-                                      origin_url: smart_origin_url),
-                                      :method => :delete,
-                                    data: { confirm: 'Are you sure? This resource will be deleted from all templates and all requirements!' },
-                                    :class => "red remove_fields") %>
+      <%= link_to content_tag(:span, '', class: 'icon remove') + t('.delete_resource'),
+                  delete_resource_path(resource_id: @resource.id,
+                                       customization_overview_id: @customization_id,
+                                       custom_origin: @custom_origin,
+                                       requirement_id: @requirement_id,
+                                       tab_number: @tab_number,
+                                       tab: @tab,
+                                       origin_url: smart_origin_url),
+                  method: :delete,
+                  data: {confirm: t('.confirm_delete_prompt')},
+                  class: 'red remove_fields' %>
     </div>
   </fieldset>
 <% end %>
@@ -97,12 +88,12 @@
 <table class="table table-striped">
   <% if @any_templates || @any_requirements%>
     <tr>
-      <th colspan="3"> This Resource is shown in:</th>
+      <%= content_tag :th, t('.resource_shown_in'), colspan: 3 %>
     </tr>
 
   <% else%>
     <tr>
-      <th colspan="3"> This Resource is Global.</th>
+      <%= content_tag :th, t('.resource_global'), colspan: 3 %>
     </tr>
   <%end%>
 
@@ -110,39 +101,36 @@
     <% if @any_templates %>
 
       <tr>
-        <th colspan="3">The following Templates:</th>
+        <%= content_tag :th, t('.templates'), colspan: 3 %>
       </tr>
 
       <tr>
-        <th colspan="2">Template:</th>
-        <th>Unlink
-        <%= content_tag(:span, '', 
-          :title => 'Unlinking a resource from a requirement or template means it will no longer appear to plan creators. If the resource is not linked to any other templates or requirements, unlinking it will cause it to be deleted from the DMPTool.', 
-          'data-toggle' => 'tooltip', 
-          'data-placement' => 'top', 
-          'data-html' => 'true', 
-          :class => 'icon questionmark tip') %>
+        <%= content_tag :th, t('.template'), colspan: 2 %>
+        <th>
+          <%= t('.unlink') %>
+          <%= content_tag :span, '',
+                          title: t('.unlink_tooltip'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </th>
       </tr>
 
       <% @resource_contexts_templates.each do |resource_contexts_template| %>
         <tr>
-        
+
           <%if resource_contexts_template.requirements_template_id.to_s == @template_id %>
             <td colspan="2">
-              <%= resource_contexts_template.requirements_template.name %> (current) 
-              <%= content_tag(:span, '', 
-                :title => 'This is the name of the template you are currently working on.', 
-                  'data-toggle' => 'tooltip', 
-                  'data-placement' => 'top', 
-                  'data-html' => 'true', 
-                  :class => 'icon questionmark tip') %>
+              <%= resource_contexts_template.requirements_template.name %> (current)
+              <%= content_tag :span, '',
+                              title: t('.template_tooltip'),
+                              data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                              class: 'icon questionmark tip' %>
             </td>
           <%else%>
             <td colspan="2"><%= resource_contexts_template.requirements_template.name %></td>
           <%end%>
-          
-  
+
+
           <td>
             <%if (!@any_requirements && @templates_count==1)%>
               <%= link_to raw(''),
@@ -154,7 +142,7 @@
                                         last_template: 'yes'),
                                         method: :post,
                                         :class => 'icon unlink',
-                                        data: { confirm: 'Are you sure? This resource is not linked to any other templates; therefore unlinking it will cause it to be deleted from the DMPTool.' } %>
+                                        data: {confirm: t('.confirm_last_delete_prompt')} %>
             <%else%>
               <%= link_to raw(''),
                 unlink_resource_from_template_path(resource_id: @resource.id,
@@ -167,7 +155,7 @@
                                         :class => 'icon unlink' %>
             <%end%>
           </td>
-          
+
         </tr>
       <% end %>
 
@@ -181,18 +169,18 @@
 
       <tr>
         <th colspan="3" >The following Requirements:</th>
+        <%= content_tag :th, t('.requirements'), colspan: 3 %>
       </tr>
 
       <tr>
-        <th>Requirement:</th>
-        <th>Associated Template:</th>
-        <th>Unlink
-          <%= content_tag(:span, '', 
-          :title => 'Unlinking a resource from a requirement or template means it will no longer appear to plan creators. If the resource is not linked to any other templates or requirements, unlinking it will cause it to be deleted from the DMPTool.', 
-          'data-toggle' => 'tooltip', 
-          'data-placement' => 'top', 
-          'data-html' => 'true', 
-          :class => 'icon questionmark tip') %>
+        <%= content_tag :th, t('.requirement') %>
+        <%= content_tag :th, t('.assoc_template') %>
+        <th>
+          <%= t('.unlink') %>
+          <%= content_tag :span, '',
+                          title: t('.unlink_tooltip'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </th>
       </tr>
 
@@ -201,13 +189,11 @@
          <td><%= resource_contexts_requirement.requirement.text_brief if resource_contexts_requirement.requirement%></td>
          <%if resource_contexts_requirement.requirements_template.id.to_s == @template_id %>
             <td>
-              <%= resource_contexts_requirement.requirements_template.name %> (current) 
-              <%= content_tag(:span, '', 
-                :title => 'This is the name of the template you are currently working on.', 
-                  'data-toggle' => 'tooltip', 
-                  'data-placement' => 'top', 
-                  'data-html' => 'true', 
-                  :class => 'icon questionmark tip') %>
+              <%= resource_contexts_requirement.requirements_template.name %> (current)
+              <%= content_tag :span, '',
+                              title: t('.template_tooltip'),
+                              data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                              class: 'icon questionmark tip' %>
             </td>
           <%else%>
             <td><%= resource_contexts_requirement.requirements_template.name%></td>
@@ -224,7 +210,7 @@
                                         last_requirement: 'yes'),
                                         method: :post,
                                         :class => 'icon unlink',
-                                        data: { confirm: 'Are you sure? This resource is not linked to any other requirements; therefore unlinking it will cause it to be deleted from the DMPTool.' } %>
+                                        data: {confirm: t('.confirm_last_delete_prompt')} %>
             <%else%>
               <%= link_to raw(''),
                     unlink_resource_from_requirement_path(resource_id: @resource.id,

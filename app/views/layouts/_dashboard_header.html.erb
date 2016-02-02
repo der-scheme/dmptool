@@ -4,72 +4,82 @@
     <ul class="nav">
 
       <!-- My Dashboard -->
-      <li <%= "class=current" if menu_level(0) == 'dashboard' %>><%= link_to(content_tag(:span, 'My Dashboard'), dashboard_path) %></li>
+      <li <%= "class=current" if menu_level(0) == 'dashboard' %>>
+        <%= link_to_dashboard {|text| content_tag :span, text} %>
+      </li>
 
       <!-- My DMPs -->
-      <li <%= "class=current" if menu_level(0) == 'my_dmps' %>><%= link_to(content_tag(:span, 'My DMPs'), plans_path) %></li>
+      <li <%= "class=current" if menu_level(0) == 'my_dmps' %>>
+        <%= link_to_plans {|text| content_tag :span, text} %>
+      </li>
 
       <!-- Create New DMP -->
-      <% if menu_level(0) == 'plans' && !menu_level(1).blank? %>
-        <%= render partial: 'layouts/dashboard_create_dmp_submenu' %>
-      <% else %>
-        <li <%= "class=current" if menu_level(0) == 'plans' %>>
-          <%= link_to(content_tag(:span, 'Create New DMP'), plan_template_information_path) %>
-        </li>
+      <%= content_tag :li, class: ('current' if menu_level(0) == 'plans') do %>
+        <%= link_to_plan_template_information {|text| content_tag :span, text} %>
       <% end %>
 
       <!-- Review DMPs -->
       <% if user_role_in?(:institutional_reviewer, :dmp_admin) %>
-        <li <%= "class=current" if menu_level(0) == 'review_dmp' %>><%= link_to(content_tag(:span, 'Review DMPs'), review_dmps_path) %></li>
+        <li <%= "class=current" if menu_level(0) == 'review_dmp' %>>
+          <%= link_to_review_dmps {|text| content_tag :span, text} %>
+        </li>
       <% end %>
 
       <!-- DMP Templates -->
-      <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
-        <% if menu_level(0) == 'dmp_templates' ||
-            ((user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
-                !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' ) %>
-          <% if menu_level(0) == 'customizations' %>
-            <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
-          <% else %>
-            <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
-          <% end %>
-        <% else %>
-          <li <%= 'class=current' if menu_level(0) == 'dmp_templates' %>>
-            <%= link_to(content_tag(:span, 'DMP Templates'), requirements_templates_path) %>
-          </li>
-        <% end %>
+      <%= content_tag :li, class: ('current' if menu_level(0) == 'dmp_templates') do %>
+        <%= link_to_requirements_templates {|text| content_tag :span, text} %>
       <% end %>
 
       <!-- Customizations -->
-      <% if user_role_in?(:dmp_admin) %>
-        <% if menu_level(0) == 'customizations' && !menu_level(1).blank? %>
-          <%= render partial: 'layouts/dashboard_customizations_submenu' %>
-        <% else %>
-          <li <%= 'class=current' if menu_level(0) == 'customizations' %> >
-            <%= link_to(content_tag(:span, 'Customizations'), resource_contexts_path) %>
-          </li>
-        <% end %>
+      <%= content_tag :li, class: ('current' if menu_level(0) == 'customizations') do %>
+        <%= link_to_resource_contexts {|text| content_tag :span, text} %>
       <% end %>
 
       <!-- Institution Profile -->
       <% if user_role_in?(:institutional_admin, :dmp_admin) %>
         <li <%= 'class=current' if menu_level(0) == 'institution' %> >
-          <%= link_to(content_tag(:span, 'Institution Profile'), institutions_path) %>
+          <%= link_to_institutions {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
       <!-- My Profile -->
       <li <%= 'class=current' if menu_level(0) == 'my_profile' %>>
-        <%= link_to(content_tag(:span, 'My Profile'), edit_user_path(current_user)) %>
+        <%= link_to_edit_user(current_user) {|text| content_tag :span, text} %>
       </li>
 
       <!-- DMP Administration -->
       <% if user_role_in?(:dmp_admin) %>
         <li <%= 'class=current' if menu_level(0) == 'dmp_admin' %>>
-          <%= link_to(content_tag(:span, 'DMP Administration'), users_url) %>
+          <%= link_to_users {|text| content_tag :span, text} %>
         </li>
       <% end %>
 
     </ul>
   </div>
+
+<!--
+  Create New DMP
+-->
+  <% if menu_level(0) == 'plans' && !menu_level(1).blank? %>
+    <%= render partial: 'layouts/dashboard_create_dmp_submenu' %>
+  <% end %>
+<!--
+  DMP Templates
+-->
+  <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
+    <% if (user_role_in?(:institutional_admin, :template_editor, :resource_editor) &&
+           !user_role_in?(:dmp_admin)) && menu_level(0) == 'customizations' %>
+      <%= render partial: 'layouts/dashboard_customizations_under_dmp_submenu' %>
+    <% elsif menu_level(0) == 'dmp_templates' && menu_level(1).present? %>
+      <%= render partial: 'layouts/dashboard_requirements_template_submenu' %>
+    <% end %>
+  <% end %>
+<!--
+  Customizations
+-->
+  <% if user_role_in?(:dmp_admin) %>
+    <% if menu_level(0) == 'customizations' && !menu_level(1).blank? %>
+      <%= render partial: 'layouts/dashboard_customizations_submenu' %>
+    <% end %>
+  <% end %>
 </div>

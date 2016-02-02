@@ -1,7 +1,7 @@
-<p>List of sample data management plans provided by DMPTool users.</p>
+<%= t('.description_html') %>
 <ul>
   <% @public_dmps.each do |plan| %>
     <li><%= link_to plan.name, plan_path(plan, format: "pdf") %></li>
   <% end %>
 </ul>
-<%= link_to "View All", public_dmps_path, :class => "btn btn-gray" %>
+<%= render_button_link t: '.view_all', href: public_dmps_path, class: 'btn-gray' %>

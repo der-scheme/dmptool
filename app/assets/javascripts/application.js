@@ -95,3 +95,32 @@ function add_tab_to_pagination(){
     });
   });
 }
+
+String.prototype.interpolate = function(interpolants) {
+  return this.replace(/%\{(\w+)\}/g, function(match, key) {
+    return interpolants[key];
+  });
+};
+
+function translate(key, interpolants) {
+  if (typeof I18n === 'undefined') {
+    return 'I18n definition missing';
+  }
+
+  interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
+  var translation = I18n[key];
+
+  if (typeof translation === 'undefined') {
+    return 'Translation missing: ' + key;
+  }
+
+  return translation.interpolate(interpolants);
+};
+t = translate;
+
+function localized_temporal_format(temporal, format) {
+  temporal = (typeof temporal === 'undefined') ? 'datetime' : temporal;
+  format = (typeof format === 'undefined') ? 'default' : format;
+
+  return t(temporal + '.formats.' + format).replace(/%/g, '');
+};

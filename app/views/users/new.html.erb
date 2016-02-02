@@ -1,27 +1,25 @@
-<% @title_text = "Create Account" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "dmp_admin" %>
-<h1 class="row-fluid"><span class="icon profile"></span>Create Account</h1>
+<h1 class="row-fluid"><span class="icon profile"></span><%= @title_text %></h1>
 <div class="login row-fluid">
-	
+
 	<%= form_for @user, html: { :class => 'form-horizontal' } do |f| %>
-		<%= render partial: "shared/errors", locals: {model: @user } %>    	 
+		<%= render partial: "shared/errors", locals: {model: @user } %>
 	  <%= render 'personal', f: f %>
 	  <br>
 		<div class="actions pull-left">
-      <%= link_to "<< back", :back, :class => "btn " %>
+      <%= render_back_button arrow: true %>
     </div>
     <div class="actions pull-right">
-      <%= button_tag 'Cancel', type: :reset, :class => "btn" %>   
-      <%= f.submit 'Create Account', :class => "btn" %>   
-    </div> 
+      <%= render_cancel_button %>
+      <%= render_submit_button t('.submit_button') %>
+    </div>
 	<% end %>
 
 	<br>
-	
+
 	<div class="login terms">
-		<p>
-			By clicking <strong>Create Account</strong>,you agree to our <%= link_to 'Terms of Use', '#', :title => "DMPTool Terms of Use", :target => "_blank" %> 	and <%= link_to 'Privacy Policy', '#', :title => "DMPTool Privacy Policy", :target => "_blank" %>.
-		</p>
+		<%= render partial: 'login_terms' %>
 	</div>
-	
+
 </div>

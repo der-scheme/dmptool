@@ -1,7 +1,10 @@
 <% @display_menu = "review_dmp" %>
-<h1 class="row-fluid"><span class="icon review"></span>Review DMPs</h1>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
+<h1 class="row-fluid"><span class="icon review"></span><%= t('.title') %></h1>
 <br/>
-<h3><strong>Perform Review </strong></h3>
+<h3><%= content_tag :strong, t('.perform_review') %></h3>
 <div class="scrollable-container">
   <div class="scrollable-content">
     <%= render :partial => 'html_render', locals: {plan: @plan} %>
@@ -11,14 +14,14 @@
 
 <br/>
 
-<h3><strong>Comments </strong></h3>
+<h3><%= content_tag :strong, Comment.model_name.human(count: false) %></h3>
 <br/>
 
 <div class="comments">
 
   <% if @reviewer_comments.empty? %>
   <%# if @all_comments.empty? %>
-    <strong>There are currently no comments.</strong>
+    <%= content_tag :strong, t('.no_comments') %>
     <br/>
   <% else %>
     <div class="scrollable-container">
@@ -30,26 +33,28 @@
   </div>
   <% end %>
   <br/>
-  <p><%= link_to "Add Comments", "#", data: {:comment_type => :reviewer}, :class => "btn add_comments_link" %></p>
+  <p>
+    <%= link_to t('.add_comment_button'), '#', data: {comment_type: :reviewer}, class: 'btn add_comments_link' %>
+  </p>
 </div>
 
 <% unless @customization.nil? %>
   <% if @customization.review_type == :formal_review %>
     <fieldset class="spaced_below">
-      <label class ="control-label">Review Decision:</label>
+      <%= content_tag :div, t('.review_decision'), class: 'control-label' %>
       <% if state(@plan) == :approved || state(@plan) == :rejected %>
-        <strong>The Plan is set to <span class ="blue"><%= @plan.display_state %></span> state.</strong>
+        <%= t('.plan_state_html', state: translated_state(@plan)) %>
       <% else %>
-        <%= link_to "Approve", plan_plan_states_approved_path(@plan), method: :post, :class => "btn btn-green" %>
-        <%= link_to "Reject", '#', :id => "reject_with_comments_link" , class: "btn" %>
+        <%= render_button_link t('.approve_button'), plan_plan_states_approved_path(@plan), method: :post, green: true %>
+        <%= link_to t('.reject_button'), '#', id: 'reject_with_comments_link', class: 'btn' %>
       <% end %>
     </fieldset>
   <% elsif @customization.review_type == :informal_review %>
     <fieldset class="spaced_below">
       <% if state(@plan) == :reviewed %>
-        <strong>The Plan is set to <span class ="blue">Reviewed</span> state.</strong>
+        <%= t('.plan_state_html', state: translated_state(@plan)) %>
       <% else %>
-      <%= link_to "Plan Reviewed", plan_plan_states_reviewed_path(@plan), method: :post, :class => "btn btn-green" %>
+      <%= render_button_link t('.reviewed_button'), plan_plan_states_reviewed_path(@plan), method: :post, green: true %>
       <% end %>
     </fieldset>
   <% elsif @customization.review_type == :no_review %>
@@ -59,20 +64,20 @@
 
   <% if @plan.requirements_template.review_type == :formal_review %>
       <fieldset class="spaced_below">
-      <label class ="control-label">Review Decision:</label>
+      <%= content_tag :div, t('.review_decision'), class: 'control-label' %>
       <% if state(@plan) == :approved || state(@plan) == :rejected %>
-        <strong>The Plan is set to <span class ="blue"><%= @plan.display_state %></span> state.</strong>
+        <%= t('.plan_state_html', state: translated_state(@plan)) %>
       <% else %>
-        <%= link_to "Approve", plan_plan_states_approved_path(@plan), method: :post, :class => "btn btn-green" %>
-        <%= link_to "Reject", '#', :id => "reject_with_comments_link" , class: "btn" %>
+        <%= render_button_link t('.approve_button'), plan_plan_states_approved_path(@plan), method: :post, green: true %>
+        <%= link_to t('.reject_button'), '#', id: 'reject_with_comments_link', class: 'btn' %>
       <% end %>
     </fieldset>
   <% elsif @plan.requirements_template.review_type == :informal_review %>
       <fieldset class="spaced_below">
       <% if state(@plan) == :reviewed %>
-        <strong>The Plan is set to <span class ="blue">Reviewed</span> state.</strong>
+        <%= t('.plan_state_html', state: translated_state(@plan)) %>
       <% else %>
-      <%= link_to "Plan Reviewed", plan_plan_states_reviewed_path(@plan), method: :post, :class => "btn btn-green" %>
+      <%= render_button_link t('.reviewed_button'), plan_plan_states_reviewed_path(@plan), method: :post, green: true %>
       <% end %>
     </fieldset>
   <% elsif @plan.requirements_template.review_type == :no_review %>
@@ -86,7 +91,7 @@
   <%= render partial: 'reject_with_comments', locals: {:plan_id => params[:id] } %>
 </div>
 <hr/>
-<%= link_to 'Back', review_dmps_path(@plan), method: :get, :class => 'btn btn-green pull-left' %>
+<%= render_back_button href: review_dmps_path, green: true %>
 
 <script type="text/javascript">
   $("div.scrollable-container").resizable({ containment: "parent", minHeight: 150, handles: "s" });

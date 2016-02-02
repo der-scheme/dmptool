@@ -1,29 +1,29 @@
 class AuthorizationsController < ApplicationController
 
   before_action :require_login, except: [:pluralize_has]
-	
+
 	def add_authorization
 
     emails = params[:email].split(/,\s*/) unless params[:email] == ""
     @role_id = (params[:role_id]).to_i
     @role_name = params[:role_name]
-    @path = '/' + params[:p]    
+    @path = '/' + params[:p]
     @invalid_emails = []
     @existing_emails = []
     @outside_emails = []
     @saved_emails = []
-   
+
     emails.each do |email|
       @user_saved = false
       @user = User.find_by(email: email)
       if @user.nil?
         @invalid_emails << email
-      else 
+      else
 
         if (check_correct_permissions(@user.id, @role_id) ||  user_role_in?(:dmp_admin))
-        
+
           @user_saved = true
-                
+
           begin
             authorization = Authorization.create(role_id: @role_id, user_id: @user.id)
             authorization.save!
@@ -33,7 +33,7 @@ class AuthorizationsController < ApplicationController
           end
 
         else
-          @outside_emails << email  
+          @outside_emails << email
         end
 
         @saved_emails << email if @user_saved
@@ -43,31 +43,28 @@ class AuthorizationsController < ApplicationController
 
     respond_to do |format|
 
-      @message = ""
+      @messages = []
 
       if !@invalid_emails.empty?
-        @message << "Could not find Users with the following " + "email".pluralize(@invalid_emails.count) + 
-                    ": #{@invalid_emails.join(', ')}."
+        @messages << t('.not_found_message', emails: @invalid_emails.join(', '), count: @invalid_emails.size)
       end
 
       if !@existing_emails.empty?
-        @message << "The following " + "user".pluralize(@existing_emails.count) +
-                    ": #{@existing_emails.join(', ')}  " +
-                    pluralize_has(@existing_emails.count) + " already been assigned this role."
+        @messages << t('.existing_message', emails: @existing_emails.join(', '), count: @existing_emails.size)
       end
-      
+
       if !@outside_emails.empty?
-        @message << "You cannot grant this role to users outside your institution: #{@outside_emails.join(', ')}. Please contact the DMP Administrator.\n"
+        @messages << t('.foreign_message', emails: @outside_emails.join(', '))
       end
 
       if !@saved_emails.empty?
-        @message << "Role granted to the following " + "user".pluralize(@saved_emails.count) + ": #{@saved_emails.join(', ')}  "
-        flash.now[:notice] = @message
+        @messages << t('.success_notice', emails: @saved_emails.join(', '), count: @saved_emails.size)
+        flash.now[:notice] = @messages.join ' '
       else
-        flash.now[:error] = @message
+        flash.now[:error] = @messages.join ' '
       end
 
-      
+
       format.js { render action: 'add_authorization' }
       return
     end
@@ -82,14 +79,14 @@ class AuthorizationsController < ApplicationController
       @authorization = Authorization.where(role_id: @role_id , user_id: params[:user_id] )
       @authorization_id = @authorization.pluck(:id)
       @authorization.delete_all
-      redirect_to @path, notice: "The role has been revoked."
+      redirect_to @path, notice: t('.success_notice')
     else
-      flash[:error] =  "You don't have permission to revoke this role."
+      flash[:error] = t('.not_allowed_message')
       redirect_to @path and return
     end
     return
   end
-  
+
   def add_role_autocomplete
     u_name, u_id = nil, nil
     params.each do |k,v|
@@ -98,41 +95,41 @@ class AuthorizationsController < ApplicationController
     end
     role_number = params[:role_number].to_i
     item_description = params[:item_description]
-    
+
     if u_name.blank?
-      flash[:error] =  "Please select a person to add as a #{item_description}."
-      redirect_to :back and return 
+      flash[:error] = t('.blank_name_message', role: item_description)
+      redirect_to :back and return
     end
     if !u_id.blank?
       user = User.find(u_id)
     else
       first, last = u_name.split(" ", 2)
       if first.nil? || last.nil?
-        flash[:error] =  "Please type and select the full name or email of a user."
-        redirect_to :back and return 
+        flash[:error] = t('.incomplete_message')
+        redirect_to :back and return
       end
       users = User.where("first_name = ? and last_name = ?", first, last)
       if users.length > 1
-        flash[:error] =  "Please select the user with this name from the list.  There is more than one user with this name."
-        redirect_to :back and return 
+        flash[:error] = t('.ambiguous_message')
+        redirect_to :back and return
       end
       if users.length < 1
-        flash[:error] =  "The user you entered was not found"
-        redirect_to :back and return 
+        flash[:error] = t('.not_found_message')
+        redirect_to :back and return
       end
       user = users.first
     end
     if user.roles.map{|i| i.id}.include?(role_number)
-      flash[:error] =  "The user you chose is already a #{item_description}"
+      flash[:error] = t('.already_has_role_message', role: item_description)
       redirect_to :back and return
     end
     if !check_correct_permissions(user.id, role_number)
-      flash[:error] =  "You do not have permission to assign this role."
-      redirect_to :back  and return 
+      flash[:error] = t('.not_allowed_message')
+      redirect_to :back  and return
     end
     authorization = Authorization.create(role_id: role_number, user_id: user.id)
     authorization.save!
-    redirect_to :back, notice: "#{user.full_name} has been added as a #{item_description}."
+    redirect_to :back, notice: t('.success_notice', user: user.full_name, role: item_description)
   end
 
   def add_authorization_manage_users
@@ -144,40 +141,40 @@ class AuthorizationsController < ApplicationController
     end
     role_number = params[:role_number].to_i
     #item_description = params[:item_description]
-    
+
     if u_name.blank?
-      flash[:error] =  "Please select a user"
-      redirect_to :back and return 
+      flash[:error] = t('.blank_name_message')
+      redirect_to :back and return
     end
     if !u_id.blank?
       user = User.find(u_id)
     else
       first, last = u_name.split(" ", 2)
       if first.nil? || last.nil?
-        flash[:error] =  "Please type and select the full name or email of a user."
-        redirect_to :back and return 
+        flash[:error] = t('.incomplete_message')
+        redirect_to :back and return
       end
       users = User.where("first_name = ? and last_name = ?", first, last)
       if users.length > 1
-        flash[:error] =  "Please select the user with this name from the list.  There is more than one user with this name."
-        redirect_to :back and return 
+        flash[:error] = t('.ambiguous_message')
+        redirect_to :back and return
       end
       if users.length < 1
-        flash[:error] =  "The user you entered was not found"
-        redirect_to :back and return 
+        flash[:error] = t('.not_found_message')
+        redirect_to :back and return
       end
       user = users.first
     end
      unless (current_user.institution.subtree_ids.include?(user.institution.id) || user_role_in?(:dmp_admin))
-      flash[:error] = "The user you chose belongs to a different institution."
+      flash[:error] = t('.foreign_message')
       redirect_to :back and return
     end
     if user.has_any_role?
-      flash[:error] =  "The user you chose has already been granted a role. You can click on 'Edit User' to grant other roles."
+      flash[:error] = t('.already_has_role_message')
       redirect_to :back and return
     end
     if  @role_ids == []
-      flash[:error] =  "Please select at least a role to grant"
+      flash[:error] = t('.select_role_message')
       redirect_to :back and return
     end
      @role_ids.each do |role_id|
@@ -186,37 +183,26 @@ class AuthorizationsController < ApplicationController
       authorization.save!
     end
     # unless check_correct_permissions(user.id, role_number)
-    #   redirect_to :back, notice: "You do not have permission to assign this role" and return 
+    #   redirect_to :back, notice: "You do not have permission to assign this role" and return
     # end
     # authorization = Authorization.create(role_id: role_number, user_id: user.id)
     # authorization.save!
     #redirect_to :back, notice: "#{user.full_name} has been added as a #{item_description}"
-    redirect_to :back, notice: "#{user.full_name} has been updated"
+    redirect_to :back, notice: t('.success_notice', user: user.full_name)
   end
 
-   
+
 
   def check_correct_permissions(user_id, role_id)
-    
+
     user = User.find(user_id)
     user_role_in?(:dmp_admin) ||
       ( user_role_in?(:institutional_admin) &&
-        current_user.institution.subtree_ids.include?(user.institution_id) 
-      ) || 
-      ( safe_has_role?(role_id) && 
-        current_user.institution.subtree_ids.include?(user.institution_id) 
-      )     
+        current_user.institution.subtree_ids.include?(user.institution_id)
+      ) ||
+      ( safe_has_role?(role_id) &&
+        current_user.institution.subtree_ids.include?(user.institution_id)
+      )
   end
-
-  private
-
-  def pluralize_has(count)
-    if count > 1
-      "have"
-    else
-      "has"
-    end
-  end
-
 
 end

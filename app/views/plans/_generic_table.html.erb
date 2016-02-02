@@ -11,18 +11,21 @@
   <thead>
 
     <tr>
-      <th class="span5"><%= link_to "Plan Title", params.merge({"#{namespace}:order_scope" => "plan"}) %></th>
-      <th class="span5"><%= link_to "Funder Template", params.merge({"#{namespace}:order_scope" => "template"}) %></th>
-      
-      <% if show_institution %>
-        <th class="span5"><%= link_to "Institution", params.merge({"#{namespace}:order_scope" => "institution"}) %></th>
-      <% end %>
-      <th class="span5"><%= link_to "Owner", params.merge({"#{namespace}:order_scope" => "owner"}) %></th>
-      <th>Download</th>
-      <%if namespace == "institutional" %>
-         
-       <th> <%= link_to "Visibility", params.merge({"#{namespace}:order_scope" => "visibility"}) %></th>
-      <%end%>
+      <%# sortable_group namespace: namespace do %>
+        <th class="span5"><%= sortable :name, namespace: namespace %></th>
+        <th class="span5"><%= sortable :requirements_template_id, t('.funder_template_link'), namespace: namespace %></th>
+
+        <% if show_institution %>
+          <th class="span5"><%= sortable :institution_id, namespace: namespace %></th>
+        <% end %>
+
+        <th class="span5"><%= sortable :owner, namespace: namespace %></th>
+        <th><%= t('.download') %></th>
+
+        <% if namespace == :institutional %>
+         <th><%= sortable :visibility, namespace: namespace %></th>
+        <% end %>
+      <%# end %>
     </tr>
 
 </thead>
@@ -52,7 +55,7 @@
       </td>
       <%unless plan.visibility == :public %>
         <td>
-          <%= plan.visibility %>
+          <%= t_enum(plan, :visibility) %>
         </td>
       <%end%>
     </tr>
@@ -62,14 +65,14 @@
 
   <% if params["#{namespace}:all_scope"] == "all" %>
     <div class="buttons pagination">
-      <%= link_to "View Less", params.merge({"#{namespace}:all_scope" => "less"}),
-                  { :class => "btn" } %>
+      <%= render_button_link t: '.view_less',
+                             href: filter_params.merge("#{namespace}:all_scope" => 'less') %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
   <% else %>
     <div class="buttons pagination">
-      <%= link_to "View All", params.merge({"#{namespace}:all_scope" => "all"}),
-                  { :class => "btn", :id => "#{namespace}_view_all_plans" } %>
+      <%= render_button_link t: '.view_all',
+                             href: filter_params.merge("#{namespace}:all_scope" => 'all') %>
       <%= paginate plans, :param_name => "#{namespace}:page" %>
     </div>
   <%end%>

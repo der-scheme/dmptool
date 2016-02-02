@@ -1,6 +1,5 @@
-<% @title_text = "Edit Institutional Resource" %>
-<h2> Edit <%= @resource.label %> Resource For  <%= @current_institution.full_name %> </h2>
-
+<% @title_text = t('.title') %>
+<%= content_tag :h2, t('.edit_resource_for', resource: @resource.label, institution: @current_institution.full_name) %>
 
   <%= form_for @resource, html: { :class => 'form-horizontal' } do |f| %>
 
@@ -8,26 +7,31 @@
 
     <fieldset>
       <div class="control-group">
-        <%= f.label :resource_type, "Resource Type", :class => "control-label" %>
+        <%= f.label :resource_type, class: 'control-label' %>
         <div class="controls">
-          <%= f.select :resource_type,
-          		options_for_select([['Links', :actionable_url], ['Guidance', :help_text]], @resource.resource_type) %>
-          <%= content_tag(:span, '', :title => 'Resources can be either actionable URLs or help text.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+          <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text], @resource) %>
+          <%= content_tag :span, '',
+                          title: t('.resource_type_tooltip'),
+                          data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :label, "Resource Label", :class => "control-label required", id: "label_label" %>
+        <%= f.label :label, class: 'control-label required', id: 'label_label' %>
         <div class="controls">
-          <%= f.text_field :label, placeholder: "Enter a name for this Resource", :class => "input-xlarge", 'aria-required' => 'true' %>
-          <%= content_tag(:span, '', :title => 'The name for this resource. For example, &#8220;UC3’s Merritt Repository&#8221; would be the label for the URL http://merritt.cdlib.org.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+          <%= f.text_field :label, placeholder: t('.label_placeholder'), class: 'input-xlarge', aria: {required: 'true'} %>
+          <%= content_tag :span, '',
+                          title: t('.label_tooltip'),
+                          data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :text, "Text", :class => "control-label", id: "text" %>
+        <%= f.label :text, class: 'control-label', id: 'text' %>
         <div class="controls">
-          <%= f.text_area :text, size: "20x10",placeholder: "Enter the text", :class => "full-length" %>
+          <%= f.text_area :text, size: '20x10', placeholder: t('.text_placeholder'), class: 'full-length' %>
         </div>
       </div>
 
@@ -36,35 +40,36 @@
 
 
       <div class="control-group">
-         <%= f.label :value, "Value", :class => "control-label", id: "value_label" %>
+         <%= f.label :value, class: 'control-label', id: 'value_label' %>
         <div class="controls">
-          <%= f.text_field :value, placeholder: "URL", :class => "input-xlarge" %>
+          <%= f.text_field :value, placeholder: t('.value_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
       <div class="actions pull-left">
-        <%= link_to '<< Back', request.env["HTTP_REFERER"] + "##{params[:tab_number]}", :class => "btn" %>
+        <%= render_back_button href: institutions_path(anchor: params[:tab_number]),
+                               arrow: true, green: false %>
       </div>
 
 
       <div class="actions pull-right">
-        <%= button_tag 'Cancel', type: :reset, :class => "btn" %>
+        <%= render_cancel_button %>
 
-        <%= f.submit 'Save Changes', :class => "btn" %>
+        <%= render_submit_button t: '.save_changes' %>
 
-        <%= link_to(content_tag(:span, "", :class => "icon remove") + 'Delete Resource',
-                                      delete_resource_path(resource_id: @resource.id,
-                                                        custom_origin: @custom_origin,
-                                                        customization_id: @customization_id,
-                                                        origin_url: @origin_url,
-                                                        requirement_id: @requirement_id,
-                                                        resource_level: @resource_level,
-                                                        tab: @tab,
-                                                        tab_number: @tab_number,
-                                                        template_id: @template_id),
-                                      :method => :delete,
-                                      :data => { :confirm => 'Are you sure?' },
-                                      :class => "red remove_fields") %>
+        <%= link_to content_tag(:span, '', class: 'icon remove') + t('.delete_resource'),
+                    delete_resource_path(resource_id: @resource.id,
+                                         custom_origin: @custom_origin,
+                                         customization_id: @customization_id,
+                                         origin_url: @origin_url,
+                                         requirement_id: @requirement_id,
+                                         resource_level: @resource_level,
+                                         tab: @tab,
+                                         tab_number: @tab_number,
+                                         template_id: @template_id),
+                    method: :delete,
+                    data: {confirm: t('globals.messages.prompt.confirm')},
+                    class: 'red remove_fields' %>
 
       </div>
 

@@ -11,7 +11,7 @@
     </div>
     <div class="inst-title span5">
     <%if current_user.institution_id == 0%>
-      You are logged in as a Non Partner Institution
+      <%= t('.non_partner_info') %>
     <%else%>
       <%= current_user.institution.full_name %>
     <%end%>
@@ -21,22 +21,21 @@
         <span class="icon institution-domain"></span><%= current_user.institution.url_text %>
       <% end %>
       <%= mail_to current_user.institution.contact_email, :id => "inst-contact" do %>
-        <span class="icon institution-contact"></span>Contact <%= current_user.institution.contact_info %>
+        <span class="icon institution-contact"></span>
+        <%= t('.contact_mail', email: current_user.institution.contact_info) %>
       <% end %>
     </div>
   <% else %>
     <div class="inst-logo span3">
-      <%= image_tag("", :width => '164', :height => '51', :alt => 'Institution Logo') %>
+      <%= image_tag '', width: '164', height: '51', alt: t('.institution_logo_tooltip') %>
     </div>
-    <div class="inst-title span5">
-      Institution Name
-    </div>
+    <%= content_tag :div, t('.institution_name'), class: 'inst-title span5' %>
     <div class="inst-info span4">
       <%= link_to '#', :id => 'institution-domain' do %>
         <span class="icon institution-domain"></span>www.domainname.edu
       <% end %>
       <%= link_to '#', :id => 'institution-contact' do %>
-        <span class="icon institution-contact"></span>Contact Institution Admin
+        <span class="icon institution-contact"></span><%= t('.contact_admin_link') %>
       <% end %>
     </div>
   <% end %>

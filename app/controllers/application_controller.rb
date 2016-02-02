@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::Base
+  include Sortable::Controller
 
   ROLES =
-      {	  :dmp_admin              => Role::DMP_ADMIN,
+      {   :dmp_admin              => Role::DMP_ADMIN,
           :resource_editor        => Role::RESOURCE_EDITOR,
           :template_editor        => Role::TEMPLATE_EDITOR,
           :institutional_reviewer => Role::INSTITUTIONAL_REVIEWER,
           :institutional_admin    => Role::INSTITUTIONAL_ADMIN}
 
+  after_action :update_history
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -15,10 +17,21 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :safe_has_role?, :require_login, :user_role_in?
 
+  before_action :set_locale
+
   protected
 
-  	def current_user
-    	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    def set_locale
+      I18n.locale = params[:locale] ||
+          extract_locale_from_accept_language_header || I18n.default_locale
+    end
+
+    def default_url_options(options = {})
+      {locale: params[:locale]}.merge options
+    end
+
+    def current_user
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
 
     def require_login
@@ -54,7 +67,7 @@ class ApplicationController < ActionController::Base
     def check_editor_for_this_customization
       if params[:id].blank?
         flash[:error] = 'A customization id is missing'
-        redirect_to resource_contexts_path and return 
+        redirect_to resource_contexts_path and return
       end
       cust = ResourceContext.find_by_id(params[:id])
       level = cust.resource_level unless cust.nil?
@@ -127,7 +140,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    
+
 
     def check_DMPTemplate_editor_access
       unless user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor)
@@ -224,5 +237,29 @@ class ApplicationController < ActionController::Base
       inst_ids = insts.map { |i|  (i.ancestor_ids + [ i.id])[least_depth] }
 
       Institution.find(inst_ids)
+    end
+
+    def extract_locale_from_accept_language_header
+      locale = request.env['HTTP_ACCEPT_LANGUAGE']
+          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})/)
+          .try(:first).try(:to_sym)
+      locale if locale.in?(Rails.application.config.i18n.available_locales)
+    end
+
+    ## Stores the current #params in the #session hash.
+    #
+    # Note that unlike the previous functionality (implemented in
+    # ApplicationHelper#set_page_history), which stored entire URLs, this one
+    # stores the parameters that can be used to build URLs using #url_for.
+    #
+    # This saves later computation time, as the only current purpose is to
+    # later retrieve controller and action names, and also works around a Rails
+    # bug we encountered when implementing i18n.
+
+    def update_history
+      return unless status == 200
+      history = (session[:page_history] ||= [])
+      history.unshift(params) unless params == history.first
+      history.slice!(4, 42)   # delete some entries if history.size > 4
     end
   end

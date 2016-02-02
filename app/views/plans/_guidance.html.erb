@@ -5,11 +5,15 @@
 <% unless @guidance_resources.empty? && @requirement.global_resources.guidance.empty? && @requirement.template_resources.guidance.empty? && @requirement.requirement_resources.guidance.empty? && @requirement.template_customization_resources(current_user.institution_id).guidance.empty? && @requirement.institution_customization_resources(current_user.institution_id).guidance.empty? %>
 
   <div class="help_box_head">
-    <div style="float:right"><strong>box size:</strong>
-      <a href="#" onclick="fixed_size('guidance_box', '60');return false;">small</a>
-      | <a href="#" onclick="fixed_size('guidance_box','140');return false;">medium</a>
-      | <a href="#" onclick="full_size('guidance_box');return false;">full</a></div>
-    <strong>Guidance</strong>
+    <div style="float:right">
+      <%= content_tag :strong, t('.box_size') %>
+      <%= link_to t('.box_size_small'), '#', onclick: "fixed_size('guidance_box', '60');return false;" %>
+      |
+      <%= link_to t('.box_size_medium'), '#', onclick: "fixed_size('guidance_box','140');return false;" %>
+      |
+      <%= link_to t('.box_size_full'), '#', onclick: "full_size('guidance_box');return false;" %>
+    </div>
+    <%= content_tag :strong, t('.guidance') %>
   </div>
   <div class="help_box" id="guidance_box">
     <div class= 'global_resources'>
@@ -61,9 +65,7 @@
     <% unless @requirement.institution_customization_resources(current_user.institution_id).guidance.empty? &&
               @requirement.template_customization_resources(current_user.institution_id).guidance.empty? &&
               @guidance_resources.empty? %>
-      <p class="cust_label">
-        Additional help for: <%= current_user.institution.full_name %>
-      </p>
+      <%= content_tag :p, t('.additional_help', institution: current_user.institution.full_name), class: 'cust_label' %>
     <% end %>
 
     <div class= 'institution_customization_resources'>

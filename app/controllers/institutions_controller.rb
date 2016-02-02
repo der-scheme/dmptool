@@ -29,15 +29,15 @@ class InstitutionsController < ApplicationController
 
     if user_role_in?(:dmp_admin)
       @institutions = Institution.order(full_name: :asc)
-      @disabled = false 
-      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+      @disabled = false
+      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
     else
       @institutions = Institution.where(id: [current_user.institution.root.subtree_ids]).order(full_name: :asc)
       @disabled = true
-      
+
       @sub_institutions = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
       @sub_institutions.delete_if {|i| i[1] == @current_institution.id}
-      #@institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+      #@institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
       #@institution_pool.delete_if {|i| i[1] == @current_institution.id}
       #@institution_pool.delete_if {|i| i[1] == @current_institution.subtree_ids}
     end
@@ -54,7 +54,7 @@ class InstitutionsController < ApplicationController
 
     @tab_number = 'tab_tab2' #the tab number for the maze of editing resources from everywhere
     #@anchor = params[:anchor]
-   
+
   end
 
 
@@ -112,7 +112,7 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  def count  
+  def count
     @all = @current_institution.users_deep_in_any_role.count
     @resources_editor =@current_institution.users_in_role("Resources Editor").count
     @template_editor = @current_institution.users_in_role("Template Editor").count
@@ -121,7 +121,7 @@ class InstitutionsController < ApplicationController
     @institutional_reviewer = @current_institution.users_in_role("Institutional Reviewer").count
   end
 
-  def count_any_institution  
+  def count_any_institution
     @all = @current_institution.users_deep_in_any_role_any_institution.count
     @resources_editor =@current_institution.users_in_role_any_institution("Resources Editor").count
     @template_editor = @current_institution.users_in_role_any_institution("Template Editor").count
@@ -133,7 +133,7 @@ class InstitutionsController < ApplicationController
   #every roles except DMP Admin
   def edit_user_roles_inst_admin
     @user = User.find(params[:user_id])
-    @roles = Role.where(['id NOT IN (?)', 1]) 
+    @roles = Role.where(['id NOT IN (?)', 1])
   end
 
   def update_user_roles_inst_admin
@@ -148,7 +148,7 @@ class InstitutionsController < ApplicationController
     @user.update_authorizations(@role_ids)
 
     respond_to do |format|
-      format.html { redirect_to institutions_url, notice: 'User was successfully updated.'}
+      format.html { redirect_to institutions_url, notice: t('.success_notice')}
       format.json { head :no_content }
     end
   end
@@ -162,7 +162,7 @@ class InstitutionsController < ApplicationController
   def new
     @current_institution = Institution.new(:parent_id => params[:parent_id])
     @sub_institutions = @current_user.institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
-   
+
   end
 
   # GET /institutions/1/edit
@@ -171,11 +171,11 @@ class InstitutionsController < ApplicationController
     @admin_acr = params[:admin_acr]
 
     @current_institution = Institution.find(params[:id])
-    
-    if user_role_in?(:dmp_admin) 
-      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+
+    if user_role_in?(:dmp_admin)
+      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
     else
-      @institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+      @institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
       @institution_pool.delete_if {|i| i[1] == @current_institution.id}
     end
 
@@ -184,12 +184,12 @@ class InstitutionsController < ApplicationController
 
   def create
     @current_institution = Institution.new(institution_params)
-    respond_to do |format|  
+    respond_to do |format|
       if @current_institution.save
-        format.html { redirect_to edit_institution_path(@current_institution), notice: 'Institution was successfully created.' }
+        format.html { redirect_to edit_institution_path(@current_institution), notice: t('.success_notice')}
       else
-        format.html { render new_institution_path}     
-      end 
+        format.html { render new_institution_path}
+      end
     end
   end
 
@@ -200,37 +200,43 @@ class InstitutionsController < ApplicationController
     @acr = params[:acr]
     @admin_acr = params[:admin_acr]
     @current_institution = Institution.find(params[:id])
-    
-    if user_role_in?(:dmp_admin) 
-      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+
+    if user_role_in?(:dmp_admin)
+      @institution_pool = Institution.order(full_name: :asc).where("id != ?", @current_institution.id).collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
     else
-      @institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] } 
+      @institution_pool = @current_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
       @institution_pool.delete_if {|i| i[1] == @current_institution.id}
     end
-    
+
     if (current_user.institution == @current_institution)
-      respond_to do |format|  
+      respond_to do |format|
         if @current_institution.update(institution_params)
-          #format.html { redirect_to edit_institution_path(@current_institution), 
+          #format.html { redirect_to edit_institution_path(@current_institution),
                         #notice: 'Institution was successfully updated.' }
-          format.html { redirect_to institutions_path(@current_institution), 
-                        notice: 'Institution was successfully updated.' }
+          format.html do
+            redirect_to institutions_path,
+                        notice: t('.success_notice')
+          end
         else
-          format.html { redirect_to institutions_path(@current_institution), 
-                        notice:  'Something went wrong' }     
-        end 
+          format.html do
+            redirect_to institutions_path,
+                        notice: t('.failure_notice')
+          end
+        end
       end
     else
-      respond_to do |format|  
+      respond_to do |format|
         if @current_institution.update(institution_params)
-          format.html { redirect_to edit_institution_path(@current_institution), 
-                        notice: 'Institution was successfully updated.' }
+          format.html do
+            redirect_to edit_institution_path(@current_institution),
+                        notice: t('.success_notice')
+          end
         else
-          format.html { render 'edit'}     
-        end 
+          format.html { render 'edit'}
+        end
       end
     end
-    
+
   end
 
 
@@ -289,7 +295,7 @@ class InstitutionsController < ApplicationController
   end
 
   def partners_list
-    
+
     @all_scope = params[:all_scope]
     @s = params[:s]
     @e = params[:e]
@@ -323,7 +329,7 @@ class InstitutionsController < ApplicationController
     end
 
   end
-  
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_institution
@@ -340,7 +346,7 @@ class InstitutionsController < ApplicationController
   end
 
   def users_in_any_role_for_any_institutions
-    @user_ids = Authorization.pluck(:user_id) 
+    @user_ids = Authorization.pluck(:user_id)
     @users = User.where(id: @user_ids)
   end
 

@@ -10,7 +10,7 @@
     <div class="error-message">
       <h1 class="red"> Forbidden.</h1>
       <p>You are not authorized to perform that action.</p>
-      <p>Please, go <strong><%= link_to "<< back", :back, :class => "btn btn-green" %></strong></p>
+      <p>Please, go <strong><%= render_back_button green: true, arrow: true %></strong></p>
   </div>
 </body>
 </html>

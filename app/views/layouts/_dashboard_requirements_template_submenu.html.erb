@@ -1,22 +1,32 @@
-<li <%= 'class=current-parent' if menu_level(0) == 'dmp_templates' || menu_level(0) == 'customization' %>>
-  <%= link_to(content_tag(:span, 'DMP Templates'), requirements_templates_path) %>
-
+<nav class="dashboard-submenu">
   <ul class="children dmp-templates">
     <!-- The following adds "current" class when on DMP Template Overview page -->
     <% if menu_level(0) == 'dmp_templates' && menu_level(1) == 'overview' %>
 
-      <li class="current"><%= link_to(content_tag(:span, 'Template Overview'), '#') %></li>
+      <li class="current">
+        <%= link_to content_tag(:span, edit_requirements_template_text(t: '.overview')), '#' %>
+      </li>
       <% if @requirements_template && @requirements_template.id %>
-        <li><%= link_to(content_tag(:span, 'Template Details'), requirements_template_requirements_path(@requirements_template)) %></li>
+        <li>
+          <%= link_to_requirements_template_requirements(@requirements_template, t: '.details') do |text| %>
+            <%= content_tag :span, text %>
+          <% end %>
+        </li>
       <% end %>
       <li class="last"></li>
     <% end %>
 
     <!-- The following adds "current" class when on DMP Template Details page -->
     <% if menu_level(0) == 'dmp_templates' && menu_level(1) == 'details' %>
-      <li><%= link_to(content_tag(:span, 'Template Overview'), edit_requirements_template_path(@requirements_template)) %></li>
-      <li class="current"><%= link_to(content_tag(:span, 'Template Details'), '#') %></li>
+      <li>
+        <%= link_to_edit_requirements_template(@requirements_template, t: '.overview') do |text| %>
+          <%= content_tag :span, text %>
+        <% end %>
+      </li>
+      <li class="current">
+        <%= link_to content_tag(:span, requirements_template_requirements_text(t: '.details')), '#' %>
+      </li>
       <li class="last"></li>
     <% end %>
   </ul>
-</li>
+</nav>

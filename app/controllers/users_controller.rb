@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def edit
     unless can_edit_user?(params[:id])
       redirect_to(edit_user_path(current_user),
-          notice: "You may not edit the user you were attempting to edit.  You're now editing your own information.") and return
+                  notice: t('.failure_notice')) and return
     end
     @user = User.find(params[:id])
     @my_institution = @user.institution
@@ -88,9 +88,9 @@ class UsersController < ApplicationController
     if existing_user.length > 0
       existing_user = existing_user.first
       if !existing_user.deleted_at.blank? || existing_user.active == false
-        redirect_to login_path, notice: "You already have a DMP Tool account with this username, but it's deactivated. Please contact us if you need to have it reactivated." and return
+        redirect_to login_path, notice: t('.account_deactivated_notice') and return
       end
-      redirect_to login_path, notice: "You already have a DMP Tool account with this username. Please log in with your current username and password to continue." and return
+      redirect_to login_path, notice: t('.duplicate_username_notice') and return
     end
 
 
@@ -119,11 +119,11 @@ class UsersController < ApplicationController
         #no existing LDAP User in DB so create one, but it already exists in LDAP
         if existing_user.length < 1
           @user.save unless User.find_by_email(@user.email)
-          redirect_to login_path, notice: "You're now in the DMP Tool with your existing UC3 username, \"#{@user.login_id}\".  Please log in to continue." and return
+          redirect_to login_path, notice: t('.user_sync_notice', institution: @user.institution.nickname, user: @user.login_id) and return
         else
           #redirct to login, their record already exists.
           existing_user = existing_user.first
-          redirect_to login_path, notice: "You already have a DMP Tool account. Your username is \"#{@user.login_id}\".  Please log in with your current password to continue." and return
+          redirect_to login_path, notice: t('.duplicate_username_notice2', user: @user.login_id) and return
         end
         @user.skip_email_uniqueness_validation = false
       rescue LdapMixin::LdapException => detail
@@ -136,25 +136,25 @@ class UsersController < ApplicationController
             # user with existing Shibboleth Account
             existing_user = existing_user.first
             unless Ldap_User.add(@user.login_id, user_params[:password], "#{@user.first_name}", "#{@user.last_name}", @user.email)
-              @display_text = "There were problems adding this user to the LDAP directory. Please contact uc3@ucop.edu."
+              @display_text = t('.ldap_error')
               render action: 'new'
             else
               existing_user.login_id = @user.login_id
               if existing_user.save
                 session[:user_id] = existing_user.id
-                redirect_to edit_user_path(existing_user), notice: "This LDAP DMPTool account has been created.  You may also log in with 'Not in List' institution in addition to your Shibboleth account." and return
+                redirect_to edit_user_path(existing_user), notice: t('.ldap_success_notice') and return
               end
             end
           else
             # user getting a new account
             User.transaction do
               if !Ldap_User.add(@user.login_id, user_params[:password], "#{@user.first_name}", "#{@user.last_name}", @user.email)
-                @display_text = "There were problems adding this user to the LDAP directory. Please contact uc3@ucop.edu."
+                @display_text = t('.ldap_error')
                 render action: 'new'
               elsif @user.save
                 @user.ensure_ldap_authentication(@user.login_id)
                 session[:user_id] = @user.id
-                redirect_to edit_user_path(@user), notice: 'User was successfully created.' and return
+                redirect_to edit_user_path(@user), notice: t('.success_notice') and return
               end
             end
           end
@@ -166,7 +166,7 @@ class UsersController < ApplicationController
       if !@user.errors.any?
         #these will probably be skipped since redirects above
         session[:user_id] = @user.id
-        format.html { redirect_to edit_user_path(@user), notice: 'User was successfully created.' } and return
+        format.html { redirect_to edit_user_path(@user), notice: t('.success_notice') } and return
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -213,14 +213,16 @@ class UsersController < ApplicationController
             #user_params[:last_name] = " " if user_params[:last_name].empty?
             update_ldap_if_necessary(@user, user_params)
             @current_user = User.find_by_id(session[:user_id])
-            format.html { redirect_to edit_user_path(@user),
-                        notice: 'User information updated.'  }
+            format.html do
+              redirect_to edit_user_path(@user),
+                          notice: t('.success_notice')
+            end
             format.json { head :no_content }
-            
+
           else
             format.html { render 'edit'}
             format.json { head :no_content }
-            
+
           end
 
         else
@@ -230,20 +232,22 @@ class UsersController < ApplicationController
             #user_params[:first_name] = " " if user_params[:first_name].empty?
             #user_params[:last_name] = " " if user_params[:last_name].empty?
             update_ldap_if_necessary(@user, user_params)
-            format.html { redirect_to edit_user_path(@user),
-                        notice: 'User information updated.'  }
+            format.html do
+              redirect_to edit_user_path(@user),
+                          notice: t('.success_notice')
+            end
             format.json { head :no_content }
-            
+
           else
             format.html { render 'edit'}
             format.json { head :no_content }
-            
+
           end
         end
       end
     end
   rescue LdapMixin::LdapException
-    flash[:error] = 'Error updating LDAP. Local update canceled.'
+    flash[:error] = t('.ldap_error')
     redirect_to edit_user_path(@user)
   end
 
@@ -268,7 +272,7 @@ class UsersController < ApplicationController
 
   def finish_signup_update
     if @user.update_attributes(params[:user].permit(:first_name, :last_name))
-      flash[:notice] = 'You have completed signing up for the DMP tool.'
+      flash[:notice] = t('.success_notice')
       redirect_to user_url(@user, :protocol => 'https')
     else
       render 'finish_signup'
@@ -286,7 +290,7 @@ class UsersController < ApplicationController
     u.update_authorizations(@role_ids)
 
     respond_to do |format|
-      format.html { redirect_to users_url(q: params[:q]), notice: 'User was successfully updated.'}
+      format.html { redirect_to users_url(q: params[:q]), notice: t('.success_notice')}
       format.json { head :no_content }
     end
 
@@ -338,7 +342,7 @@ class UsersController < ApplicationController
   def remove_orcid
     @user = User.find(params[:user_id])
     @user.update_attribute(:orcid_id, nil)
-    flash[:notice] = 'The orcid id has been successfully removed from your profile.'
+    flash[:notice] = t('.success_notice')
     redirect_to edit_user_path(@user.id)
   end
 
@@ -351,7 +355,7 @@ class UsersController < ApplicationController
   #   password.match(/[A-Za-z]/)
   # end
 
-  
+
 
 
   def remove_token
@@ -360,8 +364,8 @@ class UsersController < ApplicationController
     @user.auth_token = nil
     @user.save
     respond_to do |format|
-      format.js 
-    end 
+      format.js
+    end
   end
 
   def add_token
@@ -454,7 +458,7 @@ class UsersController < ApplicationController
   def require_current_user
     @user = User.find(params[:id])
     unless @user == current_user
-      flash[:error] = "User information may only be edited by that user"
+      flash[:error] = t('.error')
       redirect_to root_path
     end
   end

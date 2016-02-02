@@ -19,7 +19,7 @@
 .centered {
 	text-align: center;
 	margin: 0 auto; }
-	
+
 /* Header */
 .header {
 	background: url(<%= asset_path 'header_bg.jpg' %>) no-repeat 0 0 #86A641;
@@ -42,13 +42,24 @@
 	top: 0; }
 .header a.logo:hover img {
 	top: -25px; }
+.header .language_switcher {
+        margin-right: 5px;
+        margin-top: 5px;
+        text-align: right; }
+.header ul.language_switcher > li {
+	display: inline-block; }
+.header .choose_language {
+        color: #FFF;
+        display: block; }
+.header span.choose_language {
+	color: #AAA; }
 .header .welcome {
 	position: absolute;
 	top: 30px;
 	right: 35px; }
 .header .welcome p {
 	margin: 0; }
-	
+
 /* Header Navigation */
 .header .navbar {
 	background: url(<%= asset_path 'header_nav_bg.jpg' %>) repeat-x 0 0 transparent;
@@ -84,13 +95,13 @@
 	margin-right: 0; }
 .header ul.nav > li.login a {
 	padding-left: 45px;
-	position: relative; }	
+	position: relative; }
 .header ul.nav > li.login a .icon.user-login {
 	position: absolute;
 	top: 13px;
 	left: 15px; }
-.header ul.nav > li.login a:hover .icon.user-login, 
-.header ul.nav > li.login a:focus .icon.user-login, 
+.header ul.nav > li.login a:hover .icon.user-login,
+.header ul.nav > li.login a:focus .icon.user-login,
 .header ul.nav > li.login a:active .icon.user-login {
 	background-position: -180px -110px; }
 .header ul.nav > li.parent > a:after {
@@ -158,7 +169,7 @@
 .footer .footer-links[class*="span"] {
 	float: right;
 	text-align: right;
-	padding-top: 7px; 
+	padding-top: 7px;
 	width: 450px; }
 .footer .footer-links p {
 	display: inline-block;
@@ -172,7 +183,7 @@
 .footer .footer-feeds a {
 	float: left;
 	margin-left: 7px; }
-	
+
 /* Dashboard */
 .dashboard { }
 /* Dashboard Header */
@@ -222,10 +233,12 @@
 .dashboard-nav {
 	border-top: 1px solid #B6B6B7;
 	border-bottom: 1px solid #B6B6B7;
-	height: 50px;
 	margin: 0;
 	padding: 0 0 0 20px; }
 .dashboard-nav ul.nav {
+	display: flex;
+	justify-content: flex-start;
+
 	font-size: 1.167em;
 	margin: 0;
 	padding: 0; }
@@ -234,16 +247,21 @@
 .dashboard-nav ul.nav > li {
 	float: left;
 	list-style: none;
-	height: 49px;
-	position: relative; }
+	position: relative;
+	flex: 0 1 auto;
+
+	text-align: center;
+}
 .dashboard-nav ul.nav > li.current-parent {
 	height: 98px; }
 .dashboard-nav ul.nav > li > a {
 	float: left;
 	color: #4C4C4E; }
 .dashboard-nav ul.nav > li > a {
-	 height: 14px;
-	 padding: 17px 0; }
+	box-sizing: border-box;
+	padding: 17px 0;
+	height: 100%;
+}
 .dashboard-nav ul.nav > li > a:first-child {
 	padding-left: 0; }
 .dashboard-nav ul.nav > li > a:hover, .dashboard-nav ul.nav > li > a:focus, .dashboard-nav ul.nav > li > a:active {
@@ -254,38 +272,51 @@
 	color: #516935;
 	text-decoration: none; }
 .dashboard-nav ul.nav > li > a > span {
+	box-sizing: border-box;
 	display: inline-block;
+	padding: 0 8px;
+	height: 100%;
+
 	border-left: 1px solid #B6B6B7;
-	height: 14px;
-	padding: 0 8px; }
+}
 .dashboard-nav ul.nav > li:first-child > a > span {
 	border-left: none; }
 /* Dasbhoard Breadcrumbs */
-.dashboard-nav ul.nav ul.children {
-	float: left;
-	display: none;
+.dashboard-submenu {
+	font-size: 1.167em;
+/*
+	Uncomment the following to move submenus to the center instead of having them
+	aligned to the left.
+*/
+/*
+	text-align: center;
+*/
+
+	background: #E9E9EA;
+	border-bottom: 1px solid #B6B6B7;
+}
+.dashboard-submenu .children {
+	display: inline-block;
 	min-width: 500px;
 	margin: 0;
-	position: absolute;
 	bottom: 0; }
-.dashboard-nav ul.nav > li.current-parent ul {
-	display: block; }
-.dashboard-nav ul.nav ul li {
-	float: left;
-	background: #E9E9EA;
+.dashboard-submenu li {
+	display: inline-block;
+
 	list-style: none;
 	height: 29px;
 	margin-right: -15px;
+	margin-bottom: 0;
 	padding: 10px 0;
 	position: relative; }
-.dashboard-nav ul.nav ul li:first-child {
+.dashboard-submenu li:first-child {
 	margin-right: 0;
 	padding-left: 15px; }
-.dashboard-nav ul.nav ul li.last {
+.dashboard-submenu li.last {
 	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 -87px transparent;
 	width: 15px;
 	margin-left: -15px; }
-.dashboard-nav ul.nav ul li a {
+.dashboard-submenu li a {
 	float: left;
 	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 0 transparent;
 	color: #516935;
@@ -297,17 +328,17 @@
 	padding: 0 30px;
 	position: relative;
 	left: -15px; }
-.dashboard-nav ul.nav ul li:first-child a {
+.dashboard-submenu li:first-child a {
 	border-left: 2px solid #FFFFFF;
 	background-position: -15px 0;
 	padding-left: 15px;
 	left: 0; }
-.dashboard-nav ul.nav ul li a:hover, .dashboard-nav ul.nav ul li a:focus, .dashboard-nav ul.nav ul li a:active {
+.dashboard-submenu li a:hover, .dashboard-submenu li a:focus, .dashboard-submenu li a:active {
 	background-position: 0 -29px;
 	text-decoration: none; }
-.dashboard-nav ul.nav ul li:first-child a:hover, .dashboard-nav ul.nav ul li:first-child a:focus, .dashboard-nav ul.nav ul li:first-child a:active {
+.dashboard-submenu li:first-child a:hover, .dashboard-submenu li:first-child a:focus, .dashboard-submenu li:first-child a:active {
 	background-position: -15px -29px; }
-.dashboard-nav ul.nav ul li.current a {
+.dashboard-submenu li.current a {
 	background-position: 0 -58px; }
-.dashboard-nav ul.nav ul li:first-child.current a {
+.dashboard-submenu li:first-child.current a {
 	background-position: -15px -58px; }

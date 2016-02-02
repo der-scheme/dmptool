@@ -1,20 +1,33 @@
-<% @title_text = "DMP Template Details" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "dmp_templates:details" %>
-<h1 class="row-fluid" id="jump"><span class="icon template-details"></span>DMP Template Details</h1>
+<h1 class="row-fluid" id="jump"><span class="icon template-details"></span><%= @title_text %></h1>
 <h2><%= @requirements_template.name %></h2>
 <div class="row-fluid">
 	<div class="details span4">
 	  <div class="tree-view border-box" id="main_requirements_border">
       <div id="cover_dialog">
         <div>
-          <%= image_tag("/assets/throbber.gif") %> Please wait a moment . . .
+          <%= image_tag '/assets/throbber.gif' %>
+          <%= t('.please_wait') %>
         </div>
       </div>
-	  	<p><strong>Template Outline</strong></p>
+      <p><%= content_tag :strong, t('.template_outline') %></p>
 	  	<div class="actions">
-		    <%= link_to(content_tag(:span, '', :class => 'icon add-group') + 'Add Group' + content_tag(:span, '', :title => 'Similar requirements may be grouped together under a single requirement &#8220;group&#8221;.', 'data-toggle' => "tooltip", 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip'), new_requirements_template_requirement_path(@requirements_template, node_type: 'group') + '#jump') %>
-		    <%=  raw('&nbsp;') %>
-		    <%= link_to(content_tag(:span, '', :class => 'icon add-requirement') + 'Add Requirement' + content_tag(:span, '', :title => 'A requirement is the specific question that a researcher is to answer.', 'data-toggle' => "tooltip", 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip'), new_requirements_template_requirement_path(@requirements_template) + '#jump') %>
+        <%= link_to new_requirements_template_requirement_path(@requirements_template, node_type: 'group', anchor: 'jump') do %>
+          <%= content_tag :span, '', :class => 'icon add-group' %>
+          <%= t('.add_group_link') %>
+          <%= content_tag :span, '', title: t('.add_group_tooltip_html'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
+        <% end %>
+        &nbsp;
+        <%= link_to new_requirements_template_requirement_path(@requirements_template, anchor: 'jump') do %>
+          <%= content_tag :span, '', class: 'icon add-requirement'  %>
+          <%= t('.add_requirement_link') %>
+          <%= content_tag :span, '', title: t('.add_requirement_tooltip_html'),
+                          data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                          class: 'icon questionmark tip' %>
+        <% end %>
 		  </div>
 			<div id="drop_before_first">
 	    	<hr/>
@@ -24,34 +37,37 @@
 	    </div>
 	  </div>
 	  <div class="template-status border-box">
-	    <p><strong>DMP Template Status:</strong>
-	      <span id="status_<%= @requirements_template.id %>">
-	      	<%= @requirements_template.active ? 'Active' : 'Inactive' %>
-		  </span>
-		  <%= content_tag(:span, '', :title => 'The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
-		  </p>
+      <p>
+        <%= content_tag :strong, t('.template_status') %>
+        <%= content_tag :span, id: "status_#{@requirements_template.id}" do %>
+          <%= t_enum(@requirements_template, :active) %>
+        <% end %>
+        <%= content_tag :span, '', title: t('.template_status_tooltip_html'),
+                        data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                        class: 'icon questionmark tip' %>
+      </p>
 	  	<div>
-		    <%= link_to activate_link_text(@requirements_template),
+		    <%= link_to t('requirements_templates.index.toggle_status_link', template: @requirements_template),
 		      toggle_active_requirements_template_path(@requirements_template), remote: true, id: "activate_link_#{@requirements_template.id}", :class => 'btn' %>
 	    </div>
       <div>
         <br/>
         <% if @requirements_template.plans.count < 1 %>
-          <%= link_to 'Delete', requirements_template_path(@requirements_template, after_url: requirements_templates_path), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn' %>
+          <%= render_delete_button href: requirements_template_path(@requirements_template, after_url: requirements_templates_path) %>
         <% else %>
-          <%= link_to 'Delete', '', :class => 'btn', disabled: true, style: "pointer-events: none;" %><br/><br/>
-          <p>This template cannot be deleted until all DMPs that use it have been removed.</p>
+          <%= render_delete_button href: '', disabled: true, style: 'pointer-events: none;' %>
+          <br/><br/>
+          <%= content_tag :p, t('.cant_delete_template') %>
         <% end %>
       </div>
 	  </div>
 	</div>
 	<div class="tabbable span8">
 		<ul class="nav nav-tabs">
-      <% if params[:node_type] == 'group'%>
-	  		<li class="active"><%= link_to 'Group', '#tab1', :data => {:toggle => 'tab'} %></li>
-	  	<% else %>
-	  		<li class="active"><%= link_to 'Requirements', '#tab1', :data => {:toggle => 'tab'} %></li>
-	  	<% end %>
+      <li class="active">
+        <%= link_to t_enum(:requirement, :group, params[:node_type] == 'group'),
+                    {anchor: 'tab1'}, data: {toggle: 'tab'} %>
+      </li>
 		</ul>
 	 	<div class="tab-content">
 	  	<div class="tab-pane active" id="tab1">
@@ -60,9 +76,9 @@
 		</div>
 	</div>
 </div>
-<% referer_action %>
-<% if (@referer_url[:controller] == 'requirements_templates' && @referer_url[:action] == 'new') %>
-  <%= link_to '<< Back', edit_requirements_template_path(@requirements_template),  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>
+<% if referer_hash[:controller] == 'requirements_templates' && referer_hash[:action] == 'new' %>
+  <%= render_back_button href: edit_requirements_template_path(@requirements_template),
+                         green: true, arrow: true, class: 'pull-left' %>
 <% else %>
-  <%= link_to '<< Back', :back,  method: 'get', :class => 'btn btn-green pull-left', role: "button" %>
+  <%= render_back_button green: true, arrow: true, class: 'pull-left' %>
 <% end %>

@@ -239,7 +239,7 @@
 					resStr +="Family name: "+obj['orcid-bio']['personal-details']['family-name'].value+" <br />"; 
 				if(obj['orcid-bio']['personal-details']['given-names'])  					    
 					resStr +="Given names: "+obj['orcid-bio']['personal-details']['given-names'].value+" <br />";
-				if(obj['orcid-bio']['personal-details']['other-names'])
+				if(obj['orcid-bio']['personal-details']['other-names'] && obj['orcid-bio']['personal-details']['other-names']['other-name'].length > 0)
 				{   					    		
 					resStr +="Other names: ";
 					var count = 0;	
@@ -252,7 +252,7 @@
 				} 	
 			}
 
-			if(obj['orcid-bio']['keywords'])
+			if(obj['orcid-bio']['keywords'] && obj['orcid-bio']['keywords']['keyword'].length > 0)
 			{ 					    		
 				resStr +="<h6>Keywords</h6>"
 				var count = 0;	
@@ -264,7 +264,7 @@
 				resStr += obj['orcid-bio']['keywords']['keyword'][count].value + "<br />"; 					    		
 			}
 
-			if(obj['orcid-bio']['researcher-urls'])
+			if(obj['orcid-bio']['researcher-urls'] && obj['orcid-bio']['researcher-urls']['researcher-url'].length > 0)
 			{ 					    		
 				resStr +="<h6>Research URLs</h6>"
 				var count = 0;	
