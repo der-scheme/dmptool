@@ -66,7 +66,7 @@ Dmptool2::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "https://dmp2-staging.cdlib.org" }
 
-  config.prompt_external_signup = [:ldap, :shibboleth]
+  config.prompt_external_signup = [:shibboleth]
 end
 
 
