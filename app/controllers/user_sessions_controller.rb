@@ -47,7 +47,7 @@ class UserSessionsController < ApplicationController
       redirect_to choose_institution_path, flash: { error: msg } and return
     end
 
-    if user.new_record?
+    if user.new_record? && auth[:provider].in?(Rails.application.config.prompt_external_signup)
       session[:foreign_user] = user.attributes.with_indifferent_access
       session[:authentication] = a12n.attributes.with_indifferent_access
       redirect_to import_user_path and return
