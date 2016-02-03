@@ -7,6 +7,7 @@ class UsersMailer < ActionMailer::Base
 
   def mail(*args, **options)
     options[:subject].try(:prepend, dmp_string + ' ')
+    options[:to] = options[:to].email if options[:to].is_a? ActiveRecord::Base
     super(*args, **options)
   end
 
@@ -48,7 +49,7 @@ class UsersMailer < ActionMailer::Base
 
     @user.define_singleton_method(:owner?) {user_plan.owner?}
 
-    mail to: recipient.email,
+    mail to: recipient,
          subject: "New #{@user.owner? ? 'owner' : 'co-owner'} of #{@plan.name}"
   end
 
