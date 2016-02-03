@@ -285,6 +285,8 @@ en:
       help: Help
       home: Home
       partners: Partner Institutions
+      privacy: Privacy Policy
+      terms_of_use: Terms of Use
       video: Video
     user_sessions:
       destroy: Log Out
