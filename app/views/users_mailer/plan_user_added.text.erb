@@ -1,4 +1,4 @@
-<%= (@user == @vars[:new_user] ? "You've been" : "#{@vars[:new_user].full_name} has been") %> added to the plan "<%= @plan.name %>" as a <%= @vars[:new_user_type] %>.
+<%= (@recipient == @user ? "You've been" : "#{@user.full_name} has been") %> added to the plan "<%= @plan.name %>" as a <%= @user.owner? ? 'owner' : 'co-owner' %>.
 
 <%= render partial: 'information_link',
            locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>

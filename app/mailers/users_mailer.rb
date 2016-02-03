@@ -42,6 +42,16 @@ class UsersMailer < ActionMailer::Base
          template_name: message_template
   end
 
+  def plan_user_added(recipient, user_plan)
+    @recipient = recipient
+    @user, @plan = user_plan.user, user_plan.plan
+
+    @user.define_singleton_method(:owner?) {user_plan.owner?}
+
+    mail to: recipient.email,
+         subject: "New #{@user.owner? ? 'owner' : 'co-owner'} of #{@plan.name}"
+  end
+
 private
 
   def dmp_string
