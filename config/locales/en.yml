@@ -224,6 +224,10 @@ en:
     model:
       plan:
         duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
+      resource_context:
+        invalid_name: '%{value} must be filled in'
+        invalid_institution: You are attempting to insert a duplicate of a customization that already exists.
+        invalid_contact_email: '%{value} address must be valid'
     render:
       link:
         remove: Remove
