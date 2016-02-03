@@ -106,3 +106,20 @@ a {
 	color: #86A641 !important; }
 .blue {
 	color: #0000FF !important; }
+
+/* The original authors probably confused px and pt units. Since fixing this issue globally would screw things up, this class provides an override. */
+.regular-fontsize { font-size: 16px; }
+
+.object-data {
+  display: table;
+
+  &> * {
+    display: table-row;
+
+    &> * { 
+      display: table-cell; 
+      
+      &+ * { padding-left: 0.5em; }
+    }
+  }
+}
