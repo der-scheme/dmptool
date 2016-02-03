@@ -749,6 +749,7 @@ en:
     html_render:
       no_owner: '[non specified]'
       no_si: '[not specified]'
+      coowners: 'Co-owner[s]'
     index:
       filter_all_link: All (%{count})
       filter_owned_link: Owned (%{count})
