@@ -222,6 +222,8 @@ en:
         not_authorized_error: You need to be logged in.
         no_plan_selected_error: Please select an existing Plan to copy.
     model:
+      plan:
+        duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
     render:
       link:
         remove: Remove
