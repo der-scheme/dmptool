@@ -250,18 +250,21 @@
 	position: relative;
 	flex: 0 1 auto;
 
+	display: flex;
+
 	text-align: center;
 }
 .dashboard-nav ul.nav > li.current-parent {
 	height: 98px; }
 .dashboard-nav ul.nav > li > a {
 	float: left;
-	color: #4C4C4E; }
-.dashboard-nav ul.nav > li > a {
 	box-sizing: border-box;
+	flex: 1;
+
+	display: flex;
 	padding: 17px 0;
-	height: 100%;
-}
+
+	color: #4C4C4E; }
 .dashboard-nav ul.nav > li > a:first-child {
 	padding-left: 0; }
 .dashboard-nav ul.nav > li > a:hover, .dashboard-nav ul.nav > li > a:focus, .dashboard-nav ul.nav > li > a:active {
@@ -273,9 +276,9 @@
 	text-decoration: none; }
 .dashboard-nav ul.nav > li > a > span {
 	box-sizing: border-box;
+	flex: 1;
 	display: inline-block;
 	padding: 0 8px;
-	height: 100%;
 
 	border-left: 1px solid #B6B6B7;
 }
