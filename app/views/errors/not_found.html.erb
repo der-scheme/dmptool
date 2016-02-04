@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Not found (404)</title>
-   </head>
-
-  <body>
+<% @title_text = 'Not found (404)' %>
 
     <div class="error-message">
       <h1 class="red">The page you were looking for doesn't exist.</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
       <p>Please, go <strong><%= link_to "<< back", :back, :class => "btn btn-green" %></strong></p>
     </div>
-  
-  </body>
-</html>

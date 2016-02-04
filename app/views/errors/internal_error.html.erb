@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	  <title>Internal Error (500)</title>
-	 </head>
-
-	<body>
+<% @title_text = 'Internal Error (500)' %>
 
 		<div class="error-message">
 			<h1 class="red"> Oops... Something went wrong!</h1>
 			<br />
 			<p>We've been notified about this issue and we'll take a look at it shortly. </p>
-			<p>Please, try again in a few moments.</p> 
+			<p>Please, try again in a few moments.</p>
 			<p><strong><%= link_to "<< back", :back, :class => "btn btn-green" %></strong></p>
 		</div>
-
-	</body>
-</html>
