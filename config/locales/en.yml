@@ -256,6 +256,10 @@ en:
       show: Details
     dashboard:
       show: My Dashboard
+    errors:
+      forbidden: 'Forbidden (403)'
+      internal_error: 'Internal Error (500)'
+      not_found: 'Not found (404)'
     institutions:
       index: Institution Profile
       new: Add New Institution
