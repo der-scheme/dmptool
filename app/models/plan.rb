@@ -84,7 +84,7 @@ class Plan < ActiveRecord::Base
     user_id = self.current_user_id
     plan_names = Plan.joins(:users).where(user_plans: {owner: true}).where('users.id =?', user_id).pluck('plans.name')
     if plan_names.include?(self.name)
-      errors[:base] << "A Plan with this name already exists in the list of Plans you own."
+      errors[:base] << I18n.t('helpers.model.plan.duplicate_plan_name_error')
     end
   end
 
