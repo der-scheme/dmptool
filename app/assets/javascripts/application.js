@@ -103,9 +103,18 @@ String.prototype.interpolate = function(interpolants) {
 };
 
 function translate(key, interpolants) {
-  interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
+  if (typeof I18n === 'undefined') {
+    return 'I18n definition missing';
+  }
 
-  return I18n[key].interpolate(interpolants);
+  interpolants = (typeof interpolants === 'undefined') ? {} : interpolants;
+  var translation = I18n[key];
+
+  if (typeof translation === 'undefined') {
+    return 'Translation missing: ' + key;
+  }
+
+  return translation.interpolate(interpolants);
 };
 t = translate;
 

@@ -1,5 +1,4 @@
-<li class='current-parent'>
-  <%= link_to content_tag(:span, t('.templates')), requirements_templates_path %>
+<nav class="dashboard-submenu">
   <ul class="children dmp-templates">
     <!-- The following adds "current" class when on Customization Overview page -->
     <% if menu_level(0) == 'customizations' && menu_level(1) == 'overview' %>
@@ -16,4 +15,4 @@
       <li class="last"></li>
     <% end %>
   </ul>
-</li>
+</nav>

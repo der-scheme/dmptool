@@ -1,4 +1,7 @@
 <% @title_text = t('.title') %>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon overview"></span><%= @title_text %></h1>
 <div class="tabbable">
   <ul class="nav-tabs">
@@ -51,9 +54,14 @@
         </div>
 
         <% if @plan.new_record? %>
-          <div class="control-group" style="position: relative">
-            <%= content_tag :span, '', title: t('.visibility_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip', style: 'position: absolute; top: 7px; left: 135px' %>
-            <%= content_tag :p, Plan.human_attribute_name(:visibility), class: 'control-label' %>
+          <div class="control-group">
+            <p class="control-label">
+              <%= content_tag :span, '',
+                              title: t('.visibility_tooltip_html'),
+                              data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                              class: 'icon questionmark tip' %>
+              <%= Plan.human_attribute_name(:visibility) %>
+            </p>
             <div class="controls checkbox-controls">
               <%= f.radio_button :visibility, :public, class: 'radio inline' %>
               <%= f.label :visibility, t_enum(:plan, :visibility, :public), value: :public, class: 'radio-label' %>

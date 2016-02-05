@@ -1,4 +1,7 @@
 <% @display_menu = "review_dmp" %>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon review"></span><%= t('.title') %></h1>
 <br/>
 <h3><%= content_tag :strong, t('.perform_review') %></h3>
@@ -88,7 +91,7 @@
   <%= render partial: 'reject_with_comments', locals: {:plan_id => params[:id] } %>
 </div>
 <hr/>
-<%= render_back_button href: review_dmps_path(@plan), green: true %>
+<%= render_back_button href: review_dmps_path, green: true %>
 
 <script type="text/javascript">
   $("div.scrollable-container").resizable({ containment: "parent", minHeight: 150, handles: "s" });

@@ -1,4 +1,6 @@
 <% @title_text = t('.template_overview') %>
+
+<%= i18n_include_tag %>
 <h1 class="row-fluid"><span class="icon overview"></span><%= t('.template_overview') %></h1>
 <div class="tabbable">
 	<ul class="nav nav-tabs">
@@ -16,9 +18,14 @@
 					</div>
 				</div>
 
-				<div class="control-group" style="position: relative">
-					<%= content_tag(:span, '', :title => t('.visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 125px') %>
-					<%= content_tag :div, @requirements_template.class.human_attribute_name(:visibility), class: 'control-label required' %>
+				<div class="control-group">
+					<p class="control-label required">
+						<%= content_tag :span, '',
+														title: t('.visibility_tooltip_html'),
+														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+														class: 'icon questionmark tip' %>
+						<%= @requirements_template.class.human_attribute_name(:visibility) %>
+					</p>
 					<div class="controls checkbox-controls">
 						<%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public' %>
 						<%= label_tag :public, t_enum(@requirements_template, :visibility, :public), class: 'radio-label'%><br/>
@@ -80,13 +87,14 @@
 					</div>
 				</div>
 
-				<div class="control-group" style="position: relative">
-					<%= content_tag :span, '',
-													title: t('.review_type_tooltip'),
-													data: {toggle: 'tooltip', placement: 'right', html: 'true'},
-													class: 'icon questionmark tip',
-													style: 'position: absolute; top: 7px; left: 65px' %>
-					<%= content_tag :p, RequirementsTemplate.human_attribute_name(:review_requirement), class: 'control-label' %>
+				<div class="control-group">
+					<p class="control-label">
+						<%= content_tag :span, '',
+														title: t('.review_type_tooltip'),
+														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+														class: 'icon questionmark tip' %>
+						<%= RequirementsTemplate.human_attribute_name(:review_requirement) %>
+					</p>
 					<div class="controls checkbox-controls">
 						<%= f.radio_button :review_type, :formal_review, :class => 'radio inline', :id => 'formal_review' %>
 						<%= label_tag :formal_review,

@@ -5,7 +5,7 @@ $(function() {
   $("#response_date_value" ).datepicker({
   showOn: "button",
   buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-  dateFormat: "mm/dd/yy",
+  dateFormat: localized_temporal_format(),
   changeMonth: true,
   buttonImageOnly: true
   });
@@ -31,7 +31,7 @@ $(function() {
       draggable: true,
       resizable: false,
       autoOpen: false,
-      title: "Please Enter a Valid Response.",
+      title: t('.alert_title'),
       show: {
         effect: "blind"
       },

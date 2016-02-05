@@ -200,6 +200,25 @@ en:
       link:
         remove: Remove
         delete: Delete
+  js:
+    application:
+    institutions:
+      confirm_self_revoke: 'Do you really want to remove yourself from the Institutional Administrator role? You will lose all administrative permissions.'
+      wrong_file_ext_error: 'Only image file with extension: .jpg, .jpeg, .gif or .png is allowed'
+      wrong_file_ext_title: 'Wrong File Extension'
+    plans:
+      visibility_dialog_title: Share my DMP
+      comment_dialog_title: Add New Comments
+      reject_dialog_title: Reason for rejection (mandatory)
+    requirements_templates:
+      role_dialog_title: Grant New Role
+    responses:
+      alert_title: Please Enter a Valid Response.
+    roles:
+      dialog_title: Grant New Role
+    users:
+      current_dmp_admin_confirm: Do you really want to remove yourself from the DMP Administrator role? You will lose all administrative permissions.
+      roles_dialog_title: Edit Roles for the User
   routes:
     customizations:
       show: Details
@@ -339,6 +358,11 @@ en:
     language_switcher:
       locale_name: English
       currently_chosen: Currently chosen
+    users_mailer:
+      greetings: 'Hello %{user},'
+      preferences_hint: 'You may change your notification preferences at %{url}.'
+      dont_reply: Please do not reply to this email.
+      contact_us: 'You may always visit our contact page at %{url}.'
   static_pages:
     contact:
       question_about_missing: Please indicate what your question is about
@@ -712,7 +736,6 @@ en:
       no_owner: '[non specified]'
       no_si: '[not specified]'
     index:
-      title: My DMPs
       filter_all_link: All (%{count})
       filter_owned_link: Owned (%{count})
       filter_coowned_link: Co-owned (%{count})
@@ -747,16 +770,10 @@ en:
         copy and or download the plan.</li><li>Share publicly (green people): anyone
         can view, copy and or download the plan. Your DMP will appear on the %{public_dmps_link}
         page of this site.</li></ul>'
-      public_dmps_link: Public DMPs
-      overview_link: Overview
-      details_link: Details
       share_link: Share
       preview_link: Preview
       copy_link: Copy
-      export_pdf_link: Export as PDF
-      export_docx_link: Export as DOCX
       delete_link: Delete
-      new_plan_button: Create New DMP
     perform_review:
       title: Review DMPs
       perform_review: Perform Review

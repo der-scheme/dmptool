@@ -20,18 +20,30 @@ module RouteI18n
 
       define_method(:"link_to_#{route.name}") do |url = nil,
                                                   html_options = nil, &body|
+
         url, html_options = {}, url if url.is_a?(Hash) && html_options.nil?
         html_options ||= {}
+        format = html_options.delete(:format)
+        locale = html_options.delete(:locale) || params[:locale]
         t = html_options.delete(:t)
 
-        route_name_text = :"#{route.name}_text"
-        text = send(route_name_text, t: t, **(url.is_a?(Hash) ? url : {}))
+        text_method = :"#{route.name}_text"
+        path_method = :"#{route.name}_path"
 
-        # I have no idea why I have to insert the locale manually. Also,
-        # default_url_options seems to be empty at this point, no matter what I
-        # try.
-        link_to send(:"#{route.name}_path", url, locale: params[:locale]), html_options do
-          body ? body.call(text) : text
+        if url.is_a?(Hash)
+          url[:format] ||= format
+          url[:locale] ||= locale
+
+          text = send(text_method, t: t, **url)
+          link_to send(path_method, **url), html_options do
+            body ? body.call(text) : text
+          end
+        else
+          text = send(text_method, url, format: format, locale: locale, t: t)
+          link_to send(path_method, url, format: format, locale: locale),
+                  html_options do
+            body ? body.call(text) : text
+          end
         end
       end
     end
