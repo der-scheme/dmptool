@@ -6,19 +6,19 @@ Dmptool2::Application.routes.draw do
         constraints: lambda {|r| !r.params[:locale] || I18n.available_locales.include?(r.params[:locale].to_sym)} do
     namespace :api, :defaults => {:format => :json} do
       namespace :v1 do
-        resources :resources
+        #resources :resources
         resources :institutions
         resources :users
-        resources :requirements_templates
-        resources :roles
-        resources :requirements
-        resources :comments
+        resources :requirements_templates, only: [:index, :show]
+        #resources :roles
+        #resources :requirements
+        #resources :comments
         resources :plans
-        resources :resource_contexts
-        resources :responses
-        resources :published_plans
-        resources :plans_states
-        resources :sample_plans
+        #resources :resource_contexts
+        #resources :responses
+        #resources :published_plans
+        #resources :plans_states
+        #resources :sample_plans
 
         get 'institutions_plans_count/:id', to: 'institutions#plans_count_show'
         get 'institutions_plans_count', to: 'institutions#plans_count_index'
@@ -28,6 +28,8 @@ Dmptool2::Application.routes.draw do
         get 'plans_full/:id', to: 'plans#plans_full_show'
         get 'plans_full', to: 'plans#plans_full_index'
 
+        get 'templates/:id', to: 'requirements_templates#show'
+        get 'templates', to: 'requirements_templates#index'
       end
     end
 
@@ -45,7 +47,6 @@ Dmptool2::Application.routes.draw do
     get 'community_resources', to: 'static_pages#community_resources'
     match 'contact', to: 'static_pages#contact', :via => [:get, :post], as: 'contact'
     get 'dashboard', to: 'dashboard#show', as: 'dashboard'
-    get 'dashboard/test', to: 'dashboard#test'
     get 'dm_guidance', to: 'static_pages#data_management_guidance'
     get 'guidance', to: 'static_pages#guidance'
     get 'help', to: 'static_pages#help'
@@ -89,6 +90,14 @@ Dmptool2::Application.routes.draw do
         get :finish_signup
         patch :finish_signup_update
       end
+    end
+    # We have to do it like this, because:
+    # 1. With plain get/post we cannot create the same named helper for both.
+    # 2. With non-singular resources the route accepts an ID which is not what we
+    #    want.
+    resource :user, only: [] do
+      get :import
+      post :import, to: :import_accepted
     end
 
     # resources :resources do

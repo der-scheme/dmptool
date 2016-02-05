@@ -23,7 +23,7 @@
   <tr>
     <td><%= content_tag :strong, Plan.human_attribute_name(:owner) %></td>
     <td><%= plan.owner.full_name || t('.no_owner') %></td>
-    <td><strong>Co-owner[s]:</strong></td>
+    <td><%= content_tag :strong, t('.coowners') %></td>
 
     <td>
       <%if @coowners%>

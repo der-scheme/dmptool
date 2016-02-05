@@ -116,6 +116,7 @@ en:
         active: Active
         auth_token: My Token
         first_name: First Name
+        full_name: Full Name        # Not taken from source
         full_name_last_first: User Name
         last_name: Last Name
         login_id: Username
@@ -196,6 +197,13 @@ en:
         not_allowed_error: "You don't have access to this content."
         not_authorized_error: You need to be logged in.
         no_plan_selected_error: Please select an existing Plan to copy.
+    model:
+      plan:
+        duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
+      resource_context:
+        invalid_name: '%{value} must be filled in'
+        invalid_institution: You are attempting to insert a duplicate of a customization that already exists.
+        invalid_contact_email: '%{value} address must be valid'
     render:
       link:
         remove: Remove
@@ -224,6 +232,10 @@ en:
       show: Details
     dashboard:
       show: My Dashboard
+    errors:
+      forbidden: 'Forbidden (403)'
+      internal_error: 'Internal Error (500)'
+      not_found: 'Not found (404)'
     institutions:
       index: Institution Profile
       new: Add New Institution
@@ -261,6 +273,8 @@ en:
       help: Help
       home: Home
       partners: Partner Institutions
+      privacy: Privacy Policy
+      terms_of_use: Terms of Use
       video: Video
     user_sessions:
       destroy: Log Out
@@ -358,6 +372,11 @@ en:
     language_switcher:
       locale_name: English
       currently_chosen: Currently chosen
+    users_mailer:
+      greetings: 'Hello %{user},'
+      preferences_hint: 'You may change your notification preferences at %{url}.'
+      dont_reply: Please do not reply to this email.
+      contact_us: 'You may always visit our contact page at %{url}.'
   static_pages:
     contact:
       question_about_missing: Please indicate what your question is about
@@ -730,6 +749,7 @@ en:
     html_render:
       no_owner: '[non specified]'
       no_si: '[not specified]'
+      coowners: 'Co-owner[s]'
     index:
       filter_all_link: All (%{count})
       filter_owned_link: Owned (%{count})

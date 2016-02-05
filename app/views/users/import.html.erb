@@ -1,0 +1,43 @@
+<% @title_text = "Signup External User" %>
+
+<h1 class="row-fluid"><span class="icon profile"></span>Signup External User</h1>
+
+<div class="container regular-fontsize">
+  <h2>Confirmation required</h2>
+
+  <p>
+    We have received the following data about you. In order to complete signing
+    up to the DMPTool you have to consent that we store those data in order to
+    provide you with this service.
+  </p>
+  <p>
+    If you do not consent you may not use this service.
+  </p>
+
+  <ul class="object-data">
+    <li>
+      <strong>Username</strong><%= content_tag :span, @user.login_id %>
+    </li>
+    <li>
+      <strong>Full Name</strong><%= content_tag :span, @user.full_name %>
+    </li>
+    <li>
+      <strong>Email address</strong><%= content_tag :span, @user.email %>
+    </li>
+    <li>
+      <strong>Institution</strong><%= content_tag :span, @user.institution.try(:full_name) %>
+    </li>
+  </ul>
+
+  <p>
+    By clicking the "Create Account" button you agree that we store the above
+    data and that you consent to our
+    <%= link_to 'Terms of Service', terms_of_use_path %>
+    and our <%= link_to 'Privacy Policy', privacy_path %>.
+  </p>
+
+  <div class="row-fluid">
+    <%= link_to 'Back', login_path, class: 'btn pull-left' %>
+    <%= button_to 'Create Account', import_user_path, method: :post, class: 'pull-right' %>
+  </div>
+</div

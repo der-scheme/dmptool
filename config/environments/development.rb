@@ -29,7 +29,7 @@ Dmptool2::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  
+
   config.log_level = :debug
 
   #special settings if you want to configure Unicorn logs for development use of unicorn server
@@ -59,4 +59,5 @@ Dmptool2::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.file_settings = { :location => Rails.root.join('tmp/mail') }
 
+  config.prompt_external_signup = [:shibboleth]
 end
