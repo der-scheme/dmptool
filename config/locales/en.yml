@@ -435,6 +435,21 @@ en:
       latest_info: Latest information about data management and the DMPTool.
       more_link: More News
       unavailable: News is currently unavailable.
+    help:
+      title: DMPTool Help
+      choose: What do you want to do?
+      faq: I want to see frequently asked questions and answers.
+      faq_html: I want to see frequently asked questions and answers.
+      quickstart: I want help creating a data management plan.
+      quickstart_html: 'I want help <strong>creating a data management plan.</strong>'
+      administer: I want to administer the DMPTool.
+      administer_html: 'I want to <strong>administer</strong> the DMPTool.'
+      dm_guidance: I want general data management guidance.
+      dm_guidance_html: 'I want general <strong>data management guidance</strong>.'
+      promote: I want to promote the DMPTool at my institution.
+      promote_html: 'I want to <strong>promote the DMPTool</strong> at my institution.'
+      community_resources: I want to access community resources for understanding and using the DMPTool.
+      community_resources_html: 'I want to access <strong>community resources</strong> for understanding and using the DMPTool.'
     home:
       title: Home
       dmp_headline: Data Management Planning Tool

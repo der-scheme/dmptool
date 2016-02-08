@@ -1,35 +1,15 @@
-<% @title_text = "DMPTool Help" %>
+<% @title_text = page_title %>
 <% @display_menu = "help" %>
 <div class="static-page">
-	<h1>DMPTool Help</h1>
-	<hr/>
-	<h2><em>What do you want to do?</em></h2>
-	<ul class="ugly_list">
-		<li>
-			<a title="I want to see frequently asked questions and answers." href="http://dmptool.askbot.com" target="_blank">I want to see frequently asked questions and answers.</a>
-		</li>
-		<li>
-			<%= link_to quickstartguide_path, title: 'I want help creating a data management plan.' do %>
-				I want help <strong>creating a data management plan.</strong>
-			<% end %>
-		</li>
-		<li>
-			<a href="https://github.com/CDLUC3/dmptool/wiki/Help-for-Administrators">I want to <strong>administer</strong> the DMPTool.</a>
-		</li>
-		<li>
-			<%= link_to dm_guidance_path, title: 'I want general data management guidance.' do %>
-				I want general <strong>data management guidance</strong>.
-			<% end %>
-		</li>
-		<li>
-			<%= link_to promote_path, title: 'I want to promote the DMPTool at my institution.' do %>
-				I want to <strong>promote the DMPTool</strong> at my institution.
-			<% end %>
-		</li>
-		<li>
-			<%= link_to community_resources_path, title: 'I want to access community resources for understanding and using the DMPTool.' do %>
-				I want to access <strong>community resources</strong> for understanding and using the DMPTool.
-			<% end %>
-		</li>
-	</ul>
+  <h1><%= top_heading_text %></h1>
+  <hr/>
+  <h2><em><%= t('.choose') %></em></h2>
+  <ul class="ugly_list">
+    <li><%= link_to t('.faq_html'), '//dmptool.askbot.com', target: '_blank', title: t('.faq') %></li>
+    <li><%= link_to t('.quickstart_html'), quickstartguide_path, title: t('.quickstart') %></li>
+    <li><%= link_to t('.administer_html'), '//github.com/CDLUC3/dmptool/wiki/Help-for-Administrators', title: t('.administer') %></li>
+    <li><%= link_to t('.dm_guidance_html'), dm_guidance_path, title: t('.dm_guidance') %></li>
+    <li><%= link_to t('.promote_html'), promote_path, title: t('.promote') %></li>
+    <li><%= link_to t('.community_resources_html'), community_resources_path, title: t('.community_resources') %></li>
+  </ul>
 </div>
