@@ -293,6 +293,8 @@ en:
     static_pages:
       about: About
       contact: Contact Us
+      community_resources: Community resources
+      data_management_guidance: Data management guidance
       guidance: DMP Requirements
       help: Help
       home: Home
