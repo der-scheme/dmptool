@@ -578,6 +578,19 @@ en:
         one: '%{count} Customization'
         other: '%{count} Customizations'
       new_template_customization_button: Create New DMP Template Customization
+  errors:
+    forbidden:
+      title: Forbidden.
+      message: You are not authorized to perform that action.
+      go_back: Please, go
+    internal_error:
+      title:  Oops... Something went wrong!
+      message: "We've been notified about this issue and we'll take a look at it shortly."
+      try_again: Please, try again in a few moments.
+    not_found:
+      title: "The page you were looking for doesn't exist."
+      message: You may have mistyped the address or the page may have moved.
+      go_back: Please, go
   institutions:
     create:
       success_notice: Institution was successfully created.

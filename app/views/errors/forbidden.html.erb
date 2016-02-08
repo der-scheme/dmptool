@@ -1,7 +1,8 @@
-<% @title_text = 'Forbidden (403)' %>
+<% @title_text = page_title %>
 
-    <div class="error-message">
-      <h1 class="red"> Forbidden.</h1>
-      <p>You are not authorized to perform that action.</p>
-      <p>Please, go <strong><%= render_back_button green: true, arrow: true %></strong></p>
-  </div>
+<div class="error-message">
+  <h1 class="red"><%= top_heading_text %></h1>
+  <p><%= t('.message') %></p>
+  <p><%= t('.go_back') %></p>
+  <strong><%= render_back_button green: true, arrow: true %></strong>
+</div>
