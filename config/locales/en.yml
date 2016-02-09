@@ -343,8 +343,6 @@ en:
       save: Save
       save_changes: Save Changes
   layouts:
-    application:
-      title: '%{title_text}: DMPTool'
     clean:
       title: 'DmpTool2: %{title_text}'
     dashboard_create_dmp_submenu:
