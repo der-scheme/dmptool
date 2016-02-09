@@ -124,6 +124,14 @@ class UsersMailer < ActionMailer::Base
     mail to: recipient, subject: "#{@granted_roles} Activated"
   end
 
+  def template_customization_deleted(recipient, customization)
+    @customization = customization
+    @recipient = recipient
+
+    mail to: recipient,
+         subject: "DMP Template Customization Deleted: #{customization.requirements_template.name}"
+  end
+
 private
 
   def dmp_string
