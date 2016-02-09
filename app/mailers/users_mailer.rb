@@ -94,6 +94,14 @@ class UsersMailer < ActionMailer::Base
     mail to: recipient, subject: "DMP Visibility Changed: #{plan.name}"
   end
 
+  def user_role_granted(recipient, role_ids)
+    @recipient = recipient
+    @granted_roles = Role.where(id: role_ids).pluck(:name).join(', ')
+    @all_roles = recipient.roles.pluck(:name).join(', ')
+
+    mail to: recipient, subject: "#{@granted_roles} Activated"
+  end
+
 private
 
   def dmp_string

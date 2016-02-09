@@ -1,10 +1,10 @@
 Your user account has had the following role(s) assigned to it.
 
-<%= @vars[:granted_roles].join(", ") %>
+<%= @granted_roles %>
 
 You currently have the following roles.
 
-<%= @user.roles.pluck(:name).join(", ") %>
+<%= @all_roles %>
 
 <%= render partial: 'information_email',
            locals: {contact: 'the DMP Administrator', email: 'uc3@ucop.edu'} %>
