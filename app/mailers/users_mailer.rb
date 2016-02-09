@@ -7,6 +7,7 @@ class UsersMailer < ActionMailer::Base
 
   def mail(*args, **options)
     options[:subject].try(:prepend, dmp_string + ' ')
+    options[:to] ||= @recipient
     options[:to] = options[:to].email if options[:to].is_a? ActiveRecord::Base
     super(*args, **options)
   end
