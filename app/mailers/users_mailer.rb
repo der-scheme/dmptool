@@ -37,14 +37,7 @@ class UsersMailer < ActionMailer::Base
 private
 
   def dmp_string
-    case ENV["RAILS_ENV"]
-    when 'development'
-      "[DMPTool] (development)"
-    when 'stage'
-      "[DMPTool] (staging)"
-    when 'production'
-      "[DMPTool]"
-    end
+    "[#{t('globals.appname')}]"
   end
 
 private
