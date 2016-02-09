@@ -1,0 +1,12 @@
+The plan "<%= @plan.name %>" has had its visibility changed to <%= @plan.visibility %>.
+
+Visibility definitions:
+
+Private - Visible to owners and co-owners only
+
+Institutional - Visible to others from <%= @recipient.institution.name %>
+
+Public - visible publicly on the web
+
+<%= render partial: 'information_link',
+           locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>

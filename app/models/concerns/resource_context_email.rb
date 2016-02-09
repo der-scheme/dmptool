@@ -10,20 +10,13 @@ module ResourceContextEmail
   # [:resource_editors][:deleted] - A customization is deleted
   def resource_context_destroy
     # only notify for customizations being deleted, not other kinds
-    if !self.institution_id.nil? && self.requirement_id.nil? && self.resource_id.nil?
-      institution = self.institution
-      template = self.requirements_template
-      users = institution.users_in_and_above_inst_in_role(Role::RESOURCE_EDITOR)
-      users += institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_ADMIN)
-      users.uniq! #only the unique users, so each user is only listed once
-      users.delete_if {|u| !u[:prefs][:resource_editors][:deleted] }
-      users.each do |user|
-        UsersMailer.notification(
-            user.email,
-            "DMP Template Customization Deleted: #{template.name}",
-            "resource_editors_deleted",
-            {:user => user, :customization => self} ).deliver
-      end
+    return unless institution && requirement.nil? && resource.nil?
+
+    institution.users_in_and_above_inst_in_role(Role::RESOURCE_EDITOR)
+      .concat(institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_ADMIN))
+      .uniq.select {|user| user[:prefs][:resource_editors][:deleted]}
+      .each do |recipient|
+        UsersMailer.template_customization_deleted(recipient, self).deliver
     end
   end
 end
