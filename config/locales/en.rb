@@ -53,6 +53,15 @@ end
         }
       }
     },
+    globals: {
+      appname: lambda do |_, **__|
+        case ENV["RAILS_ENV"]
+        when 'development' then 'DMPTool (development)'
+        when 'state'       then 'DMPTool (staging)'
+        else                    'DMPTool'
+        end
+      end
+    },
     institutions: {
       form: {
         shib_entity_id_tooltip: "Shibboleth endpoint registered with the Incommon Federation. This can only be edited by the DMPTool Administrator. Contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])} with any questions.",
