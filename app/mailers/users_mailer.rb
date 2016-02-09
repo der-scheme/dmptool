@@ -6,7 +6,7 @@ class UsersMailer < ActionMailer::Base
   # Override the default mail method and prepend a string to the subject
 
   def mail(*args, **options)
-    options[:subject].try(:prepend, dmp_string + ' ')
+    options[:subject].try(:prepend, "[#{t('globals.appname')}] ")
     options[:to] ||= @recipient
     options[:to] = options[:to].email if options[:to].is_a? ActiveRecord::Base
     super(*args, **options)
@@ -113,12 +113,6 @@ class UsersMailer < ActionMailer::Base
     @recipient = recipient
 
     mail subject: "DMP Template Customization Deleted: #{customization.requirements_template.name}"
-  end
-
-private
-
-  def dmp_string
-    "[#{t('globals.appname')}]"
   end
 
 private
