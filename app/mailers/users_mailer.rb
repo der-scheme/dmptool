@@ -27,22 +27,6 @@ class UsersMailer < ActionMailer::Base
     end
   end
 
-  #pass in the email addresses, the email subject and the template name that has the text
-
-  #an example call:
-  # UsersMailer.notification(['catdog@mailinator.com', 'dogdog@mailinator.com'],
-  #                           'that frosty mug taste', 'test_mail').deliver
-  def notification(email_address, subject, message_template, locals)
-    email_address_array = [*email_address]
-    @plan = locals.delete(:plan)
-    @user = locals.delete(:user)
-    @recipient = @user
-    @vars = locals
-    mail to:            email_address_array.join(','),
-         subject:       subject,
-         template_name: message_template
-  end
-
   def customized_template_activated(recipient, template, customization)
     @customization = customization
     @recipient = recipient
