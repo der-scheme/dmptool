@@ -43,6 +43,14 @@ class UsersMailer < ActionMailer::Base
          template_name: message_template
   end
 
+  def customized_template_activated(recipient, template, customization)
+    @customization = customization
+    @recipient = recipient
+    @template = template
+
+    mail to: recipient, subject: "DMP Template Activated: #{template.name}"
+  end
+
   def plan_commented(recipient, comment, institutional: false)
     @author = comment.user
     @comment = comment
@@ -92,6 +100,20 @@ class UsersMailer < ActionMailer::Base
     @recipient = recipient
 
     mail to: recipient, subject: "DMP Visibility Changed: #{plan.name}"
+  end
+
+  def template_activated(recipient, template)
+    @recipient = recipient
+    @template = template
+
+    mail to: recipient, subject: "DMP Template Activated: #{template.name}"
+  end
+
+  def template_deactivated(recipient, template)
+    @recipient = recipient
+    @template = template
+
+    mail to: recipient, subject: "DMP Template Deactivated: #{template.name}"
   end
 
   def user_role_granted(recipient, role_ids)
