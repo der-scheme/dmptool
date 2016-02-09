@@ -33,7 +33,7 @@ class UsersMailer < ActionMailer::Base
     @recipient = recipient
     @template = template
 
-    mail to: recipient, subject: "DMP Template Activated: #{template.name}"
+    mail subject: "DMP Template Activated: #{template.name}"
   end
 
   def plan_commented(recipient, comment, institutional: false)
@@ -43,15 +43,14 @@ class UsersMailer < ActionMailer::Base
     @plan = comment.plan
     @recipient = recipient
 
-    mail to: recipient.email,
-         subject: "New comment: #{@plan.name}"
+    mail subject: "New comment: #{@plan.name}"
   end
 
   def plan_completed(recipient, plan)
     @plan = plan
     @recipient = recipient
 
-    mail to: recipient, subject: "PLAN COMPLETED: #{plan.name}"
+    mail subject: "PLAN COMPLETED: #{plan.name}"
   end
 
   def plan_state_updated(recipient, plan, institutional: false)
@@ -59,15 +58,14 @@ class UsersMailer < ActionMailer::Base
     @plan = plan
     @recipient = recipient
 
-    mail to: recipient, subject: "DMP #{plan.current_state.state}: #{plan.name}"
+    mail subject: "DMP #{plan.current_state.state}: #{plan.name}"
   end
 
   def plan_under_review(recipient, plan)
     @plan = plan
     @recipient = recipient
 
-    mail to: recipient,
-         subject: "#{plan.name} has been submitted for institutional review"
+    mail subject: "#{plan.name} has been submitted for institutional review"
   end
 
   def plan_user_added(recipient, user_plan)
@@ -76,29 +74,28 @@ class UsersMailer < ActionMailer::Base
 
     @user.define_singleton_method(:owner?) {user_plan.owner?}
 
-    mail to: recipient,
-         subject: "New #{@user.owner? ? 'owner' : 'co-owner'} of #{@plan.name}"
+    mail subject: "New #{@user.owner? ? 'owner' : 'co-owner'} of #{@plan.name}"
   end
 
   def plan_visibility_changed(recipient, plan)
     @plan = plan
     @recipient = recipient
 
-    mail to: recipient, subject: "DMP Visibility Changed: #{plan.name}"
+    mail subject: "DMP Visibility Changed: #{plan.name}"
   end
 
   def template_activated(recipient, template)
     @recipient = recipient
     @template = template
 
-    mail to: recipient, subject: "DMP Template Activated: #{template.name}"
+    mail subject: "DMP Template Activated: #{template.name}"
   end
 
   def template_deactivated(recipient, template)
     @recipient = recipient
     @template = template
 
-    mail to: recipient, subject: "DMP Template Deactivated: #{template.name}"
+    mail subject: "DMP Template Deactivated: #{template.name}"
   end
 
   def user_role_granted(recipient, role_ids)
@@ -106,15 +103,14 @@ class UsersMailer < ActionMailer::Base
     @granted_roles = Role.where(id: role_ids).pluck(:name).join(', ')
     @all_roles = recipient.roles.pluck(:name).join(', ')
 
-    mail to: recipient, subject: "#{@granted_roles} Activated"
+    mail subject: "#{@granted_roles} Activated"
   end
 
   def template_customization_deleted(recipient, customization)
     @customization = customization
     @recipient = recipient
 
-    mail to: recipient,
-         subject: "DMP Template Customization Deleted: #{customization.requirements_template.name}"
+    mail subject: "DMP Template Customization Deleted: #{customization.requirements_template.name}"
   end
 
 private
