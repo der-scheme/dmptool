@@ -54,6 +54,29 @@ class UsersMailer < ActionMailer::Base
          subject: "New comment: #{@plan.name}"
   end
 
+  def plan_completed(recipient, plan)
+    @plan = plan
+    @recipient = recipient
+
+    mail to: recipient, subject: "PLAN COMPLETED: #{plan.name}"
+  end
+
+  def plan_state_updated(recipient, plan, institutional: false)
+    @institutional = institutional
+    @plan = plan
+    @recipient = recipient
+
+    mail to: recipient, subject: "DMP #{plan.current_state.state}: #{plan.name}"
+  end
+
+  def plan_under_review(recipient, plan)
+    @plan = plan
+    @recipient = recipient
+
+    mail to: recipient,
+         subject: "#{plan.name} has been submitted for institutional review"
+  end
+
   def plan_user_added(recipient, user_plan)
     @recipient = recipient
     @user, @plan = user_plan.user, user_plan.plan
@@ -62,6 +85,13 @@ class UsersMailer < ActionMailer::Base
 
     mail to: recipient,
          subject: "New #{@user.owner? ? 'owner' : 'co-owner'} of #{@plan.name}"
+  end
+
+  def plan_visibility_changed(recipient, plan)
+    @plan = plan
+    @recipient = recipient
+
+    mail to: recipient, subject: "DMP Visibility Changed: #{plan.name}"
   end
 
 private
