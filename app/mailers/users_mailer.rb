@@ -43,6 +43,17 @@ class UsersMailer < ActionMailer::Base
          template_name: message_template
   end
 
+  def plan_commented(recipient, comment, institutional: false)
+    @author = comment.user
+    @comment = comment
+    @institutional = institutional
+    @plan = comment.plan
+    @recipient = recipient
+
+    mail to: recipient.email,
+         subject: "New comment: #{@plan.name}"
+  end
+
   def plan_user_added(recipient, user_plan)
     @recipient = recipient
     @user, @plan = user_plan.user, user_plan.plan

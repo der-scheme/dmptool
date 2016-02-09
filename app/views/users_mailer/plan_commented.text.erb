@@ -1,6 +1,11 @@
-<%= @vars[:commenter].full_name %> has commented on the plan "<%= @plan.name %>" :
+<%= @author.full_name %> has commented on the plan "<%= @plan.name %>":
 
-<%= @vars[:comment] %>
+<%= @comment.value %>
 
+<% if @institutional %>
 <%= render partial: 'information_link',
            locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>
+<% else %>
+<%= render partial: 'information_email',
+           locals: {contact: @author.institution.contact_info, email: @author.institution.contact_email} %>
+<% end %>
