@@ -61,8 +61,8 @@ module RequirementsTemplateEmail
           UsersMailer.notification(
               user.email,
               "DMP Template Activated: #{self.name}",
-              "resource_editors_associated_committed",
               {:user => user, :template => self, :customization => customization} ).deliver
+                "customized_template_activated",
         end
 
       end
