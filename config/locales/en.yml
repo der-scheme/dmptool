@@ -1297,3 +1297,8 @@ en:
       text: 'The plan "%{plan}" has been completed.'
     plan_under_review:
       text: 'The DMP "%{plan}" has been submitted for institutional review.'
+    plan_user_added:
+      you_text: "You've been added to the plan \"%{plan}\" as a %{type}."
+      generic_text: '%{user} has been added to the plan "%{plan}" as a %{type}.'
+      owner: owner
+      coowner: co-owner
