@@ -1,4 +1,4 @@
-The DMP Template Customization "<%= @customization.name %>" has been deleted.
+<%= t('.text', customization: @customization.name) %>
 
 <%= render partial: 'information_email',
            locals: {contact: @recipient.institution.contact_info, email: @recipient.institution.contact_email} %>

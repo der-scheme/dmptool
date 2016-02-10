@@ -1304,3 +1304,5 @@ en:
       coowner: co-owner
     template_activated:
       text: 'The DMP Template "%{template}" has been activated.'
+    template_customization_deleted:
+      text: 'The DMP Template Customization "%{customization}" has been deleted.'
