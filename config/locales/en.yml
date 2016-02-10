@@ -1306,3 +1306,5 @@ en:
       text: 'The DMP Template "%{template}" has been activated.'
     template_customization_deleted:
       text: 'The DMP Template Customization "%{customization}" has been deleted.'
+    template_deactivated:
+      text: 'The DMP Template "%{template}" has been deactivated.'
