@@ -1283,3 +1283,5 @@ en:
       no_such_user_error: No user found with email address %{email}.
       invalid_email_error: You must supply a valid email to obtain a username reminder.
   users_mailer:
+    information_link:
+      text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
