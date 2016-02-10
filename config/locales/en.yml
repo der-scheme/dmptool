@@ -1302,3 +1302,5 @@ en:
       generic_text: '%{user} has been added to the plan "%{plan}" as a %{type}.'
       owner: owner
       coowner: co-owner
+    template_activated:
+      text: 'The DMP Template "%{template}" has been activated.'
