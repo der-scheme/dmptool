@@ -133,6 +133,10 @@ private
   # with HTML/multipart emails.
 
   def _render_template(*args, **options)
+    # Uncomment the following statement (or remove the method) to completely
+    # disable the multilingual emails feature.
+    # return super(*args, **options)
+
     buffer = ActiveSupport::SafeBuffer.new
     locale = I18n.locale
     locales = I18n.available_locales.reject {|lcl| lcl == locale}
