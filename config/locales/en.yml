@@ -1293,3 +1293,5 @@ en:
       text: "Hello %{uid},\n\nA password reset has been requested for this account. You may reset your password by visiting:\n\n%{url}\n\nwithin the next 24 hours.\n\nIf you did not request a password reset you may safely ignore this message.\n\nThank you for using the DMPtool."
     plan_commented:
       text: '%{author} has commented on the plan "%{plan}":'
+    plan_completed:
+      text: 'The plan "%{plan}" has been completed.'
