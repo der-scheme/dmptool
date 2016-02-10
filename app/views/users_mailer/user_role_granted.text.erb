@@ -7,4 +7,4 @@ You currently have the following roles.
 <%= @all_roles %>
 
 <%= render partial: 'information_email',
-           locals: {contact: 'the DMP Administrator', email: 'uc3@ucop.edu'} %>
+           locals: {contact: 'the DMP Administrator', email: APP_CONFIG['feedback_email_to'].join(', ')} %>
