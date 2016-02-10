@@ -1308,3 +1308,5 @@ en:
       text: 'The DMP Template Customization "%{customization}" has been deleted.'
     template_deactivated:
       text: 'The DMP Template "%{template}" has been deactivated.'
+    username_reminder:
+      text: "Hello %{email},\n\nYour DMPTool username is: %{uid}\n\nThank you for using the DMP tool."
