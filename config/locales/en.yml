@@ -211,6 +211,7 @@ en:
         informal_review: Informal Review Allowed
         no_review: No Review Needed
   globals:
+    the_admin: the DMP Administrator
     mailer:
       localized_message_below: For an english version see below.
     messages:
