@@ -7,6 +7,7 @@ class UsersMailer < ActionMailer::Base
   # Override the default mail method and prepend a string to the subject
 
   def mail(*args, **options)
+    options[:subject] ||= t('.subject')
     options[:subject].try(:prepend, "[#{t('globals.appname')}] ")
     options[:to] ||= @recipient
     options[:to] = options[:to].email if options[:to].is_a? ActiveRecord::Base
