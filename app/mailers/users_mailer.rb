@@ -120,4 +120,36 @@ private
     default_url_options[:locale] ||= nil
   end
 
+  ##
+  # Augment the original #_render_template method.
+  #
+  # If there is more than one locale available to the application, we assume
+  # that this email might reach users that might usually use the application
+  # with other locales than the default one.
+  # Therefore, we basically just call the +super+ method once per locale and
+  # return a message with all of its translations.
+  #
+  # Note: This currently only works for text views and most likely will fail
+  # with HTML/multipart emails.
+
+  def _render_template(*args, **options)
+    buffer = ActiveSupport::SafeBuffer.new
+    locale = I18n.locale
+    locales = I18n.available_locales.reject {|lcl| lcl == locale}
+
+    locales.each do |locale|
+      buffer << t('globals.mailer.localized_message_below', locale: locale)
+      buffer << "\n"
+    end
+
+    locales.unshift(locale)
+    locales.each do |locale|
+      I18n.locale = locale
+      buffer << super(*args, **options)
+    end
+    I18n.locale = locale
+
+    buffer
+  end
+
 end

@@ -1,3 +1,8 @@
+<% if I18n.available_locales.size > 1 %>
+
+================================================================================
+
+<% end %>
 <%= t('.greetings', user: @recipient.full_name) %>
 
 <%= yield %>
