@@ -1,4 +1,4 @@
-<%= (@recipient == @user ? "You've been" : "#{@user.full_name} has been") %> added to the plan "<%= @plan.name %>" as a <%= @user.owner? ? 'owner' : 'co-owner' %>.
+<%= t((@recipient == @user ? '.you_text' : '.generic_text'), user: @user.full_name, plan: @plan.name, type: t(@user.owner? ? '.owner' : '.coowner')) %>
 
 <%= render partial: 'information_link',
-           locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>

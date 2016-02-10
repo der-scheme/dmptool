@@ -1,4 +1,4 @@
-The plan "<%= @plan.name %>" has been completed.
+<%= t('.text', plan: @plan.name) %>
 
 <%= render partial: 'information_link',
-           locals: {title: 'DMP Overview', url: edit_plan_url(@plan)} %>
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>

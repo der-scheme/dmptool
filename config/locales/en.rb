@@ -126,6 +126,23 @@ end
       create: {
         ldap_error: "There were problems adding this user to the LDAP directory. Please contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
+    },
+    users_mailer: {
+      information_email: {
+        text: lambda do |_, name: nil, email: nil, **__|
+          "If you have questions pertaining to this action, please contact #{"#{name} at " if name.present?}#{email}."
+        end
+      },
+      plan_state_updated: {
+        text: lambda do |_, plan: nil, state: nil, **__|
+          "The DMP \"#{name}\" has been #{I18n.t("enum.plan_state.state.#{state}")}."
+        end
+      },
+      plan_visibility_changed: {
+        text: lambda do |_, plan: nil, visibility: nil, institution: nil|
+          "The plan \"#{plan}\" has had its visibility changed to #{t("enum.plan.visibility.#{visibility}")}.\n\nVisibility definitions:\n\nPrivate - Visible to owners and co-owners only\n\nInstitutional - Visible to others from #{institution}\n\nPublic - visible publicly on the web"
+        end
+      }
     }
   }
 }
