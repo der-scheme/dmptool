@@ -128,6 +128,11 @@ end
       }
     },
     users_mailer: {
+      information_email: {
+        text: lambda do |_, name: nil, email: nil, **__|
+          "If you have questions pertaining to this action, please contact #{"#{name} at " if name.present?}#{email}."
+        end
+      }
     }
   }
 }
