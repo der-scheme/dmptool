@@ -2,6 +2,7 @@ class UsersMailer < ActionMailer::Base
   default from: APP_CONFIG['feedback_email_from'],
           reply_to: APP_CONFIG['feedback_email_to']
   helper RouteI18n::Helper
+  layout 'plain', only: [:password_reset, :username_reminder]
 
   ##
   # Override the default mail method and prepend a string to the subject
@@ -19,17 +20,13 @@ class UsersMailer < ActionMailer::Base
   def username_reminder(uid, email)
     @uid = uid
     @email = email
-    mail to: email, subject: 'username reminder' do |format|
-      format.text {render layout: 'plain'}
-    end
+    mail to: email, subject: 'username reminder'
   end
 
   def password_reset(uid, email, reset_path)
     @uid = uid
     @url = reset_path
-    mail to: email, subject: 'password reset' do |format|
-      format.text {render layout: 'plain'}
-    end
+    mail to: email, subject: 'password reset'
   end
 
   def customized_template_activated(recipient, template, customization)
