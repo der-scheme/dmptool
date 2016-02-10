@@ -138,6 +138,7 @@ private
     # return super(*args, **options)
 
     buffer = ActiveSupport::SafeBuffer.new
+    spacer = "\n#{'=' * 80}\n\n" if I18n.available_locales.size > 1
     locale = I18n.locale
     locales = I18n.available_locales.reject {|lcl| lcl == locale}
 
@@ -146,10 +147,9 @@ private
       buffer << "\n"
     end
 
-    locales.unshift(locale)
-    locales.each do |locale|
+    locales.unshift(locale).each do |locale|
       I18n.locale = locale
-      buffer << super(*args, **options)
+      buffer << spacer << super(*args, **options)
     end
     I18n.locale = locale
 
