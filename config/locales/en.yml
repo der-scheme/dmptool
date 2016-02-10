@@ -1285,3 +1285,5 @@ en:
   users_mailer:
     information_link:
       text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
+    plan_commented:
+      text: '%{author} has commented on the plan "%{plan}":'

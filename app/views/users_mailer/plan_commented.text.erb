@@ -1,4 +1,4 @@
-<%= @author.full_name %> has commented on the plan "<%= @plan.name %>":
+<%= t('.text', author: @author.full_name, plan: @plan.name) %>
 
 <%= @comment.value %>
 
