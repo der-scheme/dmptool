@@ -1,4 +1,4 @@
-The DMP "<%= @plan.name %>" has been submitted for institutional review.
+<%= t('.text', plan: @plan.name) %>
 
 <%= render partial: 'information_link',
-           locals: {title: 'Review DMPs', url: perform_review_plan_url(@plan)} %>
+           locals: {title: perform_review_plan_text, url: perform_review_plan_url(@plan)} %>

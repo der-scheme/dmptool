@@ -1295,3 +1295,5 @@ en:
       text: '%{author} has commented on the plan "%{plan}":'
     plan_completed:
       text: 'The plan "%{plan}" has been completed.'
+    plan_under_review:
+      text: 'The DMP "%{plan}" has been submitted for institutional review.'
