@@ -1289,5 +1289,7 @@ en:
       text: 'The DMP Template "%{template}" associated with the customization "%{customization}" has been activated.'
     information_link:
       text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
+    password_reset:
+      text: "Hello %{uid},\n\nA password reset has been requested for this account. You may reset your password by visiting:\n\n%{url}\n\nwithin the next 24 hours.\n\nIf you did not request a password reset you may safely ignore this message.\n\nThank you for using the DMPtool."
     plan_commented:
       text: '%{author} has commented on the plan "%{plan}":'
