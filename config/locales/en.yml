@@ -1311,3 +1311,5 @@ en:
       text: 'The DMP Template "%{template}" has been deactivated.'
     username_reminder:
       text: "Hello %{email},\n\nYour DMPTool username is: %{uid}\n\nThank you for using the DMP tool."
+    user_role_granted:
+      text: "Your user account has had the following role(s) assigned to it.\n\n%{granted_roles}\n\nYou currently have the following roles.\n\n%{all_roles}"

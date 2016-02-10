@@ -1,10 +1,4 @@
-Your user account has had the following role(s) assigned to it.
-
-<%= @granted_roles %>
-
-You currently have the following roles.
-
-<%= @all_roles %>
+<%= t('.text', granted_roles: @granted_roles, all_roles: @all_roles) %>
 
 <%= render partial: 'information_email',
-           locals: {contact: 'the DMP Administrator', email: APP_CONFIG['feedback_email_to'].join(', ')} %>
+           locals: {contact: t('globals.the_admin'), email: APP_CONFIG['feedback_email_to'].join(', ')} %>
