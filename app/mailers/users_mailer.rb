@@ -1,6 +1,7 @@
 class UsersMailer < ActionMailer::Base
   default from: APP_CONFIG['feedback_email_from'],
           reply_to: APP_CONFIG['feedback_email_to']
+  helper RouteI18n::Helper
 
   ##
   # Override the default mail method and prepend a string to the subject
