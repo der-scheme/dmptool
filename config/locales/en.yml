@@ -1287,29 +1287,44 @@ en:
       invalid_email_error: You must supply a valid email to obtain a username reminder.
   users_mailer:
     customized_template_activated:
+      subject: 'DMP Template Activated: %{template}'
       text: 'The DMP Template "%{template}" associated with the customization "%{customization}" has been activated.'
     information_link:
       text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
     password_reset:
+      subject: Password Reset
       text: "Hello %{uid},\n\nA password reset has been requested for this account. You may reset your password by visiting:\n\n%{url}\n\nwithin the next 24 hours.\n\nIf you did not request a password reset you may safely ignore this message.\n\nThank you for using the DMPtool."
     plan_commented:
+      subject: 'New comment: %{plan}'
       text: '%{author} has commented on the plan "%{plan}":'
     plan_completed:
+      subject: 'PLAN COMPLETED: %{plan}'
       text: 'The plan "%{plan}" has been completed.'
+    plan_state_updated:
+      subject: 'DMP %{state}: %{plan}'
     plan_under_review:
+      subject: '%{plan} has been submitted for institutional review'
       text: 'The DMP "%{plan}" has been submitted for institutional review.'
     plan_user_added:
+      subject: 'New %{type} of %{plan}'
       you_text: "You've been added to the plan \"%{plan}\" as a %{type}."
       generic_text: '%{user} has been added to the plan "%{plan}" as a %{type}.'
       owner: owner
       coowner: co-owner
+    plan_visibility_changed:
+      subject: 'DMP Visibility Changed: %{plan}'
     template_activated:
+      subject: 'DMP Template Activated: %{template}'
       text: 'The DMP Template "%{template}" has been activated.'
     template_customization_deleted:
+      subject: 'DMP Template Customization Deleted: %{customization}'
       text: 'The DMP Template Customization "%{customization}" has been deleted.'
     template_deactivated:
+      subject: 'DMP Template Deactivated: %{template}'
       text: 'The DMP Template "%{template}" has been deactivated.'
     username_reminder:
+      subject: Username Reminder
       text: "Hello %{email},\n\nYour DMPTool username is: %{uid}\n\nThank you for using the DMP tool."
     user_role_granted:
+      subject: '%{roles} Activated'
       text: "Your user account has had the following role(s) assigned to it.\n\n%{granted_roles}\n\nYou currently have the following roles.\n\n%{all_roles}"
