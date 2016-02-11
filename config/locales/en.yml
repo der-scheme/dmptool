@@ -187,6 +187,9 @@ en:
         informal_review: Informal Review Allowed
         no_review: No Review Needed
   globals:
+    the_admin: the DMP Administrator
+    mailer:
+      localized_message_below: For an english version see below.
     messages:
       prompt:
         confirm: Are you sure?
@@ -269,6 +272,8 @@ en:
     static_pages:
       about: About
       contact: Contact Us
+      community_resources: Community resources
+      data_management_guidance: Data management guidance
       guidance: DMP Requirements
       help: Help
       home: Home
@@ -317,8 +322,6 @@ en:
       save: Save
       save_changes: Save Changes
   layouts:
-    application:
-      title: '%{title_text}: DMPTool'
     clean:
       title: 'DmpTool2: %{title_text}'
     dashboard_create_dmp_submenu:
@@ -394,6 +397,31 @@ en:
       form_name: Your Name
       tips: 'Tips:'
       tips_text_html: <p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p> <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool representative at your organization. Your organization may offer additional data management consultation services.</p>
+    dmptool_help:
+      explanation: Overview of how to use the tool, plus resources and guidance on data management.
+      faq: Frequently Asked Questions
+      quickstartguide: Create a DMP
+      administer: Administer the DMPTool
+      view_all_link: View All
+    dmptool_news:
+      latest_info: Latest information about data management and the DMPTool.
+      more_link: More News
+      unavailable: News is currently unavailable.
+    help:
+      title: DMPTool Help
+      choose: What do you want to do?
+      faq: I want to see frequently asked questions and answers.
+      faq_html: I want to see frequently asked questions and answers.
+      quickstart: I want help creating a data management plan.
+      quickstart_html: 'I want help <strong>creating a data management plan.</strong>'
+      administer: I want to administer the DMPTool.
+      administer_html: 'I want to <strong>administer</strong> the DMPTool.'
+      dm_guidance: I want general data management guidance.
+      dm_guidance_html: 'I want general <strong>data management guidance</strong>.'
+      promote: I want to promote the DMPTool at my institution.
+      promote_html: 'I want to <strong>promote the DMPTool</strong> at my institution.'
+      community_resources: I want to access community resources for understanding and using the DMPTool.
+      community_resources_html: 'I want to access <strong>community resources</strong> for understanding and using the DMPTool.'
     home:
       title: Home
       dmp_headline: Data Management Planning Tool
@@ -574,6 +602,19 @@ en:
         one: '%{count} Customization'
         other: '%{count} Customizations'
       new_template_customization_button: Create New DMP Template Customization
+  errors:
+    forbidden:
+      title: Forbidden.
+      message: You are not authorized to perform that action.
+      go_back: Please, go
+    internal_error:
+      title:  Oops... Something went wrong!
+      message: "We've been notified about this issue and we'll take a look at it shortly."
+      try_again: Please, try again in a few moments.
+    not_found:
+      title: "The page you were looking for doesn't exist."
+      message: You may have mistyped the address or the page may have moved.
+      go_back: Please, go
   institutions:
     create:
       success_notice: Institution was successfully created.
@@ -1244,3 +1285,46 @@ en:
       success_notice: Your username has been emailed to %{email}.
       no_such_user_error: No user found with email address %{email}.
       invalid_email_error: You must supply a valid email to obtain a username reminder.
+  users_mailer:
+    customized_template_activated:
+      subject: 'DMP Template Activated: %{template}'
+      text: 'The DMP Template "%{template}" associated with the customization "%{customization}" has been activated.'
+    information_link:
+      text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
+    password_reset:
+      subject: Password Reset
+      text: "Hello %{uid},\n\nA password reset has been requested for this account. You may reset your password by visiting:\n\n%{url}\n\nwithin the next 24 hours.\n\nIf you did not request a password reset you may safely ignore this message.\n\nThank you for using the DMPtool."
+    plan_commented:
+      subject: 'New comment: %{plan}'
+      text: '%{author} has commented on the plan "%{plan}":'
+    plan_completed:
+      subject: 'PLAN COMPLETED: %{plan}'
+      text: 'The plan "%{plan}" has been completed.'
+    plan_state_updated:
+      subject: 'DMP %{state}: %{plan}'
+    plan_under_review:
+      subject: '%{plan} has been submitted for institutional review'
+      text: 'The DMP "%{plan}" has been submitted for institutional review.'
+    plan_user_added:
+      subject: 'New %{type} of %{plan}'
+      you_text: "You've been added to the plan \"%{plan}\" as a %{type}."
+      generic_text: '%{user} has been added to the plan "%{plan}" as a %{type}.'
+      owner: owner
+      coowner: co-owner
+    plan_visibility_changed:
+      subject: 'DMP Visibility Changed: %{plan}'
+    template_activated:
+      subject: 'DMP Template Activated: %{template}'
+      text: 'The DMP Template "%{template}" has been activated.'
+    template_customization_deleted:
+      subject: 'DMP Template Customization Deleted: %{customization}'
+      text: 'The DMP Template Customization "%{customization}" has been deleted.'
+    template_deactivated:
+      subject: 'DMP Template Deactivated: %{template}'
+      text: 'The DMP Template "%{template}" has been deactivated.'
+    username_reminder:
+      subject: Username Reminder
+      text: "Hello %{email},\n\nYour DMPTool username is: %{uid}\n\nThank you for using the DMP tool."
+    user_role_granted:
+      subject: '%{roles} Activated'
+      text: "Your user account has had the following role(s) assigned to it.\n\n%{granted_roles}\n\nYou currently have the following roles.\n\n%{all_roles}"

@@ -1,0 +1,9 @@
+<%= t('.text', plan: @plan.name, state: @plan.current_state.state) %>
+
+<% if @institutional %>
+<%= render partial: 'information_link',
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>
+<% else %>
+<%= render partial: 'information_email',
+           locals: {contact: @recipient.institution.contact_info, email: @recipient.institution.contact_email} %>
+<% end %>

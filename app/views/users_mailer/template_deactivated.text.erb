@@ -1,0 +1,4 @@
+<%= t('.text', template: @template.name) %>
+
+<%= render partial: 'information_email',
+           locals: {contact: @recipient.institution.contact_info, email: @recipient.institution.contact_email} %>

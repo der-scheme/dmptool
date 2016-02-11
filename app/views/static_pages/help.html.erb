@@ -1,19 +1,15 @@
-<% @title_text = "DMPTool Help" %>
+<% @title_text = page_title %>
 <% @display_menu = "help" %>
 <div class="static-page">
-	<h1>DMPTool Help</h1>
-	<hr/>
-	<h2><em>What do you want to do?</em></h2>
-	<br/>
-	<p><a title="I want to see frequently asked questions and answers." href="http://dmptool.askbot.com" target="_blank">I want to see frequently asked questions and answers.</a></p>
-	<br/>
-	<p><a href="/quickstartguide/">I want help <strong>creating a data management plan.</strong></a></p>
-	<br/>
-	<p><a href="https://github.com/CDLUC3/dmptool/wiki/Help-for-Administrators">I want to <strong>administer</strong> the DMPTool.</a></p>
-	<br/>
-	<p><%= link_to raw("I want general <strong>data management guidance</strong>."), dm_guidance_path, :title => "I want general data management guidance." %></p>
-	<br/>
-	<p><%= link_to raw("I want to <strong>promote the DMPTool</strong> at my institution."), promote_path, :title => "I want to promote the DMPTool at my institution." %></p>
-	<br/>
-	<p><%= link_to raw("I want to access <strong>community resources</strong> for understanding and using the DMPTool."), community_resources_path, :title => "I want to access community resources for understanding and using the DMPTool." %></p>
+  <h1><%= top_heading_text %></h1>
+  <hr/>
+  <h2><em><%= t('.choose') %></em></h2>
+  <ul class="ugly_list">
+    <li><%= link_to t('.faq_html'), '//dmptool.askbot.com', target: '_blank', title: t('.faq') %></li>
+    <li><%= link_to t('.quickstart_html'), quickstartguide_path, title: t('.quickstart') %></li>
+    <li><%= link_to t('.administer_html'), '//github.com/CDLUC3/dmptool/wiki/Help-for-Administrators', title: t('.administer') %></li>
+    <li><%= link_to t('.dm_guidance_html'), dm_guidance_path, title: t('.dm_guidance') %></li>
+    <li><%= link_to t('.promote_html'), promote_path, title: t('.promote') %></li>
+    <li><%= link_to t('.community_resources_html'), community_resources_path, title: t('.community_resources') %></li>
+  </ul>
 </div>
