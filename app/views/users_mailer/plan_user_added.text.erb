@@ -1,0 +1,4 @@
+<%= t((@recipient == @user ? '.you_text' : '.generic_text'), user: @user.full_name, plan: @plan.name, type: t(@user.owner? ? '.owner' : '.coowner')) %>
+
+<%= render partial: 'information_link',
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>

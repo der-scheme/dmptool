@@ -1,0 +1,4 @@
+<%= t('.text', plan: @plan.name) %>
+
+<%= render partial: 'information_link',
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>

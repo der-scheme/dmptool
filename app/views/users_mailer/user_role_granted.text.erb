@@ -1,0 +1,4 @@
+<%= t('.text', granted_roles: @granted_roles, all_roles: @all_roles) %>
+
+<%= render partial: 'information_email',
+           locals: {contact: t('globals.the_admin'), email: APP_CONFIG['feedback_email_to'].join(', ')} %>
