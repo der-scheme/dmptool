@@ -139,8 +139,8 @@ end
         end
       },
       plan_visibility_changed: {
-        text: lambda do |_, plan: nil, visibility: nil, institution: nil|
-          "The plan \"#{plan}\" has had its visibility changed to #{t("enum.plan.visibility.#{visibility}")}.\n\nVisibility definitions:\n\nPrivate - Visible to owners and co-owners only\n\nInstitutional - Visible to others from #{institution}\n\nPublic - visible publicly on the web"
+        text: lambda do |_, plan: nil, visibility: nil, institution: nil, **__|
+          "The plan \"#{plan}\" has had its visibility changed to #{I18n.t("enum.plan.visibility.#{visibility}")}.\n\nVisibility definitions:\n\nPrivate - Visible to owners and co-owners only\n\nInstitutional - Visible to others from #{institution}\n\nPublic - visible publicly on the web"
         end
       }
     }
