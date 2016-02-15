@@ -119,7 +119,7 @@ end
         end
       },
       errors: {
-        message: ->(_, model: nil, **__) {"#{model.errors.size} error#{'s' if model.errors.size != 1} prohibited this #{model.class.model_name.human.downcase} from being saved:"}
+        message: ->(_, model: nil, **__) {"#{model.errors.size} error#{'s' if model.errors.size != 1} prohibited this #{model.class.model_name.human} from being saved:"}
       }
     },
     users: {
