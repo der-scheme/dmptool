@@ -38,12 +38,12 @@ de:
         value: Wert
       institution:
         ancestry: Abstammung
-        contact_info: Administrator Kontakt
+        contact_info: Kontaktdaten des Administrators
         contact_email: Administrator E-Mail
         logo: Logo der Einrichtung
         desc: Beschreibung
         full_name: Vollständiger Name der Einrichtung
-        nickname: Kurzname oder Acronym der Einrichtung
+        nickname: Kurzname / Acronym der Einrichtung
         parent_id: Übergeordnete Einrichtung
         shib_entity_id: Entitäten-ID
         shib_domain: Shibboleth-Domäne
@@ -114,8 +114,9 @@ de:
         url: URL des Plans
       user:
         active: Aktiv
-        auth_token: Meine Token
+        auth_token: Mein Token
         first_name: Vorname(n)
+        full_name: Vollständiger Name
         full_name_last_first: Benutzername
         last_name: Nachname
         login_id: Benutzername
@@ -186,6 +187,9 @@ de:
         informal_review: Unverbindliches Feedback kann angefordert werden
         no_review: Feedback muss nicht angefordert werden
   globals:
+    the_admin: DMP-Administrator
+    mailer:
+      localized_message_below: Eine englische Version befindet sich weiter unten.
     messages:
       prompt:
         confirm: Sind Sie sicher?
@@ -196,15 +200,45 @@ de:
         not_allowed_error: Sie haben keinen Zugriff auf diesen Inhalt.
         not_authorized_error: Bitte loggen Sie sich zunächst ein.
         no_plan_selected_error: Welcher Plan soll kopiert werden?
+    model:
+      plan:
+        duplicate_plan_name_error: Innerhalb der Liste Ihrer Pläne existiert bereits ein Plan mit diesem Namen.
+      resource_context:
+        invalid_name: '%{value} muss ausgefüllt werden'
+        invalid_institution: Sie versuchen ein Duplikat einer bereits vorhanden Anpassung zu erstellen.
+        invalid_contact_email: '%{value} Adresse muss gültig sein'
     render:
       link:
         remove: Entfernen
         delete: Löschen
+  js:
+    institutions:
+      confirm_self_revoke: Möchten Sie wirklich Ihre eigene institutionelle Administrator-Rolle entfernen? Sie werden dadurch alle administrativen Rechte verlieren.
+      wrong_file_ext_error: 'Es sind nur Bilddateien folgenden Types erlaubt: .jpg,
+        .jpeg, .gif oder .png'
+      wrong_file_ext_title: Falsche Dateiendung
+    plans:
+      visibility_dialog_title: Meinen DMP teilen
+      comment_dialog_title: Neuen Kommentar hinzufügen
+      reject_dialog_title: Grund der Ablehnung (verpflichtend)
+    requirements_templates:
+      role_dialog_title: Neue Rolle gewähren
+    responses:
+      alert_title: Geben Sie bitte eine zulässige Antwort ein.
+    roles:
+      dialog_title: Neue Rolle gewähren
+    users:
+      current_dmp_admin_confirm: Möchten Sie wirklich Ihre eigene DMP-Administrator-Rolle entfernen? Sie werden dadurch alle administrativen Rechte verlieren.
+      roles_dialog_title: Benutzer-Rolle bearbeiten
   routes:
     customizations:
       show: Details
     dashboard:
       show: Mein Dashboard
+    errors:
+      forbidden: Unzulässig (403)
+      internal_error: interner Fehler (500)
+      not_found: Nicht gefunden (404)
     institutions:
       index: Einrichtungsprofil
       new: Neue Einrichtung hinzufügen
@@ -228,8 +262,8 @@ de:
       edit: Übersicht
       index: Meine DMPs
       preview: Vorschau
-      public: Beispiel-DMPs
-      review_dmps: Feedback zu DMPs geben
+      public: Beispielpläne
+      review_dmps: Feedback geben
       show:
         docx: Exportiere als DOCX
         pdf: Exportiere als PDF
@@ -238,10 +272,14 @@ de:
     static_pages:
       about: About
       contact: Kontakt
+      community_resources: Allgemeine Ressource
+      data_management_guidance: Anleitung für das Datenmanagement
       guidance: DMP-Vorlagen
       help: Hilfe
       home: Home
       partners: Partnereinrichtungen
+      privacy: Datenschutzrichtlinie
+      terms_of_use: Nutzungsbedingungen
       video: Video
     user_sessions:
       destroy: Logout
@@ -282,8 +320,6 @@ de:
       save: Speichern
       save_changes: Änderungen speichern
   layouts:
-    application:
-      title: '%{title_text}: DMP-Tool'
     clean:
       title: 'Dmp-Tool2: %{title_text}'
     dashboard_create_dmp_submenu:
@@ -337,6 +373,12 @@ de:
     language_switcher:
       locale_name: Deutsch
       currently_chosen: Aktuelle Sprache
+    users_mailer:
+      greetings: Hallo %{user}
+      preferences_hint: 'Sie können Ihre Benachrichtigungseinstellungen hier ändern:
+        %{url}'
+      dont_reply: Bitte antworten Sie nicht auf diese E-Mail.
+      contact_us: 'Unsere Kontaktseite befindet sich unter: %{url}'
   static_pages:
     contact:
       question_about_missing: Worauf bezieht sich Ihre Frage?
@@ -357,9 +399,9 @@ de:
     home:
       title: Home
       dmp_headline: Data Management Planning Tool
-      dmp_subtitle_html: Datenmanagementpläne gemeinsam erstellen, begutachten und teilen
+      dmp_subtitle_html: Datenmanagementpläne gemeinsam erstellen, Feedback einholen oder geben, und Pläne teilen
       dmp_get_started_link: START
-      public_dmps: Beispiel-DMPs
+      public_dmps: Beispielpläne
       after_banner_title: Anforderungen der Drittmittelgeber und Universitäten erfüllen
       left_bucket_title: Für wen ist das DMP-Tool gedacht?
       right_bucket_title: Das DMP-Tool in Kürze
@@ -372,19 +414,17 @@ de:
         zur leichten Erstellung von Plänen</li> <li>DMPs im Projektteam gemeinsam
         erstellen und verwalten</li> <li>DMPs mit anderen Personen teilen - entweder
         mit einzelnen Personen, Wissenschaftlern der eigenen Einrichtung, oder allen</li>
-        <li>DMP exportieren (pdf, rtf)</li> <li>Optional: DMPs durch einen Experten
-        der eigenen Einrichtung begutachten lassen (wenn von der Einrichtung unterstützt)</li>
-        </ul> <li>Für Universitäten und Hochschulen</li> <ul> <li>Erstellen Sie eigene,
-        angepasste DMP-Vorlagen für Ihre Wissenschaftler</li> <li>Bieten Sie den Wissenschaftlern
-        zur Orientierung beispielhafte Pläne an</li> <li>Durch die Begutachtungsfunktion
-        des Tools können Sie - sofern erwünscht - DMPs der eigenen Wissenschaftler
-        begutachten und so die Chancen auf einen erfolgreichen Projektantrag und -verlauf
-        erhöhen.</li> <li>Komfortabler Shibboleth-Login für Mitglieder Ihrer Einrichtung</li>
-        </ul>'
+        <li>DMP exportieren (pdf, rtf)</li> <li>Optional: Feedback zum DMP erhalten
+        (wenn von der Einrichtung unterstützt)</li> </ul> <li>Für Universitäten und
+        Hochschulen</li> <ul> <li>Erstellen Sie eigene, angepasste DMP-Vorlagen für
+        Ihre Wissenschaftler</li> <li>Bieten Sie den Wissenschaftlern zur Orientierung
+        Beispielpläne an</li> <li>Geben Sie Feedback zu DMPs der eigenen Wissenschaftler
+        und erhöhen Sie so die Chancen auf einen erfolgreichen Projektantrag und -verlauf.</li>
+        <li>Komfortabler Shibboleth-Login für Mitglieder Ihrer Einrichtung</li> </ul>'
     guidance:
       browser_title: DMP-Vorlagen
       title: DMP-Vorlagen
-      instructions: Über das A-Z können Sie die DMP-Vorlagen auf die Vorlagen einer bestimmten Einrichtung einschränken. Sie können außerdem über den Suchschlitz direkt nach einer bestimmten DMP-Vorlage suchen. Die Musterpläne stammen nicht unbedingt vom Forschungsförderer selbst.
+      instructions: Über das A-Z können Sie die DMP-Vorlagen auf die Vorlagen einer bestimmten Einrichtung einschränken. Sie können außerdem über das Suchfeld direkt nach einer bestimmten DMP-Vorlage suchen. Die Musterpläne stammen nicht unbedingt vom Forschungsförderer selbst.
       requirements_for: DMP-Vorlagen für %{institution}
       requirements_scope_info: Unten sehen Sie die DMP-Vorlagen, welche in Ihrer Institution verfügbar sind.
     guidance_table:
@@ -463,9 +503,9 @@ de:
       dmp_resources_section: DMP-Ressourcen
       global_resources_section: Globale Ressourcen
       institution_resources_section: 'Ressourcen für: %{institution}'
-      template_for_institution_resources_section: '%{template} für die Ressourcen
-        für: %{institution} '
-      requirement_resources_section: Ressourcen für Unterpunkt
+      template_for_institution_resources_section: '%{template} Hilfestellung für:
+        %{institution} '
+      requirement_resources_section: Hilfestellung
     section_display:
       edit_link_tooltip: Anpassungen bearbeiten
     show:
@@ -507,8 +547,8 @@ de:
         one: '%{count} DMP für gut befunden'
         other: '%{count} DMPs für gut befunden'
       review_rejected_plans:
-        one: '%{count} DMP - Überarbeitung empfohlen'
-        other: '%{count} DMPs - Überarbeitung empfohlen'
+        one: '%{count} DMP Überarbeitung empfohlen'
+        other: '%{count} DMPs Überarbeitung empfohlen'
       templates: DMP-Vorlagen
       within_my_institution: Innerhalb meiner Einrichtung
       funder_requirements: Geteilte DMP-Vorlagen
@@ -527,11 +567,24 @@ de:
         one: '%{count} Anpassung'
         other: '%{count} Anpassungen'
       new_template_customization_button: Neue Anpassung einer DMP-Vorlage erstellen
+  errors:
+    forbidden:
+      title: Unzulässig.
+      message: Sie sind nicht berechtigt diese Aktion durchzuführen.
+      go_back: Bitte gehen Sie zu
+    internal_error:
+      title: Uups... Da ist etwas schief gelaufen!
+      message: Wir wurden soeben über dieses Problem informiert und werden uns dies schnellst möglich ansehen.
+      try_again: Bitte versuchen Sie es später noch einmal.
+    not_found:
+      title: Die angefragte Seite existiert leider nicht.
+      message: Möglicherweise haben Sie die Adresse falsch geschrieben oder die Seite wurde verschoben.
+      go_back: Bitte gehen Sie zu
   institutions:
     create:
       success_notice: Einrichtung wurde erfolgreich angelegt.
     edit:
-      info: Information über die Einrichtung
+      info: Informationen über die Einrichtung
       url_text_placeholder: URL Text
       url_placeholder: URL
       contact_info_placeholder: Name
@@ -543,7 +596,7 @@ de:
       edit_user_roles: Benutzerrollen bearbeiten
       current_roles: "%{user}'s aktuelle Rollen:"
     form:
-      title: Information über die Einrichtung
+      title: Informationen über die Einrichtung
       # Find the following translations in en.rb, as they interpolate
       # application globals:
       # - shib_entity_id_tooltip
@@ -559,7 +612,7 @@ de:
       upload_button: Hochladen
     index:
       profile: Einrichtungsprofil
-      info: Information über Einrichtung
+      info: Informationen über die Einrichtung
       resources: Institutionelle Ressourcen
       hierarchy: Einrichtungshierarchie
       assign_roles: Rollen zuweisen
@@ -591,7 +644,7 @@ de:
       grant_role_button: Rolle zuweisen
     new:
       title: Neue Einrichtung
-      info: Information über Einrichtung
+      info: Informationen über die Einrichtung
       url_text_placeholder: URL Text
       url_placeholder: URL
       contact_info_placeholder: Name
@@ -618,7 +671,7 @@ de:
     actionable_url:
       general_resources: Allgemeine Ressourcen
       institutional_resources: 'Ressourcen für: %{institution}'
-      customized_for_institution_resources: '%{template} für die Ressourcen für: %{institution} '
+      customized_for_institution_resources: '%{template} Hilfestellung für: %{institution} '
     create:
       # Also find some translations in en.rb
       cant_reassign_owner_error: Die ausgewählte Benutzer %{owner} ist der Besitzer des Plans. Ein Besitzer kann nicht %{description} des gleichen Plans sein.
@@ -630,7 +683,7 @@ de:
       submit_for_review_tooltip_html: <p>Fordern Sie ein unverbindliches Feedback zum Plan durch Ansprechpartner Ihrer Einrichtung an.</p>
     change_visibility:
       visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
-      visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispiel-DMPs" angezeigt werden.
+      visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispielpläne" angezeigt werden.
       visibility_private: Privat (nur Besitzer und Mitbesitzer)
       visibility_unit: Nur innerhalb Ihrer Einrichtung / Untereinrichtung
     delete_coowner:
@@ -658,7 +711,7 @@ de:
       box_size_full: voll
       guidance: Hinweise
       institution_customization_resources: 'Ressourcen für: %{institution}'
-      template_customization_resources: '%{template} für die Ressourcen für: %{institution} '
+      template_customization_resources: '%{template} Hilfestellung für: %{institution} '
     form:
       title: Übersicht über DMP
       plan_overview_link: Übersicht über DMP
@@ -703,8 +756,8 @@ de:
     html_render:
       no_owner: '[keine Angabe]'
       no_si: '[keine Angabe]'
+      coowners: Miteigentümer
     index:
-      title: Meine DMPs
       filter_all_link: Alle (%{count})
       filter_owned_link: Als Besitzer (%{count})
       filter_coowned_link: Als Mitbesitzer (%{count})
@@ -726,15 +779,25 @@ de:
         in Ihrer Einrichtung haben eine Überarbeitung des Plans empfohlen (nur zutreffend
         wenn Ihre Einrichtung die &#8220;Feedback&#8221; Funktion anbietet.)</li><li>Feedback
         erfolgt: Ihr DMP, bei dem Sie um Feedback gebeten haben, wurde durchgesehen.</li></ul>'
-      overview_link: Übersicht
-      details_link: Details
+      filter_visibility_parent_institution_tooltip: 'Vier Möglichkeiten: <ul><li>Privat
+        (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb
+        der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution
+        zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Innerhalb
+        eines Verbundes geteilt (Hierarchie-Symbol): alle Benutzer die Ihrer Institution
+        oder einer Partnereinrichtung zugeordnet sind, können den Plan einsehen, kopieren
+        und herunterladen.</li><li>Öffentlich zugänglich (grünes Symbol): jeder kann
+        den Plan einsehen, kopieren und herunterladen. Außerdem wird Ihr Plan auf
+        der Seite %{public_dmps_link} einsehbar sein.</li></ul>'
+      filter_visibility_own_institution_tooltip: 'Drei Möglichkeiten: <ul><li>Privat
+        (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb
+        der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution
+        zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Öffentlich
+        zugänglich (grünes Symbol): jeder kann den Plan einsehen, kopieren und herunterladen.
+        Außerdem wird Ihr Plan auf der Seite %{public_dmps_link} einsehbar sein.</li></ul>'
       share_link: Teilen
       preview_link: Vorschau
       copy_link: Kopieren
-      export_pdf_link: Exportiere als PDF
-      export_docx_link: Exportiere als DOCX
       delete_link: Löschen
-      new_plan_button: Neuen DMP erstellen
     perform_review:
       title: Feedback zu DMPs geben
       perform_review: Feedback geben
@@ -759,16 +822,16 @@ de:
         DMPs</a> erscheinen. Er wird herunterladbar und dublizierbar sein.'
       plan_visibility_html: Dieser DMP ist <strong class="blue">%{visibility}</strong>
     public:
-      browser_title: Beispiel-DMPs
-      title: Beispiel-DMPs
+      browser_title: Beispielpläne
+      title: Beispielpläne
       description_html: <p>Die hier aufgeführten Pläne sind von Nutzern, die ihre Pläne mit der Öffentlichkeit geteilt haben. Sie wurden hierfür nicht separat auf ihre Qualität und Vollständigkeit geprüft und unterscheiden sich dadurch von den Musterplänen.</p>
       institutional_dmps: Institutionelle DMPs
     public_dmps:
-      description_html: <p>Liste mit Beispiel-DMPs von Nutzern des DMP-Tool.</p>
+      description_html: <p>Liste mit Beispielplänen von Nutzern des DMP-Tool.</p>
     public_dmps_no_result:
       funder_template_link: Vorlage
       download: Herunterladen
-      no_results: Kein Ergebnisse gefunden
+      no_results: Keine Ergebnisse gefunden
     reject_with_comments:
       value_placeholder: Einen Kommentar hinzufügen
       reject_button: Überarbeitung empfohlen
@@ -780,7 +843,7 @@ de:
       filter_rejected_link: Überarbeitung empfohlen (%{count})
       filter_reviewed_link: Feedback gegeben (%{count})
       submission_date_tooltip: Datum, an dem der Besitzer des DMP ein Feedback angefordert hat.
-      review_plan: Jetzt Feedback geben
+      review_plan: Feedback geben
       submission_date: Feedback angefordert am
     suggested_response:
       box_size: 'Kastengröße:'
@@ -789,7 +852,7 @@ de:
       box_size_full: voll
       guidance: Hinweise
       institution_customization_resources: '%{institution} Ressourcen'
-      template_customization_resources: '%{template} für die Ressourcen für: %{institution} '
+      template_customization_resources: '%{template} Hilfestellung für: %{institution} '
     template_information:
       title: Neuen DMP erstellen
       use_template: Eine DMP-Vorlage auswählen
@@ -820,11 +883,11 @@ de:
       please_wait: Einen Moment bitte...
       template_outline: Vorlage im Überblick
       add_group_link: Gruppe hinzufügen
-      add_group_tooltip_html: Ähnliche Unterpunkte könnenzu einer &#8220;Gruppe&#8221; zusammengefasst werden.
+      add_group_tooltip_html: Ähnliche Unterpunkte können zu einer &#8220;Gruppe&#8221; zusammengefasst werden.
       add_requirement_link: Unterpunkt hinzufügen
       add_requirement_tooltip_html: Ein Unterpunkt fordert den Wissenschaftler dazu auf, Fragen zu einem bestimmten Aspekt des Datenmanagements zu beantworten.
       template_status: Status der DMP-Vorlage
-      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzern des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie über &#8220;aktivieren&#8221; sichtbar gemacht werden.
+      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzer des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie über &#8220;aktivieren&#8221; sichtbar gemacht werden.
       cant_delete_template: Diese Vorlage kann nicht gelöscht werden, solange noch Pläne im Tool liegen, die mit ihr erstellt wurden.
     update:
       success_notice: Unterpunkt wurde erfolgreich aktualisiert.
@@ -865,9 +928,13 @@ de:
         öffentlich (für jedermann sichtbar) oder nur für Nutzer der eigenen Einrichtung.</li><li>Inaktiv:
         Die Vorlage wird Nutzern nicht angeboten, wenn Sie einen neuen DMP erstellen
         möchten. Möglich Gründe hierfür: Die Vorlage ist noch in Arbeit oder nicht
-        mehr gültig.</li><li>Nur iInstitutionell: DMP-Vorlagen, die nur für Nutzer
-        Ihrer Einrichtung sichtbar sind (aktiv / inaktiv)</li><li>Öffentlich:  Alle
-        DMP-Vorlagen mit der Sichtbarkeit "öffentlich" (aktiv / inaktiv)</li></ul>'
+        mehr gültig.</li><li>Nur für meine Einrichtung sichtbar: DMP-Vorlagen, die
+        nur für Nutzer Ihrer Einrichtung sichtbar sind. Diese können jeweils auf aktiv
+        oder inaktiv gesetzt sein.</li><li>Öffentlich:  Alle DMP-Vorlagen mit der
+        Sichtbarkeit "öffentlich". Diese können jeweils auf aktiv oder inaktiv gesetzt
+        sein.</li><li>Öffentlich, von meiner Einrichtung erstellt: Alle DMP-Vorlagen
+        mit der Sichtbarkeit "öffentlich", eingeschränkt auf die Vorlagen, welche
+        von der eigenen Einrichtung erstellt wurden.</li></ul>'
       sort_by_visibility_tooltip_html: 'Aktive Vorlagen können unterschiedlich sichtbar
         sein: <ul><li>Öffentlich: jeder kann die Vorlage sehen</li><li>Institutionell:
         nur Nutzer, die über Ihre Einrichtung eingeloggt sind, können die Vorlage sehen</li></ul>'
@@ -1048,7 +1115,7 @@ de:
       success_notice: Sie haben sich erfolgreich im DMP-Tool registriert.
     form:
       personal: Persönliche Informationen
-      notifications: Benachrichtigungseinstellungen
+      notifications: Einstellungen für E-Mail-Benachrichtigungen
     index:
       title: Admin
     institutions_list:
@@ -1058,27 +1125,28 @@ de:
       submit_button: Account anlegen
     notifications:
       instructions: Markierungen für E-Mail-Benachrichtigungen setzen oder aufheben.
-      sel_all: Alle auswählen / deselektieren
+      sel_all: Alles auswählen / nichts auswählen
       users: 'Benutzer:'
       template_owners: 'DMP-Besitzer und Mitbesitzer:'
       template_editors: DMP-Vorlagen-Redakteure
       resource_editors: 'Ressourcen-Redakteure:'
       institutional_reviewers: 'Ansprechpartner für Feedback:'
-      role_granted: Eine neue Benutzerrolle wird zugewiesen
-      plan_new_comment: Neuer Kommentar zu meinem DMP vorhanden
-      plan_submitted: Ein eingereichter DMP wird für gut befunden oder es wird eine Überarbeitung empfohlen oder das Feedback wird formlos abgegeben.
+      role_granted: Eine neue Benutzerrolle wurde zugewiesen.
+      plan_new_comment: Es ist ein neuer Kommentar zu meinem DMP vorhanden.
+      plan_submitted: Ein für Feedback eingereichter DMP wurde für gut befunden / Es wurde eine Überarbeitung empfohlen / Das Feedback wurde formlos gegeben.
       plan_vis_change: Die Sichtbarkeit meines DMPs hat sich geändert
       plan_user_added: Ich wurde als Mitbesitzer eines DMPs hinzugefügt
       plan_committed: Fertig
-      template_committed: Eine institutionelle DMP-Vorlage wird aktiviert
-      template_deactivated: Eine institutionelle DMP-Vorlage wird deaktiviert
-      customization_deleted: Eine Anpassung wird gelöscht
-      customization_associated_committed: Eine DMP-Vorlage, für die eine Anpassung vorliegt, wird aktiviert
-      institutional_submitted: Für einen institutionellen DMP wird Feedback angefordert
-      institutional_new_comment: Neuer Kommentar wird zu institutionellem DMP hinzugefügt
-      institutional_approved_rejected: Ein institutioneller DMP wird für gut befunden oder eine Überarbeitung wird empfohlen
+      template_committed: Eine institutionelle DMP-Vorlage wurde aktiviert
+      template_deactivated: Eine institutionelle DMP-Vorlage wurde deaktiviert
+      customization_deleted: Eine Anpassung wurde gelöscht
+      customization_associated_committed: Eine DMP-Vorlage, für die eine Anpassung vorliegt, wurde aktiviert
+      institutional_submitted: Für einen institutionellen DMP wurde Feedback angefordert.
+      institutional_new_comment: Ein neuer Kommentar wurde zu einem institutionellem DMP hinzugefügt.
+      institutional_approved_rejected: Ein institutioneller DMP wurde für gut befunden / Die Überarbeitung eines institutionellen DMPs wurde empfohlen
     personal:
       instructions: Bitte aktualisieren Sie Ihre Account-Informationen.
+      name: Name
       password_tooltip: Das Passwort muss 8 bis 30 Zeichen lang sein. Es muss mindestens eine Zahl und einen Buchstaben enthalten.
       contact_info: Kontaktinformation
       select_institution_new: -Wählen Sie eine Einrichtung aus-
@@ -1100,11 +1168,11 @@ de:
       api_token: API Token
     plan_autocomplete_widget:
       label: 'Mitbesitzer hinzufügen:'
-      placeholder: Mitbesitzer hinzufügen; über den Namen oder die E-Mail-Adresse suchen
+      placeholder: Mitbesitzer hinzufügen; über Name oder E-Mail-Adresse
       tooltip_html: '<ul><li>Mitbesitzer hinzufügen: Geben Sie einen Namen oder eine
         E-Mail-Adresse ein und wählen Sie den Namen anschließend aus.</li><li>Mitbenutzer
         haben Lese- und Schreibrechte am DMP. Mitbenutzer müssen sich bereits einmal
-        im DMP-Tool eingeloggt haben, um zu einem Plan hinzugefügt zu werden.</li></ul>'
+        im DMP-Tool eingeloggt haben, um zu einem Plan hinzugefügt werden zu können.</li></ul>'
     remove_orcid:
       success_notice: Die Orcid-ID wurde erfolgreich aus Ihrem Profil entfernt.
     require_current_user:
@@ -1162,9 +1230,9 @@ de:
     login:
       browser_title: Login
       title: Login
-      institution: 'Beim DMP-Tool anmelden durch:'
+      institution: 'Beim DMP-Tool anmelden über:'
       remember_me_checkbox: Benutzername merken
-      submit_button: Login
+      submit_button: Einloggen
       reset_username_link: Benutzernamen vergessen?
       reset_password_link: Passwort vergessen?
       create_account: Haben Sie noch keinen DMP-Tool-Account?
@@ -1186,3 +1254,69 @@ de:
       success_notice: Eine E-Mail mit Ihrem Benutzernamen wurde an %{email} geschickt.
       no_such_user_error: Kein Benutzer mit der E-Mail-Adresse %{email} gefunden.
       invalid_email_error: Sie müssen eine gültige E-Mail-Adresse angeben, um eine Erinnerung an Ihren Benutzernamen zu erhalten.
+  users_mailer:
+    customized_template_activated:
+      subject: 'DMP-Vorlage aktiviert: %{template}'
+      text: Die DMP-Vorlage "%{template}" der zugehörigen Anpassung "%{customization}" wurde aktiviert.
+    information_link:
+      text: Falls Sie Fragen betreffend dieser Aktion haben, besuchen Sie bitte die Seite %{title}, welche unter %{url} zu finden ist.
+    password_reset:
+      subject: Passwort zurücksetzen
+      text: |-
+        Hallo %{uid},
+
+        eine Passwortrücksetzung wurde für Ihr Benutzerkonto angefordert. Sie können Ihr Passwort zurücksetzen, indem Sie folgende Seite aufrufen:
+
+        %{url}
+
+        Dieser Link ist 24 Stunden lang gültig.
+
+        Falls Sie diese Passwortrücksetzung nicht angefordert haben, können Sie diese Nachricht ignorieren.
+
+        Vielen Dank, dass Sie das DMPTool verwenden.
+    plan_commented:
+      subject: 'Neuer Kommentar für: %{plan}'
+      text: '%{author} hat einen Kommentar für folgenden Plan hinterlassen: %{plan}'
+    plan_completed:
+      subject: 'Plan fertiggestellt: %{plan}'
+      text: Der Plan "%{plan}" wurde fertiggestellt.
+    plan_state_updated:
+      subject: 'DMP %{state}: %{plan}'
+    plan_under_review:
+      subject: '"%{plan}" wurde für eine institutionelle Begutachtung eingereicht'
+      text: Der Plan "%{plan}" wurde für eine institutionelle Begutachtung eingereicht.
+    plan_user_added:
+      subject: Neuer %{type} von %{plan}
+      you_text: Sie wurden dem Plan "%{plan}" als %{type} hinzugefügt.
+      generic_text: Der Benutzer %{user} wurde dem Plan "%{plan}" als %{type} hinzugefügt.
+      owner: Eigentümer
+      coowner: Miteigentümer
+    plan_visibility_changed:
+      subject: 'Sichtbarkeit des DMP-Plans geändert: %{plan}'
+    template_activated:
+      subject: 'DMP-Vorlage aktiviert: %{template}'
+      text: Die DMP-Vorlage "%{template}" wurde aktiviert.
+    template_customization_deleted:
+      subject: 'Anpassung der DMP-Vorlage gelöscht: %{customization}'
+      text: Die Anpassung der DMP-Vorlage "%{customization}" wurde gelöscht.
+    template_deactivated:
+      subject: 'DMP-Vorlage deaktiviert: %{template}'
+      text: Die DMP-Vorlage "%{template}" wurde deaktiviert.
+    username_reminder:
+      subject: 'Erinnerung: Benutzername'
+      text: |-
+        Hallo %{email},
+
+        Ihr DMPTool Benutzername lautet: %{uid}
+
+        Vielen Dank, dass Sie das DMPTool nutzen.
+    user_role_granted:
+      subject: '%{roles} aktiviert'
+      text: |-
+        Ihrem Benutzerkonto wurde die folgenden Rollen zugewiesen:
+
+        %{granted_roles}
+
+        Aktuell besitzen Sie folgende Rollen:
+
+        %{all_roles}
