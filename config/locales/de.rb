@@ -66,7 +66,7 @@ end
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"#{count == 1 ? 'Der ausgewählte Benutzer ist' : 'Die ausgewählten Benutzer sind'} #{i18n_join_de(users)} bereits #{description}#{'s' if count == 1} dieses Plans."}
       },
       form: {
-        visibility_note_html: ->(_, **_) {"<span>Hinweis: Wenn bei der Sichtbarkeit \"Öffentlich\" eingestellt ist, wird Ihr DMP auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">Beispiel-DMPs</a> erscheinen. Er wird herunterladbar und dublizierbar sein.</span>"}
+        visibility_note_html: ->(_, **_) {"<span>Hinweis: Wenn bei der Sichtbarkeit \"Öffentlich\" eingestellt ist, wird Ihr DMP auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">Beispielpläne</a> erscheinen. Er wird herunterladbar und duplizierbar sein.</span>"}
       },
       update: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"#{count == 1 ? 'Folgender Benutzer konnte' : 'Folgende Benutzer konnten'} nicht gefunden werden: #{i18n_join_de(users)}."},
