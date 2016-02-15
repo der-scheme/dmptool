@@ -848,9 +848,6 @@ en:
       docx_button: Export as DOCX
       print_button: Print
       change_visibility_button: Change Settings
-      visibility_instructions_html: 'Note: when visibility is set to "Public", your
-        DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this
-        site and it will be downloadable and copy-able.'
       plan_visibility_html: This DMP is <strong class="blue">%{visibility}</strong>
     public:
       browser_title: Public DMPs
