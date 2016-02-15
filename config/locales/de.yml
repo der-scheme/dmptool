@@ -152,8 +152,9 @@ de:
         submitted: Feedback ausstehend
     requirement:
       group:
-        false: Unterpunkt
-        true: Gruppe
+        # Anführungszeichen wichtig, ansonsten funktioniert es nicht!
+        "false": Unterpunkt
+        "true": Gruppe
       obligation:
         mandatory: Verpflichtend
         mandatory_applicable: Verpflichtend (sofern zutreffend)
@@ -166,8 +167,9 @@ de:
         text: Text
     requirements_template:
       active:
-        false: Inaktiv
-        true: Aktiv
+        # Anführungszeichen wichtig, ansonsten funktioniert es nicht!
+        "false": Inaktiv
+        "true": Aktiv
       review_type:
         formal_review: Feedback erforderlich
         informal_review: Unverbindliches Feedback kann angefordert werden
@@ -819,7 +821,7 @@ de:
       change_visibility_button: Einstellungen ändern
       visibility_instructions_html: 'Hinweis: Wenn bei der Sichtbarkeit "Öffentlich"
         eingestellt ist, wird Ihr DMP auf der Seite <a href="/public_dmps">Public
-        DMPs</a> erscheinen. Er wird herunterladbar und dublizierbar sein.'
+        DMPs</a> erscheinen. Er wird herunterladbar und duplizierbar sein.'
       plan_visibility_html: Dieser DMP ist <strong class="blue">%{visibility}</strong>
     public:
       browser_title: Beispielpläne
