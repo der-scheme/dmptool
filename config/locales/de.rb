@@ -110,7 +110,7 @@ end
         end
       },
       errors: {
-        message: ->(_, model: nil, **__) {"#{model.errors.size} Fehler #{model.errors.size == 1 ? 'verhinderte' : 'verhinderten'}, dass #{model.class.model_name.human.downcase} gespeichert wurde:"}
+        message: ->(_, model: nil, **__) {"#{model.errors.size} Fehler #{model.errors.size == 1 ? 'verhinderte' : 'verhinderten'}, dass #{model.class.model_name.human} gespeichert wurde:"}
       }
     },
     users: {
