@@ -117,6 +117,23 @@ end
       create: {
         ldap_error: "Es gab Probleme beim Hinzufügen dieses Benutzers zum LDAP-Verzeichnis. Bitte kontaktieren Sie #{i18n_join_de(APP_CONFIG['feedback_email_to'])}."
       }
+    },
+    users_mailer: {
+      information_email: {
+        text: lambda do |_, name: nil, email: nil, **__|
+          "Falls Sie Fragen bezüglich dieser Aktion haben, kontaktieren Sie bitte #{"#{name} über" if name.present?}#{email}."
+        end
+      },
+      plan_state_updated: {
+        text: lambda do |_, plan: nil, state: nil, **__|
+          "Der DMP-Plan \"#{name}\" wurde #{I18n.t("enum.plan_state.state.#{state}")}."
+        end
+      },
+      plan_visibility_changed: {
+        text: lambda do |_, plan: nil, visibility: nil, institution: nil|
+          "Die Sichtbarkeit des Plan's \"#{plan}\" wurde auf \"#{t("enum.plan.visibility.#{visibility}")}\" geändert.\n\nDefinition der Sichtbarkeit:\n\nPrivat - Nur für Eigen- und Miteigentümer einsehbar\n\nInnerhalb der Institution - Einsehbar für alle innerhalb #{institution}\n\nÖffentlich - Für alle öffentlich einsehbar"
+        end
+      }
     }
   }
 }
