@@ -130,8 +130,8 @@ end
         end
       },
       plan_visibility_changed: {
-        text: lambda do |_, plan: nil, visibility: nil, institution: nil|
-          "Die Sichtbarkeit des Plan's \"#{plan}\" wurde auf \"#{t("enum.plan.visibility.#{visibility}")}\" geändert.\n\nDefinition der Sichtbarkeit:\n\nPrivat - Nur für Eigen- und Miteigentümer einsehbar\n\nInnerhalb der Institution - Einsehbar für alle innerhalb #{institution}\n\nÖffentlich - Für alle öffentlich einsehbar"
+        text: lambda do |_, plan: nil, visibility: nil, institution: nil, **__|
+          "Die Sichtbarkeit des Plan's \"#{plan}\" wurde auf \"#{I18n.t("enum.plan.visibility.#{visibility}")}\" geändert.\n\nDefinition der Sichtbarkeit:\n\nPrivat - Nur für Eigen- und Miteigentümer einsehbar\n\nInnerhalb der Institution - Einsehbar für alle innerhalb #{institution}\n\nÖffentlich - Für alle öffentlich einsehbar"
         end
       }
     }
