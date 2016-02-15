@@ -930,9 +930,9 @@ de:
         mehr gültig.</li><li>Nur für meine Einrichtung sichtbar: DMP-Vorlagen, die
         nur für Nutzer Ihrer Einrichtung sichtbar sind. Diese können jeweils auf aktiv
         oder inaktiv gesetzt sein.</li><li>Öffentlich:  Alle DMP-Vorlagen mit der
-        Sichtbarkeit "öffentlich". Diese können jeweils auf aktiv oder inaktiv gesetzt
+        Sichtbarkeit &bdquo;öffentlich&rdquo;. Diese können jeweils auf aktiv oder inaktiv gesetzt
         sein.</li><li>Öffentlich, von meiner Einrichtung erstellt: Alle DMP-Vorlagen
-        mit der Sichtbarkeit "öffentlich", eingeschränkt auf die Vorlagen, welche
+        mit der Sichtbarkeit &bdquo;öffentlich&rdquo;, eingeschränkt auf die Vorlagen, welche
         von der eigenen Einrichtung erstellt wurden.</li></ul>'
       sort_by_visibility_tooltip_html: 'Aktive Vorlagen können unterschiedlich sichtbar
         sein: <ul><li>Öffentlich: jeder kann die Vorlage sehen</li><li>Institutionell:
