@@ -150,7 +150,6 @@ en:
         token: Token
         token_expiration: Token Expiration
     errors:
-      duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
       messages:
         inclusion: is not included in the list
         exclusion: is reserved
@@ -181,6 +180,8 @@ en:
         even: must be even
         required: must exist
         taken: has already been taken
+        plan:
+          duplicate_name: A Plan with this name already exists in the list of Plans you own.
   enum:
     comment:
       comment_type:
