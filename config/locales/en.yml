@@ -186,6 +186,13 @@ en:
             taken: This Role for this User has already been taken.
         plan:
           duplicate_name: A Plan with this name already exists in the list of Plans you own.
+        requirement:
+          subgroup_exists: Cannot add a Single Requirement since a Sub Group already exists.
+          single_exists: Cannot add a Sub Group since a Single Requirement already exists.
+          already_single: Cannot add any Requirement or a Sub Group under a Single Requirement.
+          enumeration_missing: Must add at least one Enumeration value
+          unit_missing: Must add a Unit of Measure
+          template_active: Cannot change Question Type for an existing Requirement of a DMP Template that has been activated.
   enum:
     comment:
       comment_type:
