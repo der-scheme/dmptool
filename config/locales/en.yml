@@ -365,7 +365,7 @@ en:
       new: Create An Account
       remove_token: Remove Token
   shared:
-    button_button:
+    button:
       cancel: Cancel
     button_link:
       # Find the following translations in en.rb:
