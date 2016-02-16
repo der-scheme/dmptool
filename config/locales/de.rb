@@ -109,8 +109,8 @@ end
           end
         end
       },
-      errors: {
-        message: ->(_, model: nil, **__) {"#{model.errors.size} Fehler #{model.errors.size == 1 ? 'verhinderte' : 'verhinderten'}, dass #{model.class.model_name.human} gespeichert wurde:"}
+      model_errors: {
+        message: ->(_, model: nil, **__) {"#{model.class.model_name.human} konnte nicht gespeichert werden (#{model.errors.size} Fehler):"}
       }
     },
     users: {
