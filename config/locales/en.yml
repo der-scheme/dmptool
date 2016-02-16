@@ -203,6 +203,8 @@ en:
           taken: You are attempting to insert a duplicate of a customization that already exists.
         name:
           blank: must be filled in
+      response:
+        mandatory: This response is mandatory.
   enum:
     comment:
       comment_type:
