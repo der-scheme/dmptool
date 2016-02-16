@@ -180,6 +180,10 @@ en:
         even: must be even
         required: must exist
         taken: has already been taken
+      models:
+        authorization:
+          id:
+            taken: This Role for this User has already been taken.
         plan:
           duplicate_name: A Plan with this name already exists in the list of Plans you own.
   enum:
