@@ -196,6 +196,13 @@ en:
         requirements_template:
           name:
             taken: already present for this institution.
+      resource_context:
+        contact_email:
+          blank: address must be valid
+        institution_id:
+          taken: You are attempting to insert a duplicate of a customization that already exists.
+        name:
+          blank: must be filled in
   enum:
     comment:
       comment_type:
@@ -271,11 +278,6 @@ en:
         not_allowed_error: "You don't have access to this content."
         not_authorized_error: You need to be logged in.
         no_plan_selected_error: Please select an existing Plan to copy.
-    model:
-      resource_context:
-        invalid_name: '%{value} must be filled in'
-        invalid_institution: You are attempting to insert a duplicate of a customization that already exists.
-        invalid_contact_email: '%{value} address must be valid'
     render:
       link:
         remove: Remove

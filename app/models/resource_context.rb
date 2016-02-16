@@ -8,14 +8,12 @@ class ResourceContext < ActiveRecord::Base
   belongs_to :resource
 
 
-  validates :name, presence: {message: I18n.t('helpers.model.resource_context.invalid_name')}, if: "resource_id.blank?"
+  validates :name, presence: true, if: "resource_id.blank?"
   validates :review_type, presence: true, if: "resource_id.blank? && !institution_id.blank?"
-  validates :institution_id, uniqueness: { scope: [:institution_id, :requirements_template_id, :requirement_id, :resource_id],
-                                          message: I18n.t('helpers.model.resource_context.invalid_institution')}
+  validates :institution_id, uniqueness: {scope: [:institution_id, :requirements_template_id, :requirement_id, :resource_id]}
 
   validates :contact_email, presence: true,
-                            format: { with: /.+\@.+\..+/,
-                                message: I18n.t('helpers.model.resource_context.invalid_contact_email')}, if: "resource_id.blank? && !institution_id.blank?"
+                            format: {with: (/.+\@.+\..+/)}, if: "resource_id.blank? && !institution_id.blank?"
 
 
 
