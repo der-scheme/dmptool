@@ -193,6 +193,9 @@ en:
           enumeration_missing: Must add at least one Enumeration value
           unit_missing: Must add a Unit of Measure
           template_active: Cannot change Question Type for an existing Requirement of a DMP Template that has been activated.
+        requirements_template:
+          name:
+            taken: already present for this institution.
   enum:
     comment:
       comment_type:
