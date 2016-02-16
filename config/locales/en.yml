@@ -150,6 +150,7 @@ en:
         token: Token
         token_expiration: Token Expiration
     errors:
+      duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
   enum:
     comment:
       comment_type:
@@ -226,8 +227,6 @@ en:
         not_authorized_error: You need to be logged in.
         no_plan_selected_error: Please select an existing Plan to copy.
     model:
-      plan:
-        duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
       resource_context:
         invalid_name: '%{value} must be filled in'
         invalid_institution: You are attempting to insert a duplicate of a customization that already exists.
