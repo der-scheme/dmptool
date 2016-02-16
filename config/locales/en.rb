@@ -51,6 +51,8 @@ end
             end
           end
         }
+      },
+      errors: {
       }
     },
     globals: {

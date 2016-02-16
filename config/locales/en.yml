@@ -149,6 +149,7 @@ en:
         role_names: Current Role
         token: Token
         token_expiration: Token Expiration
+    errors:
   enum:
     comment:
       comment_type:
