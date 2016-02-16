@@ -10,7 +10,7 @@
 		<% provide(:title, t('.info')) %>
 
 <%= form_for @current_institution, html: { class: 'form-horizontal', multipart: true} do |f| %>
-  <%= render partial: 'shared/errors', locals: { model: @current_institution } %>
+  <%= render partial: 'shared/model_errors', locals: { model: @current_institution } %>
   <div class="control-group">
     <%= f.label :full_name, class: 'control-label required' %>
     <div class="controls">

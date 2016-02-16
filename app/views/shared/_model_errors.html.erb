@@ -27,13 +27,11 @@
 %>
 
 <%
-  models = model if defined? model
-  models = [ models ] if models.class != Array
-  errors = false
-  models.each{|model| errors = true if model.errors.any? }
+  models = [*model, *models]
+  any_errors = models.map(&:errors).map!(&:any?).any?
 %>
 
-<% if errors %>
+<% if any_errors %>
   <div id="error_explanation">
     <% models.each do |model| %>
       <p><strong>

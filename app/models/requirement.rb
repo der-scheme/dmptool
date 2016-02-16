@@ -7,7 +7,7 @@ class Requirement < ActiveRecord::Base
   has_many :enumerations, inverse_of: :requirement
   has_many :labels, inverse_of: :requirement
   has_many :resource_contexts
-  belongs_to :requirements_template 
+  belongs_to :requirements_template
 
   accepts_nested_attributes_for :enumerations, allow_destroy: true, reject_if: proc { |attributes| attributes['value'].blank? }
   accepts_nested_attributes_for :labels, allow_destroy: true, reject_if: proc { |attributes| attributes['desc'].blank? }
@@ -46,10 +46,10 @@ class Requirement < ActiveRecord::Base
     return true if has_children.nil? || has_children == false
     child = parent.children.first
       if (child.group? == true && self.group? == false)
-        errors[:base] <<  "Cannot add a Single Requirement since a Sub Group already exists."
+        errors.add(:base, :subgroup_exists)
         return false
       elsif (child.group? == false && self.group? == true)
-        errors[:base] <<  "Cannot add a Sub Group since a Single Requirement already exists."
+        errors.add(:base, :single_exists)
         return false
       else
         return true
@@ -62,7 +62,7 @@ class Requirement < ActiveRecord::Base
     return true if parent_id.nil?
     parent = Requirement.find(parent_id)
     if parent.group? == false
-      errors[:base] <<  "Cannot add any Requirement or a Sub Group under a Single Requirement."
+      errors.add(:base, :already_single)
       return false
     else
       return true
@@ -70,15 +70,15 @@ class Requirement < ActiveRecord::Base
   end
 
 
-  def response_text(plan) 
+  def response_text(plan)
     unless plan.plan_responses_ids.blank?
       @response = responses.where(id:  [plan.plan_responses_ids]).first
       unless @response.blank?
         if !@response.text_value.blank?
-          @html_value = @response.text_value 
+          @html_value = @response.text_value
           @value = strip_tags(@html_value).html_safe.gsub("&nbsp;", "").gsub("&#39;", "'") if @html_value
         elsif !@response.numeric_value.blank?
-          @value = @response.numeric_value.to_s  
+          @value = @response.numeric_value.to_s
         elsif !@response.date_value.blank?
           @value = @response.date_value.to_date.strftime("%m/%d/%Y")
         elsif !@response.enumeration_id.blank?
@@ -89,14 +89,14 @@ class Requirement < ActiveRecord::Base
   end
 
 
-  def response_html(plan) 
+  def response_html(plan)
     unless plan.plan_responses_ids.blank?
       @response = responses.where(id:  [plan.plan_responses_ids]).first
       unless @response == nil
         if !@response.text_value.blank?
           @value = @response.text_value.html_safe
         elsif !@response.numeric_value.blank?
-          @value = @response.numeric_value.to_s 
+          @value = @response.numeric_value.to_s
         elsif !@response.date_value.blank?
           @value = @response.date_value.to_date.strftime("%m/%d/%Y")
         elsif !@response.enumeration_id.blank?
@@ -109,14 +109,14 @@ class Requirement < ActiveRecord::Base
 
   def has_alteast_one_enumeration
     if self.requirement_type == :enum && self.enumerations.blank?
-      errors[:base] << 'Must add at least one Enumeration value'
+      errors.add(:base, :enumeration_missing)
     end
   end
 
 
   def has_alteast_one_unit_of_measure
     if self.requirement_type == :numeric && self.labels.blank?
-      errors[:base] << 'Must add a Unit of Measure'
+      errors.add(:base, :unit_missing)
     end
   end
 
@@ -125,7 +125,7 @@ class Requirement < ActiveRecord::Base
     requirements_template = RequirementsTemplate.find(self.requirements_template_id)
     if requirements_template && requirements_template.active == true
       if self.requirement_type_was != self.requirement_type
-        errors[:base] << 'Cannot change Question Type for an existing Requirement of a DMP Template that has been activated.'
+        errors.add(:base, :template_active)
       end
     else
       return true

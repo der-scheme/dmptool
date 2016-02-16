@@ -3,7 +3,7 @@
 
   <%= f.hidden_field :lock_version %>
 
-  <%= render partial: "shared/errors", locals: {model: @response} %>
+  <%= render partial: "shared/model_errors", locals: {model: @response} %>
   <div class="control-group">
       <%= f.hidden_field :requirement_id, value: requirement_id %>
       <%= f.hidden_field :plan_id, value: plan_id %>

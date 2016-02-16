@@ -125,6 +125,62 @@ en:
         role_names: Current Role
         token: Token
         token_expiration: Token Expiration
+    errors:
+      messages:
+        inclusion: is not included in the list
+        exclusion: is reserved
+        invalid: is invalid
+        confirmation: "doesn't match %{attribute}"
+        accepted: must be accepted
+        empty: "can't be empty"
+        blank: "can't be blank"
+        present: must be blank
+        too_long:
+          one: is too long (maximum is 1 character)
+          other: 'is too long (maximum is %{count} characters)'
+        too_short:
+          one: is too short (minimum is 1 character)
+          other: 'is too short (minimum is %{count} characters)'
+        wrong_length:
+          one: is the wrong length (should be 1 character)
+          other: 'is the wrong length (should be %{count} characters)'
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        greater_than: 'must be greater than %{count}'
+        greater_than_or_equal_to: 'must be greater than or equal to %{count}'
+        equal_to: 'must be equal to %{count}'
+        less_than: 'must be less than %{count}'
+        less_than_or_equal_to: 'must be less than or equal to %{count}'
+        other_than: 'must be other than %{count}'
+        odd: must be odd
+        even: must be even
+        required: must exist
+        taken: has already been taken
+      models:
+        authorization:
+          id:
+            taken: This Role for this User has already been taken.
+        plan:
+          duplicate_name: A Plan with this name already exists in the list of Plans you own.
+        requirement:
+          subgroup_exists: Cannot add a Single Requirement since a Sub Group already exists.
+          single_exists: Cannot add a Sub Group since a Single Requirement already exists.
+          already_single: Cannot add any Requirement or a Sub Group under a Single Requirement.
+          enumeration_missing: Must add at least one Enumeration value
+          unit_missing: Must add a Unit of Measure
+          template_active: Cannot change Question Type for an existing Requirement of a DMP Template that has been activated.
+        requirements_template:
+          name:
+            taken: already present for this institution.
+      resource_context:
+        contact_email:
+          blank: address must be valid
+        institution_id:
+          taken: You are attempting to insert a duplicate of a customization that already exists.
+        name:
+          blank: must be filled in
+      response:
+        mandatory: This response is mandatory.
   enum:
     comment:
       comment_type:
@@ -200,13 +256,6 @@ en:
         not_allowed_error: "You don't have access to this content."
         not_authorized_error: You need to be logged in.
         no_plan_selected_error: Please select an existing Plan to copy.
-    model:
-      plan:
-        duplicate_plan_name_error: A Plan with this name already exists in the list of Plans you own.
-      resource_context:
-        invalid_name: '%{value} must be filled in'
-        invalid_institution: You are attempting to insert a duplicate of a customization that already exists.
-        invalid_contact_email: '%{value} address must be valid'
     render:
       link:
         remove: Remove
