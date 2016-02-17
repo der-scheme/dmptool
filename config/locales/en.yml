@@ -24,6 +24,20 @@ en:
     formats:
       default: '%m/%d/%Y'
       long: '%B %d, %Y'
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
   time:
     formats:
       default: '%m/%d/%Y %I:%M %p'
