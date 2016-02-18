@@ -5,7 +5,7 @@ $(function() {
 	$("#requirements_template_start_date.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
+		dateFormat: "yy-mm-dd",
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1,
@@ -17,7 +17,7 @@ $(function() {
 	$("#requirements_template_end_date.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
+		dateFormat: "yy-mm-dd",
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1,
