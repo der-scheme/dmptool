@@ -137,21 +137,21 @@ en:
         present: must be blank
         too_long:
           one: is too long (maximum is 1 character)
-          other: 'is too long (maximum is %{count} characters)'
+          other: is too long (maximum is %{count} characters)
         too_short:
           one: is too short (minimum is 1 character)
-          other: 'is too short (minimum is %{count} characters)'
+          other: is too short (minimum is %{count} characters)
         wrong_length:
           one: is the wrong length (should be 1 character)
-          other: 'is the wrong length (should be %{count} characters)'
+          other: is the wrong length (should be %{count} characters)
         not_a_number: is not a number
         not_an_integer: must be an integer
-        greater_than: 'must be greater than %{count}'
-        greater_than_or_equal_to: 'must be greater than or equal to %{count}'
-        equal_to: 'must be equal to %{count}'
-        less_than: 'must be less than %{count}'
-        less_than_or_equal_to: 'must be less than or equal to %{count}'
-        other_than: 'must be other than %{count}'
+        greater_than: must be greater than %{count}
+        greater_than_or_equal_to: must be greater than or equal to %{count}
+        equal_to: must be equal to %{count}
+        less_than: must be less than %{count}
+        less_than_or_equal_to: must be less than or equal to %{count}
+        other_than: must be other than %{count}
         odd: must be odd
         even: must be even
         required: must exist
@@ -208,6 +208,7 @@ en:
         submitted: Submitted
     requirement:
       group:
+        # quotes are necessary, otherwise it won't work
         "false": Requirement
         "true": Group
       obligation:
@@ -222,6 +223,7 @@ en:
         text: text
     requirements_template:
       active:
+        # quotes are necessary, otherwise it won't work
         "false": Inactive
         "true": Active
       review_type:
@@ -263,9 +265,10 @@ en:
   js:
     application:
     institutions:
-      confirm_self_revoke: 'Do you really want to remove yourself from the Institutional Administrator role? You will lose all administrative permissions.'
-      wrong_file_ext_error: 'Only image file with extension: .jpg, .jpeg, .gif or .png is allowed'
-      wrong_file_ext_title: 'Wrong File Extension'
+      confirm_self_revoke: Do you really want to remove yourself from the Institutional Administrator role? You will lose all administrative permissions.
+      wrong_file_ext_error: 'Only image file with extension: .jpg, .jpeg, .gif or
+        .png is allowed'
+      wrong_file_ext_title: Wrong File Extension
     plans:
       visibility_dialog_title: Share my DMP
       comment_dialog_title: Add New Comments
@@ -285,9 +288,9 @@ en:
     dashboard:
       show: My Dashboard
     errors:
-      forbidden: 'Forbidden (403)'
-      internal_error: 'Internal Error (500)'
-      not_found: 'Not found (404)'
+      forbidden: Forbidden (403)
+      internal_error: Internal Error (500)
+      not_found: Not found (404)
     institutions:
       index: Institution Profile
       new: Add New Institution
@@ -425,10 +428,10 @@ en:
       locale_name: English
       currently_chosen: Currently chosen
     users_mailer:
-      greetings: 'Hello %{user},'
-      preferences_hint: 'You may change your notification preferences at %{url}.'
+      greetings: Hello %{user},
+      preferences_hint: You may change your notification preferences at %{url}.
       dont_reply: Please do not reply to this email.
-      contact_us: 'You may always visit our contact page at %{url}.'
+      contact_us: You may always visit our contact page at %{url}.
   static_pages:
     contact:
       question_about_missing: Please indicate what your question is about
@@ -446,31 +449,21 @@ en:
       form_name: Your Name
       tips: 'Tips:'
       tips_text_html: <p>We can answer question about the DMP Tool, but cannot provide general data management consultation.</p> <p>If you are affiliated with a participating institution and are logged in, your question will go to the DMP Tool representative at your organization. Your organization may offer additional data management consultation services.</p>
-    dmptool_help:
-      explanation: Overview of how to use the tool, plus resources and guidance on data management.
-      faq: Frequently Asked Questions
-      quickstartguide: Create a DMP
-      administer: Administer the DMPTool
-      view_all_link: View All
-    dmptool_news:
-      latest_info: Latest information about data management and the DMPTool.
-      more_link: More News
-      unavailable: News is currently unavailable.
     help:
       title: DMPTool Help
       choose: What do you want to do?
       faq: I want to see frequently asked questions and answers.
       faq_html: I want to see frequently asked questions and answers.
       quickstart: I want help creating a data management plan.
-      quickstart_html: 'I want help <strong>creating a data management plan.</strong>'
+      quickstart_html: I want help <strong>creating a data management plan.</strong>
       administer: I want to administer the DMPTool.
-      administer_html: 'I want to <strong>administer</strong> the DMPTool.'
+      administer_html: I want to <strong>administer</strong> the DMPTool.
       dm_guidance: I want general data management guidance.
-      dm_guidance_html: 'I want general <strong>data management guidance</strong>.'
+      dm_guidance_html: I want general <strong>data management guidance</strong>.
       promote: I want to promote the DMPTool at my institution.
-      promote_html: 'I want to <strong>promote the DMPTool</strong> at my institution.'
+      promote_html: I want to <strong>promote the DMPTool</strong> at my institution.
       community_resources: I want to access community resources for understanding and using the DMPTool.
-      community_resources_html: 'I want to access <strong>community resources</strong> for understanding and using the DMPTool.'
+      community_resources_html: I want to access <strong>community resources</strong> for understanding and using the DMPTool.
     home:
       title: Home
       dmp_headline: Data Management Planning Tool
@@ -839,7 +832,7 @@ en:
     html_render:
       no_owner: '[non specified]'
       no_si: '[not specified]'
-      coowners: 'Co-owner[s]'
+      coowners: Co-owner[s]
     index:
       filter_all_link: All (%{count})
       filter_owned_link: Owned (%{count})
@@ -869,7 +862,7 @@ en:
         can view, copy and or download the plan. </li><li>Share publicly (green people):
         anyone can view, copy and or download the plan. Your DMP will appear on the
         %{public_dmps_link} page of this site.</li></ul>'
-      filter_visibility_own_institution_tooltip: 'Four possible states:<ul><li>Private
+      filter_visibility_own_institution_tooltip: 'Three possible states:<ul><li>Private
         (red lock): only owners and co-owners can view the plan.</li><li>Shared with
         institution (yellow key): anyone logged in from your institution can view,
         copy and or download the plan.</li><li>Share publicly (green people): anyone
@@ -1334,9 +1327,9 @@ en:
   users_mailer:
     customized_template_activated:
       subject: 'DMP Template Activated: %{template}'
-      text: 'The DMP Template "%{template}" associated with the customization "%{customization}" has been activated.'
+      text: The DMP Template "%{template}" associated with the customization "%{customization}" has been activated.
     information_link:
-      text: 'If you have questions pertaining to this action, please visit the %{title} page at %{url}.'
+      text: If you have questions pertaining to this action, please visit the %{title} page at %{url}.
     password_reset:
       subject: Password Reset
       text: "Hello %{uid},\n\nA password reset has been requested for this account. You may reset your password by visiting:\n\n%{url}\n\nwithin the next 24 hours.\n\nIf you did not request a password reset you may safely ignore this message.\n\nThank you for using the DMPtool."
@@ -1345,14 +1338,14 @@ en:
       text: '%{author} has commented on the plan "%{plan}":'
     plan_completed:
       subject: 'PLAN COMPLETED: %{plan}'
-      text: 'The plan "%{plan}" has been completed.'
+      text: The plan "%{plan}" has been completed.
     plan_state_updated:
       subject: 'DMP %{state}: %{plan}'
     plan_under_review:
       subject: '%{plan} has been submitted for institutional review'
-      text: 'The DMP "%{plan}" has been submitted for institutional review.'
+      text: The DMP "%{plan}" has been submitted for institutional review.
     plan_user_added:
-      subject: 'New %{type} of %{plan}'
+      subject: New %{type} of %{plan}
       you_text: "You've been added to the plan \"%{plan}\" as a %{type}."
       generic_text: '%{user} has been added to the plan "%{plan}" as a %{type}.'
       owner: owner
@@ -1361,13 +1354,13 @@ en:
       subject: 'DMP Visibility Changed: %{plan}'
     template_activated:
       subject: 'DMP Template Activated: %{template}'
-      text: 'The DMP Template "%{template}" has been activated.'
+      text: The DMP Template "%{template}" has been activated.
     template_customization_deleted:
       subject: 'DMP Template Customization Deleted: %{customization}'
-      text: 'The DMP Template Customization "%{customization}" has been deleted.'
+      text: The DMP Template Customization "%{customization}" has been deleted.
     template_deactivated:
       subject: 'DMP Template Deactivated: %{template}'
-      text: 'The DMP Template "%{template}" has been deactivated.'
+      text: The DMP Template "%{template}" has been deactivated.
     username_reminder:
       subject: Username Reminder
       text: "Hello %{email},\n\nYour DMPTool username is: %{uid}\n\nThank you for using the DMP tool."
