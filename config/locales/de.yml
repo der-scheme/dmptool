@@ -125,6 +125,62 @@ de:
         role_names: Aktuelle Rolle
         token: Token
         token_expiration: Ablauf des Tokens
+    errors:
+      messages:
+        inclusion: ist nicht in der Liste enthalten
+        exclusion: ist reserviert
+        invalid: ist ungültig
+        confirmation: stimmt nicht mit %{attribute} überein
+        accepted: muss akzeptiert werden
+        empty: darf nicht leer sein
+        blank: darf nicht leer sein
+        present: muss leer sein
+        too_long:
+          one: ist zu lang (Maximum ist 1 Zeichen)
+          other: ist zu lang (Maximum sind %{count} Zeichen)
+        too_short:
+          one: ist zu kurz (Minimum ist 1 Zeichen)
+          other: ist zu kurz (Minimum sind %{count} Zeichen)
+        wrong_length:
+          one: hat die falsche Länge (sollte 1 Zeichen lang sein)
+          other: hat die falsche Länge (sollte %{count} Zeichen lang sein)
+        not_a_number: ist keine Zahl
+        not_an_integer: muss eine Zahl sein
+        greater_than: muss größer als %{count} sein
+        greater_than_or_equal_to: muss größer oder gleich %{count} sein
+        equal_to: muss gleich %{count} sein
+        less_than: muss kleiner als %{count} sein
+        less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+        other_than: muss anders als %{count} sein
+        odd: muss ungerade sein
+        even: muss gerade sein
+        required: muss vorhanden sein
+        taken: ist bereits belegt
+      models:
+        authorization:
+          id:
+            taken: Die Rolle für diesen Benutzer wurde bereits übernommen.
+        plan:
+          duplicate_name: Innerhalb der Liste Ihrer Pläne existiert bereits ein Plan mit diesem Namen.
+        requirement:
+          subgroup_exists: Konnte die einzelne Anforderung nicht hinzufügen, da bereits eine Untergruppe vorhanden ist.
+          single_exists: Konnte keine Untergruppe anlegen, da bereits eine einzelne Anforderung vorhanden ist.
+          already_single: Konnte keine Anforderung oder Untergruppe zu einer einzelnen Anforderung hinzufügen.
+          enumeration_missing: Mindestens ein Aufzählungswert muss hinzugefügt werden.
+          unit_missing: Eine Maßeinheit muss hinzugefügt werden.
+          template_active: Konnte den Fragetyp einer existierenden Anforderung bei aktiver DMP-Vorlage nicht ändern.
+        requirements_template:
+          name:
+            taken: ist bereits für diese Institution vorhanden.
+      resource_context:
+        contact_email:
+          blank: Adresse muss gültig sein
+        institution_id:
+          taken: Sie versuchen ein Duplikat einer bereits vorhanden Anpassung zu erstellen.
+        name:
+          blank: muss ausgefüllt werden
+      response:
+        mandatory: Diese Antwort ist verpflichtend.
   enum:
     comment:
       comment_type:
@@ -202,13 +258,6 @@ de:
         not_allowed_error: Sie haben keinen Zugriff auf diesen Inhalt.
         not_authorized_error: Bitte loggen Sie sich zunächst ein.
         no_plan_selected_error: Welcher Plan soll kopiert werden?
-    model:
-      plan:
-        duplicate_plan_name_error: Innerhalb der Liste Ihrer Pläne existiert bereits ein Plan mit diesem Namen.
-      resource_context:
-        invalid_name: '%{value} muss ausgefüllt werden'
-        invalid_institution: Sie versuchen ein Duplikat einer bereits vorhanden Anpassung zu erstellen.
-        invalid_contact_email: '%{value} Adresse muss gültig sein'
     render:
       link:
         remove: Entfernen
@@ -274,7 +323,7 @@ de:
     static_pages:
       about: About
       contact: Kontakt
-      community_resources: Allgemeine Ressource
+      community_resources: Allgemeine Ressourcen
       data_management_guidance: Anleitung für das Datenmanagement
       guidance: DMP-Vorlagen
       help: Hilfe
@@ -294,7 +343,7 @@ de:
       new: Einen Account anlegen
       remove_token: Token entfernen
   shared:
-    button_button:
+    button:
       cancel: Abbrechen
     button_link:
       # Find the following translations in en.rb:
@@ -534,8 +583,8 @@ de:
         one: '%{count} Plan als Besitzer'
         other: '%{count} Pläne als Besitzer'
       plans_i_coown:
-        one: '%{count} Plan als Co-Besitzer'
-        other: '%{count} Pläne als Co-Besitzer'
+        one: '%{count} Plan als Mitbesitzer'
+        other: '%{count} Pläne als Mitbesitzer'
       submitted_plans: '%{count} Feedback ausstehend'
       removed_plans: '%{count} entfernt'
       rejected_plans: '%{count} Überarbeitung empfohlen'
@@ -544,7 +593,7 @@ de:
       plans_for_review: DMPs, für die Feedback angefordert wurde
       review_submitted_plans:
         one: '%{count} DMP Begutachtung ausstehend'
-        other: '%{count} DMPs Feedback ausstehend'
+        other: '%{count} DMP Begutachtungen ausstehend'
       review_approved_plans:
         one: '%{count} DMP für gut befunden'
         other: '%{count} DMPs für gut befunden'
@@ -1105,7 +1154,7 @@ de:
     edit_user_roles:
       title: Benutzerrollen bearbeiten
       user_roles_link: Benutzerrollen
-      current_roles: 'Aktuelle Rollen von %{user}:'
+      current_roles: "%{user}'s aktuelle Rollen:"
     finish_signup:
       title: Registrierung abschließen
       submit: Account aktualisieren
@@ -1274,7 +1323,7 @@ de:
 
         Vielen Dank, dass Sie das DMPTool verwenden.
     plan_commented:
-      subject: 'Neuer Kommentar für: %{plan}'
+      subject: 'Neuer Kommentar bei: %{plan}'
       text: '%{author} hat einen Kommentar für folgenden Plan hinterlassen: %{plan}'
     plan_completed:
       subject: 'Plan fertiggestellt: %{plan}'
