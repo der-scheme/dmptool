@@ -5,7 +5,7 @@ $(function() {
   $("#response_date_value" ).datepicker({
   showOn: "button",
   buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-  dateFormat: localized_temporal_format(),
+  dateFormat: "yy-mm-dd",
   changeMonth: true,
   buttonImageOnly: true
   });

@@ -4,7 +4,7 @@ $(function() {
 	$("#plan_submission_deadline.datepicker").datepicker( {
 		showOn: 'button',
 		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
+		dateFormat: "yy-mm-dd",
 		changeMonth: true,
 		changeYear: true,
 		numberOfMonths: 1

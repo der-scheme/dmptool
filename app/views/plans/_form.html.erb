@@ -48,7 +48,7 @@
         <div class="control-group">
           <%= f.label :submission_deadline, class: 'control-label' %>
           <div class="controls">
-            <%= f.datetime_field :submission_deadline, value: (@plan.submission_deadline.strftime('%m/%d/%Y') unless @plan.submission_deadline.blank?), class: 'datepicker' %>
+            <%= f.datetime_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
             <%= content_tag :span, '', title: t('.submission_deadline_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
           </div>
         </div>

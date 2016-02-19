@@ -79,6 +79,15 @@ end
       form: {
         visibility_note_html: ->(_, **_) {"<span>Note: when visibility is set to \"Public\", your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site and it will be downloadable and copy-able. </span>"}
       },
+      index: {
+        visibility_tooltip: lambda do |_, parent: false, **_|
+          if parent
+            "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
+          else
+            "Three possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
+          end
+        end
+      },
       update: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}

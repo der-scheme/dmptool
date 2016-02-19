@@ -40,12 +40,11 @@
       </th>
       <th>
         <%= sortable :visibility %>
-        <%= content_tag :span, '', 
-             title: t(current_user && (current_user.institution.has_children? || current_user.institution.parent) ?               
-               '.filter_visibility_parent_institution_tooltip' : '.filter_visibility_own_institution_tooltip',
-               :public_dmps_link=> link_to(t('.public_dmps_link'), public_dmps_path)), 
-            data: {toggle: 'tooltip', placement: 'top', html: 'true'},
-            class: 'icon questionmark tip' %>
+        <%= content_tag :span, '',
+                        title: t('.visibility_tooltip',
+                                 parent: current_user && (current_user.institution.has_children? || current_user.institution.parent)),
+                        data: {toggle: 'tooltip', placement: 'top', html: 'true'},
+                        class: 'icon questionmark tip' %>
       </th>
 
 
