@@ -51,6 +51,8 @@ end
             end
           end
         }
+      },
+      errors: {
       }
     },
     institutions: {
@@ -67,6 +69,15 @@ end
       },
       form: {
         visibility_note_html: ->(_, **_) {"<span>Hinweis: Wenn bei der Sichtbarkeit \"Öffentlich\" eingestellt ist, wird Ihr DMP auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> erscheinen. Er wird herunterladbar und duplizierbar sein.</span>"}
+      },
+      index: {
+        visibility_tooltip: lambda do |_, parent: false, **_|
+          if parent
+            "Vier Sichtbarkeitsoptionen: <ul><li>Privat (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Innerhalb eines Verbundes geteilt (Hierarchie-Symbol): alle Benutzer die Ihrer Institution oder einer Partnereinrichtung zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Öffentlich zugänglich (grünes Symbol): jeder kann den Plan einsehen, kopieren und herunterladen. Außerdem wird Ihr Plan auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> einsehbar sein.</li></ul>"
+          else
+            "Drei Sichtbarkeitsoptionen: <ul><li>Privat (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Öffentlich zugänglich (grünes Symbol): jeder kann den Plan einsehen, kopieren und herunterladen. Außerdem wird Ihr Plan auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> einsehbar sein.</li></ul>"
+          end
+        end
       },
       update: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"#{count == 1 ? 'Folgender Benutzer konnte' : 'Folgende Benutzer konnten'} nicht gefunden werden: #{i18n_join_de(users)}."},

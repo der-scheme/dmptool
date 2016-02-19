@@ -830,21 +830,6 @@ de:
         in Ihrer Einrichtung haben eine Überarbeitung des Plans empfohlen (nur zutreffend
         wenn Ihre Einrichtung die &#8220;Feedback&#8221; Funktion anbietet.)</li><li>Feedback
         erfolgt: Ihr DMP, bei dem Sie um Feedback gebeten haben, wurde durchgesehen.</li></ul>'
-      filter_visibility_parent_institution_tooltip: 'Vier Möglichkeiten: <ul><li>Privat
-        (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb
-        der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution
-        zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Innerhalb
-        eines Verbundes geteilt (Hierarchie-Symbol): alle Benutzer die Ihrer Institution
-        oder einer Partnereinrichtung zugeordnet sind, können den Plan einsehen, kopieren
-        und herunterladen.</li><li>Öffentlich zugänglich (grünes Symbol): jeder kann
-        den Plan einsehen, kopieren und herunterladen. Außerdem wird Ihr Plan auf
-        der Seite %{public_dmps_link} einsehbar sein.</li></ul>'
-      filter_visibility_own_institution_tooltip: 'Drei Möglichkeiten: <ul><li>Privat
-        (rotes Schloss): lediglich Besitzer und Miteigentümer können den Plan einsehen.</li><li>Innerhalb
-        der Institution geteilt (gelber Schlüssel): alle Benutzer die Ihrer Institution
-        zugeordnet sind, können den Plan einsehen, kopieren und herunterladen.</li><li>Öffentlich
-        zugänglich (grünes Symbol): jeder kann den Plan einsehen, kopieren und herunterladen.
-        Außerdem wird Ihr Plan auf der Seite %{public_dmps_link} einsehbar sein.</li></ul>'
       share_link: Teilen
       preview_link: Vorschau
       copy_link: Kopieren
