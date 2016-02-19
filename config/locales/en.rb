@@ -84,7 +84,7 @@ end
           if parent
             "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
           else
-            "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
+            "Three possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
           end
         end
       },
