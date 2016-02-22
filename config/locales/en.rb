@@ -146,7 +146,7 @@ end
       },
       plan_state_updated: {
         text: lambda do |_, plan: nil, state: nil, **__|
-          "The DMP \"#{name}\" has been #{I18n.t("enum.plan_state.state.#{state}")}."
+          "The DMP \"#{plan}\" has been #{I18n.t("enum.plan_state.state.#{state}")}."
         end
       },
       plan_visibility_changed: {
