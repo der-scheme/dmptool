@@ -248,16 +248,17 @@ en:
       group:
         "false": 'Requirement'
         "true": 'Group'
-      obligation:
-        mandatory: Mandatory
-        mandatory_applicable: Mandatory If Applicable
-        optional: Optional
-        recommended: Recommended
       requirement_type:
         date: date
         enum: enum
         numeric: numeric
         text: text
+    enumeration:
+      obligation:
+        mandatory: Mandatory
+        mandatory_applicable: Mandatory If Applicable
+        optional: Optional
+        recommended: Recommended
     requirements_template:
       active:
         "false": 'Inactive'
