@@ -231,7 +231,7 @@ de:
         recommended: Empfohlen
       requirement_type:
         date: Datum
-        enum: enum
+        enum: Aufzählung
         numeric: numerisch
         text: Text
     requirements_template:
@@ -439,10 +439,10 @@ de:
       currently_chosen: Aktuelle Sprache
     users_mailer:
       greetings: Hallo %{user}
-      preferences_hint: 'Sie können Ihre Benachrichtigungseinstellungen hier ändern:
-        %{url}'
+      preferences_hint: 'Sie können Ihre Benachrichtigungseinstellungen jederzeit
+        unter folgender Adresse ändern: %{url}'
       dont_reply: Bitte antworten Sie nicht auf diese E-Mail.
-      contact_us: 'Unsere Kontaktseite befindet sich unter: %{url}'
+      contact_us: Falls Sie Fragen haben, können Sie uns jederzeit durch unser Kontaktformular unter %{url} eine Nachricht zukommen lassen.
   static_pages:
     contact:
       question_about_missing: Worauf bezieht sich Ihre Frage?
@@ -743,7 +743,7 @@ de:
     back_submit_buttons:
       submit_for_review_button: Feedback anfordern
       review_not_defined: Es gibt keine Feedbackmöglichkeit bei dieser DMP-Vorlage.
-      done_tooltip_html: <p>Bitte vervollständigen Sie Ihren Plan.</p>
+      done_tooltip_html: <p>Bearbeitung des Plans abschließen.</p>
       submit_for_review_tooltip_html: <p>Fordern Sie ein unverbindliches Feedback zum Plan durch Ansprechpartner Ihrer Einrichtung an.</p>
     change_visibility:
       visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
