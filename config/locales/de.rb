@@ -137,7 +137,7 @@ end
       },
       plan_state_updated: {
         text: lambda do |_, plan: nil, state: nil, **__|
-          "Der DMP-Plan \"#{name}\" wurde #{I18n.t("enum.plan_state.state.#{state}")}."
+          "Der DMP-Plan \"#{plan}\" wurde #{I18n.t("enum.plan_state.state.#{state}")}."
         end
       },
       plan_visibility_changed: {
