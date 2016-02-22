@@ -231,7 +231,7 @@ de:
         recommended: Empfohlen
       requirement_type:
         date: Datum
-        enum: Aufzählung
+        enum: Auswahlliste 
         numeric: numerisch
         text: Text
     requirements_template:
@@ -921,7 +921,7 @@ de:
       requirement_type_tooltip_html: 'Sie können das Format der Antwort zu diesem
         Unterpunkt festlegen. Die Grundeinstlelung ist Text (minimal strukturiertes
         Textformat). Weitere Optionen:<ul><li>Numerisch: für Zahlen, mit optionaler
-        Angabe der Maßeinheit.</li><li>Datum: YYYY, YYY-MM, oder YYYY-MM-DD</li><li>Enum:
+        Angabe der Maßeinheit.</li><li>Datum: YYYY, YYY-MM, oder YYYY-MM-DD</li><li>Auswahlliste:
         Auswahlliste mit möglichen Antworten.</li></ul>'
       add_item_link: Objekt hinzufügen
     index:
