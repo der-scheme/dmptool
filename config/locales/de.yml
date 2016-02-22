@@ -224,16 +224,17 @@ de:
         # Anführungszeichen wichtig, ansonsten funktioniert es nicht!
         "false": Unterpunkt
         "true": Gruppe
-      obligation:
-        mandatory: Verpflichtend
-        mandatory_applicable: Verpflichtend (sofern zutreffend)
-        optional: Optional
-        recommended: Empfohlen
       requirement_type:
         date: Datum
         enum: Auswahlliste 
         numeric: numerisch
         text: Text
+    enumeration:
+      obligation:
+        mandatory: Verpflichtend
+        mandatory_applicable: Verpflichtend (sofern zutreffend)
+        optional: Optional
+        recommended: Empfohlen
     requirements_template:
       active:
         # Anführungszeichen wichtig, ansonsten funktioniert es nicht!
