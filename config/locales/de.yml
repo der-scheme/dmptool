@@ -260,7 +260,7 @@ de:
   globals:
     the_admin: DMP-Administrator
     mailer:
-      localized_message_below: Eine englische Version befindet sich weiter unten.
+      localized_message_below: Eine deutsche Version befindet sich weiter unten.
     messages:
       prompt:
         confirm: Sind Sie sicher?
