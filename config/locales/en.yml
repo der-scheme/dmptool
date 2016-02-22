@@ -222,19 +222,19 @@ en:
         submitted: Submitted
     requirement:
       group:
-        # quotes are necessary, otherwise it won't work
-        "false": Requirement
-        "true": Group
-      obligation:
-        mandatory: Mandatory
-        mandatory_applicable: Mandatory If Applicable
-        optional: Optional
-        recommended: Recommended
+        "false": 'Requirement'
+        "true": 'Group'
       requirement_type:
         date: date
         enum: enum
         numeric: numeric
         text: text
+    enumeration:
+      obligation:
+        mandatory: Mandatory
+        mandatory_applicable: Mandatory If Applicable
+        optional: Optional
+        recommended: Recommended
     requirements_template:
       active:
         # quotes are necessary, otherwise it won't work
