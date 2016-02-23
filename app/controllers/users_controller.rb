@@ -70,11 +70,7 @@ class UsersController < ApplicationController
     end
 
     @email_editable = ( @user.authentications.where(provider: 'shibboleth').count < 1 )
-
-    @roles = @user.roles.map {|r| r.name}.join(' | ')
-
-
-
+    @roles = @user.roles.pluck(:name).map {|role| t_attr(Role, :name, role)}.join(' | ')
   end
 
   # POST /users
@@ -190,7 +186,7 @@ class UsersController < ApplicationController
       @institution_list = @my_institution.root.subtree.collect {|i| ["#{'-' * i.depth} #{i.full_name}", i.id] }
     end
 
-    @roles = @user.roles.map {|r| r.name}.join(' | ')
+    @roles = @user.roles.pluck(:name).map {|role| t_attr(Role, :name, role)}.join(' | ')
 
     @orcid_id = params[:user][:orcid_id]
     @update_orcid_id = params[:user][:update_orcid_id]
