@@ -281,6 +281,16 @@ en:
         formal_review: Review Required
         informal_review: Informal Review Allowed
         no_review: No Review Needed
+    role:
+      name:
+        # It would obviously be better if we migrated the Role model to enums
+        # instead of strings, but this requires huge code changes and might have
+        # an impact on upstream's live instance.
+        DMP Administrator: DMP Administrator
+        Resources Editor: Resources Editor
+        Template Editor: Template Editor
+        Institutional Reviewer: Institutional Reviewer
+        Institutional Administrator: Institutional Administrator
   globals:
     the_admin: the DMP Administrator
     mailer:
