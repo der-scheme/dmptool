@@ -39,7 +39,7 @@
 		  		<%end%>
 		    	<!-- <td><%#= link_to user.institution.full_name, edit_institution_path(user.institution, acr: "tab4") %></td> -->
 		    	<td><%= user.institution.full_name %></td>
-		    	<td><%= user.role_names.join(' | ') %></td>
+					<td><%= user.role_names.map {|role| t_attr(Role, :name, role)}.join(' | ') %></td>
 		     	<td class="span1"><%= link_to '', edit_user_roles_inst_admin_path(user_id: user), title: t('.edit_user_role_tooltip'), class: 'icon edit-user', id: "edit_#{user.id}" %></td>
 		      </tr>
 		  <% end %>
@@ -68,7 +68,7 @@
 						<% @roles.each do |role| %>
 						  <div class="controls span6">
 						  	<%= check_box_tag "role_ids[]", role.id , checked = false, id: role.id%>
-						    <%= label_tag role.id, role.name, :class => 'checkbox-label' %>
+						    <%= label_tag role.id, t_attr(role, :name), class: 'checkbox-label' %>
 						  </div>
 						<% end %>
 				</div>
