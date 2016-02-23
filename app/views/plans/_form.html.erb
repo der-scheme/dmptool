@@ -45,7 +45,7 @@
         <div class="control-group">
           <%= f.label :submission_deadline, 'Proposal Submission Deadline', class: 'control-label' %>
           <div class="controls">
-            <%= f.datetime_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
+            <%= f.date_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
             <%= content_tag(:span, '', :title => 'Deadline for submitting the proposal associated with this DMP.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
           </div>
         </div>
