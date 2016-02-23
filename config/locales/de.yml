@@ -462,6 +462,21 @@ de:
       form_name: Ihr Name
       tips: 'Hinweis:'
       tips_text_html: <p>Wir beantworten Ihnen gerne Fragen zum DMP-Tool. Für eine allgemeine Beratung zum Datenmanagement kontaktieren Sie jedoch bitte Ihre lokalen FDM-Ansprechpartner.</p><p>Wenn Sie einer unserer Partnerinstitutionen angehören und eingeloggt sind, richtet sich Ihre Anfrage über dieses Formular direkt an den Betreuer des DMP-Tools an Ihrer Einrichtung.</p>
+    help:
+      title: DMP-Tool Hilfe
+      choose: Was möchten Sie wissen?
+      faq: Ich möchte die FAQ (Frequently Asked Questions) sehen.
+      faq_html: Ich möchte die FAQ (Frequently Asked Questions) sehen.
+      quickstart: Ich brauche Hilfe beim Erstellen eines Datenemanagementplans.
+      quickstart_html: Ich brauche Hilfe beim <strong>Erstellen eines Datenemanagementplans</strong>.
+      administer: Ich möchte das DMP-Tool administrieren.
+      administer_html: Ich möchte das DMP-Tool <strong>administrieren</strong>.
+      dm_guidance: Ich brauche generelle Unterstützung beim Datenmanagement.
+      dm_guidance_html: Ich brauche generelle <strong>Unterstützung beim Datenmanagement</strong>.
+      promote: Ich möchte innerhalb meiner Einrichtung für das DMP-Tool werben und benötige hierfür Material.
+      promote_html: Ich möchte innerhalb meiner Einrichtung <strong>für das DMP-Tool werben</strong> und benötige hierfür Material.
+      community_resources: Ich brauche Community-Ressourcen, um das DMP-Tool besser verstehen und nutzen zu können.
+      community_resources_html: Ich brauche <strong>Community-Ressourcen</strong>, um das DMP-Tool besser verstehen und nutzen zu können.
     home:
       title: Home
       dmp_headline: Data Management Planning Tool
