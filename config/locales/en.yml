@@ -341,6 +341,7 @@ en:
     institutions:
       index: Institution Profile
       new: Add New Institution
+      partners_list: Partner Institutions
     requirements:
       index: Details
     requirements_templates:
