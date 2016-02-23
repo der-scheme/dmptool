@@ -857,7 +857,7 @@ de:
       plan_state_html: <strong>Der Plan hat den Status <span class ="blue">%{state}</span></strong>
       approve_button: Für gut befunden
       reject_button: Überarbeitung empfohlen
-      reviewed_button: Feedback zum Plan gegeben
+      reviewed_button: Feedback geben abschließen
     plan_states_history:
       status_change_html: |
         <strong>%{user}</strong> auf den Status <strong class="blue">%{state}</strong> setzen
@@ -889,7 +889,7 @@ de:
       filter_approved_link: Für gut befunden (%{count})
       filter_rejected_link: Überarbeitung empfohlen (%{count})
       filter_reviewed_link: Feedback gegeben (%{count})
-      submission_date_tooltip: Datum, an dem der Besitzer des DMP ein Feedback angefordert hat.
+      submission_date_tooltip: Datum, an dem der Besitzer des DMPs ein Feedback angefordert hat.
       review_plan: Feedback geben
       submission_date: Feedback angefordert am
     suggested_response:

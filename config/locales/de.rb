@@ -35,7 +35,7 @@ end
           unit ? "#{count} #{name}" : name
         end,
         user: lambda do |_, count: 1, unit: false, **__|
-          name = count == 1 ? 'User' : 'Users'
+          name = count == 1 ? 'Benutzer' : 'Benutzer'
           unit ? "#{count} #{name}" : name
         end
       },
