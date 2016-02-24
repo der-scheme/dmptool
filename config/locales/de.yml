@@ -95,6 +95,7 @@ de:
         review_type: Optionen für Feedback
         start_date: Start am
         visibility: Sichtbarkeit
+        review_requirement: Optionen für Feedback
       resource:
         id: ID
         label: Bezeichnung der Ressource
@@ -1194,18 +1195,18 @@ de:
       template_editors: DMP-Vorlagen-Redakteure
       resource_editors: 'Ressourcen-Redakteure:'
       institutional_reviewers: 'Ansprechpartner für Feedback:'
-      role_granted: Eine neue Benutzerrolle wurde zugewiesen.
-      plan_new_comment: Es ist ein neuer Kommentar zu meinem DMP vorhanden.
-      plan_submitted: Ein für Feedback eingereichter DMP wurde für gut befunden / Es wurde eine Überarbeitung empfohlen / Das Feedback wurde formlos gegeben.
+      role_granted: Eine neue Benutzerrolle wurde zugewiesen
+      plan_new_comment: Es ist ein neuer Kommentar zu meinem DMP vorhanden
+      plan_submitted: Ein für Feedback eingereichter DMP wurde für gut befunden / Es wurde eine Überarbeitung empfohlen / Das Feedback wurde formlos gegeben
       plan_vis_change: Die Sichtbarkeit meines DMPs hat sich geändert
       plan_user_added: Ich wurde als Mitbesitzer eines DMPs hinzugefügt
-      plan_committed: Fertig
+      plan_committed: Ein DMP wurde fertiggestellt
       template_committed: Eine institutionelle DMP-Vorlage wurde aktiviert
       template_deactivated: Eine institutionelle DMP-Vorlage wurde deaktiviert
       customization_deleted: Eine Anpassung wurde gelöscht
       customization_associated_committed: Eine DMP-Vorlage, für die eine Anpassung vorliegt, wurde aktiviert
-      institutional_submitted: Für einen institutionellen DMP wurde Feedback angefordert.
-      institutional_new_comment: Ein neuer Kommentar wurde zu einem institutionellem DMP hinzugefügt.
+      institutional_submitted: Für einen institutionellen DMP wurde Feedback angefordert
+      institutional_new_comment: Ein neuer Kommentar wurde zu einem institutionellem DMP hinzugefügt
       institutional_approved_rejected: Ein institutioneller DMP wurde für gut befunden / Die Überarbeitung eines institutionellen DMPs wurde empfohlen
     personal:
       instructions: Bitte aktualisieren Sie Ihre Account-Informationen.
