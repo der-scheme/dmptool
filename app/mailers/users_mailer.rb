@@ -4,6 +4,13 @@ class UsersMailer < ActionMailer::Base
   helper RouteI18n::Helper
   layout 'plain', only: [:password_reset, :username_reminder]
 
+  # For each notification that affects not just the triggering user, set the
+  # locale to the I18n default locale, as otherwise all users would receive
+  # emails in the triggering user's language.
+
+  before_action :set_default_locale,
+                except: [:password_reset, :username_reminder]
+
   ##
   # Override the default mail method and prepend a string to the subject
 
@@ -115,6 +122,11 @@ class UsersMailer < ActionMailer::Base
   end
 
 private
+
+  def set_default_locale
+    I18n.locale = I18n.default_locale
+  end
+
   def set_url_options
     default_url_options[:locale] ||= nil
   end
