@@ -983,7 +983,6 @@ en:
       optional_info: Optional Information
       start_date_tooltip: Start date for the template, often provided by the funder as a proposal submission start date.
       end_date_tooltip: End date for the template, often provided by the funder as a proposal submission end date.
-      review_type_tooltip: You can require institutional administrator review of plans submitted using this template.
       add_funder_link_link: Add Funder Link
       add_sample_plan_link: Add Sample Plan
       save_and_next_button: Save and Next >>

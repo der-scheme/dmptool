@@ -99,6 +99,9 @@ end
       },
       toggle_active: {
         toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deactivate' : 'Activate'}
+      },
+      form: {
+        review_type_tooltip_html: ->(_, **_) {"You can require institutional administrator review of plans submitted using this template.<ul><li>#{I18n.t('enum.requirements_template.review_type.formal_review')}: Review process is mandatory, such that the plan can only be finished after the review process is done.</li><li>#{I18n.t('enum.requirements_template.review_type.informal_review')}: The user can choose to finish the plan or to use the review process.</li><li>#{I18n.t('enum.requirements_template.review_type.no_review')}: The user is not able to use the review process. His only option is to finish the plan.</li></ul>"}
       }
     },
     resource_contexts: {
