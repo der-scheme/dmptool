@@ -90,6 +90,9 @@ end
       },
       toggle_active: {
         toggle_status_link: ->(_, template: nil, **__) {template.active ? 'Deaktivieren' : 'Aktivieren'}
+      },
+      form: {
+        review_type_tooltip_html: ->(_, **_) {"Sie können bei Plänen, die mit dieser Vorlage erstellt werden, aus drei Feedback-Optionen durch Ansprechpartner an Ihrer Einrichtung wählen.<ul><li>#{I18n.t('enum.requirements_template.review_type.formal_review')}: Bevor der Plan fertiggestellt werden kann, muss zwingend Feedback eingeholt werden.</li><li>#{I18n.t('enum.requirements_template.review_type.informal_review')}: Der Benutzer hat die Wahl, entweder den Plan abzuschließen oder Feedback einzuholen.</li><li>#{I18n.t('enum.requirements_template.review_type.no_review')}: Der Benutzer hat nicht die Möglichkeit Feedback einzuholen, sondern kann lediglich den Plan fertigstellen.</li></ul>"}
       }
     },
     resource_contexts: {
