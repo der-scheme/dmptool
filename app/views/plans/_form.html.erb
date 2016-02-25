@@ -176,7 +176,7 @@
           <hr/>
 
           <div class="control-group">
-            <p class ="control-label">Visibility</p>
+            <p class ="control-label"><%= Plan.human_attribute_name(:visibility) %></p>
             <div>
               <div class="controls">
                 <%= content_tag :p, t('.plan_visibility_html', visibility: t_enum(@plan, :visibility)) %>
