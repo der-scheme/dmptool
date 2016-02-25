@@ -135,12 +135,12 @@ end
     users_mailer: {
       information_email: {
         text: lambda do |_, name: nil, email: nil, **__|
-          "Falls Sie Fragen bezüglich dieser Aktion haben, kontaktieren Sie bitte #{"#{name} über" if name.present?}#{email}."
+          "Falls Sie Fragen zu dieser Aktion haben, kontaktieren Sie bitte #{"#{name} über" if name.present?}#{email}."
         end
       },
       plan_state_updated: {
         text: lambda do |_, plan: nil, state: nil, **__|
-          "Der DMP-Plan \"#{plan}\" wurde #{I18n.t("enum.plan_state.state.#{state}")}."
+          "Der Status des DMP-Plans \"#{plan}\" hat sich geändert: #{I18n.t("enum.plan_state.state.#{state}")}"
         end
       },
       plan_visibility_changed: {

@@ -244,7 +244,7 @@ de:
       review_type:
         formal_review: Feedback erforderlich
         informal_review: Unverbindliches Feedback kann angefordert werden
-        no_review: Feedback muss nicht angefordert werden
+        no_review: kein Feedback erforderlich / Feedback-Prozess wird nicht angeboten
       visibility:
         institutional: institutionell
         public: öffentlich
@@ -258,7 +258,7 @@ de:
       review_type:
         formal_review: Feedback erforderlich
         informal_review: Unverbindliches Feedback kann angefordert werden
-        no_review: Feedback muss nicht angefordert werden
+        no_review: kein Feedback erforderlich / Feedback-Prozess wird nicht angeboten
   globals:
     the_admin: DMP-Administrator
     mailer:
@@ -1191,7 +1191,7 @@ de:
       sel_all: Alles auswählen / nichts auswählen
       users: 'Benutzer:'
       template_owners: 'DMP-Besitzer und Mitbesitzer:'
-      template_editors: DMP-Vorlagen-Redakteure
+      template_editors: 'DMP-Vorlagen-Redakteure:'
       resource_editors: 'Ressourcen-Redakteure:'
       institutional_reviewers: 'Ansprechpartner für Feedback:'
       role_granted: Eine neue Benutzerrolle wurde zugewiesen
@@ -1322,7 +1322,7 @@ de:
       subject: 'DMP-Vorlage aktiviert: %{template}'
       text: Die DMP-Vorlage "%{template}" der zugehörigen Anpassung "%{customization}" wurde aktiviert.
     information_link:
-      text: Falls Sie Fragen betreffend dieser Aktion haben, besuchen Sie bitte die Seite %{title}, welche unter %{url} zu finden ist.
+      text: Falls Sie Fragen zu dieser Aktion haben, besuchen Sie bitte die Seite %{title}, welche unter %{url} zu finden ist.
     password_reset:
       subject: Passwort zurücksetzen
       text: |-
