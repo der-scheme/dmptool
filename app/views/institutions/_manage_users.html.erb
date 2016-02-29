@@ -24,7 +24,7 @@
 		    <%= content_tag :th, User.human_attribute_name(:full_name_last_first) %>
 		    <%= content_tag :th, User.human_attribute_name(:institution) %>
 		    <th><%= User.human_attribute_name(:role_names) %>
-				<%= content_tag(:span, '', title: t('.role_tooltip_html'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
+				<%= content_tag(:span, '', title: t('.role_tooltip'), data: { toggle: 'tooltip', placement: 'right', html: 'true' }, class: 'icon questionmark tip') %>
 		    </th>
 		    <%= content_tag :th, t('.edit_user_role'), width: 'span1' %>
 		  </tr>

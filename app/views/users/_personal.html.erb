@@ -127,7 +127,7 @@
       <%= content_tag :p, t('.roles'), class: 'control-label' %>
       <div class="controls">
         <p><%= @user.role_names.join(' | ') %>
-          <%= content_tag :span, '', title: t('.roles_tooltip_html'),
+          <%= content_tag :span, '', title: t('.roles_tooltip'),
                           data: {placement: 'right', html: 'true'},
                           class: 'icon questionmark tip' %>
         </p>

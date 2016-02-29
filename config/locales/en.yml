@@ -744,7 +744,7 @@ en:
       inst_admins_filter_link: Institutional Administrators (%{count})
       inst_reviewers_filter_link: Institutional Reviewers(%{count})
       admins_filter_link: DMP Administrators (%{count})
-      role_tooltip_html: 'Possible roles are:<ul><li>Template editor: create local,
+      role_tooltip: 'Possible roles are:<ul><li>Template editor: create local,
         institutional, DMP templates</li><li>Resources editor: add/modify DMP template
         customizations, which include links to resources, local help text, suggested
         text, and example responses</li><li>Institutional reviewer: review, informally
@@ -803,8 +803,8 @@ en:
     back_submit_buttons:
       submit_for_review_button: Submit for Review
       review_not_defined: Review Process is not defined for the associated DMP Template
-      done_tooltip_html: <p>Complete your Plan.</p>
-      submit_for_review_tooltip_html: <p>Submit your Plan for an Informal Review from your institution.</p>
+      done_tooltip: <p>Complete your Plan.</p>
+      submit_for_review_tooltip: <p>Submit your Plan for an Informal Review from your institution.</p>
     change_visibility:
       visibility_institutional: With others from %{institution}
       visibility_public: Publicly on the web. Your DMP will appear on the Public DMPs page of this site.
@@ -843,7 +843,7 @@ en:
       copy_of: Copy of %{plan}
       solicitation_identifier_tooltip: Proposal solicitation number or identifier for the call associated with this proposal and DMP.
       submission_deadline_tooltip: Deadline for submitting the proposal associated with this DMP.
-      visibility_tooltip_html: 'Three visibility options: <ul><li>Public: anyone can
+      visibility_tooltip: 'Three visibility options: <ul><li>Public: anyone can
         view, copy and or download the plan.</li><li>Institutional: anyone logged
         in from your institution can view, copy and or download the plan.</li><li>Private:
         only owners and co-owners can view the plan.</li></ul>'
@@ -889,13 +889,13 @@ en:
       filter_committed_link: Completed (%{count})
       filter_rejected_link: Rejected (%{count})
       filter_reviewed_link: Reviewed (%{count})
-      filter_tooltip_html: '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned:
+      filter_tooltip: '<ul><li>All: All DMPs for which you are an owner or co-owner.</li><li>Owned:
         DMPs that you have created.</li><li>Co-owned: DMPs for which others have designated
         you as a co-owner.</li><li>Approved: Your DMP has been approved by your institutional
-        administrator (only applies if your institution has enabled the &#8220;Review&#8221;
+        administrator (only applies if your institution has enabled the “Review”
         functionality.)</li><li>Submitted: Your DMP has been submitted for review
         to your institutional administrator (only applies if your institution has
-        enabled the &#8220;Review&#8221; functionality.)</li><li>Completed: After
+        enabled the “Review” functionality.)</li><li>Completed: After
         clicking Done on the DMP Preview screen, your plan will marked Completed.</li><li>Rejected.
         Your DMP has been rejected by your institutional administrator (only applies
         if your institution has enabled the “Review” functionality.)</li><li>Reviewed:
@@ -973,9 +973,9 @@ en:
       group_success_notice: Group was successfully created.
       requirement_success_notice: Requirement was successfully created.
     form:
-      obligation_tooltip_html: Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.
-      group_type_tooltip_html: Tooltip &#8220;text&#8221; goes here.
-      requirement_type_tooltip_html: 'You can designate the format of the answer to
+      obligation_tooltip: Specify whether an answer to a requirement is mandatory (must be answered to proceed), is recommended, or is optional. Optional is the default.
+      group_type_tooltip: Tooltip “text” goes here.
+      requirement_type_tooltip: 'You can designate the format of the answer to
         be given to a requirement. The default format is text (minimal structured
         text format). Other options: <ul><li>Numeric format: for integer or real number
         answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM,
@@ -987,11 +987,11 @@ en:
       please_wait: Please wait a moment . . .
       template_outline: Template Outline
       add_group_link: Add Group
-      add_group_tooltip_html: Similar requirements may be grouped together under a single requirement &#8220;group&#8221;.
+      add_group_tooltip: Similar requirements may be grouped together under a single requirement “group”.
       add_requirement_link: Add Requirement
-      add_requirement_tooltip_html: A requirement is the specific question that a researcher is to answer.
+      add_requirement_tooltip: A requirement is the specific question that a researcher is to answer.
       template_status: 'DMP Template Status:'
-      template_status_tooltip_html: The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.
+      template_status_tooltip: The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select “activate” to make the template available to use.
       cant_delete_template: This template cannot be deleted until all DMPs that use it have been removed.
     update:
       success_notice: Requirement was successfully updated.
@@ -999,7 +999,7 @@ en:
     form:
       template_overview: DMP Template Overview
       basic_info_link: Basic Information
-      visibility_tooltip_html: 'Once active, template visibility can be either: <ul><li>Public:
+      visibility_tooltip: 'Once active, template visibility can be either: <ul><li>Public:
         anyone can view the template.</li><li>Institutional: only those logged in
         from your institution can view the template.</li></ul>'
       optional_info: Optional Information
@@ -1026,7 +1026,7 @@ en:
       institutional_filter_link: Institution only (%{count})
       public_filter_link: Public (%{count})
       inst_public_filter_link: Public defined by my Institution (%{count})
-      filter_tooltip_html: '<ul><li>Active: Will appear as an optional funder template
+      filter_tooltip: '<ul><li>Active: Will appear as an optional funder template
         when a researcher creates a DMP. It can be visible either publicly (to anyone
         logged into the tool) or for institutional researchers only.</li><li>Inactive:
         will not appear as an optional funder template when a researcher creates a
@@ -1034,7 +1034,7 @@ en:
         not been completed (finalized) by an administrator.</li><li>Institution only:
         Active or inactive DMP templates for your institution only.</li><li>Public:  All
         DMP templates with “Public” visibility. They may be active or inactive.</li></ul>'
-      sort_by_visibility_tooltip_html: 'Once live, template visibility can be either:
+      sort_by_visibility_tooltip: 'Once live, template visibility can be either:
         <ul><li>Public: anyone can view the template.</li><li>Institutional: only
         those logged in from your institution can view the template.</li></ul>'
       new_button: Create New Template >>
@@ -1261,7 +1261,7 @@ en:
       select_institution: Select Institution
       dmp_options: DMP Options
       roles: My Roles
-      roles_tooltip_html: '<ul><li>Template editor: create local, institutional, DMP
+      roles_tooltip: '<ul><li>Template editor: create local, institutional, DMP
         templates</li><li>Resources editor: add/modify DMP template customizations,
         which include links to resources, local help text, suggested text, and example
         responses</li><li>Institutional reviewer: review, informally or formally,
@@ -1277,7 +1277,7 @@ en:
     plan_autocomplete_widget:
       label: 'Add Co-owners:'
       placeholder: Add co-owners; search by name or email address
-      tooltip_html: <ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>
+      tooltip: <ul><li>To add co-owners, type a name or email and then SELECT the name.</li><li>Co-owners you designate will have read/write access to this DMP. Co-owners must have already logged into the DMPTool to be added to a plan.</li></ul>
     remove_orcid:
       success_notice: The orcid id has been successfully removed from your profile.
     require_current_user:

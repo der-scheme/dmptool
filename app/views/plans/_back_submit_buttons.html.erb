@@ -14,9 +14,9 @@
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, disabled: true, class: 'pull-right' %>
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
-    <%= content_tag :span, '', title: t('.submit_for_review_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
+    <%= content_tag :span, '', title: t('.submit_for_review_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
     <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
-    <%= content_tag :span, '', title: t('.done_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
+    <%= content_tag :span, '', title: t('.done_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
   <% elsif state(@plan) == :committed %>
     <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
   <% elsif state(@plan) == :reviewed %>
@@ -46,9 +46,9 @@
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, disabled: true, class: 'pull-right' %>
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
-    <%= content_tag :span, '', title: t('.submit_for_review_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
+    <%= content_tag :span, '', title: t('.submit_for_review_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
     <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
-    <%= content_tag :span, '', title: t('.done_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
+    <%= content_tag :span, '', title: t('.done_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
   <% elsif state(@plan) == :committed %>
     <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
   <% elsif state(@plan) == :reviewed %>
