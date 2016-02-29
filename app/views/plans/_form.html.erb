@@ -93,9 +93,7 @@
                 item_description: 'co-owner'
              } %>
             <div class="controls">
-              <% if @planowner.id != current_user.id %>
-                <%= t('.owner', @planowner.full_name) %>
-              <% end %>
+              <%= t('.owner_html', owner: @planowner.full_name) unless @planowner.id == current_user.id %>
               <%= content_tag :span, t('.coowners') %>
               <strong class= 'blue'><%= @coowners.map {|coowner| coowner.full_name.to_s + raw(link_to '', delete_coowner_path(coowner_id: coowner.id, plan_id: @plan.id), method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'remove icon', title: t('remove_coowner_link'))}.join(', ').html_safe %></strong>
             </div>
