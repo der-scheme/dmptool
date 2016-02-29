@@ -418,6 +418,7 @@ en:
       dialog_title: Please select a DMP Template
       submit_button: Next >>
     submit_button:
+      ok: OK
       submit: Submit
       save: Save
       save_changes: Save Changes
