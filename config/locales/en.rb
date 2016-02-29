@@ -71,6 +71,18 @@ end
         parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
     },
+    helpers: {
+      controller: {
+        plan_state: {
+          state_changed: lambda do |_, state: nil, **__|
+            "The plan has been #{I18n.t("enum.plan_state.state.#{state}")}."
+          end,
+          already_in_state: lambda do |_, state: nil, **__|
+            "The Plan has already been #{I18n.t("enum.plan_state.state.#{state}")}."
+          end
+        }
+      }
+    },
     plans: {
       create: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},

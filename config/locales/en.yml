@@ -778,6 +778,18 @@ en:
     update:
       success_notice: Institution was successfully updated.
       failure_notice: Something went wrong.
+  plan_states:
+    approved:
+      permission_error: You dont have permission to Approve this plan.
+    reviewed:
+      state_error: "You can't review the plan from it's current state."
+      permission_error: "You don't have permission to Review this plan."
+    rejected:
+      permission_error: You dont have permission to Approve this plan.
+    submitted:
+      incomplete_error: Please complete all the mandatory Responses for the Plan to be Submitted.
+    committed:
+      incomplete_error: Please complete all the mandatory Responses for the Plan to be Finished.
   plans:
     actionable_url:
       general_resources: General Resources
