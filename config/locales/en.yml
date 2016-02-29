@@ -1048,12 +1048,17 @@ en:
     toggle_active:
       failure_message: The DMP template "%{template}" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it.
   responses:
+    create:
+      success_message: Response was successfully created.
     form:
       save_and_next_button: Save and Next
       save_button: Save Response
       back_button: Cancel Changes
       alert_message: Cannot save an empty Response. Please enter a valid Response before continuing.
       alert_message_tooltip: Please Enter a Valid Response.
+    update:
+      success_message: Response was successfully updated.
+      concurrency_error: This record changed while you were editing.
   resources:
     copy_selected_customization_resource:
       already_in_context_error: The resource you selected is already in your context.
