@@ -18,6 +18,10 @@ end
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
         end,
+        plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'DMP' : 'DMPs'
+          unit ? "#{count} #{name}" : name
+        end,
         requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template' : 'DMP Templates'
           unit ? "#{count} #{name}" : name
