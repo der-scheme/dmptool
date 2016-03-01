@@ -125,3 +125,12 @@ function localized_temporal_format(temporal, format) {
 
   return t(temporal + '.formats.' + format).replace(/%/g, '');
 };
+
+// If we're on a certain tab, make sure the tab is still open after changing the
+// locale.
+$(function () {
+  $('.choose_language').click(function () {
+    var $this = $(this);
+    $this.attr('href', $this.attr('href') + window.location.hash);
+  });
+});
