@@ -1,23 +1,15 @@
 <footer class="footer container">
 	<div class="row-fluid">
 		<div class="copyright span7">
-			<p>DMPTOOL is a service of the 
-			<%= link_to 'University of California Curation Center', 'http://www.cdlib.org/services/uc3', :title => 'University of California Curation Center', :target => '_blank' %> 
-			of the 
-		  <%= link_to 'California Digital Library', 'http://cdlib.org', :title => 'California Digital Libary', :target => '_blank' %><br/>
-		  Copyright &copy; 2010-<%=Time.new.year%> The Regents of the University of California</p>
+			<%= Layout.footer.credits %>
 		</div>
 		<div class="footer-links span5">
 			<div class="footer-feeds">
-				<%= link_to '', 'https://www.facebook.com/DMPTool', :class => 'icon facebook', :title => 'Follow the California Digital Library on Facebook', :target => '_blank' %>
-				<%= link_to '', 'https://twitter.com/TheDMPTool', :class => 'icon twitter', :title => 'Follow the California Digital Library on Twitter', :target => '_blank' %>
-				<%= link_to '', 'https://blog.dmptool.org/feed', :class => 'icon rss', :title => 'California Digital Library RSS Feed', :target => '_blank' %>
+				<%= Layout.footer.each_icon.reduce(&:+) %>
 			</div>
-			<p><%= link_to 'Privacy Policy', privacy_path, :title => 'Privacy Policy' %> |
-			<%= link_to 'Accessibility Policy', 'http://www.ucop.edu/electronic-accessibility/initiative/policy.html', :title => 'Accessibility Policy' %> |
-			<%= link_to 'Terms of Use', terms_of_use_path, :title => 'Terms of Use' %> |
-			<%= link_to 'Contact Us', contact_path, :title => 'Contact Us' %> |
-			<%= link_to 'About', about_path, :title => 'About the California Digital Library Data Management Tool' %></p>
+			<p>
+				<%= Layout.footer.each_link.map {|link| link.wrap(:SeparatorTag, ' | ')}.reduce(&:+) %>
+			</p>
 		</div>
 	</div>
 </footer>
