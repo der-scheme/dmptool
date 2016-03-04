@@ -19,10 +19,10 @@
 .centered {
 	text-align: center;
 	margin: 0 auto; }
-	
+
 /* Header */
 .header {
-	background: url(<%= asset_path 'header_bg.jpg' %>) no-repeat 0 0 #86A641;
+	background: image-url('header_bg.jpg') no-repeat 0 0 #86A641;
 	color: #FFFFFF;
 	height: 117px;
 	z-index: 100; }
@@ -48,10 +48,10 @@
 	right: 35px; }
 .header .welcome p {
 	margin: 0; }
-	
+
 /* Header Navigation */
 .header .navbar {
-	background: url(<%= asset_path 'header_nav_bg.jpg' %>) repeat-x 0 0 transparent;
+	background: image-url('header_nav_bg.jpg') repeat-x 0 0 transparent;
 	width: 100%;
 	height: 45px;
 	margin: 0;
@@ -84,13 +84,13 @@
 	margin-right: 0; }
 .header ul.nav > li.login a {
 	padding-left: 45px;
-	position: relative; }	
+	position: relative; }
 .header ul.nav > li.login a .icon.user-login {
 	position: absolute;
 	top: 13px;
 	left: 15px; }
-.header ul.nav > li.login a:hover .icon.user-login, 
-.header ul.nav > li.login a:focus .icon.user-login, 
+.header ul.nav > li.login a:hover .icon.user-login,
+.header ul.nav > li.login a:focus .icon.user-login,
 .header ul.nav > li.login a:active .icon.user-login {
 	background-position: -180px -110px; }
 .header ul.nav > li.parent > a:after {
@@ -146,7 +146,7 @@
 .footer [class*="span"], .footer p {
 	margin: 0; }
 .footer .copyright[class*="span"] {
-	background: url(<%= asset_path 'cdl_logo_sm.png' %>) no-repeat 0 0 transparent;
+	background: image-url('cdl_logo_sm.png') no-repeat 0 0 transparent;
 	min-height: 33px;
 	padding: 5px 0 0 45px;
 	width: 500px; }
@@ -158,7 +158,7 @@
 .footer .footer-links[class*="span"] {
 	float: right;
 	text-align: right;
-	padding-top: 7px; 
+	padding-top: 7px;
 	width: 450px; }
 .footer .footer-links p {
 	display: inline-block;
@@ -172,7 +172,7 @@
 .footer .footer-feeds a {
 	float: left;
 	margin-left: 7px; }
-	
+
 /* Dashboard */
 .dashboard { }
 /* Dashboard Header */
@@ -282,12 +282,12 @@
 	margin-right: 0;
 	padding-left: 15px; }
 .dashboard-nav ul.nav ul li.last {
-	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 -87px transparent;
+	background: image-url('tab_arrow.png') no-repeat 0 -87px transparent;
 	width: 15px;
 	margin-left: -15px; }
 .dashboard-nav ul.nav ul li a {
 	float: left;
-	background: url(<%= asset_path 'tab_arrow.png' %>) no-repeat 0 0 transparent;
+	background: image-url('tab_arrow.png') no-repeat 0 0 transparent;
 	color: #516935;
 	font-weight: bold;
 	letter-spacing: -0.2px;
