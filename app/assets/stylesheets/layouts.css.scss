@@ -75,10 +75,12 @@
   text-shadow: none;
   line-height: 1.07;
   padding: 17px 17px 13px; }
-.header ul.nav > li.current > a, .header ul.nav > li > a:hover, .header ul.nav > li > a:focus, .header ul.nav > li > a:active {
-  color: #A1E000; }
-.header ul.nav > li.current > a {
- 	background: rgba(0,0,0,0.05); }
+.header ul.nav > li {
+	&.current > a, &> a:hover, &> a:focus, &> a:active { color: #A1E000; }
+	&.current {
+		&> a { background: rgba(0,0,0,0.05); }
+	}
+}
 .header ul.nav > li.login {
 	float: right;
 	margin-right: 0; }
@@ -249,10 +251,6 @@
 .dashboard-nav ul.nav > li > a:hover, .dashboard-nav ul.nav > li > a:focus, .dashboard-nav ul.nav > li > a:active {
 	background: none;
 	color: #6D6E71; }
-.dashboard-nav ul.nav > li.current > a, .dashboard-nav ul.nav > li.current-parent > a {
-	background: #E9E9EA;
-	color: #516935;
-	text-decoration: none; }
 .dashboard-nav ul.nav > li > a > span {
 	display: inline-block;
 	border-left: 1px solid #B6B6B7;
@@ -307,7 +305,21 @@
 	text-decoration: none; }
 .dashboard-nav ul.nav ul li:first-child a:hover, .dashboard-nav ul.nav ul li:first-child a:focus, .dashboard-nav ul.nav ul li:first-child a:active {
 	background-position: -15px -29px; }
-.dashboard-nav ul.nav ul li.current a {
-	background-position: 0 -58px; }
-.dashboard-nav ul.nav ul li:first-child.current a {
-	background-position: -15px -58px; }
+.dashboard-nav ul.nav {
+	&> li {
+		&.current, &.current-parent {
+			&> a {
+				background: #E9E9EA;
+				color: #516935;
+				text-decoration: none;
+			}
+		}
+	}
+
+	ul li {
+		&.current {
+			& a { background-position: 0 -58px; }
+			&:first-child a { background-position: -15px -58px; }
+		}
+	}
+}
