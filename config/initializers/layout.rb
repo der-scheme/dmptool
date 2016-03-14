@@ -14,6 +14,14 @@ page_config = {
         }
       },
       {
+        href: {controller: :dashboard, action: :show},
+        if: proc {current_user},
+        label: {
+          key: 'layouts.header.dashboard_link',
+          fallback: 'My Dashboard'
+        }
+      },
+      {
         href: {controller: :static_pages, action: :guidance},
         label: {
           key: 'layouts.header.guidance_link',
