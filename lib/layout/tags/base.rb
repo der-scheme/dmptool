@@ -10,8 +10,22 @@ module Layout
         ActiveSupport::SafeBuffer.new(' | ')
       end
 
+      def initialize(config)
+        @if = config[:if] if config.key?(:if)
+      end
+
       def +(other)
         Text.new(other.append_to(self))
+      end
+
+      def active?
+        return true unless instance_variable_defined?(:@if)
+
+        case @if
+        when String then eval @if
+        when Proc   then instance_exec(&@if)
+        else             @if
+        end
       end
 
       def wrap(wrapper, *args, **options)
