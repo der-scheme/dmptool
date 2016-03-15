@@ -4,6 +4,9 @@ require 'layout/tags/base'
 module Layout
   module Tags
     class Text < Base
+
+      attr_reader :text
+
       def initialize(text)
         @text = text
       end

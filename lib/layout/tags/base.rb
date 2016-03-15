@@ -10,6 +10,8 @@ module Layout
         ActiveSupport::SafeBuffer.new(' | ')
       end
 
+      attr_reader :if
+
       def initialize(config)
         @if = config[:if] if config.key?(:if)
       end

@@ -10,6 +10,10 @@ module Layout
       # branch that supports route_i18n
       include RouteI18n::TranslationHelper if const_defined?(:RouteI18n)
 
+      attr_reader :href
+      attr_reader :label
+      attr_reader :title
+
       def initialize(config)
         @href, @label, @title = config.values_at(:href, :label, :title)
         super(config)

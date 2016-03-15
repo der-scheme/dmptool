@@ -8,6 +8,8 @@ module Layout
         ActiveSupport::SafeBuffer.new
       end
 
+      attr_reader :type
+
       def initialize(config)
         @type = config[:type]
         super(config)

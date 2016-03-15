@@ -6,6 +6,8 @@ module Layout
     module Wrappers
       class SeparatorTag < Base
 
+        attr_reader :spacer
+
         ##
         # :call-seq: new(tag, spacer)
 
