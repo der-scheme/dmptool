@@ -259,6 +259,16 @@ de:
         formal_review: Feedback erforderlich
         informal_review: Unverbindliches Feedback kann angefordert werden
         no_review: kein Feedback erforderlich / Feedback-Prozess wird nicht angeboten
+    role:
+      name:
+        # It would obviously be better if we migrated the Role model to enums
+        # instead of strings, but this requires huge code changes and might have
+        # an impact on upstream's live instance.
+        DMP Administrator: DMP-Administrator
+        Resources Editor: Ressourcen-Redakteur
+        Template Editor: Vorlagen-Redakteur
+        Institutional Reviewer: Ansprechpartner für Feedback
+        Institutional Administrator: Institutioneller Administrator
   globals:
     the_admin: DMP-Administrator
     mailer:
@@ -308,7 +318,7 @@ de:
     institutions:
       index: Einrichtungsprofil
       new: Neue Einrichtung hinzufügen
-      partners_list: Liste der Partnereinrichtungen
+      partners_list: Partnereinrichtungen
     requirements:
       index: Details
     requirements_templates:
@@ -328,6 +338,7 @@ de:
       details: Details
       edit: Übersicht
       index: Meine DMPs
+      perform_review: Feedback geben
       preview: Vorschau
       public: Beispielpläne
       review_dmps: Feedback geben
@@ -383,6 +394,7 @@ de:
       dialog_title: Bitte wählen Sie eine DMP-Vorlage aus
       submit_button: Weiter >>
     submit_button:
+      ok: OK
       submit: Abschicken
       save: Speichern
       save_changes: Änderungen speichern
@@ -749,6 +761,18 @@ de:
     update:
       success_notice: Einrichtung wurde erfolgreich aktualisiert.
       failure_notice: Es ist ein Fehler aufgetreten.
+  plan_states:
+    approved:
+      permission_error: Sie haben nicht die Berechtigung diesen Plan zu bewilligen.
+    reviewed:
+      state_error: "Sie können den Plan im aktuellen Zustand nicht begutachten."
+      permission_error: "Sie haben nicht die Berechtigung diesen Plan zu begutachten."
+    rejected:
+      permission_error: Sie haben nicht die Berechtigung diesen Plan zu bewilligen.
+    submitted:
+      incomplete_error: Bitte vervollständigen Sie alle verpflichtende Antworten, um den Plan einreichen zu können.
+    committed:
+      incomplete_error: Bitte vervollständigen Sie alle verpflichtende Antworten, um den Plan abschließen zu können.
   plans:
     actionable_url:
       general_resources: Allgemeine Ressourcen
@@ -776,8 +800,8 @@ de:
     details:
       dmp_details: Details des DMP
       edit_instructions: Indem Sie auf einen Abschnitt klicken, können Sie ihn bearbeiten.
-      complete_icon_meaning:  = Fertig
-      mandatory_icon_meaning:  = Verpflichtend
+      complete_icon_meaning: ' = Fertig'
+      mandatory_icon_meaning: ' = Verpflichtend'
       template_outline: Vorlage im Überblick
       instructions: Worum geht es in diesem Abschnitt?
       links: Links
@@ -877,7 +901,7 @@ de:
       reviewed_button: Feedback geben abschließen
     plan_states_history:
       status_change_html: |
-        <strong>%{user}</strong> auf den Status <strong class="blue">%{state}</strong> setzen
+        <strong>%{user}</strong> hat den Status auf <strong class="blue">%{state}</strong> gesetzt
     preview:
       title: Vorschau auf DMP
       pdf_button: Exportiere als PDF
@@ -1032,12 +1056,17 @@ de:
     toggle_active:
       failure_message: Die DMP-Vorlage "%{template}", die Sie aktivieren möchten, hat keine Unterpunkte. Die Vorlage muss mindestens einen Unterpunkt enthalten, um aktiviert werden zu können.
   responses:
+    create:
+      success_message: Antwort wurde erfolgreich erstellt.
     form:
       save_and_next_button: Speichern und Weiter
       save_button: Antwort speichern
       back_button: Änderungen verwerfen
       alert_message: Eine leere Antwort kann nicht gespeichert werden. Bitte geben Sie eine gültige Antwort ein, um fortfahren zu können.
       alert_message_tooltip: Geben Sie bitte eine gültige Antwort ein.
+    update:
+      success_message: Antwort wurde erfolgreich aktualisiert.
+      concurrency_error: Dieser Eintrag hat sich während Ihrer Bearbeitung geändert.
   resources:
     copy_selected_customization_resource:
       already_in_context_error: Die ausgewählte Ressource ist bereits in Ihrem Kontext.
