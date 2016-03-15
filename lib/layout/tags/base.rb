@@ -28,23 +28,16 @@ module Layout
         end
       end
 
-      def wrap(wrapper, *args, **options)
+      def wrap(wrapper, *args, **options, &block)
         # In the following code
         # - constantize is used because referencing the constant directly would
         #   make the Rails server crash on boot.
         # - const_get is used because its semantics are different from
         #   constantize.
-        wrapper = case wrapper
-          when Symbol
-            "Layout::Tags::Wrappers".constantize.const_get(wrapper, true)
-          when Class
-            wrapper
-          else
-            "Layout::Tags::Wrappers".constantize
-              .const_get(wrapper.to_s.classify, true)
-        end
+        wrapper = "Layout::Tags::Wrappers".constantize
+            .const_get(wrapper.to_s.classify, true) unless wrapper.is_a?(Class)
 
-        wrapper.new(self, *args, **options)
+        wrapper.new(self, *args, **options, &block)
       end
 
       def append_to(other)
