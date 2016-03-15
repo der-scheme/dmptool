@@ -18,6 +18,10 @@ end
           name = count == 1 ? 'Einrichtung' : 'Einrichtungen'
           unit ? "#{count} #{name}" : name
         end,
+        plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'DMP' : 'DMPs'
+          unit ? "#{count} #{name}" : name
+        end,
         requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP-Vorlage' : 'DMP-Vorlagen'
           unit ? "#{count} #{name}" : name
@@ -62,13 +66,22 @@ end
         parent_tooltip: "Falls Ihre Einrichtung nicht in der Dropdown-Liste enthalten ist, kontaktieren Sie bitte #{i18n_join_de(APP_CONFIG['feedback_email_to'])}."
       }
     },
+    helpers: {
+      controller: {
+        plan_state: {
+          state_changed: lambda do |_, state: nil, **__|
+            "Der Status des DMP-Plans hat sich geändert: #{I18n.t("enum.plan_state.state.#{state}")}."
+          end,
+          already_in_state: lambda do |_, state: nil, **__|
+            "Eine Statusänderung des DMP-Plans fand bereits statt: #{I18n.t("enum.plan_state.state.#{state}")}."
+          end
+        }
+      }
+    },
     plans: {
       create: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"#{count == 1 ? 'Folgender Benutzer konnte' : 'Folgende Benutzer konnten'} nicht gefunden werden: #{i18n_join_de(users)}."},
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"#{count == 1 ? 'Der ausgewählte Benutzer ist' : 'Die ausgewählten Benutzer sind'} #{i18n_join_de(users)} bereits #{description}#{'s' if count == 1} dieses Plans."}
-      },
-      form: {
-        visibility_note_html: ->(_, **_) {"<span>Hinweis: Wenn bei der Sichtbarkeit \"Öffentlich\" eingestellt ist, wird Ihr DMP auf der Seite <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> erscheinen. Er wird herunterladbar und duplizierbar sein.</span>"}
       },
       index: {
         visibility_tooltip: lambda do |_, parent: false, **_|
