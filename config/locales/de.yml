@@ -714,7 +714,7 @@ de:
       inst_admins_filter_link: Institutionelle Administratoren (%{count})
       inst_reviewers_filter_link: Ansprechpartner für Feedback (%{count})
       admins_filter_link: DMP-Administratoren (%{count})
-      role_tooltip_html: 'Mögliche Rollen sind:<ul><li>Vorlagen-Redakteur: Vorlagen
+      role_tooltip: 'Mögliche Rollen sind:<ul><li>Vorlagen-Redakteur: Vorlagen
         erstellen</li><li>Ressourcen-Redakteur: DMP-Vorlagen anpassen, indem Links
         zu Ressourcen, lokalen Hilfetexten, Beispielantworten und unverbindlichen
         Vorlagen eingebunden werden.</li><li>Ansprechpartner für Feedback: Geben Sie
@@ -761,8 +761,8 @@ de:
     back_submit_buttons:
       submit_for_review_button: Feedback anfordern
       review_not_defined: Es gibt keine Feedbackmöglichkeit bei dieser DMP-Vorlage.
-      done_tooltip_html: <p>Bearbeitung des Plans abschließen.</p>
-      submit_for_review_tooltip_html: <p>Fordern Sie ein unverbindliches Feedback zum Plan durch Ansprechpartner Ihrer Einrichtung an.</p>
+      done_tooltip: <p>Bearbeitung des Plans abschließen.</p>
+      submit_for_review_tooltip: <p>Fordern Sie ein unverbindliches Feedback zum Plan durch Ansprechpartner Ihrer Einrichtung an.</p>
     change_visibility:
       visibility_institutional: 'Mit allen Personen der Einrichtung: %{institution}'
       visibility_public: Öffentlich im Web. Ihr DMP wird auf der Seite "Beispielpläne" angezeigt werden.
@@ -801,7 +801,7 @@ de:
       copy_of: Kopie von %{plan}
       solicitation_identifier_tooltip: Nummer oder Identifier für den Call, in dessen Rahmen der Projektantrag und DMP eingereicht werden.
       submission_deadline_tooltip: Einreichungsfrist für den Projektantrag, für den dieser DMP geschrieben wird.
-      visibility_tooltip_html: 'Drei Sichtbarkeitsoptionen: <ul><li>Öffentlich: Jeder
+      visibility_tooltip: 'Drei Sichtbarkeitsoptionen: <ul><li>Öffentlich: Jeder
         kann den Plan anschauen, kopieren und herunterladen.</li><li>Institutionell:
         Jeder, der über Ihre Einrichtung angemeldet ist, kann den Plan anschauen,
         kopieren und herunterladen.</li><li>Privat: Nur Besitzer und Mitbesitzer können
@@ -848,7 +848,7 @@ de:
       filter_committed_link: Fertig (%{count})
       filter_rejected_link: Überarbeitung empfohlen (%{count})
       filter_reviewed_link: Feedback gegeben (%{count})
-      filter_tooltip_html: '<ul><li>Alle: Alle DMPs, bei denen Sie Besitzer oder Mitbesitzer
+      filter_tooltip: '<ul><li>Alle: Alle DMPs, bei denen Sie Besitzer oder Mitbesitzer
         sind.</li><li>Als Besitzer: DMPs, die Sie selbst angelegt haben.</li><li>Als
         Mitbesitzer: DMPs anderer Personen, die Sie als Mitbesitzer hinzugefügt haben.</li><li>Für
         gut befunden: Ihr DMP erhielt von den Ansprechpartner Ihrer Einrichtung ein
@@ -934,8 +934,8 @@ de:
       group_success_notice: Gruppe wurde erfolgreich angelegt.
       requirement_success_notice: Unterpunkt wurde erfolgreich angelegt.
     form:
-      obligation_tooltip_html: Legen Sie fest, ob ein Unterpunkt verpflichtend beantwortet werden muss (ansonsten kein Fortfahren möglich), oder ob eine Antwort optional ist. Die Grundeinstellung ist optional.
-      group_type_tooltip_html: Tool-Tipp &#8220;text&#8221; steht hier.
+      obligation_tooltip: Legen Sie fest, ob ein Unterpunkt verpflichtend beantwortet werden muss (ansonsten kein Fortfahren möglich), oder ob eine Antwort optional ist. Die Grundeinstellung ist optional.
+      group_type_tooltip: Tool-Tipp &#8220;text&#8221; steht hier.
       requirement_type_tooltip_html: 'Sie können das Format der Antwort zu diesem
         Unterpunkt festlegen. Die Grundeinstlelung ist Text (minimal strukturiertes
         Textformat). Weitere Optionen:<ul><li>Numerisch: für Zahlen, mit optionaler
@@ -947,11 +947,11 @@ de:
       please_wait: Einen Moment bitte...
       template_outline: Vorlage im Überblick
       add_group_link: Gruppe hinzufügen
-      add_group_tooltip_html: Ähnliche Unterpunkte können zu einer &#8220;Gruppe&#8221; zusammengefasst werden.
+      add_group_tooltip: Ähnliche Unterpunkte können zu einer &#8220;Gruppe&#8221; zusammengefasst werden.
       add_requirement_link: Unterpunkt hinzufügen
-      add_requirement_tooltip_html: Ein Unterpunkt fordert den Wissenschaftler dazu auf, Fragen zu einem bestimmten Aspekt des Datenmanagements zu beantworten.
+      add_requirement_tooltip: Ein Unterpunkt fordert den Wissenschaftler dazu auf, Fragen zu einem bestimmten Aspekt des Datenmanagements zu beantworten.
       template_status: Status der DMP-Vorlage
-      template_status_tooltip_html: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzer des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie über &#8220;aktivieren&#8221; sichtbar gemacht werden.
+      template_status_tooltip: Der Status einer DMP-Vorlage ist standarmäßig inaktiv. Das bedeutet, dass Nutzer des DMP-Tools sie nicht sehen können. Wenn die Vorlage fertiggestellt ist, kann sie über &#8220;aktivieren&#8221; sichtbar gemacht werden.
       cant_delete_template: Diese Vorlage kann nicht gelöscht werden, solange noch Pläne im Tool liegen, die mit ihr erstellt wurden.
     update:
       success_notice: Unterpunkt wurde erfolgreich aktualisiert.
@@ -959,7 +959,7 @@ de:
     form:
       template_overview: ÜBERSICHT DMP-VORLAGE
       basic_info_link: Grundlegende Angaben
-      visibility_tooltip_html: |-
+      visibility_tooltip: |-
         Aktive Vorlagen können unterschiedlich sichtbar sein: 
         <ul><li>Öffentlich: jeder kann die Vorlage sehen</li><li>Institutionell: nur Nutzer, die über Ihre Einrichtung eingeloggt sind, können die Vorlage sehen</li></ul>
       optional_info: Optionale Angaben
@@ -993,7 +993,7 @@ de:
       institutional_filter_link: Nur für meine Einrichtung sichtbar (%{count})
       public_filter_link: Öffentlich (%{count})
       inst_public_filter_link: Öffentlich, von meiner Einrichtung erstellt (%{count})
-      filter_tooltip_html: '<ul><li>Aktiv: Die Vorlage wird Nutzern zur Auswahl angeboten,
+      filter_tooltip: '<ul><li>Aktiv: Die Vorlage wird Nutzern zur Auswahl angeboten,
         wenn sie einen neuen DMP erstellen möchten. Einstellung für Sichtbarkeit entweder
         öffentlich (für jedermann sichtbar) oder nur für Nutzer der eigenen Einrichtung.</li><li>Inaktiv:
         Die Vorlage wird Nutzern nicht angeboten, wenn Sie einen neuen DMP erstellen
@@ -1005,7 +1005,7 @@ de:
         sein.</li><li>Öffentlich, von meiner Einrichtung erstellt: Alle DMP-Vorlagen
         mit der Sichtbarkeit &bdquo;öffentlich&rdquo;, eingeschränkt auf die Vorlagen, welche
         von der eigenen Einrichtung erstellt wurden.</li></ul>'
-      sort_by_visibility_tooltip_html: 'Aktive Vorlagen können unterschiedlich sichtbar
+      sort_by_visibility_tooltip: 'Aktive Vorlagen können unterschiedlich sichtbar
         sein: <ul><li>Öffentlich: jeder kann die Vorlage sehen</li><li>Institutionell:
         nur Nutzer, die über Ihre Einrichtung eingeloggt sind, können die Vorlage sehen</li></ul>'
       new_button: Neue Vorlage erstellen >>
@@ -1223,7 +1223,7 @@ de:
       select_institution: Einrichtung auswählen
       dmp_options: DMP-Optionen
       roles: Meine Rollen
-      roles_tooltip_html: '<ul><li>Vorlagen-Redakteur: Vorlagen erstellen</li><li>Ressourcen-Redakteur:
+      roles_tooltip: '<ul><li>Vorlagen-Redakteur: Vorlagen erstellen</li><li>Ressourcen-Redakteur:
         DMP-Vorlagen anpassen, indem Links zu Ressourcen, lokalen Hilfetexten, Beispielantworten
         und unverbindlichen Vorlagen eingebunden werden.</li><li>Ansprechpartner für
         Feedback: Geben Sie formloses oder spezifischeres Feedback zu Datenmanagementplänen.</li><li>Institutioneller
@@ -1239,7 +1239,7 @@ de:
     plan_autocomplete_widget:
       label: 'Mitbesitzer hinzufügen:'
       placeholder: Mitbesitzer hinzufügen; über Name oder E-Mail-Adresse
-      tooltip_html: '<ul><li>Mitbesitzer hinzufügen: Geben Sie einen Namen oder eine
+      tooltip: '<ul><li>Mitbesitzer hinzufügen: Geben Sie einen Namen oder eine
         E-Mail-Adresse ein und wählen Sie den Namen anschließend aus.</li><li>Mitbenutzer
         haben Lese- und Schreibrechte am DMP. Mitbenutzer müssen sich bereits einmal
         im DMP-Tool eingeloggt haben, um zu einem Plan hinzugefügt werden zu können.</li></ul>'
