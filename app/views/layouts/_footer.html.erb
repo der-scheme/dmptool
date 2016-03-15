@@ -8,7 +8,7 @@
 				<%= Layout.footer.each_icon.reduce(&:+) %>
 			</div>
 			<p>
-				<%= Layout.footer.each_link.map {|link| link.wrap(:SeparatorTag, ' | ')}.reduce(&:+) %>
+				<%= Layout.footer.each_link.map {|link| link.wrap(:separator_tag, ' | ')}.reduce(&:+) %>
 			</p>
 		</div>
 	</div>
