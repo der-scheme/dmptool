@@ -45,9 +45,9 @@ $.rails.showConfirmDialog = function(link){
       "<h3><strong>" + message + "</strong></h3>\n" +
       "</div>\n" +
       "<div class=\"modal-footer\">\n" +
-      "<a data-dismiss=\"modal\" class=\"btn\">" + "Cancel" + "</a>\n" +
-      "<a data-dismiss=\"modal\" class=\"btn btn-green confirm\">" + "OK" + "</a>\n" +
-      "</div>\n" +
+      "<a data-dismiss=\"modal\" class=\"btn\">" + t('shared.button.cancel')
+      + "</a>\n<a data-dismiss=\"modal\" class=\"btn btn-green confirm\">" +
+      t('shared.submit_button.ok') + "</a>\n" + "</div>\n" +
       "</div>";
 
   $(html).modal();
@@ -125,3 +125,12 @@ function localized_temporal_format(temporal, format) {
 
   return t(temporal + '.formats.' + format).replace(/%/g, '');
 };
+
+// If we're on a certain tab, make sure the tab is still open after changing the
+// locale.
+$(function () {
+  $('.choose_language').click(function () {
+    var $this = $(this);
+    $this.attr('href', $this.attr('href') + window.location.hash);
+  });
+});

@@ -85,7 +85,7 @@
   <%= label_tag "#{user_role}_name", t('.label'), class: 'control-label' %>
   <div class="controls">
     <%= text_field_tag "#{user_role}_name", nil, placeholder: t('.placeholder'), class: 'input-xxlarge' %>
-    <%= content_tag :span, '', title: t('.tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
+    <%= content_tag :span, '', title: t('.tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
     <%= hidden_field_tag "item_description", item_description %>
   </div>
 </div>

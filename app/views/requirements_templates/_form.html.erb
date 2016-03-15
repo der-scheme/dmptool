@@ -21,7 +21,7 @@
 				<div class="control-group">
 					<p class="control-label required">
 						<%= content_tag :span, '',
-														title: t('.visibility_tooltip_html'),
+														title: t('.visibility_tooltip'),
 														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
 														class: 'icon questionmark tip' %>
 						<%= @requirements_template.class.human_attribute_name(:visibility) %>
@@ -90,7 +90,7 @@
 				<div class="control-group">
 					<p class="control-label">
 						<%= content_tag :span, '',
-														title: t('.review_type_tooltip_html'),
+														title: t('.review_type_tooltip'),
 														data: {toggle: 'tooltip', placement: 'right', html: 'true'},
 														class: 'icon questionmark tip' %>
 						<%= RequirementsTemplate.human_attribute_name(:review_requirement) %>

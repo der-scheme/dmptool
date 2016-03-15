@@ -1,4 +1,6 @@
 <% @title_text = ResourceContext.model_name.human(count: false) %>
+
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon resource-template"></span><%= @title_text %></h1>
 <table class="table table-striped">
   <thead>

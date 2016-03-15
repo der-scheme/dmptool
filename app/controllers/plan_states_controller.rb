@@ -7,7 +7,7 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
     if user_role_in?(:institutional_reviewer, :institutional_admin, :dmp_admin)
       review_plan_state(:approved) if (plan_state == :submitted || plan_state == :approved)
     else
-      flash[:error] =  "You dont have permission to Approve this plan."
+      flash[:error] =  t('.permission_error')
       redirect_to perform_review_plan_path(@plan)
     end
   end
@@ -19,11 +19,11 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
       if (plan_state == :submitted || plan_state == :approved || plan_state == :reviewed)
         review_plan_state(:reviewed) and return
       else
-        flash[:error] =  "You can't review the plan from it's current state."
+        flash[:error] =  t('.state_error')
         redirect_to perform_review_plan_path(@plan) and return
       end
     else
-      flash[:error] =  "You don't have permission to Review this plan."
+      flash[:error] =  t('.permission_error')
       redirect_to perform_review_plan_path(@plan) and return
     end
   end
@@ -34,7 +34,7 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
     if user_role_in?(:institutional_reviewer, :institutional_admin, :dmp_admin)
       review_plan_state(:rejected) if (plan_state == :submitted || plan_state == :rejected)
     else
-      flash[:error] =  "You dont have permission to Approve this plan."
+      flash[:error] =  t('.permission_error')
       redirect_to perform_review_plan_path(@plan)
     end
   end
@@ -55,7 +55,7 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
       if @responses.count == count
         create_plan_state(:submitted)
       else
-        flash[:error] =  "Please complete all the mandatory Responses for the Plan to be Submitted."
+        flash[:error] =  t('.incomplete_error')
         redirect_to preview_plan_path(@plan)
       end
     end
@@ -71,7 +71,7 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
       if @responses.count == count
         create_plan_state(:committed)
       else
-        flash[:error] =  "Please complete all the mandatory Responses for the Plan to be Finished."
+        flash[:error] =  t('.incomplete_error')
         redirect_to preview_plan_path(@plan)
       end
     end
@@ -84,38 +84,22 @@ before_action :set_plan, only: [:approved, :rejected, :submitted, :committed, :r
     end
 
     def create_plan_state(state)
-
-      if state == :submitted
-        @notice_1 = "This plan has been submitted for review."
-        @notice_2 = "This Plan has been already submitted for review."
-      else
-        @notice_1 = "The Plan has been #{state == :committed ? "Completed" : state}."
-        @notice_2 = "The Plan has already been #{state== :committed ? "Completed" : state}."
-      end
       unless @plan.current_plan_state == state
         plan_state = PlanState.create( plan_id: @plan.id, state: state, user_id: current_user.id)
         @plan.current_plan_state_id = plan_state.id
-        redirect_to preview_plan_path(@plan), notice: @notice_1
+        redirect_to preview_plan_path(@plan), notice: t('helpers.controller.plan_state.state_changed', state: state)
       else
-        redirect_to preview_plan_path(@plan), alert: @notice_2
+        redirect_to preview_plan_path(@plan), alert: t('helpers.controller.plan_state.already_in_state', state: state)
       end
     end
 
     def review_plan_state(state)
-
-      if state == :submitted
-        @notice_1 = "This plan has been submitted for review."
-        @notice_2 = "This Plan has been already submitted for review."
-      else
-        @notice_1 = "The Plan has been #{state== :committed ? "Completed" : state}."
-        @notice_2 = "The Plan has already been #{state== :committed ? "Completed" : state}."
-      end
       unless @plan.current_plan_state == state
         plan_state = PlanState.create( plan_id: @plan.id, state: state, user_id: current_user.id)
         @plan.current_plan_state_id = plan_state.id
-        redirect_to perform_review_plan_path(@plan), notice: @notice_1
+        redirect_to perform_review_plan_path(@plan), notice: t('helpers.controller.plan_state.state_changed', state: state)
       else
-        redirect_to perform_review_plan_path(@plan), alert: @notice_2
+        redirect_to perform_review_plan_path(@plan), alert: t('helpers.controller.plan_state.already_in_state', state: state)
       end
     end
 

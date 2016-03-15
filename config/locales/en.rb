@@ -18,6 +18,10 @@ end
           name = count == 1 ? 'Institution' : 'Institutions'
           unit ? "#{count} #{name}" : name
         end,
+        plan: lambda do |_, count: 1, unit: false, **__|
+          name = count == 1 ? 'DMP' : 'DMPs'
+          unit ? "#{count} #{name}" : name
+        end,
         requirements_template: lambda do |_, count: 1, unit: false, **__|
           name = count == 1 ? 'DMP Template' : 'DMP Templates'
           unit ? "#{count} #{name}" : name
@@ -71,13 +75,22 @@ end
         parent_tooltip: "If you do not see your institution listed in the dropdown list, contact #{i18n_join_en(APP_CONFIG['feedback_email_to'])}."
       }
     },
+    helpers: {
+      controller: {
+        plan_state: {
+          state_changed: lambda do |_, state: nil, **__|
+            "The plan has been #{I18n.t("enum.plan_state.state.#{state}")}."
+          end,
+          already_in_state: lambda do |_, state: nil, **__|
+            "The Plan has already been #{I18n.t("enum.plan_state.state.#{state}")}."
+          end
+        }
+      }
+    },
     plans: {
       create: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
-      },
-      form: {
-        visibility_note_html: ->(_, **_) {"<span>Note: when visibility is set to \"Public\", your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site and it will be downloadable and copy-able. </span>"}
       },
       index: {
         visibility_tooltip: lambda do |_, parent: false, **_|

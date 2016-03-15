@@ -2,6 +2,7 @@
 <% @display_menu = "dmp_templates" %>
 
 <%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 
 <div class="table-scope">
@@ -17,7 +18,7 @@
 	|
 	<%= link_to t('.inst_public_filter_link', count: @your_inst_public), {scope: "your_inst_public", order_scope: @order_scope, all_scope: @all_scope}, class: 'your_inst_public' %>
 
-	<%= content_tag(:span, '', title: t('.filter_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
+	<%= content_tag(:span, '', title: t('.filter_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
 </div>
 <table class="table table-striped" id="dmp_templates">
 	<thead>
@@ -34,7 +35,7 @@
       </th>
       <th>
       	<%= sortable :visibility %>
-      	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
+      	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
       </th>
       <th>
       	<%= sortable :created_at %>

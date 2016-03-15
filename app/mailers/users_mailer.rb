@@ -151,6 +151,7 @@ private
     buffer = ActiveSupport::SafeBuffer.new
     spacer = "\n#{'=' * 80}\n\n" if I18n.available_locales.size > 1
     locale = I18n.locale
+    url_locale = default_url_options[:locale]
     locales = I18n.available_locales.reject {|lcl| lcl == locale}
 
     locales.each do |locale|
@@ -160,9 +161,11 @@ private
 
     locales.unshift(locale).each do |locale|
       I18n.locale = locale
+      default_url_options[:locale] ||= locale
       buffer << spacer << super(*args, **options)
     end
     I18n.locale = locale
+    default_url_options[:locale] = url_locale
 
     buffer
   end

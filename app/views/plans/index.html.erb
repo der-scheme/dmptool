@@ -23,7 +23,7 @@
   |
   <%= link_to t('.filter_reviewed_link',  count: @reviewed),  {order_scope: @order_scope, scope: 'reviewed',    all_scope: @all_scope}, class: 'reviewed' %>
 
-  <%= content_tag :span, '', title: t('.filter_tooltip_html'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
+  <%= content_tag :span, '', title: t('.filter_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
 </div>
 
 <table class="table table-striped" id="dmp_plans">
