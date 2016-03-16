@@ -6,10 +6,6 @@ module Layout
     class Base
       include ActionView::Helpers
 
-      def self.separator
-        ActiveSupport::SafeBuffer.new(' | ')
-      end
-
       attr_reader :if
 
       def initialize(config)
