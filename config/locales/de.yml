@@ -961,9 +961,9 @@ de:
       obligation_tooltip: Legen Sie fest, ob ein Unterpunkt verpflichtend beantwortet werden muss (ansonsten kein Fortfahren möglich), oder ob eine Antwort optional ist. Die Grundeinstellung ist optional.
       group_type_tooltip: Tool-Tipp &#8220;text&#8221; steht hier.
       requirement_type_tooltip_html: 'Sie können das Format der Antwort zu diesem
-        Unterpunkt festlegen. Die Grundeinstlelung ist Text (minimal strukturiertes
+        Unterpunkt festlegen. Die Grundeinstellung ist Text (minimal strukturiertes
         Textformat). Weitere Optionen:<ul><li>Numerisch: für Zahlen, mit optionaler
-        Angabe der Maßeinheit.</li><li>Datum: YYYY, YYY-MM, oder YYYY-MM-DD</li><li>Auswahlliste:
+        Angabe der Maßeinheit.</li><li>Datum mit folgenden Format: YYYY-MM-DD</li><li>Auswahlliste:
         Auswahlliste mit möglichen Antworten.</li></ul>'
       add_item_link: Objekt hinzufügen
     index:
