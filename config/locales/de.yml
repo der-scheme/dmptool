@@ -991,11 +991,12 @@ de:
       end_date_tooltip: Das Enddatum für die Vorlage - wird oft vom Drittmittelgeber als Enddatum für die Antragsstellung genannt.
       review_type_tooltip: 'Sie können bei Plänen, die mit dieser Vorlage erstellt
         werden, aus drei Feedback-Optionen durch Ansprechpartner an Ihrer Einrichtung
-        wählen. </li><li>Unverbindliches Feedback kann angefordert werden: Der Benutzer
-        hat die Wahl, entweder den Plan abzuschließen oder Feedback einzuholen.</li><li>kein
-        Feedback erforderlich / Feedback-Prozess wird nicht angeboten: Der Benutzer
-        hat nicht die Möglichkeit Feedback einzuholen, sondern kann lediglich den
-        Plan fertigstellen.</li></ul>'
+        wählen. <li>Feedback erforderlich: Der Plan kann nur abgeschlossen werden,
+        sofern der Feedback-Prozess erfolgreich abgeschlossen wurde.</li><li>Unverbindliches
+        Feedback kann angefordert werden: Der Benutzer hat die Wahl, entweder den
+        Plan abzuschließen oder Feedback einzuholen.</li><li>kein Feedback erforderlich
+        / Feedback-Prozess wird nicht angeboten: Der Benutzer hat nicht die Möglichkeit
+        Feedback einzuholen, sondern kann lediglich den Plan fertigstellen.</li></ul>'
       add_funder_link_link: Link zum Drittmittelgeber hinzufügen
       add_sample_plan_link: Musterplan hinzufügen
       save_and_next_button: Speichern und Weiter >>
