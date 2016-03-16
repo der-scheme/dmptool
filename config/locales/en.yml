@@ -970,9 +970,9 @@ en:
       requirement_type_tooltip: 'You can designate the format of the answer to
         be given to a requirement. The default format is text (minimal structured
         text format). Other options: <ul><li>Numeric format: for integer or real number
-        answers, with an optional unit of measure.</li><li>Date format: YYYY, YYY-MM,
-        or YYYY-MM-DD</li><li>Enum format: answers are an ordered list of values from
-        which the researcher can select.</li></ul>'
+        answers, with an optional unit of measure.</li><li>Date with format: YYYY-MM-DD</li><li>Enum
+        format: answers are an ordered list of values from which the researcher can
+        select.</li></ul>'
       add_item_link: Click to Add Item
     index:
       title: DMP Template Details
