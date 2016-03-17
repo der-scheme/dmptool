@@ -1,4 +1,10 @@
 de:
+  views:
+    pagination:
+      first: '&laquo; Erste Seite'
+      last: 'Letzte Seite &raquo;'
+      next: 'vor &rsaquo;'
+      previous: '&lsaquo; zurück'
   date:
     formats:
       default: '%d.%m.%Y'
