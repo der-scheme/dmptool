@@ -77,7 +77,11 @@
   padding: 17px 17px 13px; }
 .header ul.nav > li {
 	&.current > a, &> a:hover, &> a:focus, &> a:active { color: #A1E000; }
-	&.current {
+	&.current,
+			.home &.nav-static_pages-home, .dashboard &.nav-dashboard-show,
+			.dmp_requirements &.nav-static_pages-guidance,
+			.public_dmps &.nav-plans-public, .help &.nav-static_pages-help,
+			.contact &.nav-static_pages-contact, .about &.nav-static_pages-about {
 		&> a { background: rgba(0,0,0,0.05); }
 	}
 }
