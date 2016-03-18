@@ -8,23 +8,9 @@
   </div>
   <nav class="navbar">
     <ul class="nav">
-      <li class="nav-home<%= (menu_level(0) == 'home' ? ' current' : '') %>">
-        <%= link_to_root title: root_text %>
-      </li>
-      <% if current_user %>
-        <li class="nav-dashboard">
-          <%= link_to_dashboard title: dashboard_text %>
-        </li>
+      <% Layout.header.each_item do |item| %>
+        <%= item if item.render?(self) %>
       <% end %>
-      <li class="nav-guidance<%= (menu_level(0) == 'dmp_requirements' ? ' current' : '') %>">
-        <%= link_to_guidance title: guidance_text %>
-      </li>
-      <li class="nav-public<%= (menu_level(0) == 'public_dmps' ? ' current' : '') %>">
-        <%= link_to_public_dmps title: t('.public_dmps_tooltip', default: url_text_i18n_keys(controller: :plans, action: :public)) %>
-      </li>
-      <li class="nav-help<%= (menu_level(0) == 'help' ? ' current' : '') %>">
-        <%= link_to_help title: help_text %>
-      </li>
       <li class="login<%= (menu_level(0) == 'log_in' ? ' current' : '') %>">
         <% if current_user %>
           <%= link_to_logout do |text| %>
@@ -37,16 +23,6 @@
             <%= text %>
           <% end %>
         <% end %>
-      </li>
-      <li class="nav-about parent<%= (menu_level(0) == 'about' ? ' current' : '') %>">
-        <%= link_to_about title: about_text %>
-      	<ul class="children right">
-      	  <li><%= link_to t('.faq_link'), t('.faq_url'), :title => t('.faq_title'), :target => "_blank" %></li>
-          <li><%= link_to_partners title: partners_text %></li>
-      	</ul>
-      </li>
-      <li class="nav-contact<%= (menu_level(0) == 'contact' ? ' current' : '') %>">
-        <%= link_to_contact title: contact_text %>
       </li>
     </ul>
   </nav>
