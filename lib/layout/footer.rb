@@ -1,6 +1,6 @@
 
-require 'layout/tags/a.rb'
-require 'layout/tags/icon.rb'
+require 'layout/tags/a'
+require 'layout/tags/icon'
 
 module Layout
   class Footer
