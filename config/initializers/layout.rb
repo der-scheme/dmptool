@@ -29,7 +29,7 @@ page_config = {
         }
       },
       {
-        href: {controller: :static_pages, action: :public},
+        href: {controller: :plans, action: :public},
         label: {
           key: 'layouts.header.public_dmps_link',
           fallback: 'Public DMPs'
