@@ -12,8 +12,6 @@ module Layout
       end
 
       def to_s
-        return unless active?
-
         case text
         when self.class
           @text.text

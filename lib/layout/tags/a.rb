@@ -20,8 +20,6 @@ module Layout
       end
 
       def to_s(label = nil, **attributes)
-        return unless active?
-
         if @href.is_a?(Hash) && self.class.const_defined?(:RouteI18n)
           title = url_text_for(@href)
         else

@@ -14,12 +14,13 @@ module Layout
         Text.new(other.append_to(self))
       end
 
-      def active?
+      def render?(context)
         return true unless instance_variable_defined?(:@if)
 
         case @if
-        when String then eval @if
-        when Proc   then instance_exec(&@if)
+        when String then context.instance_eval(@if)
+        when Proc   then context.instance_exec(&@if)
+        when Symbol then context.public_send(@if)
         else             @if
         end
       end
