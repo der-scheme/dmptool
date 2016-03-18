@@ -1,35 +1,10 @@
 {
   header: {
     navigation: [
-      {
-        href: {controller: :static_pages, action: :home},
-        label: {
-          key: 'layouts.header.home_link',
-          fallback: 'Home'
-        }
-      },
-      {
-        href: {controller: :dashboard, action: :show},
-        if: :current_user,
-        label: {
-          key: 'layouts.header.dashboard_link',
-          fallback: 'My Dashboard'
-        }
-      },
-      {
-        href: {controller: :static_pages, action: :guidance},
-        label: {
-          key: 'layouts.header.guidance_link',
-          fallback: 'DMP Requirements'
-        }
-      },
-      {
-        href: {controller: :plans, action: :public},
-        label: {
-          key: 'layouts.header.public_dmps_link',
-          fallback: 'Public DMPs'
-        }
-      },
+      {href: {controller: :static_pages, action: :home}},
+      {href: {controller: :dashboard, action: :show}, if: :current_user},
+      {href: {controller: :static_pages, action: :guidance}},
+      {href: {controller: :plans, action: :public}},
       {
         href: 'http://blog.dmptool.org',
         label: {
@@ -37,26 +12,10 @@
           fallback: 'News'
         }
       },
-      {
-        href: {controller: :static_pages, action: :help},
-        label: {
-          key: 'layouts.header.help_link',
-          fallback: 'Help'
-        }
-      },
-      {
-        href: {controller: :static_pages, action: :contact},
-        label: {
-          key: 'layouts.header.contact_link',
-          fallback: 'Contact Us'
-        }
-      },
+      {href: {controller: :static_pages, action: :help}},
+      {href: {controller: :static_pages, action: :contact}},
       {
         href: {controller: :static_pages, action: :about},
-        label: {
-          key: 'layouts.header.about_link',
-          fallback: 'About'
-        },
         children: [
           {
             href: 'http://dmptool.askbot.com',
@@ -65,20 +24,8 @@
               fallback: 'FAQ'
             }
           },
-          {
-            href: {controller: :static_pages, action: :video},
-            label: {
-              key: 'layouts.header.video_link',
-              fallback: 'Video'
-            }
-          },
-          {
-            href: {controller: :static_pages, action: :partners},
-            label: {
-              key: 'layouts.header.parners_link',
-              fallback: 'Partner Institutions'
-            }
-          }
+          {href: {controller: :static_pages, action: :video}},
+          {href: {controller: :static_pages, action: :partners}}
         ]
       }
     ]
@@ -96,31 +43,9 @@
           fallback: 'Accessibility Policy'
         }
       },
-      {
-        href: {controller: :static_pages, action: :terms_of_use},
-        label: {
-          key: 'layouts.footer.terms_link',
-          fallback: 'Terms of Use'
-        }
-      },
-      {
-        href: {controller: :static_pages, action: :contact},
-        label: {
-          key: 'layouts.footer.contact_link',
-          fallback: 'Contact Us'
-        }
-      },
-      {
-        href: {controller: :static_pages, action: :about},
-        label: {
-          key: 'layouts.footer.about_link',
-          fallback: 'About'
-        },
-        title: {
-          key: 'layouts.footer.about_link_title',
-          fallback: 'About the California Digital Library Data Management Tool'
-        }
-      },
+      {href: {controller: :static_pages, action: :terms_of_use}},
+      {href: {controller: :static_pages, action: :contact}},
+      {href: {controller: :static_pages, action: :about}},
     ],
     icons: [
       {
