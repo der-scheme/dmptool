@@ -1,4 +1,6 @@
 
+require 'layout/tags/text'
+
 module Layout
   module Tags
     class Base
