@@ -1,6 +1,5 @@
 development:
   rss:                    https://blog.dmptool.org/feed
-  blog:                   http://blog.dmptool.org
   feedback_email_to:      [pwillet.ucop.edu, mstrong@ucop.edu, sfisher@ucop.edu]
   feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
@@ -20,7 +19,6 @@ development_nonlocal:
 
 stage:
   rss:                    https://blog.dmptool.org/feed
-  blog:                   http://blog.dmptool.org
   feedback_email_to:      [uc3@ucop.edu]
   feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
@@ -40,7 +38,6 @@ stage_development:
 
 production:
   rss:                    https://blog.dmptool.org/feed
-  blog:                   http://blog.dmptool.org
   feedback_email_to:      [uc3@ucop.edu]
   feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
@@ -61,7 +58,6 @@ production_development:
 
 test:
   rss:                    https://blog.dmptool.org/feed
-  blog:                   http://blog.dmptool.org
   feedback_email_to:      [pwillet.ucop.edu, mstrong@ucop.edu]
   feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
