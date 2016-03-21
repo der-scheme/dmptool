@@ -1,9 +1,7 @@
 
-require 'layout/tags/base'
-
 module Layout
   module Tags
-    class Text < Base
+    class Text < Layout::Tags::Base
 
       attr_reader :text
 

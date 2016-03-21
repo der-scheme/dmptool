@@ -1,3 +1,7 @@
 
-require 'layout/tags/wrappers/base'
-require 'layout/tags/wrappers/separator_tag'
+module Layout
+  module Tags
+    module Wrappers
+    end
+  end
+end

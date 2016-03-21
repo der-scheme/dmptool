@@ -1,9 +1,7 @@
 
-require 'layout/tags/base'
-
 module Layout
   module Tags
-    class A < Base
+    class A < Layout::Tags::Base
       include ActionDispatch::Routing
       include Rails.application.routes.url_helpers
       # Conditional include, depending on wether we have merged this with a

@@ -1,8 +1,4 @@
 
-require 'layout/footer'
-require 'layout/header'
-require 'layout/tags'
-
 module Layout
   def self.configure(config)
     @@header = Header.new(config[:header])

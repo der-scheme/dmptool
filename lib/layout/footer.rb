@@ -1,7 +1,4 @@
 
-require 'layout/tags/a'
-require 'layout/tags/icon'
-
 module Layout
   class Footer
     def initialize(config)
