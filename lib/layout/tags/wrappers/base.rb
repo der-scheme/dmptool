@@ -1,6 +1,4 @@
 
-require 'layout/tags/base'
-
 module Layout
   module Tags
     module Wrappers

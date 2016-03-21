@@ -1,9 +1,7 @@
 
-require 'layout/tags/a'
-
 module Layout
   module Tags
-    class Icon < A
+    class Icon < Layout::Tags::A
       def self.separator
         ActiveSupport::SafeBuffer.new
       end
