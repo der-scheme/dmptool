@@ -1,10 +1,8 @@
 
-require 'layout/tags/wrappers/base'
-
 module Layout
   module Tags
     module Wrappers
-      class SeparatorTag < Base
+      class SeparatorTag < Layout::Tags::Wrappers::Base
 
         attr_reader :spacer
 
