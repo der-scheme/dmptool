@@ -20,13 +20,17 @@
       <% end %>
 
       <!-- DMP Templates -->
-      <%= content_tag :li, class: ('current' if menu_level(0) == 'dmp_templates') do %>
-        <%= link_to(content_tag(:span, 'DMP Templates'), requirements_templates_path) %>
+      <% if user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor) %>
+        <%= content_tag :li, class: ('current' if menu_level(0) == 'dmp_templates') do %>
+          <%= link_to(content_tag(:span, 'DMP Templates'), requirements_templates_path) %>
+        <% end %>
       <% end %>
 
       <!-- Customizations -->
-      <%= content_tag :li, class: ('current' if menu_level(0) == 'customizations') do %>
-        <%= link_to(content_tag(:span, 'Customizations'), resource_contexts_path) %>
+      <% if user_role_in?(:dmp_admin) %>
+        <%= content_tag :li, class: ('current' if menu_level(0) == 'customizations') do %>
+          <%= link_to(content_tag(:span, 'Customizations'), resource_contexts_path) %>
+        <% end %>
       <% end %>
 
       <!-- Institution Profile -->
