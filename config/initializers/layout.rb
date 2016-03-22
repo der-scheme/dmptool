@@ -161,4 +161,4 @@ if File.exists?(filename)
   page_config.deep_merge!(eval(IO.read(filename), binding, filename))
 end
 
-Layout.configure(page_config)
+Rails.configuration.layout = page_config

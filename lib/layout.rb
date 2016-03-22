@@ -1,15 +1,10 @@
 
 module Layout
-  def self.configure(config)
-    @@header = Header.new(config[:header])
-    @@footer = Footer.new(config[:footer])
-  end
-
   def self.header
-    @@header
+    @@header = Header.new(Rails.configuration.layout[:header])
   end
 
   def self.footer
-    @@footer
+    @@footer = Footer.new(Rails.configuration.layout[:footer])
   end
 end
