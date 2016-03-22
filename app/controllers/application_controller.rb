@@ -242,7 +242,7 @@ class ApplicationController < ActionController::Base
 
     def extract_locale_from_accept_language_header
       locale = request.env['HTTP_ACCEPT_LANGUAGE']
-          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})/)
+          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})?/)
           .try(:first).try(:to_sym)
       locale if locale.in?(Rails.application.config.i18n.available_locales)
     end
