@@ -307,6 +307,18 @@ en:
         confirm: Are you sure?
   helpers:
     controller:
+      application:
+        generic:
+          permission_denied: You do not have permission to view this page.
+          access_denied: "You don't have access to this content."
+          login_needed: You need to be logged in.
+        require_login:
+          generic: You must be logged in to access this page.
+          identity: You must fill in your first and last name and save your account information to continue using the DMP tool.
+        require_logout: "The page you're trying to access is only available to logged out users."
+        check_editor_for_this_customization:
+          missing_id: A customization id is missing
+          incorrect_customization: "You've selected an incorrect customization"
       plan:
         not_found_error: The Plan you were looking for does not exist.
         not_allowed_error: "You don't have access to this content."
