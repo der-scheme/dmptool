@@ -241,14 +241,13 @@ class ApplicationController < ActionController::Base
     end
 
     def extract_locale_from_accept_language_header
-      request.env['HTTP_ACCEPT_LANGUAGE']
-          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})?/)
-          .map(&:to_sym)
-          .each do |locale|
-        return locale if locale.in?(I18n.available_locales)
-      end
+      return unless request.env['HTTP_ACCEPT_LANGUAGE']
 
-      nil
+      request.env['HTTP_ACCEPT_LANGUAGE']
+          .scan(/([[:alpha:]]+(?:-[[:alpha:]]+)?)(?:\s*;\s*q\s*=\s*(\d?\.\d+|\d))?/)
+          .sort_by {|_, quality| quality ? (1.0 - quality.to_f) : 0.0}
+          .map(&:first)
+          .find {|locale| I18n.locale_available?(locale)}
     end
 
     ## Stores the current #params in the #session hash.
