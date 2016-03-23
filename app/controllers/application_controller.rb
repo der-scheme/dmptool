@@ -37,11 +37,11 @@ class ApplicationController < ActionController::Base
 
     def require_login
       if session[:user_id].blank?
-        flash[:error] = "You must be logged in to access this page."
+        flash[:error] = t('helpers.controller.application.require_login.generic')
         session[:return_to] = request.original_url
         redirect_to choose_institution_path and return
       elsif controller_name != 'users' && (current_user.first_name.blank? || current_user.last_name.blank?)
-        flash[:error] = "You must fill in your first and last name and save your account information to continue using the DMP tool."
+        flash[:error] = t('helpers.controller.application.require_login.identity')
         redirect_to edit_user_path(session[:user_id])
       end
     end
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     #require that a user is logged out
     def require_logout
       if session && !session[:user_id].blank?
-        flash[:error] = "The page you're trying to access is only available to logged out users."
+        flash[:error] = t('helpers.controller.application.require_logout')
         redirect_to dashboard_path and return
       end
     end
@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
     #checks you're an editor for customizations in general
     def check_customization_editor
       unless user_role_in?(:dmp_admin, :resource_editor, :institutional_admin)
-        flash[:error] = "You do not have permission to view this page."
+        flash[:error] = t('helpers.controller.application.generic.permission_denied')
         redirect_to dashboard_path and return
       end
     end
@@ -67,18 +67,18 @@ class ApplicationController < ActionController::Base
     #and params[:id] is the number of the container customization.
     def check_editor_for_this_customization
       if params[:id].blank?
-        flash[:error] = 'A customization id is missing'
+        flash[:error] = t('helpers.controller.application.check_editor_for_this_customization.missing_id')
         redirect_to resource_contexts_path and return
       end
       cust = ResourceContext.find_by_id(params[:id])
       level = cust.resource_level unless cust.nil?
       if cust.nil? || !level['Container'] #this isn't a container customization
-        flash[:error] = "You've selected an incorrect customization"
+        flash[:error] = t('helpers.controller.application.check_editor_for_this_customization.incorrect_customization')
         redirect_to resource_contexts_path and return
       end
       # the user doesn't have permissions on this institution and isn't a DMP admin
       if !current_user.institution.subtree_ids.include?(cust.institution_id) && !user_role_in?(:dmp_admin)
-        flash[:error] = "You do not have permission to view this page."
+        flash[:error] = t('helpers.controller.application.generic.permission_denied')
         redirect_to dashboard_path and return
       end
     end
@@ -111,9 +111,9 @@ class ApplicationController < ActionController::Base
     def check_admin_access
       unless user_role_in?(:dmp_admin, :resource_editor, :template_editor, :institutional_reviewer, :institutional_reviewer)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -122,9 +122,9 @@ class ApplicationController < ActionController::Base
     def check_institution_admin_access
       unless user_role_in?(:dmp_admin, :institutional_admin)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -133,9 +133,9 @@ class ApplicationController < ActionController::Base
     def check_dmp_admin_access
       unless user_role_in?(:dmp_admin)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -146,9 +146,9 @@ class ApplicationController < ActionController::Base
     def check_DMPTemplate_editor_access
       unless user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -157,9 +157,9 @@ class ApplicationController < ActionController::Base
     def view_DMP_index_permission
       unless user_role_in?(:dmp_admin, :institutional_admin, :template_editor, :resource_editor)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -168,9 +168,9 @@ class ApplicationController < ActionController::Base
     def check_resource_editor_access
       unless user_role_in?(:dmp_admin, :institutional_admin, :resource_editor)
         if current_user
-          flash[:error] = "You don't have access to this content."
+          flash[:error] = t('helpers.controller.application.generic.access_denied')
         else
-          flash[:error] = "You need to be logged in."
+          flash[:error] = t('helpers.controller.application.generic.login_needed')
         end
         redirect_to root_url # halts request cycle
       end
@@ -241,10 +241,13 @@ class ApplicationController < ActionController::Base
     end
 
     def extract_locale_from_accept_language_header
-      locale = request.env['HTTP_ACCEPT_LANGUAGE']
-          .try(:scan, /^[a-z]{2}(?:-[A-Z]{2})/)
-          .try(:first).try(:to_sym)
-      locale if locale.in?(Rails.application.config.i18n.available_locales)
+      return unless request.env['HTTP_ACCEPT_LANGUAGE']
+
+      request.env['HTTP_ACCEPT_LANGUAGE']
+          .scan(/([[:alpha:]]+(?:-[[:alpha:]]+)?)(?:\s*;\s*q\s*=\s*(\d?\.\d+|\d))?/)
+          .sort_by {|_, quality| quality ? (1.0 - quality.to_f) : 0.0}
+          .map(&:first)
+          .find {|locale| I18n.locale_available?(locale)}
     end
 
     ## Stores the current #params in the #session hash.

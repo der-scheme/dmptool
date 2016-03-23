@@ -86,7 +86,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
@@ -98,7 +98,7 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
@@ -113,7 +113,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template, after_url: request.original_url),
@@ -124,7 +124,7 @@
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
@@ -155,7 +155,7 @@
 
 					<% elsif (user_role_in?(:resource_editor)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<%else%>
