@@ -4,12 +4,19 @@ class UsersMailer < ActionMailer::Base
   helper RouteI18n::Helper
   layout 'plain', only: [:password_reset, :username_reminder]
 
+  # Reset the locale after each action. This is needed as subsequent controller
+  # code would run into our faked locales otherwise.
+  before_action :save_locale
+  after_action  :restore_locale
+
   # For each notification that affects not just the triggering user, set the
   # locale to the I18n default locale, as otherwise all users would receive
   # emails in the triggering user's language.
 
   before_action :set_default_locale,
                 except: [:password_reset, :username_reminder]
+
+  before_filter :set_url_options
 
   ##
   # Override the default mail method and prepend a string to the subject
@@ -21,8 +28,6 @@ class UsersMailer < ActionMailer::Base
     options[:to] = options[:to].email if options[:to].is_a? ActiveRecord::Base
     super(*args, **options)
   end
-
-  before_filter :set_url_options
 
   def username_reminder(uid, email)
     @uid = uid
@@ -131,6 +136,14 @@ private
     default_url_options[:locale] ||= nil
   end
 
+  def save_locale
+    @_locale = [I18n.locale, default_url_options[:locale]]
+  end
+
+  def restore_locale
+    I18n.locale, default_url_options[:locale] = *@_locale
+  end
+
   ##
   # Augment the original #_render_template method.
   #
@@ -151,7 +164,6 @@ private
     buffer = ActiveSupport::SafeBuffer.new
     spacer = "\n#{'=' * 80}\n\n" if I18n.available_locales.size > 1
     locale = I18n.locale
-    url_locale = default_url_options[:locale]
     locales = I18n.available_locales.reject {|lcl| lcl == locale}
 
     locales.each do |locale|
@@ -164,8 +176,6 @@ private
       default_url_options[:locale] ||= locale
       buffer << spacer << super(*args, **options)
     end
-    I18n.locale = locale
-    default_url_options[:locale] = url_locale
 
     buffer
   end
