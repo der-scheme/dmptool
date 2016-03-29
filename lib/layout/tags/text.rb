@@ -12,7 +12,7 @@ module Layout
       def to_s
         case text
         when self.class
-          @text.text
+          @text.text.to_s
         when Hash
           I18n.t(text[:key], default: text[:fallback])
         when Proc
