@@ -36,6 +36,7 @@
         .html_safe
     end,
     links: [
+      {href: {controller: :static_pages, action: :privacy}},
       {
         href: 'http://www.ucop.edu/electronic-accessibility/initiative/policy.html',
         label: {
