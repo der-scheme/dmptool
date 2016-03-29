@@ -409,7 +409,7 @@ de:
       title: 'Dmp-Tool2: %{title_text}'
     dashboard_create_dmp_submenu:
       overview: Übersicht über DMP
-      details: Details des DMP
+      details: Details des DMPs
       preview: Vorschau auf DMP
     dashboard_customizations_under_dmp_submenu:
       templates: DMP-Vorlagen
@@ -801,7 +801,7 @@ de:
       coowner_not_privileged_error: Ein Mitbesitzer kann den Plan nicht löschen.
       success_notice: Der Plan wurde erfolgreich gelöscht.
     details:
-      dmp_details: Details des DMP
+      dmp_details: Details des DMPs
       edit_instructions: Indem Sie auf einen Abschnitt klicken, können Sie ihn bearbeiten.
       complete_icon_meaning: ' = Fertig'
       mandatory_icon_meaning: ' = Verpflichtend'
