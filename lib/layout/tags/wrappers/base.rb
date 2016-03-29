@@ -2,9 +2,13 @@
 module Layout
   module Tags
     module Wrappers
+
+      ##
+      # A decorator class for other tags.
+
       class Base < Layout::Tags::Base
 
-        delegate :active?, to: :@tag
+        delegate :render?, to: :@tag
         delegate :to_s, to: :@tag
 
         def initialize(tag)

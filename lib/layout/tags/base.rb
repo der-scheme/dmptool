@@ -1,8 +1,28 @@
 
+##
+
 module Layout
   module Tags
+
+    ##
+    # Base class for all (literal and virtual) HTML tags, compatible with layout
+    # configuration options.
+    #
+    # === Configuration ===
+    # Configured by a Hash, supporting the following keys, as well as the
+    # options supported by the Base class.
+    # [:if]
+    #     A conditional to be executed in the #render? method. May be a String,
+    #     in which case it is _instance_eval_'d in the context, a Proc, in
+    #     which case it is _instance_exec_'d in the context, a Symbol, in which
+    #     case the context's method denoted by the Symbol is called, or anything
+    #     else, in which case it is just returned literally.
+
     class Base
       include ActionView::Helpers
+
+      ##
+      # Reader for the conditional to be executed in the #render? method.
 
       attr_reader :if
 
@@ -10,9 +30,18 @@ module Layout
         @if = config[:if] if config.key?(:if)
       end
 
+      ##
+      # Returns a tag representing _other_ appended to +self+.
+
       def +(other)
         Text.new(other.append_to(self))
       end
+
+      ##
+      # Returns true if the tag should be rendered in the _context_, false
+      # otherwise.
+      #
+      # Executes #if in instance scope of _context_ (if at all possible).
 
       def render?(context)
         return true unless instance_variable_defined?(:@if)
@@ -25,6 +54,13 @@ module Layout
         end
       end
 
+      ##
+      # Returns a Wrapper around +self+, passing all parameters but the first
+      # to the Wrapper constructor.
+      #
+      # The _wrapper_ parameter, if not a Class, is (classified and) searched
+      # for in the Layout::Tags::Wrappers namespace.
+
       def wrap(wrapper, *args, **options, &block)
         # In the following code
         # - constantize is used because referencing the constant directly would
@@ -36,6 +72,9 @@ module Layout
 
         wrapper.new(self, *args, **options, &block)
       end
+
+      ##
+      # Renders both _other_ and +self+ and return the concatenation.
 
       def append_to(other)
         other.to_s + to_s

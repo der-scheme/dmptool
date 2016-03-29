@@ -1,7 +1,14 @@
 
 module Layout
   module Tags
+
+    ##
+    # A virtual tag that renders to plain HTML text.
+
     class Text < Layout::Tags::Base
+
+      ##
+      # Reader for the text contents.
 
       attr_reader :text
 
@@ -12,7 +19,7 @@ module Layout
       def to_s
         case text
         when self.class
-          @text.text
+          @text.text.to_s
         when Hash
           I18n.t(text[:key], default: text[:fallback])
         when Proc
@@ -21,10 +28,6 @@ module Layout
           text.to_s
         end
       end
-
-    protected
-
-      attr_reader :text
 
     end
   end
