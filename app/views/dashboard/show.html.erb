@@ -21,7 +21,7 @@
 	           col1[0] = link_to t('.plans_i_own', count: current_user.owned_plans.count), plans_path(scope: 'owned')
 	           col1[1] = link_to t('.plans_i_coown', count: current_user.coowned_plans.count), plans_path(scope: 'coowned')
 	           col2 = (current_user.unique_plan_states & PlanState::REVIEW_STATES).map do |state|
-	             link_to t(".#{state}_plans", count: current_user.plans_by_state(state).size), plans_path(scope: state)
+	             link_to t(".review_#{state}_plans", count: current_user.plans_by_state(state).size), plans_path(scope: state)
 	           end
 	           if col2.length < 1
 	             col2[0] = t('.no_plan_under_review')
