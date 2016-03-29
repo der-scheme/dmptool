@@ -634,9 +634,6 @@ de:
       plans_i_coown:
         one: '%{count} Plan als Mitbesitzer'
         other: '%{count} Pläne als Mitbesitzer'
-      submitted_plans: '%{count} Feedback ausstehend'
-      removed_plans: '%{count} entfernt'
-      rejected_plans: '%{count} Überarbeitung empfohlen'
       no_plan_under_review: Es befinden sich keine Pläne im Feedback-Prozess.
       new_plan_button: Neuen DMP erstellen
       plans_for_review: DMPs, für die Feedback angefordert wurde
