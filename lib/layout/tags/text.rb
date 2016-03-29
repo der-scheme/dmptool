@@ -22,10 +22,6 @@ module Layout
         end
       end
 
-    protected
-
-      attr_reader :text
-
     end
   end
 end
