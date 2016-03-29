@@ -1,7 +1,22 @@
 
 module Layout
   module Tags
+
+    ##
+    # A virtual tag that is rendered as a list item with a link and, if
+    # available, a list of children.
+    #
+    # === Configuration ===
+    # Configured by a Hash, supporting the following keys, as well as the
+    # options supported by the A tag.
+    # [:children]
+    #     The child navigation items. May be +nil+ for no children, or any
+    #     collection of NavItem configurations.
+
     class NavItem < Layout::Tags::A
+
+      ##
+      # Reader for the child items.
 
       attr_reader :children
 

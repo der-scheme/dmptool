@@ -2,6 +2,12 @@
 #
 # Load the configuration options for the page header and page footer and
 # initialize all missing definitions with their respective default values.
+#
+# See the respective classes in the Layout namespace for documentation of
+# configuration options.
+#
+# Note: For a custom configuration, do not change this file, but rename/copy the
+# file /config/layout.rb.template to /config/layout.rb and do your stuff there.
 
 page_config = {
   header: {

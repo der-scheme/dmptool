@@ -1,7 +1,14 @@
 
 module Layout
   module Tags
+
+    ##
+    # A virtual tag that renders to plain HTML text.
+
     class Text < Layout::Tags::Base
+
+      ##
+      # Reader for the text contents.
 
       attr_reader :text
 

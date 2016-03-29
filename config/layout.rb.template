@@ -1,3 +1,7 @@
+# Template file for the layout configuration. Copy/rename this to `layout.rb'.
+#
+# Configuration should be self-explanatory. If not, refer to the documentation
+# of the classes in the Layout namespace.
 {
   header: {
     navigation: [
