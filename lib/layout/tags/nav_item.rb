@@ -2,7 +2,6 @@
 module Layout
   module Tags
     class NavItem < Layout::Tags::A
-      include ApplicationHelper
 
       attr_reader :children
 
