@@ -2,9 +2,6 @@
 module Layout
   module Tags
     class Icon < Layout::Tags::A
-      def self.separator
-        ActiveSupport::SafeBuffer.new
-      end
 
       attr_reader :type
 
