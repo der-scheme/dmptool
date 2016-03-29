@@ -14,6 +14,7 @@ module Layout
       end
 
       def to_s
+        cls = ''
         cls = "nav-#{href[:controller]}-#{href[:action]}" if href.is_a?(Hash)
         cls << ' parent' if children
 
