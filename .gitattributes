@@ -1,2 +1,11 @@
+# Some files have to be preserved during merge, because the files are specific for our customized project / installation
+# Howto (Instructions taken from https://medium.com/@porteneuve/how-to-make-git-preserve-specific-files-while-merging-18c92343826b#.r74yd9tyy)
+# 1.) precondition: Setting up by defining a merge driver
+#   git config --global merge.ours.driver true
+# 2.) add exceptions into .gitattributes + commit 
+#   echo 'about.de.html.erb merge=ours' >> .gitattributes
+#   git add .gitattributes
+#   git commit -m 'preserve file during merges'
+# 
 about.de.html.erb merge=ours
 about.en.html.erb merge=ours
