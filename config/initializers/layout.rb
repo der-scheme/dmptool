@@ -101,6 +101,13 @@ page_config = {
     end,
     links: [
       {
+        href: {controller: :static_pages, action: :privacy},
+        label: {
+          key: 'layouts.footer.privacy_policy_link',
+          fallback: 'Privacy Policy'
+        }
+      },
+      {
         href: 'http://www.ucop.edu/electronic-accessibility/initiative/policy.html',
         label: {
           key: 'layouts.footer.accessibility_policy_link',
