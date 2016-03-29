@@ -658,9 +658,6 @@ en:
       plans_i_coown:
         one: '%{count} plan I co-own'
         other: '%{count} plans I co-own'
-      submitted_plans: '%{count} Submitted'
-      removed_plans: '%{count} Removed'
-      rejected_plans: '%{count} Rejected'
       no_plan_under_review: No DMPs are under review.
       new_plan_button: Create New DMP
       plans_for_review: DMPs For My Review
