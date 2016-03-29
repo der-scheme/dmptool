@@ -324,7 +324,7 @@ de:
     institutions:
       index: Einrichtungsprofil
       new: Neue Einrichtung hinzufügen
-      partners_list: Partnereinrichtungen
+      partners_list: Liste der Partnereinrichtungen
     requirements:
       index: Details
     requirements_templates:
