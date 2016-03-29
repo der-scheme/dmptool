@@ -4,7 +4,7 @@ module Layout
     module Wrappers
       class Base < Layout::Tags::Base
 
-        delegate :active?, to: :@tag
+        delegate :render?, to: :@tag
         delegate :to_s, to: :@tag
 
         def initialize(tag)
