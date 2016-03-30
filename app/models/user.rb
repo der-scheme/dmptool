@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  ##
+  # Returns both the user and its corresponding authentication object for the
+  # _auth_ info and _institution_id_. If the records do not already exist in the
+  # database, valid, but unsaved, instances are returned.
+
   def self.from_omniauth(auth, institution_id)
     auth = auth.with_indifferent_access
     info = auth[:info] = auth[:info].with_indifferent_access unless auth[:info].blank?
@@ -101,35 +106,6 @@ class User < ActiveRecord::Base
     end
 
     return a.user, a
-  end
-
-  def self.create_from_omniauth(auth, institution_id)
-    info = auth[:info]
-    email = smart_email_from_omniauth(info[:email]) #reduce email to first, or take garbage off email if needed
-    user = User.find_by_email(email)
-    ActiveRecord::Base.transaction do
-      if user.nil?
-        user = User.new
-        user.email = email
-        # Set any of the omniauth fields that have values  in the database.
-        # The keys are the omniauth field names, the values are the database field names
-        # for mapping omniauth field names to db field names.
-        {:first_name => :first_name, :last_name => :last_name}.each do |k, v|
-          user.send("#{v}=", info[k]) unless info[k].blank?
-        end
-        #fix login_id for CDL LDAP to be simple username
-        user.login_id = smart_userid_from_omniauth(auth)
-        user.institution_id = institution_id
-        user.prefs = default_preferences
-        user.save(:validate => false)
-      elsif user.institution.nil? || auth[:provider].to_s == 'shibboleth'
-        user.institution_id = institution_id
-        user.save(:validate => false) #don't want to validate just to set institution_id since this user is garbage if they don't have institution set anyway
-      end
-
-      Authentication.create!({:user_id => user.id, :provider => auth[:provider], :uid => smart_userid_from_omniauth(auth)})
-    end
-    user
   end
 
   #returns the userid from omniauth.  May be long string for shibboleth

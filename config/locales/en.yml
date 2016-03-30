@@ -384,6 +384,7 @@ en:
     users:
       add_token: Generate New Token
       edit: My Profile
+      import: Signup External User
       index: DMP Administration
       new: Create An Account
       remove_token: Remove Token
@@ -1237,6 +1238,11 @@ en:
     form:
       personal: Personal Information
       notifications: Notification Preferences
+    import:
+      sub_title: Confirmation required
+      explanation: We have received the following data about you. In order to complete signing up to the DMPTool you have to consent that we store those data in order to provide you with this service.
+      consent_required: If you do not consent you may not use this service.
+      submit_button: Create Account
     index:
       title: DMP Administration
     institutions_list:
