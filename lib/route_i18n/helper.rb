@@ -1,9 +1,7 @@
 
-require 'route_i18n/link_helper'
-
 module RouteI18n
   module Helper
-    include LinkHelper
+    include RouteI18n::LinkHelper
 
     ##
     # Returns the current page's top heading text.

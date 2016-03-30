@@ -1,5 +1,5 @@
 
-require 'route_i18n'    # This seems to be autoloaded in production, but not in development mode.
+require_dependency 'route_i18n'   # This seems to be autoloaded in production, but not in development mode.
 
 Dmptool2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -29,7 +29,7 @@ Dmptool2::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  
+
   config.log_level = :debug
 
   #special settings if you want to configure Unicorn logs for development use of unicorn server
