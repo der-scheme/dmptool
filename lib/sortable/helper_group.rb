@@ -22,7 +22,7 @@ module Sortable
     attr_reader :model
 
     def params
-      helper.filter_params
+      @params ||= helper.filter_params
     end
 
     ## Creates a link that renders a column sortable with toggle effects.
