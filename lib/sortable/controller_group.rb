@@ -1,9 +1,7 @@
 
-require 'sortable/common'
-
 module Sortable
   class ControllerGroup
-    include Common
+    include Sortable::Common
 
     def initialize(controller: nil,
                    inst_var: controller.class.controller_name.pluralize,

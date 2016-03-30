@@ -1,6 +1,4 @@
 
-require 'sortable/helper_group'
-
 module Sortable
   module Helper
 

@@ -1,11 +1,9 @@
 
 require 'delegate'
 
-require 'sortable/common'
-
 module Sortable
   class HelperGroup < SimpleDelegator
-    include Common
+    include Sortable::Common
 
     def initialize(helper: nil,
                    model: helper.class.controller_name.classify.constantize,

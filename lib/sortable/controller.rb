@@ -1,6 +1,4 @@
 
-require 'sortable/controller_group'
-
 module Sortable
   module Controller
 
