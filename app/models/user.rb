@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  ##
+  # Returns both the user and its corresponding authentication object for the
+  # _auth_ info and _institution_id_. If the records do not already exist in the
+  # database, valid, but unsaved, instances are returned.
+
   def self.from_omniauth(auth, institution_id)
     auth = auth.with_indifferent_access
     info = auth[:info] = auth[:info].with_indifferent_access unless auth[:info].blank?

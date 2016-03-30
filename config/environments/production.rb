@@ -95,6 +95,8 @@ Dmptool2::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
+  # Specify the authentication providers where users should be prompted before
+  # importing their data to our database. (has privacy implications)
   config.prompt_external_signup = [:shibboleth]
 end
 
