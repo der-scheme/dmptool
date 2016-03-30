@@ -24,6 +24,11 @@ class UserSessionsController < ApplicationController
       return if session[:institution_id].blank?
     auth = env["omniauth.auth"]
     begin
+      # If the _import_successful_ flag is set, the user confirmed that they are
+      # fine with us storing their personal details in our database, so we do
+      # just that.
+      # Otherwise, just pull their existing records from the database (or
+      # initialize new ones)
       if session.delete(:import_successful)
         user = User.new(session.delete(:foreign_user))
         a12n = Authentication.new(session.delete(:authentication))
@@ -51,6 +56,9 @@ class UserSessionsController < ApplicationController
       redirect_to choose_institution_path, flash: { error: msg } and return
     end
 
+    # If we don't already have the user the database and the provider is
+    # configured to trigger a prompt, we store the user's information in the
+    # session and redirect them to the confirmation page.
     if user.new_record? && auth[:provider].in?(Rails.application.config.prompt_external_signup)
       session[:foreign_user] = user.attributes.with_indifferent_access
       session[:authentication] = a12n.attributes.with_indifferent_access
