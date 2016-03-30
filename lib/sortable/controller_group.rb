@@ -71,6 +71,10 @@ module Sortable
       nil
     end
 
+    ##
+    # Executes _group_ in context of a ControllerGroup specified by the
+    # parameters.
+
     def sortable_group(inst_var: self.inst_var, model: self.model,
                        order_scope: self.order_scope, namespace: nil,
                        &group)

@@ -43,6 +43,9 @@ module Sortable
                      {class: css_class}
     end
 
+    ##
+    # Executes _group_ in context of a HelperGroup specified by the parameters.
+
     def sortable_group(model: self.model, namespace: nil,
                        order_scope: self.order_scope, &group)
       HelperGroup.new(helper: helper, model: model,
