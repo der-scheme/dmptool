@@ -284,6 +284,19 @@ de:
         confirm: Sind Sie sicher?
   helpers:
     controller:
+      application:
+        generic:
+          permission_denied: Sie haben nicht die Berechtigung diese Seite  zu sehen.
+          access_denied: "Sie haben keinen Zugriff auf diese Inhalte."
+          login_needed: Sie müssen eingeloggt sein.
+        require_login:
+          generic: Sie müssen für den Zugriff auf diese Seite eingeloggt sein.
+          identity: Sie müssen Ihren Vor- und Nachnamen ausfüllen und Ihre Kontaktinformationen abspeichern, um das DMP-Tool weiter verwenden zu können.
+        require_logout: "Die von Ihnen gesuchte Seite steht nur für abgemeldete Benutzer\
+          \ zur Verfügung."
+        check_editor_for_this_customization:
+          missing_id: Eine Anpassungs-ID fehlt.
+          incorrect_customization: "Sie haben eine falsche Anpassung ausgewählt."
       plan:
         not_found_error: Der von Ihnen gesuchte Plan existiert nicht.
         not_allowed_error: Sie haben keinen Zugriff auf diesen Inhalt.
@@ -372,6 +385,7 @@ de:
     users:
       add_token: Neuen Token erstellen
       edit: Mein Profil
+      import: Externen Benutzer registrieren.
       index: Admin
       new: Einen Account anlegen
       remove_token: Token entfernen
@@ -963,7 +977,7 @@ de:
     form:
       obligation_tooltip: Legen Sie fest, ob ein Unterpunkt verpflichtend beantwortet werden muss (ansonsten kein Fortfahren möglich), oder ob eine Antwort optional ist. Die Grundeinstellung ist optional.
       group_type_tooltip: Tool-Tipp &#8220;text&#8221; steht hier.
-      requirement_type_tooltip_html: 'Sie können das Format der Antwort zu diesem
+      requirement_type_tooltip: 'Sie können das Format der Antwort zu diesem
         Unterpunkt festlegen. Die Grundeinstellung ist Text (minimal strukturiertes
         Textformat). Weitere Optionen:<ul><li>Numerisch: für Zahlen, mit optionaler
         Angabe der Maßeinheit.</li><li>Datum mit folgenden Format: YYYY-MM-DD</li><li>Auswahlliste:
@@ -1219,6 +1233,11 @@ de:
     form:
       personal: Persönliche Informationen
       notifications: Einstellungen für E-Mail-Benachrichtigungen
+    import:
+      sub_title: Bestätigung erforderlich
+      explanation: Wir haben folgende Daten über Sie erhalten. Um die DMP-Tool Registrierung abzuschließen und diesen Dienst nutzen zu können, benötigen wir Ihre Zustimmung, dass wir diese Daten speichern.
+      consent_required: Falls Sie nicht zustimmen, können Sie diesen Dienst leider nicht nutzen.
+      submit_button: Account anlegen
     index:
       title: Admin
     institutions_list:
