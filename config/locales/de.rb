@@ -70,10 +70,10 @@ end
       controller: {
         plan_state: {
           state_changed: lambda do |_, state: nil, **__|
-            "Der Status des DMP-Plans hat sich geändert: #{I18n.t("enum.plan_state.state.#{state}")}."
+            "Der Status des DMP-Plans hat sich geändert. Neuer Status: #{I18n.t("enum.plan_state.state.#{state}")}"
           end,
           already_in_state: lambda do |_, state: nil, **__|
-            "Eine Statusänderung des DMP-Plans fand bereits statt: #{I18n.t("enum.plan_state.state.#{state}")}."
+            "Eine Statusänderung des DMP-Plans fand bereits statt. Status ist: #{I18n.t("enum.plan_state.state.#{state}")}"
           end
         }
       }
@@ -153,7 +153,7 @@ end
       },
       plan_state_updated: {
         text: lambda do |_, plan: nil, state: nil, **__|
-          "Der Status des DMP-Plans \"#{plan}\" hat sich geändert: #{I18n.t("enum.plan_state.state.#{state}")}"
+          "Der Status des DMP-Plans \"#{plan}\" hat sich geändert. Neuer Status: #{I18n.t("enum.plan_state.state.#{state}")}"
         end
       },
       plan_visibility_changed: {
