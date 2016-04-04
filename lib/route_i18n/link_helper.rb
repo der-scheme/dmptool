@@ -1,9 +1,7 @@
 
-require 'route_i18n/translation_helper'
-
 module RouteI18n
   module LinkHelper
-    include TranslationHelper
+    include RouteI18n::TranslationHelper
 
     ##
     # Defines a method "link_to_#{route.name}" which generates a link to

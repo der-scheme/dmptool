@@ -1,11 +1,9 @@
 
 require 'delegate'
 
-require 'sortable/common'
-
 module Sortable
   class HelperGroup < SimpleDelegator
-    include Common
+    include Sortable::Common
 
     def initialize(helper: nil,
                    model: helper.class.controller_name.classify.constantize,
@@ -24,7 +22,7 @@ module Sortable
     attr_reader :model
 
     def params
-      helper.filter_params
+      @params ||= helper.filter_params
     end
 
     ## Creates a link that renders a column sortable with toggle effects.
@@ -44,6 +42,9 @@ module Sortable
                      params.merge(order_scope => column, direction => dir),
                      {class: css_class}
     end
+
+    ##
+    # Executes _group_ in context of a HelperGroup specified by the parameters.
 
     def sortable_group(model: self.model, namespace: nil,
                        order_scope: self.order_scope, &group)
