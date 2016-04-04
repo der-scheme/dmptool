@@ -9,3 +9,4 @@
 # 
 about.de.html.erb merge=ours
 about.en.html.erb merge=ours
+layout.rb merge=ours

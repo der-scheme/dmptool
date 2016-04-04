@@ -447,17 +447,7 @@ de:
       faq_url: http://dmptool.askbot.com/
       faq_title: FAQ
     footer:
-      copyright_text_intro_html: Dieses DMP-Tool wird im Rahmen des IQF-Projekts zwischen dem %{link1} dem %{link2} und der %{link3} als Testversion bereitgestellt.
-      copyright_link1: Kommunikations- und Informationszentrum (kiz) der Universität Ulm
-      copyright_link1_url: http://www.uni-ulm.de/einrichtungen/kiz.html
-      copyright_link1_title: Kommunikations- und Informationszentrum (kiz) der Universität Ulm
-      copyright_link2: Rechenzentrum der Universität Freiburg
-      copyright_link2_url: http://www.rz.uni-freiburg.de/
-      copyright_link2_title: Rechenzentrum der Universität Freiburg
-      copyright_link3: Universitätsbibliothek Freiburg
-      copyright_link3_url: http://www.ub.uni-freiburg.de
-      copyright_link3_title: Universitätsbibliothek Freiburg
-      copyright_text_html: ""
+      copyright_text: '<p>Dieses DMP-Tool wird im Rahmen des IQF-Projekts zwischen dem <a href=\"http://www.uni-ulm.de/einrichtungen/kiz.html\" title=\"Kommunikations- und Informationszentrum (kiz) der Universität Ulm\" target=\"_blank\">Kommunikations- und Informationszentrum (kiz) der Universität Ulm</a> dem <a href=\"http://www.rz.uni-freiburg.de/\" title=\"Rechenzentrum der Universität Freiburg\">Rechenzentrum der Universität Freiburg</a> und der <a href=\"http://www.ub.uni-freiburg.de\" title=\"Universitätsbibliothek Freiburg\">Universitätsbibliothek Freiburg</a> als Testversion bereitgestellt.</p>'
       privacy_policy_link: Datenschutzerklärung
       privacy_policy_title: Datenschutzerklärung
       accessibility_policy_link: Zugänglichkeitsrichtlinien
