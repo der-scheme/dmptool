@@ -101,7 +101,6 @@ de:
         review_type: Optionen für Feedback
         start_date: Start am
         visibility: Sichtbarkeit
-        review_requirement: Optionen für Feedback
       resource:
         id: ID
         label: Bezeichnung der Ressource
