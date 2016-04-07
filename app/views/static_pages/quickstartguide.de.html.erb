@@ -13,15 +13,15 @@
 		<li><a href="#overview">Funktionsüberblick des DMPTools</a></li>
 		<li><a href="#create">Wie erstelle ich einen DMP?</a></li>
 		<li><a href="#sharing">Den DMP öffentlich zur Verfügung stellen</li>
-		<li><a href="#help">Wie erhalte ich Hilfe von jemandem an meiner Einrichtung?</a></li>
+		<li><a href="#help">Wie erhalte ich Hilfe von Ansprechpartnern an meiner Einrichtung?</a></li>
 	</ol>
 	
 	<h2 id="who">Wer kann das Tool verwenden?</h2>
 
 	<p>Das DMPTool kann von jedem kostenlos verwendet werden, um Datenmanagementpläne zu erstellen.</p>
 	<ul>
-	  <li>Angehörige von Partnereinrichtungen, die unter <%= link_to_partners_list title: partners_list_text %> aufgelistet sind, können sich mit ihrem gewohnten institutionellen Login einloggen. Um Ihnen beim Fertigstellen Ihres DMPs zu helfen, werden Ihnen als Einrichtungsmitglied möglicherweise einrichtungsspezifische Hilfestellungen (dargestellt durch spezifische Beschreibungen und / oder spezifische Webseitenlinks) während der Erstellung eines DMPs angezeigt. </li>
-	  <li>Falls Ihre Einrichtung keine Partnereinrichtung ist, können Sie einen eigenen Benutzeraccount erstellen, indem Sie beim Login &ldquo;Nicht in der Liste&rdquo; als Ihre Einrichtung auswählen.</li>
+	  <li>Mitglieder und Angehörige von <%= link_to_partners_list title: "Partnereinrichtungen" %> können sich mit ihrem gewohnten institutionellen Login anmelden. Um Ihnen beim Ausfüllen Ihres DMPs zu helfen, werden Ihnen als Einrichtungsmitglied bei der Erstellung eines DMPs möglicherweise einrichtungsspezifische Hilfestellungen angezeigt (dargestellt durch spezifische Hinweise und/oder spezifische Webseitenlinks).</li>
+	  <li>Falls Ihre Einrichtung keine Partnereinrichtung ist, können Sie einen eigenen Benutzeraccount erstellen, indem Sie beim Login &ldquo;Not in List&rdquo; als Ihre Einrichtung auswählen.</li>
 	</ul>
 
 	<h2 id="login">Wie kann ich mich einloggen?</h2>
@@ -32,14 +32,14 @@
 			<ul>
 				<li>Wählen Sie auf der <%= t('routes.user_sessions.login') %>-Seite Ihre Einrichtung innerhalb der List aus.</li>
 				<li>Klicken Sie auf <strong><%= t('user_sessions.institution.submit_button') %></strong></li>
-				<li>Möglicherweiße werden Sie auf eine einrichtungsspezifische Authentifizierungsseite weitergeleitet. Loggen Sie sich dort ein, wie Sie es gewöhnlich bei anderen Diensten Ihrer Einrichtung machen.</li>
+				<li>Möglicherweise werden Sie auf eine einrichtungsspezifische Authentifizierungsseite weitergeleitet. Loggen Sie sich dort ein, wie Sie es gewöhnlich bei anderen Diensten Ihrer Einrichtung machen.</li>
 			</ul>
 		</li>
 		<li>Falls Ihre Einrichtung <strong>nicht</strong> aufgelistet ist:
 			<ul>
-				<li>Wählen Sie auf der <%= t('routes.user_sessions.login') %>-Seite "Nicht in der Liste" aus.</li>
+				<li>Wählen Sie auf der <%= t('routes.user_sessions.login') %>-Seite "Not in List" aus.</li>
 				<li>Klicken Sie auf <strong><%= t('user_sessions.institution.submit_button') %></strong></li>
-				<li>Falls Sie bereits einen Benutzeraccount beim DMPTool besitzen, geben Sie Ihren Benutzernamen und das Passwort ein und klicken Sie anschließend auf <strong><%= t('user_sessions.login.submit_button') %></strong>. Sobald Sie eingeloggt sind, können sie unter <strong><%= t('routes.users.edit') %></strong> Ihr Passwort und andere Informationen verwalten.</li>
+				<li>Falls Sie bereits einen Benutzeraccount beim DMPTool besitzen, geben Sie Ihren Benutzernamen und das bereits von Ihnen gewählte Passwort ein und klicken Sie anschließend auf <strong><%= t('user_sessions.login.submit_button') %></strong>. Sobald Sie eingeloggt sind, können sie unter <strong><%= t('routes.users.edit') %></strong> Ihr Passwort und andere Informationen verwalten.</li>
 				<li>Falls Sie sich zum ersten Mal einloggen möchten, wählen Sie "<%= t('user_sessions.login.create_account_button') %>".</li>
 			</ul>
 		</li>
@@ -51,17 +51,17 @@
 	<p><%= image_tag "qsg_1_ger.jpg", alt: "Überblick"%></p>
 	<ol>
 	  <li><strong>"<%= t('routes.dashboard.show') %>"</strong> ist der beste Startpunkt, um Ihre DMPs zu verwalten. Dort bekommen Sie einen Überblick über Ihre DMPs.</li>
-	  <li><strong>"<%= t('routes.plans.index') %>"</strong> zeigt eine Liste Ihrer DMPs und veranschaulicht, welche Ihnen gehören, bei welchen Sie Mitbesitzer sind und wie der aktuelle Status des DMPs ist.</li>
-	  <li><strong>"<%= t('routes.plans.template_information') %>"</strong> ermöglicht Ihnen einen vorhandenen DMP zu kopieren oder ausgehend von einer DMP-Vorlage einen neuen DMP zu erstellen.</li>
-	  <li>Unter <strong>"<%= t('routes.users.edit') %>"</strong> können Sie Ihre persönliche Informationen, einschließlich Ihrer <a href="http://orcid.org">ORCID</a>, aktualisieren. Sie können dort ebenfalls Ihre Benachrichtigungseinstellungen ändern. Ein Haken (&#10003;) vor einer Benachrichtigungseinstellung signalisiert, dass Sie hierfür eine Benachrichtigung per Mail erhalten möchten. </li>
+	  <li><strong>"<%= t('routes.plans.index') %>"</strong> zeigt eine Liste Ihrer DMPs mit der Info, welche Ihnen gehören, bei welchen Sie Mitbesitzer sind und wie der aktuelle Status des DMPs ist.</li>
+	  <li><strong>"<%= t('routes.plans.template_information') %>"</strong> ermöglicht Ihnen, einen vorhandenen DMP zu kopieren oder ausgehend von einer DMP-Vorlage einen neuen DMP zu erstellen.</li>
+	  <li><strong>"<%= t('routes.users.edit') %>"</strong> - Hier können Sie Ihre persönlichen Informationen aktualisieren, einschließlich Ihrer <a href="http://orcid.org">ORCID</a>. Sie können zudem Ihre Benachrichtigungseinstellungen ändern. Ein Haken (&#10003;) vor einer Benachrichtigungseinstellung signalisiert, dass Sie hierfür eine Benachrichtigung per Mail erhalten möchten. </li>
 	  <li><strong>DMP Status</strong></li>
 	    <ul>
 	      <li><strong><%= t('enum.plan_state.state.new') %>:</strong> Sie haben einen DMP erstellt, jedoch ist dieser noch nicht fertiggestellt.</li>
-	      <li><strong><%= t('plans.index.filter_owned_link')[4..-12] %>:</strong> DMPs die Sie erstellt haben..</li>
-	      <li><strong><%= t('plans.index.filter_coowned_link')[4..-12] %>:</strong> DMPs bei denen Sie als Mitbesitzer hinzugefügt worden sind. </li>
+	      <li><strong><%= t('plans.index.filter_owned_link')[4..-12] %>:</strong> DMPs, die Sie erstellt haben.</li>
+	      <li><strong><%= t('plans.index.filter_coowned_link')[4..-12] %>:</strong> DMPs, bei denen Sie als Mitbesitzer hinzugefügt worden sind. </li>
 	      <li><strong><%= t('enum.plan_state.state.committed')%>:</strong> Nachdem Sie auf den "<%= t('enum.plan_state.state.committed')%>"-Button auf der "<%= t('routes.plans.preview')%>"-Seite geklickt haben, wird Ihr Plan als "<%= t('enum.plan_state.state.committed')%>" markiert.</li>
 	    </ul>
-	    <p><strong><em>Die folgende Status treffen nur zu, sofern Ihre Einrichtung die "Begutachtungs"-Funktion anbietet. Kontaktieren Sie Ihren lokalen Einrichtungsadministrator für mehr Informationen. (Die E-Mail Adresse und eine URL um Hilfe anzufordern finden Sie oben auf der Seite, nachdem Sie sich eingeloggt haben).</em></strong></p>
+	    <p><strong><em>Die folgenden Status treffen nur zu, sofern Ihre Einrichtung die "Begutachtungs"-Funktion anbietet. Kontaktieren Sie Ihren lokalen Einrichtungsadministrator für weitere Informationen. (Die E-Mail-Adresse und eine URL um Hilfe anzufordern finden Sie oben auf der Seite, die nach erfolgreichem Login erscheint).</em></strong></p>
 	    <ul>
 	      <li><strong><%= t('enum.plan_state.state.submitted')%>:</strong> Ihr DMP wurde zur Begutachtung durch Ihren Einrichtungsadministrator eingereicht. </li>
 	      <li><strong><%= t('enum.plan_state.state.approved')%>:</strong> Ihr DMP wurde bei der Begutachtung durch Ihren Einrichtungsadministrator für gut befunden.</li>
@@ -74,10 +74,10 @@
 	<!-- <p><img src="https://lh6.googleusercontent.com/CeG81CRDUg-bdOIGv14Rx91k9q53loSYaEkZRukh6huC0lfTpMlJzk70WsTqLiHFOR1q6LitNxm39OVKDltwz5Tt2CMqUkY-nfOQq9UllDa56gt3EQkAALNEgB0" alt="Create new DMP" width="540px;" height="222px;"/></p> -->
 	<p><%= image_tag "qsg_2_ger.jpg", alt: "Neuen DMP erstellen" %></p>
 	<p>Nachdem Sie sich eingeloggt haben, werden Sie auf die Seite "<strong><%= t('routes.dashboard.show') %></strong>" weitergeleitet. Klicken Sie auf den "<strong><%= t('routes.plans.template_information') %></strong>"-Button unterhalb der Übersichtsbox oder klicken Sie in der Navigationsleiste auf den Link direkt neben <strong>"<%= t('routes.plans.index') %>"</strong>.</p>
-	<p>Um einen DMP zu erstellen, müssen Sie drei Schritte absolvieren:</p>
-	<p><strong>Schritt #1: <%= t('layouts.dashboard_create_dmp_submenu.overview') %>:</strong> liefert allgemeine Informationen über den Plan, wie Beispielsweise den Vorlagenname, DMP Titel, Miteigentümer, etc. </p>
-	<p><strong>Schritt #2: <%= t('layouts.dashboard_create_dmp_submenu.details') %>:</strong> liefert Hinweise bzw. Beispielantworten für zu beantwortende Fragen. Klicken Sie auf die "<%= t('plans.guidance.box_size')[0..-2] %>"-Buttons, um die Größe des Kastens anzupassen. </p>
-	<p><strong>Schritt #3: <%= t('layouts.dashboard_create_dmp_submenu.preview') %>:</strong> liefert Ihnen eine Vorschau Ihres DMPs, den Sie dort direkt ausdrucken und herunterladen können; der Plan wird als "fertig" markiert.</p>
+	<p>Die Erstellung eines DMPs beinhaltet drei Schritte:</p>
+	<p><strong>Schritt #1: <%= t('layouts.dashboard_create_dmp_submenu.overview') %>:</strong> Liefert allgemeine Informationen über den Plan, wie beispielsweise den Vorlagennamen; geben Sie hier den DMP-Titel, Miteigentümer, etc. an. </p>
+	<p><strong>Schritt #2: <%= t('layouts.dashboard_create_dmp_submenu.details') %>:</strong> Geben Sie in den Eingabefeldern Antworten auf die verschiedenen Fragen ein. Klicken Sie auf die "Kastengröße"-Buttons, um die Größe der Box mit den Hinweisen anzupassen.</p>
+	<p><strong>Schritt #3: <%= t('layouts.dashboard_create_dmp_submenu.preview') %>:</strong> Liefert Ihnen eine Vorschau Ihres DMPs, den Sie dort direkt ausdrucken und herunterladen können; der Plan wird als "fertig" markiert.</p>
 
 	<h3>Schritt #1: <%= t('layouts.dashboard_create_dmp_submenu.overview') %></h3>
 	<p>Sie können entweder: (A) einen neuen DMP erstellen, indem Sie eine DMP-Vorlage auswählen; oder (B) einen bereits vorhandenen DMP kopieren.</p>
@@ -89,24 +89,24 @@
 	<!-- <p><img src="https://lh4.googleusercontent.com/kqMiejks7toqngOJd5VbUWGoTiECTqmAZ1soOsGh9KiTDhwgMrBqESPbaczD0hKNxgAnMLJ9KMVdouoI3nSt_qoxGe0tF0ZOQy4XyJdx7Fk7F69Z6hD854VgvlQ" alt="Select DMP Template" width="352px;" height="373px;"/></p> -->
 	<p><%= image_tag "qsg_4_ger.jpg", alt: "Eine DMP-Vorlage auswählen" %></p>
 	<p>1. Klicken Sie auf den "<%= t('plans.template_information.use_template_button') %>"-Button.</p>
-	<p>2. Wählen Sie entweder eine Vorlage in der Liste aus oder suchen Sie nach einer Vorlage.</p>
-	<p>Hinweis: In der A-Z Liste sind die Pfeil-Symbole links neben den Ordnern klickbar. Nach einem Klick auf einen Pfeil können Sie alle darin enthaltenen Vorlagen sehen. </p>
-	<p>Hinweis: Die Liste enthält die von Ihrer Einrichtung angepasste Vorlagen.</p>
-	<p>3. Wählen Sie die für Ihren Forschungsförderer oder Einrichtung passende Vorlage aus.</p>
+	<p>2. Wählen Sie entweder eine Vorlage in der Liste aus oder suchen Sie gezielt nach dem Namen einer Vorlage.</p>
+	<p>Hinweis: In der A-Z Liste sind die Ordnersymbole und die Pfeile links daneben klickbar. Nach einem Klick auf einen Pfeil können Sie alle im Ordner enthaltenen Vorlagen sehen.</p>
+	<p>Hinweis: Die Liste enthält die von Ihrer Einrichtung angepassten Vorlagen.</p>
+	<p>3. Wählen Sie die für Ihren Forschungsförderer oder Ihre Einrichtung passende Vorlage aus.</p>
 
 	<h4>(B) Kopieren Sie einen bereits vorhandenen DMP</h4>
-	 <p>Die Liste der vorhandenen DMPs enthält die DMPs, die Sie erstellt haben, bei denen Sie Mitbesitzer sind und die DMPs, die für alle innerhalb Ihrer Einrichtung oder öffentlich verfügbar sind. Wählen Sie hier einen DMP aus und klicken Sie anschließend auf "<%= t('plans.template_information.copy_plan_button') %>".</p>
+	 <p>Die Liste der vorhandenen DMPs enthält die DMPs, die Sie selbst erstellt haben, bei denen Sie Mitbesitzer sind und die DMPs, die für alle innerhalb Ihrer Einrichtung oder öffentlich verfügbar sind. Wählen Sie hier einen DMP aus und klicken Sie anschließend auf "<%= t('plans.template_information.copy_plan_button') %>".</p>
 
-	<p>Tragen Sie nun all relevanten Informationen innerhalb der Seite <strong>"<%= t('layouts.dashboard_create_dmp_submenu.overview') %>"</strong> ein, nachdem Sie (A) oder (B) abgeschlossen haben.</p>
+	<p>Tragen Sie nun alle relevanten Informationen innerhalb der Seite <strong>"<%= t('layouts.dashboard_create_dmp_submenu.overview') %>"</strong> ein, nachdem Sie (A) oder (B) abgeschlossen haben.</p>
 	<!-- <p><img src="https://lh4.googleusercontent.com/JBWKIfOuKA9ptrVDmyRCPCH2SckW092_ZE6mbQgSynQR0vxiibCOKZ_eIchjZUmDf0YTSNez0-f78Jj1w6mal3SEy6T_3gsX5ck4G144_spvTbBBYBgiEmAKmaU" alt="DMP Überblick" width="624px;" height="323px;"/></p> -->
 	<p><%= image_tag "qsg_5_ger.jpg", alt: "DMP Übersicht" %></p>
 	<p><strong>Geben Sie folgende Informationen ein:</strong></p>
 	<ol>
-	  <li><strong>Titel des DMPs:</strong> Der Titelname, welcher auf der Seite "<%= t('routes.plans.index') %>" aufgelistet wird, sollte Ihnen helfen diesen Datenmanagementplan zu identifizieren. Oftmals ist der DMP-Titelname ähnlich zum Projektnamen.</li>
+	  <li><strong>Titel des DMPs:</strong> Der Titelname sollte Ihnen helfen diesen Datenmanagementplan zu identifizieren. Er wird auf der Seite "<%= t('routes.plans.index') %>" aufgelistet. Oftmals ähneln DMP-Titel den Projektnamen.</li>
 	  <li><strong><%= t('activerecord.attributes.plan.solicitation_identifier')%> (optional):</strong> Geben Sie, falls vorhanden, die <%= t('activerecord.attributes.plan.solicitation_identifier')%> ein. Diese Information erscheint nicht im finalen DMP.</li>
 	  <li><strong>Abgabefrist (optional):</strong> Geben Sie die Abgabefrist ein.</li>
-	  <li><strong>Sichtbarkeit:</strong> Geben Sie die bevorzugte Sichtbarkeit Ihres DMPs an. Standardmäßig ist die Sichtbarkeit auf "privat" eingestellt, wodurch lediglich Sie und Miteigentümer den DMP sehen können. Andere Einstellmöglichkeiten sind "öffentlich": von allen öffentlich einsehbar; sowie "institutionel": von allen innerhalb Ihrer Einrichtung einsehbar.</li>
-	  <li><strong>Miteigentümer hinzufügen (optional):</strong> Fügen Sie DMP Miteigentümer hinzu, die den Plan ansehen, bearbeiten und einen Kommentar abgeben können. Miteigentümer müssen bereits über einen DMPTool-Benutzeraccount verfügen, um sie als Miteigentümer hinzufügen zu können.</li>
+	  <li><strong>Sichtbarkeit:</strong> Geben Sie Ihre Wahl für die Sichtbarkeit Ihres DMPs an. Standardmäßig ist die Sichtbarkeit auf "privat" eingestellt, wodurch lediglich Sie und Miteigentümer den DMP sehen können. Andere Möglichkeiten sind "öffentlich": von allen öffentlich einsehbar; sowie "institutionell": von allen innerhalb Ihrer Einrichtung einsehbar.</li>
+	  <li><strong>Miteigentümer hinzufügen (optional):</strong> Fügen Sie DMP Miteigentümer hinzu, die den Plan ansehen, bearbeiten und einen Kommentar abgeben können. Diese müssen bereits über einen DMPTool-Benutzeraccount verfügen, um als Miteigentümer hinzugefügt werden zu können.</li>
 	</ol>
 	<p>Klicken Sie anschließend auf "<%= t('plans.form.save_and_next') %>".</p>
 
@@ -115,35 +115,35 @@
 	<p><%= image_tag "qsg_6_ger.jpg", alt: "DMP Details" %></p>
 	<ol>
 	  <li><strong><%= t('plans.details.template_outline') %>:</strong> Sie können zwischen den verschiedenen Abschnitten der DMP-Vorlage anhand der Übersicht navigieren. Klicken Sie hierzu auf den Abschnittstitel auf der linken Seite. Auf der rechten Seite erscheinen die Hinweise, Ressourcen und das Eingabefeld für Ihre Antworten. </li>
-	  <li><strong><%= t('plans.details.instructions') %>:</strong> Für jeden Abschnitt des DMPs gibt es <strong>Hilfestellungen</strong>. Vereinzelt ist ein <strong>"<%= t('plans.details.links') %>"</strong>-Tab zu sehen, in dem Sie Links zu weiterführenden Informationen finden können. Ebenfalls könnte ein <strong>"<%= t('plans.details.suggested_response') %>"</strong>-Tab mit Antworten, welche Sie einfach Kopieren können (auf dem Bild nicht abgebildet), und / oder ein <strong>"<%= t('plans.details.example_response') %>"</strong>-Tab (ebenfalls nicht abgebildet), der Ihnen helfen soll einen eigenen Antworttext zu schreiben, sichtbar sein.</li>
+	  <li><strong><%= t('plans.details.instructions') %>:</strong> Für jeden Abschnitt des DMPs gibt es <strong>Hilfestellungen</strong>. Es kann auch ein <strong>"<%= t('plans.details.links') %>"</strong>-Tab zu sehen sein, in dem Sie Links zu weiterführenden Informationen finden. Ebenfalls könnte ein <strong>"<%= t('plans.details.suggested_response') %>"</strong>-Tab mit Antworten, welche Sie einfach kopieren können (auf dem Bild nicht abgebildet) erscheinen, und / oder ein <strong>"<%= t('plans.details.example_response') %>"</strong>-Tab (ebenfalls nicht abgebildet), der Ihnen helfen soll einen eigenen Antworttext zu schreiben.</li>
 	  <li><strong>Geldgeber- </strong> oder <strong>Einrichtungsanforderungen</strong>: Diese Anweisungen stammen direkt vom Geldgeber oder der Einrichtung, der / die einen DMP einfordert.</li>
-	  <li><strong>Eingabefeld:</strong> Hier können Sie Ihre Antworten eingeben. Das Eingabefeld bietet Ihnen einige Formatierungsoptionen (zu finden überhalb des Eingabefeldes)</li>
+	  <li><strong>Eingabefeld:</strong> Hier können Sie Ihre Antworten eingeben. Das Eingabefeld bietet Ihnen einige Formatierungsoptionen (zu finden oberhalb des Eingabefeldes)</li>
 	  <li><strong>Antwort speichern:</strong> Klicken Sie auf "<%= t('responses.form.save_button') %>", um Ihre Antwort abzuspeichern und im aktuellen Abschnitt zu bleiben. Klicken Sie auf "<%= t('responses.form.save_and_next_button') %>" um Ihre Antwort abzuspeichern und zum nächsten Abschnitt zu gelangen.</li>
 	</ol>
-	<p>Um zu einen anderen Abschnitt des DMPs zu gelangen, klicken Sie auf den Abschnittstitel in der Übersicht auf der linken Seite. Gehen Sie bitte sicher, dass Sie Ihre Antwort vorher abspeichern, bevor Sie den Abschnitt verlassen.</p>
+	<p>Um zu einen anderen Abschnitt des DMPs zu gelangen, klicken Sie auf den Abschnittstitel in der Übersicht auf der linken Seite. Denken Sie daran, Ihre Antwort abzuspeichern, bevor Sie den Abschnitt verlassen.</p>
 
 	<h3>Schritt #3: DMP Vorschau &amp; Abschluss</h3>
 	<!-- <p><img src="https://lh6.googleusercontent.com/1yLsFTHADwWJ_JYZu0Difey4tCvfmjj5GJvDIiWzn3OKT0z1Qg69hztipG_pmPy0cJzdEqALQm6ODmUvTlZasiWjKBqlKUY2PPAfufo9tYBVphIzTUGShI0TU54" alt="DMP Details" width="633px;" height="280px;"/></p> -->
 	<p><%= image_tag "qsg_7_ger.jpg", alt: "DMP Vorschau" %></p>
 	<ol>
-	  <li>Der <strong>"<%= t('plans.details.preview_button') %>"</strong>-Button öffnet eine neue Seite und zeigt Ihnen den gesamten Inhalt Ihres DMPs. Sie können jederzeit auf diesen Button drücken, um eine Vorschau auf Ihren DMP zu erhalten. Bitte achten Sie darauf vorher auf den <strong>"<%= t('responses.form.save_button') %>"</strong>-Button zu klicken, bevor sie auf <strong>"<%= t('plans.details.preview_button') %>"</strong> klicken.</li>
-	  <li>Die <strong>"<%= t('plans.preview.title') %>"</strong>-Seite zeigt Ihnen den gesamten Inhalt Ihres DMPs, inklusive der Abschnitte und Ihren Antworten.</li>
+	  <li>Der <strong>"<%= t('plans.details.preview_button') %>"</strong>-Button öffnet eine neue Seite und zeigt Ihnen den gesamten Inhalt Ihres DMPs. Sie können jederzeit auf diesen Button drücken, um eine Vorschau auf Ihren DMP zu erhalten. Denken Sie daran, auf den <strong>"<%= t('responses.form.save_button') %>"</strong>-Button zu klicken, bevor sie auf <strong>"<%= t('plans.details.preview_button') %>"</strong> klicken.</li>
+	  <li>Die <strong>"<%= t('plans.preview.title') %>"</strong>-Seite zeigt Ihnen den gesamten Inhalt Ihres DMPs, inklusive der einzelnen Abschnittsüberschriften und Ihren jeweiligen Antworten.</li>
 	  <li><strong>Exportieren</strong> Sie Ihren DMP als PDF / DOCX oder <strong>drucken</strong> Sie Ihren Plan.</li>
-	  <li>Auf der <strong>"<%= t('plans.preview.title') %>"</strong>-Seite müssen Sie auf den <strong><%= t('enum.plan_state.state.committed') %></strong>-Button klicken, um den Status Ihres DMPs auf "<%= t('enum.plan_state.state.committed') %>" zu setzen. Falls Ihre Einrichtung eine "Begutachtung" Ihres DMPs anbietet, sehen Sie einen "<%= t('plans.back_submit_buttons.submit_for_review_button') %>"-Button. Hinweis: Sie können jederzeit Informationen ändern oder hinzufügen, indem Sie in der Navigationsleiste auf <strong>"<%= t('layouts.dashboard_create_dmp_submenu.overview') %>"</strong> oder <strong>"<%= t('layouts.dashboard_create_dmp_submenu.details') %>"</strong> klicken.</li>
+	  <li>Auf der <strong>"<%= t('plans.preview.title') %>"</strong>-Seite müssen Sie auf den <strong><%= t('enum.plan_state.state.committed') %></strong>-Button klicken, um den Status Ihres DMPs auf "<%= t('enum.plan_state.state.committed') %>" zu setzen. Falls Ihre Einrichtung eine "Begutachtung" Ihres DMPs anbietet, sehen Sie einen "<%= t('plans.back_submit_buttons.submit_for_review_button') %>"-Button. Hinweis: Sie können jederzeit nachträglich Informationen ändern oder hinzufügen, indem Sie in der Navigationsleiste auf <strong>"<%= t('layouts.dashboard_create_dmp_submenu.overview') %>"</strong> oder <strong>"<%= t('layouts.dashboard_create_dmp_submenu.details') %>"</strong> klicken.</li>
 	</ol>
 	<!-- <p><img src="https://lh3.googleusercontent.com/Q5pPhpDr0qQ65hspQ55cdHLo13Lvc2-R946b8ukWz66qe5BRgcIMVY5Aa3qNBmuOElGnZ0n2Pq5vBqFByy0CspQVfo0ztovz8K-Y8uSf3JXiLPLTkk9KzBCuDkA" alt="DMP Vorschau" width="561px;" height="360px;"/></p> -->
 	<p><%= image_tag "qsg_8_ger.jpg", alt: "DMP Vorschau" %></p>
 
 	<h2 id="sharing">Den DMP öffentlich zur Verfügung stellen</h2>
 
-	<p>Wir rufen alle DMPTool-Benutzer dazu auf, Ihren DMP öffentlich zur Verfügung zu stellen. Dies fördert eine offene Wissenschaft und hilft möglicherweise anderen innerhalb der Community bei der Erstellung eines eigenen DMPs. Standardmäßig sind alle DMPs "privat" &ndash; lediglich der Eigentümer und die Miteigentümer können den Plan einsehen. Um dies zu ändern, gehen Sie zur "<%= t('routes.plans.index') %>"-Seite, halten den Mauszeiger über den Plan, welchen Sie teilen möchten und klicken auf "<%= t('plans.index.share_link') %>". Sie können Ihren Plan mit allen Mitgliedern Ihrer Einrichtung teilen, ihn öffentlich auf der DMPTool Seite zur Verfügung stellen, oder den Plan als "privat" belassen.</p>
+	<p>Wir rufen alle DMPTool-Benutzer dazu auf, Ihren DMP öffentlich zur Verfügung zu stellen. Dies fördert eine offene Wissenschaft und kann anderen innerhalb der Community bei der Erstellung eines eigenen DMPs helfen. Standardmäßig sind alle DMPs "privat" &ndash; lediglich der Eigentümer und die Miteigentümer können den Plan einsehen. Um dies zu ändern, gehen Sie zur "<%= t('routes.plans.index') %>"-Seite, halten den Mauszeiger über den Plan, welchen Sie teilen möchten und klicken auf "<%= t('plans.index.share_link') %>". Sie können Ihren Plan mit allen Mitgliedern Ihrer Einrichtung teilen, ihn öffentlich auf der DMPTool Seite zur Verfügung stellen, oder den Plan als "privat" belassen.</p>
 	<p>Sie können auch auf die <strong>"<%= t('layouts.dashboard_create_dmp_submenu.overview') %>"</strong>-Seite gehen und mit einen Klick auf <strong><%= t('plans.form.change_settings_button') %></strong> die <strong>Sichtbarkeit</strong> ändern.</p>
 	<!-- <p><img src="https://lh3.googleusercontent.com/CNBXS4xGNpIG768f8M4eZQUxOi8JLcTZakRJaiJvCVVZqucLA4zfZKn1kb8gwG8hy08xAWT8q5YZKMs_g6gjDwRHcdCF000NErcNyh2reC5kKIK1BIhNOrGl-q0" alt="My DMPs" width="624px;" height="300px;"/></p> -->
 	<p><%= image_tag "qsg_9_ger.jpg", alt: "Meine DMPs" %></p>
 
-	<h2 id="help">Wie erhalte ich Hilfe von jemandem an meiner Einrichtung?</h2>
+	<h2 id="help">Wie erhalte ich Hilfe von Ansprechpartnern an meiner Einrichtung?</h2>
 
-	<p>Nachdem Sie sich eingeloggt haben, finden Sie oben auf der Seite eine E-Mail Adresse und eine URL um Hilfe anzufordern. </p>
+	<p>Nachdem Sie sich eingeloggt haben, finden Sie oben auf der Seite eine E-Mail-Adresse und eine URL um Hilfe anzufordern. </p>
 	<!-- <p><img src="https://lh3.googleusercontent.com/RSf9jQOizfbGa3vRXNcE9u5sjGFEx1dSPJbozeNoqkObQbp0LtjLMzmbenEFhckHdZW25bOmiLGyKXKvqYslX-sTfDM6aYCUGyiFtPY9PwzbzNBPV7FG9kohWlw" alt="DMP Überblick" width="624px;" height="295px;"/></p> -->
 	<p><%= image_tag "qsg_10_ger.jpg", alt: "Kontakt" %></p>
 
