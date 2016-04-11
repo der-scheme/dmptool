@@ -1,5 +1,5 @@
 
-module Layout
+class Layout
   module Tags
 
     ##
@@ -20,24 +20,29 @@ module Layout
 
       attr_reader :children
 
-      def initialize(config)
+      def initialize(context, config)
         @children = config[:children].try(:map) do |cconfig|
-          self.class.new(cconfig)
+          self.class.new(context, cconfig)
         end
 
-        super(config)
+        super
       end
 
       def to_s
-        cls = ''
-        cls = "nav-#{href[:controller]}-#{href[:action]}" if href.is_a?(Hash)
-        cls << ' parent' if children
+        children, href = @children, @href
+        super_to_s = super.to_s
 
-        item = children ?
-          super + content_tag(:ul, children.reduce(&:+), class: 'children right') :
-          super
+        context.instance_exec do
+          cls = ''
+          cls = "nav-#{href[:controller]}-#{href[:action]}" if href.is_a?(Hash)
+          cls << ' parent' if children
 
-        content_tag(:li, item, class: cls)
+          item = children ?
+            super_to_s + content_tag(:ul, children.reduce(&:+), class: 'children right') :
+            super_to_s
+
+          content_tag(:li, item, class: cls)
+        end
       end
     end
   end

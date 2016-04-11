@@ -1,5 +1,5 @@
 
-module Layout
+class Layout
   module Tags
     module Wrappers
 
@@ -8,6 +8,8 @@ module Layout
 
       class Base < Layout::Tags::Base
 
+        delegate :context, to: :@tag
+        delegate :if, to: :@tag
         delegate :render?, to: :@tag
         delegate :to_s, to: :@tag
 

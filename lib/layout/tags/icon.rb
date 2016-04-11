@@ -1,5 +1,5 @@
 
-module Layout
+class Layout
   module Tags
 
     ##
@@ -19,9 +19,9 @@ module Layout
 
       attr_reader :type
 
-      def initialize(config)
+      def initialize(context, config)
         @type = config[:type]
-        super(config)
+        super
       end
 
       def to_s(**attributes)
