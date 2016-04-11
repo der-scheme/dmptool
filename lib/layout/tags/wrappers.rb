@@ -1,5 +1,5 @@
 
-module Layout
+class Layout
   module Tags
 
     ##

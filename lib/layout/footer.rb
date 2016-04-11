@@ -1,7 +1,7 @@
 
 ##
 
-module Layout
+class Layout
 
   ##
   # Provides an interface for operator-defined footers, exposing the
@@ -21,10 +21,12 @@ module Layout
   #     collection of Layout::Tags::A configurations.
 
   class Footer
-    def initialize(config)
-      @credits = Tags::Text.new(config[:credits])
-      @icons = config[:icons].map {|iconfig| Tags::Icon.new(iconfig)}
-      @links = config[:links].map {|lconfig| Tags::A.new(lconfig)}
+    def initialize(context, config)
+      @credits = Tags::Text.new(context, config[:credits])
+      @icons = config[:icons].lazy.map do |iconfig|
+        Tags::Icon.new(context, iconfig)
+      end
+      @links = config[:links].lazy.map {|lconfig| Tags::A.new(context, lconfig)}
     end
 
     ##

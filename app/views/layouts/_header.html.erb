@@ -12,8 +12,8 @@
   </div>
   <nav class="navbar">
     <ul class="nav">
-      <% Layout.header.each_item do |item| %>
-        <%= item if item.render?(self) %>
+      <% layout.header.each_item do |item| %>
+        <%= item if item.render? %>
       <% end %>
       <li class="login<%= (menu_level(0) == 'log_in' ? ' current' : '') %>">
         <% if current_user %>

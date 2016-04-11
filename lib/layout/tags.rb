@@ -1,7 +1,7 @@
 
 ##
 
-module Layout
+class Layout
 
   ##
   # A collection of (literal and virtual) HTML tags compatible with the layout

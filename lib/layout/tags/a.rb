@@ -1,7 +1,7 @@
 
 ##
 
-module Layout
+class Layout
   module Tags
 
     ##
@@ -21,11 +21,6 @@ module Layout
     #     _:label_ key.
 
     class A < Layout::Tags::Base
-      include ActionDispatch::Routing
-      include Rails.application.routes.url_helpers
-      # Conditional include, depending on wether we have merged this with a
-      # branch that supports route_i18n
-      include RouteI18n::TranslationHelper if const_defined?(:RouteI18n)
 
       ##
       # Reader for the url options/href attribute.
@@ -43,9 +38,9 @@ module Layout
 
       attr_reader :title
 
-      def initialize(config)
+      def initialize(context, config)
         @href, @label, @title = config.values_at(:href, :label, :title)
-        super(config)
+        super
       end
 
       ##
@@ -53,26 +48,29 @@ module Layout
       #
       # :call-seq: to_s(**attributes)
 
-      def to_s(label = nil, **attributes)
-        if @href.is_a?(Hash) && self.class.const_defined?(:RouteI18n)
-          # If @href is given as a parameter Hash for url_for and we have the
-          # RouteI18n module, use the module's lookup functionality, ignoring
-          # @label and @title.
-          title = url_text_for(@href)
-        else
-          # Otherwise, do a regular I18n lookup for both the label and the
-          # title, if they exist.
-          label ||= I18n.t(@label[:key], default: @label[:fallback]) if @label
-          title = I18n.t(@title[:key], default: @title[:fallback]) if @title
+      def to_s(lbl = nil, **attributes)
+        href, label, title = @href, @label, @title
+        context.instance_exec do
+          if href.is_a?(Hash) && respond_to?(:url_text_for)
+            # If href is given as a parameter Hash for url_for and we have the
+            # RouteI18n module, use the module's lookup functionality, ignoring
+            # label and title.
+            ttl = url_text_for(href)
+          else
+            # Otherwise, do a regular I18n lookup for both the label and the
+            # title, if they exist.
+            lbl ||= I18n.t(label[:key], default: label[:fallback]) if label
+            ttl = I18n.t(title[:key], default: title[:fallback]) if title
+          end
+
+          # Initialize whatever was left unitialized by the above code
+          lbl ||= ttl
+          ttl ||= lbl
+          attributes[:title] ||= ttl
+
+          # Finally do the render
+          link_to lbl, href, **attributes
         end
-
-        # Initialize whatever was left unitialized by the above code
-        label ||= title
-        title ||= label
-        attributes[:title] ||= title
-
-        # Finally do the render
-        link_to label, @href, **attributes
       end
     end
   end

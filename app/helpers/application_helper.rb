@@ -2,6 +2,13 @@ module ApplicationHelper
   include Sortable::Helper
   include RouteI18n::Helper   # implicitly includes TranslationHelper
 
+  ##
+  # Returns the Layout object for the current view.
+
+  def layout
+    @_layout ||= Layout.new(self)
+  end
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
