@@ -161,7 +161,7 @@ private
 
     locales.unshift(locale).each do |locale|
       I18n.locale = locale
-      default_url_options[:locale] ||= locale
+      default_url_options[:locale] = locale
       buffer << spacer << super(*args, **options)
     end
     I18n.locale = locale
