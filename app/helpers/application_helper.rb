@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  ##
+  # Returns the Layout object for the current view.
+
+  def layout
+    @_layout ||= Layout.new(self)
+  end
+
   #to enable column sorting with toggle effects
   #current asc and current desc classes are for supporting an eventual arrow image 
   #or css class (not yet implemented) associated with the sorting direction 

@@ -1,6 +1,6 @@
 
 ##
-# The Layout module provides an interface for an operator-defined layout
+# The Layout class provides an interface for an operator-defined layout
 # configuration, allowing a different header/footer per instance of this app.
 #
 # === Configuration ===
@@ -10,19 +10,20 @@
 # [:header]
 #     The Layout::Header configuration.
 
-module Layout
+class Layout
 
   ##
-  # Returns the page Header.
+  # Reader for the page Header.
 
-  def self.header
-    @@header ||= Header.new(Rails.configuration.layout[:header])
-  end
+  attr_reader :header
 
   ##
-  # Returns the page Footer.
+  # Reader for the page Footer.
 
-  def self.footer
-    @@footer ||= Footer.new(Rails.configuration.layout[:footer])
+  attr_reader :footer
+
+  def initialize(context)
+    @header = Header.new(context, Rails.configuration.layout[:header])
+    @footer = Footer.new(context, Rails.configuration.layout[:footer])
   end
 end

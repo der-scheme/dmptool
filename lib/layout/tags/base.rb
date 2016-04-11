@@ -1,7 +1,7 @@
 
 ##
 
-module Layout
+class Layout
   module Tags
 
     ##
@@ -19,14 +19,19 @@ module Layout
     #     else, in which case it is just returned literally.
 
     class Base
-      include ActionView::Helpers
+
+      ##
+      # Reader for the view context where we render everything
+
+      attr_reader :context
 
       ##
       # Reader for the conditional to be executed in the #render? method.
 
       attr_reader :if
 
-      def initialize(config)
+      def initialize(context, config = {})
+        @context = context
         @if = config[:if] if config.key?(:if)
       end
 
@@ -34,7 +39,7 @@ module Layout
       # Returns a tag representing _other_ appended to +self+.
 
       def +(other)
-        Text.new(other.append_to(self))
+        Text.new(context, other.append_to(self))
       end
 
       ##
@@ -43,7 +48,7 @@ module Layout
       #
       # Executes #if in instance scope of _context_ (if at all possible).
 
-      def render?(context)
+      def render?
         return true unless instance_variable_defined?(:@if)
 
         case @if

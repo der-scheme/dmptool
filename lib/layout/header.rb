@@ -1,7 +1,7 @@
 
 ##
 
-module Layout
+class Layout
 
   ##
   # Provides an interface for operator-defined page headers.
@@ -13,8 +13,10 @@ module Layout
   #     Layout::Tags::NavItem configurations.
 
   class Header
-    def initialize(config)
-      @items = config[:navigation].map {|iconfig| Tags::NavItem.new(iconfig)}
+    def initialize(context, config)
+      @items = config[:navigation].lazy.map do |iconfig|
+        Tags::NavItem.new(context, iconfig)
+      end
     end
 
     ##

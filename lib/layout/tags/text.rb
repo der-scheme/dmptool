@@ -1,5 +1,5 @@
 
-module Layout
+class Layout
   module Tags
 
     ##
@@ -12,8 +12,9 @@ module Layout
 
       attr_reader :text
 
-      def initialize(text)
+      def initialize(context, text)
         @text = text
+        super(context)
       end
 
       def to_s
@@ -21,9 +22,9 @@ module Layout
         when self.class
           @text.text.to_s
         when Hash
-          I18n.t(text[:key], default: text[:fallback])
+          context.t(text[:key], default: text[:fallback])
         when Proc
-          text.call
+          context.instance_exec(&text)
         else
           text.to_s
         end
