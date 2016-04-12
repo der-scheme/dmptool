@@ -751,6 +751,8 @@ en:
       edit_user_role: Edit User Role
       edit_user_role_tooltip: Edit user role
       grant_role_button: Grant Role
+      autocomplete_label: 'Name:'
+      autocomplete_placeholder: Search user by name or email
     new:
       title: New institution
       info: Institution Information
@@ -1299,9 +1301,6 @@ en:
       ldap_error: Error updating LDAP. Local update canceled.
     update_user_roles:
       success_notice: User was successfully updated.
-    user_autocomplete_widget:
-      label: 'Name:'
-      placeholder: Search user by name or email
     user_search:
       search_placeholder: Search user by name or email
     users_list:

@@ -89,10 +89,11 @@
 .header ul.nav > li {
 	&.current > a, &> a:hover, &> a:focus, &> a:active { color: #000; }
 	&.current,
-			.home &.nav-static_pages-home, .dashboard &.nav-dashboard-show,
-			.dmp_requirements &.nav-static_pages-guidance,
-			.public_dmps &.nav-plans-public, .help &.nav-static_pages-help,
-			.contact &.nav-static_pages-contact, .about &.nav-static_pages-about {
+			.ml_home &.nav-static_pages-home, .ml_dashboard &.nav-dashboard-show,
+			.ml_dmp_requirements &.nav-static_pages-guidance,
+			.ml_public_dmps &.nav-plans-public, .ml_help &.nav-static_pages-help,
+			.ml_contact &.nav-static_pages-contact,
+			.ml_about &.nav-static_pages-about {
 		&> a { background: rgba(0,0,0,0.05); }
 	}
 
