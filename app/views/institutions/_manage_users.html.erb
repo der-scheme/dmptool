@@ -1,24 +1,24 @@
+<div class="table-scope">
+	<%= link_to t('.all_filter_link', count: @all),
+							institutions_path(anchor: 'tab_tab4', scope: "all"), class: "all_limited" %>
+	|
+	<%= link_to t('.resource_editors_filter_link', count: @resources_editor),
+							institutions_path(anchor: 'tab_tab4', scope:  "resources_editor"), class: "resources_editor"  %>
+	|
+	<%= link_to t('.template_editors_filter_link', count: @template_editor),
+							institutions_path(anchor: 'tab_tab4', scope: "template_editor"),
+							class: "template_editor" %>
+	|
+	<%= link_to t('.inst_admins_filter_link', count: @institutional_administrator),
+							institutions_path(anchor: 'tab_tab4', scope: "institutional_administrator"), class: "institutional_administrator" %>
+	|
+	<%= link_to t('.inst_reviewers_filter_link', count: @institutional_reviewer),
+							institutions_path(anchor: 'tab_tab4', scope: "institutional_reviewer"), class: "institutional_reviewer" %>
+	|
+	<%= link_to t('.admins_filter_link', count: @dmp_administrator),
+							institutions_path(anchor: 'tab_tab4', scope: "dmp_administrator"), class: "dmp_administrator" %>
+</div>
 <table class ="table table-striped">
-	<div class="table-scope">
-		<%= link_to t('.all_filter_link', count: @all),
-				institutions_path(anchor: 'tab_tab4', scope: "all"), :class => "all_limited" %>
-		|
-		<%= link_to t('.resource_editors_filter_link', count: @resources_editor),
-								institutions_path(anchor: 'tab_tab4', scope:  "resources_editor"), :class => "resources_editor"  %>
-		|
-		<%= link_to t('.template_editors_filter_link', count: @template_editor),
-								institutions_path(anchor: 'tab_tab4', scope: "template_editor"),
-								:class => "template_editor" %>
-		|
-		<%= link_to t('.inst_admins_filter_link', count: @institutional_administrator),
-							institutions_path(anchor: 'tab_tab4', scope: "institutional_administrator"), :class => "institutional_administrator" %>
-		|
-		<%= link_to t('.inst_reviewers_filter_link', count: @institutional_reviewer),
-								institutions_path(anchor: 'tab_tab4', scope: "institutional_reviewer"), :class => "institutional_reviewer" %>
-		|
-		<%= link_to t('.admins_filter_link', count: @dmp_administrator),
-								institutions_path(anchor: 'tab_tab4', scope: "dmp_administrator"), :class => "dmp_administrator" %>
-	</div>
 		<thead>
 		  <tr>
 		    <%= content_tag :th, User.human_attribute_name(:full_name_last_first) %>
@@ -45,22 +45,55 @@
 		  <% end %>
 		</tbody>
 </table>
-<%= form_tag(add_authorization_manage_users_path(anchor: 'tab_tab4'), method: 'post') do %>
+<script>
+	// based on example at http://jqueryui.com/autocomplete/#remote-jsonp
+	$(function() {
+	  $( "#template_editor_name" ).autocomplete({
+	    source: function( request, response ) {
+	      $.ajax({
+	        url: "<%= users_autocomplete_path(role_number: Role::TEMPLATE_EDITOR) %>",
+	        dataType: "json",
+	        data: {
+	          name_term: request.term
+	        },
+	        success: function( data ) {
+	          response( $.map( data, function( item ) {
+	            return {
+	              label: item.label,
+	              value: item.full_name,
+	              id: item.id
+	            }
+	          }
+	          ));
+	        }
+	      });
+	    },
+	    minLength: 1,
+	    select: function( event, ui ) {
+	    	$('#template_editor_id').val(ui.item.id); // set hidden field id
+	    },
+	    open: function() {
+	      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	    },
+	    close: function() {
+	    	return false;
+	      $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	    }
+	  });
+	});
+</script>
+<%= form_tag add_authorization_manage_users_path(anchor: 'tab_tab4'), method: 'post',
+						 id: 'template_editor_autocomplete_form' do %>
 <table class ="table">
 	<tr class="user_row">
 		<td class="span7">
 			<div class="control-group">
-				<%= render partial: '/users/user_autocomplete_widget',
-				:locals =>
-					       {  user_role: 'template_editor',
-					          #submit_text: 'Add As Template Editor',
-					          submit_text: t('.grant_role_button'),
-					          submit_url: add_authorization_manage_users_path( anchor: 'tab_tab4'),
-					          role_number: Role::TEMPLATE_EDITOR,
-
-					          item_description: 'template editor'
-					       }
-				%>
+				<%= label_tag 'template_editor_name', t('.autocomplete_label'), class: 'control-label' %>
+				<%= text_field_tag 'template_editor_name', '', placeholder: t('.autocomplete_placeholder') %>
+				<%= hidden_field_tag "template_editor_id", '' %>
+				<%= hidden_field_tag "role_number", Role::TEMPLATE_EDITOR %>
+				<%= hidden_field_tag "item_description", 'template editor' %>
+				<%= submit_tag t('.grant_role_button'), class: 'btn' %>
 			</div>
 		</td>
 		<td class="span5">
