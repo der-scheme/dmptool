@@ -26,7 +26,7 @@
     <!--[if IE 7]><link rel="stylesheet" media="all" href="/stylesheets/ie.css" /><![endif]-->
     <%= render :partial => 'layouts/analytics' %>
   </head>
-  <%= content_tag :body, class: menu_level(0) do %>
+  <%= content_tag :body, class: "ml_#{menu_level(0)}" do %>
   <%= render 'layouts/header' %>
 
   <div class="container">
