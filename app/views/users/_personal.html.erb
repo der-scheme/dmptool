@@ -140,15 +140,17 @@
 
     <% if @user.orcid_id.nil? || @user.orcid_id.blank? %>
       <div class="control-group" style="position: relative">
-         <%= content_tag(:span, '', :title => 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 142px') %>
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= label_tag :orcid_id, :class => 'control-label' do %>
+         <%= content_tag(:span, '', :title => 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.', 'data-placement' => 'right', :class => 'icon questionmark tip') %>
+         ORCID
+        <% end %>
         <a href="http://orcid.org/">
           <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo" style="position: absolute; top: 11px; left: 230px">
         </a>
         <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
         <%= javascript_include_tag("orcid_widget.js") %>
         </input>
-        <%= content_tag(:span, '', :title => 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 12px; left: 780px') %>
+        <%= content_tag(:span, '', :title => 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.', 'data-placement' => 'right', :class => 'icon questionmark tip') %>
       </div>
 
     <% else %>
