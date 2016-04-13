@@ -179,9 +179,9 @@
               <div class="controls">
                 <%= content_tag :p, t('.plan_visibility_html', visibility: t_enum(@plan, :visibility)) %>
                 <%= link_to t('.change_settings_button'), '#', class: 'btn change_visibility_link',
-                            data: {planid: @plan.id, visibility: @plan.visibility}, style: 'margin-left:-20px' %>
+                            data: {planid: @plan.id, visibility: @plan.visibility} %>
 
-                <div style=" width:200px; float:right; margin-right:380px; margin-top:-36px; line-height:20px">
+                <div>
                   <%= render partial: 'visibility_note' %>
                 </div>
               </div>
