@@ -32,6 +32,7 @@ class Layout
 
       def initialize(context, config = {})
         @context = context
+        @class = config[:class]
         @if = config[:if] if config.key?(:if)
       end
 
@@ -40,6 +41,16 @@ class Layout
 
       def +(other)
         Text.new(context, other.append_to(self))
+      end
+
+      ##
+      # Returns this HTML tag's attributes.
+      #
+      # If more are given as parameters, merges them in a smart way (i.e. by
+      # concatenating CSS classes).
+
+      def attributes(params = {})
+        params.merge(class: join_values(@class, params[:class]))
       end
 
       ##
@@ -83,6 +94,12 @@ class Layout
 
       def append_to(other)
         other.to_s + to_s
+      end
+
+    private
+
+      def join_values(*values)
+        values.compact.join(' ')
       end
 
     end
