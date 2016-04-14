@@ -28,20 +28,24 @@ class Layout
         super
       end
 
+      def attributes(params = {})
+        cls = join_values(params[:class],
+                         ("nav-#{href[:controller]}-#{href[:action]}" if href.is_a?(Hash)),
+                         (:parent if children))
+        super(params.merge(class: cls))
+      end
+
       def to_s
         children, href = @children, @href
         super_to_s = super.to_s
+        attrs = attributes
 
         context.instance_exec do
-          cls = ''
-          cls = "nav-#{href[:controller]}-#{href[:action]}" if href.is_a?(Hash)
-          cls << ' parent' if children
-
           item = children ?
             super_to_s + content_tag(:ul, children.reduce(&:+), class: 'children right') :
             super_to_s
 
-          content_tag(:li, item, class: cls)
+          content_tag(:li, item, **attrs)
         end
       end
     end

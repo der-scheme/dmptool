@@ -24,9 +24,14 @@ class Layout
         super
       end
 
-      def to_s(**attributes)
-        super('', class: "icon #{@type}")
+      def attributes(params = {})
+        super(params.merge(class: join_values(:icon, type, params[:class])))
       end
+
+      def to_s(**attributes)
+        super('', **attributes)
+      end
+
     end
   end
 end
