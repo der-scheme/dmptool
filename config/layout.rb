@@ -5,7 +5,7 @@
       {href: {controller: :dashboard, action: :show}, if: :current_user},
       {href: {controller: :static_pages, action: :guidance}},
       {href: {controller: :plans, action: :public}},
-      {href: {controller: :static_pages, action: :help}},
+      {href: {controller: :static_pages, action: :help}, class: 'flex-stretch'},
       {href: {controller: :static_pages, action: :contact}},
       {
         href: {controller: :static_pages, action: :about},
