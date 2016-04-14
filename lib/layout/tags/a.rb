@@ -48,8 +48,9 @@ class Layout
       #
       # :call-seq: to_s(**attributes)
 
-      def to_s(lbl = nil, **attributes)
+      def to_s(lbl = nil, **attrs)
         href, label, title = @href, @label, @title
+        attrs = attributes(attrs)
         context.instance_exec do
           if href.is_a?(Hash) && respond_to?(:url_text_for)
             # If href is given as a parameter Hash for url_for and we have the
@@ -66,10 +67,10 @@ class Layout
           # Initialize whatever was left unitialized by the above code
           lbl ||= ttl
           ttl ||= lbl
-          attributes[:title] ||= ttl
+          attrs[:title] ||= ttl
 
           # Finally do the render
-          link_to lbl, href, **attributes
+          link_to lbl, href, **attrs
         end
       end
     end
