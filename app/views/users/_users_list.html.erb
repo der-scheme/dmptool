@@ -9,6 +9,9 @@
 				<th>Current Role</th>
 				<th width="span1">Edit User Role</th>
 				<th width="span1" class="align-center">Remove User</th>
+				<% if Rails.application.config.enable_dev_login %>
+					<th>Become User</th>
+				<% end %>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,7 +23,10 @@
 					<td><%= user.role_names.join(' | ') %></td>
 					<td class="span1"><%=link_to raw(''), edit_user_roles_path(user_id: user), :class => 'icon edit-user', :id => "edit_#{user.id}"%></td>
 					<td class="span1"><%= link_to raw(''), user, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'icon remove-user' %></td>    
-				</tr>       
+					<% if Rails.application.config.enable_dev_login %>
+						<td><%= button_to 'Login', login_as_user_path(user) %></td>
+					<% end %>
+				</tr>
 			<% end %>
 		</tbody>
 	</table>
