@@ -40,4 +40,7 @@ Dmptool2::Application.configure do
     end
   end
 
+  # Enable developer login and some special overrides in the dev routing
+  # namespace.
+  config.enable_dev_login = false
 end
