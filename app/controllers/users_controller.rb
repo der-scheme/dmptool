@@ -4,9 +4,16 @@ class UsersController < ApplicationController
 
   include InstitutionsHelper
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_dmp_admin_access, only: [:index, :edit_user_roles, :update_user_roles, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :login_as]
+  before_action :check_dmp_admin_access, only: [:index, :edit_user_roles, :update_user_roles, :destroy, :login_as]
   before_action :require_logout, only: [:new]
+
+  # POST /users/1/login_as
+  def login_as
+    session[:user_id] = @user.id
+    redirect_to dashboard_path,
+                flash: {notice: "Switched to #{@user.full_name}'s account."}
+  end
 
   # GET /users
   # GET /users.json
