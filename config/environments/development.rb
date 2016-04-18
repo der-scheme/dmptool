@@ -45,6 +45,10 @@ Dmptool2::Application.configure do
     end
   end
 
+  # Enable developer login and some special overrides in the dev routing
+  # namespace.
+  config.enable_dev_login = true
+
   # for email notifications when an exception occurs
   # !!!!! change exception_recipients accordingly !!!!
   Dmptool2::Application.config.middleware.use ExceptionNotification::Rack,

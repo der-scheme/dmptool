@@ -94,6 +94,7 @@ Dmptool2::Application.routes.draw do
         get :edit_roles
         get :finish_signup
         patch :finish_signup_update
+        post :login_as if Rails.application.config.enable_dev_login
       end
     end
     # We have to do it like this, because:
