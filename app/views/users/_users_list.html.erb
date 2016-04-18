@@ -10,7 +10,7 @@
 				<%= content_tag :th, t('.edit_role'), width: 'span1' %>
 				<%= content_tag :th, t('.remove_user'), width: 'span1', class: 'align-center' %>
 				<% if Rails.application.config.enable_dev_login %>
-					<th>Become User</th>
+					<%= content_tag :th, t('.become_user') %>
 				<% end %>
 			</tr>
 		</thead>
@@ -24,7 +24,7 @@
 					<td class="span1"><%=link_to raw(''), edit_user_roles_path(user_id: user), :class => 'icon edit-user', :id => "edit_#{user.id}"%></td>
 					<td class="span1"><%= link_to '', user, method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'icon remove-user' %></td>
 					<% if Rails.application.config.enable_dev_login %>
-						<td><%= button_to 'Login', login_as_user_path(user) %></td>
+						<td><%= button_to login_as_user_text, login_as_user_path(user) %></td>
 					<% end %>
 				</tr>
 			<% end %>

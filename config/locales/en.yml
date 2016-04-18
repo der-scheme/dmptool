@@ -408,6 +408,7 @@ en:
       add_token: Generate New Token
       edit: My Profile
       index: DMP Administration
+      login_as: Login
       new: Create An Account
       remove_token: Remove Token
   shared:
@@ -1321,6 +1322,7 @@ en:
       edit_role: Edit User Role
       no_results: No results found
       remove_user: Remove User
+      become_user: Become User
   user_sessions:
     complete_password_reset:
       title: Complete Password Reset
