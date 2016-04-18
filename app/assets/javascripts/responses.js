@@ -2,13 +2,15 @@
 // All this logic will automatically be available in application.js.
 
 $(function() {
-  $("#response_date_value" ).datepicker({
-  showOn: "button",
-  buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-  dateFormat: "mm/dd/yy",
-  changeMonth: true,
-  buttonImageOnly: true
-  });
+  if (!Modernizr.inputtypes.date) {
+    $("#response_date_value" ).datepicker({
+    showOn: "button",
+    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+    dateFormat: "yy-mm-dd",
+    changeMonth: true,
+    buttonImageOnly: true
+    });
+  }
 });
 
 $(function() {
@@ -31,7 +33,7 @@ $(function() {
       draggable: true,
       resizable: false,
       autoOpen: false,
-      title: "Please Enter a Valid Response.",
+      title: t('.alert_title'),
       show: {
         effect: "blind"
       },

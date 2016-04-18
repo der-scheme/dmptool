@@ -1,7 +1,7 @@
 <div class= 'global_resources'>
 	<% unless (  @requirement.global_resources.actionable_url.empty? && @requirement.template_resources.actionable_url.empty? &&
                 @requirement.requirement_resources.actionable_url.empty? ) %>
-    <h3> General Resources</h3>
+    <%= content_tag :h3, t('.general_resources') %>
   <%end%>
 
   <% unless @requirement.global_resources.actionable_url.empty? %>
@@ -40,7 +40,7 @@
 
 <div class= 'institution_customization_resources'>
 	<% unless @requirement.institution_customization_resources(current_user.institution_id).actionable_url.empty? %>
-  <h3> <%= current_user.institution.name %> Resources </h3>
+  <%= content_tag :h3, t('.institutional_resources', institution: current_user.institution.name) %>
   <ul>
     <%# institution customization resources for this requirement, Stephen's case #4 %>
     <% (@requirement.institution_customization_resources(current_user.institution_id).actionable_url).each do |resource| %>
@@ -52,7 +52,9 @@
 
 <div class= 'template_customization_resources'>
 	<% unless @requirement.template_customization_resources(current_user.institution_id).actionable_url.empty? %>
-  <h3> <%= @requirements_template.name %> for <%= current_user.institution.name %> Resources</h3>
+  <%= content_tag :h3, t('.customized_for_institution_resources',
+                         template: @requirements_template.name,
+                         institution: current_user.institution.name) %>
   <ul>
     <%# template customization resources for this requirement, Stephen's case #5 %>
     <% (@requirement.template_customization_resources(current_user.institution_id).actionable_url).each do |resource| %>
@@ -68,7 +70,9 @@
     <% if @requirement.template_customization_resources(current_user.institution_id).actionable_url.exists? %>
         <h3></h3>
     <% else %>
-        <h3> <%= @requirements_template.name %> for <%= current_user.institution.name %> Resources</h3>
+      <%= content_tag :h3, t('.customized_for_institution_resources',
+                             template: @requirements_template.name,
+                             institution: current_user.institution.name) %>
     <% end %>
   	<ul>
   		<% @url_resources.each do |resource| %>

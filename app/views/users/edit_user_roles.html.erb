@@ -1,43 +1,40 @@
-<% @title_text = "Edit User Roles" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "dmp_admin" %>
-<h1 class="row-fluid"><span class="icon administrator"></span>Edit User Roles</h1>
+
+<%= i18n_include_tag %>
+
+<h1 class="row-fluid"><span class="icon administrator"></span><%= t('.title') %></h1>
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li class="active"><%= link_to 'User Roles', '#tab1', 'data-toggle' => 'tab' %></li>
+		<li class="active"><%= link_to t('.user_roles_link'), '#tab1', data: {toggle: 'tab'} %></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
 				<%= form_tag(update_user_roles_path(user_id: @user.id, q: @user.email), method: 'post') do %>
-				<p><strong><%= @user.first_name %> Current Roles:</strong></p>
+				<p><strong><%= t('.current_roles', user: @user.first_name) %></strong></p>
 				<hr/>
 				<div class="control-group">
 					<ul>
 						<% @roles.each do |role| %>
 							<div id=<%="role_#{role.id}"%> >
 						  	<li><%= check_box_tag "role_ids[]", role.id, checked = @user.has_role?(role.id), :id => "#{role.id}"  %>
-						    <%= label_tag role.id, role.name, :class => 'checkbox-label' %></li>
+								<%= label_tag role.id, t_attr(role, :name), class: 'checkbox-label' %></li>
 							</div>
 						<% end %>
 					</ul>
 				</div>
 				<br/>
-				
+
 				<div class="buttons" >
 					<%if @user == current_user%>
-						
-							<%= submit_tag 'Save Changes', 
-									class: 'btn btn-green', id: "current_dmp_admin_with_alert"%>
-							<%= link_to 'Back', users_path(q: @user.email), :class => 'btn' %>
-						
+							<%= render_save_changes_button id: 'current_dmp_admin_with_alert' %>
 					<%else%>
-						
-							<%= submit_tag 'Save Changes',
-									class: 'btn btn-green', id: "other_user" %>
-							<%= link_to 'Back', users_path(q: @user.email), :class => 'btn' %>
-						
+							<%= render_save_changes_button id: 'other_user' %>
 					<%end%>
+
+					<%= render_back_button users_path(q: @user.email), green: false %>
 				</div>
-				
+
 		<%end%>
 		</div>
 	</div>

@@ -1,8 +1,7 @@
-<% set_page_history %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale || 'en' %>">
   <head>
-    <title><%= @title_text %>: DMPTool</title>
+    <title><%= @title_text %>: <%= t('globals.appname') %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag "favicon.ico" %>
@@ -20,14 +19,14 @@
    			document.write('<link rel="stylesheet" media="all" href="/stylesheets/chrome.css" />');
 			}
     </script>
-    
 
-   
+
+
     <!--[if IE 8]><link rel="stylesheet" media="all" href="/stylesheets/ie.css" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" media="all" href="/stylesheets/ie.css" /><![endif]-->
     <%= render :partial => 'layouts/analytics' %>
   </head>
-  <body>
+  <%= content_tag :body, class: "ml_#{menu_level(0)}" do %>
   <%= render 'layouts/header' %>
 
   <div class="container">
@@ -43,5 +42,5 @@
   </div>
 
   <%= render 'layouts/footer' %>
-  </body>
+  <% end %>
 </html>

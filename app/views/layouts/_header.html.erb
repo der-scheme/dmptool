@@ -1,32 +1,33 @@
 <header class="header container">
-  <%= link_to(image_tag("dmp_logo.png", :alt => "DMPTOOL", :width => "146", :height => "25"), root_path, :class => "logo", :title => "DMPTool Home") %>
+  <%= render partial: 'layouts/language_switcher' %>
+
+  <%= link_to_root title: t('.dmptool_logo_tooltip', default: url_text_i18n_keys(controller: :static_pages, action: :home)),
+                   class: 'logo' do |text| %>
+    <%= image_tag 'dmp_logo.png', alt: t('.dmptool_logo_alt'), width: 146, height: 25 %>
+  <% end %>
   <div class="welcome">
-    <p><%= "Welcome!" unless current_user.nil? %>
-      <%= content_tag(:strong, "#{current_user.full_name}") unless current_user.nil? %></p>
+    <p>
+      <%= t('.welcome_html', user: current_user.full_name) if current_user %>
+    </p>
   </div>
   <nav class="navbar">
     <ul class="nav">
-      <li class="nav-home<%= (menu_level(0) == 'home' ? ' current' : '') %>"><%= link_to "Home", root_path, :title => "Home" %></li>
-      <% if current_user %>
-        <li class="nav-dashboard"><%= link_to "My Dashboard", dashboard_path, :title => "My Dashboard" %></li>
+      <% layout.header.each_item do |item| %>
+        <%= item if item.render? %>
       <% end %>
-      <li class="nav-guidance<%= (menu_level(0) == 'dmp_requirements' ? ' current' : '') %>"><%= link_to "DMP Requirements", guidance_path, :title => "DMP Requirements" %></li>
-      <li class="nav-public<%= (menu_level(0) == 'public_dmps' ? ' current' : '') %>">
-        <%= link_to "Public DMPs", public_dmps_path, :title => "Sample DMPs" %>
-      </li>
-      <li class="nav-new"><%= link_to "News", APP_CONFIG['blog'], :title => "News", :target => "_blank" %></li>
-      <li class="nav-help<%= (menu_level(0) == 'help' ? ' current' : '') %>"><%= link_to "Help", help_path, :title => "Help" %></li>
-      <li class="nav-contact<%= (menu_level(0) == 'contact' ? ' current' : '') %>"><%= link_to "Contact Us", contact_path, :title => "Contact Us" %></li>
-      <li class="nav-about parent<%= (menu_level(0) == 'about' ? ' current' : '') %>"><%= link_to "About", about_path, :title => "About" %>
-      	<ul class="children right">
-      		<li><%= link_to "FAQ", "http://dmptool.askbot.com/", :title => "FAQ", :target => "_blank" %></li>
-      		<li><%= link_to "Video", video_path, :title => "Video" %></li>
-      		<li><%= link_to "Partner Institutions", partners_path, :title => "Partner Institutions" %></li>
-      	</ul>
-      </li>
       <li class="login<%= (menu_level(0) == 'log_in' ? ' current' : '') %>">
-        <%= link_to(content_tag(:span, "", :class => "icon user-login") + "Log In", choose_institution_path) if !current_user %>
-        <%= link_to(content_tag(:span, "", :class => "icon user-login") + "Log Out", logout_path) if current_user %></li>
+        <% if current_user %>
+          <%= link_to_logout do |text| %>
+            <%= content_tag :span, '', class: 'icon user-login' %>
+            <%= text %>
+          <% end %>
+        <% else %>
+          <%= link_to_choose_institution do |text| %>
+            <%= content_tag :span, '', class: 'icon user-login' %>
+            <%= text %>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </header>

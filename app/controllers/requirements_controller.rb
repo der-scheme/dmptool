@@ -46,7 +46,10 @@ class RequirementsController < ApplicationController
       if !group.nil? && group == 1
         if @requirement.save
           @requirement.requirements_template.touch
-          format.html { redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement, node_type: 'group'), notice: 'Group was successfully created.' }
+          format.html do
+            redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement, node_type: 'group'),
+                        notice: t('.group_success_notice')
+          end
           format.json { render action: 'show', status: :created, location: @requirement }
         else
           format.html { render action: 'index' }
@@ -55,7 +58,10 @@ class RequirementsController < ApplicationController
       else
         if @requirement.save
           @requirement.requirements_template.touch
-          format.html { redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement), notice: 'Requirement was successfully created.' }
+          format.html do
+            redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement),
+                        notice: t('.requirement_success_notice')
+          end
           format.json { render action: 'show', status: :created, location: @requirement }
         else
           format.html { render action: 'index' }
@@ -77,8 +83,11 @@ class RequirementsController < ApplicationController
           format.html { redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement) }
           format.json { head :no_content }
         else
-          @requirement.requirements_template.touch 
-          format.html { redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement), notice: "Requirement was successfully updated. "}
+          @requirement.requirements_template.touch
+          format.html do
+            redirect_to edit_requirements_template_requirement_path(@requirements_template, @requirement),
+                        notice: t('.success_notice')
+          end
           format.json { head :no_content }
         end
       else
@@ -174,7 +183,7 @@ class RequirementsController < ApplicationController
         @requirements = @requirements_template.requirements
       end
     end
-    
+
   end
 
   private

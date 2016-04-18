@@ -1,46 +1,42 @@
-<% @title_text = "Public DMPs" %>
+<% @title_text = t('.browser_title') %>
 <% @display_menu = "public_dmps" %>
-<h1 class="row-fluid"><span class="icon public-dmps"></span>Public DMPs</h1>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
+<h1 class="row-fluid"><span class="icon public-dmps"></span><%= t('.title') %></h1>
 <br/>
 <div class="row-fluid">
 	<div class="span8">
-		<p>Use the search box or the A-Z links below to narrow down the list by plan title. Public DMPs are plans created using the DMPTool and shared publicly by their owners. They are not vetted for quality, completeness, or adherence to funder guidelines.</p>
+		<%= t('.description_html') %>
 	</div>
 	<div class="search-area span4 pull-right">
 			<%= form_tag('', {:method => :get}) do %>
 				<div class="control-group pull-right">
-					<%= search_field_tag(:q, params[:q], :class => 'input-large') %>
-					<%= label_tag :q, "Search", :class => "icon search" %>
-					<%= submit_tag('Search') %>
+					<%= render partial: 'shared/search' %>
 				</div>
 			<% end %>
 	</div>
 </div>
 <br/>
 <div class="row-fluid">
-	<%= link_to('A - F', params.merge({ 's' => 'a', 'e' => 'f' , "public:page" => '1'}),
-				:class => 'btn viewA-F') %> 
-	<%= link_to('G - L', params.merge({ 's' => 'g', 'e' => 'l' , "public:page" => '1'}),
-				:class => 'btn viewG-L') %> 
-	<%= link_to('M - S', params.merge({ 's' => 'm', 'e' => 's' , "public:page" => '1'}),
-				:class => 'btn viewM-S') %> 
-	<%= link_to('T - Z', params.merge({ 's' => 't', 'e' => 'z' , "public:page" => '1'}),
-			:class => 'btn viewT-Z') %> 
-	<%= link_to('All', params.merge({ 's' => 'a', 'e' => 'z' , "public:page" => '1'}),
-			:class => 'btn viewA-Z') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'a', e: 'f') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'g', e: 'l') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'm', e: 's') %>
+	<%= render_filter_button({'public:page' => 1}, s: 't', e: 'z') %>
+	<%= render_filter_button({'public:page' => 1}, s: 'a', e: 'z') %>
 </div>
 <br/>
 
 <%if params[:q] && @plans.count == 0%>
 	<%= render partial: 'public_dmps_no_result', locals: {plans: @plans, namespace: 'public', show_institution: true} %>
 <%else%>
-	<%= render partial: 'generic_table', locals: {plans: @plans, namespace: 'public', show_institution: true} %>
+	<%= render partial: 'generic_table', locals: {plans: @plans, namespace: :public, show_institution: true} %>
 <%end%>
 
 <% unless @inst_plans.nil? || @inst_plans.length < 1 %>
   <br/>
-  <h1 class="row-fluid"><span class="icon public-dmps"></span>Institutional DMPs</h1>
-  <%= render partial: 'generic_table', locals: {plans: @inst_plans, namespace: 'institutional',
+  <h1 class="row-fluid"><span class="icon public-dmps"></span><%= t('.institutional_dmps') %></h1>
+  <%= render partial: 'generic_table', locals: {plans: @inst_plans, namespace: :institutional,
               show_institution: @show_institution} %>
 <% end %>
 

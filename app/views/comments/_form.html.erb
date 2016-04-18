@@ -1,13 +1,13 @@
 <%# this partial requires plan_id to be passed in as a local variable %>
 <%= form_for(@comment, remote: true,  html: { :class => 'form-horizontal' }) do |f| %>
-  <%= render partial: "shared/errors", locals: {model: @comment} %>
+  <%= render partial: "shared/model_errors", locals: {model: @comment} %>
   <div class="control-group">
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :plan_id, value: plan_id %>
   </div>
   <div class="control-group">
-  		<%= label_tag :comment_value, 'Comment', :class => 'hide' %>
-      <%= f.text_area :value, placeholder: 'Comment', :class => "input-block-level", rows: "8"%>
+  		<%= f.label :value, class: 'hide' %>
+      <%= f.text_area :value, placeholder: Comment.human_attribute_name(:value), class: 'input-block-level', rows: '8' %>
   </div>
   <div class="control-group">
     <% if user_role_in?(:institutional_reviewer) %>
@@ -20,7 +20,7 @@
     <%= f.hidden_field :comment_type, value: '' %>
   </div>
   <div>
-    <%= f.submit "Submit", :class => 'btn btn-success pull-right', method: 'post' %>
-    <%= button_tag "Cancel", type: :reset, :class => 'btn btn-success pull-right', id: "cancel_action" %>
+    <%= render_submit_button class: 'btn-success pull-right' %>
+    <%= render_cancel_button id: 'cancel_action', class: 'btn-success pull-right' %>
   </div>
 <% end %>

@@ -1,9 +1,13 @@
 <div class="help_box_head">
-  <div style="float:right"><strong>box size:</strong>
-    <a href="#" onclick="fixed_size('example_response_box', '60');return false;">small</a>
-    | <a href="#" onclick="fixed_size('example_response_box','140');return false;">medium</a>
-    | <a href="#" onclick="full_size('example_response_box');return false;">full</a></div>
-  <strong>Guidance</strong>
+  <div style="float:right">
+    <%= content_tag :strong, t('.box_size') %>
+    <%= link_to t('.box_size_small'), '#', onclick: "fixed_size('example_response_box', '60');return false;" %>
+    |
+    <%= link_to t('.box_size_medium'), '#', onclick: "fixed_size('example_response_box','140');return false;" %>
+    |
+    <%= link_to t('.box_size_full'), '#', onclick: "full_size('example_response_box');return false;" %>
+  </div>
+  <%= content_tag :strong, t('.guidance') %>
 </div>
 <div class="help_box" id="example_response_box">
   <div class= 'global_resources'>
@@ -53,7 +57,7 @@
 
   <div class= 'institution_customization_resources'>
     <% unless @requirement.institution_customization_resources(current_user.institution_id).example_response.empty? %>
-    <h3> <%= current_user.institution.name %> Resources </h3>
+    <%= content_tag :h3, t('.institution_customization_resources', institution: current_user.institution.name) %>
     <ul>
       <%# institution customization resources for this requirement, Stephen's case #4 %>
       <% (@requirement.institution_customization_resources(current_user.institution_id).example_response).each do |resource| %>
@@ -69,7 +73,7 @@
 
   <div class= 'template_customization_resources'>
     <% unless @requirement.template_customization_resources(current_user.institution_id).example_response.empty? %>
-    <h3> <%= @requirements_template.name %> for <%= current_user.institution.name %> Resources"</h3>
+    <%= content_tag :h3, t('.template_customization_resources', template: @requirements_template.name, institution: current_user.institution.name) %>
     <ul>
       <%# template customization resources for this requirement, Stephen's case #5 %>
       <% (@requirement.template_customization_resources(current_user.institution_id).example_response).each do |resource| %>

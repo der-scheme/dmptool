@@ -33,7 +33,7 @@
                                   tab_number:         "tab_tab#{tab_number}",
                                   custom_origin:      'Details',
                                   origin_url:         smart_origin_url),
-                :class => 'icon edit-user', :title => 'Edit Customization' %>
+                class: 'icon edit-user', title: t('.edit_link_tooltip') %>
           <% else %>
 
             <%= link_to raw(''),
@@ -46,7 +46,7 @@
                                                           tab_number:         "tab_tab#{tab_number}",
                                                           custom_origin:      'Details',
                                                           origin_url:         smart_origin_url),
-                        :class => 'icon edit-user', :title => 'Edit Customization' %>
+                        class: 'icon edit-user', title: t('.edit_link_tooltip') %>
           <% end %>
         </div>
       <% end %>

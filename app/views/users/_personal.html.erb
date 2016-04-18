@@ -1,13 +1,13 @@
 <%unless @user.new_record?%>
-  <p>Please update your account information.</p>
-  <p><strong>Name</strong></p>
+  <%= content_tag :p, t('.instructions') %>
+  <p><strong><%= t('.name') %></strong></p>
   <hr/>
 <%end%>
 
 <% errors = @user.errors[:login_id] %>
 <% validation_class = errors.empty? ? {} : 'error' %>
 <div class="control-group <%= validation_class %>">
-  <%= f.label :login_id, 'Username', :class => 'control-label required' %>
+  <%= f.label :login_id, class: 'control-label required' %>
   <div class="controls">
     <%= f.text_field :login_id, readonly: !@user.new_record?, :class => "required", 'aria-required' => 'true' %>
     <span class="help-inline">
@@ -56,8 +56,8 @@
     <div class="controls">
       <%= f.password_field :password, :class => '' +@required %>
 
-      <%= content_tag(:span, '', :title => 'The password must be 8 to 30 characters long. It must contain at least one number and one letter.',
-                     'data-placement' => 'right', :class => 'icon questionmark tip') %>
+      <%= content_tag :span, '', title: t('.password_tooltip'),
+                      data: {placement: 'right'}, class: 'icon questionmark tip' %>
         <span class="help-inline">
           <%#=errors.join (', ')%>
       </span>
@@ -79,7 +79,7 @@
 <%end%>
 
 <%unless @user.new_record?%>
-  <p><strong>Contact Information</strong></p>
+  <p><strong><%= t('.contact_info') %></strong></p>
   <hr/>
 <%end%>
 
@@ -102,14 +102,14 @@
   <div class="controls">
     <% # filter institution list in my profile page only %>
     <% if @user.new_record? %>
-      <%= f.select( :institution_id, 
-          @institution_list, 
-          {prompt: "-Select an Institution-"},
+      <%= f.select( :institution_id,
+          @institution_list,
+          {prompt: t('.select_institution_new')},
           :class => "input-xxlarge") %>
     <% else %>
-      <%= f.select( :institution_id, 
-        @institution_list, 
-        {prompt: 'Select Institution'}, 
+      <%= f.select( :institution_id,
+        @institution_list,
+        {prompt: t('.select_institution')},
         :class => "input-xxlarge")%>
     <% end %>
 
@@ -121,13 +121,15 @@
 
 <% unless @user.new_record? %>
   <%if @user.role_names.any?%>
-    <p><strong>DMP Options</strong></p>
+    <p><strong><%= t('.dmp_options') %></strong></p>
 	   <hr/>
     <div class="control-group">
-      <p class="control-label">My Roles</p>
+      <%= content_tag :p, t('.roles'), class: 'control-label' %>
       <div class="controls">
-        <p><%= @user.role_names.join(' | ') %>
-           <%= content_tag(:span, '', :title => '<ul><li>Template editor: create local, institutional, DMP templates</li><li>Resources editor: add/modify DMP template customizations, which include links to resources, local help text, suggested text, and example responses</li><li>Institutional reviewer: review, informally or formally, data management plans</li><li>Institutional administrator: assign additional DMPTool institutional administrators; performs all above administrative roles</li></ul>', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+        <p><%= t(@user.role_names, scope: 'enum.role.name').join(' | ') %>
+          <%= content_tag :span, '', title: t('.roles_tooltip'),
+                          data: {placement: 'right', html: 'true'},
+                          class: 'icon questionmark tip' %>
         </p>
       </div>
     </div>
@@ -135,44 +137,49 @@
 <% end %>
 
 <% unless @user.new_record? %>
-    <p><strong>Orcid</strong></p>
+    <p><strong><%= t('.orcid') %></strong></p>
     <hr/>
 
     <% if @user.orcid_id.nil? || @user.orcid_id.blank? %>
       <div class="control-group" style="position: relative">
-         <%= content_tag(:span, '', :title => 'ORCID is an Open Researcher and Contributor ID. See orcid.org for more information.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 142px') %>
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= label_tag :orcid_id, class: 'control-label' do %>
+          <%= content_tag :span, '', title: t('.orcid_tooltip'),
+                          data: {placement: 'right'},
+                          class: 'icon questionmark tip' %>
+        <% end %>
+       <div class="controls"
         <a href="http://orcid.org/">
-          <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo" style="position: absolute; top: 11px; left: 230px">
+          <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt'), style: 'position: absolute; top: 11px; left: 230px' %>
         </a>
-        <input type="text" id="orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
+        <%= f.text_field :orcid_id, class: 'orcid_widget', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
         <%= javascript_include_tag("orcid_widget.js") %>
-        </input>
-        <%= content_tag(:span, '', :title => 'Look up your ORCID id number, or select “Search” to search by name. We strongly recommend not manually entering your ORCID id.', 'data-placement' => 'right', :class => 'icon questionmark tip', :style => 'position: absolute; top: 12px; left: 780px') %>
+        <%= content_tag :span, '', title: t('.orcid_lookup_tooltip'),
+                        data: {placement: 'right'},
+                        class: 'icon questionmark tip' %>
+       </div>
       </div>
 
     <% else %>
-      
+
       <% @sub_orcid_id = @user.orcid_id.gsub("http://", "")%>
       <div class="control-group">
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
+        <%= f.label :orcid_id, class: 'control-label' %>
         <div class="controls everythingOnOneLine">
           <a href="http://orcid.org/">
-            <img src="<%= asset_path 'orcid_id.gif' %>" alt="Orcid ID logo">
+            <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt') %>
           </a>
           <p><%= link_to @sub_orcid_id, @user.orcid_id %></p>
           &nbsp;&nbsp;&nbsp;
-          <p><%= link_to 'Edit', '#', id: 'change_orcid' %></p>
+          <p><%= link_to t('.edit_orcid_link'), '#', id: 'change_orcid' %></p>
           &nbsp;&nbsp;&nbsp;
-          <p><%= link_to 'Delete', remove_orcid_path(user_id: @user), id: 'remove_orcid' %></p>
+          <p><%= link_to t('.delete_orcid_link'), remove_orcid_path(user_id: @user), id: 'remove_orcid' %></p>
         </div>
       </div>
 
       <div class="control-group" id="orcid_input_box">
-        <%= label_tag :orcid_id, 'ORCID', :class => 'control-label' %>
-          <input type="text" id="update_orcid_id" class="orcid_widget" name="user[orcid_id]" placeholder="xxxx-xxxx-xxxx-xxxx">
-            <%= javascript_include_tag("orcid_widget.js") %>
-          </input>
+        <%= f.label :orcid_id, class: 'control-label' %>
+        <%= f.text_field :orcid_id, class: 'orcid_widget', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
+        <%= javascript_include_tag("orcid_widget.js") %>
       </div>
 
     <% end %>
@@ -180,10 +187,10 @@
 
 
 <% unless @user.new_record? %>
-  <p><strong>API Token</strong></p>
+  <p><strong><%= t('.api_token') %></strong></p>
   <hr/>
   <div class="control-group">
-    <p class="control-label">My Token</p>
+    <%= f.label :auth_token, class: 'control-label' %>
     <div class="controls everythingOnOneLine">
       <div id="token_partial">
         <%= render partial: 'token'%>

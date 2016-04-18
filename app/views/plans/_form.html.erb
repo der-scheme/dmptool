@@ -1,17 +1,20 @@
-<% @title_text = "DMP Overview" %>
-<h1 class="row-fluid"><span class="icon overview"></span>DMP Overview</h1>
+<% @title_text = t('.title') %>
+
+<%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
+<h1 class="row-fluid"><span class="icon overview"></span><%= @title_text %></h1>
 <div class="tabbable">
   <ul class="nav-tabs">
-    <li class="active"><a href="#" data-toggle="tab">DMP Overview</a></li>
+    <li class="active"><%= link_to t('.plan_overview_link'), '#', data: {toggle: :tab} %></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <%= form_for @plan, html:{ :class => 'form-horizontal' }  do |f| %>
-        <%= render partial: "shared/errors", locals: {model: @plan } %>
+        <%= render partial: "shared/model_errors", locals: {model: @plan } %>
         <%= f.hidden_field :current_user_id, value: @user.id %>
         <%= f.hidden_field :original_plan_id, value: @original_plan_id %>
         <div class="control-group">
-          <%= label_tag :selected_requirement_template_name, 'DMP Template', :class => 'control-label' %>
+          <%= label_tag :selected_requirement_template_name, t('.selected_requirement_template_name'), class: 'control-label' %>
           <div class="controls">
             <% if @plan.new_record? && current_page?(controller: 'plans', action: 'new') %>
               <%= f.hidden_field :requirements_template_id, value: params[:requirements_template_id], id: 'dmp_template_id' %>
@@ -26,44 +29,52 @@
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :name , 'DMP Title', :class => 'control-label required' %>
+          <%= f.label :name, :class => 'control-label required' %>
           <div class="controls">
             <% unless @plan.new_record? && current_page?(controller: 'plans', action: 'copy_existing_template') %>
               <%= f.text_area :name , :class => 'input-xxlarge', 'aria-required' => 'true' %>
             <% else %>
-              <%= f.text_area :name , value: "Copy of " + @plan.name, :class => 'input-xxlarge', 'aria-required' => 'true' %>
+              <%= f.text_area :name , value: t('.copy_of', plan: @plan.name), class: 'input-xxlarge', 'aria-required' => 'true' %>
             <% end %>
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :solicitation_identifier , 'Proposal Solicitation Number', :class => 'control-label' %>
+          <%= f.label :solicitation_identifier, class: 'control-label' %>
           <div class="controls">
             <%= f.text_field :solicitation_identifier  , :class => 'input-xxlarge'%>
-            <%= content_tag(:span, '', :title => 'Proposal solicitation number or identifier for the call associated with this proposal and DMP.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+            <%= content_tag :span, '', title: t('.solicitation_identifier_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
           </div>
         </div>
         <div class="control-group">
-          <%= label_tag(:submission_deadline, "Proposal Submission Deadline", :class => "control-label") %>
+          <%= f.label :submission_deadline, class: 'control-label' %>
           <div class="controls">
-            <%= f.text_field :submission_deadline, value: @plan.submission_deadline.blank? ? " " : @plan.submission_deadline.strftime('%m/%d/%Y'), :class => 'datepicker', id:'submission_deadline' %>
-            <%= content_tag(:span, '', :title => 'Deadline for submitting the proposal associated with this DMP.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+            <%= f.date_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
+            <%= content_tag :span, '', title: t('.submission_deadline_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
           </div>
         </div>
 
         <% if @plan.new_record? %>
-          <div class="control-group" style="position: relative">
-            <%= content_tag(:span, '', :title => 'Three visibility options: <ul><li>Public: anyone can view, copy and or download the plan.</li><li>Institutional: anyone logged in from your institution can view, copy and or download the plan.</li><li>Private: only owners and co-owners can view the plan.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 135px') %>
-            <p class="control-label">Visibility</p>
+          <div class="control-group">
+            <p class="control-label">
+              <%= content_tag :span, '',
+                              title: t('.visibility_tooltip'),
+                              data: {toggle: 'tooltip', placement: 'right', html: 'true'},
+                              class: 'icon questionmark tip' %>
+              <%= Plan.human_attribute_name(:visibility) %>
+            </p>
             <div class="controls checkbox-controls">
-              <%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public'  %>
-              <%= label_tag :public, 'public', :class => 'radio-label'%><br/>
-              <%= f.radio_button :visibility, :institutional, :class => 'radio inline', :id => 'institutional'  %>
-              <%= label_tag :institutional, 'institutional', :class => 'radio-label'%><br/>
-              <%= f.radio_button :visibility, :private, :class => 'radio inline', :id => 'private', checked: true  %>
-              <%= label_tag :private, 'private', :class => 'radio-label'%><br/>
+              <%= f.radio_button :visibility, :public, class: 'radio inline' %>
+              <%= f.label :visibility, t_enum(:plan, :visibility, :public), value: :public, class: 'radio-label' %>
+              <br/>
+              <%= f.radio_button :visibility, :institutional, class: 'radio inline' %>
+              <%= f.label :visibility, t_enum(:plan, :visibility, :institutional), value: :institutional, class: 'radio-label' %>
+              <br/>
+              <%= f.radio_button :visibility, :private, class: 'radio inline', checked: true  %>
+              <%= f.label :visibility, t_enum(:plan, :visibility, :private), value: :private, class: 'radio-label'%>
+              <br/>
               <%if current_user.institution.parent || current_user.institution.has_children? %>
-                <%= f.radio_button :visibility, :unit, :class => 'radio inline', :id => 'unit'%>
-                <%= label_tag :unit, 'unit', :class => 'radio-label'%>
+                <%= f.radio_button :visibility, :unit, class: 'radio inline' %>
+                <%= f.label :visibility, t_enum(:plan, :visibility, :unit), value: :unit, class: 'radio-label'%>
               <%end%>
             </div>
           </div>
@@ -82,20 +93,21 @@
                 item_description: 'co-owner'
              } %>
             <div class="controls">
-              <% if @planowner.id != current_user.id %>
-                <span> Owner: </span>
-                <strong class= 'blue'><%= @planowner.full_name %>, </strong>
-              <% end %>
-              <span> Existing Co-owners: </span>
-              <strong class= 'blue'><%= @coowners.map { |coowner| coowner.full_name.to_s + raw(link_to "", delete_coowner_path(coowner_id: coowner.id, plan_id: @plan.id), :method => :delete, :data => { :confirm => "Are you sure?"}, :class => "remove icon", :title => "Remove Co-owner") }.join(", ").html_safe %></strong>
+              <%= t('.owner_html', owner: @planowner.full_name) unless @planowner.id == current_user.id %>
+              <%= content_tag :span, t('.coowners') %>
+              <strong class= 'blue'><%= @coowners.map {|coowner| coowner.full_name.to_s + raw(link_to '', delete_coowner_path(coowner_id: coowner.id, plan_id: @plan.id), method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'remove icon', title: t('.remove_coowner_link'))}.join(', ').html_safe %></strong>
             </div>
         <% end %>
 
         <% unless @plan.new_record? %>
           <div class="control-group">
-            <p class="control-label">Current Status</p>
+            <%= content_tag :p, Plan.human_attribute_name(:current_plan_state_id), class: 'control-label' %>
             <div class="controls">
-              <p><strong class="blue"><%= @plan.display_state %></strong> <%= link_to(content_tag(:span, "", :class => "icon-chevron-down") + "Show History", "#", :class => "view-plan-history") %><%= link_to(content_tag(:span, "", :class => "icon-chevron-up") + "Hide History", "#", :class => "hide-plan-history") %></p>
+              <p>
+                <strong class="blue"><%= translated_state(@plan) %></strong>
+                <%= link_to content_tag(:span, '', class: 'icon-chevron-down') + t('.show_history_link'), '#', class: 'view-plan-history' %>
+                <%= link_to content_tag(:span, '', class: 'icon-chevron-up') + t('.hide_history_link'), '#', class: 'hide-plan-history' %>
+              </p>
               <div id="plan_history" class="history">
                 <%= render partial: 'plan_states_history' %>
               </div>
@@ -104,13 +116,16 @@
           <% if @customization_review == "formal" || @customization_review == "informal" || (@customization_review == nil && @template_review == "formal") || (@customization_review == nil && @template_review == "informal")%>
             <hr/>
             <div class="control-group">
-              <p class ="control-label">Reviewer Comments</p>
+              <%= content_tag :p, t('.reviewer_comments'), class: 'control-label' %>
               <div class="controls">
-                <p><%= link_to(content_tag(:span, "", :class => "icon-chevron-down") + "View", "#", :class => "view-reviewer-comments") %><%= link_to(content_tag(:span, "", :class => "icon-chevron-up") + "Hide", "#", :class => "hide-reviewer-comments") %></p>
+                <p>
+                  <%= link_to content_tag(:span, '', class: 'icon-chevron-down') + t('.view_comments_link'), '#', class: 'view-reviewer-comments' %>
+                  <%= link_to content_tag(:span, '', class: 'icon-chevron-up') + t('.hide_comments_link'), '#', class: 'hide-reviewer-comments' %>
+                </p>
                 <div id="reviewer_comments" class="comments">
                   <div class="ajax_load_reviewer">
                     <% if @reviewer_comments.empty? %>
-                      <strong>There are currently no comments.</strong>
+                      <%= content_tag :strong, t('.no_comments') %>
                       <br/>
                     <% else %>
                       <div class="scrollable-container">
@@ -123,20 +138,23 @@
                     <% end %>
                   </div>
                   <br/>
-                  <p><%= link_to "Add Comments", "#", data: {:comment_type => :reviewer}, :class => "btn add_comments_link" %></p>
+                  <p><%= link_to t('.add_comment_button'), '#', data: {comment_type: :reviewer}, class: 'btn add_comments_link' %></p>
                 </div>
               </div>
             </div>
           <% end %>
 					<hr/>
           <div class="control-group">
-            <p class ="control-label">Owner Comments</p>
+            <%= content_tag :p, t('.owner_comments'), class: 'control-label' %>
             <div class="controls">
-              <p><%= link_to(content_tag(:span, "", :class => "icon-chevron-down") + "View", "#", :class => "view-owner-comments") %><%= link_to(content_tag(:span, "", :class => "icon-chevron-up") + "Hide", "#", :class => "hide-owner-comments") %></p>
+              <p>
+                <%= link_to content_tag(:span, '', class: 'icon-chevron-down') + t('.view_comments_link'), '#', class: 'view-owner-comments' %>
+                <%= link_to content_tag(:span, '', class: 'icon-chevron-up') + t('.hide_comments_link'), '#', class: 'hide-owner-comments' %>
+              </p>
               <div id="owner_comments" class="comments">
                 <div class ="ajax_load_owner">
                   <% if @owner_comments.empty? %>
-                    <strong>There are currently no comments.</strong>
+                    <%= content_tag :strong, t('.no_comments') %>
                     <br/>
                   <% else %>
                     <div class="scrollable-container">
@@ -149,27 +167,22 @@
                   <% end %>
                 </div>
                 <br/>
-                <p><%= link_to "Add Comments", "#", data: {:comment_type => :owner}, :class => "btn add_comments_link" %></p>
+                <p><%= link_to t('.add_comment_button'), '#', data: {comment_type: :owner}, class: 'btn add_comments_link' %></p>
               </div>
             </div>
           </div>
           <hr/>
 
           <div class="control-group">
-            <p class ="control-label">Visibility</p>
+            <p class ="control-label"><%= Plan.human_attribute_name(:visibility) %></p>
             <div>
               <div class="controls">
-                <p>
-                  This DMP is <strong class="blue"><%=@plan.visibility.capitalize %></strong>
-                </p>
-                <%= link_to "Change Settings", "#", :class => "btn change_visibility_link", :'data-planid' => @plan.id, 
-                      :'data-visibility' => @plan.visibility, :style => "margin-left:-20px"%>
-                
-                <div style=" width:200px; float:right; margin-right:380px; margin-top:-36px; line-height:20px">
-                
-                  Note: when visibility is set to "Public", your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site
-                  and it will be downloadable and copy-able. 
-                
+                <%= content_tag :p, t('.plan_visibility_html', visibility: t_enum(@plan, :visibility)) %>
+                <%= link_to t('.change_settings_button'), '#', class: 'btn change_visibility_link',
+                            data: {planid: @plan.id, visibility: @plan.visibility} %>
+
+                <div>
+                  <%= render partial: 'visibility_note' %>
                 </div>
               </div>
             </div>
@@ -177,14 +190,15 @@
 
           <hr/>
           <div class="control-group">
-            <p class ="control-label">Available Actions</p>
+            <%= content_tag :p, t('.actions'), class: 'control-label' %>
               <div class="controls">
-              <p><%= link_to "Preview DMP", preview_plan_path(@plan) %>
+              <p>
+                <%= link_to t('.preview_plan_link'), preview_plan_path(@plan) %>
                 <% if @customization_review == true || (@customization_review == nil && @template_review == true) %>
-                  | <%= link_to "Submit DMP", preview_plan_path(@plan) %>
+                  | <%= link_to t('.submit_plan_link'), preview_plan_path(@plan) %>
                 <% end %>
                 <% unless @coowners.include?(@user) %>
-                  | <%= link_to "Delete DMP",@plan, method: :delete,  style: 'color:red;', data: { confirm: 'Are you sure?', :id => 'delete_template'} %>
+                  | <%= link_to t('.delete_plan_link'), @plan, method: :delete,  style: 'color:red;', data: {confirm: t('globals.messages.prompt.confirm'), id: 'delete_template'} %>
                 <% end %>
               </p>
             </div>
@@ -193,13 +207,13 @@
 
         <div class="buttons">
           <% unless @plan.new_record? %>
-            <%= f.submit 'Save', name: 'save_changes', :class => 'btn' %>
-            <%= f.submit "Save and Next >>", name: 'save_and_dmp_details', :class => 'btn btn-green pull-right' %>
-            <%= button_tag 'Cancel', type: :reset, :class => 'btn btn-success'%>
+            <%= render_submit_button t: '.save', name: 'save_changes' %>
+            <%= render_submit_button t('.save_and_next'), name: 'save_and_dmp_details', class: 'pull-right' %>
+            <%= render_cancel_button class: 'btn-success' %>
           <% else %>
-            <%= f.submit "Save and Next >>", name: 'save_and_dmp_details', :class => 'btn btn-green pull-right' %>
-            <%= link_to '<< Back', :back, method: :get, :class => 'btn btn-green pull-left', role: "button" %>
-            <%= button_tag 'Cancel', type: :reset, :class => 'btn btn-success'%>
+            <%= render_submit_button t('.save_and_next'), name: 'save_and_dmp_details', class: 'pull-right' %>
+            <%= render_back_button class: 'pull-left', arrow: true, green: true %>
+            <%= render_cancel_button class: 'btn-success' %>
            <% end %>
         </div>
       <% end %>

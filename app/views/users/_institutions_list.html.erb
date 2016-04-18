@@ -1,9 +1,9 @@
 <table class="table table-striped">
 	<thead>
 	  <tr>
-	    <th>Institution Name</th>
-	    <th>Administrator</th>
-	    <th>Parent Institution</th>
+			<%= content_tag :th, Institution.human_attribute_name(:name) %>
+			<%= content_tag :th, Institution.human_attribute_name(:contact_info) %>
+			<%= content_tag :th, Institution.human_attribute_name(:parent_id) %>
 	  </tr>
   <thead>
   <tbody>
@@ -25,26 +25,14 @@
 
 <% if @all_institutions == "all" %>
   <div class="buttons pagination">
-    <%= link_to "View Less", users_path(:all_institutions => "", :anchor => 'tab2'), 
-        :method => :get, :class => "btn", role: "button" %>
+		<%= render_button_link t: '.view_less', href: users_path(:all_institutions => '', :anchor => 'tab2') %>
     <%= paginate @institutions %>
   </div>
 <% else %>
   <div class="buttons pagination">
-    <%= link_to "View All", users_path(:all_institutions => "all", :anchor => 'tab2'), 
-      :method => :get, :class => "btn", role: "button"%>
+		<%= render_button_link t: '.view_all', href: users_path(:all_institutions => 'all', :anchor => 'tab2') %>
     <%= paginate @institutions %>
   </div>
 <%end%>
 
-
-<!-- <div class="buttons pagination">
-	<%#= link_to "View All", users_path(:scope => "all_institutions", :anchor => 'tab2'), :method => :get, :class => "btn", role: "button" %>
-  <%#= paginate @institutions %>
-</div> -->
-
-
-
-
-
-<%= link_to 'Add New Institution', new_institution_path(5), :class => "btn btn-green" %>
+<%= render_button_link t('.add_new'), new_institution_path(5) %>

@@ -21,14 +21,10 @@ class RequirementsTemplatesController < ApplicationController
       @requirements_templates = RequirementsTemplate.all
     end
 
-    @order_scope = params[:order_scope] || "last_modification_date"
+    @order_scope = params[:order_scope] || 'updated_at'
     @scope = params[:scope] || "all_limited"
     @all_scope = params[:all_scope] || ""
 
-    #to avoid sql injection 
-    @direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-
-    
     case @scope
       when "all_limited"
         @requirements_templates = @requirements_templates
@@ -45,24 +41,14 @@ class RequirementsTemplatesController < ApplicationController
                                     where(visibility: :public, institution_id: [current_user.institution.subtree_ids])
     end
 
-    case @order_scope
-      when "name"
-        @requirements_templates = @requirements_templates.order('name'+ " " + @direction)
-      when "institution"
-        @requirements_templates = @requirements_templates.joins(:institution).
-                                    order('institutions.full_name'+ " " + @direction)
-      when "status"
-        @requirements_templates = @requirements_templates.
-                                  order('active'+ " " + (@direction == "asc" ? "desc" : "asc"))
-      when "visibility"
-        @requirements_templates = @requirements_templates.order('visibility'+ " " + @direction)
-      when "creation_date"
-        @requirements_templates = @requirements_templates.order('created_at'+ " " + @direction)
-      when "last_modification_date"
-        @requirements_templates = @requirements_templates.order('updated_at'+ " " + @direction)
-      else
-        @requirements_templates = @requirements_templates.order(name: :asc)
-    end    
+    sortable :name
+    sortable :institution_id, nested: :full_name
+    sortable :visibility
+    sortable :status do |templates, direction|
+      templates.order("active #{direction == :asc ? :desc : :asc}")
+    end
+    sortable :created_at
+    sortable :updated_at, default: true
 
     case @all_scope
       when "all"
@@ -147,7 +133,10 @@ class RequirementsTemplatesController < ApplicationController
     respond_to do |format|
       if params[:save_and_template_details]
         if @requirements_template.save
-          format.html { redirect_to requirements_template_requirements_path(@requirements_template), notice: 'DMP Template was successfully created.' }
+          format.html do
+            redirect_to requirements_template_requirements_path(@requirements_template),
+                        notice: t('.success_notice')
+          end
           format.json { head :no_content }
         else
           format.html { render action: 'new' }
@@ -155,7 +144,10 @@ class RequirementsTemplatesController < ApplicationController
         end
       else
         if @requirements_template.save
-          format.html { redirect_to edit_requirements_template_path(@requirements_template), notice: 'DMP Template was successfully created.' }
+          format.html do
+            redirect_to edit_requirements_template_path(@requirements_template),
+                        notice: t('.success_notice')
+          end
           format.json { head :no_content }
         else
           format.html { render action: 'new' }
@@ -171,7 +163,10 @@ class RequirementsTemplatesController < ApplicationController
     respond_to do |format|
       if params[:save_changes] || !params[:save_and_template_details]
         if @requirements_template.update(requirements_template_params)
-          format.html { redirect_to edit_requirements_template_path(@requirements_template), notice: 'DMP Template was successfully updated.' }
+          format.html do
+            redirect_to edit_requirements_template_path(@requirements_template),
+                        notice: t('.success_notice')
+          end
           format.json { head :no_content }
         else
           format.html { render action: 'edit' }
@@ -198,9 +193,9 @@ class RequirementsTemplatesController < ApplicationController
     respond_to do |format|
       format.html {
         if params[:after_url].blank?
-          redirect_to requirements_templates_url, notice: 'DMP template was deleted.'
+          redirect_to requirements_templates_url, notice: t('.success_notice')
         else
-          redirect_to params[:after_url], notice: 'DMP template was deleted.'
+          redirect_to params[:after_url], notice: t('.success_notice')
         end
       }
       format.json { head :no_content }
@@ -220,12 +215,12 @@ class RequirementsTemplatesController < ApplicationController
 
     @requirements_template = requirements_template.deep_clone include: [:sample_plans, :additional_informations, :requirements], validate: false
 
-    @requirements_template.name = "Copy of #{@requirements_template.name}"
+    @requirements_template.name = t('.copy_of', name: @requirements_template.name, count: 1)
 
     count = 1
     while RequirementsTemplate.where(name: @requirements_template.name).count > 0
       count += 1
-      @requirements_template.name[/^Copy [0-9]* ?of/] = "Copy #{count} of"
+      @requirements_template.name[/^Copy [0-9]* ?of/] = t('.copy_of', name: @requirements_template.name, count: count)
     end
 
     @requirements_template.institution_id = current_user.institution_id
@@ -248,7 +243,10 @@ class RequirementsTemplatesController < ApplicationController
         end
 
 
-        format.html { redirect_to edit_requirements_template_path(@requirements_template), notice: 'Requirements template was successfully created.' }
+        format.html do
+          redirect_to edit_requirements_template_path(@requirements_template),
+                      notice: t('.success_notice')
+        end
         format.json { render action: 'edit', status: :created, location: @requirements_template }
       else
         format.html { render action: 'new' }
@@ -261,11 +259,16 @@ class RequirementsTemplatesController < ApplicationController
     respond_to do |format|
       @requirements = @requirements_template.requirements
       if @requirements.empty?
-        @msg =  "The DMP template \"#{@requirements_template.name}\" you are attempting to activate has no Requirements. A template must contain at least one Requirement before you may activate it."
-        format.js { render 'activate_errors.js.erb' }
+        @msg = t('.failure_message', template: @requirements_template.name)
+        format.js { render 'activate_errors' }
       else
         @requirements_template.toggle!(:active)
-        format.js { render 'toggle_active.js.erb'}
+
+        # For some reason, the above line seems to be resetting the locale to
+        # default.
+        set_locale
+
+        format.js { render 'toggle_active'}
       end
     end
   end
@@ -306,10 +309,10 @@ class RequirementsTemplatesController < ApplicationController
       @inactive = RequirementsTemplate.inactive.count
       @public = RequirementsTemplate.public_visibility.count
       @institutional = RequirementsTemplate.institutional_visibility.count
-      @your_inst_public =  RequirementsTemplate.where(visibility: :public, 
+      @your_inst_public =  RequirementsTemplate.where(visibility: :public,
                                 institution_id: [current_user.institution.subtree_ids]).count
 
-    
+
     else
       @all =  RequirementsTemplate.where.
                                 any_of(institution_id: [current_user.institution.subtree_ids], visibility: :public).count
@@ -319,7 +322,7 @@ class RequirementsTemplatesController < ApplicationController
                                 any_of(institution_id: [current_user.institution.subtree_ids], visibility: :public).inactive.count
       @public = RequirementsTemplate.public_visibility.count
       @institutional = RequirementsTemplate.where(institution_id: [current_user.institution.subtree_ids]).institutional_visibility.count
-      @your_inst_public =  RequirementsTemplate.where(visibility: :public, 
+      @your_inst_public =  RequirementsTemplate.where(visibility: :public,
                                 institution_id: [current_user.institution.subtree_ids]).count
     end
 

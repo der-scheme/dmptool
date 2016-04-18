@@ -8,15 +8,13 @@ class ResourceContext < ActiveRecord::Base
   belongs_to :resource
 
 
-  validates :name, presence: {message: "%{value} must be filled in"}, if: "resource_id.blank?"
+  validates :name, presence: true, if: "resource_id.blank?"
   validates :review_type, presence: true, if: "resource_id.blank? && !institution_id.blank?"
-  validates :institution_id, uniqueness: { scope: [:institution_id, :requirements_template_id, :requirement_id, :resource_id],
-            message: "You are attempting to insert a duplicate of a customization that already exists." }
+  validates :institution_id, uniqueness: {scope: [:institution_id, :requirements_template_id, :requirement_id, :resource_id]}
 
-  validates :contact_email, presence: true, 
-                            format: { with: /.+\@.+\..+/,
-                                message: "%{value} address must be valid" }, if: "resource_id.blank? && !institution_id.blank?"
-  
+  validates :contact_email, presence: true,
+                            format: {with: (/.+\@.+\..+/)}, if: "resource_id.blank? && !institution_id.blank?"
+
 
 
   #these are the context levels, their names, descriptions and which items they must have set of
@@ -50,10 +48,10 @@ class ResourceContext < ActiveRecord::Base
 
   CONTEXT_NAMES_TO_NUMBERS = Hash[ CONTEXT_LEVELS.map{|k,v| [v[:name], k]}]
 
-  
+
   def self.search_terms(terms)
     items = terms.split
-    conditions = " ( " + items.map{|item| "resources.label LIKE ?" }.join(' AND ') + " ) " 
+    conditions = " ( " + items.map{|item| "resources.label LIKE ?" }.join(' AND ') + " ) "
     where(conditions, *items.map{|item| "%#{item}%" })
   end
 
@@ -122,23 +120,23 @@ class ResourceContext < ActiveRecord::Base
   end
 
   def self.no_requirement
-    where(requirement_id: nil) 
+    where(requirement_id: nil)
   end
 
   def self.institutional_level
-  	 where("resource_contexts.institution_id IS NOT NULL") 
+  	 where("resource_contexts.institution_id IS NOT NULL")
   end
 
   def self.resource_level
-     where("resource_id IS NOT NULL") 
+     where("resource_id IS NOT NULL")
   end
 
   def self.per_institution(institution)
-     where(institution_id: [institution.subtree_ids]) 
+     where(institution_id: [institution.subtree_ids])
   end
 
   def self.per_template(template)
-     where(requirements_template_id: template.id) 
+     where(requirements_template_id: template.id)
   end
 
   def self.requirement_level
@@ -150,12 +148,12 @@ class ResourceContext < ActiveRecord::Base
   end
 
   def self.resource_not_null
-    where("resource_id IS NOT NULL") 
+    where("resource_id IS NOT NULL")
   end
 
-  
 
-  
+
+
 
   #see context level variables at top for information
   def resource_level

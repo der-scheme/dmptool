@@ -1,4 +1,4 @@
-<h2> New Resource for <%= @template_name %> </h2>
+<%= content_tag :h2, t('.new_resource_for', template: @template_name) %>
 <% @display_menu = "customizations" %>
 
   <%= form_for @resource, url: create_customization_resource_path(template_id: @template_id,
@@ -11,65 +11,57 @@
                           custom_origin: @custom_origin),
                           html: { :class => 'form-horizontal' } do |f| %>
 
-    <%= render partial: "shared/errors", locals: {model: @resource } %>
+    <%= render partial: "shared/model_errors", locals: {model: @resource } %>
 
     <fieldset>
       <div class="control-group">
-        <%= f.label :resource_type, "Resource Type", :class => "control-label" %>
+        <%= f.label :resource_type, class: 'control-label' %>
         <div class="controls">
           <% if  @resource_level=="requirement" %>
-            <%= f.select :resource_type,
-            		options_for_select([['Links', :actionable_url], ['Guidance', :help_text], ['Example Response', :example_response], ['Suggested Response', :suggested_response]],
-                    selected: @selected)%>
+            <%= f.select :resource_type, options_for_enum_select(@resource, @selected)%>
           <% else %>
-            <%= f.select :resource_type,
-                options_for_select([['Links', :actionable_url], ['Guidance', :help_text]],
-                  selected: @selected)%>
+            <%= f.select :resource_type, options_for_enum_select([:actionable_url, :help_text], selected: @selected)%>
           <% end %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :label, "Resource Label", :class => "control-label required", id: "label_label" %>
+        <%= f.label :label, class: 'control-label required', id: 'label_label' %>
         <div class="controls">
-          <%= f.text_field :label, placeholder: "Enter a name for this Resource", :class => "input-xlarge" %>
+          <%= f.text_field :label, placeholder: t('.label_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <%= f.label :text, "Text", :class => "control-label", id: "text" %>
+        <%= f.label :text, class: 'control-label', id: 'text' %>
         <div class="controls">
-          <%= f.text_area :text, size: "20x10", placeholder: "Enter the text", :class => "full-length" %>
+          <%= f.text_area :text, size: '20x10', placeholder: t('.text_placeholder'), class: 'full-length' %>
         </div>
       </div>
 
 
       <div class="control-group">
-         <%= f.label :value, "Value", :class => "control-label", id: "value_label" %>
+         <%= f.label :value, class: 'control-label', id: 'value_label' %>
         <div class="controls">
-          <%= f.text_field :value, placeholder: "URL", :class => "input-xlarge" %>
+          <%= f.text_field :value, placeholder: t('.value_placeholder'), class: 'input-xlarge' %>
         </div>
       </div>
 
       <div class="actions pull-left">
         <% if @custom_origin == 'Details' %>
-          <%= link_to '<< Back', 
-                  "#{@origin_path}"+
-                  '#'+
-                  "#{@tab_number}",  
-                  :class => "btn" %>
+          <%= render_back_button href: "#{@origin_path}##{@tab_number}",
+                                 arrow: true, green: false %>
         <%else%>
-          <%= link_to '<< Back', 
-                    "#{@origin_path}",  
-                    :class => "btn" %>
+          <%= render_back_button href: @origin_path.to_s,
+                                 arrow: true, green: false %>
         <%end%>
           <%#= link_to '<< Back', :back,
                   :class => "btn" %>
       </div>
 
       <div class="actions pull-right">
-        <%= button_tag 'Cancel', type: :reset, :class => "btn" %>
-        <%= f.submit 'Save Changes', :class => "btn" %>
+        <%= render_cancel_button %>
+        <%= render_submit_button t: '.save_changes' %>
       </div>
 
     </fieldset>

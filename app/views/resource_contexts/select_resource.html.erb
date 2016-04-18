@@ -1,7 +1,7 @@
 <% @display_menu = "customizations" %>
-<h1 class="row-fluid"><span class="icon resource-template"></span>Existing Resources</h1>
+<h1 class="row-fluid"><span class="icon resource-template"></span><%= t('.existing') %></h1>
 <% unless user_role_in?(:dmp_admin) %>
-	<h2>For <%= current_user.institution.full_name %></h2>
+	<%= content_tag :h2, t('.for_user', user: current_user.institution.full_name) %>
 <% else %>
 	<br/>
 <% end %>
@@ -15,53 +15,49 @@
 		<%if @any_resource.count >0 %>
 			<%= render 'resource_search' %>
 		<%end%>
-		
+
 		<%= form_tag copy_selected_customization_resource_path, :method => :post  do %>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Select</th>
-						
-						<th hidden><%= link_to "Resource Id",
-													params.merge({scope: "Resource_id", authenticity_token: nil })%>
+						<th><%= t('.select') %></th>
+
+						<th hidden><%= sortable :resource_id %>
 						</th>
-						<th class="span4"><%= link_to "Details",
-		                      params.merge({scope: "Details", authenticity_token: nil})%>
+						<th class="span4">
+							<%# We will sort by resource_id multiple times, so we fake the distiction using namespaces %>
+							<%= sortable :resource_id, t('.details'), namespace: :label %>
 						</th>
 
-						<th><%= link_to "Type",
-		                      params.merge({scope: "Type", authenticity_token: nil}) %>
+						<th><%= sortable :resource_id, t('.type'), namespace: :type %>
 						</th>
 
-						<th><%= link_to "Institution",
-		                      params.merge({scope: "Institution", authenticity_token: nil}) %>
+						<th><%= sortable :institution_id, t('.institution') %>
 						</th>
 
-						<th><%= link_to "Creation Date",
-		                      params.merge({scope: "Creation_Date", authenticity_token: nil}) %>
+						<th><%= sortable :created_at %>
 						</th>
 
-						<th><%= link_to "Last Modification Date",
-		                      params.merge({scope: "Last_Modification_Date", authenticity_token: nil}) %>
+						<th><%= sortable :updated_at %>
 						</th>
 
-						<th hidden>Level</th>
-						<th width="span1">Edit</th>
+						<th hidden><%= t('.level') %></th>
+						<th width="span1"><%= t('.action') %></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%if @resource_contexts.length < 1 && params[:q] %>
-						<tr><td colspan="7" style="text-align: center;">No results found</td></tr>
+						<tr><td colspan="7" style="text-align: center;"><%= t('.no_results') %></td></tr>
 					<%elsif @any_resource.count == 0 && params[:q].blank?%>
 						<tr>
-							<td colspan="7" style="text-align: center;">There are no existing resources</td>
+							<td colspan="7" style="text-align: center;"><%= t('.none_existing') %></td>
 						</tr>
 					<%else%>
 						<% @resource_contexts.each do |resource_context| %>
 							<%unless resource_context.resource_level == 'Institution'%>
 								<tr>
-									<td class="span1"><%= radio_button_tag :resource, resource_context.resource_id, checked: false %></td>							
-									<td hidden><%= resource_context.resource_id %></td>							
+									<td class="span1"><%= radio_button_tag :resource, resource_context.resource_id, checked: false %></td>
+									<td hidden><%= resource_context.resource_id %></td>
 									<td>
 										<div class="toggle-links">
 											<%= resource_context.resource.nil? ? " " : resource_context.resource.label %>
@@ -69,8 +65,8 @@
 									</td>
 									<td><%= resource_type(resource_context) %></td>
 									<td><%= resource_context.institution.nil? ? " " :  resource_context.institution.nickname %></td>
-									<td><%= resource_context.resource.created_at.nil? ? " " :  resource_context.resource.created_at.strftime("%m/%d/%Y %I:%M%p") %></td>
-									<td><%= resource_context.resource.updated_at.nil? ? " " :  resource_context.resource.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>
+									<td><%= l(resource_context.resource.created_at) if resource_context.resource.created_at %></td>
+									<td><%= l(resource_context.resource.updated_at) if resource_context.resource.updated_at %></td>
 									<td hidden><%= resource_context.resource_level %></td>
 									<td class="span1"><%= link_to raw(''),
 													edit_customization_resource_path(id: resource_context.resource_id,
@@ -92,7 +88,7 @@
 			</table>
 			<%if @any_resource.count > 0 && (params[:q].blank? || @resource_contexts.length > 0)%>
 				<div class="buttons pagination">
-					<%= submit_tag 'Link Selected Resource',  :class => "btn btn-green" %>
+					<%= render_submit_button t('.link_button') %>
 					<%= paginate @resource_contexts %>
 				</div>
 			<%end%>
@@ -103,8 +99,8 @@
 			<%= hidden_field_tag :tab, @tab %>
 			<%= hidden_field_tag :tab_number, @tab_number %>
 			<%= hidden_field_tag :custom_origin, @custom_origin %>
-			<div class="actions pull-right">						
-				<%= link_to 'Add a new resource',
+			<div class="actions pull-right">
+				<%= link_to t('.add_resource_button'),
 									new_customization_resource_path(template_id: @template_id,
 									customization_overview_id: @customization_overview_id,
 									resource_level: @resource_level,
@@ -117,13 +113,11 @@
 			</div>
 		<%#end%>
 		<div class="actions pull-left">
-			<%= link_to '<< Back', 
-									"#{@origin_path}"+'#'+"#{@tab_number}",
-									  :class => "btn" %>
+			<%= render_back_button "#{@origin_path}##{@tab_number}", arrow: true, green: false %>
 		</div>
 
 	<%#else%>
-		
+
 		<%#if params[:q]%>
 			<%#= render 'resource_search' %>
 		<%#end%>
@@ -132,7 +126,7 @@
 			<thead>
 				<tr>
 					<th>Select</th>
-					
+
 					<th hidden><%#= link_to "Resource Id",
 												params.merge({scope: "Resource_id", authenticity_token: nil })%>
 					</th>
@@ -161,9 +155,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				<tr><td>No results found.</td></tr>
-				
+
 			</tbody>
 		</table>
 
@@ -188,19 +182,19 @@
 								:method => :post,
 								:class => "btn btn-green" %>
 
-			
+
 		</div>
 		<div class="actions pull-left">
-			
 
-			<%#= link_to '<< Back', 
+
+			<%#= link_to '<< Back',
 									"#{@origin_path}"+
 									'#'+
-									"#{@tab_number}",  
+									"#{@tab_number}",
 									:class => "btn" %>
 		</div> -->
 
 	<%end%>
-	
+
 </div>
 

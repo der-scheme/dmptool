@@ -1,0 +1,6 @@
+<%# This partial makes maintaining translations for several kinds of "button"
+    tag buttons easier. Several helpers are available through the
+    ApplicationHelper class. %>
+<% content ||= t(tid) %>
+<% attributes ||= {} %>
+<%= button_tag content, **attributes %>

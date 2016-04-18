@@ -8,7 +8,7 @@ class Response < ActiveRecord::Base
 
   validates :plan_id, presence: true, numericality: true
   validates :requirement_id, presence: true, numericality: true
-  
+
   after_create :check_revised
   after_update :check_revised
 
@@ -16,12 +16,12 @@ class Response < ActiveRecord::Base
 
   validates :text_value, presence: true, if: :requirement_type_is_text
   validates :enumeration_id, presence: true, if: :requirement_type_is_enum
-  validate :mandatory_text_or_enum_present  
+  validate :mandatory_text_or_enum_present
 
 
   def update_plan_modified_date
     plan = self.plan
-    plan.touch 
+    plan.touch
   end
 
 
@@ -31,7 +31,7 @@ class Response < ActiveRecord::Base
     requirement_type = Requirement.find(requirement_id).requirement_type
     if obligation == :mandatory
       if ( ( (text_value.nil?) && (requirement_type == :text) ) || ((enumeration_id.nil?) && (requirement_type == :enum) ) )
-        errors.add(:base, "This response is mandatory.")
+        errors.add(:base, :mandatory)
       end
     end
   end
@@ -39,7 +39,7 @@ class Response < ActiveRecord::Base
 
   def requirement_type_is_text
     requirement_id = self.requirement_id
-    requirement_type = Requirement.find(requirement_id).requirement_type 
+    requirement_type = Requirement.find(requirement_id).requirement_type
     if requirement_type == :text
       return true
     else
@@ -62,7 +62,7 @@ class Response < ActiveRecord::Base
   #   obligation = Requirement.find(requirement_id).obligation
   #   requirement_type = Requirement.find(requirement_id).requirement_type
   #   if obligation == :mandatory
-  #     if ( (text_value.nil? && requirement_type == :text) || 
+  #     if ( (text_value.nil? && requirement_type == :text) ||
   #           (enumeration_id.nil? && requirement_type == :enum) )
   #       errors.add(:base, 'This response is mandatory.')
   #       return true
@@ -70,7 +70,7 @@ class Response < ActiveRecord::Base
   #       return false
   #     end
   #   else
-  #     if ( (text_value.nil? && requirement_type == :text) || 
+  #     if ( (text_value.nil? && requirement_type == :text) ||
   #           (enumeration_id.nil? && requirement_type == :enum) )
   #       return true
   #     else

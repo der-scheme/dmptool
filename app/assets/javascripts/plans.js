@@ -1,14 +1,16 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(function() {
-	$("#submission_deadline.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1
-	});
+	if (!Modernizr.inputtypes.date) {
+		$("#plan_submission_deadline.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1
+		});
+	}
 });
 
 $(function() {
@@ -23,7 +25,7 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Add New Comments",
+			title: t('.comment_dialog_title'),
 			show: {
 				effect: "blind",
 				duration: 1000
@@ -39,7 +41,7 @@ $(function() {
       close: function() {
         $('#comment_dialog-form').dialog("close");
         $(this).find('form')[0].reset();
-        window.location.reload() 
+        window.location.reload()
       }
 		}).prev ().find(".ui-dialog-titlebar-close").show();
 		return false
@@ -118,6 +120,24 @@ $(function() {
 	$('#visibility_dialog_form').hide();
 	$('.change_visibility_link').click(function(event) {
 		event.preventDefault();
+
+    // Since Javascript doesn't support dynamic keys (which we need for I18n)
+    // in literal object syntax, we have to define them manually.
+    var buttons = {};
+    Object.defineProperty(buttons, t('shared.button.cancel'), {
+      enumerable: true,
+      value: function() {
+        $(this).dialog("close");
+      }
+    });
+    Object.defineProperty(buttons, t('shared.submit_button.submit'), {
+      enumerable: true,
+      value: function() {
+        $("#visibility_form").submit();
+        $(this).dialog( "close" );
+      }
+    });
+
 		$('#visibility_dialog_form').dialog( {
 			width: 600,
 			height: 200,
@@ -125,24 +145,14 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Share my DMP",
-			
-		 	buttons: {
-				Cancel: function(){
-					//$('#ui-id-1').unwrap();
-					$(this).dialog( "close" );
-				},
-				Submit: function() {
+			title: t('.visibility_dialog_title'),
 
-          $("#visibility_form").submit();
-          $(this).dialog( "close" );
-				}
-			},
+		 	buttons: buttons,
 			open: function()
-			{   
+			{
 
         $('.ui-widget-overlay').addClass('custom-overlay');
-        
+
         $('#visibility_dialog_form').prev().css('color', '#4C4C4E');
         $('#visibility_dialog_form').prev().css('font-family', 'Helvetica, sans-serif');
         $('#visibility_dialog_form').prev().css('font-size', '12px');
@@ -159,37 +169,40 @@ $(function() {
         $('#visibility_dialog_form').prev().find('button').css('font-size','20');
         $('#visibility_dialog_form').prev().find('button').css('font-color','black');
         $('#visibility_dialog_form').prev().find('button').css('opacity','0.2');
-               
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-corner-all');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-widget');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-state-default');
-    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button-text-only');
-				$(this).parent().find('button:contains("Cancel")').addClass('btn');
-				
 
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-corner-all');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-widget');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-state-default');
-    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text-only');
-				$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text');
-				$(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');			
+        var cancel_button = $(this).parent().find(
+              'button:contains("' + t('shared.button.cancel') + '")');
+        cancel_button.removeClass('ui-corner-all');
+        cancel_button.removeClass('ui-widget');
+        cancel_button.removeClass('ui-button');
+        cancel_button.removeClass('ui-state-default');
+        cancel_button.removeClass('ui-button-text-only');
+        cancel_button.addClass('btn');
+
+        var submit_button = $(this).parent().find(
+              'button:contains("' + t('shared.submit_button.submit') + '")');
+        submit_button.removeClass('ui-corner-all');
+        submit_button.removeClass('ui-widget');
+        submit_button.removeClass('ui-button');
+        submit_button.removeClass('ui-state-default');
+        submit_button.removeClass('ui-button-text-only');
+        submit_button.removeClass('ui-button-text');
+        submit_button.addClass('btn btn-green confirm');
 
 				$('#ui-id-1').parent().removeClass('ui-widget-overlay');
 				$('#ui-id-1').parent().removeClass('ui-widget-header');
 				$('#ui-id-1').parent().removeClass('ui-dialog-title');
 				$('#ui-id-1').parent().addClass('modal-header');
-				
+
 				// $('#ui-id-1').css('font-weight','bold');
 				// $('#ui-id-1').css('font-family', 'Helvetica, sans-serif');
 				// $('#ui-id-1').css('font-size', '12px');
 
-				
+
 				$('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
 
 				$('#visibility_dialog_form').next().removeClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
-				$('#visibility_dialog_form').next().addClass('modal-footer');	
+				$('#visibility_dialog_form').next().addClass('modal-footer');
 
 				$("#visibility_dialog_form").dialog("open");
 				$(".copyright span7").hide();
@@ -198,7 +211,7 @@ $(function() {
       	$('#ui-id-1').first().unwrap();
       	$('#ui-id-1').first().unwrap();
         $('#visibility_dialog_form').dialog("close");
-        
+
         //window.location.reload(true);
       }
 		}).prev ().find(".ui-dialog-titlebar-close").show();
@@ -208,9 +221,14 @@ $(function() {
 
 
 $(function() {
-	$('#visibility_dialog_form').parent().find('button:contains("Cancel")').bind("click",function() {
-		$("#visibility_dialog_form").reset();
-	});
+  var parent = $('#visibility_dialog_form').parent();
+  if (parent.length === 0)
+    return;
+
+    parent.find('button:contains("' + t('shared.button.cancel') + '")')
+      .bind("click", function() {
+    $("#visibility_dialog_form").reset();
+  });
 });
 
 
@@ -252,7 +270,7 @@ $(function() {
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: "Reason for rejection (mandatory)",
+			title: t('.reject_dialog_title'),
 			show: {
 				effect: "blind",
 				duration: 1000

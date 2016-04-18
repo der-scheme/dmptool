@@ -1,14 +1,14 @@
-<% @title_text = "My Dashboard" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "dashboard" %>
 <div class="row-fluid">
 	<div class="overview span8">
 		<br/>
-		<h1 class="row-fluid"><span class="icon overview"></span>Overview</h1>
+		<h1 class="row-fluid"><span class="icon overview"></span><%= t('.overview') %></h1>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>My DMPs</th>
-					<th>My DMPs under Review <span style='font-weight: normal;'>(where applicable)</span> </th>
+					<%= content_tag :th, t('.my_plans') %>
+					<%= content_tag :th, t('.my_plans_under_review_html') %>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,13 +18,13 @@
 	          #the UI developer isn't going to change it, I'll do some gymnastics
 	          #to make things pretty within a table
 	           col1 = []
-	           col1[0] = link_to "#{current_user.owned_plans.count} plans I own", plans_path(:scope => "owned")
-	           col1[1] = link_to "#{current_user.coowned_plans.count} plans I co-own", plans_path(:scope => "coowned")
+	           col1[0] = link_to t('.plans_i_own', count: current_user.owned_plans.count), plans_path(scope: 'owned')
+	           col1[1] = link_to t('.plans_i_coown', count: current_user.coowned_plans.count), plans_path(scope: 'coowned')
 	           col2 = (current_user.unique_plan_states & PlanState::REVIEW_STATES).map do |state|
-	             link_to "#{current_user.plans_by_state(state).count} #{state.capitalize}", plans_path(scope: state)
+	             link_to t(".review_#{state}_plans", count: current_user.plans_by_state(state).size), plans_path(scope: state)
 	           end
 	           if col2.length < 1
-	             col2[0] = "No DMPs are under review."
+	             col2[0] = t('.no_plan_under_review')
 	           end
 	           max_item = [col1.length, col2.length].max - 1
 	        %>
@@ -40,24 +40,24 @@
 		<div class="buttons">
 
 			<!--The following id is used for testing purposes, please do not remove-->
-			<%= link_to "Create New DMP", plan_template_information_path, :method => :get, :class => "btn btn-green", :id => "create_new_DMP", :onclick => 'return false;' %>
+			<%= render_button_link t('.new_plan_button'), plan_template_information_path, id: 'create_new_DMP', green: true, onclick: 'return false;' %>
 
 		</div>
 
 		<% if user_role_in?(:institutional_reviewer, :dmp_admin) %>
 			<% if defined? @pending_review %>
 			<br/>
-			<h1 class="row-fluid"><span class="icon review"></span>DMPs For My Review</h1>
+			<h1 class="row-fluid"><span class="icon review"></span><%= t('.plans_for_review') %></h1>
 			<table class="table table-striped">
 				<tbody>
 					<tr>
-						<td><%= link_to "#{pluralize(@pending_review, 'DMP')} pending review", review_dmps_path(scope: "submitted") %></td>
+						<td><%= link_to t('.review_submitted_plans', count: @pending_review), review_dmps_path(scope: 'submitted') %></td>
 					</tr>
 					<tr>
-						<td><%= link_to "#{pluralize(@approved_plans, 'DMP')} Approved", review_dmps_path(scope: "approved") %></td>
+						<td><%= link_to t('.review_approved_plans', count: @approved_plans), review_dmps_path(scope: 'approved') %></td>
 					</tr>
 					<tr>
-						<td><%= link_to "#{pluralize(@rejected_plans, 'DMP')} Rejected", review_dmps_path(scope: "rejected") %></td>
+						<td><%= link_to t('.review_rejected_plans', count: @rejected_plans), review_dmps_path(scope: 'rejected') %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -66,44 +66,45 @@
 
 	<% if defined? @requirements_templates %>
 	<br/>
-	<h1 class="row-fluid"><span class="icon dmp-template"></span>DMP Templates</h1>
+	<h1 class="row-fluid"><span class="icon dmp-template"></span><%= t('.templates') %></h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Within my Institution</th>
-				<th>Funder Requirements
-				<%= content_tag(:span, '', :title => 'Funder Requirements are templates defined by an institution that are available to the public (everyone).', 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'data-html' => 'true', :class => 'icon questionmark tip') %>
+				<%= content_tag :th, t('.within_my_institution') %>
+				<th>
+					<%= t('.funder_requirements') %>
+					<%= content_tag :span, '', title: t('.funder_requirements_tooltip'), data: {toggle: 'tooltip', placement: 'top', html: 'true'}, class: 'icon questionmark tip' %>
 				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
-          <%= link_to "#{@requirements_templates} DMP Templates only visible to my institution",
-                     requirements_templates_path(scope: 'institutional'), :id => "institutional_templates" %>
+          <%= link_to t('.institutional_templates', count: @requirements_templates), requirements_templates_path(scope: 'institutional'), id: 'institutional_templates' %>
         </td>
 				<!--The following id is used for testing purposes, please do not remove-->
-				<td><%= link_to "#{@public_requirements_templates} Public DMP Templates from my institution", requirements_templates_path(scope: 'your_inst_public'), :id => "public_templates" %></td>
+				<td>
+					<%= link_to t('.public_templates_from_us', count: @public_requirements_templates), requirements_templates_path(scope: 'your_inst_public'), id: 'public_templates' %>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 	<div class="buttons">
 
 		<!--The following id is used for testing purposes, please do not remove-->
-		<%= link_to "Create New DMP Template", new_requirements_template_path, :method => :get, :class => "btn btn-green", :id => "create_new_DMP_template" %>
+		<%= render_button_link t('.new_template_button'), new_requirements_template_path, green: true, id: 'create_new_DMP_template' %>
 
 	</div>
 	<% end %>
 	<% if defined? @resource_templates %>
 	<br/>
-	<h1 class="row-fluid"><span class="icon resource-template"></span>DMP Template Customizations</h1>
+	<h1 class="row-fluid"><span class="icon resource-template"></span><%= t('.template_customizations') %></h1>
 	<table class="table table-striped">
 		<tbody>
 			<tr>
 				<!--The following id is used for testing purposes, please do not remove-->
 				<td>
-          <%= link_to "#{@resource_templates} Customizations", resource_templates_path, :id => "resources_templates",
-                        :onclick => 'return false;' %>
+          <%= link_to t('.customizations', count: @resource_templates), resource_templates_path, id: 'resources_templates', onclick: 'return false;' %>
         </td>
 			</tr>
 		</tbody>
@@ -111,8 +112,7 @@
 	<div class="buttons">
 
 		<!--The following id is used for testing purposes, please do not remove-->
-		<%= link_to "Create New DMP Template Customization", new_resource_template_path, :class => "btn btn-green",
-                :id => "create_new_resource_template", :onclick => "return false"%>
+		<%= render_button_link t('.new_template_customization_button'), new_resource_template_path, id: 'create_new_resource_template', onclick: 'return false;' %>
 
 	</div>
 	<% end %>

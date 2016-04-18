@@ -1,2 +1,2 @@
-$("#activate_link_<%= @requirements_template.id %>").text("<%= activate_link_text(@requirements_template) %>");
-$("#status_<%= @requirements_template.id%>").text("<%= display_status_text(@requirements_template) %>");
+$("#activate_link_<%= @requirements_template.id %>").text("<%= t('.toggle_status_link', template: @requirements_template) %>");
+$("#status_<%= @requirements_template.id%>").text("<%= t_enum(@requirements_template, :active) %>");

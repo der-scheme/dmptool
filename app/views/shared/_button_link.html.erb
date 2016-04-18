@@ -1,0 +1,14 @@
+<%# This partial makes maintaining translations for several kinds of button
+    style links easier. Several helpers are available through the
+    ApplicationHelper class. %>
+<% tparams ||= {} %>
+<% content ||= t(tid, **tparams) %>
+<% attributes = {method: :get, role: :button}.merge(attributes || {}) %>
+<% attributes[:class] ||= '' %>
+<% attributes[:class].concat ' btn' %>
+
+<% if attributes[:disabled] %>
+  <%= content_tag :span, content, **attributes %>
+<% else %>
+  <%= link_to content, href, **attributes %>
+<% end %>

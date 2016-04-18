@@ -1,19 +1,20 @@
-<% @title_text = "Log In" %>
+<% @title_text = t('.browser_title') %>
 <% @display_menu = "log_in" %>
-<h1 class="row-fluid"><span class="icon login"></span>Institution Log In</h1>
+<h1 class="row-fluid"><span class="icon login"></span><%= t('.title') %></h1>
 <div class="login row-fluid">
 	<div class="span5 user_login">
-		<h2>Log in through your institution</h2>
+		<%= content_tag :h2, t('.instructions_title') %>
 	  <%= form_tag login_path, method: :post do %>
 			<div class="control-group select_institution">
-				<p><%= label_tag :institution_id, "Select your institution below and you will be directed to your institutional log in page." %></p>
-	    	<%= select_tag(:institution_id, options_for_select(@inst_list, :selected => session[:institution_id]),
-	    		:prompt => 'Select your institution', :class => "institution") %>
-	    	
+				<p><%= label_tag :institution_id, t('.instructions') %></p>
+        <%= select_tag :institution_id,
+                       options_for_select(@inst_list, selected: session[:institution_id]),
+                       prompt: t('.prompt_default_text'),
+                       class: 'institution' %>
+
 	  	</div>
-	    <%= submit_tag 'Next >>' %>
+	    <%= submit_tag t('.submit_button') %>
 	  <% end %>
-	  <p>If you do not see your institution in the list, <br/>
-	  	please select <strong>&quot;Not in List&quot;</strong> and click <strong>Next</strong>.</p>
+	  <%= t('.note_html') %>
 	</div>
 </div>

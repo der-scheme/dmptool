@@ -1,11 +1,11 @@
-<% @title_text = "Customization Details" %>
+<% @title_text = t('.title') %>
 <% @display_menu = "customizations:details" %>
-<h1 class="row-fluid" id="jump"><span class="icon template-details"></span>Customization Details</h1>
+<h1 class="row-fluid" id="jump"><span class="icon template-details"></span><%= @title_text %></h1>
 <h2><%= @requirements_template.name %></h2>
 <div class="dmptool-page row-fluid">
   <div class="details span4">
     <div class="tree-view border-box">
-      <p><strong>Template Outline</strong></p>
+      <p><strong><%= t('.template_outline') %></strong></p>
       <hr/>
       <div class="customization_tree">
         <ul>
@@ -35,5 +35,5 @@
 </script>
 
 <div class="actions pull-left">
-        <%= link_to '<< Back', :back, :class => "btn", role: "button" %>
+  <%= render_back_button arrow: true %>
 </div>

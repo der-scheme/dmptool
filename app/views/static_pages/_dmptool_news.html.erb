@@ -1,11 +1,11 @@
-<p>Latest information about data management and the DMPTool.</p>
+<%= content_tag :p, t('.latest_info') %>
 <% if @rss %>
     <ul>
         <% @rss.each do |i| %>
             <li><%= link_to(truncate(i.title, length: 42), i.link, :target => '_blank') %></li>
         <% end %>
     </ul>
-<%= link_to('More News', APP_CONFIG['blog'], :class => "btn btn-gray", :target => '_blank') %>
+<%= link_to t('.more_link'), APP_CONFIG['blog'], class: 'btn btn-gray', target: '_blank' %>
 <% else %>
-	<p>News is currently unavailable</p>
+	<%= content_tag :p, t('.unavailable') %>
 <% end %>

@@ -1,9 +1,0 @@
-Hello <%= @vars[:user].full_name %>,
-
-The DMP "<%= @vars[:plan].name %>" has a new comment from <%= @vars[:commenter].full_name %> :
-
-<%= @vars[:comment] %>
-
-If you have questions pertaining to this action, please contact <%= @vars[:user].institution.contact_info %> at <%= @vars[:user].institution.contact_email %>
-
-<%= render :partial => 'users_mailer/notification_boilerplate.text.erb' %>

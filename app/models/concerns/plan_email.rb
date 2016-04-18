@@ -15,81 +15,47 @@ module PlanEmail
   def email_dmp_saved
 
     #[:dmp_owners_and_co][:vis_change] -- A DMP's visibility has changed
-    if !self.changes["visibility"].nil?
-      if self.changes["visibility"][0] != self.changes["visibility"][1]
-        # mail all owners and co-owners
-        users = self.users
-        users.delete_if {|u| !u[:prefs][:dmp_owners_and_co][:vis_change]}
-        users.each do |user|
-          UsersMailer.notification(
-              user.email,
-              "DMP Visibility Changed: #{self.name}",
-              "dmp_owners_and_co_vis_change",
-              { :user => user, :plan => self } ).deliver
-        end
-      end
+    # mail all owners and co-owners if the visibility has changed
+    if changes[:visibility] &&  changes[:visibility][0] != changes[:visibility][1]
+      users
+        .select {|user| user[:prefs][:dmp_owners_and_co][:vis_change]}
+        .each {|user| UsersMailer.plan_visibility_changed(user, self).deliver}
     end
 
 
     # if the current_plan_state hasn't changed value then return now and don't mess with any of the rest
-    return if self.changes["current_plan_state_id"].nil?
-    if self.changes["current_plan_state_id"][0].nil?
-      earlier_state = PlanState.new
-    else
-      earlier_state = PlanState.find(self.changes["current_plan_state_id"][0])
-    end
-    current_state = self.current_state
+    return unless changes[:current_plan_state_id]
 
+    earlier_state = PlanState.find_or_initialize_by(id: changes[:current_plan_state_id][0])
     return if earlier_state.state == current_state.state
 
     # [:dmp_owners_and_co][:committed]  -- A DMP is completed (activated)
     if current_state.state == :committed
-      users = self.users
-      users.delete_if {|u| !u[:prefs][:dmp_owners_and_co][:committed]}
-      users.each do |user|
-        UsersMailer.notification(
-            user.email,
-            "PLAN COMPLETED: #{self.name}",
-            "dmp_owners_and_co_committed",
-            {:user => user, :plan => self } ).deliver
-      end
+      users
+        .select {|user| user[:prefs][:dmp_owners_and_co][:committed]}
+        .each {|user| UsersMailer.plan_completed(user, self).deliver}
 
     # [:dmp_owners_and_co][:submitted] -- A submitted DMP is approved or rejected
     # [:institutional_reviewers][:approved_rejected] -- An Institutional DMP is approved or rejected
-    elsif current_state.state == :approved || current_state.state == :rejected || current_state.state == :reviewed
-      users = self.users
-      users.delete_if {|u| !u[:prefs][:dmp_owners_and_co][:submitted]}
-      users.each do |user|
-        UsersMailer.notification(
-            user.email,
-            "DMP #{current_state.state}: #{self.name}",
-            "dmp_owners_and_co_submitted",
-            { :user => user, :plan => self, :state => current_state } ).deliver
-      end
+    elsif current_state.state.in?(:approved, :rejected, :reviewed)
+      users
+        .select {|user| user[:prefs][:dmp_owners_and_co][:submitted]}
+        .each {|user| UsersMailer.plan_state_updated(user, self).deliver}
 
-      institution = self.owner.institution
-      users = institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
-      users.delete_if {|u| !u[:prefs][:institutional_reviewers][:approved_rejected] }
-      users.each do |user|
-        UsersMailer.notification(
-            user.email,
-            "DMP #{current_state.state}: #{self.name}",
-            "institutional_reviewers_approved_rejected",
-            { :user => user, :plan => self, :state => current_state } ).deliver
+      owner.institution
+        .users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
+        .select {|user| user[:prefs][:institutional_reviewers][:approved_rejected]}
+        .each do |user|
+          UsersMailer.plan_state_updated(user, self, institutional: true).deliver
       end
 
     # [:institutional_reviewers][:submitted] -- An Institutional DMP is submitted for review
     elsif current_state.state == :submitted
-      institution = self.owner.institution
-      users = institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
-      users.delete_if {|u| !u[:prefs][:institutional_reviewers][:submitted] }
-      users.each do |user|
-        UsersMailer.notification(
-            user.email,
-            "#{self.name} has been submitted for institutional review",
-            "institutional_reviewers_submitted",
-            {:user => user, :plan => self} ).deliver
-      end
+      owner.institution
+        .users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
+        .select {|user| user[:prefs][:institutional_reviewers][:submitted]}
+        .each {|user| UsersMailer.plan_under_review(user, self).deliver}
     end
+
   end
 end

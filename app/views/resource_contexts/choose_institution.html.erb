@@ -1,28 +1,28 @@
 <% @display_menu = "customizations" %>
 <br/>
-<h1 class="row-fluid"><span class="icon select"></span>Select Institution for customization</h1>
+<h1 class="row-fluid"><span class="icon select"></span><%= t('.select_institution') %></h1>
 <br/>
 
 <%= form_tag(new_resource_context_path, {:method => :get, :class => 'form-horizontal' } ) do %>
   <div class="control-group">
-    <%= label_tag :customized_for, 'Customize for', :class => 'control-label' %>
+    <%= label_tag :customized_for, t('.customized_for'), class: 'control-label' %>
     <div class="controls radio-controls">
       <%= radio_button_tag :customized_for, :general, (params[:institution_id].blank?),
                            :class => 'radio inline', :id => 'general_customization' %>
-      <%= label_tag :general, 'General customization, shown to all institutions using this template', :class => 'checkbox-label' %>
+      <%= label_tag :general, t('.general_radio'), class: 'checkbox-label' %>
       <br/>
 
       <%= radio_button_tag :customized_for, :user_institution,
                            (params[:institution_id] == current_user.institution_id),
                            :class => 'radio inline', :id => 'user_institution' %>
-      <%= label_tag :user_institution, "Customizing this template for my institution (#{current_user.institution.name})",
+      <%= label_tag :user_institution, t('.user_institution_radio', institution: current_user.institution.name),
                     :class => 'checkbox-label' %>
       <br/>
 
       <%= radio_button_tag :customized_for, :select_institution,
                            (params[:institution_id].blank? ? false : params[:institution_id] != current_user.institution_id),
                            :class => 'radio inline', :id => 'select_institution' %>
-      <%= label_tag :select_institution, 'Customizing this template for the following institution', :class => 'checkbox-label' %>
+      <%= label_tag :select_institution, t('.select_institution'), class: 'checkbox-label' %>
       <br/>
       <%= select_tag(:list_institution_id,
                      options_for_select(@inst_list, :selected => params[:institution_id]),
@@ -33,8 +33,8 @@
     </div>
   </div>
   <div style="clear:both"></div>
-  <%= link_to("Previous page", dmp_for_customization_path, method: :get, :class => "btn pull-left") %>
-  <%= submit_tag("Next page", id: 'next', :class => "btn pull-right") %>
+  <%= render_button_link t: '.previous_page', href: dmp_for_customization_path, method: :get, class: 'pull-left' %>
+  <%= render_submit_button t('.next_button'), id: 'next', class: 'pull-right' %>
 <% end %>
 
 <script type="text/javascript">

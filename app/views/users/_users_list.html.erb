@@ -3,26 +3,26 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Institution</th>
-				<th>Current Role</th>
-				<th width="span1">Edit User Role</th>
-				<th width="span1" class="align-center">Remove User</th>
+				<%= content_tag :th, User.human_attribute_name(:full_name_last_first) %>
+				<%= content_tag :th, User.human_attribute_name(:email) %>
+				<%= content_tag :th, User.human_attribute_name(:institution_id) %>
+				<%= content_tag :th, User.human_attribute_name(:role_names) %>
+				<%= content_tag :th, t('.edit_role'), width: 'span1' %>
+				<%= content_tag :th, t('.remove_user'), width: 'span1', class: 'align-center' %>
 				<% if Rails.application.config.enable_dev_login %>
 					<th>Become User</th>
 				<% end %>
 			</tr>
 		</thead>
 		<tbody>
-			<% @users.each do |user| %>     
-				<tr class='user_row' id=<%="user_#{user.id}"%>>        
+			<% @users.each do |user| %>
+				<tr class='user_row' id=<%="user_#{user.id}"%>>
 					<td><%= link_to user.full_name_last_first, edit_user_path(user) %></td>
 					<td><%= user.email %></td>
 					<td><%= link_to user.institution.full_name, edit_institution_path(user.institution) %></td>
-					<td><%= user.role_names.join(' | ') %></td>
+					<td><%= t(user.role_names, scope: 'enum.role.name').join(' | ') %></td>
 					<td class="span1"><%=link_to raw(''), edit_user_roles_path(user_id: user), :class => 'icon edit-user', :id => "edit_#{user.id}"%></td>
-					<td class="span1"><%= link_to raw(''), user, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'icon remove-user' %></td>    
+					<td class="span1"><%= link_to '', user, method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'icon remove-user' %></td>
 					<% if Rails.application.config.enable_dev_login %>
 						<td><%= button_to 'Login', login_as_user_path(user) %></td>
 					<% end %>
@@ -31,17 +31,17 @@
 		</tbody>
 	</table>
 
-	
+
 	<%if @users.count > 0%>
 
 		<% if @all_users == "all" %>
 			<div class="buttons pagination">
-				<%= link_to "View Less", users_path(:all_users => "", :anchor => 'tab1', q: @q), :method => :get, :class => "btn", role: "button" %>
+				<%= render_button_link t: '.view_less', href: users_path(all_users: '', anchor: 'tab1', q: @q) %>
 				<%= paginate @users %>
 			</div>
 		<% else %>
 			<div class="buttons pagination">
-				<%= link_to "View All", users_path(:all_users => "all", :anchor => 'tab1', q: @q), :method => :get, :class => "btn", role: "button"%>
+				<%= render_button_link t: '.view_all', href: users_path(all_users: 'all', anchor: 'tab1', q: @q) %>
 				<%= paginate @users %>
 			</div>
 		<%end%>
@@ -50,7 +50,7 @@
 
 	<%if @q && @users.count==0%>
 		<div class="buttons pagination">
-			<tr><td>No results found</td></tr>
+			<tr><%= content_tag :td, t('.no_results') %></tr>
 		</div>
 	<%end%>
 
