@@ -43,7 +43,10 @@ module Dmptool2
 
     config.exceptions_app = self.routes
 
-
+      # Configuration key for developer login functionality, allowing devs to
+      # overtake user accounts.
+      # Only enabled in development mode by default.
+      config.enable_dev_login = false
   end
 end
 
