@@ -376,6 +376,8 @@ en:
       privacy: Privacy Policy
       terms_of_use: Terms of Use
       video: Video
+      promote: Promote the DMPTool
+      quickstartguide: Quick Start Guide
     user_sessions:
       destroy: Log Out
       institution: Log In

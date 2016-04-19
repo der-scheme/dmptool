@@ -377,6 +377,8 @@ de:
       privacy: Datenschutzrichtlinie
       terms_of_use: Nutzungsbedingungen
       video: Video
+      promote: Werbung für das DMPTool
+      quickstartguide: Schnellstartanleitung
     user_sessions:
       destroy: Logout
       institution: Login
