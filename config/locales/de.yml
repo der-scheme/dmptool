@@ -388,6 +388,7 @@ de:
       edit: Mein Profil
       import: Externen Benutzer registrieren.
       index: Admin
+      login_as: Login
       new: Einen Account anlegen
       remove_token: Token entfernen
   shared:
@@ -1308,6 +1309,7 @@ de:
       edit_role: Benutzerrolle bearbeiten
       no_results: Keine Ergebnisse gefunden
       remove_user: Benutzer entfernen
+      become_user: Benutzer werden
   user_sessions:
     complete_password_reset:
       title: Vollständiges Passwort-Reset
