@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   # POST /users/1/login_as
   def login_as
+    Rails.logger.warn {"User #{current_user.id} (#{current_user.full_name}) logged in with ID #{@user.id} (#{@user.full_name})"}
+
     session[:user_id] = @user.id
     redirect_to dashboard_path,
                 flash: {notice: "Switched to #{@user.full_name}'s account."}
