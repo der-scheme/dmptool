@@ -1156,7 +1156,7 @@ en:
       success_notice: Resource was successfully updated.
     update_customization_resource:
       malformed_url_error: 'The url: %{url} is a not valid url.'
-      sucess_notice: Resource was successfully updated.
+      success_notice: Resource was successfully updated.
   resource_contexts:
     choose_institution:
       select_institution: Select Institution for customization
