@@ -449,7 +449,7 @@ de:
       faq_url: http://dmptool.askbot.com/
       faq_title: FAQ
     footer:
-      copyright_text: '<p>Dieses DMP-Tool wird im Rahmen des IQF-Projekts zwischen dem <a href=\"http://www.uni-ulm.de/einrichtungen/kiz.html\" title=\"Kommunikations- und Informationszentrum (kiz) der Universität Ulm\" target=\"_blank\">Kommunikations- und Informationszentrum (kiz) der Universität Ulm</a> dem <a href=\"http://www.rz.uni-freiburg.de/\" title=\"Rechenzentrum der Universität Freiburg\">Rechenzentrum der Universität Freiburg</a> und der <a href=\"http://www.ub.uni-freiburg.de\" title=\"Universitätsbibliothek Freiburg\">Universitätsbibliothek Freiburg</a> als Testversion bereitgestellt.</p>'
+      copyright_text: '<p>Dieses DMP-Tool wird im Rahmen des IQF-Projekts zwischen dem <a href="http://www.uni-ulm.de/einrichtungen/kiz.html" title="Kommunikations- und Informationszentrum (kiz) der Universität Ulm" target="_blank">Kommunikations- und Informationszentrum (kiz) der Universität Ulm</a> dem <a href="http://www.rz.uni-freiburg.de/" title="Rechenzentrum der Universität Freiburg">Rechenzentrum der Universität Freiburg</a> und der <a href="http://www.ub.uni-freiburg.de" title="Universitätsbibliothek Freiburg">Universitätsbibliothek Freiburg</a> als Testversion bereitgestellt.</p>'
       privacy_policy_link: Datenschutzerklärung
       privacy_policy_title: Datenschutzerklärung
       accessibility_policy_link: Zugänglichkeitsrichtlinien
@@ -535,18 +535,18 @@ de:
       requirements_scope_info: Unten sehen Sie die DMP-Vorlagen, welche in Ihrer Institution verfügbar sind.
     guidance_table:
       template: Vorlage
-      funder: Forschungsförderer
-      institution: Einrichtung
-      institution_links: Link zur Einrichtung
+      funder: Erstellt durch
+      institution: Erstellt durch
+      institution_links: Weitere Informationen
       sample_plans: Musterpläne
       sample_plans_tooltip: Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt.
       if_available: (falls verfügbar)
       no_results: Keine Ergebnisse gefunden
     guidance_table_institutional:
       template: Vorlage
-      funder: Forschungsförderer
-      institution: Einrichtung
-      institution_links: Link zur Einrichtung
+      funder: Erstellt durch
+      institution: Erstellt durch
+      institution_links: Weitere Informationen
       sample_plans: Musterpläne
       sample_plans_tooltip: Musterpläne werden von Forschungsförderern, einer Einrichtung oder vertrauenswürdigen Dritten bereitgestellt.
       if_available: (falls verfügbar)
@@ -745,6 +745,8 @@ de:
       edit_user_role: Benutzerrolle bearbeiten
       edit_user_role_tooltip: Benutzerrolle bearbeiten
       grant_role_button: Rolle zuweisen
+      autocomplete_label: 'Name:'
+      autocomplete_placeholder: Benutzer über Namen oder E-Mail-Adresse suchen
     new:
       title: Neue Einrichtung
       info: Informationen über die Einrichtung
@@ -1006,14 +1008,14 @@ de:
         Plan abzuschließen oder Feedback einzuholen.</li><li>kein Feedback erforderlich
         / Feedback-Prozess wird nicht angeboten: Der Benutzer hat nicht die Möglichkeit
         Feedback einzuholen, sondern kann lediglich den Plan fertigstellen.</li></ul>'
-      add_funder_link_link: Link zum Drittmittelgeber hinzufügen
+      add_funder_link_link: Weiteren Link hinzufügen
       add_sample_plan_link: Musterplan hinzufügen
       save_and_next_button: Speichern und Weiter >>
     additional_information_fields:
       link_label_placeholder: Bezeichnung des Links
       link_url_placeholder: URL des Links
       remove_link: Entfernen
-      funder_links_tooltip: Fügen Sie Links zu Seiten des Drittmittelgebers hinzu, die als weitere Hilfestellung zu dieser Vorlage dienen können.
+      funder_links_tooltip: Fügen Sie Links zu Seiten hinzu, die als weitere Hilfestellung zu dieser Vorlage dienen können.
     sample_plan_fields:
       plan_name_placeholder: Name des Plans
       plan_url_placeholder: URL des Plans
@@ -1137,7 +1139,7 @@ de:
       success_notice: Ressource wurde erfolgreich aktualisiert.
     update_customization_resource:
       malformed_url_error: 'Die URL: %{url} ist nicht gültig.'
-      sucess_notice: Ressource wurde erfolgreich aktualisiert.
+      success_notice: Ressource wurde erfolgreich aktualisiert.
   resource_contexts:
     choose_institution:
       select_institution: Für welche Einrichtung soll die Anpassung erfolgen?
@@ -1300,9 +1302,6 @@ de:
       ldap_error: Fehler beim Aktualisieren von LDAP. Lokales Update abgebrochen.
     update_user_roles:
       success_notice: Benutzer wurde erfolgreich aktualisiert.
-    user_autocomplete_widget:
-      label: 'Name:'
-      placeholder: Benutzer über Namen oder E-Mail-Adresse suchen
     user_search:
       search_placeholder: Benutzer über Namen oder E-Mail-Adresse suchen
     users_list:
