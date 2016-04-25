@@ -33,8 +33,10 @@
     </div>
   </div>
   <div style="clear:both"></div>
-  <%= link_to("Previous page", dmp_for_customization_path, method: :get, :class => "btn pull-left") %>
-  <%= submit_tag("Next page", id: 'next', :class => "btn pull-right") %>
+  <div class="buttons noborder">
+    <%= link_to("Previous page", dmp_for_customization_path, method: :get, :class => "btn pull-left") %>
+    <%= submit_tag("Next page", id: 'next', :class => "btn pull-right") %>
+  </div>
 <% end %>
 
 <script type="text/javascript">
