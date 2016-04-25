@@ -31,13 +31,12 @@ class UserSessionsController < ApplicationController
       # initialize new ones)
       if session.delete(:import_successful)
         user = User.new(session.delete(:foreign_user))
-        a12n = Authentication.new(session.delete(:authentication))
-        user.authentications << a12n
+        a12n = user.authentications.build(session.delete(:authentication))
 
         # We have to turn validation off because the User model is
         # misconfigured in so many ways.
-        a12n.save(validate: false)
         user.save(validate: false)
+        a12n.save(validate: false)
       else
         user, a12n = User.from_omniauth(auth, session['institution_id'])
       end
@@ -60,8 +59,8 @@ class UserSessionsController < ApplicationController
     # configured to trigger a prompt, we store the user's information in the
     # session and redirect them to the confirmation page.
     if user.new_record? && auth[:provider].in?(Rails.application.config.prompt_external_signup)
-      session[:foreign_user] = user.attributes.with_indifferent_access
-      session[:authentication] = a12n.attributes.with_indifferent_access
+      session[:foreign_user] = user.attributes.reject {|_, value| value.nil?}.with_indifferent_access
+      session[:authentication] = a12n.attributes.reject {|_, value| value.nil?}.with_indifferent_access
       redirect_to import_user_path and return
     end
 
@@ -72,8 +71,8 @@ class UserSessionsController < ApplicationController
     session[:login_method] = auth[:provider]
 
     # Validation turned off, because see above.
-    a12n.save(validate: false)
     user.save(validate: false)
+    a12n.save(validate: false)
 
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?
       redirect_to edit_user_path(user), flash: {error: t('.incomplete_info_error')} and return
