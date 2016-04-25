@@ -77,6 +77,8 @@ class UserSessionsController < ApplicationController
     if user.first_name.blank? || user.last_name.blank? || user.prefs.blank?
       redirect_to edit_user_path(user), flash: {error: t('.incomplete_info_error')} and return
     else
+      Rails.logger.info {"User #{user.id} (#{user.full_name}) logged in"}
+
       unless session[:return_to].blank?
         r = session[:return_to]
         session.delete(:return_to)
@@ -91,6 +93,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
+    Rails.logger.info {"User #{session[:user_id]} logged out"}
+
     reset_session
     session[:user_id]
     redirect_to root_path, notice: t('.notice')
