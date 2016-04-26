@@ -86,7 +86,7 @@
 						 id: 'template_editor_autocomplete_form' do %>
 <table class ="table">
 	<tr class="user_row">  
-		<td class="span7">
+		<td class="nowrap">
 			<div class="control-group">
 				<%= label_tag "template_editor_name", "Name:", :class => "control-label" %>
 				<%= text_field_tag "template_editor_name", '', placeholder: 'Search user by name or email' %>
@@ -96,7 +96,7 @@
 				<%= submit_tag 'Grant Role', class: 'btn' %>
 			</div>
 		</td>
-		<td class="span5">
+		<td>
 			<div class="control-group row-fluid">
 						<% @roles.each do |role| %>
 						  <div class="controls span6">
