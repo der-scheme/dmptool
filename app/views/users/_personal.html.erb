@@ -1,3 +1,6 @@
+
+<%= i18n_include_tag 'js.orcid' %>
+
 <%unless @user.new_record?%>
   <%= content_tag :p, t('.instructions') %>
   <p><strong><%= t('.name') %></strong></p>
