@@ -7,9 +7,9 @@
 			<div class="footer-feeds">
 				<%= layout.footer.each_icon.reduce(&:+) %>
 			</div>
-			<p>
+			<div class="the-links">
 				<%= layout.footer.each_link.map {|link| link.wrap(:separator_tag, ' | ')}.reduce(&:+) %>
-			</p>
+			</div>
 		</div>
 	</div>
 </footer>
