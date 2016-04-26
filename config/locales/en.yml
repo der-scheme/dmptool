@@ -336,6 +336,25 @@ en:
       wrong_file_ext_error: 'Only image file with extension: .jpg, .jpeg, .gif or
         .png is allowed'
       wrong_file_ext_title: Wrong File Extension
+    orcid:
+      widget_name: ANDS Orcid service
+      search: Search
+      lookup: Look up
+      nohits_html: '<p>No matches found<br/>If you wish to register for an orcid please click <a href="https://orcid.org/register" target="_blank" style="float:none;padding:0px">here</a></p>'
+      query: 'Search Query:'
+      identifier: ORCID Identifier
+      biography: Biography
+      personal_details: Personal Details
+      credit_name: 'Credit name:'
+      family_name: 'Family name:'
+      given_names: 'Given names:'
+      other_names: 'Other names:'
+      keywords: Keywords
+      research_urls: Research URLs
+      url: 'URL :'
+      url_name: 'URL Name :'
+      enter_search: Please enter a search string
+      loading: Loading...
     plans:
       visibility_dialog_title: Share my DMP
       comment_dialog_title: Add New Comments
