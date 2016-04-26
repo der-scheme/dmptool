@@ -1,5 +1,8 @@
 <% @title_text = t('.title') %>
 <% @display_menu = "Customizations" %>
+
+<%= i18n_include_tag %>
+
 <%= content_tag :h2, t('.edit_resource', label: @resource.label) %>
 
 <%= form_for @resource ,
