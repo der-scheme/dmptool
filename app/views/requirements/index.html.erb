@@ -1,5 +1,8 @@
 <% @title_text = t('.title') %>
 <% @display_menu = "dmp_templates:details" %>
+
+<%= i18n_include_tag %>
+
 <h1 class="row-fluid" id="jump"><span class="icon template-details"></span><%= @title_text %></h1>
 <h2><%= @requirements_template.name %></h2>
 <div class="row-fluid">
