@@ -44,9 +44,9 @@ $.rails.showConfirmDialog = function(link){
       "<h3><strong>" + message + "</strong></h3>\n" +
       "</div>\n" +
       "<div class=\"modal-footer\">\n" +
-      "<a data-dismiss=\"modal\" class=\"btn\">" + t('shared.button.cancel')
+      "<a data-dismiss=\"modal\" class=\"btn\">" + t('js.application.cancel')
       + "</a>\n<a data-dismiss=\"modal\" class=\"btn btn-green confirm\">" +
-      t('shared.submit_button.ok') + "</a>\n" + "</div>\n" +
+      t('js.application.ok') + "</a>\n" + "</div>\n" +
       "</div>";
 
   $(html).modal();

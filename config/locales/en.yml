@@ -329,6 +329,8 @@ en:
         delete: Delete
   js:
     application:
+      cancel: Cancel
+      ok: OK
     institutions:
       confirm_self_revoke: Do you really want to remove yourself from the Institutional Administrator role? You will lose all administrative permissions.
       wrong_file_ext_error: 'Only image file with extension: .jpg, .jpeg, .gif or
