@@ -152,7 +152,7 @@
         <% end %>
        <div class="controls"
         <a href="http://orcid.org/">
-          <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt'), style: 'position: absolute; top: 11px; left: 230px' %>
+          <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt') %>
         </a>
         <%= f.text_field :orcid_id, class: 'orcid_widget', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
         <%= javascript_include_tag("orcid_widget.js") %>
