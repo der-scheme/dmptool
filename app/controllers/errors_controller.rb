@@ -1,7 +1,5 @@
 class ErrorsController < ApplicationController
 
-private
-
 	def internal_error
   	end
 

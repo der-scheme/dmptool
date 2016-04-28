@@ -2,33 +2,23 @@ Dmptool2::Application.routes.draw do
 
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
-      #resources :resources
-      #resources :roles
-      #resources :requirements
-      #resources :comments
-      #resources :resource_contexts
-      #resources :responses
-      #resources :published_plans
-      #resources :plans_states
-      #resources :sample_plans
-      
       resources :institutions, only: [:index, :show]
       resources :users, only: [:index, :show]
       resources :requirements_templates, only: [:index, :show], path: :templates_for_institution
       resources :plans, only: [:index, :show]
-      
+
       get 'institutions_plans_count/:id', to: 'institutions#plans_count_show'
       get 'institutions_plans_count', to: 'institutions#plans_count_index'
-      
+
       get 'institutions_admins_count/:id', to: 'institutions#admins_count_show'
       get 'institutions_admins_count', to: 'institutions#admins_count_index'
-      
+
       get 'plans_full/:id', to: 'plans#plans_full_show'
       get 'plans_full', to: 'plans#plans_full_index'
 
       get 'plans_owned', to: 'plans#plans_owned'
       get 'plans_owned_full', to: 'plans#plans_owned_full'
-      
+
       get 'plans_templates/:id', to: 'plans#plans_templates_show'
       get 'plans_templates', to: 'plans#plans_templates_index'
     end
@@ -65,37 +55,29 @@ Dmptool2::Application.routes.draw do
   get 'customizations/:id/requirements/(:requirement_id)', to: 'customizations#show', as: 'customization_requirement'
   get 'institutions', to: 'institutions#index'
 
-  
+
 
   resources :requirements_templates do
     resources :requirements
-    resources :resource_contexts
+    resources :resource_contexts, except: :show
     member do
       get :toggle_active
       get :basic
     end
-    resources :sample_plans
-    resources :additonal_informations
   end
 
   resources :resources
-  resources :resource_contexts
+  resources :resource_contexts, except: :show
 
   #this routes needs to stay above the other user ones to take priority
   get 'users/autocomplate_users', to: 'users#autocomplete_users', as: 'users_autocomplete'
   get 'users/autocomplate_users_plans', to: 'users#autocomplate_users_plans', as: 'autocomplate_users_plans'
   resources :users do
-    resources :plan_states
     member do
-      get :edit_roles
       get :finish_signup
       patch :finish_signup_update
     end
   end
-
-  # resources :resources do
-  #   resources :resource_contexts
-  # end
 
   resources :plans do
     post "plan_states/approved"
@@ -104,19 +86,15 @@ Dmptool2::Application.routes.draw do
     post "plan_states/committed"
     post "plan_states/reviewed"
     member do
-      post :add_coowner
-      get :publish
-      get :export
       get :details
       get :preview
       get :perform_review
     end
   end
-  resources :comments
+  resources :comments, except: :show
   resources :responses
 
   resources :institutions
-  resources :authorizations
 
   match 'user_sessions/login', to: 'user_sessions#login', as: 'login', :via => [:get, :post]
   get 'user_sessions/institution', to: 'user_sessions#institution', as: 'choose_institution'
@@ -134,14 +112,9 @@ Dmptool2::Application.routes.draw do
   get 'review_dmps', to: 'plans#review_dmps'
   post 'change_visibility', to: 'plans#change_visibility'
   get 'public_dmps', to: 'plans#public'
-  #post 'add_coowner_autocomplete', to: 'plans#add_coowner_autocomplete' #this isn't used and is a helping function for the users controller
   delete 'delete_coowner', to: 'plans#delete_coowner'
   post 'reject_with_comments', to: 'plan_states#reject_with_comments'
 
-  get  'remove_resource_editor_role', to: 'resource_templates#remove_resource_editor_role'
-  get  'remove_requirements_editor_role', to: 'requirements_templates#remove_requirements_editor_role'
-  post 'add_role', to: 'resource_templates#add_role'
-  post 'add_requirements_editor_role', to: 'requirements_templates#add_requirements_editor_role'
   post 'add_authorization', to: 'authorizations#add_authorization'
   get 'remove_authorization', to: 'authorizations#remove_authorization'
   post 'add_role_autocomplete', to: 'authorizations#add_role_autocomplete'
@@ -166,16 +139,11 @@ Dmptool2::Application.routes.draw do
 
   delete 'delete_resource_context', to: 'resource_contexts#destroy'
 
-  post 'create_customization_resource_from_select_resource', to: 'resources#create_customization_resource_from_select_resource'
-
   post 'copy_selected_customization_resource', to: 'resources#copy_selected_customization_resource'
 
   post 'unlink_resource_from_template', to: 'resource_contexts#unlink_resource_from_template'
   post 'unlink_resource_from_requirement', to: 'resource_contexts#unlink_resource_from_requirement'
   post 'unlink_resource_from_customization', to: 'resource_contexts#unlink_resource_from_customization'
-
-
-  post 'unlink_institutional_resource', to: 'resource_contexts#unlink_institutional_resource'
 
   match 'remove_orcid', to: 'users#remove_orcid', :via => [:get, :post]
 
