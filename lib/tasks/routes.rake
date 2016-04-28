@@ -21,7 +21,14 @@ namespace :routes do
 
     require 'action_dispatch/routing/inspector'
     inspector = ActionDispatch::Routing::RoutesInspector.new(routes)
-    puts inspector.format(ActionDispatch::Routing::ConsoleFormatter.new, ENV['CONTROLLER'])
+    # Don't print anything if there are no routes to display (— would print
+    # an informative messages about routes, that wouldn't make sense in this
+    # context, otherwise)
+    formatter = ActionDispatch::Routing::ConsoleFormatter.new
+    formatter.define_singleton_method(:no_routes) {}
+    result = inspector.format(formatter, ENV['CONTROLLER'])
+
+    puts result if result.present?
   end
 
 end
