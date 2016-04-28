@@ -5,7 +5,7 @@ namespace :routes do
       Rails.application.eager_load!
     rescue OpenSSL::SSL::SSLError
     end
-    controllers = Hash[ApplicationController.descendants.map {|controller| [controller.controller_name, controller]}]
+    controllers = Hash[ActionController::Base.descendants.map {|controller| [controller.controller_path, controller]}]
 
     routes = Rails.application.routes.routes
         .select {|route| route.defaults.key?(:controller)}
