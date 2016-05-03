@@ -31,4 +31,31 @@ namespace :routes do
     puts result if result.present?
   end
 
+  desc 'Print out all defined routes that are potentially vulnerable to CSRF/XSS'
+  task dangerous: :environment do
+    # We assume that everything with names containing tokens like
+    # add/remove/delete or actions like create does change stuff on the server.
+    # Such functionality should not be reachable using GET, as it introduces
+    # potential vulnerabilities to CSRF/XSS.
+
+    routes = Rails.application.routes.routes
+        .reject {|route| route.defaults[:format] == :json}
+        .select {|route| route.constraints[:request_method] =~ 'GET'}
+        .select do |route|
+      route.name =~ /add[^a-zA-Z]|remove|delete/ ||
+          route.defaults[:action].in?('create', 'update')
+    end
+
+    require 'action_dispatch/routing/inspector'
+    inspector = ActionDispatch::Routing::RoutesInspector.new(routes)
+    # Don't print anything if there are no routes to display (— would print
+    # an informative messages about routes, that wouldn't make sense in this
+    # context, otherwise)
+    formatter = ActionDispatch::Routing::ConsoleFormatter.new
+    formatter.define_singleton_method(:no_routes) {}
+    result = inspector.format(formatter, ENV['CONTROLLER'])
+
+    puts result if result.present?
+  end
+
 end
