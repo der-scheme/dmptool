@@ -218,6 +218,9 @@ class InstitutionsController < ApplicationController
                         notice: t('.success_notice')
           end
         else
+
+          logger.error "#{@current_institution.errors.messages}" if @current_institution.errors
+
           format.html do
             redirect_to institutions_path,
                         notice: t('.failure_notice')

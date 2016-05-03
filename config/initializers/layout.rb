@@ -70,7 +70,7 @@ page_config = {
         },
         children: [
           {
-            href: 'http://dmptool.askbot.com',
+            href: 'https://github.com/CDLUC3/dmptool/wiki/FAQ',
             label: {
               key: 'layouts.header.faq_link',
               fallback: 'FAQ'

@@ -33,8 +33,8 @@ module Dmptool2
     # page header will only show `de', for instance.
     config.i18n.available_locales = [:en, :de]
     config.i18n.enforce_available_locales = true
-#   config.assets.precompile += %w(*.js *.css)
-#   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+#    config.assets.precompile += %w(*.js *.css)
+#    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 #    config.assets.precompile += Ckeditor.assets
 #   config.assets.precompile += %w('application.js', 'application.css')
     config.assets.precompile += ['ckeditor/*', 'orcid_widget.js']
