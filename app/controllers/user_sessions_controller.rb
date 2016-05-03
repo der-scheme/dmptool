@@ -21,6 +21,7 @@ class UserSessionsController < ApplicationController
                 flash: {error: 'Incorrect username, password or institution'} and
       return if session[:institution_id].blank?
     auth = env["omniauth.auth"]
+    
     user = nil
     begin
       user = User.from_omniauth(auth, session['institution_id'])
