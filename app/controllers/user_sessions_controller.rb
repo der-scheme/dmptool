@@ -23,6 +23,7 @@ class UserSessionsController < ApplicationController
                 flash: {error: t('.incorrect_credentials_error')} and
       return if session[:institution_id].blank?
     auth = env["omniauth.auth"]
+    
     user = nil
     begin
       user = User.from_omniauth(auth, session['institution_id'])
