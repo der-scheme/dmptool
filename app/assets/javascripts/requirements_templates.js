@@ -2,29 +2,31 @@
 // All this logic will automatically be available in application.js.
 
 $(function() {
-	$("#requirements_template_start_date.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		onClose: function( selectedDate ) {
-			$( "#requirements_template_end_date.datepicker" ).datepicker( "option", "minDate", selectedDate );
-		}
-	});
+	if (!Modernizr.inputtypes.date) {
+		$("#requirements_template_start_date.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			onClose: function( selectedDate ) {
+				$("#requirements_template_end_date.datepicker").datepicker("option", "minDate", selectedDate);
+			}
+		});
 
-	$("#requirements_template_end_date.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		onClose: function( selectedDate ) {
-			$( "#requirements_template_start_date.datepicker" ).datepicker( "option", "maxDate", selectedDate );
-		}
-	});
+		$("#requirements_template_end_date.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			onClose: function( selectedDate ) {
+				$("#requirements_template_start_date.datepicker").datepicker("option", "maxDate", selectedDate);
+			}
+		});
+	}
 
 	$("form").on('click','.add_fields', function(event) {
 	  var time = new Date().getTime();

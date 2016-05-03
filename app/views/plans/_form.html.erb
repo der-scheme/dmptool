@@ -1,7 +1,7 @@
 <% @title_text = t('.title') %>
 
 <%= i18n_include_tag %>
-<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon overview"></span><%= @title_text %></h1>
 <div class="tabbable">
   <ul class="nav-tabs">
@@ -10,7 +10,7 @@
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <%= form_for @plan, html:{ :class => 'form-horizontal' }  do |f| %>
-        <%= render partial: "shared/errors", locals: {model: @plan } %>
+        <%= render partial: "shared/model_errors", locals: {model: @plan } %>
         <%= f.hidden_field :current_user_id, value: @user.id %>
         <%= f.hidden_field :original_plan_id, value: @original_plan_id %>
         <div class="control-group">
@@ -48,7 +48,7 @@
         <div class="control-group">
           <%= f.label :submission_deadline, class: 'control-label' %>
           <div class="controls">
-            <%= f.datetime_field :submission_deadline, value: (@plan.submission_deadline.strftime('%m/%d/%Y') unless @plan.submission_deadline.blank?), class: 'datepicker' %>
+            <%= f.date_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
             <%= content_tag :span, '', title: t('.submission_deadline_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip' %>
           </div>
         </div>
@@ -57,7 +57,7 @@
           <div class="control-group">
             <p class="control-label">
               <%= content_tag :span, '',
-                              title: t('.visibility_tooltip_html'),
+                              title: t('.visibility_tooltip'),
                               data: {toggle: 'tooltip', placement: 'right', html: 'true'},
                               class: 'icon questionmark tip' %>
               <%= Plan.human_attribute_name(:visibility) %>
@@ -93,11 +93,9 @@
                 item_description: 'co-owner'
              } %>
             <div class="controls">
-              <% if @planowner.id != current_user.id %>
-                <%= t('.owner', @planowner.full_name) %>
-              <% end %>
+              <%= t('.owner_html', owner: @planowner.full_name) unless @planowner.id == current_user.id %>
               <%= content_tag :span, t('.coowners') %>
-              <strong class= 'blue'><%= @coowners.map {|coowner| coowner.full_name.to_s + raw(link_to '', delete_coowner_path(coowner_id: coowner.id, plan_id: @plan.id), method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'remove icon', title: t('remove_coowner_link'))}.join(', ').html_safe %></strong>
+              <strong class= 'blue'><%= @coowners.map {|coowner| coowner.full_name.to_s + raw(link_to '', delete_coowner_path(coowner_id: coowner.id, plan_id: @plan.id), method: :delete, data: {confirm: t('globals.messages.prompt.confirm')}, class: 'remove icon', title: t('.remove_coowner_link'))}.join(', ').html_safe %></strong>
             </div>
         <% end %>
 
@@ -176,15 +174,15 @@
           <hr/>
 
           <div class="control-group">
-            <p class ="control-label">Visibility</p>
+            <p class ="control-label"><%= Plan.human_attribute_name(:visibility) %></p>
             <div>
               <div class="controls">
                 <%= content_tag :p, t('.plan_visibility_html', visibility: t_enum(@plan, :visibility)) %>
                 <%= link_to t('.change_settings_button'), '#', class: 'btn change_visibility_link',
-                            data: {planid: @plan.id, visibility: @plan.visibility}, style: 'margin-left:-20px' %>
+                            data: {planid: @plan.id, visibility: @plan.visibility} %>
 
-                <div style=" width:200px; float:right; margin-right:380px; margin-top:-36px; line-height:20px">
-                  <%= t('.visibility_note_html') %>
+                <div>
+                  <%= render partial: 'visibility_note' %>
                 </div>
               </div>
             </div>

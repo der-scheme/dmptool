@@ -1,0 +1,15 @@
+<% @title_text = page_title %>
+<% @display_menu = "help" %>
+<div class="static-page">
+  <h1><%= top_heading_text %></h1>
+  <hr/>
+  <h2><em><%= t('.choose') %></em></h2>
+  <ul class="ugly_list">
+    <li><%= link_to t('.faq_html'), '//github.com/CDLUC3/dmptool/wiki/FAQ', target: '_blank', title: t('.faq') %></li>
+    <li><%= link_to t('.quickstart_html'), quickstartguide_path, title: t('.quickstart') %></li>
+    <li><%= link_to t('.administer_html'), '//github.com/CDLUC3/dmptool/wiki/Help-for-Administrators', title: t('.administer') %></li>
+    <li><%= link_to t('.dm_guidance_html'), dm_guidance_path, title: t('.dm_guidance') %></li>
+    <li><%= link_to t('.promote_html'), promote_path, title: t('.promote') %></li>
+    <li><%= link_to t('.community_resources_html'), community_resources_path, title: t('.community_resources') %></li>
+  </ul>
+</div>

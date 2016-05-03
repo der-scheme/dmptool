@@ -1,14 +1,16 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(function() {
-	$("#plan_submission_deadline.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: localized_temporal_format(),
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1
-	});
+	if (!Modernizr.inputtypes.date) {
+		$("#plan_submission_deadline.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1
+		});
+	}
 });
 
 $(function() {
@@ -122,7 +124,7 @@ $(function() {
     // Since Javascript doesn't support dynamic keys (which we need for I18n)
     // in literal object syntax, we have to define them manually.
     var buttons = {};
-    Object.defineProperty(buttons, t('shared.button_button.cancel'), {
+    Object.defineProperty(buttons, t('shared.button.cancel'), {
       enumerable: true,
       value: function() {
         $(this).dialog("close");
@@ -169,7 +171,7 @@ $(function() {
         $('#visibility_dialog_form').prev().find('button').css('opacity','0.2');
 
         var cancel_button = $(this).parent().find(
-              'button:contains("' + t('shared.button_button.cancel') + '")');
+              'button:contains("' + t('shared.button.cancel') + '")');
         cancel_button.removeClass('ui-corner-all');
         cancel_button.removeClass('ui-widget');
         cancel_button.removeClass('ui-button');
@@ -223,7 +225,7 @@ $(function() {
   if (parent.length === 0)
     return;
 
-    parent.find('button:contains("' + t('shared.button_button.cancel') + '")')
+    parent.find('button:contains("' + t('shared.button.cancel') + '")')
       .bind("click", function() {
     $("#visibility_dialog_form").reset();
   });

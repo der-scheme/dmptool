@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale || 'en' %>">
   <head>
-    <title><%= t('.title', title_text: @title_text) %></title>
+    <title><%= @title_text %>: <%= t('globals.appname') %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag "favicon.ico" %>
@@ -26,7 +26,7 @@
     <!--[if IE 7]><link rel="stylesheet" media="all" href="/stylesheets/ie.css" /><![endif]-->
     <%= render :partial => 'layouts/analytics' %>
   </head>
-  <body>
+  <%= content_tag :body, class: "ml_#{menu_level(0)}" do %>
   <%= render 'layouts/header' %>
 
   <div class="container">
@@ -42,5 +42,5 @@
   </div>
 
   <%= render 'layouts/footer' %>
-  </body>
+  <% end %>
 </html>

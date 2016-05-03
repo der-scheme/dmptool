@@ -25,6 +25,21 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def community_resources
+  end
+
+  def data_management_guidance
+  end
+
+  def promote
+  end
+
+  def quickstartguide
+  end
+
+  def terms_of_use
+  end
+
   def video
   end
 

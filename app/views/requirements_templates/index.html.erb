@@ -2,6 +2,7 @@
 <% @display_menu = "dmp_templates" %>
 
 <%= i18n_include_tag %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon dmp-template"></span><%= top_heading_text %></h1>
 
 <div class="table-scope">
@@ -17,7 +18,7 @@
 	|
 	<%= link_to t('.inst_public_filter_link', count: @your_inst_public), {scope: "your_inst_public", order_scope: @order_scope, all_scope: @all_scope}, class: 'your_inst_public' %>
 
-	<%= content_tag(:span, '', title: t('.filter_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
+	<%= content_tag(:span, '', title: t('.filter_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
 </div>
 <table class="table table-striped" id="dmp_templates">
 	<thead>
@@ -34,7 +35,7 @@
       </th>
       <th>
       	<%= sortable :visibility %>
-      	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip_html'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
+      	<%= content_tag(:span, '', title: t('.sort_by_visibility_tooltip'), 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', class: 'icon questionmark tip') %>
       </th>
       <th>
       	<%= sortable :created_at %>
@@ -85,7 +86,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template,
@@ -97,7 +98,7 @@
 
 					<% elsif user_role_in?(:institutional_admin) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
@@ -112,7 +113,7 @@
                           id: "activate_link_#{requirements_template.id}",
                           class: "ajax" %>
               |
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
               <% if requirements_template.user_can_delete_me?(current_user) %>
                 | <%= link_to t('.delete_link'),
                               requirements_template_path(requirements_template, after_url: request.original_url),
@@ -123,7 +124,7 @@
 
 					<% elsif user_role_in?(:template_editor) && user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<% elsif user_role_in?(:template_editor) && !user_role_in?(:resource_editor) && (!current_user.institution.subtree_ids.include?(requirements_template.institution_id)) %>
@@ -154,7 +155,7 @@
 
 					<% elsif (user_role_in?(:resource_editor)) %>
 						<div class="template-links">
-              <%= link_to_new_resource_context(requirements_template_id: requirements_template, institution_id: current_user.institution_id) %>
+              <%= link_to_new_resource_context({requirements_template_id: requirements_template, institution_id: current_user.institution_id}, {}) %>
 						</div>
 
 					<%else%>

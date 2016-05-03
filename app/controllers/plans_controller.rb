@@ -79,9 +79,9 @@ class PlansController < ApplicationController
       format.pdf do
         render :layout => false
       end
-      format.rtf do
-        render :layout => false
-      end
+      #format.rtf do
+      #  render :layout => false
+      #end
       format.json do
         render :layout => false
       end

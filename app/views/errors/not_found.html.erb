@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Not found (404)</title>
-   </head>
+<% @title_text = page_title %>
 
-  <body>
-
-    <div class="error-message">
-      <h1 class="red">The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-      <p>Please, go <strong><%= render_back_button green: true, arrow: true %></strong></p>
-    </div>
-
-  </body>
-</html>
+<div class="error-message">
+  <h1 class="red"><%= top_heading_text %></h1>
+  <p><%= t('.message') %></p>
+  <p><%= t('.go_back') %></p>
+  <strong><%= render_back_button green: true, arrow: true %></strong>
+</div>

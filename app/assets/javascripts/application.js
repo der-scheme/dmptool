@@ -14,8 +14,8 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require ckeditor/override
 //= require ckeditor/init
+//= require modernizr-inputtypes
 
 //= require_tree .
 
@@ -44,9 +44,9 @@ $.rails.showConfirmDialog = function(link){
       "<h3><strong>" + message + "</strong></h3>\n" +
       "</div>\n" +
       "<div class=\"modal-footer\">\n" +
-      "<a data-dismiss=\"modal\" class=\"btn\">" + "Cancel" + "</a>\n" +
-      "<a data-dismiss=\"modal\" class=\"btn btn-green confirm\">" + "OK" + "</a>\n" +
-      "</div>\n" +
+      "<a data-dismiss=\"modal\" class=\"btn\">" + t('js.application.cancel')
+      + "</a>\n<a data-dismiss=\"modal\" class=\"btn btn-green confirm\">" +
+      t('js.application.ok') + "</a>\n" + "</div>\n" +
       "</div>";
 
   $(html).modal();
@@ -124,3 +124,12 @@ function localized_temporal_format(temporal, format) {
 
   return t(temporal + '.formats.' + format).replace(/%/g, '');
 };
+
+// If we're on a certain tab, make sure the tab is still open after changing the
+// locale.
+$(function () {
+  $('.choose_language').click(function () {
+    var $this = $(this);
+    $this.attr('href', $this.attr('href') + window.location.hash);
+  });
+});

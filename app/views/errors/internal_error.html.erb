@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	  <title>Internal Error (500)</title>
-	 </head>
+<% @title_text = page_title %>
 
-	<body>
-
-		<div class="error-message">
-			<h1 class="red"> Oops... Something went wrong!</h1>
-			<br />
-			<p>We've been notified about this issue and we'll take a look at it shortly. </p>
-			<p>Please, try again in a few moments.</p>
-			<p><strong><%= render_back_button green: true, arrow: true %></strong></p>
-		</div>
-
-	</body>
-</html>
+<div class="error-message">
+  <h1 class="red"><%= top_heading_text %></h1>
+  <p><%= t('.message') %></p>
+  <p><%= t('.try_again') %></p>
+  <p><strong><%= render_back_button green: true, arrow: true %></strong></p>
+</div>

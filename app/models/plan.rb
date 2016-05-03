@@ -84,7 +84,7 @@ class Plan < ActiveRecord::Base
     user_id = self.current_user_id
     plan_names = Plan.joins(:users).where(user_plans: {owner: true}).where('users.id =?', user_id).pluck('plans.name')
     if plan_names.include?(self.name)
-      errors[:base] << "A Plan with this name already exists in the list of Plans you own."
+      errors.add(:base, :duplicate_name)
     end
   end
 
@@ -122,8 +122,8 @@ class Plan < ActiveRecord::Base
     user_plans = self.user_plans.where(owner: false)
     user_plans.each do |user_plan|
       id = user_plan.user_id
-      @coowner = User.find(id)
-      @coowners<< @coowner
+      @coowner = User.find(id) if id
+      @coowners<< @coowner if id
     end
     @coowners
   end

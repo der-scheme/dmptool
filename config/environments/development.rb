@@ -1,5 +1,5 @@
 
-require 'route_i18n'    # This seems to be autoloaded in production, but not in development mode.
+require_dependency 'route_i18n'   # This seems to be autoloaded in production, but not in development mode.
 
 Dmptool2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -29,6 +29,12 @@ Dmptool2::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.assets.digest = true
+  config.assets.raise_runtime_errors = true
+
+  # The deployment to the new AWS dev server fails unless bootstrap's glyphicons are precompiled
+  # Not an issue in stage and prod where all assets are precompiled
+  config.assets.precompile += ['glyphicons-halflings.png', 'glyphicons-halflings-white.png']
 
   config.log_level = :debug
 

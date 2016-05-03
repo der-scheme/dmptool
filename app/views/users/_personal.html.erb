@@ -1,3 +1,6 @@
+
+<%= i18n_include_tag 'js.orcid' %>
+
 <%unless @user.new_record?%>
   <%= content_tag :p, t('.instructions') %>
   <p><strong><%= t('.name') %></strong></p>
@@ -126,8 +129,8 @@
     <div class="control-group">
       <%= content_tag :p, t('.roles'), class: 'control-label' %>
       <div class="controls">
-        <p><%= @user.role_names.join(' | ') %>
-          <%= content_tag :span, '', title: t('.roles_tooltip_html'),
+        <p><%= t(@user.role_names, scope: 'enum.role.name').join(' | ') %>
+          <%= content_tag :span, '', title: t('.roles_tooltip'),
                           data: {placement: 'right', html: 'true'},
                           class: 'icon questionmark tip' %>
         </p>
@@ -142,20 +145,21 @@
 
     <% if @user.orcid_id.nil? || @user.orcid_id.blank? %>
       <div class="control-group" style="position: relative">
-        <%= content_tag :span, '', title: t('.orcid_tooltip'),
-                        data: {placement: 'right'},
-                        class: 'icon questionmark tip',
-                        style: 'position: absolute; top: 7px; left: 142px' %>
-        <%= f.label :orcid_id, class: 'control-label' %>
+        <%= label_tag :orcid_id, class: 'control-label' do %>
+          <%= content_tag :span, '', title: t('.orcid_tooltip'),
+                          data: {placement: 'right'},
+                          class: 'icon questionmark tip' %>
+        <% end %>
+       <div class="controls"
         <a href="http://orcid.org/">
-          <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt'), style: 'position: absolute; top: 11px; left: 230px' %>
+          <%= image_tag 'orcid_id.gif', alt: t('.orcid_logo_alt') %>
         </a>
         <%= f.text_field :orcid_id, class: 'orcid_widget', placeholder: 'xxxx-xxxx-xxxx-xxxx' %>
         <%= javascript_include_tag("orcid_widget.js") %>
         <%= content_tag :span, '', title: t('.orcid_lookup_tooltip'),
                         data: {placement: 'right'},
-                        class: 'icon questionmark tip',
-                        class: 'position: absolute; top: 12px; left: 780px' %>
+                        class: 'icon questionmark tip' %>
+       </div>
       </div>
 
     <% else %>

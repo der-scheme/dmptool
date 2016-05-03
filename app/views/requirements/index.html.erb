@@ -1,5 +1,8 @@
 <% @title_text = t('.title') %>
 <% @display_menu = "dmp_templates:details" %>
+
+<%= i18n_include_tag %>
+
 <h1 class="row-fluid" id="jump"><span class="icon template-details"></span><%= @title_text %></h1>
 <h2><%= @requirements_template.name %></h2>
 <div class="row-fluid">
@@ -7,7 +10,7 @@
 	  <div class="tree-view border-box" id="main_requirements_border">
       <div id="cover_dialog">
         <div>
-          <%= image_tag '/assets/throbber.gif' %>
+          <%= image_tag 'throbber.gif' %>
           <%= t('.please_wait') %>
         </div>
       </div>
@@ -16,7 +19,7 @@
         <%= link_to new_requirements_template_requirement_path(@requirements_template, node_type: 'group', anchor: 'jump') do %>
           <%= content_tag :span, '', :class => 'icon add-group' %>
           <%= t('.add_group_link') %>
-          <%= content_tag :span, '', title: t('.add_group_tooltip_html'),
+          <%= content_tag :span, '', title: t('.add_group_tooltip'),
                           data: {toggle: 'tooltip', placement: 'top', html: 'true'},
                           class: 'icon questionmark tip' %>
         <% end %>
@@ -24,7 +27,7 @@
         <%= link_to new_requirements_template_requirement_path(@requirements_template, anchor: 'jump') do %>
           <%= content_tag :span, '', class: 'icon add-requirement'  %>
           <%= t('.add_requirement_link') %>
-          <%= content_tag :span, '', title: t('.add_requirement_tooltip_html'),
+          <%= content_tag :span, '', title: t('.add_requirement_tooltip'),
                           data: {toggle: 'tooltip', placement: 'top', html: 'true'},
                           class: 'icon questionmark tip' %>
         <% end %>
@@ -42,7 +45,7 @@
         <%= content_tag :span, id: "status_#{@requirements_template.id}" do %>
           <%= t_enum(@requirements_template, :active) %>
         <% end %>
-        <%= content_tag :span, '', title: t('.template_status_tooltip_html'),
+        <%= content_tag :span, '', title: t('.template_status_tooltip'),
                         data: {toggle: 'tooltip', placement: 'right', html: 'true'},
                         class: 'icon questionmark tip' %>
       </p>

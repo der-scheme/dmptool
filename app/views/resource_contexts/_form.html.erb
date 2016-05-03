@@ -8,7 +8,7 @@
     <div class="tab-pane active" id="tab1">
 			<%= form_for @resource_context, html:{ :class => 'form-horizontal', multipart: true}  do |f| %>
 
-			  <%= render partial: "shared/errors", locals: {model: @resource_context } %>
+			  <%= render partial: "shared/model_errors", locals: {model: @resource_context } %>
 
 			  <div class="control-group" id="inst_text">
 					<%= content_tag :p, @resource_context.class.human_attribute_name(:institution_id), class: 'control-label' %>

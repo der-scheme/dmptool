@@ -1,8 +1,9 @@
 
-require 'sortable/helper_group'
-
 module Sortable
   module Helper
+
+    ##
+    # Executes _group_ in context of a HelperGroup specified by the parameters.
 
     def sortable_group(model: controller_name.classify.constantize,
                        namespace: nil, order_scope: :order_scope,

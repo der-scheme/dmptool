@@ -1,9 +1,7 @@
 
-require 'sortable/common'
-
 module Sortable
   class ControllerGroup
-    include Common
+    include Sortable::Common
 
     def initialize(controller: nil,
                    inst_var: controller.class.controller_name.pluralize,
@@ -72,6 +70,10 @@ module Sortable
 
       nil
     end
+
+    ##
+    # Executes _group_ in context of a ControllerGroup specified by the
+    # parameters.
 
     def sortable_group(inst_var: self.inst_var, model: self.model,
                        order_scope: self.order_scope, namespace: nil,

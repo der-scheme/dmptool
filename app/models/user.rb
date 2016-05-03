@@ -113,9 +113,21 @@ class User < ActiveRecord::Base
   def self.smart_userid_from_omniauth(auth)
     info = auth[:info]
     uid = (info ? info[:uid] : nil) || auth[:uid]
+    
     if uid.match(/^uid=\S+?,ou=\S+?,ou=\S+?,dc=\S+?,dc=\S+?$/)
       return uid.match(/^uid=(\S+?),ou=\S+?,ou=\S+?,dc=\S+?,dc=\S+?$/)[1]
     end
+    
+# Commenting out fix for duplicate eppn values because it is forcing 
+# the creation of a new account. The DB contains the duplicate eppns so
+# it isn't matching and assumes that the user is new.
+
+    # If there are multiple uids present, just take the first one
+    #matches = uid.match(/(^.*?)[;,]/i)
+    #if matches
+    #  uid = matches[1]
+    #end
+    
     uid
   end
 
@@ -228,6 +240,14 @@ class User < ActiveRecord::Base
       token = SecureRandom.hex
       break token unless self.class.exists?(auth_token: token)
     end
+  end
+
+  def created
+    created_at.to_date.strftime("%m/%d/%Y")
+  end
+
+  def modified
+    updated_at.to_date.strftime("%m/%d/%Y")
   end
 
   

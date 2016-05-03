@@ -1,0 +1,11 @@
+<%= t('.text', author: @author.full_name, plan: @plan.name) %>
+
+<%= @comment.value %>
+
+<% if @institutional %>
+<%= render partial: 'information_link',
+           locals: {title: edit_plan_text, url: edit_plan_url(@plan)} %>
+<% else %>
+<%= render partial: 'information_email',
+           locals: {contact: @author.institution.contact_info, email: @author.institution.contact_email} %>
+<% end %>

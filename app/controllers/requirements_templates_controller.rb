@@ -263,6 +263,11 @@ class RequirementsTemplatesController < ApplicationController
         format.js { render 'activate_errors' }
       else
         @requirements_template.toggle!(:active)
+
+        # For some reason, the above line seems to be resetting the locale to
+        # default.
+        set_locale
+
         format.js { render 'toggle_active'}
       end
     end

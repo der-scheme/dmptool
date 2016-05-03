@@ -2,7 +2,7 @@
 <% @display_menu = "plans:preview" %>
 
 <%= i18n_include_tag %>
-<%= i18n_include_tag 'shared.button_button', 'shared.submit_button' %>
+<%= i18n_include_tag 'shared.button', 'shared.submit_button' %>
 <h1 class="row-fluid"><span class="icon template-preview"></span><%= @title_text %></h1>
 <br/>
 <div class="row-fluid">
@@ -21,7 +21,7 @@
   <%= content_tag :p, t('.plan_visibility_html',
 		  visibility: t_enum(@plan, :visibility)), class: 'pull-left' %>
   <%= link_to t('.change_visibility_button'), '#', class: 'btn change_visibility_link', data: {planid: @plan.id, visibility: @plan.visibility} %>
-  <%= t('plans.form.visibility_note_html') %>
+  <%= render partial: 'visibility_note' %>
 </div>
 
 <div class="row-fluid">

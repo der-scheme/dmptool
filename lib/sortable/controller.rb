@@ -1,8 +1,10 @@
 
-require 'sortable/controller_group'
-
 module Sortable
   module Controller
+
+    ##
+    # Executes _group_ in context of a ControllerGroup specified by the
+    # parameters.
 
     def sortable_group(inst_var: controller_name.pluralize,
                        model: controller_name.classify.constantize,

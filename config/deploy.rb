@@ -19,10 +19,14 @@ set :env, fetch(:env, 'development')
 set :rails_env, fetch(:renv, 'development')
 set :ssh_options, { :forward_agent => true }
 set :use_sudo, false
+set :keep_releases, 5
+
+set :bundle_flags, '--deployment --quiet'
+
+after "deploy:update", "deploy:cleanup"
 
 default_run_options[:env] = { 'PATH' => '/dmp2/local/bin/:$PATH'}
 default_run_options[:pty] = true
-
 
 namespace :deploy do
   task :symlink_shared do
@@ -32,6 +36,8 @@ namespace :deploy do
     run "ln -s #{shared_path}/unicorn.rb #{release_path}/config/"
     run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
   end
+
+  task :prepare_bundle_config do
+    run "bundle config build.nokogiri '--with-xml2-include=/dmp2/local/libxml2/include/libxml2'"
+  end
 end
-
-

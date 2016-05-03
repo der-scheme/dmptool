@@ -19,7 +19,7 @@ class RequirementsTemplate < ActiveRecord::Base
   validates :institution_id, presence: true, numericality: true
   validates :visibility, presence: true
   validates :name, presence: true
-  validates :name, uniqueness: { scope: :institution_id, message: "already present for this institution."}
+  validates :name, uniqueness: {scope: :institution_id}
 
   validates :start_date, date: true, unless: "start_date.nil?"
   validates :end_date, date: true, unless: "end_date.nil?"
@@ -29,7 +29,7 @@ class RequirementsTemplate < ActiveRecord::Base
   scope :institutional_visibility, -> { where(visibility: :institutional) }
   scope :public_visibility, -> { where(visibility: :public) }
   scope :current, -> { where("start_date IS NULL OR start_date < ?", Time.new).where("end_date IS NULL OR end_date > ?", Time.new) }
-  
+
 
   after_initialize :default_values
   # after_initialize :version_number
@@ -52,14 +52,17 @@ class RequirementsTemplate < ActiveRecord::Base
 
 
   def start_date_us_format
-    start_date.nil? ? nil : start_date.strftime("%m/%d/%Y") 
+    start_date.nil? ? nil : start_date.strftime("%m/%d/%Y")
   end
 
 
   def end_date_us_format
-    end_date.nil? ? nil : end_date.strftime("%m/%d/%Y") 
+    end_date.nil? ? nil : end_date.strftime("%m/%d/%Y")
   end
 
+  def created
+    created_at.nil? ? nil : created_at.strftime("%m/%d/%Y") 
+  end
 
   def self.letter_range_by_institution(s, e)
     #add as a scope where s=start and e=end letter

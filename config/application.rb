@@ -27,21 +27,21 @@ module Dmptool2
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     # Note that if you expand the available_locales you should also define
-    # a variable `locale_name' in your locale file, providing a name for the
-    # language.
+    # a variable `layouts.language_switcher.locale_name' in your locale file,
+    # providing a name for the language. Otherwise, the locale chooser in the
+    # page header will only show `de', for instance.
     config.i18n.available_locales = [:en, :de]
     config.i18n.enforce_available_locales = true
-#   config.assets.precompile += %w(*.js *.css)
-#   config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+#    config.assets.precompile += %w(*.js *.css)
+#    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 #    config.assets.precompile += Ckeditor.assets
 #   config.assets.precompile += %w('application.js', 'application.css')
-    config.assets.precompile += ['ckeditor/*']
+    config.assets.precompile += ['ckeditor/*', 'orcid_widget.js']
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.compile = true
     config.assets.debug = false
 
     config.exceptions_app = self.routes
-
 
   end
 end

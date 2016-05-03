@@ -2,6 +2,13 @@ module ApplicationHelper
   include Sortable::Helper
   include RouteI18n::Helper   # implicitly includes TranslationHelper
 
+  ##
+  # Returns the Layout object for the current view.
+
+  def layout
+    @_layout ||= Layout.new(self)
+  end
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
@@ -218,46 +225,6 @@ module ApplicationHelper
     link_to content_tag(:span, '', class: 'icon remove') + content,
             '#', **options
   end
-
-  ##
-  # Return a human readable translation for the given enum (or boolean)
-  # attribute value.
-  #
-  # The +value+ parameter can be omitted with the following semantics.
-  # 1. If +model+ is an instance of ActiveRecord::Base, the value of the
-  #    +attribute+ will be used.
-  # 2. Otherwise, a deduction of the actual model class and lookup of its
-  #    corresponding attribute is attempted. If the contents of the +limit+
-  #    parameter is an array, its first entry is chosen.
-  # 3. The fallback value is always +false+.
-
-  def translate_enum(model, attribute, value = nil)
-    case model
-    when Symbol
-      model_scope = model
-      model_class = model.to_s.classify.constantize
-    when Class
-      model_scope = model.model_name.i18n_key
-      model_class = model
-    when ActiveRecord::Base
-      model_class = model.class
-      model_scope = model_class.model_name.i18n_key
-    else
-      model = model.to_s
-      model_scope = model.to_sym
-      model_class = model.classify.constantize
-    end
-
-    value = model.try(:attributes)
-        .try(:[], attribute.to_s)     unless value || value == false
-    value = model_class.columns_hash[attribute.to_s]
-        .limit.try(:first) || false   unless value || value == false
-
-    value = value.to_s.to_sym unless value.is_a? Symbol
-
-    translate(value, scope: [:enum, model_scope, attribute])
-  end
-  alias_method :t_enum, :translate_enum
 
   ##
   # Return a string of i18ned options tags for an enum select.

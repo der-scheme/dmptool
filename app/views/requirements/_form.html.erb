@@ -1,5 +1,5 @@
 <%= form_for ([@requirement.requirements_template, @requirement]), html: { :class => 'form-horizontal' } do |f| %>
-  <%= render partial: "shared/errors", locals: {model: @requirement } %>
+  <%= render partial: "shared/model_errors", locals: {model: @requirement } %>
   <fieldset>
     <div class="control-group">
       <%= f.hidden_field :parent_id %>
@@ -32,7 +32,7 @@
 
     <div class="control-group" id="obligation">
       <p class="control-label">
-        <%= content_tag :span, '', title: t('.obligation_tooltip_html'),
+        <%= content_tag :span, '', title: t('.obligation_tooltip'),
                         data: {toggle: 'tooltip', placement: 'right', html: 'true'},
                         class: 'icon questionmark tip' %>
         <%= Requirement.human_attribute_name(:obligation) %>
@@ -64,14 +64,14 @@
       <% if params[:node_type] == 'group'%>
         <div class="controls">
           <%= f.select :requirement_type, options_for_enum_select(attribute: :requirement_type) %>
-          <%= content_tag :span, '', title: t('.group_type_tooltip_html'),
+          <%= content_tag :span, '', title: t('.group_type_tooltip'),
                           data: {toggle: 'tooltip', placement: 'top', html: 'true'},
                           class: 'icon questionmark tip' %>
         </div>
       <% else %>
         <div class="controls">
           <%= f.select :requirement_type, options_for_enum_select(@requirement, attribute: :requirement_type) %>
-          <%= content_tag :span, '', title: t('.requirement_type_tooltip_html'),
+          <%= content_tag :span, '', title: t('.requirement_type_tooltip'),
                           data: {toggle: 'tooltip', placement: 'top', html: 'true'},
                           class: 'icon questionmark tip' %>
         </div>
