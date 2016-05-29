@@ -11,11 +11,11 @@
 	  <%= form_tag '/auth/ldap/callback', method: :post do %>
 	    <%= hidden_field_tag :institution_id, session[:institution_id]%>
 	    <div class='control-group'>
-        <%= label_tag :username, User.human_attribute_name(:login_id) %>
+        <%= label_tag :username, User.human_attribute_name(:login_id), class: 'control-label' %>
 		    <%= text_field_tag :username %>
 		  </div>
 		  <div class='control-group'>
-        <%= label_tag :password, t('attributes.password') %>
+        <%= label_tag :password, t('attributes.password'), class: 'control-label' %>
 		    <%= password_field_tag :password %>
 	    </div>
 	    <div class='control-group'>

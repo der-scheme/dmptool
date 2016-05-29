@@ -57,8 +57,10 @@
         </ul>
       </div>
     </div>
-    <%= render_button_link t: @back_text, href: @back_to, class: 'pull-left' %>
-    <%= render_submit_button t('.submit_button'), id: 'next', class: 'pull-right' %>
+    <div class="buttons noborder">
+      <%= render_button_link t: @back_text, href: @back_to, class: 'pull-left' %>
+      <%= render_submit_button t('.submit_button'), id: 'next', class: 'pull-right' %>
+    </div>
   <% end %>
 
 <% else %>
