@@ -16,7 +16,7 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require modernizr-inputtypes
-
+//= require_self
 //= require_tree .
 
 
