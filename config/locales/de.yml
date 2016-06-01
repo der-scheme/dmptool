@@ -306,11 +306,33 @@ de:
         remove: Entfernen
         delete: Löschen
   js:
+    application:
+      cancel: Abbrechen
+      ok: OK
     institutions:
       confirm_self_revoke: Möchten Sie wirklich Ihre eigene institutionelle Administrator-Rolle entfernen? Sie werden dadurch alle administrativen Rechte verlieren.
       wrong_file_ext_error: 'Es sind nur Bilddateien folgenden Types erlaubt: .jpg,
         .jpeg, .gif oder .png'
       wrong_file_ext_title: Falsche Dateiendung
+    orcid:
+      widget_name: ANDS ORCID Service
+      search: Suchen
+      lookup: Nachschlagen
+      nohits_html: '<p>Keine Treffer gefunden<br/>Falls Sie eine ORCID-ID registrieren möchten, klicken Sie bitte <a href="https://orcid.org/register" target="_blank" style="float:none;padding:0px">hier</a></p>'
+      query: 'Suchanfrage:'
+      identifier: ORCID Kennzeichnung
+      biography: Biografie
+      personal_details: personengebundene Daten
+      credit_name: 'credit name:'
+      family_name: 'Familienname:'
+      given_names: 'Vorname:'
+      other_names: 'Anderer Name:'
+      keywords: Schlagworte
+      research_urls: URLs zur Forschung
+      url: 'URL:'
+      url_name: 'URL Name:'
+      enter_search: Geben Sie bitte einen Suchbegriff ein
+      loading: Lade...
     plans:
       visibility_dialog_title: Meinen DMP teilen
       comment_dialog_title: Neuen Kommentar hinzufügen
