@@ -49,7 +49,7 @@
       <% unless template_cust #don't display these for template-only customization  %>
         <% unless tab[:requirement_only] %>
           <%= render :partial => 'section_display', #level 4
-                     :locals => {:section_name => t('.institution_resources_section', instution: @institution.name),
+                     :locals => {:section_name => t('.institution_resources_section', institution: @institution.name),
                                  :partial_name => tab[:partial],
                                  :collection => @requirement.institution_customization_resources(@institution).send(tab[:scope]),
                                  #:editable => !template_cust,
