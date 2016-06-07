@@ -28,6 +28,10 @@ de:
   datetime:
     formats:
       default: '%d.%m.%Y, %H:%M Uhr'
+  recaptcha:
+    errors:
+      verification_failed: reCAPTCHA Prüfung fehlgeschlagen, bitte erneut versuchen.
+      recaptcha_unreachable: Oops, wir konnten deine reCAPTCHA Antwort nicht überprüfen. Bitte erneut versuchen.
   attributes:
     created_at: Erstellt am
     deleted_at: Gelöscht am
