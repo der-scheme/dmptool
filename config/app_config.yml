@@ -2,7 +2,7 @@ development:
   rss:                    https://blog.dmptool.org/feed
   blog:                   http://blog.dmptool.org
   feedback_email_to:      [pwillet.ucop.edu, mstrong@ucop.edu, sfisher@ucop.edu, briley@ucop.edu]
-  feedback_email_from:    uc3@ucop.edu
+  feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
   recaptcha_private_key:  6Ld2AAYAAAAAAHAzVcdFizHHGPInfgr4aGOm4n4x
   google_analytics_key:   UA-30638119-8
@@ -14,6 +14,9 @@ development:
     italic: Crimson-Italic.ttf
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
+  mailer_submission_default:
+    subject: 'Your plan has been submitted for feedback'
+    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
 
 development_nonlocal:
   development
@@ -22,18 +25,21 @@ stage:
   rss:                    https://blog.dmptool.org/feed
   blog:                   http://blog.dmptool.org
   feedback_email_to:      [uc3@ucop.edu]
-  feedback_email_from:    uc3@ucop.edu
+  feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
   recaptcha_private_key:  6Ld2AAYAAAAAAHAzVcdFizHHGPInfgr4aGOm4n4x
   google_analytics_key:   UA-30638119-9
   google_analytics_host:  cdlib.org
-  host_for_email_links:   https://dmp2-staging.cdlib.org
+  host_for_email_links:   https://dmp2-stg.cdlib.org
   ld_path_for_pandoc:     /dmp2/local/lib64
   pdf_font:
     bold: Crimson-Bold.ttf
     italic: Crimson-Italic.ttf
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
+  mailer_submission_default:
+    subject: 'Your plan has been submitted for feedback'
+    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
 
 stage_development:
   stage
@@ -42,7 +48,7 @@ production:
   rss:                    https://blog.dmptool.org/feed
   blog:                   http://blog.dmptool.org
   feedback_email_to:      [uc3@ucop.edu]
-  feedback_email_from:    uc3@ucop.edu
+  feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
   recaptcha_private_key:  6Ld2AAYAAAAAAHAzVcdFizHHGPInfgr4aGOm4n4x
   google_analytics_key:   UA-30638119-10
@@ -54,6 +60,9 @@ production:
     italic: Crimson-Italic.ttf
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
+  mailer_submission_default:
+    subject: 'Your plan has been submitted for feedback'
+    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
 
 production_development:
   production
@@ -63,7 +72,7 @@ test:
   rss:                    https://blog.dmptool.org/feed
   blog:                   http://blog.dmptool.org
   feedback_email_to:      [pwillet.ucop.edu, mstrong@ucop.edu]
-  feedback_email_from:    uc3@ucop.edu
+  feedback_email_from:    no-reply-dmptool@ucop.edu
   recaptcha_public_key:   6Ld2AAYAAAAAAKrPZimDhCZY56x_VK2RuAgao1_6
   recaptcha_private_key:  6Ld2AAYAAAAAAHAzVcdFizHHGPInfgr4aGOm4n4x
   google_analytics_key:   ""
