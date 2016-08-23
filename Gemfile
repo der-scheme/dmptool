@@ -52,6 +52,9 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'activerecord_any_of'
 gem 'prawn', '~> 2.0.2'
 gem 'exception_notification'
-gem 'rabl' # for rendering json views in the api https://github.com/nesquena/rabl
+
+# for rendering json views in the api https://github.com/nesquena/rabl
+gem 'rabl', '~> 0.12.0' # 0.13.0 causes a compilation error to occur
+
 gem 'pandoc-ruby'
 gem 'roman-numerals' #, :git => 'https://github.com/AndrewVos/roman-numerals'
