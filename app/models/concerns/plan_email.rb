@@ -25,7 +25,9 @@ module PlanEmail
               user.email,
               "DMP Visibility Changed: #{self.name}",
               "dmp_owners_and_co_vis_change",
-              { :user => user, :plan => self } ).deliver
+              {user: user, 
+               plan: self,
+               contact_us_url: APP_CONFIG['contact_us_url'] } ).deliver
         end
       end
     end
@@ -51,7 +53,9 @@ module PlanEmail
             user.email,
             "PLAN COMPLETED: #{self.name}",
             "dmp_owners_and_co_committed",
-            {:user => user, :plan => self } ).deliver
+            {user: user, 
+             plan: self,
+             contact_us_url: APP_CONFIG['contact_us_url'] } ).deliver
       end
 
     # [:dmp_owners_and_co][:submitted] -- A submitted DMP is approved or rejected
@@ -64,7 +68,10 @@ module PlanEmail
             user.email,
             "DMP #{current_state.state}: #{self.name}",
             "dmp_owners_and_co_submitted",
-            { :user => user, :plan => self, :state => current_state } ).deliver
+            { user: user, 
+              plan: self, 
+              state: current_state,
+              contact_us_url: APP_CONFIG['contact_us_url'] } ).deliver
       end
 
       institution = self.owner.institution
@@ -75,21 +82,57 @@ module PlanEmail
             user.email,
             "DMP #{current_state.state}: #{self.name}",
             "institutional_reviewers_approved_rejected",
-            { :user => user, :plan => self, :state => current_state } ).deliver
+            { user: user, 
+              plan: self, 
+              state: current_state, 
+              contact_us_url: APP_CONFIG['contact_us_url'] } ).deliver
       end
 
     # [:institutional_reviewers][:submitted] -- An Institutional DMP is submitted for review
     elsif current_state.state == :submitted
       institution = self.owner.institution
+      
+      # Send the owner and coowners a confirmation message
+      users = self.users
+      users.delete_if {|u| !u[:prefs][:dmp_owners_and_co][:submitted]}
+      users.each do |user|
+        UsersMailer.notification(
+            user.email,
+            (institution.submission_mailer_subject.blank? ? build_email_message(APP_CONFIG['mailer_submission_default']['subject'], {}) : build_email_message(institution.submission_mailer_subject, {})),
+            "dmp_owners_and_co_submitted",
+            {user: user, 
+             plan: self, 
+             body: (institution.submission_mailer_body.blank? ? build_email_message(APP_CONFIG['mailer_submission_default']['body'], {user: user, plan: self}) : build_email_message(institution.submission_mailer_body, {user: user, plan: self})), 
+             state: current_state,
+             contact_us_url: APP_CONFIG['contact_us_url']} 
+        ).deliver
+      end
+      
+      # Send the reviewers a notification
       users = institution.users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
       users.delete_if {|u| !u[:prefs][:institutional_reviewers][:submitted] }
       users.each do |user|
         UsersMailer.notification(
             user.email,
-            (institution.submission_mailer_subject.nil? ? APP_CONFIG['mailer_submission_default']['subject'] : institution.submission_mailer_subject),
+            "DMP #{current_state.state}: #{self.name}",
             "institutional_reviewers_submitted",
-            {user: user, plan: self, body: institution.submission_mailer_body} ).deliver
+            {user: user, 
+             plan: self, 
+             state: current_state,
+             contact_us_url: APP_CONFIG['contact_us_url']} 
+        ).deliver
       end
     end
   end
+  
+  private
+    # Swap out personalization phrases with their erb counterparts
+    def build_email_message(template, params)
+      unless template.nil?
+        template = template.gsub('[User Name]', params[:user].full_name) unless params[:user].nil?
+        template = template.gsub('[Plan Name]', params[:plan].name) unless params[:plan].nil?
+      end
+        
+      template
+    end
 end
