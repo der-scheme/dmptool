@@ -15,8 +15,9 @@ development:
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
   mailer_submission_default:
-    subject: 'Your plan has been submitted for feedback'
-    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
+    subject: '[DMPTool] (development) Your plan has been submitted for feedback'
+    body: 'Hello [User Name], your DMP "[Plan Name]" has been submitted for feedback from an administrator at your institution.  If you have questions pertaining to this action, please contact us at http://cdlib-stage.cdlib.org/services/uc3/contact.html'
+  contact_us_url: 'http://cdlib-stage.cdlib.org/services/uc3/contact.html'
 
 development_nonlocal:
   development
@@ -38,8 +39,9 @@ stage:
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
   mailer_submission_default:
-    subject: 'Your plan has been submitted for feedback'
-    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
+    subject: '[DMPTool] (staging) Your plan has been submitted for feedback'
+    body: 'Hello [User Name], your DMP "[Plan Name]" has been submitted for feedback from an administrator at your institution.  If you have questions pertaining to this action, please contact us at http://cdlib-stage.cdlib.org/services/uc3/contact.html'
+  contact_us_url: 'http://cdlib-stage.cdlib.org/services/uc3/contact.html'
 
 stage_development:
   stage
@@ -61,8 +63,9 @@ production:
     bold_italic: Crimson-BoldItalic.ttf
     normal: Crimson-Roman.ttf
   mailer_submission_default:
-    subject: 'Your plan has been submitted for feedback'
-    body: 'Your plan has been submitted for feedback.\r\rIf you have questions pertaining to this action, please visit the DMP Overview page.\r\rYou may change your notification preferences at [User Url].'
+    subject: '[DMPTool] Your plan has been submitted for feedback'
+    body: 'Hello [User Name], your DMP "[Plan Name]" has been submitted for feedback from an administrator at your institution.  If you have questions pertaining to this action, please contact us at http://www.cdlib.org/services/uc3/contact.html'
+  contact_us_url: 'http://www.cdlib.org/services/uc3/contact.html'
 
 production_development:
   production
@@ -77,6 +80,7 @@ test:
   recaptcha_private_key:  6Ld2AAYAAAAAAHAzVcdFizHHGPInfgr4aGOm4n4x
   google_analytics_key:   ""
   google_analytics_host:  ""
+  contact_us_url: 'http://cdlib-stage.cdlib.org/services/uc3/contact.html'
 
 test_nonlocal:
   development
