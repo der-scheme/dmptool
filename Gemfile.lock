@@ -160,7 +160,7 @@ GEM
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
     pyu-ruby-sasl (0.0.3.3)
-    rabl (0.11.6)
+    rabl (0.12.0)
       activesupport (>= 2.3.14)
     rack (1.5.5)
     rack-test (0.6.3)
@@ -273,7 +273,7 @@ DEPENDENCIES
   pandoc-ruby
   paranoia!
   prawn (~> 2.0.2)
-  rabl
+  rabl (~> 0.12.0)
   rack-test
   rails (= 4.0.13)
   recaptcha
@@ -285,3 +285,6 @@ DEPENDENCIES
   therubyracer
   uglifier (= 2.5.0)
   unicorn
+
+BUNDLED WITH
+   1.11.2

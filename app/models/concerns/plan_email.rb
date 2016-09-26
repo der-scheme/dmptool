@@ -51,11 +51,22 @@ module PlanEmail
 
     # [:institutional_reviewers][:submitted] -- An Institutional DMP is submitted for review
     elsif current_state.state == :submitted
+      # Send the owner and coowners a confirmation message
+      users
+        .select {|user| user[:prefs][:dmp_owners_and_co][:submitted]}
+        .each {|user| UsersMailer.custom_plan_under_review(user, self).deliver}
+
+      # Send the reviewers a notification
       owner.institution
         .users_in_and_above_inst_in_role(Role::INSTITUTIONAL_REVIEWER)
         .select {|user| user[:prefs][:institutional_reviewers][:submitted]}
-        .each {|user| UsersMailer.plan_under_review(user, self).deliver}
+        .each do |user|
+          UsersMailer
+            .plan_under_review(user, self)
+            .deliver
+      end
     end
 
   end
+
 end

@@ -106,8 +106,29 @@
       <%= f.text_area :desc, rows: 5, class: 'input-xxlarge' %>
     </div>
   </div>
+	
+	<h4>Request for Feedback - Automated Email:</h4>
+	<div class="control-group">
+		<%= f.label :submission_mailer_subject, "Subject", class: "control-label" %>
+		<%= f.text_field :submission_mailer_subject, placeholder: "#{APP_CONFIG['mailer_submission_default']['subject']}", class: "input-xxlarge" %>
+	</div>
+	<div class="control-group">
+		<%= f.label :submission_mailer_body, "Message", class: "control-label" %>
+		<%= f.text_area :submission_mailer_body, rows: 10, :class => "input-xxlarge", placeholder: "#{APP_CONFIG['mailer_submission_default']['body']}" %>
+		<%= content_tag(:span, '', title: 'The automated email message that users receive when they submit a plan for feedback.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => true, class: 'icon questionmark tip') %>
+	</div>
+	
   <div class="buttons">
     <%= render_save_changes_button %>
     <%= render_cancel_button %>
   </div>
+	
+	<script>
+		$.ready(function(){
+console.log('Current: ' + $("#submission_mailer_body").placeholder);
+console.log('Current: ' + $("#submission_mailer_body").placeholder.replace(/\\n/g, '\n'));
+
+			$("#submission_mailer_body").placeholder.replace(/\\n/g, '\n');
+		});
+	</script>
 <% end %>

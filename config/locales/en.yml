@@ -52,7 +52,7 @@ en:
   recaptcha:
     errors:
       verification_failed: reCAPTCHA verification failed, please try again.
-      recaptcha_unreachable: Oops, we failed to validate your reCAPTCHA response. Please try again. 
+      recaptcha_unreachable: Oops, we failed to validate your reCAPTCHA response. Please try again.
   # Generic attributes
   attributes:
     created_at: Creation Date
@@ -252,7 +252,7 @@ en:
         reviewed: Reviewed
         rejected: Rejected
         revised: Revised
-        submitted: Submitted
+        submitted: Submitted for feedback
     requirement:
       group:
         "false": 'Requirement'
@@ -844,10 +844,10 @@ en:
       cant_reassign_owner_error: The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.
       success_notice: Plan was successfully created.
     back_submit_buttons:
-      submit_for_review_button: Submit for Review
+      submit_for_review_button: Request Feedback
       review_not_defined: Review Process is not defined for the associated DMP Template
       done_tooltip: <p>Complete your Plan.</p>
-      submit_for_review_tooltip: <p>Submit your Plan for an Informal Review from your institution.</p>
+      submit_for_review_tooltip: <p>Request feedback on your Plan from an administrator at your institution.</p>
     change_visibility:
       visibility_institutional: With others from %{institution}
       visibility_public: Publicly on the web. Your DMP will appear on the Public DMPs page of this site.
@@ -951,8 +951,9 @@ en:
     perform_review:
       title: Review DMPs
       perform_review: Perform Review
-      no_comments: There are currently no comments.
-      add_comment_button: Add Comments
+      no_comments: You have not provided any comments for this plan.
+      no_owner_comments: There are currently no comments from the owners of this plan.
+      add_comment_button: Add Comment
       review_decision: 'Review Decision:'
       plan_state_html: <strong>The Plan is set to <span class ="blue">%{state}</span> state.</strong>
       approve_button: Approve
@@ -987,7 +988,7 @@ en:
       filter_submitted_link: Pending My Review (%{count})
       filter_approved_link: Approved (%{count})
       filter_rejected_link: Rejected (%{count})
-      filter_reviewed_link: Reviewed (%{count})
+      filter_reviewed_link: Previously Reviewed (%{count})
       submission_date_tooltip: Date the DMP was submitted for review by the plan owner.
       review_plan: Review DMP
       submission_date: Submission Date
@@ -1427,6 +1428,9 @@ en:
     plan_under_review:
       subject: '%{plan} has been submitted for institutional review'
       text: The DMP "%{plan}" has been submitted for institutional review.
+    custom_plan_under_review:
+      subject: Your plan has been submitted for feedback
+      text: 'Hello %{user}, your DMP "%{plan}" has been submitted for feedback from an administrator at your institution.  If you have questions pertaining to this action, please contact us at %{url}'
     plan_user_added:
       subject: New %{type} of %{plan}
       you_text: "You've been added to the plan \"%{plan}\" as a %{type}."
