@@ -79,7 +79,7 @@ end
       controller: {
         plan_state: {
           state_changed: lambda do |_, state: nil, **__|
-            "The plan has been #{I18n.t("enum.plan_state.state.#{state}")}."
+            "The plan has been #{I18n.t("enum.plan_state.state.#{state}")}#{" by an administrator at your institution" if state == :submitted}."
           end,
           already_in_state: lambda do |_, state: nil, **__|
             "The Plan has already been #{I18n.t("enum.plan_state.state.#{state}")}."

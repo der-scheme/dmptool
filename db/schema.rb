@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214170435) do
+ActiveRecord::Schema.define(version: 20160801082200) do
 
   create_table "additional_informations", force: true do |t|
     t.string   "url",                      limit: 255
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20151214170435) do
     t.string   "logo"
     t.string   "ancestry"
     t.datetime "deleted_at"
+    t.string   "submission_mailer_subject"
+    t.text     "submission_mailer_body"
   end
 
   add_index "institutions", ["ancestry"], name: "index_institutions_on_ancestry", using: :btree

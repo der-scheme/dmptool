@@ -81,6 +81,19 @@ class UsersMailer < ActionMailer::Base
     mail subject: t('.subject', plan: plan.name)
   end
 
+  def custom_plan_under_review(recipient, plan)
+    @plan = plan
+    @recipient = recipient
+
+    body = plan.owner.institution.submission_mailer_body
+        .presence.try(:%, {user: recipient.full_name, plan: plan.name}) ||
+      t('.text', user: recipient.full_name, plan: plan.name, url: APP_CONFIG['contact_us_url'])
+    subject = plan.owner.institution.submission_mailer_subject
+        .presence.try(:%, {user: recipient.full_name, plan: plan.name})
+
+    mail subject: subject, body: body
+  end
+
   def plan_user_added(recipient, user_plan)
     @recipient = recipient
     @user, @plan = user_plan.user, user_plan.plan

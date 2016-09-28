@@ -38,6 +38,23 @@
   </p>
 </div>
 
+<div class="comments">
+
+  <% if @owner_comments.empty? %>
+  <%# if @all_comments.empty? %>
+    <%= content_tag :strong, t('.no_owner_comments') %>
+    <br/>
+  <% else %>
+    <div class="scrollable-container">
+      <div class="scrollable-content">
+        <br/>
+        <%= render partial: 'comments/index_owner_comments' %>
+      </div>
+    <div class="scrollable-bottom-handle ui-resizable-handle ui-resizable-s"></div>
+  </div>
+  <% end %>
+</div>
+
 <% unless @customization.nil? %>
   <% if @customization.review_type == :formal_review %>
     <fieldset class="spaced_below">

@@ -66,7 +66,7 @@
     <% else %>
       <%= render_back_button arrow: true, class: 'pull-left' %>
     <% end %>
-    <%= render_button_link t('.preview_button'), preview_plan_path(@plan), class: 'pull-right' %>
+    <%= link_to t('.preview_button'), '#' , class: 'btn btn-green pull-right', role: "button", id: 'save_on_preview' %>
   </div>
 </div>
 <script type="text/javascript">
@@ -83,4 +83,12 @@
     document.getElementById(id).style.height = 'auto';
     //$j('#'+id).css('height', 'auto');
   }
+</script>
+<script type="text/javascript">
+$(function() {
+  $("#save_on_preview").bind("click",function(e) {
+    $('#true_on_preview').val(true);
+    $(".form-horizontal").submit();
+  });
+});
 </script>
