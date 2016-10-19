@@ -27,7 +27,7 @@ module RouteI18n
       t &&= scope_key_by_partial(t)
 
       return I18n.t(key, default: default, **url_options) unless t
-      I18n.t(t, default: default.unshift(t), **url_options)
+      I18n.t(t, default: default.unshift(key), **url_options)
     end
 
     ##
