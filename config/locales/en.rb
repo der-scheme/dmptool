@@ -88,16 +88,22 @@ end
       }
     },
     plans: {
+      change_visibility: {
+        visibility_private_html: ->(_, **__) {"Private (owners, co-owners, and admins only) See <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a>."}
+      },
       create: {
         no_such_users_error: ->(_, count: nil, users: nil, **__) {"Could not find the following #{count == 1 ? 'user' : 'users'}: #{i18n_join_en(users)}."},
         users_already_assigned_error: ->(_, count: nil, users: nil, description: nil, **__) {"The #{count == 1 ? 'user' : 'users'} chosen #{i18n_join_en(users)} are already #{description}#{'s' if count == 1} of this Plan."}
       },
+      form: {
+        visibility_tooltip: ->(_, **_) {"Four possible states:<ul><li>Share publicly: anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li><li>Shared with institution: anyone logged in from your institution can view, copy and or download the plan.</li><li>Private: only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes. See <a href=\"#{Rails.application.routes.url_helpers.terms_of_use_path}\">#{I18n.t('routes.static_pages.terms_of_use')}</a></li><li>Test: select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.</li></ul>"}
+      },
       index: {
         visibility_tooltip: lambda do |_, parent: false, **_|
           if parent
-            "Four possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
+            "Five possible states:<ul><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li><li>Shared with institution (yellow key): anyone logged in from your entire institution hierarchy can view, copy and or download the plan.</li><li>Shared within unit (hierarchy icon): anyone logged in from your institution or from a parent institution can view, copy and or download the plan. </li><li>Private (red lock): only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes. See <a href=\"#{Rails.application.routes.url_helpers.terms_of_use_path}\">#{I18n.t('routes.plans.terms_of_use')}</a></li><li>Test (black notepad): select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.</li></ul>"
           else
-            "Three possible states:<ul><li>Private (red lock): only owners and co-owners can view the plan.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li></ul>"
+            "Four possible states:<ul><li>Share publicly (green people): anyone can view, copy and or download the plan. Your DMP will appear on the <a href=\"#{Rails.application.routes.url_helpers.public_dmps_path}\">#{I18n.t('routes.plans.public')}</a> page of this site.</li><li>Shared with institution (yellow key): anyone logged in from your institution can view, copy and or download the plan.</li><li>Private (red lock): only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes. See <a href=\"#{Rails.application.routes.url_helpers.terms_of_use_path}\">#{I18n.t('routes.plans.terms_of_use')}</a></li><li>Test (black notepad): select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.</li></ul>"
           end
         end
       },
@@ -167,7 +173,7 @@ end
       },
       plan_visibility_changed: {
         text: lambda do |_, plan: nil, visibility: nil, institution: nil, **__|
-          "The plan \"#{plan}\" has had its visibility changed to #{I18n.t("enum.plan.visibility.#{visibility}")}.\n\nVisibility definitions:\n\nPrivate - Visible to owners and co-owners only\n\nInstitutional - Visible to others from #{institution}\n\nPublic - visible publicly on the web"
+          "The plan \"#{plan}\" has had its visibility changed to #{I18n.t("enum.plan.visibility.#{visibility}")}.\n\nVisibility definitions:\n\nPublic - visible publicly on the web\n\nInstitutional - Visible to others from #{institution}\n\nPrivate - Visible to owners and co-owners only\n\nTest - Visible to owners and co-owners only. Should be selected if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal."
         end
       }
     }

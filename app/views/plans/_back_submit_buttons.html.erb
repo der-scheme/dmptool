@@ -4,9 +4,13 @@
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
   <% elsif state(@plan) == :committed%>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% elsif state(@plan) == :approved %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif @customization_review == "informal" %>
@@ -15,19 +19,29 @@
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
     <%= content_tag :span, '', title: t('.submit_for_review_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
     <%= content_tag :span, '', title: t('.done_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
   <% elsif state(@plan) == :committed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% elsif state(@plan) == :reviewed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif @customization_review == "no" %>
   <% if state(@plan) == :committed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% else %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif (@customization_review == nil && @template_review == "formal") %>
@@ -36,9 +50,13 @@
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
   <% elsif state(@plan) == :committed%>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% elsif state(@plan) == :approved %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif (@customization_review == nil && @template_review == "informal") %>
@@ -47,19 +65,29 @@
   <% elsif state(@plan) == :new || state(@plan) == :revised %>
     <%= render_button_link t('.submit_for_review_button'), plan_plan_states_submitted_path(@plan), green: true, method: :post, class: 'pull-right' %>
     <%= content_tag :span, '', title: t('.submit_for_review_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
     <%= content_tag :span, '', title: t('.done_tooltip'), data: {toggle: 'tooltip', placement: 'right', html: 'true'}, class: 'icon questionmark tip pull-right' %>
   <% elsif state(@plan) == :committed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% elsif state(@plan) == :reviewed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif (@customization_review == nil && @template_review == "no") %>
   <% if state(@plan) == :committed %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, disabled: true, class: 'pull-right' %>
+    <%= render_button_link t: '.done', '#', green: true, disabled: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% else %>
-    <%= render_button_link t: '.done', href: plan_plan_states_committed_path(@plan), green: true, method: :post, class: 'pull-right' %>
+    <%= render_button_link t: '.done', href: '#', green: true,
+                           class: 'pull-right confirm_visibility_link',
+                           data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% end %>
 
 <% elsif (@customization_review == nil && @template_review == nil) %>
