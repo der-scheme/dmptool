@@ -63,7 +63,9 @@
               <% @plan_id = plan.id %>
                 <%= link_to_edit_plan(plan) %>
               | <%= link_to_details_plan(plan) %>
-              | <%= link_to t('.share_link'), '#', class: 'change_visibility_link', data: {planid: plan.id, visibility: plan.visibility} %>
+              | <%= link_to t('.share_link'), '#', class: 'change_visibility_link',
+                            data: {planid: plan.id, visibility: plan.visibility},
+                            locals: {plan_id: plan.id, visibility: plan.visibility} %>
 
               <%# if (review_type(plan) == true) || (review_type(plan) == nil && plan.requirements_template.try(:review_type) && plan.requirements_template.review_type != :no_review) %>
                 | <%= link_to_preview_plan(plan) %>
@@ -83,6 +85,8 @@
         <td><strong><%= translated_state(plan) %></strong></td>
 
         <%case plan.visibility%>
+        <%when :test%>
+          <td class="span1"><span class="edit-user icon" title="Test or Practice Plan"></span></td>
         <%when :private%>
           <td class="span1">
             <%= content_tag :span, '', title: t_enum(:plan, :visibility, :private), class: 'private-visibility icon' %>
@@ -134,5 +138,31 @@
 <!-- </table> -->
 <%= button_to plan_template_information_text, plan_template_information_path, method: :get, class: 'btn' %>
 <div id = 'visibility_dialog_form'>
-  <%= render partial: 'change_visibility', locals: {:plan_id => @plan_id} %>
+  <%= render partial: 'change_visibility', locals: {plan_id: @plan_id, visibility: @plan_visibility} %>
 </div>
+
+<script type="text/javascript">
+	$(".change_visibility_link").click(function(e){
+		var id = $(this).attr("data-planid");
+		var vis = $(this).attr("data-visibility");
+
+		$("#visibility_form").find("#shared_plan_id").val(id);
+
+		if(vis == "public"){
+			$("#visibility_form").find("#visibility_public").click();
+
+		}else if(vis == "institutional"){
+			$("#visibility_form").find("#visibility_institutional").click();
+
+		}else if(vis == "unit"){
+			$("#visibility_form").find("#visibility_unit").click();
+
+		}else if(vis == "private"){
+			$("#visibility_form").find("#visibility_private").click();
+
+		}else{
+			$("#visibility_form").find("#visibility_test").click();
+		}
+
+	});
+</script>

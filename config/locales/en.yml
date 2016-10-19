@@ -218,6 +218,7 @@ en:
         institutional: Institutional
         private: Private
         public: Public
+        test: Test
         unit: Unit
     plan_state:
       state:
@@ -338,6 +339,7 @@ en:
       loading: Loading...
     plans:
       visibility_dialog_title: Share my DMP
+      visibility_dialog_title2: "Confirm your DMP's visibility setting"
       comment_dialog_title: Add New Comments
       reject_dialog_title: Reason for rejection (mandatory)
     requirements_templates:
@@ -835,9 +837,13 @@ en:
       submit_for_review_tooltip: <p>Request feedback on your Plan from an administrator at your institution.</p>
     change_visibility:
       visibility_institutional: With others from %{institution}
+      institutional_tooltip: 'Shared with institution: anyone logged in from your institution can view, copy and or download the plan.'
       visibility_public: Publicly on the web. Your DMP will appear on the Public DMPs page of this site.
-      visibility_private: Private (owners and co-owners only)
+      public_tooltip: 'Share publicly: anyone can view, copy and or download the plan.'
+      private_tooltip: 'Private: only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes.'
       visibility_unit: Within your institution/sub-institution unit only.
+      visibility_test: Test or practice plan
+      test_tooltip: 'Test: select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.'
     delete_coowner:
       success_notice: The selected Coowner associated with the Plan has been deleted successfully
     destroy:
