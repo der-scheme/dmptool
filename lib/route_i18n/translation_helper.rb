@@ -22,7 +22,7 @@ module RouteI18n
     def url_text_for(url_options = {}, t: nil, default: nil, **options)
       url_options = url_options.merge(options)
       key, fallback = url_text_i18n_keys(**url_options)
-      default ||= [url_for(**url_options)]
+      default ||= url_text_defaults(url_options)
       default.unshift(fallback)
       t &&= scope_key_by_partial(t)
 
@@ -54,6 +54,16 @@ module RouteI18n
 
         url_text_for(controller: controller, action: action, t: t, **options)
       end
+    end
+
+  private
+
+    ##
+    # Returns a proc that returns text derived from calling #url_for with
+    # +url_options+ that is nicer to the human eye than a plain URL.
+
+    def url_text_defaults(url_options)
+      [proc {url_for(**url_options).from(1).titleize.presence || 'Home'}]
     end
 
   end
