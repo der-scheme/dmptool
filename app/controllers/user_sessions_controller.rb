@@ -19,6 +19,9 @@ class UserSessionsController < ApplicationController
   def create
     redirect_to choose_institution_path if session[:institution_id].blank? and return
     auth = env["omniauth.auth"]
+    auth_provider = auth.try(:fetch, :provider, session[:login_method])
+    session[:login_method] = auth_provider
+
     begin
       # If the _import_successful_ flag is set, the user confirmed that they are
       # fine with us storing their personal details in our database, so we do
@@ -54,7 +57,7 @@ class UserSessionsController < ApplicationController
     # If we don't already have the user the database and the provider is
     # configured to trigger a prompt, we store the user's information in the
     # session and redirect them to the confirmation page.
-    if user.new_record? && auth[:provider].in?(Rails.application.config.prompt_external_signup)
+    if user.new_record? && auth_provider.in?(Rails.application.config.prompt_external_signup)
       session[:foreign_user] = user.attributes.reject {|_, value| value.nil?}.with_indifferent_access
       session[:authentication] = a12n.attributes.reject {|_, value| value.nil?}.with_indifferent_access
       redirect_to import_user_path and return
@@ -64,7 +67,6 @@ class UserSessionsController < ApplicationController
      redirect_to choose_institution_path, flash: { error: "Incorrect username, password or institution" } and return
     end
     session[:user_id] = user.id
-    session[:login_method] = auth[:provider]
 
     # Validation turned off, because see above.
     user.save(validate: false)
@@ -96,7 +98,7 @@ class UserSessionsController < ApplicationController
   def institution
      @inst_list = InstitutionsController.institution_select_list
   end
-  
+
   #email username from email address -- get the form, post the submission
   def username_reminder
     if request.post?
@@ -118,7 +120,7 @@ class UserSessionsController < ApplicationController
       end
     end
   end
-  
+
   #reset the password for an email address and mail it -- get is the form, post the submission
   def password_reset
     if request.post?
@@ -147,7 +149,7 @@ class UserSessionsController < ApplicationController
           token = user.ensure_token
           reset_url = complete_password_reset_url(:id => user.id, :token => token, :protocol => 'https')
           UsersMailer.password_reset(user.login_id, email, reset_url).deliver
-          
+
           flash[:notice] = "An email has been sent to #{email} with instructions for resetting your password."
           redirect_to login_path and return
         elsif users.length < 1
@@ -167,7 +169,7 @@ class UserSessionsController < ApplicationController
       end
     end
   end
-  
+
   def complete_password_reset
     user_id = params[:id]
     token = params[:token]
@@ -184,35 +186,35 @@ class UserSessionsController < ApplicationController
       flash[:error] = 'Invalid password reset token. Please request a reset again.'
       redirect_to(:action => 'password_reset') and return
     end
-    
-    
+
+
     if request.post?
       password = params[:password]
       password_confirmation = params[:password_confirmation]
-  
+
       unless legal_password(password)
         flash[:error] = 'Your password must be at least eight characters long and have at least one letter and at least one number.'
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-      
+
       unless password == password_confirmation
         flash[:error] = 'Password and confirmation do no match. Please try again.'
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-  
+
       begin
         Ldap_User.find_by_email(@user.email).change_password(password)
       rescue Exception => ex
         flash[:error] = "Problem updating password in LDAP. Please retry."
         redirect_to(complete_password_reset_path(:id => @user.id, :token => @user.token)) and return
       end
-  
+
       @user.clear_token
       flash[:notice] = "You have successfully updated your password."
       redirect_to login_path and return
     end
   end
-  
+
   def legal_password(password)
     (8..30).include?(password.length) and password.match(/\d/) and password.match(/[A-Za-z]/)
   end
