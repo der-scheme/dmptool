@@ -23,6 +23,9 @@ class UserSessionsController < ApplicationController
                 flash: {error: t('.incorrect_credentials_error')} and
       return if session[:institution_id].blank?
     auth = env["omniauth.auth"]
+    auth_provider = auth.try(:fetch, :provider, session[:login_method])
+    session[:login_method] = auth_provider
+
     begin
       # If the _import_successful_ flag is set, the user confirmed that they are
       # fine with us storing their personal details in our database, so we do
@@ -58,7 +61,7 @@ class UserSessionsController < ApplicationController
     # If we don't already have the user the database and the provider is
     # configured to trigger a prompt, we store the user's information in the
     # session and redirect them to the confirmation page.
-    if user.new_record? && auth[:provider].in?(Rails.application.config.prompt_external_signup)
+    if user.new_record? && auth_provider.in?(Rails.application.config.prompt_external_signup)
       session[:foreign_user] = user.attributes.reject {|_, value| value.nil?}.with_indifferent_access
       session[:authentication] = a12n.attributes.reject {|_, value| value.nil?}.with_indifferent_access
       redirect_to import_user_path and return
@@ -68,7 +71,6 @@ class UserSessionsController < ApplicationController
      redirect_to choose_institution_path, flash: { error: t('.incorrect_credentials_error') } and return
     end
     session[:user_id] = user.id
-    session[:login_method] = auth[:provider]
 
     # Validation turned off, because see above.
     user.save(validate: false)
