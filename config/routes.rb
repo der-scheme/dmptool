@@ -123,12 +123,11 @@ Dmptool2::Application.routes.draw do
     get 'select_dmp_template', to: 'plans#select_dmp_template'
     get 'review_dmps', to: 'plans#review_dmps'
     post 'change_visibility', to: 'plans#change_visibility'
+  post 'confirm_visibility', to: 'plans#confirm_visibility'
     get 'public_dmps', to: 'plans#public'
     delete 'delete_coowner', to: 'plans#delete_coowner'
     post 'reject_with_comments', to: 'plan_states#reject_with_comments'
 
-    post 'add_authorization', to: 'authorizations#add_authorization'
-    get 'remove_authorization', to: 'authorizations#remove_authorization'
     post 'add_role_autocomplete', to: 'authorizations#add_role_autocomplete'
     get  'edit_user_roles', to: 'users#edit_user_roles'
     post  'update_user_roles', to: 'users#update_user_roles'

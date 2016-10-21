@@ -2,8 +2,10 @@
 <%= form_for(@response,  html: { :class => 'form-horizontal' }) do |f| %>
 
   <%= f.hidden_field :lock_version %>
+  <%= hidden_field_tag(:save_on_preview, false, id: 'true_on_preview') %>
 
   <%= render partial: "shared/model_errors", locals: {model: @response} %>
+
   <div class="control-group">
       <%= f.hidden_field :requirement_id, value: requirement_id %>
       <%= f.hidden_field :plan_id, value: plan_id %>
@@ -55,6 +57,7 @@
 
   <br/>
   <div class="actions">
+
     <% if requirement(requirement_id).obligation == :mandatory %>
       <%= f.submit t('.save_and_next_button'), name: 'save_and_next', class: 'btn btn-success pull-right', id: 'save_and_next' %>
       <%= f.submit t('.save_button'), name: 'save_only', class: 'btn btn-success pull-right', id: 'save_only' %>

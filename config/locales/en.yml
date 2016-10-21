@@ -49,6 +49,10 @@ en:
   datetime:
     formats:
       default: '%m/%d/%Y %I:%M %p'
+  recaptcha:
+    errors:
+      verification_failed: reCAPTCHA verification failed, please try again.
+      recaptcha_unreachable: Oops, we failed to validate your reCAPTCHA response. Please try again.
   # Generic attributes
   attributes:
     created_at: Creation Date
@@ -237,6 +241,7 @@ en:
         institutional: Institutional
         private: Private
         public: Public
+        test: Test
         unit: Unit
     plan_state:
       state:
@@ -248,7 +253,7 @@ en:
         reviewed: Reviewed
         rejected: Rejected
         revised: Revised
-        submitted: Submitted
+        submitted: Submitted for feedback
     requirement:
       group:
         "false": 'Requirement'
@@ -357,6 +362,7 @@ en:
       loading: Loading...
     plans:
       visibility_dialog_title: Share my DMP
+      visibility_dialog_title2: "Confirm your DMP's visibility setting"
       comment_dialog_title: Add New Comments
       reject_dialog_title: Reason for rejection (mandatory)
     requirements_templates:
@@ -841,15 +847,19 @@ en:
       cant_reassign_owner_error: The user chosen %{owner} is the owner of the Plan. An owner cannot be %{description} for the same plan.
       success_notice: Plan was successfully created.
     back_submit_buttons:
-      submit_for_review_button: Submit for Review
+      submit_for_review_button: Request Feedback
       review_not_defined: Review Process is not defined for the associated DMP Template
       done_tooltip: <p>Complete your Plan.</p>
-      submit_for_review_tooltip: <p>Submit your Plan for an Informal Review from your institution.</p>
+      submit_for_review_tooltip: <p>Request feedback on your Plan from an administrator at your institution.</p>
     change_visibility:
       visibility_institutional: With others from %{institution}
+      institutional_tooltip: 'Shared with institution: anyone logged in from your institution can view, copy and or download the plan.'
       visibility_public: Publicly on the web. Your DMP will appear on the Public DMPs page of this site.
-      visibility_private: Private (owners and co-owners only)
+      public_tooltip: 'Share publicly: anyone can view, copy and or download the plan.'
+      private_tooltip: 'Private: only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes.'
       visibility_unit: Within your institution/sub-institution unit only.
+      visibility_test: Test or practice plan
+      test_tooltip: 'Test: select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.'
     delete_coowner:
       success_notice: The selected Coowner associated with the Plan has been deleted successfully
     destroy:
@@ -948,8 +958,9 @@ en:
     perform_review:
       title: Review DMPs
       perform_review: Perform Review
-      no_comments: There are currently no comments.
-      add_comment_button: Add Comments
+      no_comments: You have not provided any comments for this plan.
+      no_owner_comments: There are currently no comments from the owners of this plan.
+      add_comment_button: Add Comment
       review_decision: 'Review Decision:'
       plan_state_html: <strong>The Plan is set to <span class ="blue">%{state}</span> state.</strong>
       approve_button: Approve
@@ -984,7 +995,7 @@ en:
       filter_submitted_link: Pending My Review (%{count})
       filter_approved_link: Approved (%{count})
       filter_rejected_link: Rejected (%{count})
-      filter_reviewed_link: Reviewed (%{count})
+      filter_reviewed_link: Previously Reviewed (%{count})
       submission_date_tooltip: Date the DMP was submitted for review by the plan owner.
       review_plan: Review DMP
       submission_date: Submission Date
@@ -1429,6 +1440,9 @@ en:
     plan_under_review:
       subject: '%{plan} has been submitted for institutional review'
       text: The DMP "%{plan}" has been submitted for institutional review.
+    custom_plan_under_review:
+      subject: Your plan has been submitted for feedback
+      text: 'Hello %{user}, your DMP "%{plan}" has been submitted for feedback from an administrator at your institution.  If you have questions pertaining to this action, please contact us at %{url}'
     plan_user_added:
       subject: New %{type} of %{plan}
       you_text: "You've been added to the plan \"%{plan}\" as a %{type}."

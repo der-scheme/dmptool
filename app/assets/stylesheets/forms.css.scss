@@ -30,6 +30,8 @@ form {
 	.control-group{
 		display: table-row;
 		position: relative;
+
+		&+ input { margin-top: 10px; }
 	}
 	.control-group > .control-label { white-space: nowrap; }
 	.control-group > .control-label, .controls {

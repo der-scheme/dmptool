@@ -54,7 +54,7 @@
         </div>
 
         <% if @plan.new_record? %>
-          <div class="control-group">
+          <div class="control-group required">
             <p class="control-label">
               <%= content_tag :span, '',
                               title: t('.visibility_tooltip'),
@@ -69,13 +69,15 @@
               <%= f.radio_button :visibility, :institutional, class: 'radio inline' %>
               <%= f.label :visibility, t_enum(:plan, :visibility, :institutional), value: :institutional, class: 'radio-label' %>
               <br/>
-              <%= f.radio_button :visibility, :private, class: 'radio inline', checked: true  %>
+              <%= f.radio_button :visibility, :private, class: 'radio inline' %>
               <%= f.label :visibility, t_enum(:plan, :visibility, :private), value: :private, class: 'radio-label'%>
               <br/>
               <%if current_user.institution.parent || current_user.institution.has_children? %>
                 <%= f.radio_button :visibility, :unit, class: 'radio inline' %>
                 <%= f.label :visibility, t_enum(:plan, :visibility, :unit), value: :unit, class: 'radio-label'%>
               <%end%>
+              <%= f.radio_button :visibility, :test, :class => 'radio inline', :id => 'test'  %>
+              <%= label_tag :test, 'test or practice', :class => 'radio-label'%><br/>
             </div>
           </div>
           <%= render partial: '/users/plan_autocomplete_widget',
@@ -194,6 +196,7 @@
               <div class="controls">
               <p>
                 <%= link_to t('.preview_plan_link'), preview_plan_path(@plan) %>
+
                 <% if @customization_review == true || (@customization_review == nil && @template_review == true) %>
                   | <%= link_to t('.submit_plan_link'), preview_plan_path(@plan) %>
                 <% end %>

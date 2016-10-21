@@ -56,7 +56,7 @@ page_config = {
         }
       },
       {
-        href: {controller: :static_pages, action: :contact},
+        href: 'http://cdlib-stage.cdlib.org/services/uc3/contact.html',
         label: {
           key: 'layouts.header.contact_link',
           fallback: 'Contact Us'
@@ -122,7 +122,7 @@ page_config = {
         }
       },
       {
-        href: {controller: :static_pages, action: :contact},
+        href: 'http://cdlib-stage.cdlib.org/services/uc3/contact.html',
         label: {
           key: 'layouts.footer.contact_link',
           fallback: 'Contact Us'

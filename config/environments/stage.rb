@@ -56,7 +56,7 @@ Dmptool2::Application.configure do
     :email => {
       :email_prefix => "[Dmptool2 Exception] ",
       :sender_address => %{"notifier"},
-      :exception_recipients => %w{brian.riley@ucop.edu Marisa.Strong@ucop.edu Scott.Fisher@ucop.edu Bhavi.Vedula@ucop.edu}
+      :exception_recipients => %w{brian.riley@ucop.edu Marisa.Strong@ucop.edu}
     }
 
   config.action_mailer.delivery_method = :sendmail
@@ -64,7 +64,7 @@ Dmptool2::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.default_url_options = { :host => "https://dmp2-staging.cdlib.org" }
+  config.action_mailer.default_url_options = { :host => "https://dmp2-stg.cdlib.org" }
 
   config.prompt_external_signup = [:shibboleth]
 end

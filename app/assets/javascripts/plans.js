@@ -118,57 +118,162 @@ $(function() {
 $(function() {
 	$.ui.dialog.prototype._focusTabbable = function(){};
 	$('#visibility_dialog_form').hide();
+	$('#visibility_confirmation_dialog_form').hide();
 	$('.change_visibility_link').click(function(event) {
 		event.preventDefault();
 
-    // Since Javascript doesn't support dynamic keys (which we need for I18n)
-    // in literal object syntax, we have to define them manually.
-    var buttons = {};
-    Object.defineProperty(buttons, t('shared.button.cancel'), {
-      enumerable: true,
-      value: function() {
-        $(this).dialog("close");
-      }
-    });
-    Object.defineProperty(buttons, t('shared.submit_button.submit'), {
-      enumerable: true,
-      value: function() {
-        $("#visibility_form").submit();
-        $(this).dialog( "close" );
-      }
-    });
+    showVisibilityDialog(false);
+    return false
+  });
+  $('.confirm_visibility_link').click(function(event) {
+    event.preventDefault();
 
-		$('#visibility_dialog_form').dialog( {
+    showVisibilityDialog(true);
+    return false
+  });
+});
+
+
+$(function() {
+  $('#visibility_dialog_form').parent().find('button:contains("' + t('shared.button.cancel') + '")').bind("click",function() {
+    $("#visibility_dialog_form").reset();
+  });
+
+	$("#visibility_confirmation_dialog_form").parent().find('button:contains("' + t('shared.button.cancel') + '")').bind("click", function(){
+		$("#visibility_confirmation_dialog_form").reset();
+	});
+});
+$(function() {
+  // Fix plans.js arbitrarily disrupting JS execution on other pages.
+  var parent = $('#visibility_dialog_form').parent();
+  if (!(parent.length === 0)) {
+    parent.find('button:contains("' + t('shared.button.cancel') + '")')
+        .bind("click", function() {
+      $("#visibility_dialog_form").reset();
+    });
+  }
+
+  parent = $("#visibility_confirmation_dialog_form").parent();
+  if (!(parent.length === 0)){
+    parent.find('button:contains("' + t('shared.button.cancel') + '")').bind("click", function(){
+      $("#visibility_confirmation_dialog_form").reset();
+    });
+  }
+});
+
+
+$(function() {
+  $(".change_visibility_link").bind("click",function() {
+    var id= $(this).data('planid');
+    var visibility = $(this).data('visibility');
+
+    setInitialVisibilityOnDialog(this, id, visibility);
+  });
+
+	$(".confirm_visibility_link").click(function(e){
+    var id= $(this).data('planid');
+    var visibility = $(this).data('visibility');
+
+		setInitialVisibilityOnDialog(this, id, visibility);
+	});
+});
+
+$(function() {
+  $('#reject_dialog_form').hide();
+  $('#reject_with_comments_link').click(function(event) {
+    event.preventDefault();
+    $('#comment_comment_type').attr('value', $(event.target).attr("data-comment-type"));
+    $('#reject_dialog_form').dialog( {
+      width: 450,
+      height: 270,
+      modal: true,
+      closeOnEscape: true,
+      draggable: true,
+      resizable: false,
+      title: t('.reject_dialog_title'),
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "toggle",
+        duration: 1000
+      },
+      open: function()
+      {
+        $("#reject_dialog_form").dialog("open");
+      },
+      close: function() {
+        $('#reject_dialog-form').dialog("close");
+        $(this).find('form')[0].reset();
+      }
+    }).prev ().find(".ui-dialog-titlebar-close").show();
+    return false
+  });
+});
+
+$(function() {
+  $("#cancel_action").bind("click",function() {
+    $("#reject_dialog_form").reset();
+  });
+});
+
+function showVisibilityDialog(planConfirmation){
+  var dlg = (planConfirmation ? '#visibility_confirmation_dialog_form' :
+                                '#visibility_dialog_form');
+
+  // Since Javascript doesn't support dynamic keys (which we need for I18n)
+  // in literal object syntax, we have to define them manually.
+  var buttons = {};
+  Object.defineProperty(buttons, t('shared.button.cancel'), {
+    enumerable: true,
+    value: function() {
+      $(this).dialog("close");
+    }
+  });
+  Object.defineProperty(buttons, t('shared.submit_button.submit'), {
+    enumerable: true,
+    value: function() {
+      // If this is the final visibility confirmation, click the confirmation button
+      if (planConfirmation) {
+        $("#confirm_visibility_form").submit();
+      } else {
+        $("#visibility_form").submit();
+      }
+      $(this).dialog( "close" );
+    }
+  });
+
+  $(dlg).dialog( {
 			width: 600,
-			height: 200,
+    height: 300,
 			modal: true,
 			closeOnEscape: true,
 			draggable: true,
 			resizable: false,
-			title: t('.visibility_dialog_title'),
+			title: t(planConfirmation ? '.visibility_dialog_title2' : '.visibility_dialog_title'),
 
 		 	buttons: buttons,
 			open: function()
 			{
-
         $('.ui-widget-overlay').addClass('custom-overlay');
 
-        $('#visibility_dialog_form').prev().css('color', '#4C4C4E');
-        $('#visibility_dialog_form').prev().css('font-family', 'Helvetica, sans-serif');
-        $('#visibility_dialog_form').prev().css('font-size', '12px');
-        $('#visibility_dialog_form').prev().css('line-height', '1.3');
+      $(dlg).prev().css('color', '#4C4C4E');
+      $(dlg).prev().css('font-family', 'Helvetica, sans-serif');
+      $(dlg).prev().css('font-size', '12px');
+      $(dlg).prev().css('line-height', '1.3');
 
-         $('#visibility_dialog_form').prev().addClass('modal-header');
+       $(dlg).prev().addClass('modal-header');
 
-        $('#visibility_dialog_form').parent().addClass(' in');
+      $(dlg).parent().addClass(' in');
 
-        $('#visibility_dialog_form').prev().find('button').addClass('custom-close');
-        $('#visibility_dialog_form').prev().find('button').css('background','none');
-        $('#visibility_dialog_form').prev().find('button').css('border','none');
-        $('#visibility_dialog_form').prev().find('button').css('font-color','black');
-        $('#visibility_dialog_form').prev().find('button').css('font-size','20');
-        $('#visibility_dialog_form').prev().find('button').css('font-color','black');
-        $('#visibility_dialog_form').prev().find('button').css('opacity','0.2');
+      $(dlg).prev().find('button').addClass('custom-close');
+      $(dlg).prev().find('button').css('background','none');
+      $(dlg).prev().find('button').css('border','none');
+      $(dlg).prev().find('button').css('font-color','black');
+      $(dlg).prev().find('button').css('font-size','20');
+      $(dlg).prev().find('button').css('font-color','black');
+      $(dlg).prev().find('button').css('opacity','0.2');
 
         var cancel_button = $(this).parent().find(
               'button:contains("' + t('shared.button.cancel') + '")');
@@ -201,99 +306,43 @@ $(function() {
 
 				$('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
 
-				$('#visibility_dialog_form').next().removeClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
-				$('#visibility_dialog_form').next().addClass('modal-footer');
+      $(dlg).next().removeClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
+      $(dlg).next().addClass('modal-footer');
 
-				$("#visibility_dialog_form").dialog("open");
+      $(dlg).dialog("open");
 				$(".copyright span7").hide();
 			},
       close: function() {
       	$('#ui-id-1').first().unwrap();
       	$('#ui-id-1').first().unwrap();
-        $('#visibility_dialog_form').dialog("close");
+      $(dlg).dialog("close");
 
         //window.location.reload(true);
       }
 		}).prev ().find(".ui-dialog-titlebar-close").show();
-		return false
-	});
-});
+}
 
+function setInitialVisibilityOnDialog(form, id, visibility){
+  $(form).find("#shared_plan_id").val(id);
 
-$(function() {
-  var parent = $('#visibility_dialog_form').parent();
-  if (parent.length === 0)
-    return;
-
-    parent.find('button:contains("' + t('shared.button.cancel') + '")')
-      .bind("click", function() {
-    $("#visibility_dialog_form").reset();
-  });
-});
-
-
-$(function() {
-	$(".change_visibility_link").bind("click",function() {
-		var id= $(this).data('planid');
-		var visibility = $(this).data('visibility');
-
-		$("#shared_plan_id").val(id);
-
-		if (visibility  == "institutional")
-		{
-			$("#visibility_institutional").click();
-		}
-		else if (visibility  == "public")
-	  {
-	  	$("#visibility_public").click();
-	  }
-		else if (visibility  == "private")
-	  {
-	  	$("#visibility_private").click();
-	  }
-	  else if (visibility  == "unit")
-	  {
-	  	$("#visibility_unit").click();
-	  }
-	});
-});
-
-$(function() {
-	$('#reject_dialog_form').hide();
-	$('#reject_with_comments_link').click(function(event) {
-		event.preventDefault();
-    $('#comment_comment_type').attr('value', $(event.target).attr("data-comment-type"));
-		$('#reject_dialog_form').dialog( {
-			width: 450,
-			height: 270,
-			modal: true,
-			closeOnEscape: true,
-			draggable: true,
-			resizable: false,
-			title: t('.reject_dialog_title'),
-			show: {
-				effect: "blind",
-				duration: 1000
-			},
-			hide: {
-				effect: "toggle",
-				duration: 1000
-			},
-			open: function()
-			{
-				$("#reject_dialog_form").dialog("open");
-			},
-      close: function() {
-        $('#reject_dialog-form').dialog("close");
-        $(this).find('form')[0].reset();
-      }
-		}).prev ().find(".ui-dialog-titlebar-close").show();
-		return false
-	});
-});
-
-$(function() {
-	$("#cancel_action").bind("click",function() {
-		$("#reject_dialog_form").reset();
-	});
-});
+  if (visibility  == "institutional")
+  {
+    $(form).find("#visibility_institutional").click();
+  }
+  else if (visibility  == "public")
+  {
+    $(form).find("#visibility_public").click();
+  }
+  else if (visibility  == "test")
+  {
+    $(form).find("#visibility_test").click();
+  }
+  else if (visibility  == "private")
+  {
+    $(form).find("#visibility_private").click();
+  }
+  else if (visibility  == "unit")
+  {
+    $(form).find("#visibility_unit").click();
+  }
+}
