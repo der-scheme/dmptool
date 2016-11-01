@@ -50,7 +50,9 @@ class Layout
 
       def to_s(lbl = nil, **attrs)
         href, label, title = @href, @label, @title
+        href = href.to_hash unless href.is_a?(String)
         attrs = attributes(attrs)
+
         context.instance_exec do
           if href.is_a?(Hash) && respond_to?(:url_text_for)
             # If href is given as a parameter Hash for url_for and we have the
@@ -73,6 +75,7 @@ class Layout
           link_to lbl, href, **attrs
         end
       end
+
     end
   end
 end

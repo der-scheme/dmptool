@@ -48,6 +48,7 @@ class Layout
           content_tag(:li, item, **attrs)
         end
       end
+
     end
   end
 end

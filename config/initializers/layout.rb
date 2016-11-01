@@ -9,7 +9,9 @@
 # Note: For a custom configuration, do not change this file, but rename/copy the
 # file /config/layout.rb.template to /config/layout.rb and do your stuff there.
 
-page_config = {
+require_dependency 'layout/config'
+
+page_config = Layout::Config.new(
   header: {
     navigation: [
       {
@@ -167,7 +169,7 @@ page_config = {
       }
     ]
   }
-}
+)
 
 filename = File.join(Rails.root, 'config', 'layout.rb')
 if File.exists?(filename)
