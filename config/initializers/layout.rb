@@ -12,6 +12,9 @@
 require_dependency 'layout/config'
 
 page_config = Layout::Config.new(
+  defaults: {
+    target: ->(hash){:blank if hash[:href].try(:start_with?, 'http')}
+  },
   header: {
     navigation: [
       {

@@ -3,6 +3,9 @@
 # Configuration should be self-explanatory. If not, refer to the documentation
 # of the classes in the Layout namespace.
 {
+  defaults: {
+    target: ->(hash){:blank if hash[:href].try(:start_with?, 'http')}
+  },
   header: {
     navigation: [
       {
