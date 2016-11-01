@@ -40,6 +40,20 @@ class Layout::Config < SimpleDelegator
       defaults.key?(key) || fallback && fallback.key?(key)
     end
 
+    def merge(defaults, &block)
+      dup.merge!(defaults)
+    end
+
+    def merge!(defaults, &block)
+      if defaults.is_a?(Defaults)
+        merge!(defaults.defaults)
+      elsif defaults
+        merge!(defaults, &block)
+      end
+
+      self
+    end
+
   end
 
   include Enumerable
@@ -88,7 +102,7 @@ class Layout::Config < SimpleDelegator
   end
 
   def deep_merge!(config, &block)
-    defaults.merge!(config.defaults)
+    defaults.merge!(config.try(:defaults) || config[:defaults])
     config.each_pair do |key, other_value|
       this_value = self[key]
 
