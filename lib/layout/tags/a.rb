@@ -39,8 +39,16 @@ class Layout
       attr_reader :title
 
       def initialize(context, config)
-        @href, @label, @title = config.values_at(:href, :label, :title)
+        @href, @label, @target, @title =
+          config.values_at(:href, :label, :target, :title)
+
         super
+      end
+
+      def attributes(params = {})
+        attrs = {}
+        attrs[:target] = @target.is_a?(Symbol) ? "_#{@target}" : @target
+        super(attrs.merge(params))
       end
 
       ##
