@@ -81,7 +81,7 @@
 
 <% elsif (@customization_review == nil && @template_review == "no") %>
   <% if state(@plan) == :committed %>
-    <%= render_button_link t: '.done', '#', green: true, disabled: true,
+    <%= render_button_link t: '.done', href: '#', green: true, disabled: true,
                            class: 'pull-right confirm_visibility_link',
                            data: {planid: @plan.id, visibility: @plan.visibility} %>
   <% else %>

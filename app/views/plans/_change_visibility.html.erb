@@ -4,32 +4,6 @@
 
 	<div id="change_visibility_message"></div>
 
-  <div class="control-group">
-    <div class="controls checkbox-controls">
-      <%= radio_button_tag :visibility, :public, (visibility.to_s == 'public') %>
-      <%= label_tag :visibility_public, t('.visibility_public'),
-                    title: t('.public_tooltip'), class: 'radio-label' %><br/>
-
-      <%= radio_button_tag :visibility, :institutional, (visibility.to_s == 'institutional') %>
-      <%= label_tag :visibility_institutional,
-                    t('.visibility_institutional', institution: current_user.institution.full_name),
-                    title: t('.institutional_tooltip'),
-                    class: 'radio-label' %><br/>
-
-      <%= radio_button_tag :visibility, :private, (visibility.to_s == 'private') %>
-      <%= label_tag :visibility_private, t('.visibility_private_html'),
-                    title: t('.private_tooltip'), class: 'radio-label' %><br/>
-
-      <%if current_user.institution.has_children? || current_user.institution.parent %>
-        <%= radio_button_tag :visibility, :unit, (visibility.to_s == 'unit') %>
-        <%= label_tag :visibility_unit, t('.visibility_unit'), class: 'radio-label' %>
-      <%end%>
-
-      <%= radio_button_tag :visibility, :test, (visibility.to_s == 'test') %>
-      <%= label_tag :visibility_test, t('.visibility_test'),
-                    title: t('.test_tooltip'), class: 'radio-label' %>
-    </div>
-  </div>
-  <br/>
+  <%= render partial: 'visibility_selection', locals: {visibility: visibility} %>
 
 <% end %>
