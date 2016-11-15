@@ -15,6 +15,8 @@
         </div>
       </div>
       <p><%= content_tag :strong, t('.template_outline') %></p>
+
+			<% if !@has_plans %>
 	  	<div class="actions">
         <%= link_to new_requirements_template_requirement_path(@requirements_template, node_type: 'group', anchor: 'jump') do %>
           <%= content_tag :span, '', :class => 'icon add-group' %>
@@ -32,12 +34,16 @@
                           class: 'icon questionmark tip' %>
         <% end %>
 		  </div>
+
 			<div id="drop_before_first">
 	    	<hr/>
 	    </div>
+	    <% end %>
+
 	    <div class="requirements-tree-view" id="main_requirements_tree">
 	      <%= nested_requirements @requirements.arrange(order: :position) %>
 	    </div>
+
 	  </div>
 	  <div class="template-status border-box">
       <p>
@@ -55,7 +61,7 @@
 	    </div>
       <div>
         <br/>
-        <% if @requirements_template.plans.count < 1 %>
+        <% if !@has_plans %>
           <%= render_delete_button href: requirements_template_path(@requirements_template, after_url: requirements_templates_path) %>
         <% else %>
           <%= render_delete_button href: '', disabled: true, style: 'pointer-events: none;' %>
@@ -74,7 +80,11 @@
 		</ul>
 	 	<div class="tab-content">
 	  	<div class="tab-pane active" id="tab1">
+				<% if !@has_plans %>
 	  		<%= render 'form' %>
+				<% else %>
+					<%= render 'show', locals: {notice: notice} %>
+				<% end %>
 	  	</div>
 		</div>
 	</div>

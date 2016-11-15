@@ -1027,7 +1027,7 @@ en:
       add_requirement_tooltip: A requirement is the specific question that a researcher is to answer.
       template_status: 'DMP Template Status:'
       template_status_tooltip: The template status is inactive by default, which means it will not be visible to DMPTool users. When your template is complete, select &#8220;activate&#8221; to make the template available to use.
-      cant_delete_template: This template cannot be deleted until all DMPs that use it have been removed.
+      cant_delete_template: This template cannot be deleted nor can the requirements be modified until all DMPs that use it have been removed.
     update:
       success_notice: Requirement was successfully updated.
   requirements_templates:
