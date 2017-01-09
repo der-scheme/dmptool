@@ -55,7 +55,7 @@ Dmptool2::Application.routes.draw do
   get 'customizations/:id/requirements/(:requirement_id)', to: 'customizations#show', as: 'customization_requirement'
   get 'institutions', to: 'institutions#index'
 
-
+  get "usage_statistics", defaults: {format: 'json'}, to: "institutions#usage_statistics"
 
   resources :requirements_templates do
     resources :requirements

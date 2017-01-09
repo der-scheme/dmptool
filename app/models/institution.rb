@@ -8,6 +8,9 @@ class Institution < ActiveRecord::Base
 	has_many :resource_templates
 	has_many :requirements_templates
   has_many :resource_contexts
+  
+  has_many :statistics, foreign_key: "institution_id", 
+                        class_name: "InstitutionStatistic"
 
 	validates :full_name, presence: true
 
@@ -40,6 +43,9 @@ class Institution < ActiveRecord::Base
     User.where(institution_id: self.subtree_ids)
   end
 
+  def non_admin_users
+    self.users.includes(:authorizations).where(authorizations: {role_id: nil})
+  end
 
   def users_in_role(role_name)
     User.joins({:authorizations => :role}).where("roles.name = ?", role_name).where(institution_id: [self.subtree_ids])

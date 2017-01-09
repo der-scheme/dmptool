@@ -1,0 +1,99 @@
+<div class="usage-statistics">
+  <h3>Statistics for:
+    <div class="statistic-date">
+      <%= select_tag 'run_date', options_for_select(@run_dates.map{|i| [i[:name], i[:id]]}, @run_date), {autocomplete: 'off'} %>
+    </div>
+  </h3>
+
+  <% date = Date.parse("#{@institution_statistics.run_date}-01 00:00:00") %>
+
+  <div class="statistics institutional_stats">
+		<h3><%= @current_institution.full_name %></h3>
+			
+		<div class="statistics-row">
+	    <%= usage_card_content('User', @institution_statistics.new_users, 
+																@global_statistics.effective_month).html_safe %>
+	    <%= usage_card_content('User', @institution_statistics.total_users, 
+																@global_statistics.effective_month, true).html_safe %>
+		</div>
+		
+		<div class="statistics-row">
+	    <%= usage_card_content('Completed Plan', @institution_statistics.new_completed_plans, 
+																@global_statistics.effective_month).html_safe %>
+	    <%= usage_card_content('Completed Plan', @institution_statistics.total_completed_plans, 
+																@global_statistics.effective_month, true).html_safe %>
+		</div>
+  </div>
+	
+  <div class="statistics global_stats">
+		<h3>All Institutions</h3>
+			
+		<div class="statistics-row">
+	    <%= usage_card_content('User', @global_statistics.new_users, 
+																@global_statistics.effective_month).html_safe %>
+	    <%= usage_card_content('User', @global_statistics.total_users, 
+																@global_statistics.effective_month, true).html_safe %>
+		</div>
+		
+		<div class="statistics-row">
+	    <%= usage_card_content('Completed Plan', @global_statistics.new_completed_plans, 
+																@global_statistics.effective_month).html_safe %>
+	    <%= usage_card_content('Completed Plan', @global_statistics.total_completed_plans, 
+																@global_statistics.effective_month, true).html_safe %>
+		</div>
+		
+		<div class="statistics-row">
+	    <%= usage_card_content('Public Plan', @global_statistics.new_public_plans, 
+																@global_statistics.effective_month).html_safe %>
+	    <%= usage_card_content('Public Plan', @global_statistics.total_public_plans, 
+																@global_statistics.effective_month, true).html_safe %>
+		</div>
+		
+    <div class="statistics-row">  
+      <div class="statistic-card" style="width: 765px;">
+				<%= "Top 5 Public Templates" %><br /><br />
+				<span id="top-five-public-templates">
+					<% @top_five_public_templates.each do |stat| %>
+						<%= "'#{stat[:name].slice(0..40)}' (#{stat[:new_plans]} new plan#{stat[:new_plans] == 1 ? '' : 's'}, #{stat[:total_plans]} total plan#{stat[:total_plans] == 1 ? '' : 's'})" %><br /> 
+					<% end %>
+				</span>
+      </div>
+  	</div>
+		
+  </div>
+</div>
+
+<script type="text/javascript">
+	$("#run_date").on('change', function(e){
+		var run_date = $("#run_date option:selected")[0];
+	
+		$.getJSON("usage_statistics", {run_date: run_date.value})
+			.done(function(data){
+				$(".effective-month").text(data['global_statistics']['effective_month']);
+			
+				Object.keys(data['institution_statistics']).forEach(function(key){
+					if($(".institutional_stats #" + key.replace(/_/g, '-')).length){
+						$(".institutional_stats #" + key.replace(/_/g, '-')).text(data['institution_statistics'][key]);
+					}
+				});
+			
+				Object.keys(data['global_statistics']).forEach(function(key){
+					if($(".global_stats #" + key.replace(/_/g, '-')).length){
+						$(".global_stats #" + key.replace(/_/g, '-')).text(data['global_statistics'][key]);
+					}
+				});
+			
+				var top5 = '';
+				for(var i = 0; i < data['top_five_public_templates'].length; i++){
+					var tmplt = data['top_five_public_templates'][i];
+				
+					top5 += tmplt['name'].substr(0,40) + ' ' + 
+								'(' + tmplt['new_plans'] + ' new ' + (tmplt['new_plans'] == 1 ? 'plan ' : 'plans, ') +
+								'(' + tmplt['total_plans'] + ' total ' + (tmplt['total_plans'] == 1 ? 'plan ' : 'plans ') + ')<br/ >';
+				} 
+			
+				$("#top-five-public-templates").html(top5);
+			
+			}).fail(function(xhr, stat, e){ console.log(stat + ', ' + e); });
+	});
+</script
