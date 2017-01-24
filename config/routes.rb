@@ -59,7 +59,7 @@ Dmptool2::Application.routes.draw do
     get 'customizations/:id/requirements/(:requirement_id)', to: 'customizations#show', as: 'customization_requirement'
     get 'institutions', to: 'institutions#index'
 
-
+    get "usage_statistics", defaults: {format: 'json'}, to: "institutions#usage_statistics"
 
     resources :requirements_templates do
       resources :requirements
@@ -115,7 +115,7 @@ Dmptool2::Application.routes.draw do
     get 'select_dmp_template', to: 'plans#select_dmp_template'
     get 'review_dmps', to: 'plans#review_dmps'
     post 'change_visibility', to: 'plans#change_visibility'
-  post 'confirm_visibility', to: 'plans#confirm_visibility'
+    post 'confirm_visibility', to: 'plans#confirm_visibility'
     get 'public_dmps', to: 'plans#public'
     delete 'delete_coowner', to: 'plans#delete_coowner'
     post 'reject_with_comments', to: 'plan_states#reject_with_comments'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913112300) do
+ActiveRecord::Schema.define(version: 20161118171513) do
 
   create_table "additional_informations", force: true do |t|
     t.string   "url",                      limit: 255
@@ -56,6 +56,36 @@ ActiveRecord::Schema.define(version: 20160913112300) do
     t.integer  "position"
     t.boolean  "default"
   end
+
+  create_table "global_statistics", force: true do |t|
+    t.string   "run_date"
+    t.string   "effective_month"
+    t.integer  "new_users"
+    t.integer  "total_users"
+    t.integer  "new_completed_plans"
+    t.integer  "total_completed_plans"
+    t.integer  "new_public_plans"
+    t.integer  "total_public_plans"
+    t.integer  "new_institutions"
+    t.integer  "total_institutions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "global_statistics", ["run_date"], name: "index_global_statistics_on_run_date", using: :btree
+
+  create_table "institution_statistics", force: true do |t|
+    t.string   "run_date"
+    t.integer  "new_users"
+    t.integer  "total_users"
+    t.integer  "new_completed_plans"
+    t.integer  "total_completed_plans"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "institution_id"
+  end
+
+  add_index "institution_statistics", ["run_date"], name: "index_institution_statistics_on_run_date", using: :btree
 
   create_table "institutions", force: true do |t|
     t.string   "full_name"
@@ -128,6 +158,17 @@ ActiveRecord::Schema.define(version: 20160913112300) do
   end
 
   add_index "requirements", ["ancestry"], name: "index_requirements_on_ancestry", using: :btree
+
+  create_table "requirements_template_statistics", force: true do |t|
+    t.string   "run_date"
+    t.integer  "new_plans"
+    t.integer  "total_plans"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requirements_template_id"
+  end
+
+  add_index "requirements_template_statistics", ["run_date"], name: "index_requirements_template_statistics_on_run_date", using: :btree
 
   create_table "requirements_templates", force: true do |t|
     t.integer  "institution_id"

@@ -1,3 +1,12 @@
+<div class="search-area">
+	<%= form_tag('', {method: :get}) do %>
+		<div class="control-group">
+			<%= render partial: 'shared/search',
+								 locals: {placeholder: t('.search_placeholder')} %>
+		</div>
+	<% end %>
+</div>
+
 <div class="table-scope">
 	<%= link_to t('.all_filter_link', count: @all),
 							institutions_path(anchor: 'tab_tab4', scope: "all"), class: "all_limited" %>
@@ -45,67 +54,3 @@
 		  <% end %>
 		</tbody>
 </table>
-<script>
-	// based on example at http://jqueryui.com/autocomplete/#remote-jsonp
-	$(function() {
-	  $( "#template_editor_name" ).autocomplete({
-	    source: function( request, response ) {
-	      $.ajax({
-	        url: "<%= users_autocomplete_path(role_number: Role::TEMPLATE_EDITOR) %>",
-	        dataType: "json",
-	        data: {
-	          name_term: request.term
-	        },
-	        success: function( data ) {
-	          response( $.map( data, function( item ) {
-	            return {
-	              label: item.label,
-	              value: item.full_name,
-	              id: item.id
-	            }
-	          }
-	          ));
-	        }
-	      });
-	    },
-	    minLength: 1,
-	    select: function( event, ui ) {
-	    	$('#template_editor_id').val(ui.item.id); // set hidden field id
-	    },
-	    open: function() {
-	      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-	    },
-	    close: function() {
-	    	return false;
-	      $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-	    }
-	  });
-	});
-</script>
-<%= form_tag add_authorization_manage_users_path(anchor: 'tab_tab4'), method: 'post',
-						 id: 'template_editor_autocomplete_form' do %>
-<table class ="table">
-	<tr class="user_row">
-		<td class="nowrap">
-			<div class="control-group">
-				<%= label_tag 'template_editor_name', t('.autocomplete_label'), class: 'control-label' %>
-				<%= text_field_tag 'template_editor_name', '', placeholder: t('.autocomplete_placeholder') %>
-				<%= hidden_field_tag "template_editor_id", '' %>
-				<%= hidden_field_tag "role_number", Role::TEMPLATE_EDITOR %>
-				<%= hidden_field_tag "item_description", 'template editor' %>
-				<%= submit_tag t('.grant_role_button'), class: 'btn' %>
-			</div>
-		</td>
-		<td>
-			<div class="control-group row-fluid">
-						<% @roles.each do |role| %>
-						  <div class="controls span6">
-						  	<%= check_box_tag "role_ids[]", role.id , checked = false, id: role.id%>
-						    <%= label_tag role.id, t_attr(role, :name), class: 'checkbox-label' %>
-						  </div>
-						<% end %>
-				</div>
-		</td>
-	 </tr>
-</table>
-<% end %>

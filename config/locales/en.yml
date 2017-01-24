@@ -772,6 +772,7 @@ en:
       hierarchy: Institution Hierarchy
       assign_roles: Assign Roles
       add_new: Add New Institution
+      usage: Usage
     institutional_resources:
       headline: Resources Available at %{institution}
       visibility_info_html: Institutional resources will show up on <strong>every template</strong> for anyone logged in from your institution.
@@ -796,9 +797,7 @@ en:
         roles</li></ul>'
       edit_user_role: Edit User Role
       edit_user_role_tooltip: Edit user role
-      grant_role_button: Grant Role
-      autocomplete_label: 'Name:'
-      autocomplete_placeholder: Search user by name or email
+      search_placeholder: Search user by name
     new:
       title: New institution
       info: Institution Information

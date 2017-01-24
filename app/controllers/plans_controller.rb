@@ -714,6 +714,12 @@ class PlansController < ApplicationController
       if params[:plan] == "" || params[:plan].nil?
         flash[:error] = t('helpers.controller.plan.no_plan_selected_error')
         redirect_to plans_path
+        
+      # If the plan's template is not active then we cannot copy it
+      elsif !Plan.find(params[:plan]).requirements_template.active
+        flash[:error] = "That Plan was created from a template that is no longer active. Please select a more recent Plan to copy."
+        redirect_to plans_path
+        
       else
         @copy_plan = Plan.find(params[:plan])
         user_plans = UserPlan.where(user_id: @user.id, plan_id: @copy_plan.id)
