@@ -6,15 +6,13 @@
   <ul class="nav nav-tabs">
     <li class="active"><%= link_to t('.info'), '#tab1', data: { toggle: 'tab' } %></li>
     <li><%= link_to t('.resources'), '#tab2', data: { toggle: 'tab' } %></li>
-    <% if user_role_in?(:dmp_admin) %>
-      <li>
-	<%= link_to t('.hierarchy'), '#tab3', data: { toggle: 'tab' } %></li>
-    <% end %>
     <li>
       <%= link_to t('.assign_roles'), '#tab4', data: { toggle: 'tab' } %></li>
+		<% unless @institution_statistics.nil? %>
+			<li><%= link_to t('.usage'), '#tab5', data: { toggle: 'tab' } %></li>
+		<% end %>
   </ul>
   <div class="tab-content">
-
     <div class="tab-pane active" id="tab1">
       <%= render 'form' %>
     </div>
@@ -23,19 +21,15 @@
         <%= render 'institutional_resources' %>
     </div>
 
-    <div class="tab-pane " id="tab3">
-    	<div class="institutions">
-        <%= nested_institutions @institutions.arrange(order: :full_name) %>
-	    </div>
-	    <div class="buttons">
-	     <%= link_to t('.add_new'), new_institution_path(5), class: 'btn btn-green' %>
-	    </div>
-    </div>
-
     <div class="tab-pane" id="tab4">
         <%= render 'manage_users' %>
     </div>
 
+		<% unless @institution_statistics.nil? %>
+			<div class="tab-pane" id="tab5">
+				<%= render 'usage' %>
+			</div>
+		<% end %>
   </div>
 </div>
 
