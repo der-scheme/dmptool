@@ -28,5 +28,24 @@ module InstitutionsHelper
     Authorization.joins(:user).where("users.institution_id = ? AND authorizations.role_id = ?", institution.id, 5).count
   end
  
+  
+  def usage_card_content(text, number, month, overall = false)
+    '<div class="statistic-card">' +
+      "<span id=\"#{overall ? 'total' : 'new'}-#{text.downcase.gsub(' ', '-')}s\">" +
+        "#{number_with_delimiter(number)}" +
+      "</span>" +
+      " #{overall ? 'Total' : 'New'} #{text}#{number == 1 ? '' : 's'}" + 
+      "#{overall ? ' as of ' : ' for '} <span class=\"effective-month\">#{month}</span>" +
+    '</div>'
+  end
+  
+  def year_numeric_month_to_year_text_month(val)
+    if val.match(/[0-9]{4}\-[0-9]{1,2}/)
+      parts = val.split('-')
+      "#{parts[0]}-#{Date::ABBR_MONTHNAMES[parts[1].to_i]}"
+    else
+      val
+    end
+  end
 
 end

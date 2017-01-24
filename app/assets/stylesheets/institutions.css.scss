@@ -1,0 +1,54 @@
+div.usage-statistics {
+  overflow: auto;
+  
+  h3 {
+    font-weight: bold;
+    margin-left: 10px;
+    
+    .statistic-date {
+      display: inline;
+      margin-left: 25px;
+      
+      select {
+        font-size: 15px;
+      }
+    }
+    
+    
+  }
+  
+  .statistics {
+    clear: left;
+
+    margin: 15px auto 15px auto;
+    width: 850px;
+
+    h3 {
+      text-align: left;
+      font-size: 18px;
+      color: rgb(81, 105, 53);
+    }
+
+    .statistics-row {
+      float: left;
+      clear: left;
+      
+      .statistic-card {
+        position: relative;
+        float: left;
+      
+        width: 350px;
+      
+        border: 1px rgb(182,182,183) solid;
+        margin: 10px 15px;
+        padding: 40px 15px 40px 15px;
+      
+        text-align: center;
+        vertical-align: middle;
+      
+        font-size: .9rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -95,12 +95,3 @@ function validateFiles(inputFile) {
     $(inputFile).val('');
   };
 }
-
-
-
-
-
-
-
-
-

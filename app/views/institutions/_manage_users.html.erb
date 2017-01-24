@@ -1,3 +1,13 @@
+<div class="search-area">
+	<%= form_tag('', {method: :get}) do %>
+		<div class="control-group">
+			<%= search_field_tag(:q, params[:q], placeholder: 'Search user by name', :class => 'input-large') %>
+			<%= label_tag :q, "Search", :class => "icon search" %>
+			<%= submit_tag('Search') %>
+		</div>
+	<% end %>
+</div>
+
 <div class="table-scope">
 	<%= link_to "All(#{@all})",
 							institutions_path(anchor: 'tab_tab4', scope: "all"), class: "all_limited" %>
@@ -30,9 +40,9 @@
 		  </tr>
 		</thead>
 		<tbody>
-			<% @users.each do |user| %>     
-		  	<tr class='user_row' id=<%="user_#{user.id}"%>> 
-		  		<% if user_role_in?(:dmp_admin) %>       
+			<% @users.each do |user| %>
+		  	<tr class='user_row' id=<%="user_#{user.id}"%>>
+		  		<% if user_role_in?(:dmp_admin) %>
 		  			<td><%= link_to user.full_name_last_first, edit_user_path(user) %></td>
 		  		<%else%>
 		  			<td><%= user.full_name_last_first%></td>
@@ -40,72 +50,8 @@
 		    	<!-- <td><%#= link_to user.institution.full_name, edit_institution_path(user.institution, acr: "tab4") %></td> -->
 		    	<td><%= user.institution.full_name %></td>
 		    	<td><%= user.role_names.join(' | ') %></td>
-		     	<td class="span1"><%=link_to raw(''), edit_user_roles_inst_admin_path(user_id: user), :title => 'Edit user role', :class => 'icon edit-user', :id => "edit_#{user.id}"%></td>           
-		      </tr>       
+		     	<td class="span1"><%=link_to raw(''), edit_user_roles_inst_admin_path(user_id: user), :title => 'Edit user role', :class => 'icon edit-user', :id => "edit_#{user.id}"%></td>
+		      </tr>
 		  <% end %>
 		</tbody>
 </table>
-<script>
-	// based on example at http://jqueryui.com/autocomplete/#remote-jsonp
-	$(function() {
-	  $( "#template_editor_name" ).autocomplete({
-	    source: function( request, response ) {
-	      $.ajax({
-	        url: "<%= users_autocomplete_path(role_number: Role::TEMPLATE_EDITOR) %>",
-	        dataType: "json",
-	        data: {
-	          name_term: request.term
-	        },
-	        success: function( data ) {
-	          response( $.map( data, function( item ) {
-	            return {
-	              label: item.label,
-	              value: item.full_name,
-	              id: item.id
-	            }
-	          }
-	          ));
-	        }
-	      });
-	    },
-	    minLength: 1,
-	    select: function( event, ui ) {
-	    	$('#template_editor_id').val(ui.item.id); // set hidden field id
-	    },
-	    open: function() {
-	      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-	    },
-	    close: function() {
-	    	return false;
-	      $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-	    }
-	  });
-	});
-</script>
-<%= form_tag add_authorization_manage_users_path(anchor: 'tab_tab4'), method: 'post',
-						 id: 'template_editor_autocomplete_form' do %>
-<table class ="table">
-	<tr class="user_row">  
-		<td class="nowrap">
-			<div class="control-group">
-				<%= label_tag "template_editor_name", "Name:", :class => "control-label" %>
-				<%= text_field_tag "template_editor_name", '', placeholder: 'Search user by name or email' %>
-				<%= hidden_field_tag "template_editor_id", '' %>
-				<%= hidden_field_tag "role_number", Role::TEMPLATE_EDITOR %>
-				<%= hidden_field_tag "item_description", 'template editor' %>
-				<%= submit_tag 'Grant Role', class: 'btn' %>
-			</div>
-		</td>
-		<td>
-			<div class="control-group row-fluid">
-						<% @roles.each do |role| %>
-						  <div class="controls span6">
-						  	<%= check_box_tag "role_ids[]", role.id , checked = false, id: role.id%>
-						    <%= label_tag role.id, role.name, :class => 'checkbox-label' %>
-						  </div>
-						<% end %>
-				</div>
-		</td>
-	 </tr>
-</table>
-<%end%>

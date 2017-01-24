@@ -44,7 +44,7 @@ class InstitutionsController < ApplicationController
 
     @institution = Institution.new(:parent_id => params[:parent_id])
 
-    @institution_users = institutional_admins
+    @institution_users = current_user.institution.users #institutional_admins
 
     @categories.delete_if {|i| i[1] == current_user.institution.id}
 
@@ -52,11 +52,58 @@ class InstitutionsController < ApplicationController
 
     institutional_resources
 
-    @tab_number = 'tab_tab2' #the tab number for the maze of editing resources from everywhere
+    institutional_statistics
+    @run_date = @run_dates.first
+
+    @tab_number = 'tab_tab1' #the tab number for the maze of editing resources from everywhere
     #@anchor = params[:anchor]
    
   end
 
+  # AJAX call to retrieve usage statistics for a specific date
+  def usage_statistics
+    if params[:run_date] && !current_user.nil?
+      if params[:run_date].match(/[0-9]{4}\-[0-9]{2}/)
+        institutional_statistics
+        
+        render json: {global_statistics: @global_statistics,
+                      institution_statistics: @institution_statistics,
+                      top_five_public_templates: @top_five_public_templates}
+      
+      else
+        render json: {}
+      end
+      
+    else
+      render json: {}
+    end
+  end
+
+  def institutional_statistics
+    institution = Institution.find(current_user.institution)
+    @run_dates = GlobalStatistic.all.order(run_date: :desc).collect{|gs| {name: year_numeric_month_to_year_text_month(gs.run_date), id: gs.run_date} }
+    
+    run_date = (params[:run_date].nil? ? (@run_dates.empty? ? nil : @run_dates.first[:id]) : params[:run_date])
+    
+    @global_statistics = GlobalStatistic.where(run_date: run_date).first
+    
+    unless @global_statistics.nil?
+      @institution_statistics = InstitutionStatistic.where(institution: institution, run_date: run_date).first
+
+      @top_five_public_templates = []
+    
+      RequirementsTemplateStatistic.where(run_date: run_date).order(new_plans: :desc, total_plans: :desc).each do |stat|
+        tmplt = RequirementsTemplate.find(stat.requirements_template_id)
+        
+        if tmplt.visibility == :public && @top_five_public_templates.count < 5
+          @top_five_public_templates << {name: tmplt.name,
+                                         new_plans: stat.new_plans,
+                                         total_plans: stat.total_plans}
+        end
+      end
+    end
+  end
+  
 
   def institutional_resources
     @resource_contexts = ResourceContext.includes(:resource).
@@ -74,41 +121,37 @@ class InstitutionsController < ApplicationController
 
 
   def manage_users
-
+    @q = params[:q]
+    
+    roles = {resources_editor: Role.find_by(name: "Resources Editor"),
+             template_editor: Role.find_by(name: "Template Editor"),
+             institutional_reviewer: Role.find_by(name: "Institutional Reviewer"),
+             institutional_administrator: Role.find_by(name: "Institutional Administrator"),
+             dmp_administrator: Role.find_by(name: "DMP Administrator")}
+    
+    scope = (params[:scope].nil? ? nil : roles[params[:scope].to_sym])
+    
+    @users = @current_institution.users.order(last_name: :asc)
+    
+    # User-Role counts for filters
+    @all = @users.count
+    @resources_editor = @users.select{ |u| u.roles.include?(roles[:resources_editor]) }.count
+    @template_editor = @users.select{ |u| u.roles.include?(roles[:template_editor]) }.count
+    @institutional_reviewer = @users.select{ |u| u.roles.include?(roles[:institutional_reviewer]) }.count
+    @institutional_administrator = @users.select{ |u| u.roles.include?(roles[:institutional_administrator]) }.count
+    
     if user_role_in?(:dmp_admin)
-      case params[:scope]
-        when "resources_editor"
-          @users = @current_institution.users_in_role_any_institution("Resources Editor").order(last_name: :asc)
-        when "template_editor"
-           @users = @current_institution.users_in_role_any_institution("Template Editor").order(last_name: :asc)
-        when "institutional_administrator"
-           @users = @current_institution.users_in_role_any_institution("Institutional Administrator").order(last_name: :asc)
-        when "institutional_reviewer"
-          @users = @current_institution.users_in_role_any_institution("Institutional Reviewer").order(last_name: :asc)
-        when "dmp_administrator"
-          @users =  @current_institution.users_in_role_any_institution("DMP Administrator").order(last_name: :asc)
-        else
-          @users = @current_institution.users_deep_in_any_role_any_institution.order(last_name: :asc)
-      end
-      @roles = Role.where(['id NOT IN (?)', 1])
-      count_any_institution
-    else
-      case params[:scope]
-        when "resources_editor"
-          @users = @current_institution.users_in_role("Resources Editor").order(last_name: :asc)
-        when "template_editor"
-           @users = @current_institution.users_in_role("Template Editor").order(last_name: :asc)
-        when "institutional_administrator"
-           @users = @current_institution.users_in_role("Institutional Administrator").order(last_name: :asc)
-        when "institutional_reviewer"
-          @users = @current_institution.users_in_role("Institutional Reviewer").order(last_name: :asc)
-        when "dmp_administrator"
-          @users =  @current_institution.users_in_role("DMP Administrator").order(last_name: :asc)
-        else
-          @users = @current_institution.users_deep_in_any_role.order(last_name: :asc)
-      end
-      @roles = Role.where(['id NOT IN (?)', 1])
-      count
+      @dmp_administrator = @users.select{ |u| u.roles.include?(roles[:dmp_administrator]) }.count
+    end
+    
+    unless scope.nil?
+      @users = @users.select{ |u| u.roles.include?(scope) }
+    end
+
+    @roles = Role.where(['id NOT IN (?)', 1])
+
+    if (!@q.blank? && !@q.nil?)
+      @users = @users.search_terms(@q)
     end
   end
 
@@ -210,9 +253,7 @@ class InstitutionsController < ApplicationController
     
     if (current_user.institution == @current_institution)
       respond_to do |format|  
-        
-puts "PARAMS: #{institution_params}"
-        
+
         if @current_institution.update(institution_params)
           #format.html { redirect_to edit_institution_path(@current_institution), 
                         #notice: 'Institution was successfully updated.' }
@@ -282,9 +323,10 @@ puts "PARAMS: #{institution_params}"
     end
   end
 
-
   def institutional_admins
-    @user_ids = Authorization.where(role_id: 5).pluck(:user_id) #All the institutional_admins
+    #All the institutional_admins
+    @user_ids = Authorization.where(role_id: Role::INSTITUTIONAL_ADMIN).pluck(:user_id) 
+    
     if user_role_in?(:dmp_admin)
       @users = User.where(id: @user_ids).order('created_at DESC').page(params[:page]).per(10)
     else
