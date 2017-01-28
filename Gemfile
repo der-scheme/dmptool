@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.13'
 gem 'unicorn'
 
+group :puma do
+  gem 'puma'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.13.1'
   gem 'capistrano', '~> 2.15'
