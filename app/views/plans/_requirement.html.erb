@@ -2,27 +2,22 @@
 
 <DL>
 
-  <%= heading %><%#= requirement_counter + 1 %> <strong><%= requirement.text_brief %></strong>
+  <dt>
+    <%= heading %><%#= requirement_counter + 1 %> <strong><%= requirement.text_brief %></strong>
+  </dt>
+  <dd>
     <%- if requirement.children.size > 0 then -%>
       <div class="dmp-preview">
-        
-        <%#= render(partial: "requirement",
+        <%= render partial: 'requirement',
                    collection: requirement.children.order(:position),
-                   locals: { heading: "#{heading}#{requirement_counter + 1}."}) %> 
-        <dt>
-          <dd>
-                <%= render(partial: "requirement",
-                         collection: requirement.children.order(:position),
-                         locals: { heading: "#{heading}"}) %>
-          </dd>
-        </dt>
-        
+                   locals: {heading: heading} %>
       </div>
     <%- end -%>
 
-  <div>
-    <%= requirement.response_html(@plan) %>
-  </div>
+    <div>
+      <%= requirement.response_html(@plan) %>
+    </div>
+  </dd>
 
 </DL>
 

@@ -7,7 +7,7 @@ span.required, span[id*="status_"] {
 fieldset {
 	border: none;
 	padding: 0; }
-	
+
 label {
 	display: inline-block;
 	font-size: 1em;
@@ -23,34 +23,34 @@ label {
 	margin-right: 10px; }
 .control-group label.checkbox-label {
 	display: inline-block; }
-label.required:before {
+label.required:before, .control-label.required::before, .control-group.required::before {
 	content: "\002A\0020";
 	color: #DA0049; }
 label.hide {
 	display: none;
 }
-	
+
 input[type=text], input[type=password], input[type=email], input[type=search], textarea, select {
 	border-color: #B6B6B7;
 	color: #4C4C4E;
 	font-size: 1.167em;
 	margin: 5px 10px 5px 0;
 	padding: 4px 6px; }
-	
+
 input.input-large {
 	width: 200px; }
 
 textarea.full-length {
-	width: 98%; 
+	width: 98%;
 }
-	
+
 input[type=radio], input[type=checkbox] {
 	border: none;
 	vertical-align: middle;
 	height: 17px;
 	margin: 0 4px 0 0;
 	padding: 0; }
-	
+
 textarea {
   resize: vertical; }
 .control-group, .form-horizontal .control-group {
@@ -77,10 +77,10 @@ textarea {
 
 .controls input[type=text], .controls input[type=password], .controls input[type=email], .controls input[type=search], .controls textarea, .controls select {
 		margin: 0 10px 0 0; }
-		
+
 .controls p {
 	line-height: 30px; }
-	
+
 /* input[type=text].blank, input[type=password].blank, input[type=email].blank, select.blank, textarea.blank {
 	border-left: 4px solid #DA0049;
 	padding-left: 3px;
@@ -89,7 +89,7 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 	border-left: 4px solid #A0DF00;
 	padding-left: 3px;
 } */
-    
+
 /* Search Area */
 .search-area[class*="span"] {
   width: auto;
@@ -110,11 +110,11 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 	position: absolute;
 	top: 5px;
 	left: 8px; }
-    
-/* Auto Complete */	
+
+/* Auto Complete */
 .ui-autocomplete-loading {
   background: #FFF url(<%= asset_path 'throbber.gif' %>) no-repeat 100% 50% transparent; }
-  
+
 /* Date Picker */
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
 	top: 3px; }
@@ -135,7 +135,7 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 	line-height: 24px;
 	margin: 0;
 	padding: 2px 2px 2px 0; }
-  
+
 /* Custom File Upload Styles */
 .file-upload {
 	position: relative; }
@@ -155,7 +155,7 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 	position: absolute;
 	z-index: 1; }
 
-/* Alerts */	
+/* Alerts */
 .alert {
 	border-radius: 0 !important;
 	-moz-border-radius: 0;
@@ -165,7 +165,7 @@ input[type=text].filled, input[type=password].filled, input[type=email].filled, 
 .alert p {
 	font-size: 1.167em;
 	margin: 0; }
-		
+
 #notice {
   color: green; }
 .field_with_errors {
@@ -191,3 +191,24 @@ input[type=text].longfield, select.longfield {
 	width: 412px !important; }
 input[type=text].shortfield {
 	width: 103px; }
+
+/* style native datepickers */
+::-webkit-calendar-picker-indicator {
+	display: block;
+	min-width: 16px;
+	min-height: 15px;
+
+	opacity: 1 !important;
+
+	color: transparent;
+	background: url(http://jqueryui.com/resources/demos/datepicker/images/calendar.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+::-webkit-inner-spin-button {
+	display: none;
+}
+
+/* override for strange margin-left on icons after inputs */
+input[type=date] + .icon.questionmark {margin-left: 5px;}

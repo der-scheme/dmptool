@@ -57,22 +57,6 @@ ActiveRecord::Schema.define(version: 20160913112300) do
     t.boolean  "default"
   end
 
-  create_table "institution_statistics", force: true do |t|
-    t.integer  "institution_id"
-    t.string   "month"
-    t.integer  "total_users"
-    t.integer  "new_users"
-    t.integer  "unique_users"
-    t.integer  "new_completed_plans"
-    t.integer  "new_public_plans"
-    t.integer  "total_public_plans"
-    t.integer  "most_used_public_template"
-    t.integer  "new_plans_using_public_template"
-    t.integer  "total_plans_using_public_template"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "institutions", force: true do |t|
     t.string   "full_name"
     t.string   "nickname"
@@ -100,26 +84,6 @@ ActiveRecord::Schema.define(version: 20160913112300) do
     t.datetime "updated_at"
     t.integer  "position"
     t.integer  "requirement_id"
-  end
-
-  create_table "overall_statistics", force: true do |t|
-    t.string   "month"
-    t.integer  "total_users"
-    t.integer  "new_users"
-    t.integer  "unique_users"
-    t.integer  "new_institutions"
-    t.integer  "total_institutions"
-    t.integer  "new_completed_plans"
-    t.integer  "new_public_plans"
-    t.integer  "total_public_plans"
-    t.integer  "most_used_public_template"
-    t.integer  "new_plans_using_public_template"
-    t.integer  "total_plans_using_public_template"
-    t.string   "public_template_of_the_month"
-    t.string   "top_ten_institutions_by_users"
-    t.string   "top_ten_institutions_by_plans"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "plan_states", force: true do |t|
@@ -258,8 +222,8 @@ ActiveRecord::Schema.define(version: 20160913112300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login_id"
-    t.date     "deleted_at"
     t.boolean  "active",           default: true
+    t.datetime "deleted_at"
     t.string   "orcid_id"
     t.string   "auth_token"
   end

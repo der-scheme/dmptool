@@ -1,112 +1,114 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(function() {
-  $("#submission_deadline.datepicker").datepicker( {
-    showOn: 'button',
-    buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-    dateFormat: "mm/dd/yy",
-    changeMonth: true,
-    changeYear: true,
-    numberOfMonths: 1
-  });
+	if (!Modernizr.inputtypes.date) {
+		$("#plan_submission_deadline.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1
+		});
+	}
 });
 
 $(function() {
-  $('#comment_dialog_form').hide();
-  $('.add_comments_link').click(function(event) {
-    event.preventDefault();
+	$('#comment_dialog_form').hide();
+	$('.add_comments_link').click(function(event) {
+		event.preventDefault();
     $('#comment_comment_type').attr('value', $(event.target).attr("data-comment-type"));
-    $('#comment_dialog_form').dialog( {
-      width: 600,
-      height: 310,
-      modal: true,
-      closeOnEscape: true,
-      draggable: true,
-      resizable: false,
-      title: "Add New Comments",
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      hide: {
-        effect: "toggle",
-        duration: 1000
-      },
-      open: function()
-      {
-        $("#comment_dialog_form").dialog("open");
-      },
+		$('#comment_dialog_form').dialog( {
+			width: 600,
+			height: 310,
+			modal: true,
+			closeOnEscape: true,
+			draggable: true,
+			resizable: false,
+			title: "Add New Comments",
+			show: {
+				effect: "blind",
+				duration: 1000
+			},
+			hide: {
+				effect: "toggle",
+				duration: 1000
+			},
+			open: function()
+			{
+				$("#comment_dialog_form").dialog("open");
+			},
       close: function() {
         $('#comment_dialog-form').dialog("close");
         $(this).find('form')[0].reset();
-        window.location.reload() 
+        window.location.reload()
       }
-    }).prev ().find(".ui-dialog-titlebar-close").show();
-    return false
-  });
+		}).prev ().find(".ui-dialog-titlebar-close").show();
+		return false
+	});
 });
 
 $(function() {
-  $("#cancel_action").bind("click",function() {
-    $("#comment_dialog_form").reset();
-  });
+	$("#cancel_action").bind("click",function() {
+		$("#comment_dialog_form").reset();
+	});
 });
 
 $(function() {
-  $("#reviewer_comments, .hide-reviewer-comments").hide();
-  $(".view-reviewer-comments").click(function(event){
-    event.preventDefault();
-    $("#reviewer_comments").show();
-    $(".view-reviewer-comments").hide();
-    $(".hide-reviewer-comments").show();
-  });
+	$("#reviewer_comments, .hide-reviewer-comments").hide();
+	$(".view-reviewer-comments").click(function(event){
+		event.preventDefault();
+		$("#reviewer_comments").show();
+		$(".view-reviewer-comments").hide();
+		$(".hide-reviewer-comments").show();
+	});
 });
 
 $(function() {
-  $(".hide-reviewer-comments").click(function(event){
-    event.preventDefault();
-    $("#reviewer_comments").hide();
-    $(".hide-reviewer-comments").hide();
-    $(".view-reviewer-comments").show();
-  });
+	$(".hide-reviewer-comments").click(function(event){
+		event.preventDefault();
+		$("#reviewer_comments").hide();
+		$(".hide-reviewer-comments").hide();
+		$(".view-reviewer-comments").show();
+	});
 });
 
 $(function() {
-  $("#owner_comments, .hide-owner-comments").hide();
-  $(".view-owner-comments").click(function(event){
-    event.preventDefault();
-    $("#owner_comments").show();
-    $(".view-owner-comments").hide();
-    $(".hide-owner-comments").show();
-  });
+	$("#owner_comments, .hide-owner-comments").hide();
+	$(".view-owner-comments").click(function(event){
+		event.preventDefault();
+		$("#owner_comments").show();
+		$(".view-owner-comments").hide();
+		$(".hide-owner-comments").show();
+	});
 });
 
 $(function() {
-  $(".hide-owner-comments").click(function(event){
-    event.preventDefault();
-    $("#owner_comments").hide();
-    $(".hide-owner-comments").hide();
-    $(".view-owner-comments").show();
-  });
+	$(".hide-owner-comments").click(function(event){
+		event.preventDefault();
+		$("#owner_comments").hide();
+		$(".hide-owner-comments").hide();
+		$(".view-owner-comments").show();
+	});
 });
 
 $(function() {
-  $("#plan_history, .hide-plan-history").hide();
-  $(".view-plan-history").click(function(event){
-    event.preventDefault();
-    $("#plan_history").show();
-    $(".view-plan-history").hide();
-    $(".hide-plan-history").show();
-  });
+	$("#plan_history, .hide-plan-history").hide();
+	$(".view-plan-history").click(function(event){
+		event.preventDefault();
+		$("#plan_history").show();
+		$(".view-plan-history").hide();
+		$(".hide-plan-history").show();
+	});
 });
 
 $(function() {
-  $(".hide-plan-history").click(function(event){
-    event.preventDefault();
-    $("#plan_history").hide();
-    $(".hide-plan-history").hide();
-    $(".view-plan-history").show();
-  });
+	$(".hide-plan-history").click(function(event){
+		event.preventDefault();
+		$("#plan_history").hide();
+		$(".hide-plan-history").hide();
+		$(".view-plan-history").show();
+	});
 });
 
 
@@ -114,11 +116,11 @@ $(function() {
 
 // share my dmp popup window
 $(function() {
-  $.ui.dialog.prototype._focusTabbable = function(){};
-  $('#visibility_dialog_form').hide();
+	$.ui.dialog.prototype._focusTabbable = function(){};
+	$('#visibility_dialog_form').hide();
 	$('#visibility_confirmation_dialog_form').hide();
-  $('.change_visibility_link').click(function(event) {
-    event.preventDefault();
+	$('.change_visibility_link').click(function(event) {
+		event.preventDefault();
     
     showVisibilityDialog(false);
     return false
@@ -204,20 +206,20 @@ function showVisibilityDialog(planConfirmation){
                                 '#visibility_dialog_form')
   
   $(dlg).dialog( {
-    width: 600,
+			width: 600,
     height: 300,
-    modal: true,
-    closeOnEscape: true,
-    draggable: true,
-    resizable: false,
+			modal: true,
+			closeOnEscape: true,
+			draggable: true,
+			resizable: false,
     title: (planConfirmation ? "Confirm your DMP's visibility setting" : "Share my DMP"),
-    
-     buttons: {
-      Cancel: function(){
-        //$('#ui-id-1').unwrap();
-        $(this).dialog( "close" );
-      },
-      Submit: function() {
+
+		 	buttons: {
+				Cancel: function(){
+					//$('#ui-id-1').unwrap();
+					$(this).dialog( "close" );
+				},
+				Submit: function() {
         // If this is the final visibility confirmation, click the confirmation button
         if(planConfirmation){
           $("#confirm_visibility_form").submit();
@@ -226,13 +228,13 @@ function showVisibilityDialog(planConfirmation){
           $("#visibility_form").submit();
         }
         
-        $(this).dialog( "close" );
-      }
-    },
-    open: function()
-    {  
-      $('.ui-widget-overlay').addClass('custom-overlay');
-      
+          $(this).dialog( "close" );
+				}
+			},
+			open: function()
+			{
+        $('.ui-widget-overlay').addClass('custom-overlay');
+
       $(dlg).prev().css('color', '#4C4C4E');
       $(dlg).prev().css('font-family', 'Helvetica, sans-serif');
       $(dlg).prev().css('font-size', '12px');
@@ -249,72 +251,72 @@ function showVisibilityDialog(planConfirmation){
       $(dlg).prev().find('button').css('font-size','20');
       $(dlg).prev().find('button').css('font-color','black');
       $(dlg).prev().find('button').css('opacity','0.2');
-             
-      $(this).parent().find('button:contains("Cancel")').removeClass('ui-corner-all');
-      $(this).parent().find('button:contains("Cancel")').removeClass('ui-widget');
-      $(this).parent().find('button:contains("Cancel")').removeClass('ui-button');
-      $(this).parent().find('button:contains("Cancel")').removeClass('ui-state-default');
-      $(this).parent().find('button:contains("Cancel")').removeClass('ui-button-text-only');
-      $(this).parent().find('button:contains("Cancel")').addClass('btn');
-      
 
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-corner-all');
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-widget');
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-button');
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-state-default');
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-button-text-only');
-      $(this).parent().find('button:contains("Submit")').removeClass('ui-button-text');
-      $(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');      
+    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-corner-all');
+    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-widget');
+    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button');
+    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-state-default');
+    		$(this).parent().find('button:contains("Cancel")').removeClass('ui-button-text-only');
+				$(this).parent().find('button:contains("Cancel")').addClass('btn');
 
-      $('#ui-id-1').parent().removeClass('ui-widget-overlay');
-      $('#ui-id-1').parent().removeClass('ui-widget-header');
-      $('#ui-id-1').parent().removeClass('ui-dialog-title');
-      $('#ui-id-1').parent().addClass('modal-header');
-      
-      // $('#ui-id-1').css('font-weight','bold');
-      // $('#ui-id-1').css('font-family', 'Helvetica, sans-serif');
-      // $('#ui-id-1').css('font-size', '12px');
 
-      
-      $('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
+    		$(this).parent().find('button:contains("Submit")').removeClass('ui-corner-all');
+    		$(this).parent().find('button:contains("Submit")').removeClass('ui-widget');
+    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button');
+    		$(this).parent().find('button:contains("Submit")').removeClass('ui-state-default');
+    		$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text-only');
+				$(this).parent().find('button:contains("Submit")').removeClass('ui-button-text');
+				$(this).parent().find('button:contains("Submit")').addClass('btn btn-green confirm');
+
+				$('#ui-id-1').parent().removeClass('ui-widget-overlay');
+				$('#ui-id-1').parent().removeClass('ui-widget-header');
+				$('#ui-id-1').parent().removeClass('ui-dialog-title');
+				$('#ui-id-1').parent().addClass('modal-header');
+
+				// $('#ui-id-1').css('font-weight','bold');
+				// $('#ui-id-1').css('font-family', 'Helvetica, sans-serif');
+				// $('#ui-id-1').css('font-size', '12px');
+
+
+				$('#ui-id-1').wrap("<h3 id=\"new_h3\"><strong id=\"new_strong\"></strong></h3>");
 
       $(dlg).next().removeClass('ui-dialog-buttonpane ui-widget-content ui-helper-clearfix');
       $(dlg).next().addClass('modal-footer');  
 
       $(dlg).dialog("open");
-      $(".copyright span7").hide();
-    },
-    close: function() {
-      $('#ui-id-1').first().unwrap();
-      $('#ui-id-1').first().unwrap();
+				$(".copyright span7").hide();
+			},
+      close: function() {
+      	$('#ui-id-1').first().unwrap();
+      	$('#ui-id-1').first().unwrap();
       $(dlg).dialog("close");
-      
-      //window.location.reload(true);
-    }
-  }).prev ().find(".ui-dialog-titlebar-close").show();
+
+        //window.location.reload(true);
+      }
+		}).prev ().find(".ui-dialog-titlebar-close").show();
 }
 
 function setInitialVisibilityOnDialog(form, id, visibility){
 	$(form).find("#shared_plan_id").val(id);
 
-  if (visibility  == "institutional")
-  {
+		if (visibility  == "institutional")
+		{
     $(form).find("#visibility_institutional").click();
-  }
-  else if (visibility  == "public")
-  {
+		}
+		else if (visibility  == "public")
+	  {
     $(form).find("#visibility_public").click();
   }
   else if (visibility  == "test")
   {
     $(form).find("#visibility_test").click();
-  }
-  else if (visibility  == "private")
-  {
+	  }
+		else if (visibility  == "private")
+	  {
     $(form).find("#visibility_private").click();
-  }
-  else if (visibility  == "unit")
-  {
+	  }
+	  else if (visibility  == "unit")
+	  {
     $(form).find("#visibility_unit").click();
-  }
+	  }
 }

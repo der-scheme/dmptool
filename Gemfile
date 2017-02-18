@@ -25,7 +25,7 @@ group :test do
   gem 'launchy'
 end
 
-gem "ckeditor", '4.0.11'
+gem "ckeditor", '~> 4.0'
 
 gem 'htmltoword'
 
@@ -36,8 +36,8 @@ gem "omniauth-shibboleth", :git => "https://bitbucket.org/cdl/omniauth-shibbolet
 gem 'mysql2', '~> 0.3.18'
 gem 'therubyracer'
 gem 'enum_column3'
-gem 'bootstrap-sass', '2.3.2.0'
-gem 'sass-rails',  '~> 4.0.0'
+gem 'bootstrap-sass', '~> 2.0'
+gem 'sass-rails', '~> 5.0.0'
 gem 'uglifier', '2.5.0'
 gem 'deep_cloneable', '~> 2.0.0'
 gem 'ancestry'

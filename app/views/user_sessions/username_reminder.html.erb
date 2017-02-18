@@ -4,10 +4,10 @@
 <h1 class="row-fluid"><span class="icon login"></span>Username Reminder</h1>
 <div class="login row-fluid">
 	<div class="span5 user_login">
-		<p>Enter your email address below to send an email with the username for your account.</p>	
+		<p>Enter your email address below to send an email with the username for your account.</p>
 	  <%= form_tag({:action => 'username_reminder'}, {:method => 'post'}) do %>
 			<div class="control-group">
-				<%= label_tag :user_id, 'Email' %>
+				<%= label_tag :email, 'Email' %>
 				<%= text_field_tag(:email, params[:email])%>
 	  	</div>
 	    <%= submit_tag "Submit" %>

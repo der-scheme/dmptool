@@ -14,9 +14,9 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require ckeditor/override
 //= require ckeditor/init
-
+//= require modernizr-inputtypes
+//= require_self
 //= require_tree .
 
 

@@ -53,7 +53,7 @@
 <% unless @customization.nil? %>
   <% if @customization.review_type == :formal_review %>
     <fieldset class="spaced_below">
-      <label class ="control-label">Review Decision:</label>
+      <div class ="control-label">Review Decision:</div>
       <% if state(@plan) == :approved || state(@plan) == :rejected %>
         <strong>The Plan is set to <span class ="blue"><%= @plan.display_state %></span> state.</strong>
       <% else %>
@@ -76,7 +76,7 @@
 
   <% if @plan.requirements_template.review_type == :formal_review %>
       <fieldset class="spaced_below">
-      <label class ="control-label">Review Decision:</label>
+      <div class ="control-label">Review Decision:</div>
       <% if state(@plan) == :approved || state(@plan) == :rejected %>
         <strong>The Plan is set to <span class ="blue"><%= @plan.display_state %></span> state.</strong>
       <% else %>
@@ -103,7 +103,7 @@
   <%= render partial: 'reject_with_comments', locals: {:plan_id => params[:id] } %>
 </div>
 <hr/>
-<%= link_to 'Back', review_dmps_path(@plan), method: :get, :class => 'btn btn-green pull-left' %>
+<%= link_to 'Back', review_dmps_path, method: :get, :class => 'btn btn-green pull-left' %>
 
 <script type="text/javascript">
   $("div.scrollable-container").resizable({ containment: "parent", minHeight: 150, handles: "s" });

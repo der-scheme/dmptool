@@ -4,16 +4,33 @@
 	<h1>DMPTool Help</h1>
 	<hr/>
 	<h2><em>What do you want to do?</em></h2>
-	<br/>
-	<p><a title="I want to see frequently asked questions and answers." href="https://github.com/CDLUC3/dmptool/wiki/FAQ" target="_blank">I want to see frequently asked questions and answers.</a></p>
-	<br/>
-	<p><a href="/quickstartguide/">I want help <strong>creating a data management plan.</strong></a></p>
-	<br/>
-	<p><a href="https://github.com/CDLUC3/dmptool/wiki/Help-for-Administrators">I want to <strong>administer</strong> the DMPTool.</a></p>
-	<br/>
-	<p><%= link_to raw("I want general <strong>data management guidance</strong>."), dm_guidance_path, :title => "I want general data management guidance." %></p>
-	<br/>
-	<p><%= link_to raw("I want to <strong>promote the DMPTool</strong> at my institution."), promote_path, :title => "I want to promote the DMPTool at my institution." %></p>
-	<br/>
-	<p><%= link_to raw("I want to access <strong>community resources</strong> for understanding and using the DMPTool."), community_resources_path, :title => "I want to access community resources for understanding and using the DMPTool." %></p>
+	<ul class="ugly_list">
+		<li>
+			<a title="I want to see frequently asked questions and answers." href="https://github.com/CDLUC3/dmptool/wiki/FAQ" target="_blank">I want to see frequently asked questions and answers.</a>
+		</li>
+		<li>
+			<%= link_to quickstartguide_path, title: 'I want help creating a data management plan.' do %>
+				I want help <strong>creating a data management plan.</strong>
+			<% end %>
+		</li>
+		<li>
+			<a href="https://github.com/CDLUC3/dmptool/wiki/Help-for-Administrators">I want to <strong>administer</strong> the DMPTool.</a>
+		</li>
+		<li>
+			<%= link_to dm_guidance_path, title: 'I want general data management guidance.' do %>
+				I want general <strong>data management guidance</strong>.
+			<% end %>
+		</li>
+		<li>
+			<%= link_to promote_path, title: 'I want to promote the DMPTool at my institution.' do %>
+				I want to <strong>promote the DMPTool</strong> at my institution.
+			<% end %>
+		</li>
+		<li>
+			<%= link_to community_resources_path, title: 'I want to access community resources for understanding and using the DMPTool.' do %>
+				I want to access <strong>community resources</strong> for understanding and using the DMPTool.
+			<% end %>
+		</li>
+	</ul>
 </div>
+

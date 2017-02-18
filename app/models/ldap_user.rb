@@ -1,13 +1,13 @@
 class Ldap_User
   LDAP = UserLdap::Server.
-      new({ :host             => LDAP_CONFIG["host"],
-            :port             => LDAP_CONFIG["port"],
-            :base             => LDAP_CONFIG["user_base"],
-            :admin_user       => LDAP_CONFIG["admin_user"],
-            :admin_password   => LDAP_CONFIG["admin_password"],
-            :ezid_minter_uri  => LDAP_CONFIG["ezid_minter_uri"],
-            :ezid_user        => LDAP_CONFIG["ezid_user"],
-            :ezid_pwd         => LDAP_CONFIG["ezid_pwd"]
+      new({ :host             => Rails.configuration.ldap_options["host"],
+            :port             => Rails.configuration.ldap_options["port"],
+            :base             => Rails.configuration.ldap_options["user_base"],
+            :admin_user       => Rails.configuration.ldap_options["admin_user"],
+            :admin_password   => Rails.configuration.ldap_options["admin_password"],
+            :ezid_minter_uri  => Rails.configuration.ldap_options["ezid_minter_uri"],
+            :ezid_user        => Rails.configuration.ldap_options["ezid_user"],
+            :ezid_pwd         => Rails.configuration.ldap_options["ezid_pwd"]
           })
 
   AUTHLOGIC_MAP =

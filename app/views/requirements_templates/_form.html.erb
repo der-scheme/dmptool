@@ -18,11 +18,11 @@
 
 				<div class="control-group" style="position: relative">
 					<%= content_tag(:span, '', :title => 'Once active, template visibility can be either: <ul><li>Public: anyone can view the template.</li><li>Institutional: only those logged in from your institution can view the template.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 125px') %>
-					<label class="control-label required">Visibility</label>
+					<div class="control-label required">Visibility</div>
 					<div class="controls checkbox-controls">
-						<%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public', 'aria-required' => 'true'  %>
+						<%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public'  %>
 						<%= label_tag :public, 'public', :class => 'radio-label'%><br/>
-						<%= f.radio_button :visibility, :institutional, :class => 'radio inline', :id => 'institutional', 'aria-required' => 'true'  %>
+						<%= f.radio_button :visibility, :institutional, :class => 'radio inline', :id => 'institutional'  %>
 						<%= label_tag :institutional, 'institutional', :class => 'radio-label'%>
 					</div>
 				</div>

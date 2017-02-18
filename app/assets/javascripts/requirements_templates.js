@@ -2,29 +2,31 @@
 // All this logic will automatically be available in application.js.
 
 $(function() {
-	$("#start_date.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		onClose: function( selectedDate ) {
-			$( "#end_date.datepicker" ).datepicker( "option", "minDate", selectedDate );
-		}
-	});
+	if (!Modernizr.inputtypes.date) {
+		$("#start_date.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			onClose: function( selectedDate ) {
+				$("#end_date.datepicker").datepicker("option", "minDate", selectedDate);
+			}
+		});
 
-	$("#end_date.datepicker").datepicker( {
-		showOn: 'button',
-		buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-		dateFormat: "mm/dd/yy",
-		changeMonth: true,
-		changeYear: true,
-		numberOfMonths: 1,
-		onClose: function( selectedDate ) {
-			$( "#start_date.datepicker" ).datepicker( "option", "maxDate", selectedDate );
-		}
-	});
+		$("#end_date.datepicker").datepicker( {
+			showOn: 'button',
+			buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true,
+			numberOfMonths: 1,
+			onClose: function( selectedDate ) {
+				$("#start_date.datepicker").datepicker("option", "maxDate", selectedDate);
+			}
+		});
+	}
 
 	$("form").on('click','.add_fields', function(event) {
 	  var time = new Date().getTime();

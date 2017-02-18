@@ -1,9 +1,9 @@
 <footer class="footer container">
 	<div class="row-fluid">
 		<div class="copyright span7">
-			<p>DMPTOOL is a service of the 
-			<%= link_to 'University of California Curation Center', 'http://www.cdlib.org/services/uc3', :title => 'University of California Curation Center', :target => '_blank' %> 
-			of the 
+			<p>DMPTOOL is a service of the
+			<%= link_to 'University of California Curation Center', 'http://www.cdlib.org/services/uc3', :title => 'University of California Curation Center', :target => '_blank' %>
+			of the
 		  <%= link_to 'California Digital Library', 'http://cdlib.org', :title => 'California Digital Libary', :target => '_blank' %><br/>
 		  Copyright &copy; 2010-<%=Time.new.year%> The Regents of the University of California</p>
 		</div>
@@ -13,10 +13,10 @@
 				<%= link_to '', 'https://twitter.com/TheDMPTool', :class => 'icon twitter', :title => 'Follow the California Digital Library on Twitter', :target => '_blank' %>
 				<%= link_to '', 'https://blog.dmptool.org/feed', :class => 'icon rss', :title => 'California Digital Library RSS Feed', :target => '_blank' %>
 			</div>
-			<p>
+			<div class="the-links">
 			<%= link_to 'Accessibility Policy', 'http://www.ucop.edu/electronic-accessibility/initiative/policy.html', :title => 'Accessibility Policy' %> |
 			<%= link_to 'Terms of Use', terms_of_use_path, :title => 'Terms of Use' %> |
-			<%= link_to 'Contact Us', APP_CONFIG['contact_us_url'], title: 'Contact Us' %> | 
+			<%= link_to 'Contact Us', APP_CONFIG['contact_us_url'], title: 'Contact Us' %> |
 			<%= link_to 'About', about_path, :title => 'About the California Digital Library Data Management Tool' %></p>
 		</div>
 	</div>

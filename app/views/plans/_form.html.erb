@@ -43,28 +43,28 @@
           </div>
         </div>
         <div class="control-group">
-          <%= label_tag(:submission_deadline, "Proposal Submission Deadline", :class => "control-label") %>
+          <%= f.label :submission_deadline, 'Proposal Submission Deadline', class: 'control-label' %>
           <div class="controls">
-            <%= f.text_field :submission_deadline, value: @plan.submission_deadline.blank? ? " " : @plan.submission_deadline.strftime('%m/%d/%Y'), :class => 'datepicker', id:'submission_deadline' %>
+            <%= f.date_field :submission_deadline, value: @plan.submission_deadline.try(:strftime, '%F'), class: 'datepicker' %>
             <%= content_tag(:span, '', :title => 'Deadline for submitting the proposal associated with this DMP.', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip') %>
           </div>
         </div>
 
         <% if @plan.new_record? %>
           <div class="control-group required" style="position: relative">
-            <%= content_tag(:span, '', :title => 'Four possible states:<ul><li>Share publicly: anyone can view, copy and or download the plan. 
+            <%= content_tag(:span, '', :title => 'Four possible states:<ul><li>Share publicly: anyone can view, copy and or download the plan.
             Your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site.</li><li>Shared with institution: anyone logged in from your institution can view, copy and or download the plan.</li><li>Private: only owners and co-owners can view the plan. Administrators at your institution can view all plans for program development purposes. See <a href="/terms_of_use">Terms of Use</a></li><li>Test: select if you are exploring the tool and/or creating a practice plan that you will not submit with a proposal.</li></ul>', 'data-toggle' => 'tooltip', 'data-placement' => 'right', 'data-html' => 'true', :class => 'icon questionmark tip', :style => 'position: absolute; top: 7px; left: 125px') %>
             <%= label_tag :visibility, "Visibility", class: "control-label required" %>
             <div class="controls checkbox-controls">
-              <%= f.radio_button :visibility, :public, :class => 'radio inline', :id => 'public'  %>
-              <%= label_tag :public, 'public', :class => 'radio-label'%><br/>
-              <%= f.radio_button :visibility, :institutional, :class => 'radio inline', :id => 'institutional'  %>
-              <%= label_tag :institutional, 'institutional', :class => 'radio-label'%><br/>
-              <%= f.radio_button :visibility, :private, :class => 'radio inline', :id => 'private'  %>
-              <%= label_tag :private, 'private', :class => 'radio-label'%><br/>
+              <%= f.radio_button :visibility, :public, class: 'radio inline' %>
+              <%= f.label :visibility, 'public', value: :public, class: 'radio-label'%><br/>
+              <%= f.radio_button :visibility, :institutional, class: 'radio inline' %>
+              <%= f.label :visibility, 'institutional', value: :institutional, class: 'radio-label'%><br/>
+              <%= f.radio_button :visibility, :private, class: 'radio inline'  %>
+              <%= f.label :visibility, 'private', value: :private, class: 'radio-label'%><br/>
               <%if current_user.institution.parent || current_user.institution.has_children? %>
-                <%= f.radio_button :visibility, :unit, :class => 'radio inline', :id => 'unit'%>
-                <%= label_tag :unit, 'unit', :class => 'radio-label'%>
+                <%= f.radio_button :visibility, :unit, class: 'radio inline' %>
+                <%= f.label :visibility, 'unit', value: :unit, class: 'radio-label'%>
               <%end%>
               <%= f.radio_button :visibility, :test, :class => 'radio inline', :id => 'test'  %>
               <%= label_tag :test, 'test or practice', :class => 'radio-label'%><br/>
@@ -131,7 +131,7 @@
               </div>
             </div>
           <% end %>
-          <hr/>
+					<hr/>
           <div class="control-group">
             <p class ="control-label">Owner Comments</p>
             <div class="controls">
@@ -165,13 +165,13 @@
                 <p>
                   This DMP is <strong class="blue"><%=@plan.visibility.capitalize %></strong>
                 </p>
-                <%= link_to "Change Settings", "#", :class => "btn change_visibility_link", :'data-planid' => @plan.id, 
+                <%= link_to "Change Settings", "#", :class => "btn change_visibility_link", :'data-planid' => @plan.id,
                       :'data-visibility' => @plan.visibility, :style => "margin-left:-20px"%>
-                
+
                 <div style=" width: 400px; line-height:20px">
                   Note: when visibility is set to "Public", your DMP will appear on the <a href="/public_dmps">Public DMPs</a> page of this site
-                  and it will be downloadable and copy-able. 
-                
+                  and it will be downloadable and copy-able.
+
                 </div>
               </div>
             </div>

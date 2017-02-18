@@ -27,7 +27,9 @@
   <tbody>
     <% @plans.each do |plan| %>
       <tr>
-				<td class="span7", id="#{plan.name}"><strong><%= plan.name %></strong></td>
+				<%= content_tag :td, class: 'span7', id: plan.id do %>
+          <strong><%= plan.name %></strong>
+        <% end %>
         <td><%= owner_name(plan) %></td>
         <td><%= plan.updated_at.strftime("%m/%d/%Y %I:%M%p") %></td>
         <td class="span1"><strong><%= plan.display_state %></strong></td>
