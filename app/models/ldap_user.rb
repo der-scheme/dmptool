@@ -8,7 +8,7 @@ class Ldap_User
             :ezid_minter_uri  => Rails.configuration.ldap_options["ezid_minter_uri"],
             :ezid_user        => Rails.configuration.ldap_options["ezid_user"],
             :ezid_pwd         => Rails.configuration.ldap_options["ezid_pwd"]
-          })
+          }) if Rails.configuration.try(:ldap_options)
 
   AUTHLOGIC_MAP =
       { 'login'         => 'uid',
